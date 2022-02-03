@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseAction;
@@ -13,37 +15,35 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class QueueLeftItem   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
   private List<CauseAction> actions = null;
 
-  private Boolean blocked = null;
+  private Boolean blocked;
 
-  private Boolean buildable = null;
+  private Boolean buildable;
 
-  private Integer id = null;
+  private Integer id;
 
-  private Integer inQueueSince = null;
+  private Integer inQueueSince;
 
-  private String params = null;
+  private String params;
 
-  private Boolean stuck = null;
+  private Boolean stuck;
 
-  private FreeStyleProject task = null;
+  private FreeStyleProject task;
 
-  private String url = null;
+  private String url;
 
-  private String why = null;
+  private String why;
 
-  private Boolean cancelled = null;
+  private Boolean cancelled;
 
-  private FreeStyleBuild executable = null;
+  private FreeStyleBuild executable;
 
 
   /**
@@ -290,7 +290,7 @@ public class QueueLeftItem   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -344,7 +344,7 @@ public class QueueLeftItem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

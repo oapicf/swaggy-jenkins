@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.PipelineStepImpllinks do
   ]
 
   @type t :: %__MODULE__{
-    :"self" => Link,
-    :"actions" => Link,
-    :"_class" => String.t
+    :"self" => SwaggyJenkins.Model.Link.t | nil,
+    :"actions" => SwaggyJenkins.Model.Link.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

@@ -1,34 +1,41 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.StringParameterValue;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * StringParameterDefinition
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class StringParameterDefinition   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("defaultParameterValue")
-  private StringParameterValue defaultParameterValue = null;
+  private StringParameterValue defaultParameterValue;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("type")
-  private String type = null;
+  private String type;
 
   public StringParameterDefinition propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -38,10 +45,9 @@ public class StringParameterDefinition   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -58,11 +64,9 @@ public class StringParameterDefinition   {
   /**
    * Get defaultParameterValue
    * @return defaultParameterValue
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "defaultParameterValue", required = false)
   public StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
   }
@@ -79,10 +83,9 @@ public class StringParameterDefinition   {
   /**
    * Get description
    * @return description
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "description", required = false)
   public String getDescription() {
     return description;
   }
@@ -99,10 +102,9 @@ public class StringParameterDefinition   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -119,10 +121,9 @@ public class StringParameterDefinition   {
   /**
    * Get type
    * @return type
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "type", required = false)
   public String getType() {
     return type;
   }
@@ -131,9 +132,8 @@ public class StringParameterDefinition   {
     this.type = type;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -157,7 +157,6 @@ public class StringParameterDefinition   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class StringParameterDefinition {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    defaultParameterValue: ").append(toIndentedString(defaultParameterValue)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -171,7 +170,7 @@ public class StringParameterDefinition   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

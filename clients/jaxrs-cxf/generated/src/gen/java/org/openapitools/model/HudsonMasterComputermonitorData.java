@@ -8,42 +8,35 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HudsonMasterComputermonitorData  {
   
   @ApiModelProperty(value = "")
   @Valid
-  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null;
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
   @ApiModelProperty(value = "")
   @Valid
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
   @ApiModelProperty(value = "")
   @Valid
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
   @ApiModelProperty(value = "")
-  private String hudsonNodeMonitorsArchitectureMonitor = null;
-
-  @ApiModelProperty(value = "")
-  @Valid
-  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null;
+  private String hudsonNodeMonitorsArchitectureMonitor;
 
   @ApiModelProperty(value = "")
   @Valid
-  private ClockDifference hudsonNodeMonitorsClockMonitor = null;
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  @Valid
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
+
+  @ApiModelProperty(value = "")
+  private String propertyClass;
  /**
    * Get hudsonNodeMonitorsSwapSpaceMonitor
    * @return hudsonNodeMonitorsSwapSpaceMonitor
@@ -191,7 +184,7 @@ public class HudsonMasterComputermonitorData  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

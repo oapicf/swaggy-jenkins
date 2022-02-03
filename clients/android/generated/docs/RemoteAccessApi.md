@@ -26,8 +26,9 @@ Method | HTTP request | Description
 [**postViewConfig**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml | 
 
 
-<a name="getComputer"></a>
-# **getComputer**
+
+## getComputer
+
 > ComputerSet getComputer(depth)
 
 
@@ -35,12 +36,13 @@ Method | HTTP request | Description
 Retrieve computer details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-Integer depth = 56; // Integer | Recursion depth in response model
+Integer depth = null; // Integer | Recursion depth in response model
 try {
     ComputerSet result = apiInstance.getComputer(depth);
     System.out.println(result);
@@ -52,9 +54,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **depth** | **Integer**| Recursion depth in response model |
+ **depth** | **Integer**| Recursion depth in response model | [default to null]
 
 ### Return type
 
@@ -66,11 +69,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJenkins"></a>
-# **getJenkins**
+
+## getJenkins
+
 > Hudson getJenkins()
 
 
@@ -78,6 +82,7 @@ Name | Type | Description  | Notes
 Retrieve Jenkins details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
@@ -93,6 +98,7 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -105,11 +111,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJob"></a>
-# **getJob**
+
+## getJob
+
 > FreeStyleProject getJob(name)
 
 
@@ -117,12 +124,13 @@ This endpoint does not need any parameter.
 Retrieve job details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
+String name = null; // String | Name of the job
 try {
     FreeStyleProject result = apiInstance.getJob(name);
     System.out.println(result);
@@ -134,9 +142,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
+ **name** | **String**| Name of the job | [default to null]
 
 ### Return type
 
@@ -148,11 +157,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJobConfig"></a>
-# **getJobConfig**
+
+## getJobConfig
+
 > String getJobConfig(name)
 
 
@@ -160,12 +170,13 @@ Name | Type | Description  | Notes
 Retrieve job configuration
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
+String name = null; // String | Name of the job
 try {
     String result = apiInstance.getJobConfig(name);
     System.out.println(result);
@@ -177,9 +188,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
+ **name** | **String**| Name of the job | [default to null]
 
 ### Return type
 
@@ -191,11 +203,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+- **Content-Type**: Not defined
+- **Accept**: text/xml
 
-<a name="getJobLastBuild"></a>
-# **getJobLastBuild**
+
+## getJobLastBuild
+
 > FreeStyleBuild getJobLastBuild(name)
 
 
@@ -203,12 +216,13 @@ Name | Type | Description  | Notes
 Retrieve job&#39;s last build details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
+String name = null; // String | Name of the job
 try {
     FreeStyleBuild result = apiInstance.getJobLastBuild(name);
     System.out.println(result);
@@ -220,9 +234,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
+ **name** | **String**| Name of the job | [default to null]
 
 ### Return type
 
@@ -234,11 +249,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJobProgressiveText"></a>
-# **getJobProgressiveText**
+
+## getJobProgressiveText
+
 > getJobProgressiveText(name, number, start)
 
 
@@ -246,14 +262,15 @@ Name | Type | Description  | Notes
 Retrieve job&#39;s build progressive text output
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
-String number = "number_example"; // String | Build number
-String start = "start_example"; // String | Starting point of progressive text output
+String name = null; // String | Name of the job
+String number = null; // String | Build number
+String start = null; // String | Starting point of progressive text output
 try {
     apiInstance.getJobProgressiveText(name, number, start);
 } catch (ApiException e) {
@@ -264,11 +281,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
- **number** | **String**| Build number |
- **start** | **String**| Starting point of progressive text output |
+ **name** | **String**| Name of the job | [default to null]
+ **number** | **String**| Build number | [default to null]
+ **start** | **String**| Starting point of progressive text output | [default to null]
 
 ### Return type
 
@@ -280,11 +298,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="getQueue"></a>
-# **getQueue**
+
+## getQueue
+
 > Queue getQueue()
 
 
@@ -292,6 +311,7 @@ null (empty response body)
 Retrieve queue details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
@@ -307,6 +327,7 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -319,11 +340,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getQueueItem"></a>
-# **getQueueItem**
+
+## getQueueItem
+
 > Queue getQueueItem(number)
 
 
@@ -331,12 +353,13 @@ This endpoint does not need any parameter.
 Retrieve queued item details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String number = "number_example"; // String | Queue number
+String number = null; // String | Queue number
 try {
     Queue result = apiInstance.getQueueItem(number);
     System.out.println(result);
@@ -348,9 +371,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **number** | **String**| Queue number |
+ **number** | **String**| Queue number | [default to null]
 
 ### Return type
 
@@ -362,11 +386,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getView"></a>
-# **getView**
+
+## getView
+
 > ListView getView(name)
 
 
@@ -374,12 +399,13 @@ Name | Type | Description  | Notes
 Retrieve view details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the view
+String name = null; // String | Name of the view
 try {
     ListView result = apiInstance.getView(name);
     System.out.println(result);
@@ -391,9 +417,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the view |
+ **name** | **String**| Name of the view | [default to null]
 
 ### Return type
 
@@ -405,11 +432,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getViewConfig"></a>
-# **getViewConfig**
+
+## getViewConfig
+
 > String getViewConfig(name)
 
 
@@ -417,12 +445,13 @@ Name | Type | Description  | Notes
 Retrieve view configuration
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the view
+String name = null; // String | Name of the view
 try {
     String result = apiInstance.getViewConfig(name);
     System.out.println(result);
@@ -434,9 +463,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the view |
+ **name** | **String**| Name of the view | [default to null]
 
 ### Return type
 
@@ -448,11 +478,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+- **Content-Type**: Not defined
+- **Accept**: text/xml
 
-<a name="headJenkins"></a>
-# **headJenkins**
+
+## headJenkins
+
 > headJenkins()
 
 
@@ -460,6 +491,7 @@ Name | Type | Description  | Notes
 Retrieve Jenkins headers
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
@@ -474,6 +506,7 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -486,11 +519,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="postCreateItem"></a>
-# **postCreateItem**
+
+## postCreateItem
+
 > postCreateItem(name, from, mode, jenkinsCrumb, contentType, body)
 
 
@@ -498,16 +532,17 @@ null (empty response body)
 Create a new job using job configuration, or copied from an existing job
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the new job
-String from = "from_example"; // String | Existing job to copy from
-String mode = "mode_example"; // String | Set to 'copy' for copying an existing job
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
-String contentType = "contentType_example"; // String | Content type header application/xml
+String name = null; // String | Name of the new job
+String from = null; // String | Existing job to copy from
+String mode = null; // String | Set to 'copy' for copying an existing job
+String jenkinsCrumb = null; // String | CSRF protection token
+String contentType = null; // String | Content type header application/xml
 String body = "body_example"; // String | Job configuration in config.xml format
 try {
     apiInstance.postCreateItem(name, from, mode, jenkinsCrumb, contentType, body);
@@ -519,13 +554,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the new job |
- **from** | **String**| Existing job to copy from | [optional]
- **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | [optional]
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
- **contentType** | **String**| Content type header application/xml | [optional]
+ **name** | **String**| Name of the new job | [default to null]
+ **from** | **String**| Existing job to copy from | [optional] [default to null]
+ **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | [optional] [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
+ **contentType** | **String**| Content type header application/xml | [optional] [default to null]
  **body** | **String**| Job configuration in config.xml format | [optional]
 
 ### Return type
@@ -538,11 +574,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
-<a name="postCreateView"></a>
-# **postCreateView**
+
+## postCreateView
+
 > postCreateView(name, jenkinsCrumb, contentType, body)
 
 
@@ -550,14 +587,15 @@ null (empty response body)
 Create a new view using view configuration
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the new view
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
-String contentType = "contentType_example"; // String | Content type header application/xml
+String name = null; // String | Name of the new view
+String jenkinsCrumb = null; // String | CSRF protection token
+String contentType = null; // String | Content type header application/xml
 String body = "body_example"; // String | View configuration in config.xml format
 try {
     apiInstance.postCreateView(name, jenkinsCrumb, contentType, body);
@@ -569,11 +607,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the new view |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
- **contentType** | **String**| Content type header application/xml | [optional]
+ **name** | **String**| Name of the new view | [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
+ **contentType** | **String**| Content type header application/xml | [optional] [default to null]
  **body** | **String**| View configuration in config.xml format | [optional]
 
 ### Return type
@@ -586,11 +625,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
-<a name="postJobBuild"></a>
-# **postJobBuild**
+
+## postJobBuild
+
 > postJobBuild(name, json, token, jenkinsCrumb)
 
 
@@ -598,15 +638,16 @@ null (empty response body)
 Build a job
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
-String json = "json_example"; // String | 
-String token = "token_example"; // String | 
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String name = null; // String | Name of the job
+String json = null; // String | 
+String token = null; // String | 
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postJobBuild(name, json, token, jenkinsCrumb);
 } catch (ApiException e) {
@@ -617,12 +658,13 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
- **json** | **String**|  |
- **token** | **String**|  | [optional]
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **name** | **String**| Name of the job | [default to null]
+ **json** | **String**|  | [default to null]
+ **token** | **String**|  | [optional] [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -634,11 +676,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="postJobConfig"></a>
-# **postJobConfig**
+
+## postJobConfig
+
 > postJobConfig(name, body, jenkinsCrumb)
 
 
@@ -646,14 +689,15 @@ null (empty response body)
 Update job configuration
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
+String name = null; // String | Name of the job
 String body = "body_example"; // String | Job configuration in config.xml format
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postJobConfig(name, body, jenkinsCrumb);
 } catch (ApiException e) {
@@ -664,11 +708,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
+ **name** | **String**| Name of the job | [default to null]
  **body** | **String**| Job configuration in config.xml format |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -680,11 +725,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
-<a name="postJobDelete"></a>
-# **postJobDelete**
+
+## postJobDelete
+
 > postJobDelete(name, jenkinsCrumb)
 
 
@@ -692,13 +738,14 @@ null (empty response body)
 Delete a job
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String name = null; // String | Name of the job
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postJobDelete(name, jenkinsCrumb);
 } catch (ApiException e) {
@@ -709,10 +756,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **name** | **String**| Name of the job | [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -724,11 +772,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="postJobDisable"></a>
-# **postJobDisable**
+
+## postJobDisable
+
 > postJobDisable(name, jenkinsCrumb)
 
 
@@ -736,13 +785,14 @@ null (empty response body)
 Disable a job
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String name = null; // String | Name of the job
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postJobDisable(name, jenkinsCrumb);
 } catch (ApiException e) {
@@ -753,10 +803,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **name** | **String**| Name of the job | [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -768,11 +819,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="postJobEnable"></a>
-# **postJobEnable**
+
+## postJobEnable
+
 > postJobEnable(name, jenkinsCrumb)
 
 
@@ -780,13 +832,14 @@ null (empty response body)
 Enable a job
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String name = null; // String | Name of the job
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postJobEnable(name, jenkinsCrumb);
 } catch (ApiException e) {
@@ -797,10 +850,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **name** | **String**| Name of the job | [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -812,11 +866,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="postJobLastBuildStop"></a>
-# **postJobLastBuildStop**
+
+## postJobLastBuildStop
+
 > postJobLastBuildStop(name, jenkinsCrumb)
 
 
@@ -824,13 +879,14 @@ null (empty response body)
 Stop a job
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the job
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String name = null; // String | Name of the job
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postJobLastBuildStop(name, jenkinsCrumb);
 } catch (ApiException e) {
@@ -841,10 +897,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **name** | **String**| Name of the job | [default to null]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -856,11 +913,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="postViewConfig"></a>
-# **postViewConfig**
+
+## postViewConfig
+
 > postViewConfig(name, body, jenkinsCrumb)
 
 
@@ -868,14 +926,15 @@ null (empty response body)
 Update view configuration
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.RemoteAccessApi;
 
 RemoteAccessApi apiInstance = new RemoteAccessApi();
-String name = "name_example"; // String | Name of the view
+String name = null; // String | Name of the view
 String body = "body_example"; // String | View configuration in config.xml format
-String jenkinsCrumb = "jenkinsCrumb_example"; // String | CSRF protection token
+String jenkinsCrumb = null; // String | CSRF protection token
 try {
     apiInstance.postViewConfig(name, body, jenkinsCrumb);
 } catch (ApiException e) {
@@ -886,11 +945,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the view |
+ **name** | **String**| Name of the view | [default to null]
  **body** | **String**| View configuration in config.xml format |
- **jenkinsCrumb** | **String**| CSRF protection token | [optional]
+ **jenkinsCrumb** | **String**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -902,6 +962,6 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 

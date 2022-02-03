@@ -9,7 +9,7 @@ For more information, please visit [http://github.com/cliffano/swaggy-jenkins](h
 
 ## Requirements
 
-PHP 5.4.0 and later
+PHP 7.1.3 and later
 
 ## Installation & Usage
 
@@ -27,7 +27,7 @@ To install the dependencies via [Composer](http://getcomposer.org/), add the fol
 Then run:
 
 ```
-composer require openapi/server-bundle:dev-master
+composer require GIT_USER_ID/GIT_REPO_ID:dev-master
 ```
 
 to add the generated openapi bundle as a dependency.
@@ -66,7 +66,7 @@ Step 3: Register the routes:
 
 ```yaml
 # app/config/routing.yml
-open_apiserver:
+open_api_server:
     resource: "@OpenAPIServerBundle/Resources/config/routing.yml"
 ```
 
@@ -104,7 +104,7 @@ services:
     acme.my_bundle.api.base:
         class: Acme\MyBundle\Api\BaseApi
         tags:
-            - { name: "open_apiserver.api", api: "base" }
+            - { name: "open_api_server.api", api: "base" }
     # ...
 ```
 
@@ -180,7 +180,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AllView](Resources/docs/Model/AllView.md)
- - [Body](Resources/docs/Model/Body.md)
  - [BranchImpl](Resources/docs/Model/BranchImpl.md)
  - [BranchImpllinks](Resources/docs/Model/BranchImpllinks.md)
  - [BranchImplpermissions](Resources/docs/Model/BranchImplpermissions.md)
@@ -230,12 +229,9 @@ Class | Method | HTTP request | Description
  - [MultibranchPipeline](Resources/docs/Model/MultibranchPipeline.md)
  - [NullSCM](Resources/docs/Model/NullSCM.md)
  - [Organisation](Resources/docs/Model/Organisation.md)
- - [Organisations](Resources/docs/Model/Organisations.md)
  - [Pipeline](Resources/docs/Model/Pipeline.md)
- - [PipelineActivities](Resources/docs/Model/PipelineActivities.md)
  - [PipelineActivity](Resources/docs/Model/PipelineActivity.md)
  - [PipelineActivityartifacts](Resources/docs/Model/PipelineActivityartifacts.md)
- - [PipelineBranches](Resources/docs/Model/PipelineBranches.md)
  - [PipelineBranchesitem](Resources/docs/Model/PipelineBranchesitem.md)
  - [PipelineBranchesitemlatestRun](Resources/docs/Model/PipelineBranchesitemlatestRun.md)
  - [PipelineBranchesitempullRequest](Resources/docs/Model/PipelineBranchesitempullRequest.md)
@@ -243,35 +239,26 @@ Class | Method | HTTP request | Description
  - [PipelineFolderImpl](Resources/docs/Model/PipelineFolderImpl.md)
  - [PipelineImpl](Resources/docs/Model/PipelineImpl.md)
  - [PipelineImpllinks](Resources/docs/Model/PipelineImpllinks.md)
- - [PipelineQueue](Resources/docs/Model/PipelineQueue.md)
  - [PipelineRun](Resources/docs/Model/PipelineRun.md)
  - [PipelineRunImpl](Resources/docs/Model/PipelineRunImpl.md)
  - [PipelineRunImpllinks](Resources/docs/Model/PipelineRunImpllinks.md)
  - [PipelineRunNode](Resources/docs/Model/PipelineRunNode.md)
- - [PipelineRunNodeSteps](Resources/docs/Model/PipelineRunNodeSteps.md)
  - [PipelineRunNodeedges](Resources/docs/Model/PipelineRunNodeedges.md)
- - [PipelineRunNodes](Resources/docs/Model/PipelineRunNodes.md)
- - [PipelineRunSteps](Resources/docs/Model/PipelineRunSteps.md)
  - [PipelineRunartifacts](Resources/docs/Model/PipelineRunartifacts.md)
- - [PipelineRuns](Resources/docs/Model/PipelineRuns.md)
  - [PipelineStepImpl](Resources/docs/Model/PipelineStepImpl.md)
  - [PipelineStepImpllinks](Resources/docs/Model/PipelineStepImpllinks.md)
  - [PipelinelatestRun](Resources/docs/Model/PipelinelatestRun.md)
  - [PipelinelatestRunartifacts](Resources/docs/Model/PipelinelatestRunartifacts.md)
- - [Pipelines](Resources/docs/Model/Pipelines.md)
  - [Queue](Resources/docs/Model/Queue.md)
  - [QueueBlockedItem](Resources/docs/Model/QueueBlockedItem.md)
  - [QueueItemImpl](Resources/docs/Model/QueueItemImpl.md)
  - [QueueLeftItem](Resources/docs/Model/QueueLeftItem.md)
  - [ResponseTimeMonitorData](Resources/docs/Model/ResponseTimeMonitorData.md)
- - [ScmOrganisations](Resources/docs/Model/ScmOrganisations.md)
  - [StringParameterDefinition](Resources/docs/Model/StringParameterDefinition.md)
  - [StringParameterValue](Resources/docs/Model/StringParameterValue.md)
  - [SwapSpaceMonitorMemoryUsage2](Resources/docs/Model/SwapSpaceMonitorMemoryUsage2.md)
  - [UnlabeledLoadStatistics](Resources/docs/Model/UnlabeledLoadStatistics.md)
  - [User](Resources/docs/Model/User.md)
- - [UserFavorites](Resources/docs/Model/UserFavorites.md)
- - [Users](Resources/docs/Model/Users.md)
 
 
 ## Documentation For Authorization
@@ -291,5 +278,4 @@ Class | Method | HTTP request | Description
 ## Author
 
 blah@cliffano.com
-
 

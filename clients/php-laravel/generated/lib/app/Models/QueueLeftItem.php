@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class QueueLeftItem {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var \app\Models\CauseAction[] $actions */
     private $actions;
@@ -24,8 +24,8 @@ class QueueLeftItem {
     /** @var int $id */
     private $id;
 
-    /** @var int $in_queue_since */
-    private $in_queue_since;
+    /** @var int $inQueueSince */
+    private $inQueueSince;
 
     /** @var string $params */
     private $params;

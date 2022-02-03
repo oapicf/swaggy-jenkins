@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 **displayName** | **kotlin.String** |  |  [optional]
-**executors** | [**kotlin.Array&lt;HudsonMasterComputerexecutors&gt;**](HudsonMasterComputerexecutors.md) |  |  [optional]
+**executors** | [**kotlin.collections.List&lt;HudsonMasterComputerexecutors&gt;**](HudsonMasterComputerexecutors.md) |  |  [optional]
 **icon** | **kotlin.String** |  |  [optional]
 **iconClassName** | **kotlin.String** |  |  [optional]
 **idle** | **kotlin.Boolean** |  |  [optional]

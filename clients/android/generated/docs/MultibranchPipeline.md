@@ -1,7 +1,9 @@
 
+
 # MultibranchPipeline
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **displayName** | **String** |  |  [optional]
@@ -18,6 +20,7 @@ Name | Type | Description | Notes
 **totalNumberOfBranches** | **Integer** |  |  [optional]
 **totalNumberOfPullRequests** | **Integer** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

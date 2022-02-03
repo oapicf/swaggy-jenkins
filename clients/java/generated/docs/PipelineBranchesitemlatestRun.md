@@ -1,7 +1,10 @@
 
+
 # PipelineBranchesitemlatestRun
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **durationInMillis** | **Integer** |  |  [optional]

@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.GenericResource
+
 ## Properties
 
 Name | Type | Description | Notes

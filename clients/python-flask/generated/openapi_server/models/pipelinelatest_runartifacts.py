@@ -15,7 +15,7 @@ class PipelinelatestRunartifacts(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, name: str=None, size: int=None, url: str=None, _class: str=None):  # noqa: E501
+    def __init__(self, name=None, size=None, url=None, _class=None):  # noqa: E501
         """PipelinelatestRunartifacts - a model defined in OpenAPI
 
         :param name: The name of this PipelinelatestRunartifacts.  # noqa: E501
@@ -58,7 +58,7 @@ class PipelinelatestRunartifacts(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this PipelinelatestRunartifacts.
 
 
@@ -68,7 +68,7 @@ class PipelinelatestRunartifacts(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this PipelinelatestRunartifacts.
 
 
@@ -79,7 +79,7 @@ class PipelinelatestRunartifacts(Model):
         self._name = name
 
     @property
-    def size(self) -> int:
+    def size(self):
         """Gets the size of this PipelinelatestRunartifacts.
 
 
@@ -89,7 +89,7 @@ class PipelinelatestRunartifacts(Model):
         return self._size
 
     @size.setter
-    def size(self, size: int):
+    def size(self, size):
         """Sets the size of this PipelinelatestRunartifacts.
 
 
@@ -100,7 +100,7 @@ class PipelinelatestRunartifacts(Model):
         self._size = size
 
     @property
-    def url(self) -> str:
+    def url(self):
         """Gets the url of this PipelinelatestRunartifacts.
 
 
@@ -110,7 +110,7 @@ class PipelinelatestRunartifacts(Model):
         return self._url
 
     @url.setter
-    def url(self, url: str):
+    def url(self, url):
         """Sets the url of this PipelinelatestRunartifacts.
 
 
@@ -121,7 +121,7 @@ class PipelinelatestRunartifacts(Model):
         self._url = url
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this PipelinelatestRunartifacts.
 
 
@@ -131,7 +131,7 @@ class PipelinelatestRunartifacts(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this PipelinelatestRunartifacts.
 
 

@@ -7,22 +7,22 @@ import javax.ws.rs.core.Response;
 
 import io.swagger.annotations.*;
 
+import java.io.InputStream;
 import java.util.Map;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-@Path("/crumbIssuer")
+@Path("/crumbIssuer/api/json")
 @Api(description = "the crumbIssuer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-10T13:32:03.603Z[GMT]")
-public class CrumbIssuerApi {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class CrumbIssuerApi {
 
     @GET
-    @Path("/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve CSRF protection token", response = DefaultCrumbIssuer.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "base" })
+         }, tags={ "base" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),

@@ -15,7 +15,7 @@ class ResponseTimeMonitorData(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, timestamp: int=None, average: int=None):  # noqa: E501
+    def __init__(self, _class=None, timestamp=None, average=None):  # noqa: E501
         """ResponseTimeMonitorData - a model defined in OpenAPI
 
         :param _class: The _class of this ResponseTimeMonitorData.  # noqa: E501
@@ -53,7 +53,7 @@ class ResponseTimeMonitorData(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this ResponseTimeMonitorData.
 
 
@@ -63,7 +63,7 @@ class ResponseTimeMonitorData(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this ResponseTimeMonitorData.
 
 
@@ -74,7 +74,7 @@ class ResponseTimeMonitorData(Model):
         self.__class = _class
 
     @property
-    def timestamp(self) -> int:
+    def timestamp(self):
         """Gets the timestamp of this ResponseTimeMonitorData.
 
 
@@ -84,7 +84,7 @@ class ResponseTimeMonitorData(Model):
         return self._timestamp
 
     @timestamp.setter
-    def timestamp(self, timestamp: int):
+    def timestamp(self, timestamp):
         """Sets the timestamp of this ResponseTimeMonitorData.
 
 
@@ -95,7 +95,7 @@ class ResponseTimeMonitorData(Model):
         self._timestamp = timestamp
 
     @property
-    def average(self) -> int:
+    def average(self):
         """Gets the average of this ResponseTimeMonitorData.
 
 
@@ -105,7 +105,7 @@ class ResponseTimeMonitorData(Model):
         return self._average
 
     @average.setter
-    def average(self, average: int):
+    def average(self, average):
         """Sets the average of this ResponseTimeMonitorData.
 
 

@@ -10,22 +10,22 @@ import org.openapitools.model.StringParameterValue;
 /**
  * StringParameterDefinition
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class StringParameterDefinition   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("defaultParameterValue")
-  private StringParameterValue defaultParameterValue = null;
+  private StringParameterValue defaultParameterValue;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("type")
-  private String type = null;
+  private String type;
 
   public StringParameterDefinition propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -119,7 +119,7 @@ public class StringParameterDefinition   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -157,7 +157,7 @@ public class StringParameterDefinition   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

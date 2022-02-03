@@ -65,15 +65,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var queue = queue_example;  // string | Name of the queue item
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var queue = "queue_example";  // string | Name of the queue item
 
             try
             {
@@ -133,13 +132,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
@@ -198,13 +196,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var _class = _class_example;  // string | Name of the class
+            var _class = "_class_example";  // string | Name of the class
 
             try
             {
@@ -263,7 +260,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new BlueOceanApi();
             var key = 56;  // int? | Key ID received as part of JWT header field kid
 
@@ -324,7 +320,6 @@ namespace Example
     {
         public void main()
         {
-            
             var apiInstance = new BlueOceanApi();
             var expiryTimeInMins = 56;  // int? | Token expiry time in minutes, default: 30 minutes (optional) 
             var maxExpiryTimeInMins = 56;  // int? | Maximum token expiry time in minutes, default: 480 minutes (optional) 
@@ -387,13 +382,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
@@ -432,7 +426,7 @@ Name | Type | Description  | Notes
 
 <a name="getorganisations"></a>
 # **GetOrganisations**
-> Organisations GetOrganisations ()
+> List<Organisation> GetOrganisations ()
 
 
 
@@ -452,7 +446,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
@@ -461,7 +454,7 @@ namespace Example
 
             try
             {
-                Organisations result = apiInstance.GetOrganisations();
+                List&lt;Organisation&gt; result = apiInstance.GetOrganisations();
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -478,7 +471,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**List<Organisation>**](Organisation.md)
 
 ### Authorization
 
@@ -513,14 +506,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
@@ -560,7 +552,7 @@ Name | Type | Description  | Notes
 
 <a name="getpipelineactivities"></a>
 # **GetPipelineActivities**
-> PipelineActivities GetPipelineActivities (string organization, string pipeline)
+> List<PipelineActivity> GetPipelineActivities (string organization, string pipeline)
 
 
 
@@ -580,18 +572,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
-                PipelineActivities result = apiInstance.GetPipelineActivities(organization, pipeline);
+                List&lt;PipelineActivity&gt; result = apiInstance.GetPipelineActivities(organization, pipeline);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -612,7 +603,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**List<PipelineActivity>**](PipelineActivity.md)
 
 ### Authorization
 
@@ -647,15 +638,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var branch = branch_example;  // string | Name of the branch
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var branch = "branch_example";  // string | Name of the branch
 
             try
             {
@@ -716,16 +706,15 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var branch = branch_example;  // string | Name of the branch
-            var run = run_example;  // string | Name of the run
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var branch = "branch_example";  // string | Name of the branch
+            var run = "run_example";  // string | Name of the run
 
             try
             {
@@ -787,14 +776,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
@@ -854,14 +842,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var folder = folder_example;  // string | Name of the folder
+            var organization = "organization_example";  // string | Name of the organization
+            var folder = "folder_example";  // string | Name of the folder
 
             try
             {
@@ -921,15 +908,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var folder = folder_example;  // string | Name of the folder
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var folder = "folder_example";  // string | Name of the folder
 
             try
             {
@@ -970,7 +956,7 @@ Name | Type | Description  | Notes
 
 <a name="getpipelinequeue"></a>
 # **GetPipelineQueue**
-> PipelineQueue GetPipelineQueue (string organization, string pipeline)
+> List<QueueItemImpl> GetPipelineQueue (string organization, string pipeline)
 
 
 
@@ -990,18 +976,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
-                PipelineQueue result = apiInstance.GetPipelineQueue(organization, pipeline);
+                List&lt;QueueItemImpl&gt; result = apiInstance.GetPipelineQueue(organization, pipeline);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1022,7 +1007,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**List<QueueItemImpl>**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1057,15 +1042,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
 
             try
             {
@@ -1126,15 +1110,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
             var start = 56;  // int? | Start position of the log (optional) 
             var download = true;  // bool? | Set to true in order to download the file, otherwise it's passed as a response body (optional) 
 
@@ -1199,16 +1182,15 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
 
             try
             {
@@ -1270,17 +1252,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
-            var step = step_example;  // string | Name of the step
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
+            var step = "step_example";  // string | Name of the step
 
             try
             {
@@ -1343,17 +1324,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
-            var step = step_example;  // string | Name of the step
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
+            var step = "step_example";  // string | Name of the step
 
             try
             {
@@ -1396,7 +1376,7 @@ Name | Type | Description  | Notes
 
 <a name="getpipelinerunnodesteps"></a>
 # **GetPipelineRunNodeSteps**
-> PipelineRunNodeSteps GetPipelineRunNodeSteps (string organization, string pipeline, string run, string node)
+> List<PipelineStepImpl> GetPipelineRunNodeSteps (string organization, string pipeline, string run, string node)
 
 
 
@@ -1416,20 +1396,19 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
 
             try
             {
-                PipelineRunNodeSteps result = apiInstance.GetPipelineRunNodeSteps(organization, pipeline, run, node);
+                List&lt;PipelineStepImpl&gt; result = apiInstance.GetPipelineRunNodeSteps(organization, pipeline, run, node);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1452,7 +1431,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**List<PipelineStepImpl>**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1467,7 +1446,7 @@ Name | Type | Description  | Notes
 
 <a name="getpipelinerunnodes"></a>
 # **GetPipelineRunNodes**
-> PipelineRunNodes GetPipelineRunNodes (string organization, string pipeline, string run)
+> List<PipelineRunNode> GetPipelineRunNodes (string organization, string pipeline, string run)
 
 
 
@@ -1487,19 +1466,18 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
 
             try
             {
-                PipelineRunNodes result = apiInstance.GetPipelineRunNodes(organization, pipeline, run);
+                List&lt;PipelineRunNode&gt; result = apiInstance.GetPipelineRunNodes(organization, pipeline, run);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1521,7 +1499,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**List<PipelineRunNode>**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1536,7 +1514,7 @@ Name | Type | Description  | Notes
 
 <a name="getpipelineruns"></a>
 # **GetPipelineRuns**
-> PipelineRuns GetPipelineRuns (string organization, string pipeline)
+> List<PipelineRun> GetPipelineRuns (string organization, string pipeline)
 
 
 
@@ -1556,18 +1534,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
-                PipelineRuns result = apiInstance.GetPipelineRuns(organization, pipeline);
+                List&lt;PipelineRun&gt; result = apiInstance.GetPipelineRuns(organization, pipeline);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1588,7 +1565,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**List<PipelineRun>**](PipelineRun.md)
 
 ### Authorization
 
@@ -1603,7 +1580,7 @@ Name | Type | Description  | Notes
 
 <a name="getpipelines"></a>
 # **GetPipelines**
-> Pipelines GetPipelines (string organization)
+> List<Pipeline> GetPipelines (string organization)
 
 
 
@@ -1623,17 +1600,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
-                Pipelines result = apiInstance.GetPipelines(organization);
+                List&lt;Pipeline&gt; result = apiInstance.GetPipelines(organization);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1653,7 +1629,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**List<Pipeline>**](Pipeline.md)
 
 ### Authorization
 
@@ -1688,14 +1664,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
 
             try
             {
@@ -1735,7 +1710,7 @@ Name | Type | Description  | Notes
 
 <a name="getscmorganisationrepositories"></a>
 # **GetSCMOrganisationRepositories**
-> ScmOrganisations GetSCMOrganisationRepositories (string organization, string scm, string scmOrganisation, string credentialId, int? pageSize, int? pageNumber)
+> List<GithubOrganization> GetSCMOrganisationRepositories (string organization, string scm, string scmOrganisation, string credentialId, int? pageSize, int? pageNumber)
 
 
 
@@ -1755,22 +1730,21 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
-            var scmOrganisation = scmOrganisation_example;  // string | Name of the SCM organization
-            var credentialId = credentialId_example;  // string | Credential ID (optional) 
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
+            var scmOrganisation = "scmOrganisation_example";  // string | Name of the SCM organization
+            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
             var pageSize = 56;  // int? | Number of items in a page (optional) 
             var pageNumber = 56;  // int? | Page number (optional) 
 
             try
             {
-                ScmOrganisations result = apiInstance.GetSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+                List&lt;GithubOrganization&gt; result = apiInstance.GetSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1795,7 +1769,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List<GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1810,7 +1784,7 @@ Name | Type | Description  | Notes
 
 <a name="getscmorganisationrepository"></a>
 # **GetSCMOrganisationRepository**
-> ScmOrganisations GetSCMOrganisationRepository (string organization, string scm, string scmOrganisation, string repository, string credentialId)
+> List<GithubOrganization> GetSCMOrganisationRepository (string organization, string scm, string scmOrganisation, string repository, string credentialId)
 
 
 
@@ -1830,21 +1804,20 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
-            var scmOrganisation = scmOrganisation_example;  // string | Name of the SCM organization
-            var repository = repository_example;  // string | Name of the SCM repository
-            var credentialId = credentialId_example;  // string | Credential ID (optional) 
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
+            var scmOrganisation = "scmOrganisation_example";  // string | Name of the SCM organization
+            var repository = "repository_example";  // string | Name of the SCM repository
+            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
 
             try
             {
-                ScmOrganisations result = apiInstance.GetSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
+                List&lt;GithubOrganization&gt; result = apiInstance.GetSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1868,7 +1841,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List<GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1883,7 +1856,7 @@ Name | Type | Description  | Notes
 
 <a name="getscmorganisations"></a>
 # **GetSCMOrganisations**
-> ScmOrganisations GetSCMOrganisations (string organization, string scm, string credentialId)
+> List<GithubOrganization> GetSCMOrganisations (string organization, string scm, string credentialId)
 
 
 
@@ -1903,19 +1876,18 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
-            var credentialId = credentialId_example;  // string | Credential ID (optional) 
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
+            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
 
             try
             {
-                ScmOrganisations result = apiInstance.GetSCMOrganisations(organization, scm, credentialId);
+                List&lt;GithubOrganization&gt; result = apiInstance.GetSCMOrganisations(organization, scm, credentialId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1937,7 +1909,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List<GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1972,14 +1944,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var user = user_example;  // string | Name of the user
+            var organization = "organization_example";  // string | Name of the organization
+            var user = "user_example";  // string | Name of the user
 
             try
             {
@@ -2019,7 +1990,7 @@ Name | Type | Description  | Notes
 
 <a name="getuserfavorites"></a>
 # **GetUserFavorites**
-> UserFavorites GetUserFavorites (string user)
+> List<FavoriteImpl> GetUserFavorites (string user)
 
 
 
@@ -2039,17 +2010,16 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var user = user_example;  // string | Name of the user
+            var user = "user_example";  // string | Name of the user
 
             try
             {
-                UserFavorites result = apiInstance.GetUserFavorites(user);
+                List&lt;FavoriteImpl&gt; result = apiInstance.GetUserFavorites(user);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2069,7 +2039,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**List<FavoriteImpl>**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -2104,13 +2074,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
@@ -2169,15 +2138,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
 
             try
             {
@@ -2238,14 +2206,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
@@ -2285,7 +2252,7 @@ Name | Type | Description  | Notes
 
 <a name="putpipelinefavorite"></a>
 # **PutPipelineFavorite**
-> FavoriteImpl PutPipelineFavorite (string organization, string pipeline, Body body)
+> FavoriteImpl PutPipelineFavorite (string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
 
 
 
@@ -2305,19 +2272,18 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var body = new Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
             try
             {
-                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, body);
+                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -2335,7 +2301,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
  **pipeline** | **string**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+ **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -2374,16 +2340,15 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var blocking = blocking_example;  // string | Set to true to make blocking stop, default: false (optional) 
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var blocking = "blocking_example";  // string | Set to true to make blocking stop, default: false (optional) 
             var timeOutInSecs = 56;  // int? | Timeout in seconds, default: 10 seconds (optional) 
 
             try
@@ -2447,13 +2412,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var q = q_example;  // string | Query string
+            var q = "q_example";  // string | Query string
 
             try
             {
@@ -2512,13 +2476,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new BlueOceanApi();
-            var q = q_example;  // string | Query string containing an array of class names
+            var q = "q_example";  // string | Query string containing an array of class names
 
             try
             {

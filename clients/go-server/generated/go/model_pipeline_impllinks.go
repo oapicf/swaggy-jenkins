@@ -12,13 +12,42 @@ package openapi
 
 type PipelineImpllinks struct {
 
-	Runs *Link `json:"runs,omitempty"`
+	Runs Link `json:"runs,omitempty"`
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
-	Queue *Link `json:"queue,omitempty"`
+	Queue Link `json:"queue,omitempty"`
 
-	Actions *Link `json:"actions,omitempty"`
+	Actions Link `json:"actions,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertPipelineImpllinksRequired checks if the required fields are not zero-ed
+func AssertPipelineImpllinksRequired(obj PipelineImpllinks) error {
+	if err := AssertLinkRequired(obj.Runs); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Queue); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Actions); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecursePipelineImpllinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineImpllinks (e.g. [][]PipelineImpllinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineImpllinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineImpllinks, ok := obj.(PipelineImpllinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineImpllinksRequired(aPipelineImpllinks)
+	})
 }

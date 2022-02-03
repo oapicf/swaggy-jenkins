@@ -14,3 +14,20 @@ type UnlabeledLoadStatistics struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertUnlabeledLoadStatisticsRequired checks if the required fields are not zero-ed
+func AssertUnlabeledLoadStatisticsRequired(obj UnlabeledLoadStatistics) error {
+	return nil
+}
+
+// AssertRecurseUnlabeledLoadStatisticsRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of UnlabeledLoadStatistics (e.g. [][]UnlabeledLoadStatistics), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseUnlabeledLoadStatisticsRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aUnlabeledLoadStatistics, ok := obj.(UnlabeledLoadStatistics)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertUnlabeledLoadStatisticsRequired(aUnlabeledLoadStatistics)
+	})
+}

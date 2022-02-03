@@ -7,13 +7,6 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PipelinelatestRun  {
@@ -23,46 +16,46 @@ public class PipelinelatestRun  {
   private List<PipelinelatestRunartifacts> artifacts = null;
 
   @ApiModelProperty(value = "")
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
-  private String enQueueTime = null;
+  private String enQueueTime;
 
   @ApiModelProperty(value = "")
-  private String endTime = null;
+  private String endTime;
 
   @ApiModelProperty(value = "")
-  private String id = null;
+  private String id;
 
   @ApiModelProperty(value = "")
-  private String organization = null;
+  private String organization;
 
   @ApiModelProperty(value = "")
-  private String pipeline = null;
+  private String pipeline;
 
   @ApiModelProperty(value = "")
-  private String result = null;
+  private String result;
 
   @ApiModelProperty(value = "")
-  private String runSummary = null;
+  private String runSummary;
 
   @ApiModelProperty(value = "")
-  private String startTime = null;
+  private String startTime;
 
   @ApiModelProperty(value = "")
-  private String state = null;
+  private String state;
 
   @ApiModelProperty(value = "")
-  private String type = null;
+  private String type;
 
   @ApiModelProperty(value = "")
-  private String commitId = null;
+  private String commitId;
 
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
  /**
    * Get artifacts
    * @return artifacts
@@ -367,7 +360,7 @@ public class PipelinelatestRun  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

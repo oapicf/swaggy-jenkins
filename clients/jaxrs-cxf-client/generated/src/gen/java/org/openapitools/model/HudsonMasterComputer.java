@@ -7,64 +7,57 @@ import org.openapitools.model.HudsonMasterComputermonitorData;
 import org.openapitools.model.Label1;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HudsonMasterComputer  {
   
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private String displayName = null;
+  private String displayName;
 
   @ApiModelProperty(value = "")
   private List<HudsonMasterComputerexecutors> executors = null;
 
   @ApiModelProperty(value = "")
-  private String icon = null;
+  private String icon;
 
   @ApiModelProperty(value = "")
-  private String iconClassName = null;
+  private String iconClassName;
 
   @ApiModelProperty(value = "")
-  private Boolean idle = null;
+  private Boolean idle;
 
   @ApiModelProperty(value = "")
-  private Boolean jnlpAgent = null;
+  private Boolean jnlpAgent;
 
   @ApiModelProperty(value = "")
-  private Boolean launchSupported = null;
+  private Boolean launchSupported;
 
   @ApiModelProperty(value = "")
-  private Label1 loadStatistics = null;
+  private Label1 loadStatistics;
 
   @ApiModelProperty(value = "")
-  private Boolean manualLaunchAllowed = null;
+  private Boolean manualLaunchAllowed;
 
   @ApiModelProperty(value = "")
-  private HudsonMasterComputermonitorData monitorData = null;
+  private HudsonMasterComputermonitorData monitorData;
 
   @ApiModelProperty(value = "")
-  private Integer numExecutors = null;
+  private Integer numExecutors;
 
   @ApiModelProperty(value = "")
-  private Boolean offline = null;
+  private Boolean offline;
 
   @ApiModelProperty(value = "")
-  private String offlineCause = null;
+  private String offlineCause;
 
   @ApiModelProperty(value = "")
-  private String offlineCauseReason = null;
+  private String offlineCauseReason;
 
   @ApiModelProperty(value = "")
-  private Boolean temporarilyOffline = null;
+  private Boolean temporarilyOffline;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -388,7 +381,7 @@ public class HudsonMasterComputer  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

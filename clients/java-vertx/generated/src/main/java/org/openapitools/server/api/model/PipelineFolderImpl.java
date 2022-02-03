@@ -4,16 +4,16 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineFolderImpl   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private String fullName = null;
-  private String name = null;
-  private String organization = null;
-  private Integer numberOfFolders = null;
-  private Integer numberOfPipelines = null;
+  private String propertyClass;
+  private String displayName;
+  private String fullName;
+  private String name;
+  private String organization;
+  private Integer numberOfFolders;
+  private Integer numberOfPipelines;
 
   public PipelineFolderImpl () {
 

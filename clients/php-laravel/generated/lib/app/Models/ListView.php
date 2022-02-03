@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class ListView {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $description */
     private $description;

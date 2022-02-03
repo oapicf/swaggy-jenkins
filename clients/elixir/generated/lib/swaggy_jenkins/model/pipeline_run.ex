@@ -27,21 +27,21 @@ defmodule SwaggyJenkins.Model.PipelineRun do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"artifacts" => [PipelineRunartifacts],
-    :"durationInMillis" => integer(),
-    :"estimatedDurationInMillis" => integer(),
-    :"enQueueTime" => String.t,
-    :"endTime" => String.t,
-    :"id" => String.t,
-    :"organization" => String.t,
-    :"pipeline" => String.t,
-    :"result" => String.t,
-    :"runSummary" => String.t,
-    :"startTime" => String.t,
-    :"state" => String.t,
-    :"type" => String.t,
-    :"commitId" => String.t
+    :"_class" => String.t | nil,
+    :"artifacts" => [SwaggyJenkins.Model.PipelineRunartifacts.t] | nil,
+    :"durationInMillis" => integer() | nil,
+    :"estimatedDurationInMillis" => integer() | nil,
+    :"enQueueTime" => String.t | nil,
+    :"endTime" => String.t | nil,
+    :"id" => String.t | nil,
+    :"organization" => String.t | nil,
+    :"pipeline" => String.t | nil,
+    :"result" => String.t | nil,
+    :"runSummary" => String.t | nil,
+    :"startTime" => String.t | nil,
+    :"state" => String.t | nil,
+    :"type" => String.t | nil,
+    :"commitId" => String.t | nil
   }
 end
 

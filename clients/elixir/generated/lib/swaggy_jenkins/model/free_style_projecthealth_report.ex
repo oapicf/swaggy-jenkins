@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.FreeStyleProjecthealthReport do
   ]
 
   @type t :: %__MODULE__{
-    :"description" => String.t,
-    :"iconClassName" => String.t,
-    :"iconUrl" => String.t,
-    :"score" => integer(),
-    :"_class" => String.t
+    :"description" => String.t | nil,
+    :"iconClassName" => String.t | nil,
+    :"iconUrl" => String.t | nil,
+    :"score" => integer() | nil,
+    :"_class" => String.t | nil
   }
 end
 

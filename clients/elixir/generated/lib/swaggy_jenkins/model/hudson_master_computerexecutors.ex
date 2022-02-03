@@ -18,12 +18,12 @@ defmodule SwaggyJenkins.Model.HudsonMasterComputerexecutors do
   ]
 
   @type t :: %__MODULE__{
-    :"currentExecutable" => FreeStyleBuild,
-    :"idle" => boolean(),
-    :"likelyStuck" => boolean(),
-    :"number" => integer(),
-    :"progress" => integer(),
-    :"_class" => String.t
+    :"currentExecutable" => SwaggyJenkins.Model.FreeStyleBuild.t | nil,
+    :"idle" => boolean() | nil,
+    :"likelyStuck" => boolean() | nil,
+    :"number" => integer() | nil,
+    :"progress" => integer() | nil,
+    :"_class" => String.t | nil
   }
 end
 

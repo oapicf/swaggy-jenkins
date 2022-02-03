@@ -1,19 +1,25 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class ResponseTimeMonitorData   {
+
+@JsonTypeName("ResponseTimeMonitorData")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class ResponseTimeMonitorData   {
   
-  private @Valid String propertyClass = null;
-  private @Valid Integer timestamp = null;
-  private @Valid Integer average = null;
+  private @Valid String propertyClass;
+  private @Valid Integer timestamp;
+  private @Valid Integer average;
 
   /**
    **/
@@ -23,16 +29,20 @@ public class ResponseTimeMonitorData   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public ResponseTimeMonitorData timestamp(Integer timestamp) {
     this.timestamp = timestamp;
@@ -40,16 +50,20 @@ public class ResponseTimeMonitorData   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("timestamp")
   public Integer getTimestamp() {
     return timestamp;
   }
+
+  @JsonProperty("timestamp")
   public void setTimestamp(Integer timestamp) {
     this.timestamp = timestamp;
   }
 
-  /**
+/**
    **/
   public ResponseTimeMonitorData average(Integer average) {
     this.average = average;
@@ -57,18 +71,22 @@ public class ResponseTimeMonitorData   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("average")
   public Integer getAverage() {
     return average;
   }
+
+  @JsonProperty("average")
   public void setAverage(Integer average) {
     this.average = average;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -76,9 +94,9 @@ public class ResponseTimeMonitorData   {
       return false;
     }
     ResponseTimeMonitorData responseTimeMonitorData = (ResponseTimeMonitorData) o;
-    return Objects.equals(propertyClass, responseTimeMonitorData.propertyClass) &&
-        Objects.equals(timestamp, responseTimeMonitorData.timestamp) &&
-        Objects.equals(average, responseTimeMonitorData.average);
+    return Objects.equals(this.propertyClass, responseTimeMonitorData.propertyClass) &&
+        Objects.equals(this.timestamp, responseTimeMonitorData.timestamp) &&
+        Objects.equals(this.average, responseTimeMonitorData.average);
   }
 
   @Override
@@ -102,11 +120,13 @@ public class ResponseTimeMonitorData   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

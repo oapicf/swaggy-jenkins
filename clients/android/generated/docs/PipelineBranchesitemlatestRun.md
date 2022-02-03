@@ -1,7 +1,9 @@
 
+
 # PipelineBranchesitemlatestRun
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **durationInMillis** | **Integer** |  |  [optional]
@@ -18,6 +20,7 @@ Name | Type | Description | Notes
 **type** | **String** |  |  [optional]
 **commitId** | **String** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

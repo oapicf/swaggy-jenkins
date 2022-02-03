@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.StringParameterDefinition do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"defaultParameterValue" => StringParameterValue,
-    :"description" => String.t,
-    :"name" => String.t,
-    :"type" => String.t
+    :"_class" => String.t | nil,
+    :"defaultParameterValue" => SwaggyJenkins.Model.StringParameterValue.t | nil,
+    :"description" => String.t | nil,
+    :"name" => String.t | nil,
+    :"type" => String.t | nil
   }
 end
 

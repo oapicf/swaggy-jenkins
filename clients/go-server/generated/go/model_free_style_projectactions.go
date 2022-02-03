@@ -14,3 +14,20 @@ type FreeStyleProjectactions struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertFreeStyleProjectactionsRequired checks if the required fields are not zero-ed
+func AssertFreeStyleProjectactionsRequired(obj FreeStyleProjectactions) error {
+	return nil
+}
+
+// AssertRecurseFreeStyleProjectactionsRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of FreeStyleProjectactions (e.g. [][]FreeStyleProjectactions), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseFreeStyleProjectactionsRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aFreeStyleProjectactions, ok := obj.(FreeStyleProjectactions)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertFreeStyleProjectactionsRequired(aFreeStyleProjectactions)
+	})
+}

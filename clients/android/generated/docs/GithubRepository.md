@@ -1,7 +1,9 @@
 
+
 # GithubRepository
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -12,6 +14,7 @@ Name | Type | Description | Notes
 **permissions** | [**GithubRepositorypermissions**](GithubRepositorypermissions.md) |  |  [optional]
 **_private** | **Boolean** |  |  [optional]
 **fullName** | **String** |  |  [optional]
+
 
 
 

@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class AllView {
-    String propertyClass = null
-
-    String name = null
-
-    String url = null
-
+    
+    String propertyClass
+    
+    String name
+    
+    String url
 }

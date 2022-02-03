@@ -3,34 +3,27 @@ package org.openapitools.model;
 import org.openapitools.model.FreeStyleBuild;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HudsonMasterComputerexecutors  {
   
   @ApiModelProperty(value = "")
-  private FreeStyleBuild currentExecutable = null;
+  private FreeStyleBuild currentExecutable;
 
   @ApiModelProperty(value = "")
-  private Boolean idle = null;
+  private Boolean idle;
 
   @ApiModelProperty(value = "")
-  private Boolean likelyStuck = null;
+  private Boolean likelyStuck;
 
   @ApiModelProperty(value = "")
-  private Integer number = null;
+  private Integer number;
 
   @ApiModelProperty(value = "")
-  private Integer progress = null;
+  private Integer progress;
 
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
  /**
    * Get currentExecutable
    * @return currentExecutable
@@ -159,7 +152,7 @@ public class HudsonMasterComputerexecutors  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

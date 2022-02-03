@@ -4,13 +4,13 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   
-  private String propertyClass = null;
-  private Integer timestamp = null;
-  private String path = null;
-  private Integer size = null;
+  private String propertyClass;
+  private Integer timestamp;
+  private String path;
+  private Integer size;
 
   public DiskSpaceMonitorDescriptorDiskSpace () {
 

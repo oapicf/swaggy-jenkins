@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.User do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"id" => String.t,
-    :"fullName" => String.t,
-    :"email" => String.t,
-    :"name" => String.t
+    :"_class" => String.t | nil,
+    :"id" => String.t | nil,
+    :"fullName" => String.t | nil,
+    :"email" => String.t | nil,
+    :"name" => String.t | nil
   }
 end
 

@@ -8,27 +8,27 @@ import java.util.List;
 import org.openapitools.server.api.model.CauseAction;
 import org.openapitools.server.api.model.EmptyChangeLogSet;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FreeStyleBuild   {
   
-  private String propertyClass = null;
-  private Integer number = null;
-  private String url = null;
+  private String propertyClass;
+  private Integer number;
+  private String url;
   private List<CauseAction> actions = new ArrayList<>();
-  private Boolean building = null;
-  private String description = null;
-  private String displayName = null;
-  private Integer duration = null;
-  private Integer estimatedDuration = null;
-  private String executor = null;
-  private String fullDisplayName = null;
-  private String id = null;
-  private Boolean keepLog = null;
-  private Integer queueId = null;
-  private String result = null;
-  private Integer timestamp = null;
-  private String builtOn = null;
-  private EmptyChangeLogSet changeSet = null;
+  private Boolean building;
+  private String description;
+  private String displayName;
+  private Integer duration;
+  private Integer estimatedDuration;
+  private String executor;
+  private String fullDisplayName;
+  private String id;
+  private Boolean keepLog;
+  private Integer queueId;
+  private String result;
+  private Integer timestamp;
+  private String builtOn;
+  private EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild () {
 

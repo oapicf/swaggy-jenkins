@@ -16,10 +16,10 @@ defmodule SwaggyJenkins.Model.GithubOrganization do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => GithubOrganizationlinks,
-    :"jenkinsOrganizationPipeline" => boolean(),
-    :"name" => String.t
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.GithubOrganizationlinks.t | nil,
+    :"jenkinsOrganizationPipeline" => boolean() | nil,
+    :"name" => String.t | nil
   }
 end
 

@@ -1,47 +1,54 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.InputStepImpl;
 import org.openapitools.model.PipelineStepImpllinks;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * PipelineStepImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class PipelineStepImpl   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private PipelineStepImpllinks links = null;
+  private PipelineStepImpllinks links;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("input")
-  private InputStepImpl input = null;
+  private InputStepImpl input;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  private String state;
 
   public PipelineStepImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -51,10 +58,9 @@ public class PipelineStepImpl   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -71,11 +77,9 @@ public class PipelineStepImpl   {
   /**
    * Get links
    * @return links
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "_links", required = false)
   public PipelineStepImpllinks getLinks() {
     return links;
   }
@@ -92,10 +96,9 @@ public class PipelineStepImpl   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -112,10 +115,9 @@ public class PipelineStepImpl   {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "durationInMillis", required = false)
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -132,10 +134,9 @@ public class PipelineStepImpl   {
   /**
    * Get id
    * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "id", required = false)
   public String getId() {
     return id;
   }
@@ -152,11 +153,9 @@ public class PipelineStepImpl   {
   /**
    * Get input
    * @return input
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "input", required = false)
   public InputStepImpl getInput() {
     return input;
   }
@@ -173,10 +172,9 @@ public class PipelineStepImpl   {
   /**
    * Get result
    * @return result
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "result", required = false)
   public String getResult() {
     return result;
   }
@@ -193,10 +191,9 @@ public class PipelineStepImpl   {
   /**
    * Get startTime
    * @return startTime
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "startTime", required = false)
   public String getStartTime() {
     return startTime;
   }
@@ -213,10 +210,9 @@ public class PipelineStepImpl   {
   /**
    * Get state
    * @return state
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "state", required = false)
   public String getState() {
     return state;
   }
@@ -225,9 +221,8 @@ public class PipelineStepImpl   {
     this.state = state;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -255,7 +250,6 @@ public class PipelineStepImpl   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineStepImpl {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
@@ -273,7 +267,7 @@ public class PipelineStepImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -8,16 +8,16 @@ import org.openapitools.server.api.model.DiskSpaceMonitorDescriptorDiskSpace;
 import org.openapitools.server.api.model.ResponseTimeMonitorData;
 import org.openapitools.server.api.model.SwapSpaceMonitorMemoryUsage2;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HudsonMasterComputermonitorData   {
   
-  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null;
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null;
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null;
-  private String hudsonNodeMonitorsArchitectureMonitor = null;
-  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null;
-  private ClockDifference hudsonNodeMonitorsClockMonitor = null;
-  private String propertyClass = null;
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
+  private String hudsonNodeMonitorsArchitectureMonitor;
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
+  private String propertyClass;
 
   public HudsonMasterComputermonitorData () {
 

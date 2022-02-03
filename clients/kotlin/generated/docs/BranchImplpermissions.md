@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **read** | **kotlin.Boolean** |  |  [optional]
 **start** | **kotlin.Boolean** |  |  [optional]
 **stop** | **kotlin.Boolean** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

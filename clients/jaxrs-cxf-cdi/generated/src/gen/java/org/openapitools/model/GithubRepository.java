@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositorylinks;
 import org.openapitools.model.GithubRepositorypermissions;
 import javax.validation.constraints.*;
@@ -10,27 +12,25 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class GithubRepository   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private GithubRepositorylinks links = null;
+  private GithubRepositorylinks links;
 
-  private String defaultBranch = null;
+  private String defaultBranch;
 
-  private String description = null;
+  private String description;
 
-  private String name = null;
+  private String name;
 
-  private GithubRepositorypermissions permissions = null;
+  private GithubRepositorypermissions permissions;
 
-  private Boolean _private = null;
+  private Boolean _private;
 
-  private String fullName = null;
+  private String fullName;
 
 
   /**
@@ -179,7 +179,7 @@ public class GithubRepository   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -223,7 +223,7 @@ public class GithubRepository   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

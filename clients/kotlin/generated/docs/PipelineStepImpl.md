@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
-**Underscorelinks** | [**PipelineStepImpllinks**](PipelineStepImpllinks.md) |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
+**links** | [**PipelineStepImpllinks**](PipelineStepImpllinks.md) |  |  [optional]
 **displayName** | **kotlin.String** |  |  [optional]
 **durationInMillis** | **kotlin.Int** |  |  [optional]
 **id** | **kotlin.String** |  |  [optional]

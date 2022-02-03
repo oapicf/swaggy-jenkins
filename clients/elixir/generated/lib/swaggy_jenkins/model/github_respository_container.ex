@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.GithubRespositoryContainer do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => GithubRespositoryContainerlinks,
-    :"repositories" => GithubRepositories
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.GithubRespositoryContainerlinks.t | nil,
+    :"repositories" => SwaggyJenkins.Model.GithubRepositories.t | nil
   }
 end
 

@@ -13,24 +13,23 @@ import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class InputStepImpl   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private InputStepImpllinks links = null;
+  private InputStepImpllinks links;
 
-  private String id = null;
+  private String id;
 
-  private String message = null;
+  private String message;
 
-  private String ok = null;
+  private String ok;
 
   private List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
 
-  private String submitter = null;
+  private String submitter;
 
   /**
    **/

@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.EmptyChangeLogSet do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"kind" => String.t
+    :"_class" => String.t | nil,
+    :"kind" => String.t | nil
   }
 end
 

@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.FavoriteImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => FavoriteImpllinks,
-    :"item" => PipelineImpl
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.FavoriteImpllinks.t | nil,
+    :"item" => SwaggyJenkins.Model.PipelineImpl.t | nil
   }
 end
 

@@ -15,7 +15,7 @@ class Link(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, href: str=None):  # noqa: E501
+    def __init__(self, _class=None, href=None):  # noqa: E501
         """Link - a model defined in OpenAPI
 
         :param _class: The _class of this Link.  # noqa: E501
@@ -48,7 +48,7 @@ class Link(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this Link.
 
 
@@ -58,7 +58,7 @@ class Link(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this Link.
 
 
@@ -69,7 +69,7 @@ class Link(Model):
         self.__class = _class
 
     @property
-    def href(self) -> str:
+    def href(self):
         """Gets the href of this Link.
 
 
@@ -79,7 +79,7 @@ class Link(Model):
         return self._href
 
     @href.setter
-    def href(self, href: str):
+    def href(self, href):
         """Sets the href of this Link.
 
 

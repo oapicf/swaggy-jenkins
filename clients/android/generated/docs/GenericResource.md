@@ -1,7 +1,9 @@
 
+
 # GenericResource
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -10,6 +12,7 @@ Name | Type | Description | Notes
 **id** | **String** |  |  [optional]
 **result** | **String** |  |  [optional]
 **startTime** | **String** |  |  [optional]
+
 
 
 

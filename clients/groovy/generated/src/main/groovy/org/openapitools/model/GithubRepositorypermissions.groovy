@@ -6,12 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class GithubRepositorypermissions {
-    Boolean admin = null
-
-    Boolean push = null
-
-    Boolean pull = null
-
-    String propertyClass = null
-
+    
+    Boolean admin
+    
+    Boolean push
+    
+    Boolean pull
+    
+    String propertyClass
 }

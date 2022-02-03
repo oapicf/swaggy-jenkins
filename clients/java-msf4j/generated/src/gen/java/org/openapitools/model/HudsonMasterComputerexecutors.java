@@ -10,25 +10,25 @@ import org.openapitools.model.FreeStyleBuild;
 /**
  * HudsonMasterComputerexecutors
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class HudsonMasterComputerexecutors   {
   @JsonProperty("currentExecutable")
-  private FreeStyleBuild currentExecutable = null;
+  private FreeStyleBuild currentExecutable;
 
   @JsonProperty("idle")
-  private Boolean idle = null;
+  private Boolean idle;
 
   @JsonProperty("likelyStuck")
-  private Boolean likelyStuck = null;
+  private Boolean likelyStuck;
 
   @JsonProperty("number")
-  private Integer number = null;
+  private Integer number;
 
   @JsonProperty("progress")
-  private Integer progress = null;
+  private Integer progress;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public HudsonMasterComputerexecutors currentExecutable(FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
@@ -140,7 +140,7 @@ public class HudsonMasterComputerexecutors   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -180,7 +180,7 @@ public class HudsonMasterComputerexecutors   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

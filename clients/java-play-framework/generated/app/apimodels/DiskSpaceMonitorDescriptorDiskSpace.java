@@ -8,21 +8,24 @@ import javax.validation.constraints.*;
 /**
  * DiskSpaceMonitorDescriptorDiskSpace
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("timestamp")
-  private Integer timestamp = null;
+  
+  private Integer timestamp;
 
   @JsonProperty("path")
-  private String path = null;
+  
+  private String path;
 
   @JsonProperty("size")
-  private Integer size = null;
+  
+  private Integer size;
 
   public DiskSpaceMonitorDescriptorDiskSpace propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -33,7 +36,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -50,7 +53,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Get timestamp
    * @return timestamp
   **/
-    public Integer getTimestamp() {
+  public Integer getTimestamp() {
     return timestamp;
   }
 
@@ -67,7 +70,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Get path
    * @return path
   **/
-    public String getPath() {
+  public String getPath() {
     return path;
   }
 
@@ -84,7 +87,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Get size
    * @return size
   **/
-    public Integer getSize() {
+  public Integer getSize() {
     return size;
   }
 
@@ -94,7 +97,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,7 +134,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

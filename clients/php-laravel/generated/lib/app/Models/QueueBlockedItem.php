@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class QueueBlockedItem {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var \app\Models\CauseAction[] $actions */
     private $actions;
@@ -24,8 +24,8 @@ class QueueBlockedItem {
     /** @var int $id */
     private $id;
 
-    /** @var int $in_queue_since */
-    private $in_queue_since;
+    /** @var int $inQueueSince */
+    private $inQueueSince;
 
     /** @var string $params */
     private $params;
@@ -42,7 +42,7 @@ class QueueBlockedItem {
     /** @var string $why */
     private $why;
 
-    /** @var int $buildable_start_milliseconds */
-    private $buildable_start_milliseconds;
+    /** @var int $buildableStartMilliseconds */
+    private $buildableStartMilliseconds;
 
 }

@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.DefaultCrumbIssuer
+
 ## Properties
 
 Name | Type | Description | Notes

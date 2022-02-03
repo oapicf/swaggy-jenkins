@@ -351,7 +351,8 @@ case $state in
             "postJobDisable[]" \
             "postJobEnable[]" \
             "postJobLastBuildStop[]" \
-            "postViewConfig[]" 
+            "postViewConfig[]" \
+
     _arguments "(--help)--help[Print information about operation]"
 
     ret=0

@@ -18,3 +18,20 @@ type AllView struct {
 
 	Url string `json:"url,omitempty"`
 }
+
+// AssertAllViewRequired checks if the required fields are not zero-ed
+func AssertAllViewRequired(obj AllView) error {
+	return nil
+}
+
+// AssertRecurseAllViewRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of AllView (e.g. [][]AllView), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseAllViewRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aAllView, ok := obj.(AllView)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertAllViewRequired(aAllView)
+	})
+}

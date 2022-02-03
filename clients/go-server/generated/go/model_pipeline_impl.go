@@ -28,5 +28,25 @@ type PipelineImpl struct {
 
 	WeatherScore int32 `json:"weatherScore,omitempty"`
 
-	Links *PipelineImpllinks `json:"_links,omitempty"`
+	Links PipelineImpllinks `json:"_links,omitempty"`
+}
+
+// AssertPipelineImplRequired checks if the required fields are not zero-ed
+func AssertPipelineImplRequired(obj PipelineImpl) error {
+	if err := AssertPipelineImpllinksRequired(obj.Links); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecursePipelineImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineImpl (e.g. [][]PipelineImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineImpl, ok := obj.(PipelineImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineImplRequired(aPipelineImpl)
+	})
 }

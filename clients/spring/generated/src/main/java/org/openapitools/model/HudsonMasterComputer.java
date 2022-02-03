@@ -1,72 +1,79 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
 import org.openapitools.model.Label1;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class HudsonMasterComputer   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("executors")
   @Valid
   private List<HudsonMasterComputerexecutors> executors = null;
 
   @JsonProperty("icon")
-  private String icon = null;
+  private String icon;
 
   @JsonProperty("iconClassName")
-  private String iconClassName = null;
+  private String iconClassName;
 
   @JsonProperty("idle")
-  private Boolean idle = null;
+  private Boolean idle;
 
   @JsonProperty("jnlpAgent")
-  private Boolean jnlpAgent = null;
+  private Boolean jnlpAgent;
 
   @JsonProperty("launchSupported")
-  private Boolean launchSupported = null;
+  private Boolean launchSupported;
 
   @JsonProperty("loadStatistics")
-  private Label1 loadStatistics = null;
+  private Label1 loadStatistics;
 
   @JsonProperty("manualLaunchAllowed")
-  private Boolean manualLaunchAllowed = null;
+  private Boolean manualLaunchAllowed;
 
   @JsonProperty("monitorData")
-  private HudsonMasterComputermonitorData monitorData = null;
+  private HudsonMasterComputermonitorData monitorData;
 
   @JsonProperty("numExecutors")
-  private Integer numExecutors = null;
+  private Integer numExecutors;
 
   @JsonProperty("offline")
-  private Boolean offline = null;
+  private Boolean offline;
 
   @JsonProperty("offlineCause")
-  private String offlineCause = null;
+  private String offlineCause;
 
   @JsonProperty("offlineCauseReason")
-  private String offlineCauseReason = null;
+  private String offlineCauseReason;
 
   @JsonProperty("temporarilyOffline")
-  private Boolean temporarilyOffline = null;
+  private Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -76,10 +83,9 @@ public class HudsonMasterComputer   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -96,10 +102,9 @@ public class HudsonMasterComputer   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -124,11 +129,9 @@ public class HudsonMasterComputer   {
   /**
    * Get executors
    * @return executors
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "executors", required = false)
   public List<HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
@@ -145,10 +148,9 @@ public class HudsonMasterComputer   {
   /**
    * Get icon
    * @return icon
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "icon", required = false)
   public String getIcon() {
     return icon;
   }
@@ -165,10 +167,9 @@ public class HudsonMasterComputer   {
   /**
    * Get iconClassName
    * @return iconClassName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "iconClassName", required = false)
   public String getIconClassName() {
     return iconClassName;
   }
@@ -185,10 +186,9 @@ public class HudsonMasterComputer   {
   /**
    * Get idle
    * @return idle
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "idle", required = false)
   public Boolean getIdle() {
     return idle;
   }
@@ -205,10 +205,9 @@ public class HudsonMasterComputer   {
   /**
    * Get jnlpAgent
    * @return jnlpAgent
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "jnlpAgent", required = false)
   public Boolean getJnlpAgent() {
     return jnlpAgent;
   }
@@ -225,10 +224,9 @@ public class HudsonMasterComputer   {
   /**
    * Get launchSupported
    * @return launchSupported
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "launchSupported", required = false)
   public Boolean getLaunchSupported() {
     return launchSupported;
   }
@@ -245,11 +243,9 @@ public class HudsonMasterComputer   {
   /**
    * Get loadStatistics
    * @return loadStatistics
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "loadStatistics", required = false)
   public Label1 getLoadStatistics() {
     return loadStatistics;
   }
@@ -266,10 +262,9 @@ public class HudsonMasterComputer   {
   /**
    * Get manualLaunchAllowed
    * @return manualLaunchAllowed
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "manualLaunchAllowed", required = false)
   public Boolean getManualLaunchAllowed() {
     return manualLaunchAllowed;
   }
@@ -286,11 +281,9 @@ public class HudsonMasterComputer   {
   /**
    * Get monitorData
    * @return monitorData
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "monitorData", required = false)
   public HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
   }
@@ -307,10 +300,9 @@ public class HudsonMasterComputer   {
   /**
    * Get numExecutors
    * @return numExecutors
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numExecutors", required = false)
   public Integer getNumExecutors() {
     return numExecutors;
   }
@@ -327,10 +319,9 @@ public class HudsonMasterComputer   {
   /**
    * Get offline
    * @return offline
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "offline", required = false)
   public Boolean getOffline() {
     return offline;
   }
@@ -347,10 +338,9 @@ public class HudsonMasterComputer   {
   /**
    * Get offlineCause
    * @return offlineCause
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "offlineCause", required = false)
   public String getOfflineCause() {
     return offlineCause;
   }
@@ -367,10 +357,9 @@ public class HudsonMasterComputer   {
   /**
    * Get offlineCauseReason
    * @return offlineCauseReason
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "offlineCauseReason", required = false)
   public String getOfflineCauseReason() {
     return offlineCauseReason;
   }
@@ -387,10 +376,9 @@ public class HudsonMasterComputer   {
   /**
    * Get temporarilyOffline
    * @return temporarilyOffline
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "temporarilyOffline", required = false)
   public Boolean getTemporarilyOffline() {
     return temporarilyOffline;
   }
@@ -399,9 +387,8 @@ public class HudsonMasterComputer   {
     this.temporarilyOffline = temporarilyOffline;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -436,7 +423,6 @@ public class HudsonMasterComputer   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HudsonMasterComputer {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    executors: ").append(toIndentedString(executors)).append("\n");
@@ -461,7 +447,7 @@ public class HudsonMasterComputer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

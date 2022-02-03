@@ -10,34 +10,34 @@ import org.openapitools.model.PipelineImpllinks;
 /**
  * PipelineImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class PipelineImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("latestRun")
-  private String latestRun = null;
+  private String latestRun;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("_links")
-  private PipelineImpllinks links = null;
+  private PipelineImpllinks links;
 
   public PipelineImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -203,7 +203,7 @@ public class PipelineImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -249,7 +249,7 @@ public class PipelineImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

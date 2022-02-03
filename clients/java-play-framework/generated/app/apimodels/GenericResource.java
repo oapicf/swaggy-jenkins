@@ -8,27 +8,32 @@ import javax.validation.constraints.*;
 /**
  * GenericResource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GenericResource   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  
+  private Integer durationInMillis;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("result")
-  private String result = null;
+  
+  private String result;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  
+  private String startTime;
 
   public GenericResource propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -39,7 +44,7 @@ public class GenericResource   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -56,7 +61,7 @@ public class GenericResource   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -73,7 +78,7 @@ public class GenericResource   {
    * Get durationInMillis
    * @return durationInMillis
   **/
-    public Integer getDurationInMillis() {
+  public Integer getDurationInMillis() {
     return durationInMillis;
   }
 
@@ -90,7 +95,7 @@ public class GenericResource   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -107,7 +112,7 @@ public class GenericResource   {
    * Get result
    * @return result
   **/
-    public String getResult() {
+  public String getResult() {
     return result;
   }
 
@@ -124,7 +129,7 @@ public class GenericResource   {
    * Get startTime
    * @return startTime
   **/
-    public String getStartTime() {
+  public String getStartTime() {
     return startTime;
   }
 
@@ -134,7 +139,7 @@ public class GenericResource   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -175,7 +180,7 @@ public class GenericResource   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

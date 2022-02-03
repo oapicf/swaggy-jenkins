@@ -9,24 +9,20 @@ For more information, please visit [http://github.com/cliffano/swaggy-jenkins](h
 
 ## Requirements
 
-Dart 1.20.0 or later OR Flutter 0.0.20 or later
+Dart 2.0 or later
 
 ## Installation & Usage
 
 ### Github
-If this Dart package is published to Github, please include the following in pubspec.yaml
+If this Dart package is published to Github, add the following dependency to your pubspec.yaml
 ```
-name: openapi
-version: 1.0.0
-description: OpenAPI API client
 dependencies:
   openapi:
     git: https://github.com/GIT_USER_ID/GIT_REPO_ID.git
-      version: 'any'
 ```
 
 ### Local
-To use the package in your local drive, please include the following in pubspec.yaml
+To use the package in your local drive, add the following dependency to your pubspec.yaml
 ```
 dependencies:
   openapi:
@@ -45,16 +41,16 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:openapi/api.dart';
 
 // TODO Configure HTTP basic authorization: jenkins_auth
-//openapi.api.Configuration.username = 'YOUR_USERNAME';
-//openapi.api.Configuration.password = 'YOUR_PASSWORD';
+//defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
+//defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BaseApi();
+final api_instance = BaseApi();
 
 try {
-    var result = api_instance.getCrumb();
+    final result = api_instance.getCrumb();
     print(result);
 } catch (e) {
-    print("Exception when calling BaseApi->getCrumb: $e\n");
+    print('Exception when calling BaseApi->getCrumb: $e\n');
 }
 
 ```
@@ -65,161 +61,148 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseApi* | [**getCrumb**](docs//BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
-*BlueOceanApi* | [**deletePipelineQueueItem**](docs//BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-*BlueOceanApi* | [**getAuthenticatedUser**](docs//BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
-*BlueOceanApi* | [**getClasses**](docs//BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 
-*BlueOceanApi* | [**getJsonWebKey**](docs//BlueOceanApi.md#getjsonwebkey) | **GET** /jwt-auth/jwks/{key} | 
-*BlueOceanApi* | [**getJsonWebToken**](docs//BlueOceanApi.md#getjsonwebtoken) | **GET** /jwt-auth/token | 
-*BlueOceanApi* | [**getOrganisation**](docs//BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} | 
-*BlueOceanApi* | [**getOrganisations**](docs//BlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ | 
-*BlueOceanApi* | [**getPipeline**](docs//BlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**getPipelineActivities**](docs//BlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-*BlueOceanApi* | [**getPipelineBranch**](docs//BlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-*BlueOceanApi* | [**getPipelineBranchRun**](docs//BlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-*BlueOceanApi* | [**getPipelineBranches**](docs//BlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-*BlueOceanApi* | [**getPipelineFolder**](docs//BlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-*BlueOceanApi* | [**getPipelineFolderPipeline**](docs//BlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**getPipelineQueue**](docs//BlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-*BlueOceanApi* | [**getPipelineRun**](docs//BlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-*BlueOceanApi* | [**getPipelineRunLog**](docs//BlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-*BlueOceanApi* | [**getPipelineRunNode**](docs//BlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-*BlueOceanApi* | [**getPipelineRunNodeStep**](docs//BlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-*BlueOceanApi* | [**getPipelineRunNodeStepLog**](docs//BlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-*BlueOceanApi* | [**getPipelineRunNodeSteps**](docs//BlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-*BlueOceanApi* | [**getPipelineRunNodes**](docs//BlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-*BlueOceanApi* | [**getPipelineRuns**](docs//BlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-*BlueOceanApi* | [**getPipelines**](docs//BlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
-*BlueOceanApi* | [**getSCM**](docs//BlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
-*BlueOceanApi* | [**getSCMOrganisationRepositories**](docs//BlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-*BlueOceanApi* | [**getSCMOrganisationRepository**](docs//BlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-*BlueOceanApi* | [**getSCMOrganisations**](docs//BlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-*BlueOceanApi* | [**getUser**](docs//BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
-*BlueOceanApi* | [**getUserFavorites**](docs//BlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites | 
-*BlueOceanApi* | [**getUsers**](docs//BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ | 
-*BlueOceanApi* | [**postPipelineRun**](docs//BlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-*BlueOceanApi* | [**postPipelineRuns**](docs//BlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-*BlueOceanApi* | [**putPipelineFavorite**](docs//BlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-*BlueOceanApi* | [**putPipelineRun**](docs//BlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-*BlueOceanApi* | [**search**](docs//BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
-*BlueOceanApi* | [**searchClasses**](docs//BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
-*RemoteAccessApi* | [**getComputer**](docs//RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
-*RemoteAccessApi* | [**getJenkins**](docs//RemoteAccessApi.md#getjenkins) | **GET** /api/json | 
-*RemoteAccessApi* | [**getJob**](docs//RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
-*RemoteAccessApi* | [**getJobConfig**](docs//RemoteAccessApi.md#getjobconfig) | **GET** /job/{name}/config.xml | 
-*RemoteAccessApi* | [**getJobLastBuild**](docs//RemoteAccessApi.md#getjoblastbuild) | **GET** /job/{name}/lastBuild/api/json | 
-*RemoteAccessApi* | [**getJobProgressiveText**](docs//RemoteAccessApi.md#getjobprogressivetext) | **GET** /job/{name}/{number}/logText/progressiveText | 
-*RemoteAccessApi* | [**getQueue**](docs//RemoteAccessApi.md#getqueue) | **GET** /queue/api/json | 
-*RemoteAccessApi* | [**getQueueItem**](docs//RemoteAccessApi.md#getqueueitem) | **GET** /queue/item/{number}/api/json | 
-*RemoteAccessApi* | [**getView**](docs//RemoteAccessApi.md#getview) | **GET** /view/{name}/api/json | 
-*RemoteAccessApi* | [**getViewConfig**](docs//RemoteAccessApi.md#getviewconfig) | **GET** /view/{name}/config.xml | 
-*RemoteAccessApi* | [**headJenkins**](docs//RemoteAccessApi.md#headjenkins) | **HEAD** /api/json | 
-*RemoteAccessApi* | [**postCreateItem**](docs//RemoteAccessApi.md#postcreateitem) | **POST** /createItem | 
-*RemoteAccessApi* | [**postCreateView**](docs//RemoteAccessApi.md#postcreateview) | **POST** /createView | 
-*RemoteAccessApi* | [**postJobBuild**](docs//RemoteAccessApi.md#postjobbuild) | **POST** /job/{name}/build | 
-*RemoteAccessApi* | [**postJobConfig**](docs//RemoteAccessApi.md#postjobconfig) | **POST** /job/{name}/config.xml | 
-*RemoteAccessApi* | [**postJobDelete**](docs//RemoteAccessApi.md#postjobdelete) | **POST** /job/{name}/doDelete | 
-*RemoteAccessApi* | [**postJobDisable**](docs//RemoteAccessApi.md#postjobdisable) | **POST** /job/{name}/disable | 
-*RemoteAccessApi* | [**postJobEnable**](docs//RemoteAccessApi.md#postjobenable) | **POST** /job/{name}/enable | 
-*RemoteAccessApi* | [**postJobLastBuildStop**](docs//RemoteAccessApi.md#postjoblastbuildstop) | **POST** /job/{name}/lastBuild/stop | 
-*RemoteAccessApi* | [**postViewConfig**](docs//RemoteAccessApi.md#postviewconfig) | **POST** /view/{name}/config.xml | 
+*BaseApi* | [**getCrumb**](doc//BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
+*BlueOceanApi* | [**deletePipelineQueueItem**](doc//BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+*BlueOceanApi* | [**getAuthenticatedUser**](doc//BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
+*BlueOceanApi* | [**getClasses**](doc//BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 
+*BlueOceanApi* | [**getJsonWebKey**](doc//BlueOceanApi.md#getjsonwebkey) | **GET** /jwt-auth/jwks/{key} | 
+*BlueOceanApi* | [**getJsonWebToken**](doc//BlueOceanApi.md#getjsonwebtoken) | **GET** /jwt-auth/token | 
+*BlueOceanApi* | [**getOrganisation**](doc//BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} | 
+*BlueOceanApi* | [**getOrganisations**](doc//BlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ | 
+*BlueOceanApi* | [**getPipeline**](doc//BlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**getPipelineActivities**](doc//BlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+*BlueOceanApi* | [**getPipelineBranch**](doc//BlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+*BlueOceanApi* | [**getPipelineBranchRun**](doc//BlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+*BlueOceanApi* | [**getPipelineBranches**](doc//BlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+*BlueOceanApi* | [**getPipelineFolder**](doc//BlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+*BlueOceanApi* | [**getPipelineFolderPipeline**](doc//BlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+*BlueOceanApi* | [**getPipelineQueue**](doc//BlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+*BlueOceanApi* | [**getPipelineRun**](doc//BlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+*BlueOceanApi* | [**getPipelineRunLog**](doc//BlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+*BlueOceanApi* | [**getPipelineRunNode**](doc//BlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+*BlueOceanApi* | [**getPipelineRunNodeStep**](doc//BlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+*BlueOceanApi* | [**getPipelineRunNodeStepLog**](doc//BlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+*BlueOceanApi* | [**getPipelineRunNodeSteps**](doc//BlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+*BlueOceanApi* | [**getPipelineRunNodes**](doc//BlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+*BlueOceanApi* | [**getPipelineRuns**](doc//BlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**getPipelines**](doc//BlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+*BlueOceanApi* | [**getSCM**](doc//BlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+*BlueOceanApi* | [**getSCMOrganisationRepositories**](doc//BlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+*BlueOceanApi* | [**getSCMOrganisationRepository**](doc//BlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+*BlueOceanApi* | [**getSCMOrganisations**](doc//BlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+*BlueOceanApi* | [**getUser**](doc//BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+*BlueOceanApi* | [**getUserFavorites**](doc//BlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites | 
+*BlueOceanApi* | [**getUsers**](doc//BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+*BlueOceanApi* | [**postPipelineRun**](doc//BlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+*BlueOceanApi* | [**postPipelineRuns**](doc//BlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+*BlueOceanApi* | [**putPipelineFavorite**](doc//BlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+*BlueOceanApi* | [**putPipelineRun**](doc//BlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+*BlueOceanApi* | [**search**](doc//BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+*BlueOceanApi* | [**searchClasses**](doc//BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
+*RemoteAccessApi* | [**getComputer**](doc//RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
+*RemoteAccessApi* | [**getJenkins**](doc//RemoteAccessApi.md#getjenkins) | **GET** /api/json | 
+*RemoteAccessApi* | [**getJob**](doc//RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
+*RemoteAccessApi* | [**getJobConfig**](doc//RemoteAccessApi.md#getjobconfig) | **GET** /job/{name}/config.xml | 
+*RemoteAccessApi* | [**getJobLastBuild**](doc//RemoteAccessApi.md#getjoblastbuild) | **GET** /job/{name}/lastBuild/api/json | 
+*RemoteAccessApi* | [**getJobProgressiveText**](doc//RemoteAccessApi.md#getjobprogressivetext) | **GET** /job/{name}/{number}/logText/progressiveText | 
+*RemoteAccessApi* | [**getQueue**](doc//RemoteAccessApi.md#getqueue) | **GET** /queue/api/json | 
+*RemoteAccessApi* | [**getQueueItem**](doc//RemoteAccessApi.md#getqueueitem) | **GET** /queue/item/{number}/api/json | 
+*RemoteAccessApi* | [**getView**](doc//RemoteAccessApi.md#getview) | **GET** /view/{name}/api/json | 
+*RemoteAccessApi* | [**getViewConfig**](doc//RemoteAccessApi.md#getviewconfig) | **GET** /view/{name}/config.xml | 
+*RemoteAccessApi* | [**headJenkins**](doc//RemoteAccessApi.md#headjenkins) | **HEAD** /api/json | 
+*RemoteAccessApi* | [**postCreateItem**](doc//RemoteAccessApi.md#postcreateitem) | **POST** /createItem | 
+*RemoteAccessApi* | [**postCreateView**](doc//RemoteAccessApi.md#postcreateview) | **POST** /createView | 
+*RemoteAccessApi* | [**postJobBuild**](doc//RemoteAccessApi.md#postjobbuild) | **POST** /job/{name}/build | 
+*RemoteAccessApi* | [**postJobConfig**](doc//RemoteAccessApi.md#postjobconfig) | **POST** /job/{name}/config.xml | 
+*RemoteAccessApi* | [**postJobDelete**](doc//RemoteAccessApi.md#postjobdelete) | **POST** /job/{name}/doDelete | 
+*RemoteAccessApi* | [**postJobDisable**](doc//RemoteAccessApi.md#postjobdisable) | **POST** /job/{name}/disable | 
+*RemoteAccessApi* | [**postJobEnable**](doc//RemoteAccessApi.md#postjobenable) | **POST** /job/{name}/enable | 
+*RemoteAccessApi* | [**postJobLastBuildStop**](doc//RemoteAccessApi.md#postjoblastbuildstop) | **POST** /job/{name}/lastBuild/stop | 
+*RemoteAccessApi* | [**postViewConfig**](doc//RemoteAccessApi.md#postviewconfig) | **POST** /view/{name}/config.xml | 
 
 
 ## Documentation For Models
 
- - [AllView](docs//AllView.md)
- - [Body](docs//Body.md)
- - [BranchImpl](docs//BranchImpl.md)
- - [BranchImpllinks](docs//BranchImpllinks.md)
- - [BranchImplpermissions](docs//BranchImplpermissions.md)
- - [CauseAction](docs//CauseAction.md)
- - [CauseUserIdCause](docs//CauseUserIdCause.md)
- - [ClassesByClass](docs//ClassesByClass.md)
- - [ClockDifference](docs//ClockDifference.md)
- - [ComputerSet](docs//ComputerSet.md)
- - [DefaultCrumbIssuer](docs//DefaultCrumbIssuer.md)
- - [DiskSpaceMonitorDescriptorDiskSpace](docs//DiskSpaceMonitorDescriptorDiskSpace.md)
- - [EmptyChangeLogSet](docs//EmptyChangeLogSet.md)
- - [ExtensionClassContainerImpl1](docs//ExtensionClassContainerImpl1.md)
- - [ExtensionClassContainerImpl1links](docs//ExtensionClassContainerImpl1links.md)
- - [ExtensionClassContainerImpl1map](docs//ExtensionClassContainerImpl1map.md)
- - [ExtensionClassImpl](docs//ExtensionClassImpl.md)
- - [ExtensionClassImpllinks](docs//ExtensionClassImpllinks.md)
- - [FavoriteImpl](docs//FavoriteImpl.md)
- - [FavoriteImpllinks](docs//FavoriteImpllinks.md)
- - [FreeStyleBuild](docs//FreeStyleBuild.md)
- - [FreeStyleProject](docs//FreeStyleProject.md)
- - [FreeStyleProjectactions](docs//FreeStyleProjectactions.md)
- - [FreeStyleProjecthealthReport](docs//FreeStyleProjecthealthReport.md)
- - [GenericResource](docs//GenericResource.md)
- - [GithubContent](docs//GithubContent.md)
- - [GithubFile](docs//GithubFile.md)
- - [GithubOrganization](docs//GithubOrganization.md)
- - [GithubOrganizationlinks](docs//GithubOrganizationlinks.md)
- - [GithubRepositories](docs//GithubRepositories.md)
- - [GithubRepositorieslinks](docs//GithubRepositorieslinks.md)
- - [GithubRepository](docs//GithubRepository.md)
- - [GithubRepositorylinks](docs//GithubRepositorylinks.md)
- - [GithubRepositorypermissions](docs//GithubRepositorypermissions.md)
- - [GithubRespositoryContainer](docs//GithubRespositoryContainer.md)
- - [GithubRespositoryContainerlinks](docs//GithubRespositoryContainerlinks.md)
- - [GithubScm](docs//GithubScm.md)
- - [GithubScmlinks](docs//GithubScmlinks.md)
- - [Hudson](docs//Hudson.md)
- - [HudsonMasterComputer](docs//HudsonMasterComputer.md)
- - [HudsonMasterComputerexecutors](docs//HudsonMasterComputerexecutors.md)
- - [HudsonMasterComputermonitorData](docs//HudsonMasterComputermonitorData.md)
- - [HudsonassignedLabels](docs//HudsonassignedLabels.md)
- - [InputStepImpl](docs//InputStepImpl.md)
- - [InputStepImpllinks](docs//InputStepImpllinks.md)
- - [Label1](docs//Label1.md)
- - [Link](docs//Link.md)
- - [ListView](docs//ListView.md)
- - [MultibranchPipeline](docs//MultibranchPipeline.md)
- - [NullSCM](docs//NullSCM.md)
- - [Organisation](docs//Organisation.md)
- - [Organisations](docs//Organisations.md)
- - [Pipeline](docs//Pipeline.md)
- - [PipelineActivities](docs//PipelineActivities.md)
- - [PipelineActivity](docs//PipelineActivity.md)
- - [PipelineActivityartifacts](docs//PipelineActivityartifacts.md)
- - [PipelineBranches](docs//PipelineBranches.md)
- - [PipelineBranchesitem](docs//PipelineBranchesitem.md)
- - [PipelineBranchesitemlatestRun](docs//PipelineBranchesitemlatestRun.md)
- - [PipelineBranchesitempullRequest](docs//PipelineBranchesitempullRequest.md)
- - [PipelineBranchesitempullRequestlinks](docs//PipelineBranchesitempullRequestlinks.md)
- - [PipelineFolderImpl](docs//PipelineFolderImpl.md)
- - [PipelineImpl](docs//PipelineImpl.md)
- - [PipelineImpllinks](docs//PipelineImpllinks.md)
- - [PipelineQueue](docs//PipelineQueue.md)
- - [PipelineRun](docs//PipelineRun.md)
- - [PipelineRunImpl](docs//PipelineRunImpl.md)
- - [PipelineRunImpllinks](docs//PipelineRunImpllinks.md)
- - [PipelineRunNode](docs//PipelineRunNode.md)
- - [PipelineRunNodeSteps](docs//PipelineRunNodeSteps.md)
- - [PipelineRunNodeedges](docs//PipelineRunNodeedges.md)
- - [PipelineRunNodes](docs//PipelineRunNodes.md)
- - [PipelineRunSteps](docs//PipelineRunSteps.md)
- - [PipelineRunartifacts](docs//PipelineRunartifacts.md)
- - [PipelineRuns](docs//PipelineRuns.md)
- - [PipelineStepImpl](docs//PipelineStepImpl.md)
- - [PipelineStepImpllinks](docs//PipelineStepImpllinks.md)
- - [PipelinelatestRun](docs//PipelinelatestRun.md)
- - [PipelinelatestRunartifacts](docs//PipelinelatestRunartifacts.md)
- - [Pipelines](docs//Pipelines.md)
- - [Queue](docs//Queue.md)
- - [QueueBlockedItem](docs//QueueBlockedItem.md)
- - [QueueItemImpl](docs//QueueItemImpl.md)
- - [QueueLeftItem](docs//QueueLeftItem.md)
- - [ResponseTimeMonitorData](docs//ResponseTimeMonitorData.md)
- - [ScmOrganisations](docs//ScmOrganisations.md)
- - [StringParameterDefinition](docs//StringParameterDefinition.md)
- - [StringParameterValue](docs//StringParameterValue.md)
- - [SwapSpaceMonitorMemoryUsage2](docs//SwapSpaceMonitorMemoryUsage2.md)
- - [UnlabeledLoadStatistics](docs//UnlabeledLoadStatistics.md)
- - [User](docs//User.md)
- - [UserFavorites](docs//UserFavorites.md)
- - [Users](docs//Users.md)
+ - [AllView](doc//AllView.md)
+ - [BranchImpl](doc//BranchImpl.md)
+ - [BranchImpllinks](doc//BranchImpllinks.md)
+ - [BranchImplpermissions](doc//BranchImplpermissions.md)
+ - [CauseAction](doc//CauseAction.md)
+ - [CauseUserIdCause](doc//CauseUserIdCause.md)
+ - [ClassesByClass](doc//ClassesByClass.md)
+ - [ClockDifference](doc//ClockDifference.md)
+ - [ComputerSet](doc//ComputerSet.md)
+ - [DefaultCrumbIssuer](doc//DefaultCrumbIssuer.md)
+ - [DiskSpaceMonitorDescriptorDiskSpace](doc//DiskSpaceMonitorDescriptorDiskSpace.md)
+ - [EmptyChangeLogSet](doc//EmptyChangeLogSet.md)
+ - [ExtensionClassContainerImpl1](doc//ExtensionClassContainerImpl1.md)
+ - [ExtensionClassContainerImpl1links](doc//ExtensionClassContainerImpl1links.md)
+ - [ExtensionClassContainerImpl1map](doc//ExtensionClassContainerImpl1map.md)
+ - [ExtensionClassImpl](doc//ExtensionClassImpl.md)
+ - [ExtensionClassImpllinks](doc//ExtensionClassImpllinks.md)
+ - [FavoriteImpl](doc//FavoriteImpl.md)
+ - [FavoriteImpllinks](doc//FavoriteImpllinks.md)
+ - [FreeStyleBuild](doc//FreeStyleBuild.md)
+ - [FreeStyleProject](doc//FreeStyleProject.md)
+ - [FreeStyleProjectactions](doc//FreeStyleProjectactions.md)
+ - [FreeStyleProjecthealthReport](doc//FreeStyleProjecthealthReport.md)
+ - [GenericResource](doc//GenericResource.md)
+ - [GithubContent](doc//GithubContent.md)
+ - [GithubFile](doc//GithubFile.md)
+ - [GithubOrganization](doc//GithubOrganization.md)
+ - [GithubOrganizationlinks](doc//GithubOrganizationlinks.md)
+ - [GithubRepositories](doc//GithubRepositories.md)
+ - [GithubRepositorieslinks](doc//GithubRepositorieslinks.md)
+ - [GithubRepository](doc//GithubRepository.md)
+ - [GithubRepositorylinks](doc//GithubRepositorylinks.md)
+ - [GithubRepositorypermissions](doc//GithubRepositorypermissions.md)
+ - [GithubRespositoryContainer](doc//GithubRespositoryContainer.md)
+ - [GithubRespositoryContainerlinks](doc//GithubRespositoryContainerlinks.md)
+ - [GithubScm](doc//GithubScm.md)
+ - [GithubScmlinks](doc//GithubScmlinks.md)
+ - [Hudson](doc//Hudson.md)
+ - [HudsonMasterComputer](doc//HudsonMasterComputer.md)
+ - [HudsonMasterComputerexecutors](doc//HudsonMasterComputerexecutors.md)
+ - [HudsonMasterComputermonitorData](doc//HudsonMasterComputermonitorData.md)
+ - [HudsonassignedLabels](doc//HudsonassignedLabels.md)
+ - [InputStepImpl](doc//InputStepImpl.md)
+ - [InputStepImpllinks](doc//InputStepImpllinks.md)
+ - [Label1](doc//Label1.md)
+ - [Link](doc//Link.md)
+ - [ListView](doc//ListView.md)
+ - [MultibranchPipeline](doc//MultibranchPipeline.md)
+ - [NullSCM](doc//NullSCM.md)
+ - [Organisation](doc//Organisation.md)
+ - [Pipeline](doc//Pipeline.md)
+ - [PipelineActivity](doc//PipelineActivity.md)
+ - [PipelineActivityartifacts](doc//PipelineActivityartifacts.md)
+ - [PipelineBranchesitem](doc//PipelineBranchesitem.md)
+ - [PipelineBranchesitemlatestRun](doc//PipelineBranchesitemlatestRun.md)
+ - [PipelineBranchesitempullRequest](doc//PipelineBranchesitempullRequest.md)
+ - [PipelineBranchesitempullRequestlinks](doc//PipelineBranchesitempullRequestlinks.md)
+ - [PipelineFolderImpl](doc//PipelineFolderImpl.md)
+ - [PipelineImpl](doc//PipelineImpl.md)
+ - [PipelineImpllinks](doc//PipelineImpllinks.md)
+ - [PipelineRun](doc//PipelineRun.md)
+ - [PipelineRunImpl](doc//PipelineRunImpl.md)
+ - [PipelineRunImpllinks](doc//PipelineRunImpllinks.md)
+ - [PipelineRunNode](doc//PipelineRunNode.md)
+ - [PipelineRunNodeedges](doc//PipelineRunNodeedges.md)
+ - [PipelineRunartifacts](doc//PipelineRunartifacts.md)
+ - [PipelineStepImpl](doc//PipelineStepImpl.md)
+ - [PipelineStepImpllinks](doc//PipelineStepImpllinks.md)
+ - [PipelinelatestRun](doc//PipelinelatestRun.md)
+ - [PipelinelatestRunartifacts](doc//PipelinelatestRunartifacts.md)
+ - [Queue](doc//Queue.md)
+ - [QueueBlockedItem](doc//QueueBlockedItem.md)
+ - [QueueItemImpl](doc//QueueItemImpl.md)
+ - [QueueLeftItem](doc//QueueLeftItem.md)
+ - [ResponseTimeMonitorData](doc//ResponseTimeMonitorData.md)
+ - [StringParameterDefinition](doc//StringParameterDefinition.md)
+ - [StringParameterValue](doc//StringParameterValue.md)
+ - [SwapSpaceMonitorMemoryUsage2](doc//SwapSpaceMonitorMemoryUsage2.md)
+ - [UnlabeledLoadStatistics](doc//UnlabeledLoadStatistics.md)
+ - [User](doc//User.md)
 
 
 ## Documentation For Authorization
@@ -227,7 +210,7 @@ Class | Method | HTTP request | Description
 
 ## jenkins_auth
 
-- **Type**: HTTP basic authentication
+- **Type**: HTTP Basic authentication
 
 ## jwt_auth
 
@@ -239,5 +222,4 @@ Class | Method | HTTP request | Description
 ## Author
 
 blah@cliffano.com
-
 

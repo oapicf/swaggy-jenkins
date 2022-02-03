@@ -1,12 +1,13 @@
 # FreeStyleBuild
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **str** |  | [optional] 
 **number** | **int** |  | [optional] 
 **url** | **str** |  | [optional] 
-**actions** | [**list[CauseAction]**](CauseAction.md) |  | [optional] 
+**actions** | [**[CauseAction]**](CauseAction.md) |  | [optional] 
 **building** | **bool** |  | [optional] 
 **description** | **str** |  | [optional] 
 **display_name** | **str** |  | [optional] 
@@ -21,6 +22,7 @@ Name | Type | Description | Notes
 **timestamp** | **int** |  | [optional] 
 **built_on** | **str** |  | [optional] 
 **change_set** | [**EmptyChangeLogSet**](EmptyChangeLogSet.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

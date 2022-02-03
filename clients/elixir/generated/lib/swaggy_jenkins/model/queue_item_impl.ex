@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.QueueItemImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"expectedBuildNumber" => integer(),
-    :"id" => String.t,
-    :"pipeline" => String.t,
-    :"queuedTime" => integer()
+    :"_class" => String.t | nil,
+    :"expectedBuildNumber" => integer() | nil,
+    :"id" => String.t | nil,
+    :"pipeline" => String.t | nil,
+    :"queuedTime" => integer() | nil
   }
 end
 

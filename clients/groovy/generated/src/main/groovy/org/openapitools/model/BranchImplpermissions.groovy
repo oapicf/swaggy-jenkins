@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class BranchImplpermissions {
-    Boolean create = null
-
-    Boolean read = null
-
-    Boolean start = null
-
-    Boolean stop = null
-
-    String propertyClass = null
-
+    
+    Boolean create
+    
+    Boolean read
+    
+    Boolean start
+    
+    Boolean stop
+    
+    String propertyClass
 }

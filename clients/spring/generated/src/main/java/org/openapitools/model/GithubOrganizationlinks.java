@@ -1,28 +1,35 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * GithubOrganizationlinks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class GithubOrganizationlinks   {
+
   @JsonProperty("repositories")
-  private Link repositories = null;
+  private Link repositories;
 
   @JsonProperty("self")
-  private Link self = null;
+  private Link self;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public GithubOrganizationlinks repositories(Link repositories) {
     this.repositories = repositories;
@@ -32,11 +39,9 @@ public class GithubOrganizationlinks   {
   /**
    * Get repositories
    * @return repositories
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "repositories", required = false)
   public Link getRepositories() {
     return repositories;
   }
@@ -53,11 +58,9 @@ public class GithubOrganizationlinks   {
   /**
    * Get self
    * @return self
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "self", required = false)
   public Link getSelf() {
     return self;
   }
@@ -74,10 +77,9 @@ public class GithubOrganizationlinks   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -86,9 +88,8 @@ public class GithubOrganizationlinks   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -110,7 +111,6 @@ public class GithubOrganizationlinks   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubOrganizationlinks {\n");
-    
     sb.append("    repositories: ").append(toIndentedString(repositories)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
@@ -122,7 +122,7 @@ public class GithubOrganizationlinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

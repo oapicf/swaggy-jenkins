@@ -12,30 +12,41 @@ import javax.validation.constraints.*;
 /**
  * HudsonMasterComputermonitorData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class HudsonMasterComputermonitorData   {
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
-  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null;
+  @Valid
+
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
   @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null;
+  @Valid
+
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
   @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null;
+  @Valid
+
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
   @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
-  private String hudsonNodeMonitorsArchitectureMonitor = null;
+  
+  private String hudsonNodeMonitorsArchitectureMonitor;
 
   @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
-  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null;
+  @Valid
+
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
   @JsonProperty("hudson.node_monitors.ClockMonitor")
-  private ClockDifference hudsonNodeMonitorsClockMonitor = null;
+  @Valid
+
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
@@ -46,7 +57,6 @@ public class HudsonMasterComputermonitorData   {
    * Get hudsonNodeMonitorsSwapSpaceMonitor
    * @return hudsonNodeMonitorsSwapSpaceMonitor
   **/
-  @Valid
   public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
@@ -64,7 +74,6 @@ public class HudsonMasterComputermonitorData   {
    * Get hudsonNodeMonitorsTemporarySpaceMonitor
    * @return hudsonNodeMonitorsTemporarySpaceMonitor
   **/
-  @Valid
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
@@ -82,7 +91,6 @@ public class HudsonMasterComputermonitorData   {
    * Get hudsonNodeMonitorsDiskSpaceMonitor
    * @return hudsonNodeMonitorsDiskSpaceMonitor
   **/
-  @Valid
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
@@ -100,7 +108,7 @@ public class HudsonMasterComputermonitorData   {
    * Get hudsonNodeMonitorsArchitectureMonitor
    * @return hudsonNodeMonitorsArchitectureMonitor
   **/
-    public String getHudsonNodeMonitorsArchitectureMonitor() {
+  public String getHudsonNodeMonitorsArchitectureMonitor() {
     return hudsonNodeMonitorsArchitectureMonitor;
   }
 
@@ -117,7 +125,6 @@ public class HudsonMasterComputermonitorData   {
    * Get hudsonNodeMonitorsResponseTimeMonitor
    * @return hudsonNodeMonitorsResponseTimeMonitor
   **/
-  @Valid
   public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
@@ -135,7 +142,6 @@ public class HudsonMasterComputermonitorData   {
    * Get hudsonNodeMonitorsClockMonitor
    * @return hudsonNodeMonitorsClockMonitor
   **/
-  @Valid
   public ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
   }
@@ -153,7 +159,7 @@ public class HudsonMasterComputermonitorData   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -163,7 +169,7 @@ public class HudsonMasterComputermonitorData   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -206,7 +212,7 @@ public class HudsonMasterComputermonitorData   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

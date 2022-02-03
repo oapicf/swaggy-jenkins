@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 **displayName** | **kotlin.String** |  |  [optional]
 **fullName** | **kotlin.String** |  |  [optional]
 **name** | **kotlin.String** |  |  [optional]

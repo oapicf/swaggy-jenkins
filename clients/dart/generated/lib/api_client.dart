@@ -1,334 +1,420 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
-class QueryParam {
-  String name;
-  String value;
-
-  QueryParam(this.name, this.value);
-}
-
 class ApiClient {
-
-  String basePath;
-  var client = new BrowserClient();
-
-  Map<String, String> _defaultHeaderMap = {};
-  Map<String, Authentication> _authentications = {};
-
-  final _RegList = new RegExp(r'^List<(.*)>$');
-  final _RegMap = new RegExp(r'^Map<String,(.*)>$');
-
-  ApiClient({this.basePath: "http://localhost"}) {
+  ApiClient({this.basePath = 'http://localhost'}) {
     // Setup authentications (key: authentication name, value: authentication).
-    _authentications['jenkins_auth'] = new HttpBasicAuth();
-    _authentications['jwt_auth'] = new ApiKeyAuth("header", "Authorization");
+    _authentications[r'jenkins_auth'] = HttpBasicAuth();
+    _authentications[r'jwt_auth'] = ApiKeyAuth('header', 'Authorization');
   }
+
+  final String basePath;
+
+  var _client = Client();
+
+  /// Returns the current HTTP [Client] instance to use in this class.
+  ///
+  /// The return value is guaranteed to never be null.
+  Client get client => _client;
+
+  /// Requests to use a new HTTP [Client] in this class.
+  ///
+  /// If the [newClient] is null, an [ArgumentError] is thrown.
+  set client(Client newClient) {
+    if (newClient == null) {
+      throw ArgumentError('New client instance cannot be null.');
+    }
+    _client = newClient;
+  }
+
+  final _defaultHeaderMap = <String, String>{};
+  final _authentications = <String, Authentication>{};
 
   void addDefaultHeader(String key, String value) {
      _defaultHeaderMap[key] = value;
   }
 
-  dynamic _deserialize(dynamic value, String targetType) {
-    try {
-      switch (targetType) {
-        case 'String':
-          return '$value';
-        case 'int':
-          return value is int ? value : int.parse('$value');
-        case 'bool':
-          return value is bool ? value : '$value'.toLowerCase() == 'true';
-        case 'double':
-          return value is double ? value : double.parse('$value');
-        case 'AllView':
-          return new AllView.fromJson(value);
-        case 'Body':
-          return new Body.fromJson(value);
-        case 'BranchImpl':
-          return new BranchImpl.fromJson(value);
-        case 'BranchImpllinks':
-          return new BranchImpllinks.fromJson(value);
-        case 'BranchImplpermissions':
-          return new BranchImplpermissions.fromJson(value);
-        case 'CauseAction':
-          return new CauseAction.fromJson(value);
-        case 'CauseUserIdCause':
-          return new CauseUserIdCause.fromJson(value);
-        case 'ClassesByClass':
-          return new ClassesByClass.fromJson(value);
-        case 'ClockDifference':
-          return new ClockDifference.fromJson(value);
-        case 'ComputerSet':
-          return new ComputerSet.fromJson(value);
-        case 'DefaultCrumbIssuer':
-          return new DefaultCrumbIssuer.fromJson(value);
-        case 'DiskSpaceMonitorDescriptorDiskSpace':
-          return new DiskSpaceMonitorDescriptorDiskSpace.fromJson(value);
-        case 'EmptyChangeLogSet':
-          return new EmptyChangeLogSet.fromJson(value);
-        case 'ExtensionClassContainerImpl1':
-          return new ExtensionClassContainerImpl1.fromJson(value);
-        case 'ExtensionClassContainerImpl1links':
-          return new ExtensionClassContainerImpl1links.fromJson(value);
-        case 'ExtensionClassContainerImpl1map':
-          return new ExtensionClassContainerImpl1map.fromJson(value);
-        case 'ExtensionClassImpl':
-          return new ExtensionClassImpl.fromJson(value);
-        case 'ExtensionClassImpllinks':
-          return new ExtensionClassImpllinks.fromJson(value);
-        case 'FavoriteImpl':
-          return new FavoriteImpl.fromJson(value);
-        case 'FavoriteImpllinks':
-          return new FavoriteImpllinks.fromJson(value);
-        case 'FreeStyleBuild':
-          return new FreeStyleBuild.fromJson(value);
-        case 'FreeStyleProject':
-          return new FreeStyleProject.fromJson(value);
-        case 'FreeStyleProjectactions':
-          return new FreeStyleProjectactions.fromJson(value);
-        case 'FreeStyleProjecthealthReport':
-          return new FreeStyleProjecthealthReport.fromJson(value);
-        case 'GenericResource':
-          return new GenericResource.fromJson(value);
-        case 'GithubContent':
-          return new GithubContent.fromJson(value);
-        case 'GithubFile':
-          return new GithubFile.fromJson(value);
-        case 'GithubOrganization':
-          return new GithubOrganization.fromJson(value);
-        case 'GithubOrganizationlinks':
-          return new GithubOrganizationlinks.fromJson(value);
-        case 'GithubRepositories':
-          return new GithubRepositories.fromJson(value);
-        case 'GithubRepositorieslinks':
-          return new GithubRepositorieslinks.fromJson(value);
-        case 'GithubRepository':
-          return new GithubRepository.fromJson(value);
-        case 'GithubRepositorylinks':
-          return new GithubRepositorylinks.fromJson(value);
-        case 'GithubRepositorypermissions':
-          return new GithubRepositorypermissions.fromJson(value);
-        case 'GithubRespositoryContainer':
-          return new GithubRespositoryContainer.fromJson(value);
-        case 'GithubRespositoryContainerlinks':
-          return new GithubRespositoryContainerlinks.fromJson(value);
-        case 'GithubScm':
-          return new GithubScm.fromJson(value);
-        case 'GithubScmlinks':
-          return new GithubScmlinks.fromJson(value);
-        case 'Hudson':
-          return new Hudson.fromJson(value);
-        case 'HudsonMasterComputer':
-          return new HudsonMasterComputer.fromJson(value);
-        case 'HudsonMasterComputerexecutors':
-          return new HudsonMasterComputerexecutors.fromJson(value);
-        case 'HudsonMasterComputermonitorData':
-          return new HudsonMasterComputermonitorData.fromJson(value);
-        case 'HudsonassignedLabels':
-          return new HudsonassignedLabels.fromJson(value);
-        case 'InputStepImpl':
-          return new InputStepImpl.fromJson(value);
-        case 'InputStepImpllinks':
-          return new InputStepImpllinks.fromJson(value);
-        case 'Label1':
-          return new Label1.fromJson(value);
-        case 'Link':
-          return new Link.fromJson(value);
-        case 'ListView':
-          return new ListView.fromJson(value);
-        case 'MultibranchPipeline':
-          return new MultibranchPipeline.fromJson(value);
-        case 'NullSCM':
-          return new NullSCM.fromJson(value);
-        case 'Organisation':
-          return new Organisation.fromJson(value);
-        case 'Organisations':
-          return new Organisations.fromJson(value);
-        case 'Pipeline':
-          return new Pipeline.fromJson(value);
-        case 'PipelineActivities':
-          return new PipelineActivities.fromJson(value);
-        case 'PipelineActivity':
-          return new PipelineActivity.fromJson(value);
-        case 'PipelineActivityartifacts':
-          return new PipelineActivityartifacts.fromJson(value);
-        case 'PipelineBranches':
-          return new PipelineBranches.fromJson(value);
-        case 'PipelineBranchesitem':
-          return new PipelineBranchesitem.fromJson(value);
-        case 'PipelineBranchesitemlatestRun':
-          return new PipelineBranchesitemlatestRun.fromJson(value);
-        case 'PipelineBranchesitempullRequest':
-          return new PipelineBranchesitempullRequest.fromJson(value);
-        case 'PipelineBranchesitempullRequestlinks':
-          return new PipelineBranchesitempullRequestlinks.fromJson(value);
-        case 'PipelineFolderImpl':
-          return new PipelineFolderImpl.fromJson(value);
-        case 'PipelineImpl':
-          return new PipelineImpl.fromJson(value);
-        case 'PipelineImpllinks':
-          return new PipelineImpllinks.fromJson(value);
-        case 'PipelineQueue':
-          return new PipelineQueue.fromJson(value);
-        case 'PipelineRun':
-          return new PipelineRun.fromJson(value);
-        case 'PipelineRunImpl':
-          return new PipelineRunImpl.fromJson(value);
-        case 'PipelineRunImpllinks':
-          return new PipelineRunImpllinks.fromJson(value);
-        case 'PipelineRunNode':
-          return new PipelineRunNode.fromJson(value);
-        case 'PipelineRunNodeSteps':
-          return new PipelineRunNodeSteps.fromJson(value);
-        case 'PipelineRunNodeedges':
-          return new PipelineRunNodeedges.fromJson(value);
-        case 'PipelineRunNodes':
-          return new PipelineRunNodes.fromJson(value);
-        case 'PipelineRunSteps':
-          return new PipelineRunSteps.fromJson(value);
-        case 'PipelineRunartifacts':
-          return new PipelineRunartifacts.fromJson(value);
-        case 'PipelineRuns':
-          return new PipelineRuns.fromJson(value);
-        case 'PipelineStepImpl':
-          return new PipelineStepImpl.fromJson(value);
-        case 'PipelineStepImpllinks':
-          return new PipelineStepImpllinks.fromJson(value);
-        case 'PipelinelatestRun':
-          return new PipelinelatestRun.fromJson(value);
-        case 'PipelinelatestRunartifacts':
-          return new PipelinelatestRunartifacts.fromJson(value);
-        case 'Pipelines':
-          return new Pipelines.fromJson(value);
-        case 'Queue':
-          return new Queue.fromJson(value);
-        case 'QueueBlockedItem':
-          return new QueueBlockedItem.fromJson(value);
-        case 'QueueItemImpl':
-          return new QueueItemImpl.fromJson(value);
-        case 'QueueLeftItem':
-          return new QueueLeftItem.fromJson(value);
-        case 'ResponseTimeMonitorData':
-          return new ResponseTimeMonitorData.fromJson(value);
-        case 'ScmOrganisations':
-          return new ScmOrganisations.fromJson(value);
-        case 'StringParameterDefinition':
-          return new StringParameterDefinition.fromJson(value);
-        case 'StringParameterValue':
-          return new StringParameterValue.fromJson(value);
-        case 'SwapSpaceMonitorMemoryUsage2':
-          return new SwapSpaceMonitorMemoryUsage2.fromJson(value);
-        case 'UnlabeledLoadStatistics':
-          return new UnlabeledLoadStatistics.fromJson(value);
-        case 'User':
-          return new User.fromJson(value);
-        case 'UserFavorites':
-          return new UserFavorites.fromJson(value);
-        case 'Users':
-          return new Users.fromJson(value);
-        default:
-          {
-            Match match;
-            if (value is List &&
-                (match = _RegList.firstMatch(targetType)) != null) {
-              var newTargetType = match[1];
-              return value.map((v) => _deserialize(v, newTargetType)).toList();
-            } else if (value is Map &&
-                (match = _RegMap.firstMatch(targetType)) != null) {
-              var newTargetType = match[1];
-              return new Map.fromIterables(value.keys,
-                  value.values.map((v) => _deserialize(v, newTargetType)));
-            }
-          }
-      }
-    } catch (e, stack) {
-      throw new ApiException.withInner(500, 'Exception during deserialization.', e, stack);
-    }
-    throw new ApiException(500, 'Could not find a suitable class for deserialization');
-  }
+  Map<String,String> get defaultHeaderMap => _defaultHeaderMap;
 
-  dynamic deserialize(String json, String targetType) {
-    // Remove all spaces.  Necessary for reg expressions as well.
-    targetType = targetType.replaceAll(' ', '');
+  /// Returns an unmodifiable [Map] of the authentications, since none should be added
+  /// or deleted.
+  Map<String, Authentication> get authentications => Map.unmodifiable(_authentications);
 
-    if (targetType == 'String') return json;
-
-    var decodedJson = JSON.decode(json);
-    return _deserialize(decodedJson, targetType);
-  }
-
-  String serialize(Object obj) {
-    String serialized = '';
-    if (obj == null) {
-      serialized = '';
-    } else {
-      serialized = JSON.encode(obj);
-    }
-    return serialized;
+  T getAuthentication<T extends Authentication>(String name) {
+    final authentication = _authentications[name];
+    return authentication is T ? authentication : null;
   }
 
   // We don't use a Map<String, String> for queryParams.
-  // If collectionFormat is 'multi' a key might appear multiple times.
-  Future<Response> invokeAPI(String path,
-                             String method,
-                             Iterable<QueryParam> queryParams,
-                             Object body,
-                             Map<String, String> headerParams,
-                             Map<String, String> formParams,
-                             String contentType,
-                             List<String> authNames) async {
-
+  // If collectionFormat is 'multi', a key might appear multiple times.
+  Future<Response> invokeAPI(
+    String path,
+    String method,
+    List<QueryParam> queryParams,
+    Object body,
+    Map<String, String> headerParams,
+    Map<String, String> formParams,
+    String nullableContentType,
+    List<String> authNames,
+  ) async {
     _updateParamsForAuth(authNames, queryParams, headerParams);
 
-    var ps = queryParams.where((p) => p.value != null).map((p) => '${p.name}=${p.value}');
-    String queryString = ps.isNotEmpty ?
-                         '?' + ps.join('&') :
-                         '';
-
-    String url = basePath + path + queryString;
-
     headerParams.addAll(_defaultHeaderMap);
-    headerParams['Content-Type'] = contentType;
 
-    if(body is MultipartRequest) {
-      var request = new MultipartRequest(method, Uri.parse(url));
-      request.fields.addAll(body.fields);
-      request.files.addAll(body.files);
-      request.headers.addAll(body.headers);
-      request.headers.addAll(headerParams);
-      var response = await client.send(request);
-      return Response.fromStream(response);
-    } else {
-      var msgBody = contentType == "application/x-www-form-urlencoded" ? formParams : serialize(body);
-      switch(method) {
-        case "POST":
-          return client.post(url, headers: headerParams, body: msgBody);
-        case "PUT":
-          return client.put(url, headers: headerParams, body: msgBody);
-        case "DELETE":
-          return client.delete(url, headers: headerParams);
-        case "PATCH":
-          return client.patch(url, headers: headerParams, body: msgBody);
-        default:
-          return client.get(url, headers: headerParams);
-      }
+    final urlEncodedQueryParams = queryParams
+      .where((param) => param.value != null)
+      .map((param) => '$param');
+
+    final queryString = urlEncodedQueryParams.isNotEmpty
+      ? '?${urlEncodedQueryParams.join('&')}'
+      : '';
+
+    final uri = Uri.parse('$basePath$path$queryString');
+
+    if (nullableContentType != null) {
+      headerParams['Content-Type'] = nullableContentType;
     }
+
+    try {
+      // Special case for uploading a single file which isn't a 'multipart/form-data'.
+      if (
+        body is MultipartFile && (nullableContentType == null ||
+        !nullableContentType.toLowerCase().startsWith('multipart/form-data'))
+      ) {
+        final request = StreamedRequest(method, uri);
+        request.headers.addAll(headerParams);
+        request.contentLength = body.length;
+        body.finalize().listen(
+          request.sink.add,
+          onDone: request.sink.close,
+          // ignore: avoid_types_on_closure_parameters
+          onError: (Object error, StackTrace trace) => request.sink.close(),
+          cancelOnError: true,
+        );
+        final response = await _client.send(request);
+        return Response.fromStream(response);
+      }
+
+      if (body is MultipartRequest) {
+        final request = MultipartRequest(method, uri);
+        request.fields.addAll(body.fields);
+        request.files.addAll(body.files);
+        request.headers.addAll(body.headers);
+        request.headers.addAll(headerParams);
+        final response = await _client.send(request);
+        return Response.fromStream(response);
+      }
+
+      final msgBody = nullableContentType == 'application/x-www-form-urlencoded'
+        ? formParams
+        : await serializeAsync(body);
+      final nullableHeaderParams = headerParams.isEmpty ? null : headerParams;
+
+      switch(method) {
+        case 'POST': return await _client.post(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'PUT': return await _client.put(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'DELETE': return await _client.delete(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'PATCH': return await _client.patch(uri, headers: nullableHeaderParams, body: msgBody,);
+        case 'HEAD': return await _client.head(uri, headers: nullableHeaderParams,);
+        case 'GET': return await _client.get(uri, headers: nullableHeaderParams,);
+      }
+    } on SocketException catch (e, trace) {
+      throw ApiException.withInner(HttpStatus.badRequest, 'Socket operation failed: $method $path', e, trace,);
+    } on TlsException catch (e, trace) {
+      throw ApiException.withInner(HttpStatus.badRequest, 'TLS/SSL communication failed: $method $path', e, trace,);
+    } on IOException catch (e, trace) {
+      throw ApiException.withInner(HttpStatus.badRequest, 'I/O operation failed: $method $path', e, trace,);
+    } on ClientException catch (e, trace) {
+      throw ApiException.withInner(HttpStatus.badRequest, 'HTTP connection failed: $method $path', e, trace,);
+    } on Exception catch (e, trace) {
+      throw ApiException.withInner(HttpStatus.badRequest, 'Exception occurred: $method $path', e, trace,);
+    }
+
+    throw ApiException(HttpStatus.badRequest, 'Invalid HTTP operation: $method $path',);
   }
+
+  Future<dynamic> deserializeAsync(String json, String targetType, {bool growable}) async =>
+    // ignore: deprecated_member_use_from_same_package
+    deserialize(json, targetType, growable: growable);
+
+  @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use deserializeAsync() instead.')
+  dynamic deserialize(String json, String targetType, {bool growable}) {
+    // Remove all spaces. Necessary for regular expressions as well.
+    targetType = targetType.replaceAll(' ', ''); // ignore: parameter_assignments
+
+    // If the expected target type is String, nothing to do...
+    return targetType == 'String'
+      ? json
+      : _deserialize(jsonDecode(json), targetType, growable: growable == true);
+  }
+
+  // ignore: deprecated_member_use_from_same_package
+  Future<String> serializeAsync(Object value) async => serialize(value);
+
+  @Deprecated('Scheduled for removal in OpenAPI Generator 6.x. Use serializeAsync() instead.')
+  String serialize(Object value) => value == null ? '' : json.encode(value);
 
   /// Update query and header parameters based on authentication settings.
   /// @param authNames The authentications to apply
-  void _updateParamsForAuth(List<String> authNames, List<QueryParam> queryParams, Map<String, String> headerParams) {
-    authNames.forEach((authName) {
-      Authentication auth = _authentications[authName];
-      if (auth == null) throw new ArgumentError("Authentication undefined: " + authName);
+  void _updateParamsForAuth(
+    List<String> authNames,
+    List<QueryParam> queryParams,
+    Map<String, String> headerParams,
+  ) {
+    for(final authName in authNames) {
+      final auth = _authentications[authName];
+      if (auth == null) {
+        throw ArgumentError('Authentication undefined: $authName');
+      }
       auth.applyToParams(queryParams, headerParams);
-    });
+    }
   }
 
-  void setAccessToken(String accessToken) {
-    _authentications.forEach((key, auth) {
-      if (auth is OAuth) {
-        auth.setAccessToken(accessToken);
+  static dynamic _deserialize(dynamic value, String targetType, {bool growable}) {
+    try {
+      switch (targetType) {
+        case 'String':
+          return value is String ? value : value.toString();
+        case 'int':
+          return value is int ? value : int.parse('$value');
+        case 'double':
+          return value is double ? value : double.parse('$value');
+        case 'bool':
+          if (value is bool) {
+            return value;
+          }
+          final valueString = '$value'.toLowerCase();
+          return valueString == 'true' || valueString == '1';
+        case 'AllView':
+          return AllView.fromJson(value);
+        case 'BranchImpl':
+          return BranchImpl.fromJson(value);
+        case 'BranchImpllinks':
+          return BranchImpllinks.fromJson(value);
+        case 'BranchImplpermissions':
+          return BranchImplpermissions.fromJson(value);
+        case 'CauseAction':
+          return CauseAction.fromJson(value);
+        case 'CauseUserIdCause':
+          return CauseUserIdCause.fromJson(value);
+        case 'ClassesByClass':
+          return ClassesByClass.fromJson(value);
+        case 'ClockDifference':
+          return ClockDifference.fromJson(value);
+        case 'ComputerSet':
+          return ComputerSet.fromJson(value);
+        case 'DefaultCrumbIssuer':
+          return DefaultCrumbIssuer.fromJson(value);
+        case 'DiskSpaceMonitorDescriptorDiskSpace':
+          return DiskSpaceMonitorDescriptorDiskSpace.fromJson(value);
+        case 'EmptyChangeLogSet':
+          return EmptyChangeLogSet.fromJson(value);
+        case 'ExtensionClassContainerImpl1':
+          return ExtensionClassContainerImpl1.fromJson(value);
+        case 'ExtensionClassContainerImpl1links':
+          return ExtensionClassContainerImpl1links.fromJson(value);
+        case 'ExtensionClassContainerImpl1map':
+          return ExtensionClassContainerImpl1map.fromJson(value);
+        case 'ExtensionClassImpl':
+          return ExtensionClassImpl.fromJson(value);
+        case 'ExtensionClassImpllinks':
+          return ExtensionClassImpllinks.fromJson(value);
+        case 'FavoriteImpl':
+          return FavoriteImpl.fromJson(value);
+        case 'FavoriteImpllinks':
+          return FavoriteImpllinks.fromJson(value);
+        case 'FreeStyleBuild':
+          return FreeStyleBuild.fromJson(value);
+        case 'FreeStyleProject':
+          return FreeStyleProject.fromJson(value);
+        case 'FreeStyleProjectactions':
+          return FreeStyleProjectactions.fromJson(value);
+        case 'FreeStyleProjecthealthReport':
+          return FreeStyleProjecthealthReport.fromJson(value);
+        case 'GenericResource':
+          return GenericResource.fromJson(value);
+        case 'GithubContent':
+          return GithubContent.fromJson(value);
+        case 'GithubFile':
+          return GithubFile.fromJson(value);
+        case 'GithubOrganization':
+          return GithubOrganization.fromJson(value);
+        case 'GithubOrganizationlinks':
+          return GithubOrganizationlinks.fromJson(value);
+        case 'GithubRepositories':
+          return GithubRepositories.fromJson(value);
+        case 'GithubRepositorieslinks':
+          return GithubRepositorieslinks.fromJson(value);
+        case 'GithubRepository':
+          return GithubRepository.fromJson(value);
+        case 'GithubRepositorylinks':
+          return GithubRepositorylinks.fromJson(value);
+        case 'GithubRepositorypermissions':
+          return GithubRepositorypermissions.fromJson(value);
+        case 'GithubRespositoryContainer':
+          return GithubRespositoryContainer.fromJson(value);
+        case 'GithubRespositoryContainerlinks':
+          return GithubRespositoryContainerlinks.fromJson(value);
+        case 'GithubScm':
+          return GithubScm.fromJson(value);
+        case 'GithubScmlinks':
+          return GithubScmlinks.fromJson(value);
+        case 'Hudson':
+          return Hudson.fromJson(value);
+        case 'HudsonMasterComputer':
+          return HudsonMasterComputer.fromJson(value);
+        case 'HudsonMasterComputerexecutors':
+          return HudsonMasterComputerexecutors.fromJson(value);
+        case 'HudsonMasterComputermonitorData':
+          return HudsonMasterComputermonitorData.fromJson(value);
+        case 'HudsonassignedLabels':
+          return HudsonassignedLabels.fromJson(value);
+        case 'InputStepImpl':
+          return InputStepImpl.fromJson(value);
+        case 'InputStepImpllinks':
+          return InputStepImpllinks.fromJson(value);
+        case 'Label1':
+          return Label1.fromJson(value);
+        case 'Link':
+          return Link.fromJson(value);
+        case 'ListView':
+          return ListView.fromJson(value);
+        case 'MultibranchPipeline':
+          return MultibranchPipeline.fromJson(value);
+        case 'NullSCM':
+          return NullSCM.fromJson(value);
+        case 'Organisation':
+          return Organisation.fromJson(value);
+        case 'Pipeline':
+          return Pipeline.fromJson(value);
+        case 'PipelineActivity':
+          return PipelineActivity.fromJson(value);
+        case 'PipelineActivityartifacts':
+          return PipelineActivityartifacts.fromJson(value);
+        case 'PipelineBranchesitem':
+          return PipelineBranchesitem.fromJson(value);
+        case 'PipelineBranchesitemlatestRun':
+          return PipelineBranchesitemlatestRun.fromJson(value);
+        case 'PipelineBranchesitempullRequest':
+          return PipelineBranchesitempullRequest.fromJson(value);
+        case 'PipelineBranchesitempullRequestlinks':
+          return PipelineBranchesitempullRequestlinks.fromJson(value);
+        case 'PipelineFolderImpl':
+          return PipelineFolderImpl.fromJson(value);
+        case 'PipelineImpl':
+          return PipelineImpl.fromJson(value);
+        case 'PipelineImpllinks':
+          return PipelineImpllinks.fromJson(value);
+        case 'PipelineRun':
+          return PipelineRun.fromJson(value);
+        case 'PipelineRunImpl':
+          return PipelineRunImpl.fromJson(value);
+        case 'PipelineRunImpllinks':
+          return PipelineRunImpllinks.fromJson(value);
+        case 'PipelineRunNode':
+          return PipelineRunNode.fromJson(value);
+        case 'PipelineRunNodeedges':
+          return PipelineRunNodeedges.fromJson(value);
+        case 'PipelineRunartifacts':
+          return PipelineRunartifacts.fromJson(value);
+        case 'PipelineStepImpl':
+          return PipelineStepImpl.fromJson(value);
+        case 'PipelineStepImpllinks':
+          return PipelineStepImpllinks.fromJson(value);
+        case 'PipelinelatestRun':
+          return PipelinelatestRun.fromJson(value);
+        case 'PipelinelatestRunartifacts':
+          return PipelinelatestRunartifacts.fromJson(value);
+        case 'Queue':
+          return Queue.fromJson(value);
+        case 'QueueBlockedItem':
+          return QueueBlockedItem.fromJson(value);
+        case 'QueueItemImpl':
+          return QueueItemImpl.fromJson(value);
+        case 'QueueLeftItem':
+          return QueueLeftItem.fromJson(value);
+        case 'ResponseTimeMonitorData':
+          return ResponseTimeMonitorData.fromJson(value);
+        case 'StringParameterDefinition':
+          return StringParameterDefinition.fromJson(value);
+        case 'StringParameterValue':
+          return StringParameterValue.fromJson(value);
+        case 'SwapSpaceMonitorMemoryUsage2':
+          return SwapSpaceMonitorMemoryUsage2.fromJson(value);
+        case 'UnlabeledLoadStatistics':
+          return UnlabeledLoadStatistics.fromJson(value);
+        case 'User':
+          return User.fromJson(value);
+        default:
+          Match match;
+          if (value is List && (match = _regList.firstMatch(targetType)) != null) {
+            targetType = match[1]; // ignore: parameter_assignments
+            return value
+              .map<dynamic>((dynamic v) => _deserialize(v, targetType, growable: growable))
+              .toList(growable: growable);
+          }
+          if (value is Set && (match = _regSet.firstMatch(targetType)) != null) {
+            targetType = match[1]; // ignore: parameter_assignments
+            return value
+              .map<dynamic>((dynamic v) => _deserialize(v, targetType, growable: growable))
+              .toSet();
+          }
+          if (value is Map && (match = _regMap.firstMatch(targetType)) != null) {
+            targetType = match[1]; // ignore: parameter_assignments
+            return Map<String, dynamic>.fromIterables(
+              value.keys.cast<String>(),
+              value.values.map<dynamic>((dynamic v) => _deserialize(v, targetType, growable: growable)),
+            );
+          }
       }
-    });
+    } on Exception catch (error, trace) {
+      throw ApiException.withInner(HttpStatus.internalServerError, 'Exception during deserialization.', error, trace,);
+    }
+    throw ApiException(HttpStatus.internalServerError, 'Could not find a suitable class for deserialization',);
   }
 }
+
+/// Primarily intended for use in an isolate.
+class DeserializationMessage {
+  const DeserializationMessage({
+    @required this.json,
+    @required this.targetType,
+    this.growable,
+  });
+
+  /// The JSON value to deserialize.
+  final String json;
+
+  /// Target type to deserialize to.
+  final String targetType;
+
+  /// Whether to make deserialized lists or maps growable.
+  final bool growable;
+}
+
+/// Primarily intended for use in an isolate.
+Future<dynamic> deserializeAsync(DeserializationMessage message) async {
+  // Remove all spaces. Necessary for regular expressions as well.
+  final targetType = message.targetType.replaceAll(' ', '');
+
+  // If the expected target type is String, nothing to do...
+  return targetType == 'String'
+    ? message.json
+    : ApiClient._deserialize(
+        jsonDecode(message.json),
+        targetType,
+        growable: message.growable == true,
+      );
+}
+
+/// Primarily intended for use in an isolate.
+Future<String> serializeAsync(Object value) async => value == null ? '' : json.encode(value);

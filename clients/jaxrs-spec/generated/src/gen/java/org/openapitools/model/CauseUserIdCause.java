@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class CauseUserIdCause   {
+
+@JsonTypeName("CauseUserIdCause")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class CauseUserIdCause   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String shortDescription = null;
-  private @Valid String userId = null;
-  private @Valid String userName = null;
+  private @Valid String propertyClass;
+  private @Valid String shortDescription;
+  private @Valid String userId;
+  private @Valid String userName;
 
   /**
    **/
@@ -24,16 +30,20 @@ public class CauseUserIdCause   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public CauseUserIdCause shortDescription(String shortDescription) {
     this.shortDescription = shortDescription;
@@ -41,16 +51,20 @@ public class CauseUserIdCause   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("shortDescription")
   public String getShortDescription() {
     return shortDescription;
   }
+
+  @JsonProperty("shortDescription")
   public void setShortDescription(String shortDescription) {
     this.shortDescription = shortDescription;
   }
 
-  /**
+/**
    **/
   public CauseUserIdCause userId(String userId) {
     this.userId = userId;
@@ -58,16 +72,20 @@ public class CauseUserIdCause   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("userId")
   public String getUserId() {
     return userId;
   }
+
+  @JsonProperty("userId")
   public void setUserId(String userId) {
     this.userId = userId;
   }
 
-  /**
+/**
    **/
   public CauseUserIdCause userName(String userName) {
     this.userName = userName;
@@ -75,18 +93,22 @@ public class CauseUserIdCause   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("userName")
   public String getUserName() {
     return userName;
   }
+
+  @JsonProperty("userName")
   public void setUserName(String userName) {
     this.userName = userName;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -94,10 +116,10 @@ public class CauseUserIdCause   {
       return false;
     }
     CauseUserIdCause causeUserIdCause = (CauseUserIdCause) o;
-    return Objects.equals(propertyClass, causeUserIdCause.propertyClass) &&
-        Objects.equals(shortDescription, causeUserIdCause.shortDescription) &&
-        Objects.equals(userId, causeUserIdCause.userId) &&
-        Objects.equals(userName, causeUserIdCause.userName);
+    return Objects.equals(this.propertyClass, causeUserIdCause.propertyClass) &&
+        Objects.equals(this.shortDescription, causeUserIdCause.shortDescription) &&
+        Objects.equals(this.userId, causeUserIdCause.userId) &&
+        Objects.equals(this.userName, causeUserIdCause.userName);
   }
 
   @Override
@@ -122,11 +144,13 @@ public class CauseUserIdCause   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

@@ -1,7 +1,9 @@
 
+
 # GithubScm
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -9,6 +11,7 @@ Name | Type | Description | Notes
 **credentialId** | **String** |  |  [optional]
 **id** | **String** |  |  [optional]
 **uri** | **String** |  |  [optional]
+
 
 
 

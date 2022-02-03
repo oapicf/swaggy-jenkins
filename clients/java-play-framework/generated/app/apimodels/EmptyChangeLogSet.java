@@ -8,15 +8,16 @@ import javax.validation.constraints.*;
 /**
  * EmptyChangeLogSet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class EmptyChangeLogSet   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("kind")
-  private String kind = null;
+  
+  private String kind;
 
   public EmptyChangeLogSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -27,7 +28,7 @@ public class EmptyChangeLogSet   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -44,7 +45,7 @@ public class EmptyChangeLogSet   {
    * Get kind
    * @return kind
   **/
-    public String getKind() {
+  public String getKind() {
     return kind;
   }
 
@@ -54,7 +55,7 @@ public class EmptyChangeLogSet   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -87,7 +88,7 @@ public class EmptyChangeLogSet   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

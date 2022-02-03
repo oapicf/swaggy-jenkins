@@ -20,14 +20,14 @@ defmodule SwaggyJenkins.Model.GithubRepository do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => GithubRepositorylinks,
-    :"defaultBranch" => String.t,
-    :"description" => String.t,
-    :"name" => String.t,
-    :"permissions" => GithubRepositorypermissions,
-    :"private" => boolean(),
-    :"fullName" => String.t
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.GithubRepositorylinks.t | nil,
+    :"defaultBranch" => String.t | nil,
+    :"description" => String.t | nil,
+    :"name" => String.t | nil,
+    :"permissions" => SwaggyJenkins.Model.GithubRepositorypermissions.t | nil,
+    :"private" => boolean() | nil,
+    :"fullName" => String.t | nil
   }
 end
 

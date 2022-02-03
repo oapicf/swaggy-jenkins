@@ -4,11 +4,11 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmptyChangeLogSet   {
   
-  private String propertyClass = null;
-  private String kind = null;
+  private String propertyClass;
+  private String kind;
 
   public EmptyChangeLogSet () {
 

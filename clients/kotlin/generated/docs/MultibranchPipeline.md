@@ -10,14 +10,14 @@ Name | Type | Description | Notes
 **name** | **kotlin.String** |  |  [optional]
 **organization** | **kotlin.String** |  |  [optional]
 **weatherScore** | **kotlin.Int** |  |  [optional]
-**branchNames** | **kotlin.Array&lt;kotlin.String&gt;** |  |  [optional]
+**branchNames** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
 **numberOfFailingBranches** | **kotlin.Int** |  |  [optional]
 **numberOfFailingPullRequests** | **kotlin.Int** |  |  [optional]
 **numberOfSuccessfulBranches** | **kotlin.Int** |  |  [optional]
 **numberOfSuccessfulPullRequests** | **kotlin.Int** |  |  [optional]
 **totalNumberOfBranches** | **kotlin.Int** |  |  [optional]
 **totalNumberOfPullRequests** | **kotlin.Int** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.ExtensionClassImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => ExtensionClassImpllinks,
-    :"classes" => [String.t]
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.ExtensionClassImpllinks.t | nil,
+    :"classes" => [String.t] | nil
   }
 end
 

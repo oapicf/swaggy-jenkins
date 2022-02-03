@@ -16,10 +16,10 @@ defmodule SwaggyJenkins.Model.CauseUserIdCause do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"shortDescription" => String.t,
-    :"userId" => String.t,
-    :"userName" => String.t
+    :"_class" => String.t | nil,
+    :"shortDescription" => String.t | nil,
+    :"userId" => String.t | nil,
+    :"userName" => String.t | nil
   }
 end
 

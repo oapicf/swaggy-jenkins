@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class SwapSpaceMonitorMemoryUsage2 {
-    String propertyClass = null
-
-    Integer availablePhysicalMemory = null
-
-    Integer availableSwapSpace = null
-
-    Integer totalPhysicalMemory = null
-
-    Integer totalSwapSpace = null
-
+    
+    String propertyClass
+    
+    Integer availablePhysicalMemory
+    
+    Integer availableSwapSpace
+    
+    Integer totalPhysicalMemory
+    
+    Integer totalSwapSpace
 }

@@ -9,19 +9,19 @@ namespace app\Models;
  */
 class ComputerSet {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var int $busy_executors */
-    private $busy_executors;
+    /** @var int $busyExecutors */
+    private $busyExecutors;
 
     /** @var \app\Models\HudsonMasterComputer[] $computer */
     private $computer;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $total_executors */
-    private $total_executors;
+    /** @var int $totalExecutors */
+    private $totalExecutors;
 
 }

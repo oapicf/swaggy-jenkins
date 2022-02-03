@@ -1,7 +1,9 @@
 
+
 # FreeStyleProject
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -31,6 +33,7 @@ Name | Type | Description | Notes
 **queueItem** | **String** |  |  [optional]
 **concurrentBuild** | **Boolean** |  |  [optional]
 **scm** | [**NullSCM**](NullSCM.md) |  |  [optional]
+
 
 
 

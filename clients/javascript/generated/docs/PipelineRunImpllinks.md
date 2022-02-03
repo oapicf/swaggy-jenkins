@@ -1,6 +1,7 @@
 # SwaggyJenkins.PipelineRunImpllinks
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nodes** | [**Link**](Link.md) |  | [optional] 

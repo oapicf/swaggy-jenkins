@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.BranchImplpermissions do
   ]
 
   @type t :: %__MODULE__{
-    :"create" => boolean(),
-    :"read" => boolean(),
-    :"start" => boolean(),
-    :"stop" => boolean(),
-    :"_class" => String.t
+    :"create" => boolean() | nil,
+    :"read" => boolean() | nil,
+    :"start" => boolean() | nil,
+    :"stop" => boolean() | nil,
+    :"_class" => String.t | nil
   }
 end
 

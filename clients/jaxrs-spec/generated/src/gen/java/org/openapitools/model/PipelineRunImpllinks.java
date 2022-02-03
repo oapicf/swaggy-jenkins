@@ -1,23 +1,29 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineRunImpllinks   {
+
+@JsonTypeName("PipelineRunImpllinks")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineRunImpllinks   {
   
-  private @Valid Link nodes = null;
-  private @Valid Link log = null;
-  private @Valid Link self = null;
-  private @Valid Link actions = null;
-  private @Valid Link steps = null;
-  private @Valid String propertyClass = null;
+  private @Valid Link nodes;
+  private @Valid Link log;
+  private @Valid Link self;
+  private @Valid Link actions;
+  private @Valid Link steps;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -27,16 +33,20 @@ public class PipelineRunImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("nodes")
   public Link getNodes() {
     return nodes;
   }
+
+  @JsonProperty("nodes")
   public void setNodes(Link nodes) {
     this.nodes = nodes;
   }
 
-  /**
+/**
    **/
   public PipelineRunImpllinks log(Link log) {
     this.log = log;
@@ -44,16 +54,20 @@ public class PipelineRunImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("log")
   public Link getLog() {
     return log;
   }
+
+  @JsonProperty("log")
   public void setLog(Link log) {
     this.log = log;
   }
 
-  /**
+/**
    **/
   public PipelineRunImpllinks self(Link self) {
     this.self = self;
@@ -61,16 +75,20 @@ public class PipelineRunImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
+
+  @JsonProperty("self")
   public void setSelf(Link self) {
     this.self = self;
   }
 
-  /**
+/**
    **/
   public PipelineRunImpllinks actions(Link actions) {
     this.actions = actions;
@@ -78,16 +96,20 @@ public class PipelineRunImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(Link actions) {
     this.actions = actions;
   }
 
-  /**
+/**
    **/
   public PipelineRunImpllinks steps(Link steps) {
     this.steps = steps;
@@ -95,16 +117,20 @@ public class PipelineRunImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("steps")
   public Link getSteps() {
     return steps;
   }
+
+  @JsonProperty("steps")
   public void setSteps(Link steps) {
     this.steps = steps;
   }
 
-  /**
+/**
    **/
   public PipelineRunImpllinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -112,18 +138,22 @@ public class PipelineRunImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,12 +161,12 @@ public class PipelineRunImpllinks   {
       return false;
     }
     PipelineRunImpllinks pipelineRunImpllinks = (PipelineRunImpllinks) o;
-    return Objects.equals(nodes, pipelineRunImpllinks.nodes) &&
-        Objects.equals(log, pipelineRunImpllinks.log) &&
-        Objects.equals(self, pipelineRunImpllinks.self) &&
-        Objects.equals(actions, pipelineRunImpllinks.actions) &&
-        Objects.equals(steps, pipelineRunImpllinks.steps) &&
-        Objects.equals(propertyClass, pipelineRunImpllinks.propertyClass);
+    return Objects.equals(this.nodes, pipelineRunImpllinks.nodes) &&
+        Objects.equals(this.log, pipelineRunImpllinks.log) &&
+        Objects.equals(this.self, pipelineRunImpllinks.self) &&
+        Objects.equals(this.actions, pipelineRunImpllinks.actions) &&
+        Objects.equals(this.steps, pipelineRunImpllinks.steps) &&
+        Objects.equals(this.propertyClass, pipelineRunImpllinks.propertyClass);
   }
 
   @Override
@@ -163,11 +193,13 @@ public class PipelineRunImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

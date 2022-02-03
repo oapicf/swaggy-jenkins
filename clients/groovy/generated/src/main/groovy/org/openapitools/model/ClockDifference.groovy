@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class ClockDifference {
-    String propertyClass = null
-
-    Integer diff = null
-
+    
+    String propertyClass
+    
+    Integer diff
 }

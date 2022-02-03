@@ -28,13 +28,44 @@ type BranchImpl struct {
 
 	Parameters []StringParameterDefinition `json:"parameters,omitempty"`
 
-	Permissions *BranchImplpermissions `json:"permissions,omitempty"`
+	Permissions BranchImplpermissions `json:"permissions,omitempty"`
 
 	WeatherScore int32 `json:"weatherScore,omitempty"`
 
 	PullRequest string `json:"pullRequest,omitempty"`
 
-	Links *BranchImpllinks `json:"_links,omitempty"`
+	Links BranchImpllinks `json:"_links,omitempty"`
 
-	LatestRun *PipelineRunImpl `json:"latestRun,omitempty"`
+	LatestRun PipelineRunImpl `json:"latestRun,omitempty"`
+}
+
+// AssertBranchImplRequired checks if the required fields are not zero-ed
+func AssertBranchImplRequired(obj BranchImpl) error {
+	for _, el := range obj.Parameters {
+		if err := AssertStringParameterDefinitionRequired(el); err != nil {
+			return err
+		}
+	}
+	if err := AssertBranchImplpermissionsRequired(obj.Permissions); err != nil {
+		return err
+	}
+	if err := AssertBranchImpllinksRequired(obj.Links); err != nil {
+		return err
+	}
+	if err := AssertPipelineRunImplRequired(obj.LatestRun); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseBranchImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of BranchImpl (e.g. [][]BranchImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseBranchImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aBranchImpl, ok := obj.(BranchImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertBranchImplRequired(aBranchImpl)
+	})
 }

@@ -51,7 +51,7 @@ services:
     acme.my_bundle.api.blueOcean:
         class: Acme\MyBundle\Api\BlueOceanApi
         tags:
-            - { name: "open_apiserver.api", api: "blueOcean" }
+            - { name: "open_api_server.api", api: "blueOcean" }
     # ...
 ```
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getOrganisations**
-> OpenAPI\Server\Model\Organisations getOrganisations()
+> OpenAPI\Server\Model\Organisation getOrganisations()
 
 
 
@@ -420,7 +420,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**OpenAPI\Server\Model\Organisations**](../Model/Organisations.md)
+[**OpenAPI\Server\Model\Organisation**](../Model/Organisation.md)
 
 ### Authorization
 
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getPipelineActivities**
-> OpenAPI\Server\Model\PipelineActivities getPipelineActivities($organization, $pipeline)
+> OpenAPI\Server\Model\PipelineActivity getPipelineActivities($organization, $pipeline)
 
 
 
@@ -530,7 +530,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\PipelineActivities**](../Model/PipelineActivities.md)
+[**OpenAPI\Server\Model\PipelineActivity**](../Model/PipelineActivity.md)
 
 ### Authorization
 
@@ -823,7 +823,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getPipelineQueue**
-> OpenAPI\Server\Model\PipelineQueue getPipelineQueue($organization, $pipeline)
+> OpenAPI\Server\Model\QueueItemImpl getPipelineQueue($organization, $pipeline)
 
 
 
@@ -864,7 +864,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\PipelineQueue**](../Model/PipelineQueue.md)
+[**OpenAPI\Server\Model\QueueItemImpl**](../Model/QueueItemImpl.md)
 
 ### Authorization
 
@@ -1165,7 +1165,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getPipelineRunNodeSteps**
-> OpenAPI\Server\Model\PipelineRunNodeSteps getPipelineRunNodeSteps($organization, $pipeline, $run, $node)
+> OpenAPI\Server\Model\PipelineStepImpl getPipelineRunNodeSteps($organization, $pipeline, $run, $node)
 
 
 
@@ -1208,7 +1208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\PipelineRunNodeSteps**](../Model/PipelineRunNodeSteps.md)
+[**OpenAPI\Server\Model\PipelineStepImpl**](../Model/PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1222,7 +1222,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getPipelineRunNodes**
-> OpenAPI\Server\Model\PipelineRunNodes getPipelineRunNodes($organization, $pipeline, $run)
+> OpenAPI\Server\Model\PipelineRunNode getPipelineRunNodes($organization, $pipeline, $run)
 
 
 
@@ -1264,7 +1264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\PipelineRunNodes**](../Model/PipelineRunNodes.md)
+[**OpenAPI\Server\Model\PipelineRunNode**](../Model/PipelineRunNode.md)
 
 ### Authorization
 
@@ -1278,7 +1278,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getPipelineRuns**
-> OpenAPI\Server\Model\PipelineRuns getPipelineRuns($organization, $pipeline)
+> OpenAPI\Server\Model\PipelineRun getPipelineRuns($organization, $pipeline)
 
 
 
@@ -1319,7 +1319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\PipelineRuns**](../Model/PipelineRuns.md)
+[**OpenAPI\Server\Model\PipelineRun**](../Model/PipelineRun.md)
 
 ### Authorization
 
@@ -1333,7 +1333,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getPipelines**
-> OpenAPI\Server\Model\Pipelines getPipelines($organization)
+> OpenAPI\Server\Model\Pipeline getPipelines($organization)
 
 
 
@@ -1373,7 +1373,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\Pipelines**](../Model/Pipelines.md)
+[**OpenAPI\Server\Model\Pipeline**](../Model/Pipeline.md)
 
 ### Authorization
 
@@ -1442,7 +1442,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getSCMOrganisationRepositories**
-> OpenAPI\Server\Model\ScmOrganisations getSCMOrganisationRepositories($organization, $scm, $scmOrganisation, $credentialId, $pageSize, $pageNumber)
+> OpenAPI\Server\Model\GithubOrganization getSCMOrganisationRepositories($organization, $scm, $scmOrganisation, $credentialId, $pageSize, $pageNumber)
 
 
 
@@ -1487,7 +1487,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+[**OpenAPI\Server\Model\GithubOrganization**](../Model/GithubOrganization.md)
 
 ### Authorization
 
@@ -1501,7 +1501,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getSCMOrganisationRepository**
-> OpenAPI\Server\Model\ScmOrganisations getSCMOrganisationRepository($organization, $scm, $scmOrganisation, $repository, $credentialId)
+> OpenAPI\Server\Model\GithubOrganization getSCMOrganisationRepository($organization, $scm, $scmOrganisation, $repository, $credentialId)
 
 
 
@@ -1545,7 +1545,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+[**OpenAPI\Server\Model\GithubOrganization**](../Model/GithubOrganization.md)
 
 ### Authorization
 
@@ -1559,7 +1559,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getSCMOrganisations**
-> OpenAPI\Server\Model\ScmOrganisations getSCMOrganisations($organization, $scm, $credentialId)
+> OpenAPI\Server\Model\GithubOrganization getSCMOrganisations($organization, $scm, $credentialId)
 
 
 
@@ -1601,7 +1601,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+[**OpenAPI\Server\Model\GithubOrganization**](../Model/GithubOrganization.md)
 
 ### Authorization
 
@@ -1670,7 +1670,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **getUserFavorites**
-> OpenAPI\Server\Model\UserFavorites getUserFavorites($user)
+> OpenAPI\Server\Model\FavoriteImpl getUserFavorites($user)
 
 
 
@@ -1710,7 +1710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OpenAPI\Server\Model\UserFavorites**](../Model/UserFavorites.md)
+[**OpenAPI\Server\Model\FavoriteImpl**](../Model/FavoriteImpl.md)
 
 ### Authorization
 
@@ -1889,7 +1889,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **putPipelineFavorite**
-> OpenAPI\Server\Model\FavoriteImpl putPipelineFavorite($organization, $pipeline, $body)
+> OpenAPI\Server\Model\FavoriteImpl putPipelineFavorite($organization, $pipeline, $uNKNOWNBASETYPE)
 
 
 
@@ -1912,7 +1912,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#putPipelineFavorite
      */
-    public function putPipelineFavorite($organization, $pipeline, Body $body)
+    public function putPipelineFavorite($organization, $pipeline, UNKNOWN_BASE_TYPE $uNKNOWNBASETYPE)
     {
         // Implement the operation ...
     }
@@ -1927,7 +1927,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
- **body** | [**OpenAPI\Server\Model\Body**](../Model/Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite |
+ **uNKNOWNBASETYPE** | [**OpenAPI\Server\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

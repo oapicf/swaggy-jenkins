@@ -1,7 +1,9 @@
 
+
 # PipelineBranchesitempullRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **links** | [**PipelineBranchesitempullRequestlinks**](PipelineBranchesitempullRequestlinks.md) |  |  [optional]
@@ -10,6 +12,7 @@ Name | Type | Description | Notes
 **title** | **String** |  |  [optional]
 **url** | **String** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

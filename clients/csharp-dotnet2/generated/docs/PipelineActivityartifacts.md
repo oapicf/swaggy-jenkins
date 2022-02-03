@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.PipelineActivityartifacts
+
 ## Properties
 
 Name | Type | Description | Notes

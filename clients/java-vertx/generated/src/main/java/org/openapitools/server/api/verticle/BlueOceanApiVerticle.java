@@ -8,74 +8,67 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-import org.openapitools.server.api.model.Body;
 import org.openapitools.server.api.model.BranchImpl;
 import org.openapitools.server.api.model.FavoriteImpl;
+import org.openapitools.server.api.model.GithubOrganization;
 import org.openapitools.server.api.model.GithubScm;
 import org.openapitools.server.api.MainApiException;
 import org.openapitools.server.api.model.MultibranchPipeline;
 import org.openapitools.server.api.model.Organisation;
-import org.openapitools.server.api.model.Organisations;
 import org.openapitools.server.api.model.Pipeline;
-import org.openapitools.server.api.model.PipelineActivities;
+import org.openapitools.server.api.model.PipelineActivity;
 import org.openapitools.server.api.model.PipelineFolderImpl;
 import org.openapitools.server.api.model.PipelineImpl;
-import org.openapitools.server.api.model.PipelineQueue;
 import org.openapitools.server.api.model.PipelineRun;
 import org.openapitools.server.api.model.PipelineRunNode;
-import org.openapitools.server.api.model.PipelineRunNodeSteps;
-import org.openapitools.server.api.model.PipelineRunNodes;
-import org.openapitools.server.api.model.PipelineRuns;
 import org.openapitools.server.api.model.PipelineStepImpl;
-import org.openapitools.server.api.model.Pipelines;
 import org.openapitools.server.api.model.QueueItemImpl;
-import org.openapitools.server.api.model.ScmOrganisations;
+import org.openapitools.server.api.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.server.api.model.User;
-import org.openapitools.server.api.model.UserFavorites;
 
 import java.util.List;
 import java.util.Map;
 
 public class BlueOceanApiVerticle extends AbstractVerticle {
-    final static Logger LOGGER = LoggerFactory.getLogger(BlueOceanApiVerticle.class); 
-    
-    final static String DELETEPIPELINEQUEUEITEM_SERVICE_ID = "deletePipelineQueueItem";
-    final static String GETAUTHENTICATEDUSER_SERVICE_ID = "getAuthenticatedUser";
-    final static String GETCLASSES_SERVICE_ID = "getClasses";
-    final static String GETJSONWEBKEY_SERVICE_ID = "getJsonWebKey";
-    final static String GETJSONWEBTOKEN_SERVICE_ID = "getJsonWebToken";
-    final static String GETORGANISATION_SERVICE_ID = "getOrganisation";
-    final static String GETORGANISATIONS_SERVICE_ID = "getOrganisations";
-    final static String GETPIPELINE_SERVICE_ID = "getPipeline";
-    final static String GETPIPELINEACTIVITIES_SERVICE_ID = "getPipelineActivities";
-    final static String GETPIPELINEBRANCH_SERVICE_ID = "getPipelineBranch";
-    final static String GETPIPELINEBRANCHRUN_SERVICE_ID = "getPipelineBranchRun";
-    final static String GETPIPELINEBRANCHES_SERVICE_ID = "getPipelineBranches";
-    final static String GETPIPELINEFOLDER_SERVICE_ID = "getPipelineFolder";
-    final static String GETPIPELINEFOLDERPIPELINE_SERVICE_ID = "getPipelineFolderPipeline";
-    final static String GETPIPELINEQUEUE_SERVICE_ID = "getPipelineQueue";
-    final static String GETPIPELINERUN_SERVICE_ID = "getPipelineRun";
-    final static String GETPIPELINERUNLOG_SERVICE_ID = "getPipelineRunLog";
-    final static String GETPIPELINERUNNODE_SERVICE_ID = "getPipelineRunNode";
-    final static String GETPIPELINERUNNODESTEP_SERVICE_ID = "getPipelineRunNodeStep";
-    final static String GETPIPELINERUNNODESTEPLOG_SERVICE_ID = "getPipelineRunNodeStepLog";
-    final static String GETPIPELINERUNNODESTEPS_SERVICE_ID = "getPipelineRunNodeSteps";
-    final static String GETPIPELINERUNNODES_SERVICE_ID = "getPipelineRunNodes";
-    final static String GETPIPELINERUNS_SERVICE_ID = "getPipelineRuns";
-    final static String GETPIPELINES_SERVICE_ID = "getPipelines";
-    final static String GETSCM_SERVICE_ID = "getSCM";
-    final static String GETSCMORGANISATIONREPOSITORIES_SERVICE_ID = "getSCMOrganisationRepositories";
-    final static String GETSCMORGANISATIONREPOSITORY_SERVICE_ID = "getSCMOrganisationRepository";
-    final static String GETSCMORGANISATIONS_SERVICE_ID = "getSCMOrganisations";
-    final static String GETUSER_SERVICE_ID = "getUser";
-    final static String GETUSERFAVORITES_SERVICE_ID = "getUserFavorites";
-    final static String GETUSERS_SERVICE_ID = "getUsers";
-    final static String POSTPIPELINERUN_SERVICE_ID = "postPipelineRun";
-    final static String POSTPIPELINERUNS_SERVICE_ID = "postPipelineRuns";
-    final static String PUTPIPELINEFAVORITE_SERVICE_ID = "putPipelineFavorite";
-    final static String PUTPIPELINERUN_SERVICE_ID = "putPipelineRun";
-    final static String SEARCH_SERVICE_ID = "search";
-    final static String SEARCHCLASSES_SERVICE_ID = "searchClasses";
+    static final Logger LOGGER = LoggerFactory.getLogger(BlueOceanApiVerticle.class);
+
+    static final String DELETEPIPELINEQUEUEITEM_SERVICE_ID = "deletePipelineQueueItem";
+    static final String GETAUTHENTICATEDUSER_SERVICE_ID = "getAuthenticatedUser";
+    static final String GETCLASSES_SERVICE_ID = "getClasses";
+    static final String GETJSONWEBKEY_SERVICE_ID = "getJsonWebKey";
+    static final String GETJSONWEBTOKEN_SERVICE_ID = "getJsonWebToken";
+    static final String GETORGANISATION_SERVICE_ID = "getOrganisation";
+    static final String GETORGANISATIONS_SERVICE_ID = "getOrganisations";
+    static final String GETPIPELINE_SERVICE_ID = "getPipeline";
+    static final String GETPIPELINEACTIVITIES_SERVICE_ID = "getPipelineActivities";
+    static final String GETPIPELINEBRANCH_SERVICE_ID = "getPipelineBranch";
+    static final String GETPIPELINEBRANCHRUN_SERVICE_ID = "getPipelineBranchRun";
+    static final String GETPIPELINEBRANCHES_SERVICE_ID = "getPipelineBranches";
+    static final String GETPIPELINEFOLDER_SERVICE_ID = "getPipelineFolder";
+    static final String GETPIPELINEFOLDERPIPELINE_SERVICE_ID = "getPipelineFolderPipeline";
+    static final String GETPIPELINEQUEUE_SERVICE_ID = "getPipelineQueue";
+    static final String GETPIPELINERUN_SERVICE_ID = "getPipelineRun";
+    static final String GETPIPELINERUNLOG_SERVICE_ID = "getPipelineRunLog";
+    static final String GETPIPELINERUNNODE_SERVICE_ID = "getPipelineRunNode";
+    static final String GETPIPELINERUNNODESTEP_SERVICE_ID = "getPipelineRunNodeStep";
+    static final String GETPIPELINERUNNODESTEPLOG_SERVICE_ID = "getPipelineRunNodeStepLog";
+    static final String GETPIPELINERUNNODESTEPS_SERVICE_ID = "getPipelineRunNodeSteps";
+    static final String GETPIPELINERUNNODES_SERVICE_ID = "getPipelineRunNodes";
+    static final String GETPIPELINERUNS_SERVICE_ID = "getPipelineRuns";
+    static final String GETPIPELINES_SERVICE_ID = "getPipelines";
+    static final String GETSCM_SERVICE_ID = "getSCM";
+    static final String GETSCMORGANISATIONREPOSITORIES_SERVICE_ID = "getSCMOrganisationRepositories";
+    static final String GETSCMORGANISATIONREPOSITORY_SERVICE_ID = "getSCMOrganisationRepository";
+    static final String GETSCMORGANISATIONS_SERVICE_ID = "getSCMOrganisations";
+    static final String GETUSER_SERVICE_ID = "getUser";
+    static final String GETUSERFAVORITES_SERVICE_ID = "getUserFavorites";
+    static final String GETUSERS_SERVICE_ID = "getUsers";
+    static final String POSTPIPELINERUN_SERVICE_ID = "postPipelineRun";
+    static final String POSTPIPELINERUNS_SERVICE_ID = "postPipelineRuns";
+    static final String PUTPIPELINEFAVORITE_SERVICE_ID = "putPipelineFavorite";
+    static final String PUTPIPELINERUN_SERVICE_ID = "putPipelineRun";
+    static final String SEARCH_SERVICE_ID = "search";
+    static final String SEARCHCLASSES_SERVICE_ID = "searchClasses";
     
     final BlueOceanApi service;
 
@@ -259,7 +252,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String serviceId = "getOrganisations";
                 service.getOrganisations(result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getOrganisations");
@@ -321,7 +314,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String pipeline = pipelineParam;
                 service.getPipelineActivities(organization, pipeline, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getPipelineActivities");
@@ -531,7 +524,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String pipeline = pipelineParam;
                 service.getPipelineQueue(organization, pipeline, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getPipelineQueue");
@@ -793,7 +786,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String node = nodeParam;
                 service.getPipelineRunNodeSteps(organization, pipeline, run, node, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getPipelineRunNodeSteps");
@@ -830,7 +823,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String run = runParam;
                 service.getPipelineRunNodes(organization, pipeline, run, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getPipelineRunNodes");
@@ -861,7 +854,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String pipeline = pipelineParam;
                 service.getPipelineRuns(organization, pipeline, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getPipelineRuns");
@@ -886,7 +879,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String organization = organizationParam;
                 service.getPipelines(organization, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getPipelines");
@@ -960,7 +953,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 Integer pageNumber = (pageNumberParam == null) ? null : Json.mapper.readValue(pageNumberParam, Integer.class);
                 service.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getSCMOrganisationRepositories");
@@ -1005,7 +998,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String credentialId = (credentialIdParam == null) ? null : credentialIdParam;
                 service.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getSCMOrganisationRepository");
@@ -1038,7 +1031,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String credentialId = (credentialIdParam == null) ? null : credentialIdParam;
                 service.getSCMOrganisations(organization, scm, credentialId, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getSCMOrganisations");
@@ -1094,7 +1087,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                 String user = userParam;
                 service.getUserFavorites(user, result -> {
                     if (result.succeeded())
-                        message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
+                        message.reply(new JsonArray(Json.encode(result.result())).encodePrettily());
                     else {
                         Throwable cause = result.cause();
                         manageError(message, cause, "getUserFavorites");
@@ -1216,13 +1209,13 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                     return;
                 }
                 String pipeline = pipelineParam;
-                JsonObject bodyParam = message.body().getJsonObject("Body");
-                if (bodyParam == null) {
-                    manageError(message, new MainApiException(400, "Body is required"), serviceId);
+                JsonObject UNKNOWN_BASE_TYPEParam = message.body().getJsonObject("UNKNOWN_BASE_TYPE");
+                if (UNKNOWN_BASE_TYPEParam == null) {
+                    manageError(message, new MainApiException(400, "UNKNOWN_BASE_TYPE is required"), serviceId);
                     return;
                 }
-                Body body = Json.mapper.readValue(bodyParam.encode(), Body.class);
-                service.putPipelineFavorite(organization, pipeline, body, result -> {
+                UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = Json.mapper.readValue(UNKNOWN_BASE_TYPEParam.encode(), UNKNOWN_BASE_TYPE.class);
+                service.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, result -> {
                     if (result.succeeded())
                         message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
                     else {
@@ -1328,7 +1321,7 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
         });
         
     }
-    
+
     private void manageError(Message<JsonObject> message, Throwable cause, String serviceName) {
         int code = MainApiException.INTERNAL_SERVER_ERROR.getStatusCode();
         String statusMessage = MainApiException.INTERNAL_SERVER_ERROR.getStatusMessage();
@@ -1336,12 +1329,12 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
             code = ((MainApiException)cause).getStatusCode();
             statusMessage = ((MainApiException)cause).getStatusMessage();
         } else {
-            logUnexpectedError(serviceName, cause); 
+            logUnexpectedError(serviceName, cause);
         }
-            
+
         message.fail(code, statusMessage);
     }
-    
+
     private void logUnexpectedError(String serviceName, Throwable cause) {
         LOGGER.error("Unexpected error in "+ serviceName, cause);
     }

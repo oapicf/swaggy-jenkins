@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **kotlin.String** |  |  [optional]
-**size** | **kotlin.Int** |  |  [optional]
+**propertySize** | **kotlin.Int** |  |  [optional]
 **url** | **kotlin.String** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

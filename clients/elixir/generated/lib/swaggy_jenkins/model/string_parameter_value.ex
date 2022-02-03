@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.StringParameterValue do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"name" => String.t,
-    :"value" => String.t
+    :"_class" => String.t | nil,
+    :"name" => String.t | nil,
+    :"value" => String.t | nil
   }
 end
 

@@ -16,14 +16,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.*;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 @Path("/createItem")
 
 
 @io.swagger.annotations.Api(description = "the createItem API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public interface CreateItemApi  {
-   
+
     @POST
     
     @Consumes({ "application/json" })
@@ -39,5 +40,5 @@ public interface CreateItemApi  {
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response postCreateItem( @NotNull @QueryParam("name") String name, @QueryParam("from") String from, @QueryParam("mode") String mode,@ApiParam(value = "CSRF protection token" )@HeaderParam("Jenkins-Crumb") String jenkinsCrumb,@ApiParam(value = "Content type header application/xml" )@HeaderParam("Content-Type") String contentType,@ApiParam(value = "Job configuration in config.xml format" ) String body,@Context SecurityContext securityContext);
+    public Response postCreateItem( @NotNull @QueryParam("name") String name, @QueryParam("from") String from, @QueryParam("mode") String mode, @ApiParam(value = "CSRF protection token" ) @HeaderParam("Jenkins-Crumb") String jenkinsCrumb, @ApiParam(value = "Content type header application/xml" ) @HeaderParam("Content-Type") String contentType,@ApiParam(value = "Job configuration in config.xml format" ) @Valid String body,@Context SecurityContext securityContext);
 }

@@ -21,18 +21,19 @@ import javax.ws.rs.*;
 import javax.inject.Inject;
 
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
-@Path("/api")
+@Path("/api/json")
 
 
 @io.swagger.annotations.Api(description = "the api API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class ApiApi  {
 
     @Inject ApiApiService service;
 
     @GET
-    @Path("/json")
+    
     
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve Jenkins details", response = Hudson.class, authorizations = {
@@ -49,7 +50,7 @@ public class ApiApi  {
         return service.getJenkins(securityContext);
     }
     @HEAD
-    @Path("/json")
+    
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve Jenkins headers", response = Void.class, authorizations = {

@@ -21,7 +21,7 @@
          post_job_last_build_stop/2, post_job_last_build_stop/3,
          post_view_config/3, post_view_config/4]).
 
--define(BASE_URL, "/").
+-define(BASE_URL, <<"">>).
 
 %% @doc 
 %% Retrieve computer details
@@ -35,7 +35,7 @@ get_computer(Ctx, Depth, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/computer/api/json"],
+    Path = [<<"/computer/api/json">>],
     QS = lists:flatten([{<<"depth">>, Depth}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -56,7 +56,7 @@ get_jenkins(Ctx, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/api/json"],
+    Path = [<<"/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -77,7 +77,7 @@ get_job(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/job/", Name, "/api/json"],
+    Path = [<<"/job/", Name, "/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -98,7 +98,7 @@ get_job_config(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/job/", Name, "/config.xml"],
+    Path = [<<"/job/", Name, "/config.xml">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -119,7 +119,7 @@ get_job_last_build(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/job/", Name, "/lastBuild/api/json"],
+    Path = [<<"/job/", Name, "/lastBuild/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -140,7 +140,7 @@ get_job_progressive_text(Ctx, Name, Number, Start, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/job/", Name, "/", Number, "/logText/progressiveText"],
+    Path = [<<"/job/", Name, "/", Number, "/logText/progressiveText">>],
     QS = lists:flatten([{<<"start">>, Start}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -161,7 +161,7 @@ get_queue(Ctx, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/queue/api/json"],
+    Path = [<<"/queue/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -182,7 +182,7 @@ get_queue_item(Ctx, Number, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/queue/item/", Number, "/api/json"],
+    Path = [<<"/queue/item/", Number, "/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -203,7 +203,7 @@ get_view(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/view/", Name, "/api/json"],
+    Path = [<<"/view/", Name, "/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -224,7 +224,7 @@ get_view_config(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/view/", Name, "/config.xml"],
+    Path = [<<"/view/", Name, "/config.xml">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -245,7 +245,7 @@ head_jenkins(Ctx, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = head,
-    Path = ["/api/json"],
+    Path = [<<"/api/json">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -266,8 +266,8 @@ post_create_item(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/createItem"],
-    QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params([, 'from', 'mode'], _OptionalParams),
+    Path = [<<"/createItem">>],
+    QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params(['from', 'mode'], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb', 'Content-Type'], _OptionalParams),
     Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
@@ -287,7 +287,7 @@ post_create_view(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/createView"],
+    Path = [<<"/createView">>],
     QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb', 'Content-Type'], _OptionalParams),
     Body1 = Body,
@@ -308,8 +308,8 @@ post_job_build(Ctx, Name, Json, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/job/", Name, "/build"],
-    QS = lists:flatten([{<<"json">>, Json}])++openapi_utils:optional_params([, 'token'], _OptionalParams),
+    Path = [<<"/job/", Name, "/build">>],
+    QS = lists:flatten([{<<"json">>, Json}])++openapi_utils:optional_params(['token'], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
@@ -329,7 +329,7 @@ post_job_config(Ctx, Name, Body, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/job/", Name, "/config.xml"],
+    Path = [<<"/job/", Name, "/config.xml">>],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = Body,
@@ -350,7 +350,7 @@ post_job_delete(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/job/", Name, "/doDelete"],
+    Path = [<<"/job/", Name, "/doDelete">>],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
@@ -371,7 +371,7 @@ post_job_disable(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/job/", Name, "/disable"],
+    Path = [<<"/job/", Name, "/disable">>],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
@@ -392,7 +392,7 @@ post_job_enable(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/job/", Name, "/enable"],
+    Path = [<<"/job/", Name, "/enable">>],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
@@ -413,7 +413,7 @@ post_job_last_build_stop(Ctx, Name, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/job/", Name, "/lastBuild/stop"],
+    Path = [<<"/job/", Name, "/lastBuild/stop">>],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
@@ -434,7 +434,7 @@ post_view_config(Ctx, Name, Body, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/view/", Name, "/config.xml"],
+    Path = [<<"/view/", Name, "/config.xml">>],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = Body,

@@ -10,19 +10,19 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:31:12.702Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-02T10:44:21.668219Z[Etc/UTC]")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("timestamp")
-  private Integer timestamp = null;
+  private Integer timestamp;
 
   @JsonProperty("path")
-  private String path = null;
+  private String path;
 
   @JsonProperty("size")
-  private Integer size = null;
+  private Integer size;
 
   /**
    **/
@@ -94,7 +94,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -130,7 +130,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

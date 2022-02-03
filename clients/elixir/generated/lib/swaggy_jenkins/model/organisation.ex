@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.Organisation do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"name" => String.t
+    :"_class" => String.t | nil,
+    :"name" => String.t | nil
   }
 end
 

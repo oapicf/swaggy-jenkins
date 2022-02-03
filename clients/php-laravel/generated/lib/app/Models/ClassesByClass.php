@@ -12,7 +12,7 @@ class ClassesByClass {
     /** @var string[] $classes */
     private $classes;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

@@ -16,32 +16,31 @@ import io.swagger.annotations.ApiModelProperty;
  * GithubRepository
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class GithubRepository   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubRepositorylinks links = null;
+  private GithubRepositorylinks links;
 
   @JsonProperty("defaultBranch")
-  private String defaultBranch = null;
+  private String defaultBranch;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("permissions")
-  private GithubRepositorypermissions permissions = null;
+  private GithubRepositorypermissions permissions;
 
   @JsonProperty("private")
-  private Boolean _private = null;
+  private Boolean _private;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   public GithubRepository propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -189,7 +188,7 @@ public class GithubRepository   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -233,7 +232,7 @@ public class GithubRepository   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

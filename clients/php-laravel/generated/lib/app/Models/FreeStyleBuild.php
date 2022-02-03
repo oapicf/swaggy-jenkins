@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class FreeStyleBuild {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var int $number */
     private $number;
@@ -27,29 +27,29 @@ class FreeStyleBuild {
     /** @var string $description */
     private $description;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
     /** @var int $duration */
     private $duration;
 
-    /** @var int $estimated_duration */
-    private $estimated_duration;
+    /** @var int $estimatedDuration */
+    private $estimatedDuration;
 
     /** @var string $executor */
     private $executor;
 
-    /** @var string $full_display_name */
-    private $full_display_name;
+    /** @var string $fullDisplayName */
+    private $fullDisplayName;
 
     /** @var string $id */
     private $id;
 
-    /** @var bool $keep_log */
-    private $keep_log;
+    /** @var bool $keepLog */
+    private $keepLog;
 
-    /** @var int $queue_id */
-    private $queue_id;
+    /** @var int $queueId */
+    private $queueId;
 
     /** @var string $result */
     private $result;
@@ -57,10 +57,10 @@ class FreeStyleBuild {
     /** @var int $timestamp */
     private $timestamp;
 
-    /** @var string $built_on */
-    private $built_on;
+    /** @var string $builtOn */
+    private $builtOn;
 
-    /** @var \app\Models\EmptyChangeLogSet $change_set */
-    private $change_set;
+    /** @var \app\Models\EmptyChangeLogSet $changeSet */
+    private $changeSet;
 
 }

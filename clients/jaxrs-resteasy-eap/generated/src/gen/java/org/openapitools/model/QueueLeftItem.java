@@ -14,36 +14,35 @@ import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class QueueLeftItem   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
   private List<CauseAction> actions = new ArrayList<CauseAction>();
 
-  private Boolean blocked = null;
+  private Boolean blocked;
 
-  private Boolean buildable = null;
+  private Boolean buildable;
 
-  private Integer id = null;
+  private Integer id;
 
-  private Integer inQueueSince = null;
+  private Integer inQueueSince;
 
-  private String params = null;
+  private String params;
 
-  private Boolean stuck = null;
+  private Boolean stuck;
 
-  private FreeStyleProject task = null;
+  private FreeStyleProject task;
 
-  private String url = null;
+  private String url;
 
-  private String why = null;
+  private String why;
 
-  private Boolean cancelled = null;
+  private Boolean cancelled;
 
-  private FreeStyleBuild executable = null;
+  private FreeStyleBuild executable;
 
   /**
    **/

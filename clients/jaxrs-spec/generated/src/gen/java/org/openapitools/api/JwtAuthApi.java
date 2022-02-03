@@ -6,6 +6,7 @@ import javax.ws.rs.core.Response;
 
 import io.swagger.annotations.*;
 
+import java.io.InputStream;
 import java.util.Map;
 import java.util.List;
 import javax.validation.constraints.*;
@@ -13,13 +14,12 @@ import javax.validation.Valid;
 
 @Path("/jwt-auth")
 @Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-10T13:32:03.603Z[GMT]")
-public class JwtAuthApi {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class JwtAuthApi {
 
     @GET
     @Path("/jwks/{key}")
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve JSON Web Key", response = String.class, tags={ "blueOcean",  })
+    @ApiOperation(value = "", notes = "Retrieve JSON Web Key", response = String.class, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved JWT token", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -38,7 +38,7 @@ public class JwtAuthApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getJsonWebToken(@QueryParam("expiryTimeInMins")   @ApiParam("Token expiry time in minutes, default: 30 minutes")  Integer expiryTimeInMins,@QueryParam("maxExpiryTimeInMins")   @ApiParam("Maximum token expiry time in minutes, default: 480 minutes")  Integer maxExpiryTimeInMins) {
+    public Response getJsonWebToken(@QueryParam("expiryTimeInMins")  @ApiParam("Token expiry time in minutes, default: 30 minutes")  Integer expiryTimeInMins,@QueryParam("maxExpiryTimeInMins")  @ApiParam("Maximum token expiry time in minutes, default: 480 minutes")  Integer maxExpiryTimeInMins) {
         return Response.ok().entity("magic!").build();
     }
 }

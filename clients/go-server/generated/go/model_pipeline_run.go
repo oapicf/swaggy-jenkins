@@ -42,3 +42,25 @@ type PipelineRun struct {
 
 	CommitId string `json:"commitId,omitempty"`
 }
+
+// AssertPipelineRunRequired checks if the required fields are not zero-ed
+func AssertPipelineRunRequired(obj PipelineRun) error {
+	for _, el := range obj.Artifacts {
+		if err := AssertPipelineRunartifactsRequired(el); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AssertRecursePipelineRunRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineRun (e.g. [][]PipelineRun), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineRunRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineRun, ok := obj.(PipelineRun)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineRunRequired(aPipelineRun)
+	})
+}

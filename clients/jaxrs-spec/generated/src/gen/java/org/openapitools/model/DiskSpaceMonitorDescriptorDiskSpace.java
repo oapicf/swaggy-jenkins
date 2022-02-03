@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class DiskSpaceMonitorDescriptorDiskSpace   {
+
+@JsonTypeName("DiskSpaceMonitorDescriptorDiskSpace")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class DiskSpaceMonitorDescriptorDiskSpace   {
   
-  private @Valid String propertyClass = null;
-  private @Valid Integer timestamp = null;
-  private @Valid String path = null;
-  private @Valid Integer size = null;
+  private @Valid String propertyClass;
+  private @Valid Integer timestamp;
+  private @Valid String path;
+  private @Valid Integer size;
 
   /**
    **/
@@ -24,16 +30,20 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public DiskSpaceMonitorDescriptorDiskSpace timestamp(Integer timestamp) {
     this.timestamp = timestamp;
@@ -41,16 +51,20 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("timestamp")
   public Integer getTimestamp() {
     return timestamp;
   }
+
+  @JsonProperty("timestamp")
   public void setTimestamp(Integer timestamp) {
     this.timestamp = timestamp;
   }
 
-  /**
+/**
    **/
   public DiskSpaceMonitorDescriptorDiskSpace path(String path) {
     this.path = path;
@@ -58,16 +72,20 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("path")
   public String getPath() {
     return path;
   }
+
+  @JsonProperty("path")
   public void setPath(String path) {
     this.path = path;
   }
 
-  /**
+/**
    **/
   public DiskSpaceMonitorDescriptorDiskSpace size(Integer size) {
     this.size = size;
@@ -75,18 +93,22 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("size")
   public Integer getSize() {
     return size;
   }
+
+  @JsonProperty("size")
   public void setSize(Integer size) {
     this.size = size;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -94,10 +116,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
       return false;
     }
     DiskSpaceMonitorDescriptorDiskSpace diskSpaceMonitorDescriptorDiskSpace = (DiskSpaceMonitorDescriptorDiskSpace) o;
-    return Objects.equals(propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
-        Objects.equals(timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
-        Objects.equals(path, diskSpaceMonitorDescriptorDiskSpace.path) &&
-        Objects.equals(size, diskSpaceMonitorDescriptorDiskSpace.size);
+    return Objects.equals(this.propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
+        Objects.equals(this.timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
+        Objects.equals(this.path, diskSpaceMonitorDescriptorDiskSpace.path) &&
+        Objects.equals(this.size, diskSpaceMonitorDescriptorDiskSpace.size);
   }
 
   @Override
@@ -122,11 +144,13 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

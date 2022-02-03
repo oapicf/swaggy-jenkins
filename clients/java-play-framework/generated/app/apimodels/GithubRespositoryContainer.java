@@ -10,18 +10,22 @@ import javax.validation.constraints.*;
 /**
  * GithubRespositoryContainer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubRespositoryContainer   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubRespositoryContainerlinks links = null;
+  @Valid
+
+  private GithubRespositoryContainerlinks links;
 
   @JsonProperty("repositories")
-  private GithubRepositories repositories = null;
+  @Valid
+
+  private GithubRepositories repositories;
 
   public GithubRespositoryContainer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -32,7 +36,7 @@ public class GithubRespositoryContainer   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -49,7 +53,6 @@ public class GithubRespositoryContainer   {
    * Get links
    * @return links
   **/
-  @Valid
   public GithubRespositoryContainerlinks getLinks() {
     return links;
   }
@@ -67,7 +70,6 @@ public class GithubRespositoryContainer   {
    * Get repositories
    * @return repositories
   **/
-  @Valid
   public GithubRepositories getRepositories() {
     return repositories;
   }
@@ -78,7 +80,7 @@ public class GithubRespositoryContainer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -113,7 +115,7 @@ public class GithubRespositoryContainer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

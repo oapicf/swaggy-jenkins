@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.ExtensionClassImpl
+
 ## Properties
 
 Name | Type | Description | Notes

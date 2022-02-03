@@ -14,3 +14,20 @@ type NullScm struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertNullScmRequired checks if the required fields are not zero-ed
+func AssertNullScmRequired(obj NullScm) error {
+	return nil
+}
+
+// AssertRecurseNullScmRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of NullScm (e.g. [][]NullScm), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseNullScmRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aNullScm, ok := obj.(NullScm)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertNullScmRequired(aNullScm)
+	})
+}

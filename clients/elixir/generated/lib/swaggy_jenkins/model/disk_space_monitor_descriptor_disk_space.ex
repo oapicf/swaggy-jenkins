@@ -16,10 +16,10 @@ defmodule SwaggyJenkins.Model.DiskSpaceMonitorDescriptorDiskSpace do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"timestamp" => integer(),
-    :"path" => String.t,
-    :"size" => integer()
+    :"_class" => String.t | nil,
+    :"timestamp" => integer() | nil,
+    :"path" => String.t | nil,
+    :"size" => integer() | nil
   }
 end
 

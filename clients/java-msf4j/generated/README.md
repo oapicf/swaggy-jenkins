@@ -11,19 +11,19 @@ Before you build/run service replace .deploy(new PetApi()) with your actual serv
                 .start();
 ```
 
-To Use-it : in the generated folder try 
+To Use-it : in the generated folder try
 ```
-mvn package 
-```
-
-for build jar, then start your server: 
-```
-java -jar target/micro-service-server-1.0.0.jar 
+mvn package
 ```
 
-Java Microservice listening on default port 8080.
-Run the following command or simply go to http://127.0.0.1:8080/pet/12 from your browser:
+for build jar, then start your server:
+```
+java -jar target/openapi-jaxrs-server-1.1.1.jar
+```
+
+Java Microservice listening on default port 9090.
+Run the following command or simply go to http://127.0.0.1:9090/pet/12 from your browser:
 
 ```
-    curl http://127.0.0.1:8080/pet/12
+    curl http://127.0.0.1:9090/pet/12
 ```

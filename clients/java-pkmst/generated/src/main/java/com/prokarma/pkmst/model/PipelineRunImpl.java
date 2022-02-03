@@ -15,53 +15,52 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineRunImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class PipelineRunImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private PipelineRunImpllinks links = null;
+  private PipelineRunImpllinks links;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   @JsonProperty("enQueueTime")
-  private String enQueueTime = null;
+  private String enQueueTime;
 
   @JsonProperty("endTime")
-  private String endTime = null;
+  private String endTime;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("pipeline")
-  private String pipeline = null;
+  private String pipeline;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("runSummary")
-  private String runSummary = null;
+  private String runSummary;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  private String state;
 
   @JsonProperty("type")
-  private String type = null;
+  private String type;
 
   @JsonProperty("commitId")
-  private String commitId = null;
+  private String commitId;
 
   public PipelineRunImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -335,7 +334,7 @@ public class PipelineRunImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -393,7 +392,7 @@ public class PipelineRunImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

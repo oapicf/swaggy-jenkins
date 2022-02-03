@@ -3,29 +3,22 @@ package org.openapitools.api.impl;
 import org.openapitools.api.*;
 import org.openapitools.model.*;
 
-import org.openapitools.model.Body;
 import org.openapitools.model.BranchImpl;
 import org.openapitools.model.FavoriteImpl;
+import org.openapitools.model.GithubOrganization;
 import org.openapitools.model.GithubScm;
 import org.openapitools.model.MultibranchPipeline;
 import org.openapitools.model.Organisation;
-import org.openapitools.model.Organisations;
 import org.openapitools.model.Pipeline;
-import org.openapitools.model.PipelineActivities;
+import org.openapitools.model.PipelineActivity;
 import org.openapitools.model.PipelineFolderImpl;
 import org.openapitools.model.PipelineImpl;
-import org.openapitools.model.PipelineQueue;
 import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
-import org.openapitools.model.PipelineRunNodeSteps;
-import org.openapitools.model.PipelineRunNodes;
-import org.openapitools.model.PipelineRuns;
 import org.openapitools.model.PipelineStepImpl;
-import org.openapitools.model.Pipelines;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.ScmOrganisations;
+import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
-import org.openapitools.model.UserFavorites;
 
 import java.util.List;
 import org.openapitools.api.NotFoundException;
@@ -38,7 +31,7 @@ import org.wso2.msf4j.formparam.FileInfo;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class BlueApiServiceImpl extends BlueApiService {
     @Override
     public Response deletePipelineQueueItem(String organization
@@ -281,7 +274,7 @@ public class BlueApiServiceImpl extends BlueApiService {
     @Override
     public Response putPipelineFavorite(String organization
 , String pipeline
-, Body body
+, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE
  ) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

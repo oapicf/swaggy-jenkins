@@ -1,21 +1,27 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FavoriteImpllinks;
 import org.openapitools.model.PipelineImpl;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class FavoriteImpl   {
+
+@JsonTypeName("FavoriteImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class FavoriteImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid FavoriteImpllinks links = null;
-  private @Valid PipelineImpl item = null;
+  private @Valid String propertyClass;
+  private @Valid FavoriteImpllinks links;
+  private @Valid PipelineImpl item;
 
   /**
    **/
@@ -25,16 +31,20 @@ public class FavoriteImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public FavoriteImpl links(FavoriteImpllinks links) {
     this.links = links;
@@ -42,16 +52,20 @@ public class FavoriteImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public FavoriteImpllinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(FavoriteImpllinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public FavoriteImpl item(PipelineImpl item) {
     this.item = item;
@@ -59,18 +73,22 @@ public class FavoriteImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("item")
   public PipelineImpl getItem() {
     return item;
   }
+
+  @JsonProperty("item")
   public void setItem(PipelineImpl item) {
     this.item = item;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -78,9 +96,9 @@ public class FavoriteImpl   {
       return false;
     }
     FavoriteImpl favoriteImpl = (FavoriteImpl) o;
-    return Objects.equals(propertyClass, favoriteImpl.propertyClass) &&
-        Objects.equals(links, favoriteImpl.links) &&
-        Objects.equals(item, favoriteImpl.item);
+    return Objects.equals(this.propertyClass, favoriteImpl.propertyClass) &&
+        Objects.equals(this.links, favoriteImpl.links) &&
+        Objects.equals(this.item, favoriteImpl.item);
   }
 
   @Override
@@ -104,11 +122,13 @@ public class FavoriteImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

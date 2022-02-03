@@ -4,44 +4,46 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_computer**](RemoteAccessApi.md#get_computer) | **Get** /computer/api/json | 
-[**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **Get** /api/json | 
-[**get_job**](RemoteAccessApi.md#get_job) | **Get** /job/{name}/api/json | 
-[**get_job_config**](RemoteAccessApi.md#get_job_config) | **Get** /job/{name}/config.xml | 
-[**get_job_last_build**](RemoteAccessApi.md#get_job_last_build) | **Get** /job/{name}/lastBuild/api/json | 
-[**get_job_progressive_text**](RemoteAccessApi.md#get_job_progressive_text) | **Get** /job/{name}/{number}/logText/progressiveText | 
-[**get_queue**](RemoteAccessApi.md#get_queue) | **Get** /queue/api/json | 
-[**get_queue_item**](RemoteAccessApi.md#get_queue_item) | **Get** /queue/item/{number}/api/json | 
-[**get_view**](RemoteAccessApi.md#get_view) | **Get** /view/{name}/api/json | 
-[**get_view_config**](RemoteAccessApi.md#get_view_config) | **Get** /view/{name}/config.xml | 
-[**head_jenkins**](RemoteAccessApi.md#head_jenkins) | **Head** /api/json | 
-[**post_create_item**](RemoteAccessApi.md#post_create_item) | **Post** /createItem | 
-[**post_create_view**](RemoteAccessApi.md#post_create_view) | **Post** /createView | 
-[**post_job_build**](RemoteAccessApi.md#post_job_build) | **Post** /job/{name}/build | 
-[**post_job_config**](RemoteAccessApi.md#post_job_config) | **Post** /job/{name}/config.xml | 
-[**post_job_delete**](RemoteAccessApi.md#post_job_delete) | **Post** /job/{name}/doDelete | 
-[**post_job_disable**](RemoteAccessApi.md#post_job_disable) | **Post** /job/{name}/disable | 
-[**post_job_enable**](RemoteAccessApi.md#post_job_enable) | **Post** /job/{name}/enable | 
-[**post_job_last_build_stop**](RemoteAccessApi.md#post_job_last_build_stop) | **Post** /job/{name}/lastBuild/stop | 
-[**post_view_config**](RemoteAccessApi.md#post_view_config) | **Post** /view/{name}/config.xml | 
+[**get_computer**](RemoteAccessApi.md#get_computer) | **GET** /computer/api/json | 
+[**get_jenkins**](RemoteAccessApi.md#get_jenkins) | **GET** /api/json | 
+[**get_job**](RemoteAccessApi.md#get_job) | **GET** /job/{name}/api/json | 
+[**get_job_config**](RemoteAccessApi.md#get_job_config) | **GET** /job/{name}/config.xml | 
+[**get_job_last_build**](RemoteAccessApi.md#get_job_last_build) | **GET** /job/{name}/lastBuild/api/json | 
+[**get_job_progressive_text**](RemoteAccessApi.md#get_job_progressive_text) | **GET** /job/{name}/{number}/logText/progressiveText | 
+[**get_queue**](RemoteAccessApi.md#get_queue) | **GET** /queue/api/json | 
+[**get_queue_item**](RemoteAccessApi.md#get_queue_item) | **GET** /queue/item/{number}/api/json | 
+[**get_view**](RemoteAccessApi.md#get_view) | **GET** /view/{name}/api/json | 
+[**get_view_config**](RemoteAccessApi.md#get_view_config) | **GET** /view/{name}/config.xml | 
+[**head_jenkins**](RemoteAccessApi.md#head_jenkins) | **HEAD** /api/json | 
+[**post_create_item**](RemoteAccessApi.md#post_create_item) | **POST** /createItem | 
+[**post_create_view**](RemoteAccessApi.md#post_create_view) | **POST** /createView | 
+[**post_job_build**](RemoteAccessApi.md#post_job_build) | **POST** /job/{name}/build | 
+[**post_job_config**](RemoteAccessApi.md#post_job_config) | **POST** /job/{name}/config.xml | 
+[**post_job_delete**](RemoteAccessApi.md#post_job_delete) | **POST** /job/{name}/doDelete | 
+[**post_job_disable**](RemoteAccessApi.md#post_job_disable) | **POST** /job/{name}/disable | 
+[**post_job_enable**](RemoteAccessApi.md#post_job_enable) | **POST** /job/{name}/enable | 
+[**post_job_last_build_stop**](RemoteAccessApi.md#post_job_last_build_stop) | **POST** /job/{name}/lastBuild/stop | 
+[**post_view_config**](RemoteAccessApi.md#post_view_config) | **POST** /view/{name}/config.xml | 
 
 
-# **get_computer**
-> ::models::ComputerSet get_computer(ctx, depth)
+
+## get_computer
+
+> crate::models::ComputerSet get_computer(depth)
 
 
 Retrieve computer details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **depth** | **i32**| Recursion depth in response model | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**depth** | **i32** | Recursion depth in response model | [required] |
 
 ### Return type
 
-[**::models::ComputerSet**](ComputerSet.md)
+[**crate::models::ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
@@ -49,23 +51,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_jenkins**
-> ::models::Hudson get_jenkins(ctx, )
+
+## get_jenkins
+
+> crate::models::Hudson get_jenkins()
 
 
 Retrieve Jenkins details
 
-### Required Parameters
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**::models::Hudson**](Hudson.md)
+[**crate::models::Hudson**](Hudson.md)
 
 ### Authorization
 
@@ -73,27 +78,29 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_job**
-> ::models::FreeStyleProject get_job(ctx, name)
+
+## get_job
+
+> crate::models::FreeStyleProject get_job(name)
 
 
 Retrieve job details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
 
 ### Return type
 
-[**::models::FreeStyleProject**](FreeStyleProject.md)
+[**crate::models::FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
@@ -101,23 +108,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_job_config**
-> String get_job_config(ctx, name)
+
+## get_job_config
+
+> String get_job_config(name)
 
 
 Retrieve job configuration
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
 
 ### Return type
 
@@ -129,27 +138,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+- **Content-Type**: Not defined
+- **Accept**: text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_job_last_build**
-> ::models::FreeStyleBuild get_job_last_build(ctx, name)
+
+## get_job_last_build
+
+> crate::models::FreeStyleBuild get_job_last_build(name)
 
 
 Retrieve job's last build details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
 
 ### Return type
 
-[**::models::FreeStyleBuild**](FreeStyleBuild.md)
+[**crate::models::FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
@@ -157,25 +168,27 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_job_progressive_text**
-> get_job_progressive_text(ctx, name, number, start)
+
+## get_job_progressive_text
+
+> get_job_progressive_text(name, number, start)
 
 
 Retrieve job's build progressive text output
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-  **number** | **String**| Build number | 
-  **start** | **String**| Starting point of progressive text output | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**number** | **String** | Build number | [required] |
+**start** | **String** | Starting point of progressive text output | [required] |
 
 ### Return type
 
@@ -187,23 +200,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_queue**
-> ::models::Queue get_queue(ctx, )
+
+## get_queue
+
+> crate::models::Queue get_queue()
 
 
 Retrieve queue details
 
-### Required Parameters
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**::models::Queue**](Queue.md)
+[**crate::models::Queue**](Queue.md)
 
 ### Authorization
 
@@ -211,27 +227,29 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_queue_item**
-> ::models::Queue get_queue_item(ctx, number)
+
+## get_queue_item
+
+> crate::models::Queue get_queue_item(number)
 
 
 Retrieve queued item details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **number** | **String**| Queue number | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**number** | **String** | Queue number | [required] |
 
 ### Return type
 
-[**::models::Queue**](Queue.md)
+[**crate::models::Queue**](Queue.md)
 
 ### Authorization
 
@@ -239,27 +257,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_view**
-> ::models::ListView get_view(ctx, name)
+
+## get_view
+
+> crate::models::ListView get_view(name)
 
 
 Retrieve view details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the view | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the view | [required] |
 
 ### Return type
 
-[**::models::ListView**](ListView.md)
+[**crate::models::ListView**](ListView.md)
 
 ### Authorization
 
@@ -267,23 +287,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_view_config**
-> String get_view_config(ctx, name)
+
+## get_view_config
+
+> String get_view_config(name)
 
 
 Retrieve view configuration
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the view | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the view | [required] |
 
 ### Return type
 
@@ -295,18 +317,21 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: text/xml
+- **Content-Type**: Not defined
+- **Accept**: text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **head_jenkins**
-> head_jenkins(ctx, )
+
+## head_jenkins
+
+> head_jenkins()
 
 
 Retrieve Jenkins headers
 
-### Required Parameters
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -319,36 +344,30 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_create_item**
-> post_create_item(ctx, name, optional)
+
+## post_create_item
+
+> post_create_item(name, from, mode, jenkins_crumb, content_type, body)
 
 
 Create a new job using job configuration, or copied from an existing job
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the new job | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the new job | 
- **from** | **String**| Existing job to copy from | 
- **mode** | **String**| Set to &#39;copy&#39; for copying an existing job | 
- **jenkins_crumb** | **String**| CSRF protection token | 
- **content_type** | **String**| Content type header application/xml | 
- **body** | **String**| Job configuration in config.xml format | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the new job | [required] |
+**from** | Option<**String**> | Existing job to copy from |  |
+**mode** | Option<**String**> | Set to 'copy' for copying an existing job |  |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
+**content_type** | Option<**String**> | Content type header application/xml |  |
+**body** | Option<**String**> | Job configuration in config.xml format |  |
 
 ### Return type
 
@@ -360,34 +379,28 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_create_view**
-> post_create_view(ctx, name, optional)
+
+## post_create_view
+
+> post_create_view(name, jenkins_crumb, content_type, body)
 
 
 Create a new view using view configuration
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the new view | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the new view | 
- **jenkins_crumb** | **String**| CSRF protection token | 
- **content_type** | **String**| Content type header application/xml | 
- **body** | **String**| View configuration in config.xml format | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the new view | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
+**content_type** | Option<**String**> | Content type header application/xml |  |
+**body** | Option<**String**> | View configuration in config.xml format |  |
 
 ### Return type
 
@@ -399,35 +412,28 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_job_build**
-> post_job_build(ctx, name, json, optional)
+
+## post_job_build
+
+> post_job_build(name, json, token, jenkins_crumb)
 
 
 Build a job
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-  **json** | **String**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job | 
- **json** | **String**|  | 
- **token** | **String**|  | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**json** | **String** |  | [required] |
+**token** | Option<**String**> |  |  |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -439,34 +445,27 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_job_config**
-> post_job_config(ctx, name, body, optional)
+
+## post_job_config
+
+> post_job_config(name, body, jenkins_crumb)
 
 
 Update job configuration
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-  **body** | **String**| Job configuration in config.xml format | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job | 
- **body** | **String**| Job configuration in config.xml format | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**body** | **String** | Job configuration in config.xml format | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -478,32 +477,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_job_delete**
-> post_job_delete(ctx, name, optional)
+
+## post_job_delete
+
+> post_job_delete(name, jenkins_crumb)
 
 
 Delete a job
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -515,32 +508,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_job_disable**
-> post_job_disable(ctx, name, optional)
+
+## post_job_disable
+
+> post_job_disable(name, jenkins_crumb)
 
 
 Disable a job
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -552,32 +539,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_job_enable**
-> post_job_enable(ctx, name, optional)
+
+## post_job_enable
+
+> post_job_enable(name, jenkins_crumb)
 
 
 Enable a job
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -589,32 +570,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_job_last_build_stop**
-> post_job_last_build_stop(ctx, name, optional)
+
+## post_job_last_build_stop
+
+> post_job_last_build_stop(name, jenkins_crumb)
 
 
 Stop a job
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the job | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the job | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -626,34 +601,27 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_view_config**
-> post_view_config(ctx, name, body, optional)
+
+## post_view_config
+
+> post_view_config(name, body, jenkins_crumb)
 
 
 Update view configuration
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the view | 
-  **body** | **String**| View configuration in config.xml format | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **String**| Name of the view | 
- **body** | **String**| View configuration in config.xml format | 
- **jenkins_crumb** | **String**| CSRF protection token | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**name** | **String** | Name of the view | [required] |
+**body** | **String** | View configuration in config.xml format | [required] |
+**jenkins_crumb** | Option<**String**> | CSRF protection token |  |
 
 ### Return type
 
@@ -665,8 +633,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

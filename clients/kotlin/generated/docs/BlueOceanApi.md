@@ -86,7 +86,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -133,7 +136,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -142,7 +148,7 @@ Name | Type | Description  | Notes
 
 <a name="getClasses"></a>
 # **getClasses**
-> kotlin.String getClasses(`class`)
+> kotlin.String getClasses(propertyClass)
 
 
 
@@ -155,9 +161,9 @@ Get a list of class names supported by a given class
 //import org.openapitools.client.models.*
 
 val apiInstance = BlueOceanApi()
-val `class` : kotlin.String = `class`_example // kotlin.String | Name of the class
+val propertyClass : kotlin.String = propertyClass_example // kotlin.String | Name of the class
 try {
-    val result : kotlin.String = apiInstance.getClasses(`class`)
+    val result : kotlin.String = apiInstance.getClasses(propertyClass)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getClasses")
@@ -172,7 +178,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **&#x60;class&#x60;** | **kotlin.String**| Name of the class |
+ **propertyClass** | **kotlin.String**| Name of the class |
 
 ### Return type
 
@@ -180,7 +186,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -323,7 +332,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -332,7 +344,7 @@ Name | Type | Description  | Notes
 
 <a name="getOrganisations"></a>
 # **getOrganisations**
-> Organisations getOrganisations()
+> kotlin.collections.List&lt;Organisation&gt; getOrganisations()
 
 
 
@@ -346,7 +358,7 @@ Retrieve all organizations details
 
 val apiInstance = BlueOceanApi()
 try {
-    val result : Organisations = apiInstance.getOrganisations()
+    val result : kotlin.collections.List<Organisation> = apiInstance.getOrganisations()
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getOrganisations")
@@ -362,11 +374,14 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**kotlin.collections.List&lt;Organisation&gt;**](Organisation.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -415,7 +430,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -424,7 +442,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineActivities"></a>
 # **getPipelineActivities**
-> PipelineActivities getPipelineActivities(organization, pipeline)
+> kotlin.collections.List&lt;PipelineActivity&gt; getPipelineActivities(organization, pipeline)
 
 
 
@@ -440,7 +458,7 @@ val apiInstance = BlueOceanApi()
 val organization : kotlin.String = organization_example // kotlin.String | Name of the organization
 val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the pipeline
 try {
-    val result : PipelineActivities = apiInstance.getPipelineActivities(organization, pipeline)
+    val result : kotlin.collections.List<PipelineActivity> = apiInstance.getPipelineActivities(organization, pipeline)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getPipelineActivities")
@@ -460,11 +478,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**kotlin.collections.List&lt;PipelineActivity&gt;**](PipelineActivity.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -515,7 +536,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -568,7 +592,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -617,7 +644,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -666,7 +696,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -717,7 +750,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -726,7 +762,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineQueue"></a>
 # **getPipelineQueue**
-> PipelineQueue getPipelineQueue(organization, pipeline)
+> kotlin.collections.List&lt;QueueItemImpl&gt; getPipelineQueue(organization, pipeline)
 
 
 
@@ -742,7 +778,7 @@ val apiInstance = BlueOceanApi()
 val organization : kotlin.String = organization_example // kotlin.String | Name of the organization
 val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the pipeline
 try {
-    val result : PipelineQueue = apiInstance.getPipelineQueue(organization, pipeline)
+    val result : kotlin.collections.List<QueueItemImpl> = apiInstance.getPipelineQueue(organization, pipeline)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getPipelineQueue")
@@ -762,11 +798,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**kotlin.collections.List&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -817,7 +856,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -872,7 +914,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -925,7 +970,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -980,7 +1028,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1035,7 +1086,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1044,7 +1098,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunNodeSteps"></a>
 # **getPipelineRunNodeSteps**
-> PipelineRunNodeSteps getPipelineRunNodeSteps(organization, pipeline, run, node)
+> kotlin.collections.List&lt;PipelineStepImpl&gt; getPipelineRunNodeSteps(organization, pipeline, run, node)
 
 
 
@@ -1062,7 +1116,7 @@ val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the p
 val run : kotlin.String = run_example // kotlin.String | Name of the run
 val node : kotlin.String = node_example // kotlin.String | Name of the node
 try {
-    val result : PipelineRunNodeSteps = apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node)
+    val result : kotlin.collections.List<PipelineStepImpl> = apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getPipelineRunNodeSteps")
@@ -1084,11 +1138,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**kotlin.collections.List&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1097,7 +1154,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRunNodes"></a>
 # **getPipelineRunNodes**
-> PipelineRunNodes getPipelineRunNodes(organization, pipeline, run)
+> kotlin.collections.List&lt;PipelineRunNode&gt; getPipelineRunNodes(organization, pipeline, run)
 
 
 
@@ -1114,7 +1171,7 @@ val organization : kotlin.String = organization_example // kotlin.String | Name 
 val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the pipeline
 val run : kotlin.String = run_example // kotlin.String | Name of the run
 try {
-    val result : PipelineRunNodes = apiInstance.getPipelineRunNodes(organization, pipeline, run)
+    val result : kotlin.collections.List<PipelineRunNode> = apiInstance.getPipelineRunNodes(organization, pipeline, run)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getPipelineRunNodes")
@@ -1135,11 +1192,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**kotlin.collections.List&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1148,7 +1208,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelineRuns"></a>
 # **getPipelineRuns**
-> PipelineRuns getPipelineRuns(organization, pipeline)
+> kotlin.collections.List&lt;PipelineRun&gt; getPipelineRuns(organization, pipeline)
 
 
 
@@ -1164,7 +1224,7 @@ val apiInstance = BlueOceanApi()
 val organization : kotlin.String = organization_example // kotlin.String | Name of the organization
 val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the pipeline
 try {
-    val result : PipelineRuns = apiInstance.getPipelineRuns(organization, pipeline)
+    val result : kotlin.collections.List<PipelineRun> = apiInstance.getPipelineRuns(organization, pipeline)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getPipelineRuns")
@@ -1184,11 +1244,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**kotlin.collections.List&lt;PipelineRun&gt;**](PipelineRun.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1197,7 +1260,7 @@ Name | Type | Description  | Notes
 
 <a name="getPipelines"></a>
 # **getPipelines**
-> Pipelines getPipelines(organization)
+> kotlin.collections.List&lt;Pipeline&gt; getPipelines(organization)
 
 
 
@@ -1212,7 +1275,7 @@ Retrieve all pipelines details for an organization
 val apiInstance = BlueOceanApi()
 val organization : kotlin.String = organization_example // kotlin.String | Name of the organization
 try {
-    val result : Pipelines = apiInstance.getPipelines(organization)
+    val result : kotlin.collections.List<Pipeline> = apiInstance.getPipelines(organization)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getPipelines")
@@ -1231,11 +1294,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**kotlin.collections.List&lt;Pipeline&gt;**](Pipeline.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1284,7 +1350,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1293,7 +1362,7 @@ Name | Type | Description  | Notes
 
 <a name="getSCMOrganisationRepositories"></a>
 # **getSCMOrganisationRepositories**
-> ScmOrganisations getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
+> kotlin.collections.List&lt;GithubOrganization&gt; getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
 
 
 
@@ -1313,7 +1382,7 @@ val credentialId : kotlin.String = credentialId_example // kotlin.String | Crede
 val pageSize : kotlin.Int = 56 // kotlin.Int | Number of items in a page
 val pageNumber : kotlin.Int = 56 // kotlin.Int | Page number
 try {
-    val result : ScmOrganisations = apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
+    val result : kotlin.collections.List<GithubOrganization> = apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getSCMOrganisationRepositories")
@@ -1337,11 +1406,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**kotlin.collections.List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1350,7 +1422,7 @@ Name | Type | Description  | Notes
 
 <a name="getSCMOrganisationRepository"></a>
 # **getSCMOrganisationRepository**
-> ScmOrganisations getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
+> kotlin.collections.List&lt;GithubOrganization&gt; getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
 
 
 
@@ -1369,7 +1441,7 @@ val scmOrganisation : kotlin.String = scmOrganisation_example // kotlin.String |
 val repository : kotlin.String = repository_example // kotlin.String | Name of the SCM repository
 val credentialId : kotlin.String = credentialId_example // kotlin.String | Credential ID
 try {
-    val result : ScmOrganisations = apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
+    val result : kotlin.collections.List<GithubOrganization> = apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getSCMOrganisationRepository")
@@ -1392,11 +1464,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**kotlin.collections.List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1405,7 +1480,7 @@ Name | Type | Description  | Notes
 
 <a name="getSCMOrganisations"></a>
 # **getSCMOrganisations**
-> ScmOrganisations getSCMOrganisations(organization, scm, credentialId)
+> kotlin.collections.List&lt;GithubOrganization&gt; getSCMOrganisations(organization, scm, credentialId)
 
 
 
@@ -1422,7 +1497,7 @@ val organization : kotlin.String = organization_example // kotlin.String | Name 
 val scm : kotlin.String = scm_example // kotlin.String | Name of SCM
 val credentialId : kotlin.String = credentialId_example // kotlin.String | Credential ID
 try {
-    val result : ScmOrganisations = apiInstance.getSCMOrganisations(organization, scm, credentialId)
+    val result : kotlin.collections.List<GithubOrganization> = apiInstance.getSCMOrganisations(organization, scm, credentialId)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getSCMOrganisations")
@@ -1443,11 +1518,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**kotlin.collections.List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1496,7 +1574,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1505,7 +1586,7 @@ Name | Type | Description  | Notes
 
 <a name="getUserFavorites"></a>
 # **getUserFavorites**
-> UserFavorites getUserFavorites(user)
+> kotlin.collections.List&lt;FavoriteImpl&gt; getUserFavorites(user)
 
 
 
@@ -1520,7 +1601,7 @@ Retrieve user favorites details for an organization
 val apiInstance = BlueOceanApi()
 val user : kotlin.String = user_example // kotlin.String | Name of the user
 try {
-    val result : UserFavorites = apiInstance.getUserFavorites(user)
+    val result : kotlin.collections.List<FavoriteImpl> = apiInstance.getUserFavorites(user)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#getUserFavorites")
@@ -1539,11 +1620,14 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**kotlin.collections.List&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1590,7 +1674,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1641,7 +1728,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1690,7 +1780,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1699,7 +1792,7 @@ Name | Type | Description  | Notes
 
 <a name="putPipelineFavorite"></a>
 # **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
+> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
 
 
 
@@ -1714,9 +1807,9 @@ Favorite/unfavorite a pipeline
 val apiInstance = BlueOceanApi()
 val organization : kotlin.String = organization_example // kotlin.String | Name of the organization
 val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the pipeline
-val body : Body =  // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+val UNKNOWN_BASE_TYPE : UNKNOWN_BASE_TYPE =  // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 try {
-    val result : FavoriteImpl = apiInstance.putPipelineFavorite(organization, pipeline, body)
+    val result : FavoriteImpl = apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#putPipelineFavorite")
@@ -1733,7 +1826,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **kotlin.String**| Name of the organization |
  **pipeline** | **kotlin.String**| Name of the pipeline |
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite |
+ **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 
@@ -1741,7 +1834,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1796,7 +1892,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1843,7 +1942,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -1890,7 +1992,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 

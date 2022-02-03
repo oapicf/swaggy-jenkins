@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.ExtensionClassContainerImpl1 do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => ExtensionClassContainerImpl1links,
-    :"map" => ExtensionClassContainerImpl1map
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.ExtensionClassContainerImpl1links.t | nil,
+    :"map" => SwaggyJenkins.Model.ExtensionClassContainerImpl1map.t | nil
   }
 end
 

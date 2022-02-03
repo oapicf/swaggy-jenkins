@@ -11,14 +11,16 @@ import javax.validation.constraints.*;
 /**
  * CauseAction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CauseAction   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("causes")
+  @Valid
+
   private List<CauseUserIdCause> causes = null;
 
   public CauseAction propertyClass(String propertyClass) {
@@ -30,7 +32,7 @@ public class CauseAction   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -55,7 +57,6 @@ public class CauseAction   {
    * Get causes
    * @return causes
   **/
-  @Valid
   public List<CauseUserIdCause> getCauses() {
     return causes;
   }
@@ -66,7 +67,7 @@ public class CauseAction   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -99,7 +100,7 @@ public class CauseAction   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

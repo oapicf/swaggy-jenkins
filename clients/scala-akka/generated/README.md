@@ -129,7 +129,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AllView](AllView.md)
- - [Body](Body.md)
  - [BranchImpl](BranchImpl.md)
  - [BranchImpllinks](BranchImpllinks.md)
  - [BranchImplpermissions](BranchImplpermissions.md)
@@ -179,12 +178,9 @@ Class | Method | HTTP request | Description
  - [MultibranchPipeline](MultibranchPipeline.md)
  - [NullSCM](NullSCM.md)
  - [Organisation](Organisation.md)
- - [Organisations](Organisations.md)
  - [Pipeline](Pipeline.md)
- - [PipelineActivities](PipelineActivities.md)
  - [PipelineActivity](PipelineActivity.md)
  - [PipelineActivityartifacts](PipelineActivityartifacts.md)
- - [PipelineBranches](PipelineBranches.md)
  - [PipelineBranchesitem](PipelineBranchesitem.md)
  - [PipelineBranchesitemlatestRun](PipelineBranchesitemlatestRun.md)
  - [PipelineBranchesitempullRequest](PipelineBranchesitempullRequest.md)
@@ -192,35 +188,26 @@ Class | Method | HTTP request | Description
  - [PipelineFolderImpl](PipelineFolderImpl.md)
  - [PipelineImpl](PipelineImpl.md)
  - [PipelineImpllinks](PipelineImpllinks.md)
- - [PipelineQueue](PipelineQueue.md)
  - [PipelineRun](PipelineRun.md)
  - [PipelineRunImpl](PipelineRunImpl.md)
  - [PipelineRunImpllinks](PipelineRunImpllinks.md)
  - [PipelineRunNode](PipelineRunNode.md)
- - [PipelineRunNodeSteps](PipelineRunNodeSteps.md)
  - [PipelineRunNodeedges](PipelineRunNodeedges.md)
- - [PipelineRunNodes](PipelineRunNodes.md)
- - [PipelineRunSteps](PipelineRunSteps.md)
  - [PipelineRunartifacts](PipelineRunartifacts.md)
- - [PipelineRuns](PipelineRuns.md)
  - [PipelineStepImpl](PipelineStepImpl.md)
  - [PipelineStepImpllinks](PipelineStepImpllinks.md)
  - [PipelinelatestRun](PipelinelatestRun.md)
  - [PipelinelatestRunartifacts](PipelinelatestRunartifacts.md)
- - [Pipelines](Pipelines.md)
  - [Queue](Queue.md)
  - [QueueBlockedItem](QueueBlockedItem.md)
  - [QueueItemImpl](QueueItemImpl.md)
  - [QueueLeftItem](QueueLeftItem.md)
  - [ResponseTimeMonitorData](ResponseTimeMonitorData.md)
- - [ScmOrganisations](ScmOrganisations.md)
  - [StringParameterDefinition](StringParameterDefinition.md)
  - [StringParameterValue](StringParameterValue.md)
  - [SwapSpaceMonitorMemoryUsage2](SwapSpaceMonitorMemoryUsage2.md)
  - [UnlabeledLoadStatistics](UnlabeledLoadStatistics.md)
  - [User](User.md)
- - [UserFavorites](UserFavorites.md)
- - [Users](Users.md)
 
 
 ## Documentation for Authorization
@@ -240,3 +227,4 @@ Authentication schemes defined for the API:
 ## Author
 
 blah@cliffano.com
+

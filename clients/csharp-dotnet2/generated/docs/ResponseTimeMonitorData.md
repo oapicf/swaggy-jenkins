@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.ResponseTimeMonitorData
+
 ## Properties
 
 Name | Type | Description | Notes

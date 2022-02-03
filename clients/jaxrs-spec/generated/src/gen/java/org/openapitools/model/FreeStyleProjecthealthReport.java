@@ -1,21 +1,27 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class FreeStyleProjecthealthReport   {
+
+@JsonTypeName("FreeStyleProjecthealthReport")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class FreeStyleProjecthealthReport   {
   
-  private @Valid String description = null;
-  private @Valid String iconClassName = null;
-  private @Valid String iconUrl = null;
-  private @Valid Integer score = null;
-  private @Valid String propertyClass = null;
+  private @Valid String description;
+  private @Valid String iconClassName;
+  private @Valid String iconUrl;
+  private @Valid Integer score;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -25,16 +31,20 @@ public class FreeStyleProjecthealthReport   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
     return description;
   }
+
+  @JsonProperty("description")
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /**
+/**
    **/
   public FreeStyleProjecthealthReport iconClassName(String iconClassName) {
     this.iconClassName = iconClassName;
@@ -42,16 +52,20 @@ public class FreeStyleProjecthealthReport   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("iconClassName")
   public String getIconClassName() {
     return iconClassName;
   }
+
+  @JsonProperty("iconClassName")
   public void setIconClassName(String iconClassName) {
     this.iconClassName = iconClassName;
   }
 
-  /**
+/**
    **/
   public FreeStyleProjecthealthReport iconUrl(String iconUrl) {
     this.iconUrl = iconUrl;
@@ -59,16 +73,20 @@ public class FreeStyleProjecthealthReport   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("iconUrl")
   public String getIconUrl() {
     return iconUrl;
   }
+
+  @JsonProperty("iconUrl")
   public void setIconUrl(String iconUrl) {
     this.iconUrl = iconUrl;
   }
 
-  /**
+/**
    **/
   public FreeStyleProjecthealthReport score(Integer score) {
     this.score = score;
@@ -76,16 +94,20 @@ public class FreeStyleProjecthealthReport   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("score")
   public Integer getScore() {
     return score;
   }
+
+  @JsonProperty("score")
   public void setScore(Integer score) {
     this.score = score;
   }
 
-  /**
+/**
    **/
   public FreeStyleProjecthealthReport propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -93,18 +115,22 @@ public class FreeStyleProjecthealthReport   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -112,11 +138,11 @@ public class FreeStyleProjecthealthReport   {
       return false;
     }
     FreeStyleProjecthealthReport freeStyleProjecthealthReport = (FreeStyleProjecthealthReport) o;
-    return Objects.equals(description, freeStyleProjecthealthReport.description) &&
-        Objects.equals(iconClassName, freeStyleProjecthealthReport.iconClassName) &&
-        Objects.equals(iconUrl, freeStyleProjecthealthReport.iconUrl) &&
-        Objects.equals(score, freeStyleProjecthealthReport.score) &&
-        Objects.equals(propertyClass, freeStyleProjecthealthReport.propertyClass);
+    return Objects.equals(this.description, freeStyleProjecthealthReport.description) &&
+        Objects.equals(this.iconClassName, freeStyleProjecthealthReport.iconClassName) &&
+        Objects.equals(this.iconUrl, freeStyleProjecthealthReport.iconUrl) &&
+        Objects.equals(this.score, freeStyleProjecthealthReport.score) &&
+        Objects.equals(this.propertyClass, freeStyleProjecthealthReport.propertyClass);
   }
 
   @Override
@@ -142,11 +168,13 @@ public class FreeStyleProjecthealthReport   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

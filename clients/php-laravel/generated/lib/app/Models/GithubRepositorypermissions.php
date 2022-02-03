@@ -18,7 +18,7 @@ class GithubRepositorypermissions {
     /** @var bool $pull */
     private $pull;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

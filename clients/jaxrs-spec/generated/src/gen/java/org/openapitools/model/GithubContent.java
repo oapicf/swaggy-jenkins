@@ -1,24 +1,30 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class GithubContent   {
+
+@JsonTypeName("GithubContent")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class GithubContent   {
   
-  private @Valid String name = null;
-  private @Valid String sha = null;
-  private @Valid String propertyClass = null;
-  private @Valid String repo = null;
-  private @Valid Integer size = null;
-  private @Valid String owner = null;
-  private @Valid String path = null;
-  private @Valid String base64Data = null;
+  private @Valid String name;
+  private @Valid String sha;
+  private @Valid String propertyClass;
+  private @Valid String repo;
+  private @Valid Integer size;
+  private @Valid String owner;
+  private @Valid String path;
+  private @Valid String base64Data;
 
   /**
    **/
@@ -28,16 +34,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public GithubContent sha(String sha) {
     this.sha = sha;
@@ -45,16 +55,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("sha")
   public String getSha() {
     return sha;
   }
+
+  @JsonProperty("sha")
   public void setSha(String sha) {
     this.sha = sha;
   }
 
-  /**
+/**
    **/
   public GithubContent propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -62,16 +76,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public GithubContent repo(String repo) {
     this.repo = repo;
@@ -79,16 +97,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("repo")
   public String getRepo() {
     return repo;
   }
+
+  @JsonProperty("repo")
   public void setRepo(String repo) {
     this.repo = repo;
   }
 
-  /**
+/**
    **/
   public GithubContent size(Integer size) {
     this.size = size;
@@ -96,16 +118,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("size")
   public Integer getSize() {
     return size;
   }
+
+  @JsonProperty("size")
   public void setSize(Integer size) {
     this.size = size;
   }
 
-  /**
+/**
    **/
   public GithubContent owner(String owner) {
     this.owner = owner;
@@ -113,16 +139,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("owner")
   public String getOwner() {
     return owner;
   }
+
+  @JsonProperty("owner")
   public void setOwner(String owner) {
     this.owner = owner;
   }
 
-  /**
+/**
    **/
   public GithubContent path(String path) {
     this.path = path;
@@ -130,16 +160,20 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("path")
   public String getPath() {
     return path;
   }
+
+  @JsonProperty("path")
   public void setPath(String path) {
     this.path = path;
   }
 
-  /**
+/**
    **/
   public GithubContent base64Data(String base64Data) {
     this.base64Data = base64Data;
@@ -147,18 +181,22 @@ public class GithubContent   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("base64Data")
   public String getBase64Data() {
     return base64Data;
   }
+
+  @JsonProperty("base64Data")
   public void setBase64Data(String base64Data) {
     this.base64Data = base64Data;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -166,14 +204,14 @@ public class GithubContent   {
       return false;
     }
     GithubContent githubContent = (GithubContent) o;
-    return Objects.equals(name, githubContent.name) &&
-        Objects.equals(sha, githubContent.sha) &&
-        Objects.equals(propertyClass, githubContent.propertyClass) &&
-        Objects.equals(repo, githubContent.repo) &&
-        Objects.equals(size, githubContent.size) &&
-        Objects.equals(owner, githubContent.owner) &&
-        Objects.equals(path, githubContent.path) &&
-        Objects.equals(base64Data, githubContent.base64Data);
+    return Objects.equals(this.name, githubContent.name) &&
+        Objects.equals(this.sha, githubContent.sha) &&
+        Objects.equals(this.propertyClass, githubContent.propertyClass) &&
+        Objects.equals(this.repo, githubContent.repo) &&
+        Objects.equals(this.size, githubContent.size) &&
+        Objects.equals(this.owner, githubContent.owner) &&
+        Objects.equals(this.path, githubContent.path) &&
+        Objects.equals(this.base64Data, githubContent.base64Data);
   }
 
   @Override
@@ -202,11 +240,13 @@ public class GithubContent   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

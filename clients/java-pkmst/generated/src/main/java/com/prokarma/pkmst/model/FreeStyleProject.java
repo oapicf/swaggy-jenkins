@@ -20,92 +20,91 @@ import java.util.List;
  * FreeStyleProject
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class FreeStyleProject   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("url")
-  private String url = null;
+  private String url;
 
   @JsonProperty("color")
-  private String color = null;
+  private String color;
 
   @JsonProperty("actions")
   
   private List<FreeStyleProjectactions> actions = null;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("displayNameOrNull")
-  private String displayNameOrNull = null;
+  private String displayNameOrNull;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("buildable")
-  private Boolean buildable = null;
+  private Boolean buildable;
 
   @JsonProperty("builds")
   
   private List<FreeStyleBuild> builds = null;
 
   @JsonProperty("firstBuild")
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
 
   @JsonProperty("healthReport")
   
   private List<FreeStyleProjecthealthReport> healthReport = null;
 
   @JsonProperty("inQueue")
-  private Boolean inQueue = null;
+  private Boolean inQueue;
 
   @JsonProperty("keepDependencies")
-  private Boolean keepDependencies = null;
+  private Boolean keepDependencies;
 
   @JsonProperty("lastBuild")
-  private FreeStyleBuild lastBuild = null;
+  private FreeStyleBuild lastBuild;
 
   @JsonProperty("lastCompletedBuild")
-  private FreeStyleBuild lastCompletedBuild = null;
+  private FreeStyleBuild lastCompletedBuild;
 
   @JsonProperty("lastFailedBuild")
-  private String lastFailedBuild = null;
+  private String lastFailedBuild;
 
   @JsonProperty("lastStableBuild")
-  private FreeStyleBuild lastStableBuild = null;
+  private FreeStyleBuild lastStableBuild;
 
   @JsonProperty("lastSuccessfulBuild")
-  private FreeStyleBuild lastSuccessfulBuild = null;
+  private FreeStyleBuild lastSuccessfulBuild;
 
   @JsonProperty("lastUnstableBuild")
-  private String lastUnstableBuild = null;
+  private String lastUnstableBuild;
 
   @JsonProperty("lastUnsuccessfulBuild")
-  private String lastUnsuccessfulBuild = null;
+  private String lastUnsuccessfulBuild;
 
   @JsonProperty("nextBuildNumber")
-  private Integer nextBuildNumber = null;
+  private Integer nextBuildNumber;
 
   @JsonProperty("queueItem")
-  private String queueItem = null;
+  private String queueItem;
 
   @JsonProperty("concurrentBuild")
-  private Boolean concurrentBuild = null;
+  private Boolean concurrentBuild;
 
   @JsonProperty("scm")
-  private NullSCM scm = null;
+  private NullSCM scm;
 
   public FreeStyleProject propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -619,7 +618,7 @@ public class FreeStyleProject   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -701,7 +700,7 @@ public class FreeStyleProject   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

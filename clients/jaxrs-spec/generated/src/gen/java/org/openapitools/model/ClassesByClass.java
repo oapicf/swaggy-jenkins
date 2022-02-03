@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class ClassesByClass   {
+
+@JsonTypeName("ClassesByClass")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class ClassesByClass   {
   
   private @Valid List<String> classes = new ArrayList<String>();
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -24,16 +30,36 @@ public class ClassesByClass   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("classes")
   public List<String> getClasses() {
     return classes;
   }
+
+  @JsonProperty("classes")
   public void setClasses(List<String> classes) {
     this.classes = classes;
   }
 
-  /**
+  public ClassesByClass addClassesItem(String classesItem) {
+    if (this.classes == null) {
+      this.classes = new ArrayList<String>();
+    }
+
+    this.classes.add(classesItem);
+    return this;
+  }
+
+  public ClassesByClass removeClassesItem(String classesItem) {
+    if (classesItem != null && this.classes != null) {
+      this.classes.remove(classesItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public ClassesByClass propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -41,18 +67,22 @@ public class ClassesByClass   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -60,8 +90,8 @@ public class ClassesByClass   {
       return false;
     }
     ClassesByClass classesByClass = (ClassesByClass) o;
-    return Objects.equals(classes, classesByClass.classes) &&
-        Objects.equals(propertyClass, classesByClass.propertyClass);
+    return Objects.equals(this.classes, classesByClass.classes) &&
+        Objects.equals(this.propertyClass, classesByClass.propertyClass);
   }
 
   @Override
@@ -84,11 +114,13 @@ public class ClassesByClass   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

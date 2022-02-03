@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.PipelineImpllinks do
   ]
 
   @type t :: %__MODULE__{
-    :"runs" => Link,
-    :"self" => Link,
-    :"queue" => Link,
-    :"actions" => Link,
-    :"_class" => String.t
+    :"runs" => SwaggyJenkins.Model.Link.t | nil,
+    :"self" => SwaggyJenkins.Model.Link.t | nil,
+    :"queue" => SwaggyJenkins.Model.Link.t | nil,
+    :"actions" => SwaggyJenkins.Model.Link.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

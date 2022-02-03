@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -15,28 +25,28 @@ import org.openapitools.model.Label1;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class HudsonMasterComputer   {
   
-  private String propertyClass = null;
-  private String displayName = null;
+  private String propertyClass;
+  private String displayName;
   private List<HudsonMasterComputerexecutors> executors = new ArrayList<HudsonMasterComputerexecutors>();
-  private String icon = null;
-  private String iconClassName = null;
-  private Boolean idle = null;
-  private Boolean jnlpAgent = null;
-  private Boolean launchSupported = null;
-  private Label1 loadStatistics = null;
-  private Boolean manualLaunchAllowed = null;
-  private HudsonMasterComputermonitorData monitorData = null;
-  private Integer numExecutors = null;
-  private Boolean offline = null;
-  private String offlineCause = null;
-  private String offlineCauseReason = null;
-  private Boolean temporarilyOffline = null;
+  private String icon;
+  private String iconClassName;
+  private Boolean idle;
+  private Boolean jnlpAgent;
+  private Boolean launchSupported;
+  private Label1 loadStatistics;
+  private Boolean manualLaunchAllowed;
+  private HudsonMasterComputermonitorData monitorData;
+  private Integer numExecutors;
+  private Boolean offline;
+  private String offlineCause;
+  private String offlineCauseReason;
+  private Boolean temporarilyOffline;
 
   /**
-   **/
+   */
   public HudsonMasterComputer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -53,7 +63,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -70,7 +80,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer executors(List<HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
     return this;
@@ -87,7 +97,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer icon(String icon) {
     this.icon = icon;
     return this;
@@ -104,7 +114,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer iconClassName(String iconClassName) {
     this.iconClassName = iconClassName;
     return this;
@@ -121,7 +131,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer idle(Boolean idle) {
     this.idle = idle;
     return this;
@@ -138,7 +148,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer jnlpAgent(Boolean jnlpAgent) {
     this.jnlpAgent = jnlpAgent;
     return this;
@@ -155,7 +165,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer launchSupported(Boolean launchSupported) {
     this.launchSupported = launchSupported;
     return this;
@@ -172,7 +182,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer loadStatistics(Label1 loadStatistics) {
     this.loadStatistics = loadStatistics;
     return this;
@@ -189,7 +199,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer manualLaunchAllowed(Boolean manualLaunchAllowed) {
     this.manualLaunchAllowed = manualLaunchAllowed;
     return this;
@@ -206,7 +216,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer monitorData(HudsonMasterComputermonitorData monitorData) {
     this.monitorData = monitorData;
     return this;
@@ -223,7 +233,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer numExecutors(Integer numExecutors) {
     this.numExecutors = numExecutors;
     return this;
@@ -240,7 +250,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer offline(Boolean offline) {
     this.offline = offline;
     return this;
@@ -257,7 +267,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer offlineCause(String offlineCause) {
     this.offlineCause = offlineCause;
     return this;
@@ -274,7 +284,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer offlineCauseReason(String offlineCauseReason) {
     this.offlineCauseReason = offlineCauseReason;
     return this;
@@ -291,7 +301,7 @@ public class HudsonMasterComputer   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputer temporarilyOffline(Boolean temporarilyOffline) {
     this.temporarilyOffline = temporarilyOffline;
     return this;
@@ -309,7 +319,7 @@ public class HudsonMasterComputer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -369,7 +379,7 @@ public class HudsonMasterComputer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

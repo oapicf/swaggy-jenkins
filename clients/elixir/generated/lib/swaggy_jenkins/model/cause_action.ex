@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.CauseAction do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"causes" => [CauseUserIdCause]
+    :"_class" => String.t | nil,
+    :"causes" => [SwaggyJenkins.Model.CauseUserIdCause.t] | nil
   }
 end
 

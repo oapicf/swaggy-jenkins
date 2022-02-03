@@ -12,7 +12,27 @@ package openapi
 
 type InputStepImpllinks struct {
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertInputStepImpllinksRequired checks if the required fields are not zero-ed
+func AssertInputStepImpllinksRequired(obj InputStepImpllinks) error {
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseInputStepImpllinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of InputStepImpllinks (e.g. [][]InputStepImpllinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseInputStepImpllinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aInputStepImpllinks, ok := obj.(InputStepImpllinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertInputStepImpllinksRequired(aInputStepImpllinks)
+	})
 }

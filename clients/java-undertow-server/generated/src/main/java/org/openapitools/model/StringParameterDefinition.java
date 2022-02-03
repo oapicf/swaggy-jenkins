@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -11,17 +21,17 @@ import org.openapitools.model.StringParameterValue;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class StringParameterDefinition   {
   
-  private String propertyClass = null;
-  private StringParameterValue defaultParameterValue = null;
-  private String description = null;
-  private String name = null;
-  private String type = null;
+  private String propertyClass;
+  private StringParameterValue defaultParameterValue;
+  private String description;
+  private String name;
+  private String type;
 
   /**
-   **/
+   */
   public StringParameterDefinition propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -38,7 +48,7 @@ public class StringParameterDefinition   {
   }
 
   /**
-   **/
+   */
   public StringParameterDefinition defaultParameterValue(StringParameterValue defaultParameterValue) {
     this.defaultParameterValue = defaultParameterValue;
     return this;
@@ -55,7 +65,7 @@ public class StringParameterDefinition   {
   }
 
   /**
-   **/
+   */
   public StringParameterDefinition description(String description) {
     this.description = description;
     return this;
@@ -72,7 +82,7 @@ public class StringParameterDefinition   {
   }
 
   /**
-   **/
+   */
   public StringParameterDefinition name(String name) {
     this.name = name;
     return this;
@@ -89,7 +99,7 @@ public class StringParameterDefinition   {
   }
 
   /**
-   **/
+   */
   public StringParameterDefinition type(String type) {
     this.type = type;
     return this;
@@ -107,7 +117,7 @@ public class StringParameterDefinition   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -145,7 +155,7 @@ public class StringParameterDefinition   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -11,227 +11,1005 @@
 package openapi
 
 import (
+	"encoding/json"
 	"net/http"
+	"strings"
+
+	"github.com/gorilla/mux"
 )
 
+// BlueOceanApiController binds http requests to an api service and writes the service results to the http response
+type BlueOceanApiController struct {
+	service BlueOceanApiServicer
+	errorHandler ErrorHandler
+}
+
+// BlueOceanApiOption for how the controller is set up.
+type BlueOceanApiOption func(*BlueOceanApiController)
+
+// WithBlueOceanApiErrorHandler inject ErrorHandler into controller
+func WithBlueOceanApiErrorHandler(h ErrorHandler) BlueOceanApiOption {
+	return func(c *BlueOceanApiController) {
+		c.errorHandler = h
+	}
+}
+
+// NewBlueOceanApiController creates a default api controller
+func NewBlueOceanApiController(s BlueOceanApiServicer, opts ...BlueOceanApiOption) Router {
+	controller := &BlueOceanApiController{
+		service:      s,
+		errorHandler: DefaultErrorHandler,
+	}
+
+	for _, opt := range opts {
+		opt(controller)
+	}
+
+	return controller
+}
+
+// Routes returns all of the api route for the BlueOceanApiController
+func (c *BlueOceanApiController) Routes() Routes {
+	return Routes{ 
+		{
+			"DeletePipelineQueueItem",
+			strings.ToUpper("Delete"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
+			c.DeletePipelineQueueItem,
+		},
+		{
+			"GetAuthenticatedUser",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/user/",
+			c.GetAuthenticatedUser,
+		},
+		{
+			"GetClasses",
+			strings.ToUpper("Get"),
+			"/blue/rest/classes/{class}",
+			c.GetClasses,
+		},
+		{
+			"GetJsonWebKey",
+			strings.ToUpper("Get"),
+			"/jwt-auth/jwks/{key}",
+			c.GetJsonWebKey,
+		},
+		{
+			"GetJsonWebToken",
+			strings.ToUpper("Get"),
+			"/jwt-auth/token",
+			c.GetJsonWebToken,
+		},
+		{
+			"GetOrganisation",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}",
+			c.GetOrganisation,
+		},
+		{
+			"GetOrganisations",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/",
+			c.GetOrganisations,
+		},
+		{
+			"GetPipeline",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}",
+			c.GetPipeline,
+		},
+		{
+			"GetPipelineActivities",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities",
+			c.GetPipelineActivities,
+		},
+		{
+			"GetPipelineBranch",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/",
+			c.GetPipelineBranch,
+		},
+		{
+			"GetPipelineBranchRun",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}",
+			c.GetPipelineBranchRun,
+		},
+		{
+			"GetPipelineBranches",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
+			c.GetPipelineBranches,
+		},
+		{
+			"GetPipelineFolder",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{folder}/",
+			c.GetPipelineFolder,
+		},
+		{
+			"GetPipelineFolderPipeline",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}",
+			c.GetPipelineFolderPipeline,
+		},
+		{
+			"GetPipelineQueue",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue",
+			c.GetPipelineQueue,
+		},
+		{
+			"GetPipelineRun",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}",
+			c.GetPipelineRun,
+		},
+		{
+			"GetPipelineRunLog",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
+			c.GetPipelineRunLog,
+		},
+		{
+			"GetPipelineRunNode",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}",
+			c.GetPipelineRunNode,
+		},
+		{
+			"GetPipelineRunNodeStep",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}",
+			c.GetPipelineRunNodeStep,
+		},
+		{
+			"GetPipelineRunNodeStepLog",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log",
+			c.GetPipelineRunNodeStepLog,
+		},
+		{
+			"GetPipelineRunNodeSteps",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
+			c.GetPipelineRunNodeSteps,
+		},
+		{
+			"GetPipelineRunNodes",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
+			c.GetPipelineRunNodes,
+		},
+		{
+			"GetPipelineRuns",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+			c.GetPipelineRuns,
+		},
+		{
+			"GetPipelines",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/",
+			c.GetPipelines,
+		},
+		{
+			"GetSCM",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}",
+			c.GetSCM,
+		},
+		{
+			"GetSCMOrganisationRepositories",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories",
+			c.GetSCMOrganisationRepositories,
+		},
+		{
+			"GetSCMOrganisationRepository",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}",
+			c.GetSCMOrganisationRepository,
+		},
+		{
+			"GetSCMOrganisations",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}/organizations",
+			c.GetSCMOrganisations,
+		},
+		{
+			"GetUser",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/users/{user}",
+			c.GetUser,
+		},
+		{
+			"GetUserFavorites",
+			strings.ToUpper("Get"),
+			"/blue/rest/users/{user}/favorites",
+			c.GetUserFavorites,
+		},
+		{
+			"GetUsers",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/users/",
+			c.GetUsers,
+		},
+		{
+			"PostPipelineRun",
+			strings.ToUpper("Post"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
+			c.PostPipelineRun,
+		},
+		{
+			"PostPipelineRuns",
+			strings.ToUpper("Post"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+			c.PostPipelineRuns,
+		},
+		{
+			"PutPipelineFavorite",
+			strings.ToUpper("Put"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
+			c.PutPipelineFavorite,
+		},
+		{
+			"PutPipelineRun",
+			strings.ToUpper("Put"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
+			c.PutPipelineRun,
+		},
+		{
+			"Search",
+			strings.ToUpper("Get"),
+			"/blue/rest/search/",
+			c.Search,
+		},
+		{
+			"SearchClasses",
+			strings.ToUpper("Get"),
+			"/blue/rest/classes/",
+			c.SearchClasses,
+		},
+	}
+}
+
 // DeletePipelineQueueItem - 
-func DeletePipelineQueueItem(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) DeletePipelineQueueItem(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	queueParam := params["queue"]
+	
+	result, err := c.service.DeletePipelineQueueItem(r.Context(), organizationParam, pipelineParam, queueParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetAuthenticatedUser - 
-func GetAuthenticatedUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetAuthenticatedUser(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	result, err := c.service.GetAuthenticatedUser(r.Context(), organizationParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetClasses - 
-func GetClasses(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetClasses(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	classParam := params["class"]
+	
+	result, err := c.service.GetClasses(r.Context(), classParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJsonWebKey - 
-func GetJsonWebKey(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetJsonWebKey(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	keyParam, err := parseInt32Parameter(params["key"], true)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+
+	result, err := c.service.GetJsonWebKey(r.Context(), keyParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJsonWebToken - 
-func GetJsonWebToken(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetJsonWebToken(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	expiryTimeInMinsParam, err := parseInt32Parameter(query.Get("expiryTimeInMins"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	maxExpiryTimeInMinsParam, err := parseInt32Parameter(query.Get("maxExpiryTimeInMins"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.GetJsonWebToken(r.Context(), expiryTimeInMinsParam, maxExpiryTimeInMinsParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetOrganisation - 
-func GetOrganisation(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetOrganisation(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	result, err := c.service.GetOrganisation(r.Context(), organizationParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetOrganisations - 
-func GetOrganisations(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetOrganisations(w http.ResponseWriter, r *http.Request) {
+	result, err := c.service.GetOrganisations(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipeline - 
-func GetPipeline(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipeline(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	result, err := c.service.GetPipeline(r.Context(), organizationParam, pipelineParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineActivities - 
-func GetPipelineActivities(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineActivities(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	result, err := c.service.GetPipelineActivities(r.Context(), organizationParam, pipelineParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineBranch - 
-func GetPipelineBranch(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineBranch(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	branchParam := params["branch"]
+	
+	result, err := c.service.GetPipelineBranch(r.Context(), organizationParam, pipelineParam, branchParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineBranchRun - 
-func GetPipelineBranchRun(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineBranchRun(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	branchParam := params["branch"]
+	
+	runParam := params["run"]
+	
+	result, err := c.service.GetPipelineBranchRun(r.Context(), organizationParam, pipelineParam, branchParam, runParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineBranches - 
-func GetPipelineBranches(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineBranches(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	result, err := c.service.GetPipelineBranches(r.Context(), organizationParam, pipelineParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineFolder - 
-func GetPipelineFolder(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineFolder(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	folderParam := params["folder"]
+	
+	result, err := c.service.GetPipelineFolder(r.Context(), organizationParam, folderParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineFolderPipeline - 
-func GetPipelineFolderPipeline(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineFolderPipeline(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	folderParam := params["folder"]
+	
+	result, err := c.service.GetPipelineFolderPipeline(r.Context(), organizationParam, pipelineParam, folderParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineQueue - 
-func GetPipelineQueue(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineQueue(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	result, err := c.service.GetPipelineQueue(r.Context(), organizationParam, pipelineParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRun - 
-func GetPipelineRun(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRun(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	result, err := c.service.GetPipelineRun(r.Context(), organizationParam, pipelineParam, runParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRunLog - 
-func GetPipelineRunLog(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRunLog(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	startParam, err := parseInt32Parameter(query.Get("start"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	downloadParam, err := parseBoolParameter(query.Get("download"))
+	if err != nil {
+		w.WriteHeader(500)
+		return
+	}
+	result, err := c.service.GetPipelineRunLog(r.Context(), organizationParam, pipelineParam, runParam, startParam, downloadParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRunNode - 
-func GetPipelineRunNode(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRunNode(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	nodeParam := params["node"]
+	
+	result, err := c.service.GetPipelineRunNode(r.Context(), organizationParam, pipelineParam, runParam, nodeParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRunNodeStep - 
-func GetPipelineRunNodeStep(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRunNodeStep(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	nodeParam := params["node"]
+	
+	stepParam := params["step"]
+	
+	result, err := c.service.GetPipelineRunNodeStep(r.Context(), organizationParam, pipelineParam, runParam, nodeParam, stepParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRunNodeStepLog - 
-func GetPipelineRunNodeStepLog(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRunNodeStepLog(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	nodeParam := params["node"]
+	
+	stepParam := params["step"]
+	
+	result, err := c.service.GetPipelineRunNodeStepLog(r.Context(), organizationParam, pipelineParam, runParam, nodeParam, stepParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRunNodeSteps - 
-func GetPipelineRunNodeSteps(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRunNodeSteps(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	nodeParam := params["node"]
+	
+	result, err := c.service.GetPipelineRunNodeSteps(r.Context(), organizationParam, pipelineParam, runParam, nodeParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRunNodes - 
-func GetPipelineRunNodes(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRunNodes(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	result, err := c.service.GetPipelineRunNodes(r.Context(), organizationParam, pipelineParam, runParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelineRuns - 
-func GetPipelineRuns(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelineRuns(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	result, err := c.service.GetPipelineRuns(r.Context(), organizationParam, pipelineParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetPipelines - 
-func GetPipelines(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetPipelines(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	result, err := c.service.GetPipelines(r.Context(), organizationParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetSCM - 
-func GetSCM(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetSCM(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	scmParam := params["scm"]
+	
+	result, err := c.service.GetSCM(r.Context(), organizationParam, scmParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetSCMOrganisationRepositories - 
-func GetSCMOrganisationRepositories(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetSCMOrganisationRepositories(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	organizationParam := params["organization"]
+	
+	scmParam := params["scm"]
+	
+	scmOrganisationParam := params["scmOrganisation"]
+	
+	credentialIdParam := query.Get("credentialId")
+	pageSizeParam, err := parseInt32Parameter(query.Get("pageSize"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	pageNumberParam, err := parseInt32Parameter(query.Get("pageNumber"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.GetSCMOrganisationRepositories(r.Context(), organizationParam, scmParam, scmOrganisationParam, credentialIdParam, pageSizeParam, pageNumberParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetSCMOrganisationRepository - 
-func GetSCMOrganisationRepository(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetSCMOrganisationRepository(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	organizationParam := params["organization"]
+	
+	scmParam := params["scm"]
+	
+	scmOrganisationParam := params["scmOrganisation"]
+	
+	repositoryParam := params["repository"]
+	
+	credentialIdParam := query.Get("credentialId")
+	result, err := c.service.GetSCMOrganisationRepository(r.Context(), organizationParam, scmParam, scmOrganisationParam, repositoryParam, credentialIdParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetSCMOrganisations - 
-func GetSCMOrganisations(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetSCMOrganisations(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	organizationParam := params["organization"]
+	
+	scmParam := params["scm"]
+	
+	credentialIdParam := query.Get("credentialId")
+	result, err := c.service.GetSCMOrganisations(r.Context(), organizationParam, scmParam, credentialIdParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetUser - 
-func GetUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetUser(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	userParam := params["user"]
+	
+	result, err := c.service.GetUser(r.Context(), organizationParam, userParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetUserFavorites - 
-func GetUserFavorites(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetUserFavorites(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	userParam := params["user"]
+	
+	result, err := c.service.GetUserFavorites(r.Context(), userParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetUsers - 
-func GetUsers(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) GetUsers(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	result, err := c.service.GetUsers(r.Context(), organizationParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostPipelineRun - 
-func PostPipelineRun(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) PostPipelineRun(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	result, err := c.service.PostPipelineRun(r.Context(), organizationParam, pipelineParam, runParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostPipelineRuns - 
-func PostPipelineRuns(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) PostPipelineRuns(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	result, err := c.service.PostPipelineRuns(r.Context(), organizationParam, pipelineParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PutPipelineFavorite - 
-func PutPipelineFavorite(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) PutPipelineFavorite(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	uNKNOWNBASETYPEParam := UNKNOWN_BASE_TYPE{}
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&uNKNOWNBASETYPEParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.PutPipelineFavorite(r.Context(), organizationParam, pipelineParam, uNKNOWNBASETYPEParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PutPipelineRun - 
-func PutPipelineRun(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) PutPipelineRun(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	organizationParam := params["organization"]
+	
+	pipelineParam := params["pipeline"]
+	
+	runParam := params["run"]
+	
+	blockingParam := query.Get("blocking")
+	timeOutInSecsParam, err := parseInt32Parameter(query.Get("timeOutInSecs"), false)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.PutPipelineRun(r.Context(), organizationParam, pipelineParam, runParam, blockingParam, timeOutInSecsParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // Search - 
-func Search(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) Search(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	qParam := query.Get("q")
+	result, err := c.service.Search(r.Context(), qParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // SearchClasses - 
-func SearchClasses(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *BlueOceanApiController) SearchClasses(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	qParam := query.Get("q")
+	result, err := c.service.SearchClasses(r.Context(), qParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }

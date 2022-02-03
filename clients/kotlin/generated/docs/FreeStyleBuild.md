@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 **number** | **kotlin.Int** |  |  [optional]
 **url** | **kotlin.String** |  |  [optional]
-**actions** | [**kotlin.Array&lt;CauseAction&gt;**](CauseAction.md) |  |  [optional]
+**actions** | [**kotlin.collections.List&lt;CauseAction&gt;**](CauseAction.md) |  |  [optional]
 **building** | **kotlin.Boolean** |  |  [optional]
 **description** | **kotlin.String** |  |  [optional]
 **displayName** | **kotlin.String** |  |  [optional]

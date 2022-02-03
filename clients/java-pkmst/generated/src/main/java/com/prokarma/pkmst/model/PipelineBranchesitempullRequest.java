@@ -15,26 +15,25 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineBranchesitempullRequest
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class PipelineBranchesitempullRequest   {
   @JsonProperty("_links")
-  private PipelineBranchesitempullRequestlinks links = null;
+  private PipelineBranchesitempullRequestlinks links;
 
   @JsonProperty("author")
-  private String author = null;
+  private String author;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("title")
-  private String title = null;
+  private String title;
 
   @JsonProperty("url")
-  private String url = null;
+  private String url;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public PipelineBranchesitempullRequest links(PipelineBranchesitempullRequestlinks links) {
     this.links = links;
@@ -146,7 +145,7 @@ public class PipelineBranchesitempullRequest   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -186,7 +185,7 @@ public class PipelineBranchesitempullRequest   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

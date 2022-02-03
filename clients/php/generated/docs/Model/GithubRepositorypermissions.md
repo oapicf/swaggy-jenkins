@@ -1,13 +1,12 @@
-# GithubRepositorypermissions
+# # GithubRepositorypermissions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**admin** | **bool** |  | [optional] 
-**push** | **bool** |  | [optional] 
-**pull** | **bool** |  | [optional] 
-**_class** | **string** |  | [optional] 
+**admin** | **bool** |  | [optional]
+**push** | **bool** |  | [optional]
+**pull** | **bool** |  | [optional]
+**_class** | **string** |  | [optional]
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

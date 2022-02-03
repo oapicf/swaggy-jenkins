@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.GithubScm
+
 ## Properties
 
 Name | Type | Description | Notes

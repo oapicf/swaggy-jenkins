@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.HudsonMasterComputer
+
 ## Properties
 
 Name | Type | Description | Notes

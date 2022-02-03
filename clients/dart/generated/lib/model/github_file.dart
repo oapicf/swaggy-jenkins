@@ -1,38 +1,93 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 class GithubFile {
-  
-  GithubContent content = null;
-  
-  String class_ = null;
-  GithubFile();
+  /// Returns a new [GithubFile] instance.
+  GithubFile({
+    this.content,
+    this.class_,
+  });
+
+  GithubContent content;
+
+  String class_;
 
   @override
-  String toString() {
-    return 'GithubFile[content=$content, class_=$class_, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is GithubFile &&
+     other.content == content &&
+     other.class_ == class_;
 
-  GithubFile.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    content = new GithubContent.fromJson(json['content']);
-    class_ = json['_class'];
-  }
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (content == null ? 0 : content.hashCode) +
+    (class_ == null ? 0 : class_.hashCode);
+
+  @override
+  String toString() => 'GithubFile[content=$content, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'content': content,
-      '_class': class_
-    };
+    final json = <String, dynamic>{};
+    if (content != null) {
+      json[r'content'] = content;
+    }
+    if (class_ != null) {
+      json[r'_class'] = class_;
+    }
+    return json;
   }
 
-  static List<GithubFile> listFromJson(List<dynamic> json) {
-    return json == null ? new List<GithubFile>() : json.map((value) => new GithubFile.fromJson(value)).toList();
+  /// Returns a new [GithubFile] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static GithubFile fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return GithubFile(
+        content: GithubContent.fromJson(json[r'content']),
+        class_: mapValueOfType<String>(json, r'_class'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, GithubFile> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, GithubFile>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new GithubFile.fromJson(value));
+  static List<GithubFile> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(GithubFile.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <GithubFile>[];
+
+  static Map<String, GithubFile> mapFromJson(dynamic json) {
+    final map = <String, GithubFile>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = GithubFile.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of GithubFile-objects as value to a dart map
+  static Map<String, List<GithubFile>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<GithubFile>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = GithubFile.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
     }
     return map;
   }

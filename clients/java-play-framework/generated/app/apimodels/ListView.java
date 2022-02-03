@@ -11,24 +11,29 @@ import javax.validation.constraints.*;
 /**
  * ListView
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ListView   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("description")
-  private String description = null;
+  
+  private String description;
 
   @JsonProperty("jobs")
+  @Valid
+
   private List<FreeStyleProject> jobs = null;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("url")
-  private String url = null;
+  
+  private String url;
 
   public ListView propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -39,7 +44,7 @@ public class ListView   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -56,7 +61,7 @@ public class ListView   {
    * Get description
    * @return description
   **/
-    public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -81,7 +86,6 @@ public class ListView   {
    * Get jobs
    * @return jobs
   **/
-  @Valid
   public List<FreeStyleProject> getJobs() {
     return jobs;
   }
@@ -99,7 +103,7 @@ public class ListView   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -116,7 +120,7 @@ public class ListView   {
    * Get url
    * @return url
   **/
-    public String getUrl() {
+  public String getUrl() {
     return url;
   }
 
@@ -126,7 +130,7 @@ public class ListView   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -165,7 +169,7 @@ public class ListView   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

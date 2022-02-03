@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -10,17 +20,17 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class BranchImplpermissions   {
   
-  private Boolean create = null;
-  private Boolean read = null;
-  private Boolean start = null;
-  private Boolean stop = null;
-  private String propertyClass = null;
+  private Boolean create;
+  private Boolean read;
+  private Boolean start;
+  private Boolean stop;
+  private String propertyClass;
 
   /**
-   **/
+   */
   public BranchImplpermissions create(Boolean create) {
     this.create = create;
     return this;
@@ -37,7 +47,7 @@ public class BranchImplpermissions   {
   }
 
   /**
-   **/
+   */
   public BranchImplpermissions read(Boolean read) {
     this.read = read;
     return this;
@@ -54,7 +64,7 @@ public class BranchImplpermissions   {
   }
 
   /**
-   **/
+   */
   public BranchImplpermissions start(Boolean start) {
     this.start = start;
     return this;
@@ -71,7 +81,7 @@ public class BranchImplpermissions   {
   }
 
   /**
-   **/
+   */
   public BranchImplpermissions stop(Boolean stop) {
     this.stop = stop;
     return this;
@@ -88,7 +98,7 @@ public class BranchImplpermissions   {
   }
 
   /**
-   **/
+   */
   public BranchImplpermissions propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -106,7 +116,7 @@ public class BranchImplpermissions   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -144,7 +154,7 @@ public class BranchImplpermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

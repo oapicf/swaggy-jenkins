@@ -11,36 +11,36 @@ import org.openapitools.model.Label1;
 
 @Canonical
 class HudsonMasterComputer {
-    String propertyClass = null
-
-    String displayName = null
-
+    
+    String propertyClass
+    
+    String displayName
+    
     List<HudsonMasterComputerexecutors> executors = new ArrayList<HudsonMasterComputerexecutors>()
-
-    String icon = null
-
-    String iconClassName = null
-
-    Boolean idle = null
-
-    Boolean jnlpAgent = null
-
-    Boolean launchSupported = null
-
-    Label1 loadStatistics = null
-
-    Boolean manualLaunchAllowed = null
-
-    HudsonMasterComputermonitorData monitorData = null
-
-    Integer numExecutors = null
-
-    Boolean offline = null
-
-    String offlineCause = null
-
-    String offlineCauseReason = null
-
-    Boolean temporarilyOffline = null
-
+    
+    String icon
+    
+    String iconClassName
+    
+    Boolean idle
+    
+    Boolean jnlpAgent
+    
+    Boolean launchSupported
+    
+    Label1 loadStatistics
+    
+    Boolean manualLaunchAllowed
+    
+    HudsonMasterComputermonitorData monitorData
+    
+    Integer numExecutors
+    
+    Boolean offline
+    
+    String offlineCause
+    
+    String offlineCauseReason
+    
+    Boolean temporarilyOffline
 }

@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.Link;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineStepImpllinks   {
   
-  private Link self = null;
-  private Link actions = null;
-  private String propertyClass = null;
+  private Link self;
+  private Link actions;
+  private String propertyClass;
 
   public PipelineStepImpllinks () {
 

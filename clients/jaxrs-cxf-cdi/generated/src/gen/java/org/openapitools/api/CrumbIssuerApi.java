@@ -13,19 +13,20 @@ import javax.inject.Inject;
 import io.swagger.annotations.*;
 import java.io.InputStream;
 
+import org.apache.cxf.jaxrs.ext.PATCH;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
 import java.util.Map;
 import java.util.List;
 import javax.validation.constraints.*;
-@Path("/crumbIssuer")
+@Path("/crumbIssuer/api/json")
 @RequestScoped
 
 @Api(description = "the crumbIssuer API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-10T13:31:43.820Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-02T10:45:17.573327Z[Etc/UTC]")
 
 public class CrumbIssuerApi  {
 
@@ -35,12 +36,13 @@ public class CrumbIssuerApi  {
 
 
     @GET
-    @Path("/api/json")
+    
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve CSRF protection token", response = DefaultCrumbIssuer.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "base" })
+         }, tags={ "base" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved CSRF protection token", response = DefaultCrumbIssuer.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),

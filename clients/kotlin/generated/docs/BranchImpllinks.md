@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **actions** | [**Link**](Link.md) |  |  [optional]
 **runs** | [**Link**](Link.md) |  |  [optional]
 **queue** | [**Link**](Link.md) |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

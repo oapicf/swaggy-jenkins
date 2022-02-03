@@ -8,51 +8,64 @@ import javax.validation.constraints.*;
 /**
  * PipelineBranchesitemlatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineBranchesitemlatestRun   {
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  
+  private Integer durationInMillis;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("enQueueTime")
-  private String enQueueTime = null;
+  
+  private String enQueueTime;
 
   @JsonProperty("endTime")
-  private String endTime = null;
+  
+  private String endTime;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("organization")
-  private String organization = null;
+  
+  private String organization;
 
   @JsonProperty("pipeline")
-  private String pipeline = null;
+  
+  private String pipeline;
 
   @JsonProperty("result")
-  private String result = null;
+  
+  private String result;
 
   @JsonProperty("runSummary")
-  private String runSummary = null;
+  
+  private String runSummary;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  
+  private String state;
 
   @JsonProperty("type")
-  private String type = null;
+  
+  private String type;
 
   @JsonProperty("commitId")
-  private String commitId = null;
+  
+  private String commitId;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public PipelineBranchesitemlatestRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -63,7 +76,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get durationInMillis
    * @return durationInMillis
   **/
-    public Integer getDurationInMillis() {
+  public Integer getDurationInMillis() {
     return durationInMillis;
   }
 
@@ -80,7 +93,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
   **/
-    public Integer getEstimatedDurationInMillis() {
+  public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
@@ -97,7 +110,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get enQueueTime
    * @return enQueueTime
   **/
-    public String getEnQueueTime() {
+  public String getEnQueueTime() {
     return enQueueTime;
   }
 
@@ -114,7 +127,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get endTime
    * @return endTime
   **/
-    public String getEndTime() {
+  public String getEndTime() {
     return endTime;
   }
 
@@ -131,7 +144,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -148,7 +161,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get organization
    * @return organization
   **/
-    public String getOrganization() {
+  public String getOrganization() {
     return organization;
   }
 
@@ -165,7 +178,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get pipeline
    * @return pipeline
   **/
-    public String getPipeline() {
+  public String getPipeline() {
     return pipeline;
   }
 
@@ -182,7 +195,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get result
    * @return result
   **/
-    public String getResult() {
+  public String getResult() {
     return result;
   }
 
@@ -199,7 +212,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get runSummary
    * @return runSummary
   **/
-    public String getRunSummary() {
+  public String getRunSummary() {
     return runSummary;
   }
 
@@ -216,7 +229,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get startTime
    * @return startTime
   **/
-    public String getStartTime() {
+  public String getStartTime() {
     return startTime;
   }
 
@@ -233,7 +246,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get state
    * @return state
   **/
-    public String getState() {
+  public String getState() {
     return state;
   }
 
@@ -250,7 +263,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get type
    * @return type
   **/
-    public String getType() {
+  public String getType() {
     return type;
   }
 
@@ -267,7 +280,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get commitId
    * @return commitId
   **/
-    public String getCommitId() {
+  public String getCommitId() {
     return commitId;
   }
 
@@ -284,7 +297,7 @@ public class PipelineBranchesitemlatestRun   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -294,7 +307,7 @@ public class PipelineBranchesitemlatestRun   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -351,7 +364,7 @@ public class PipelineBranchesitemlatestRun   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -4,14 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SwapSpaceMonitorMemoryUsage2   {
   
-  private String propertyClass = null;
-  private Integer availablePhysicalMemory = null;
-  private Integer availableSwapSpace = null;
-  private Integer totalPhysicalMemory = null;
-  private Integer totalSwapSpace = null;
+  private String propertyClass;
+  private Integer availablePhysicalMemory;
+  private Integer availableSwapSpace;
+  private Integer totalPhysicalMemory;
+  private Integer totalSwapSpace;
 
   public SwapSpaceMonitorMemoryUsage2 () {
 

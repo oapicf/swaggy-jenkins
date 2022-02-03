@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**classes** | **kotlin.Array&lt;kotlin.String&gt;** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**classes** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class GithubOrganization {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\GithubOrganizationlinks $_links */
-    private $_links;
+    /** @var \app\Models\GithubOrganizationlinks $links */
+    private $links;
 
-    /** @var bool $jenkins_organization_pipeline */
-    private $jenkins_organization_pipeline;
+    /** @var bool $jenkinsOrganizationPipeline */
+    private $jenkinsOrganizationPipeline;
 
     /** @var string $name */
     private $name;

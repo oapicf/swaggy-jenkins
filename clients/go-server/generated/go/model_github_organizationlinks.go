@@ -12,9 +12,32 @@ package openapi
 
 type GithubOrganizationlinks struct {
 
-	Repositories *Link `json:"repositories,omitempty"`
+	Repositories Link `json:"repositories,omitempty"`
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertGithubOrganizationlinksRequired checks if the required fields are not zero-ed
+func AssertGithubOrganizationlinksRequired(obj GithubOrganizationlinks) error {
+	if err := AssertLinkRequired(obj.Repositories); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseGithubOrganizationlinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubOrganizationlinks (e.g. [][]GithubOrganizationlinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubOrganizationlinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubOrganizationlinks, ok := obj.(GithubOrganizationlinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubOrganizationlinksRequired(aGithubOrganizationlinks)
+	})
 }

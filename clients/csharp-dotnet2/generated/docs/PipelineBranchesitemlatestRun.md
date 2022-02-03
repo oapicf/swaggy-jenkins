@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.PipelineBranchesitemlatestRun
+
 ## Properties
 
 Name | Type | Description | Notes

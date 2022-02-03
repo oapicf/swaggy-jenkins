@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.PipelineBranchesitem
+
 ## Properties
 
 Name | Type | Description | Notes

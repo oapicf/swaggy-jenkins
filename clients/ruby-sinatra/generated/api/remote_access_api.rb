@@ -1,12 +1,12 @@
 require 'json'
 
 
-MyApp.add_route('GET', '//computer/api/json', {
+MyApp.add_route('GET', '/computer/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_computer", 
+  "nickname" => "get_computer",
   "responseClass" => "ComputerSet",
-  "endpoint" => "/computer/api/json", 
+  "endpoint" => "/computer/api/json",
   "notes" => "Retrieve computer details",
   "parameters" => [
     {
@@ -24,12 +24,12 @@ MyApp.add_route('GET', '//computer/api/json', {
 end
 
 
-MyApp.add_route('GET', '//api/json', {
+MyApp.add_route('GET', '/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_jenkins", 
+  "nickname" => "get_jenkins",
   "responseClass" => "Hudson",
-  "endpoint" => "/api/json", 
+  "endpoint" => "/api/json",
   "notes" => "Retrieve Jenkins details",
   "parameters" => [
     ]}) do
@@ -40,12 +40,12 @@ MyApp.add_route('GET', '//api/json', {
 end
 
 
-MyApp.add_route('GET', '//job/{name}/api/json', {
+MyApp.add_route('GET', '/job/{name}/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_job", 
+  "nickname" => "get_job",
   "responseClass" => "FreeStyleProject",
-  "endpoint" => "/job/{name}/api/json", 
+  "endpoint" => "/job/{name}/api/json",
   "notes" => "Retrieve job details",
   "parameters" => [
     {
@@ -62,12 +62,12 @@ MyApp.add_route('GET', '//job/{name}/api/json', {
 end
 
 
-MyApp.add_route('GET', '//job/{name}/config.xml', {
+MyApp.add_route('GET', '/job/{name}/config.xml', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_job_config", 
+  "nickname" => "get_job_config",
   "responseClass" => "String",
-  "endpoint" => "/job/{name}/config.xml", 
+  "endpoint" => "/job/{name}/config.xml",
   "notes" => "Retrieve job configuration",
   "parameters" => [
     {
@@ -84,12 +84,12 @@ MyApp.add_route('GET', '//job/{name}/config.xml', {
 end
 
 
-MyApp.add_route('GET', '//job/{name}/lastBuild/api/json', {
+MyApp.add_route('GET', '/job/{name}/lastBuild/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_job_last_build", 
+  "nickname" => "get_job_last_build",
   "responseClass" => "FreeStyleBuild",
-  "endpoint" => "/job/{name}/lastBuild/api/json", 
+  "endpoint" => "/job/{name}/lastBuild/api/json",
   "notes" => "Retrieve job's last build details",
   "parameters" => [
     {
@@ -106,12 +106,12 @@ MyApp.add_route('GET', '//job/{name}/lastBuild/api/json', {
 end
 
 
-MyApp.add_route('GET', '//job/{name}/{number}/logText/progressiveText', {
+MyApp.add_route('GET', '/job/{name}/{number}/logText/progressiveText', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_job_progressive_text", 
+  "nickname" => "get_job_progressive_text",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/{number}/logText/progressiveText", 
+  "endpoint" => "/job/{name}/{number}/logText/progressiveText",
   "notes" => "Retrieve job's build progressive text output",
   "parameters" => [
     {
@@ -141,12 +141,12 @@ MyApp.add_route('GET', '//job/{name}/{number}/logText/progressiveText', {
 end
 
 
-MyApp.add_route('GET', '//queue/api/json', {
+MyApp.add_route('GET', '/queue/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_queue", 
+  "nickname" => "get_queue",
   "responseClass" => "Queue",
-  "endpoint" => "/queue/api/json", 
+  "endpoint" => "/queue/api/json",
   "notes" => "Retrieve queue details",
   "parameters" => [
     ]}) do
@@ -157,12 +157,12 @@ MyApp.add_route('GET', '//queue/api/json', {
 end
 
 
-MyApp.add_route('GET', '//queue/item/{number}/api/json', {
+MyApp.add_route('GET', '/queue/item/{number}/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_queue_item", 
+  "nickname" => "get_queue_item",
   "responseClass" => "Queue",
-  "endpoint" => "/queue/item/{number}/api/json", 
+  "endpoint" => "/queue/item/{number}/api/json",
   "notes" => "Retrieve queued item details",
   "parameters" => [
     {
@@ -179,12 +179,12 @@ MyApp.add_route('GET', '//queue/item/{number}/api/json', {
 end
 
 
-MyApp.add_route('GET', '//view/{name}/api/json', {
+MyApp.add_route('GET', '/view/{name}/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_view", 
+  "nickname" => "get_view",
   "responseClass" => "ListView",
-  "endpoint" => "/view/{name}/api/json", 
+  "endpoint" => "/view/{name}/api/json",
   "notes" => "Retrieve view details",
   "parameters" => [
     {
@@ -201,12 +201,12 @@ MyApp.add_route('GET', '//view/{name}/api/json', {
 end
 
 
-MyApp.add_route('GET', '//view/{name}/config.xml', {
+MyApp.add_route('GET', '/view/{name}/config.xml', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "get_view_config", 
+  "nickname" => "get_view_config",
   "responseClass" => "String",
-  "endpoint" => "/view/{name}/config.xml", 
+  "endpoint" => "/view/{name}/config.xml",
   "notes" => "Retrieve view configuration",
   "parameters" => [
     {
@@ -223,12 +223,12 @@ MyApp.add_route('GET', '//view/{name}/config.xml', {
 end
 
 
-MyApp.add_route('HEAD', '//api/json', {
+MyApp.add_route('HEAD', '/api/json', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "head_jenkins", 
+  "nickname" => "head_jenkins",
   "responseClass" => "void",
-  "endpoint" => "/api/json", 
+  "endpoint" => "/api/json",
   "notes" => "Retrieve Jenkins headers",
   "parameters" => [
     ]}) do
@@ -239,12 +239,12 @@ MyApp.add_route('HEAD', '//api/json', {
 end
 
 
-MyApp.add_route('POST', '//createItem', {
+MyApp.add_route('POST', '/createItem', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_create_item", 
+  "nickname" => "post_create_item",
   "responseClass" => "void",
-  "endpoint" => "/createItem", 
+  "endpoint" => "/createItem",
   "notes" => "Create a new job using job configuration, or copied from an existing job",
   "parameters" => [
     {
@@ -294,12 +294,12 @@ MyApp.add_route('POST', '//createItem', {
 end
 
 
-MyApp.add_route('POST', '//createView', {
+MyApp.add_route('POST', '/createView', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_create_view", 
+  "nickname" => "post_create_view",
   "responseClass" => "void",
-  "endpoint" => "/createView", 
+  "endpoint" => "/createView",
   "notes" => "Create a new view using view configuration",
   "parameters" => [
     {
@@ -335,12 +335,12 @@ MyApp.add_route('POST', '//createView', {
 end
 
 
-MyApp.add_route('POST', '//job/{name}/build', {
+MyApp.add_route('POST', '/job/{name}/build', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_job_build", 
+  "nickname" => "post_job_build",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/build", 
+  "endpoint" => "/job/{name}/build",
   "notes" => "Build a job",
   "parameters" => [
     {
@@ -377,12 +377,12 @@ MyApp.add_route('POST', '//job/{name}/build', {
 end
 
 
-MyApp.add_route('POST', '//job/{name}/config.xml', {
+MyApp.add_route('POST', '/job/{name}/config.xml', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_job_config", 
+  "nickname" => "post_job_config",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/config.xml", 
+  "endpoint" => "/job/{name}/config.xml",
   "notes" => "Update job configuration",
   "parameters" => [
     {
@@ -411,12 +411,12 @@ MyApp.add_route('POST', '//job/{name}/config.xml', {
 end
 
 
-MyApp.add_route('POST', '//job/{name}/doDelete', {
+MyApp.add_route('POST', '/job/{name}/doDelete', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_job_delete", 
+  "nickname" => "post_job_delete",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/doDelete", 
+  "endpoint" => "/job/{name}/doDelete",
   "notes" => "Delete a job",
   "parameters" => [
     {
@@ -439,12 +439,12 @@ MyApp.add_route('POST', '//job/{name}/doDelete', {
 end
 
 
-MyApp.add_route('POST', '//job/{name}/disable', {
+MyApp.add_route('POST', '/job/{name}/disable', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_job_disable", 
+  "nickname" => "post_job_disable",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/disable", 
+  "endpoint" => "/job/{name}/disable",
   "notes" => "Disable a job",
   "parameters" => [
     {
@@ -467,12 +467,12 @@ MyApp.add_route('POST', '//job/{name}/disable', {
 end
 
 
-MyApp.add_route('POST', '//job/{name}/enable', {
+MyApp.add_route('POST', '/job/{name}/enable', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_job_enable", 
+  "nickname" => "post_job_enable",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/enable", 
+  "endpoint" => "/job/{name}/enable",
   "notes" => "Enable a job",
   "parameters" => [
     {
@@ -495,12 +495,12 @@ MyApp.add_route('POST', '//job/{name}/enable', {
 end
 
 
-MyApp.add_route('POST', '//job/{name}/lastBuild/stop', {
+MyApp.add_route('POST', '/job/{name}/lastBuild/stop', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_job_last_build_stop", 
+  "nickname" => "post_job_last_build_stop",
   "responseClass" => "void",
-  "endpoint" => "/job/{name}/lastBuild/stop", 
+  "endpoint" => "/job/{name}/lastBuild/stop",
   "notes" => "Stop a job",
   "parameters" => [
     {
@@ -523,12 +523,12 @@ MyApp.add_route('POST', '//job/{name}/lastBuild/stop', {
 end
 
 
-MyApp.add_route('POST', '//view/{name}/config.xml', {
+MyApp.add_route('POST', '/view/{name}/config.xml', {
   "resourcePath" => "/RemoteAccess",
   "summary" => "",
-  "nickname" => "post_view_config", 
+  "nickname" => "post_view_config",
   "responseClass" => "void",
-  "endpoint" => "/view/{name}/config.xml", 
+  "endpoint" => "/view/{name}/config.xml",
   "notes" => "Update view configuration",
   "parameters" => [
     {

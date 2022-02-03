@@ -4,11 +4,11 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineBranchesitempullRequestlinks   {
   
-  private String self = null;
-  private String propertyClass = null;
+  private String self;
+  private String propertyClass;
 
   public PipelineBranchesitempullRequestlinks () {
 

@@ -7,10 +7,10 @@ import org.openapitools.model.Link;
 
 @Canonical
 class PipelineStepImpllinks {
-    Link self = null
-
-    Link actions = null
-
-    String propertyClass = null
-
+    
+    Link self
+    
+    Link actions
+    
+    String propertyClass
 }

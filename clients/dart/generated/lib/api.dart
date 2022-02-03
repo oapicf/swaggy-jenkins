@@ -1,9 +1,22 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 library openapi.api;
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/browser_client.dart';
+import 'dart:io';
+
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
+import 'package:meta/meta.dart';
 
 part 'api_client.dart';
 part 'api_helper.dart';
@@ -12,13 +25,13 @@ part 'auth/authentication.dart';
 part 'auth/api_key_auth.dart';
 part 'auth/oauth.dart';
 part 'auth/http_basic_auth.dart';
+part 'auth/http_bearer_auth.dart';
 
 part 'api/base_api.dart';
 part 'api/blue_ocean_api.dart';
 part 'api/remote_access_api.dart';
 
 part 'model/all_view.dart';
-part 'model/body.dart';
 part 'model/branch_impl.dart';
 part 'model/branch_impllinks.dart';
 part 'model/branch_implpermissions.dart';
@@ -68,12 +81,9 @@ part 'model/list_view.dart';
 part 'model/multibranch_pipeline.dart';
 part 'model/null_scm.dart';
 part 'model/organisation.dart';
-part 'model/organisations.dart';
 part 'model/pipeline.dart';
-part 'model/pipeline_activities.dart';
 part 'model/pipeline_activity.dart';
 part 'model/pipeline_activityartifacts.dart';
-part 'model/pipeline_branches.dart';
 part 'model/pipeline_branchesitem.dart';
 part 'model/pipeline_branchesitemlatest_run.dart';
 part 'model/pipeline_branchesitempull_request.dart';
@@ -81,35 +91,33 @@ part 'model/pipeline_branchesitempull_requestlinks.dart';
 part 'model/pipeline_folder_impl.dart';
 part 'model/pipeline_impl.dart';
 part 'model/pipeline_impllinks.dart';
-part 'model/pipeline_queue.dart';
 part 'model/pipeline_run.dart';
 part 'model/pipeline_run_impl.dart';
 part 'model/pipeline_run_impllinks.dart';
 part 'model/pipeline_run_node.dart';
-part 'model/pipeline_run_node_steps.dart';
 part 'model/pipeline_run_nodeedges.dart';
-part 'model/pipeline_run_nodes.dart';
-part 'model/pipeline_run_steps.dart';
 part 'model/pipeline_runartifacts.dart';
-part 'model/pipeline_runs.dart';
 part 'model/pipeline_step_impl.dart';
 part 'model/pipeline_step_impllinks.dart';
 part 'model/pipelinelatest_run.dart';
 part 'model/pipelinelatest_runartifacts.dart';
-part 'model/pipelines.dart';
 part 'model/queue.dart';
 part 'model/queue_blocked_item.dart';
 part 'model/queue_item_impl.dart';
 part 'model/queue_left_item.dart';
 part 'model/response_time_monitor_data.dart';
-part 'model/scm_organisations.dart';
 part 'model/string_parameter_definition.dart';
 part 'model/string_parameter_value.dart';
 part 'model/swap_space_monitor_memory_usage2.dart';
 part 'model/unlabeled_load_statistics.dart';
 part 'model/user.dart';
-part 'model/user_favorites.dart';
-part 'model/users.dart';
 
 
-ApiClient defaultApiClient = new ApiClient();
+const _delimiters = {'csv': ',', 'ssv': ' ', 'tsv': '\t', 'pipes': '|'};
+const _dateEpochMarker = 'epoch';
+final _dateFormatter = DateFormat('yyyy-MM-dd');
+final _regList = RegExp(r'^List<(.*)>$');
+final _regSet = RegExp(r'^Set<(.*)>$');
+final _regMap = RegExp(r'^Map<String,(.*)>$');
+
+ApiClient defaultApiClient = ApiClient();

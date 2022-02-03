@@ -5,31 +5,24 @@ import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ComputerSet  {
   
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private Integer busyExecutors = null;
+  private Integer busyExecutors;
 
   @ApiModelProperty(value = "")
   private List<HudsonMasterComputer> computer = null;
 
   @ApiModelProperty(value = "")
-  private String displayName = null;
+  private String displayName;
 
   @ApiModelProperty(value = "")
-  private Integer totalExecutors = null;
+  private Integer totalExecutors;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -144,7 +137,7 @@ public class ComputerSet  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

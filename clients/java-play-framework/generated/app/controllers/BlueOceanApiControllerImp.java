@@ -1,255 +1,249 @@
 package controllers;
 
-import apimodels.Body;
 import apimodels.BranchImpl;
 import apimodels.FavoriteImpl;
+import apimodels.GithubOrganization;
 import apimodels.GithubScm;
 import apimodels.MultibranchPipeline;
 import apimodels.Organisation;
-import apimodels.Organisations;
 import apimodels.Pipeline;
-import apimodels.PipelineActivities;
+import apimodels.PipelineActivity;
 import apimodels.PipelineFolderImpl;
 import apimodels.PipelineImpl;
-import apimodels.PipelineQueue;
 import apimodels.PipelineRun;
 import apimodels.PipelineRunNode;
-import apimodels.PipelineRunNodeSteps;
-import apimodels.PipelineRunNodes;
-import apimodels.PipelineRuns;
 import apimodels.PipelineStepImpl;
-import apimodels.Pipelines;
 import apimodels.QueueItemImpl;
-import apimodels.ScmOrganisations;
+import apimodels.UNKNOWN_BASE_TYPE;
 import apimodels.User;
-import apimodels.UserFavorites;
 
 import play.mvc.Http;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.io.FileInputStream;
+import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
-public class BlueOceanApiControllerImp implements BlueOceanApiControllerImpInterface {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
+public class BlueOceanApiControllerImp extends BlueOceanApiControllerImpInterface {
     @Override
-    public void deletePipelineQueueItem(String organization, String pipeline, String queue) throws Exception {
+    public void deletePipelineQueueItem(Http.Request request, String organization, String pipeline, String queue) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public User getAuthenticatedUser(String organization) throws Exception {
+    public User getAuthenticatedUser(Http.Request request, String organization) throws Exception {
         //Do your magic!!!
         return new User();
     }
 
     @Override
-    public String getClasses(String propertyClass) throws Exception {
+    public String getClasses(Http.Request request, String propertyClass) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public String getJsonWebKey(Integer key) throws Exception {
+    public String getJsonWebKey(Http.Request request, Integer key) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public String getJsonWebToken(Integer expiryTimeInMins, Integer maxExpiryTimeInMins) throws Exception {
+    public String getJsonWebToken(Http.Request request, Integer expiryTimeInMins, Integer maxExpiryTimeInMins) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public Organisation getOrganisation(String organization) throws Exception {
+    public Organisation getOrganisation(Http.Request request, String organization) throws Exception {
         //Do your magic!!!
         return new Organisation();
     }
 
     @Override
-    public Organisations getOrganisations() throws Exception {
+    public List<Organisation> getOrganisations(Http.Request request) throws Exception {
         //Do your magic!!!
-        return new Organisations();
+        return new ArrayList<Organisation>();
     }
 
     @Override
-    public Pipeline getPipeline(String organization, String pipeline) throws Exception {
+    public Pipeline getPipeline(Http.Request request, String organization, String pipeline) throws Exception {
         //Do your magic!!!
         return new Pipeline();
     }
 
     @Override
-    public PipelineActivities getPipelineActivities(String organization, String pipeline) throws Exception {
+    public List<PipelineActivity> getPipelineActivities(Http.Request request, String organization, String pipeline) throws Exception {
         //Do your magic!!!
-        return new PipelineActivities();
+        return new ArrayList<PipelineActivity>();
     }
 
     @Override
-    public BranchImpl getPipelineBranch(String organization, String pipeline, String branch) throws Exception {
+    public BranchImpl getPipelineBranch(Http.Request request, String organization, String pipeline, String branch) throws Exception {
         //Do your magic!!!
         return new BranchImpl();
     }
 
     @Override
-    public PipelineRun getPipelineBranchRun(String organization, String pipeline, String branch, String run) throws Exception {
+    public PipelineRun getPipelineBranchRun(Http.Request request, String organization, String pipeline, String branch, String run) throws Exception {
         //Do your magic!!!
         return new PipelineRun();
     }
 
     @Override
-    public MultibranchPipeline getPipelineBranches(String organization, String pipeline) throws Exception {
+    public MultibranchPipeline getPipelineBranches(Http.Request request, String organization, String pipeline) throws Exception {
         //Do your magic!!!
         return new MultibranchPipeline();
     }
 
     @Override
-    public PipelineFolderImpl getPipelineFolder(String organization, String folder) throws Exception {
+    public PipelineFolderImpl getPipelineFolder(Http.Request request, String organization, String folder) throws Exception {
         //Do your magic!!!
         return new PipelineFolderImpl();
     }
 
     @Override
-    public PipelineImpl getPipelineFolderPipeline(String organization, String pipeline, String folder) throws Exception {
+    public PipelineImpl getPipelineFolderPipeline(Http.Request request, String organization, String pipeline, String folder) throws Exception {
         //Do your magic!!!
         return new PipelineImpl();
     }
 
     @Override
-    public PipelineQueue getPipelineQueue(String organization, String pipeline) throws Exception {
+    public List<QueueItemImpl> getPipelineQueue(Http.Request request, String organization, String pipeline) throws Exception {
         //Do your magic!!!
-        return new PipelineQueue();
+        return new ArrayList<QueueItemImpl>();
     }
 
     @Override
-    public PipelineRun getPipelineRun(String organization, String pipeline, String run) throws Exception {
+    public PipelineRun getPipelineRun(Http.Request request, String organization, String pipeline, String run) throws Exception {
         //Do your magic!!!
         return new PipelineRun();
     }
 
     @Override
-    public String getPipelineRunLog(String organization, String pipeline, String run, Integer start, Boolean download) throws Exception {
+    public String getPipelineRunLog(Http.Request request, String organization, String pipeline, String run, Integer start, Boolean download) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public PipelineRunNode getPipelineRunNode(String organization, String pipeline, String run, String node) throws Exception {
+    public PipelineRunNode getPipelineRunNode(Http.Request request, String organization, String pipeline, String run, String node) throws Exception {
         //Do your magic!!!
         return new PipelineRunNode();
     }
 
     @Override
-    public PipelineStepImpl getPipelineRunNodeStep(String organization, String pipeline, String run, String node, String step) throws Exception {
+    public PipelineStepImpl getPipelineRunNodeStep(Http.Request request, String organization, String pipeline, String run, String node, String step) throws Exception {
         //Do your magic!!!
         return new PipelineStepImpl();
     }
 
     @Override
-    public String getPipelineRunNodeStepLog(String organization, String pipeline, String run, String node, String step) throws Exception {
+    public String getPipelineRunNodeStepLog(Http.Request request, String organization, String pipeline, String run, String node, String step) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public PipelineRunNodeSteps getPipelineRunNodeSteps(String organization, String pipeline, String run, String node) throws Exception {
+    public List<PipelineStepImpl> getPipelineRunNodeSteps(Http.Request request, String organization, String pipeline, String run, String node) throws Exception {
         //Do your magic!!!
-        return new PipelineRunNodeSteps();
+        return new ArrayList<PipelineStepImpl>();
     }
 
     @Override
-    public PipelineRunNodes getPipelineRunNodes(String organization, String pipeline, String run) throws Exception {
+    public List<PipelineRunNode> getPipelineRunNodes(Http.Request request, String organization, String pipeline, String run) throws Exception {
         //Do your magic!!!
-        return new PipelineRunNodes();
+        return new ArrayList<PipelineRunNode>();
     }
 
     @Override
-    public PipelineRuns getPipelineRuns(String organization, String pipeline) throws Exception {
+    public List<PipelineRun> getPipelineRuns(Http.Request request, String organization, String pipeline) throws Exception {
         //Do your magic!!!
-        return new PipelineRuns();
+        return new ArrayList<PipelineRun>();
     }
 
     @Override
-    public Pipelines getPipelines(String organization) throws Exception {
+    public List<Pipeline> getPipelines(Http.Request request, String organization) throws Exception {
         //Do your magic!!!
-        return new Pipelines();
+        return new ArrayList<Pipeline>();
     }
 
     @Override
-    public GithubScm getSCM(String organization, String scm) throws Exception {
+    public GithubScm getSCM(Http.Request request, String organization, String scm) throws Exception {
         //Do your magic!!!
         return new GithubScm();
     }
 
     @Override
-    public ScmOrganisations getSCMOrganisationRepositories(String organization, String scm, String scmOrganisation, String credentialId, Integer pageSize, Integer pageNumber) throws Exception {
+    public List<GithubOrganization> getSCMOrganisationRepositories(Http.Request request, String organization, String scm, String scmOrganisation, String credentialId, Integer pageSize, Integer pageNumber) throws Exception {
         //Do your magic!!!
-        return new ScmOrganisations();
+        return new ArrayList<GithubOrganization>();
     }
 
     @Override
-    public ScmOrganisations getSCMOrganisationRepository(String organization, String scm, String scmOrganisation, String repository, String credentialId) throws Exception {
+    public List<GithubOrganization> getSCMOrganisationRepository(Http.Request request, String organization, String scm, String scmOrganisation, String repository, String credentialId) throws Exception {
         //Do your magic!!!
-        return new ScmOrganisations();
+        return new ArrayList<GithubOrganization>();
     }
 
     @Override
-    public ScmOrganisations getSCMOrganisations(String organization, String scm, String credentialId) throws Exception {
+    public List<GithubOrganization> getSCMOrganisations(Http.Request request, String organization, String scm, String credentialId) throws Exception {
         //Do your magic!!!
-        return new ScmOrganisations();
+        return new ArrayList<GithubOrganization>();
     }
 
     @Override
-    public User getUser(String organization, String user) throws Exception {
-        //Do your magic!!!
-        return new User();
-    }
-
-    @Override
-    public UserFavorites getUserFavorites(String user) throws Exception {
-        //Do your magic!!!
-        return new UserFavorites();
-    }
-
-    @Override
-    public User getUsers(String organization) throws Exception {
+    public User getUser(Http.Request request, String organization, String user) throws Exception {
         //Do your magic!!!
         return new User();
     }
 
     @Override
-    public QueueItemImpl postPipelineRun(String organization, String pipeline, String run) throws Exception {
+    public List<FavoriteImpl> getUserFavorites(Http.Request request, String user) throws Exception {
+        //Do your magic!!!
+        return new ArrayList<FavoriteImpl>();
+    }
+
+    @Override
+    public User getUsers(Http.Request request, String organization) throws Exception {
+        //Do your magic!!!
+        return new User();
+    }
+
+    @Override
+    public QueueItemImpl postPipelineRun(Http.Request request, String organization, String pipeline, String run) throws Exception {
         //Do your magic!!!
         return new QueueItemImpl();
     }
 
     @Override
-    public QueueItemImpl postPipelineRuns(String organization, String pipeline) throws Exception {
+    public QueueItemImpl postPipelineRuns(Http.Request request, String organization, String pipeline) throws Exception {
         //Do your magic!!!
         return new QueueItemImpl();
     }
 
     @Override
-    public FavoriteImpl putPipelineFavorite(String organization, String pipeline, Body body) throws Exception {
+    public FavoriteImpl putPipelineFavorite(Http.Request request, String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws Exception {
         //Do your magic!!!
         return new FavoriteImpl();
     }
 
     @Override
-    public PipelineRun putPipelineRun(String organization, String pipeline, String run, String blocking, Integer timeOutInSecs) throws Exception {
+    public PipelineRun putPipelineRun(Http.Request request, String organization, String pipeline, String run, String blocking, Integer timeOutInSecs) throws Exception {
         //Do your magic!!!
         return new PipelineRun();
     }
 
     @Override
-    public String search( @NotNull String q) throws Exception {
+    public String search(Http.Request request, @NotNull String q) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public String searchClasses( @NotNull String q) throws Exception {
+    public String searchClasses(Http.Request request, @NotNull String q) throws Exception {
         //Do your magic!!!
         return new String();
     }

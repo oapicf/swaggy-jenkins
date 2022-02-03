@@ -21,15 +21,15 @@ defmodule SwaggyJenkins.Model.PipelineBranchesitem do
   ]
 
   @type t :: %__MODULE__{
-    :"displayName" => String.t,
-    :"estimatedDurationInMillis" => integer(),
-    :"name" => String.t,
-    :"weatherScore" => integer(),
-    :"latestRun" => PipelineBranchesitemlatestRun,
-    :"organization" => String.t,
-    :"pullRequest" => PipelineBranchesitempullRequest,
-    :"totalNumberOfPullRequests" => integer(),
-    :"_class" => String.t
+    :"displayName" => String.t | nil,
+    :"estimatedDurationInMillis" => integer() | nil,
+    :"name" => String.t | nil,
+    :"weatherScore" => integer() | nil,
+    :"latestRun" => SwaggyJenkins.Model.PipelineBranchesitemlatestRun.t | nil,
+    :"organization" => String.t | nil,
+    :"pullRequest" => SwaggyJenkins.Model.PipelineBranchesitempullRequest.t | nil,
+    :"totalNumberOfPullRequests" => integer() | nil,
+    :"_class" => String.t | nil
   }
 end
 

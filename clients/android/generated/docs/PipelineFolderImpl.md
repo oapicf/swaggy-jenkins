@@ -1,7 +1,9 @@
 
+
 # PipelineFolderImpl
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -11,6 +13,7 @@ Name | Type | Description | Notes
 **organization** | **String** |  |  [optional]
 **numberOfFolders** | **Integer** |  |  [optional]
 **numberOfPipelines** | **Integer** |  |  [optional]
+
 
 
 

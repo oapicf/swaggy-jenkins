@@ -1,29 +1,36 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositories;
 import org.openapitools.model.GithubRespositoryContainerlinks;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * GithubRespositoryContainer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class GithubRespositoryContainer   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubRespositoryContainerlinks links = null;
+  private GithubRespositoryContainerlinks links;
 
   @JsonProperty("repositories")
-  private GithubRepositories repositories = null;
+  private GithubRepositories repositories;
 
   public GithubRespositoryContainer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -33,10 +40,9 @@ public class GithubRespositoryContainer   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -53,11 +59,9 @@ public class GithubRespositoryContainer   {
   /**
    * Get links
    * @return links
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "_links", required = false)
   public GithubRespositoryContainerlinks getLinks() {
     return links;
   }
@@ -74,11 +78,9 @@ public class GithubRespositoryContainer   {
   /**
    * Get repositories
    * @return repositories
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "repositories", required = false)
   public GithubRepositories getRepositories() {
     return repositories;
   }
@@ -87,9 +89,8 @@ public class GithubRespositoryContainer   {
     this.repositories = repositories;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -111,7 +112,6 @@ public class GithubRespositoryContainer   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubRespositoryContainer {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    repositories: ").append(toIndentedString(repositories)).append("\n");
@@ -123,7 +123,7 @@ public class GithubRespositoryContainer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

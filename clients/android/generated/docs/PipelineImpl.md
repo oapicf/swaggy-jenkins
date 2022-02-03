@@ -1,7 +1,9 @@
 
+
 # PipelineImpl
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -13,6 +15,7 @@ Name | Type | Description | Notes
 **organization** | **String** |  |  [optional]
 **weatherScore** | **Integer** |  |  [optional]
 **links** | [**PipelineImpllinks**](PipelineImpllinks.md) |  |  [optional]
+
 
 
 

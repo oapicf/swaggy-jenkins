@@ -10,33 +10,26 @@ import java.util.List;
 
 import org.openapitools.model.*;
 
-import org.openapitools.model.Body;
 import org.openapitools.model.BranchImpl;
 import org.openapitools.model.FavoriteImpl;
+import org.openapitools.model.GithubOrganization;
 import org.openapitools.model.GithubScm;
 import org.openapitools.model.MultibranchPipeline;
 import org.openapitools.model.Organisation;
-import org.openapitools.model.Organisations;
 import org.openapitools.model.Pipeline;
-import org.openapitools.model.PipelineActivities;
+import org.openapitools.model.PipelineActivity;
 import org.openapitools.model.PipelineFolderImpl;
 import org.openapitools.model.PipelineImpl;
-import org.openapitools.model.PipelineQueue;
 import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
-import org.openapitools.model.PipelineRunNodeSteps;
-import org.openapitools.model.PipelineRunNodes;
-import org.openapitools.model.PipelineRuns;
 import org.openapitools.model.PipelineStepImpl;
-import org.openapitools.model.Pipelines;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.ScmOrganisations;
+import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
-import org.openapitools.model.UserFavorites;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:31:12.702Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-02T10:44:21.668219Z[Etc/UTC]")
 public class BlueController  {
-  /** 
+  /**
    * Uncomment and implement as you see fit.  These operations will map
    * Directly to operation calls from the routing logic.  Because the inflector
    * Code allows you to implement logic incrementally, they are disabled.
@@ -229,7 +222,7 @@ public class BlueController  {
   */
 
   /*
-    public ResponseContext putPipelineFavorite(RequestContext request , String organization, String pipeline, Body body) {
+    public ResponseContext putPipelineFavorite(RequestContext request , String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
@@ -253,4 +246,3 @@ public class BlueController  {
   */
 
 }
-

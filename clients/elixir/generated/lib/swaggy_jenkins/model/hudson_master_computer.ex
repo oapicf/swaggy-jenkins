@@ -28,22 +28,22 @@ defmodule SwaggyJenkins.Model.HudsonMasterComputer do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"displayName" => String.t,
-    :"executors" => [HudsonMasterComputerexecutors],
-    :"icon" => String.t,
-    :"iconClassName" => String.t,
-    :"idle" => boolean(),
-    :"jnlpAgent" => boolean(),
-    :"launchSupported" => boolean(),
-    :"loadStatistics" => Label1,
-    :"manualLaunchAllowed" => boolean(),
-    :"monitorData" => HudsonMasterComputermonitorData,
-    :"numExecutors" => integer(),
-    :"offline" => boolean(),
-    :"offlineCause" => String.t,
-    :"offlineCauseReason" => String.t,
-    :"temporarilyOffline" => boolean()
+    :"_class" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"executors" => [SwaggyJenkins.Model.HudsonMasterComputerexecutors.t] | nil,
+    :"icon" => String.t | nil,
+    :"iconClassName" => String.t | nil,
+    :"idle" => boolean() | nil,
+    :"jnlpAgent" => boolean() | nil,
+    :"launchSupported" => boolean() | nil,
+    :"loadStatistics" => SwaggyJenkins.Model.Label1.t | nil,
+    :"manualLaunchAllowed" => boolean() | nil,
+    :"monitorData" => SwaggyJenkins.Model.HudsonMasterComputermonitorData.t | nil,
+    :"numExecutors" => integer() | nil,
+    :"offline" => boolean() | nil,
+    :"offlineCause" => String.t | nil,
+    :"offlineCauseReason" => String.t | nil,
+    :"temporarilyOffline" => boolean() | nil
   }
 end
 

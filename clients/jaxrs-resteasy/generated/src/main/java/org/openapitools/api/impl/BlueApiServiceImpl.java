@@ -4,29 +4,22 @@ import org.openapitools.api.*;
 import org.openapitools.model.*;
 
 
-import org.openapitools.model.Body;
 import org.openapitools.model.BranchImpl;
 import org.openapitools.model.FavoriteImpl;
+import org.openapitools.model.GithubOrganization;
 import org.openapitools.model.GithubScm;
 import org.openapitools.model.MultibranchPipeline;
 import org.openapitools.model.Organisation;
-import org.openapitools.model.Organisations;
 import org.openapitools.model.Pipeline;
-import org.openapitools.model.PipelineActivities;
+import org.openapitools.model.PipelineActivity;
 import org.openapitools.model.PipelineFolderImpl;
 import org.openapitools.model.PipelineImpl;
-import org.openapitools.model.PipelineQueue;
 import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
-import org.openapitools.model.PipelineRunNodeSteps;
-import org.openapitools.model.PipelineRunNodes;
-import org.openapitools.model.PipelineRuns;
 import org.openapitools.model.PipelineStepImpl;
-import org.openapitools.model.Pipelines;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.ScmOrganisations;
+import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
-import org.openapitools.model.UserFavorites;
 
 import java.util.List;
 import org.openapitools.api.NotFoundException;
@@ -38,7 +31,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class BlueApiServiceImpl implements BlueApiService {
       public Response deletePipelineQueueItem(String organization,String pipeline,String queue,SecurityContext securityContext)
       throws NotFoundException {
@@ -195,7 +188,7 @@ public class BlueApiServiceImpl implements BlueApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response putPipelineFavorite(String organization,String pipeline,Body body,SecurityContext securityContext)
+      public Response putPipelineFavorite(String organization,String pipeline,UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

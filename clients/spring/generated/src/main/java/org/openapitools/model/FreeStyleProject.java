@@ -1,108 +1,115 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
 import org.openapitools.model.FreeStyleProjecthealthReport;
 import org.openapitools.model.NullSCM;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * FreeStyleProject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class FreeStyleProject   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("url")
-  private String url = null;
+  private String url;
 
   @JsonProperty("color")
-  private String color = null;
+  private String color;
 
   @JsonProperty("actions")
   @Valid
   private List<FreeStyleProjectactions> actions = null;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("displayNameOrNull")
-  private String displayNameOrNull = null;
+  private String displayNameOrNull;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("buildable")
-  private Boolean buildable = null;
+  private Boolean buildable;
 
   @JsonProperty("builds")
   @Valid
   private List<FreeStyleBuild> builds = null;
 
   @JsonProperty("firstBuild")
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
 
   @JsonProperty("healthReport")
   @Valid
   private List<FreeStyleProjecthealthReport> healthReport = null;
 
   @JsonProperty("inQueue")
-  private Boolean inQueue = null;
+  private Boolean inQueue;
 
   @JsonProperty("keepDependencies")
-  private Boolean keepDependencies = null;
+  private Boolean keepDependencies;
 
   @JsonProperty("lastBuild")
-  private FreeStyleBuild lastBuild = null;
+  private FreeStyleBuild lastBuild;
 
   @JsonProperty("lastCompletedBuild")
-  private FreeStyleBuild lastCompletedBuild = null;
+  private FreeStyleBuild lastCompletedBuild;
 
   @JsonProperty("lastFailedBuild")
-  private String lastFailedBuild = null;
+  private String lastFailedBuild;
 
   @JsonProperty("lastStableBuild")
-  private FreeStyleBuild lastStableBuild = null;
+  private FreeStyleBuild lastStableBuild;
 
   @JsonProperty("lastSuccessfulBuild")
-  private FreeStyleBuild lastSuccessfulBuild = null;
+  private FreeStyleBuild lastSuccessfulBuild;
 
   @JsonProperty("lastUnstableBuild")
-  private String lastUnstableBuild = null;
+  private String lastUnstableBuild;
 
   @JsonProperty("lastUnsuccessfulBuild")
-  private String lastUnsuccessfulBuild = null;
+  private String lastUnsuccessfulBuild;
 
   @JsonProperty("nextBuildNumber")
-  private Integer nextBuildNumber = null;
+  private Integer nextBuildNumber;
 
   @JsonProperty("queueItem")
-  private String queueItem = null;
+  private String queueItem;
 
   @JsonProperty("concurrentBuild")
-  private Boolean concurrentBuild = null;
+  private Boolean concurrentBuild;
 
   @JsonProperty("scm")
-  private NullSCM scm = null;
+  private NullSCM scm;
 
   public FreeStyleProject propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -112,10 +119,9 @@ public class FreeStyleProject   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -132,10 +138,9 @@ public class FreeStyleProject   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -152,10 +157,9 @@ public class FreeStyleProject   {
   /**
    * Get url
    * @return url
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "url", required = false)
   public String getUrl() {
     return url;
   }
@@ -172,10 +176,9 @@ public class FreeStyleProject   {
   /**
    * Get color
    * @return color
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "color", required = false)
   public String getColor() {
     return color;
   }
@@ -200,11 +203,9 @@ public class FreeStyleProject   {
   /**
    * Get actions
    * @return actions
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "actions", required = false)
   public List<FreeStyleProjectactions> getActions() {
     return actions;
   }
@@ -221,10 +222,9 @@ public class FreeStyleProject   {
   /**
    * Get description
    * @return description
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "description", required = false)
   public String getDescription() {
     return description;
   }
@@ -241,10 +241,9 @@ public class FreeStyleProject   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -261,10 +260,9 @@ public class FreeStyleProject   {
   /**
    * Get displayNameOrNull
    * @return displayNameOrNull
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayNameOrNull", required = false)
   public String getDisplayNameOrNull() {
     return displayNameOrNull;
   }
@@ -281,10 +279,9 @@ public class FreeStyleProject   {
   /**
    * Get fullDisplayName
    * @return fullDisplayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullDisplayName", required = false)
   public String getFullDisplayName() {
     return fullDisplayName;
   }
@@ -301,10 +298,9 @@ public class FreeStyleProject   {
   /**
    * Get fullName
    * @return fullName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullName", required = false)
   public String getFullName() {
     return fullName;
   }
@@ -321,10 +317,9 @@ public class FreeStyleProject   {
   /**
    * Get buildable
    * @return buildable
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "buildable", required = false)
   public Boolean getBuildable() {
     return buildable;
   }
@@ -349,11 +344,9 @@ public class FreeStyleProject   {
   /**
    * Get builds
    * @return builds
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "builds", required = false)
   public List<FreeStyleBuild> getBuilds() {
     return builds;
   }
@@ -370,11 +363,9 @@ public class FreeStyleProject   {
   /**
    * Get firstBuild
    * @return firstBuild
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "firstBuild", required = false)
   public FreeStyleBuild getFirstBuild() {
     return firstBuild;
   }
@@ -399,11 +390,9 @@ public class FreeStyleProject   {
   /**
    * Get healthReport
    * @return healthReport
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "healthReport", required = false)
   public List<FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
@@ -420,10 +409,9 @@ public class FreeStyleProject   {
   /**
    * Get inQueue
    * @return inQueue
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "inQueue", required = false)
   public Boolean getInQueue() {
     return inQueue;
   }
@@ -440,10 +428,9 @@ public class FreeStyleProject   {
   /**
    * Get keepDependencies
    * @return keepDependencies
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "keepDependencies", required = false)
   public Boolean getKeepDependencies() {
     return keepDependencies;
   }
@@ -460,11 +447,9 @@ public class FreeStyleProject   {
   /**
    * Get lastBuild
    * @return lastBuild
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "lastBuild", required = false)
   public FreeStyleBuild getLastBuild() {
     return lastBuild;
   }
@@ -481,11 +466,9 @@ public class FreeStyleProject   {
   /**
    * Get lastCompletedBuild
    * @return lastCompletedBuild
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "lastCompletedBuild", required = false)
   public FreeStyleBuild getLastCompletedBuild() {
     return lastCompletedBuild;
   }
@@ -502,10 +485,9 @@ public class FreeStyleProject   {
   /**
    * Get lastFailedBuild
    * @return lastFailedBuild
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "lastFailedBuild", required = false)
   public String getLastFailedBuild() {
     return lastFailedBuild;
   }
@@ -522,11 +504,9 @@ public class FreeStyleProject   {
   /**
    * Get lastStableBuild
    * @return lastStableBuild
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "lastStableBuild", required = false)
   public FreeStyleBuild getLastStableBuild() {
     return lastStableBuild;
   }
@@ -543,11 +523,9 @@ public class FreeStyleProject   {
   /**
    * Get lastSuccessfulBuild
    * @return lastSuccessfulBuild
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "lastSuccessfulBuild", required = false)
   public FreeStyleBuild getLastSuccessfulBuild() {
     return lastSuccessfulBuild;
   }
@@ -564,10 +542,9 @@ public class FreeStyleProject   {
   /**
    * Get lastUnstableBuild
    * @return lastUnstableBuild
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "lastUnstableBuild", required = false)
   public String getLastUnstableBuild() {
     return lastUnstableBuild;
   }
@@ -584,10 +561,9 @@ public class FreeStyleProject   {
   /**
    * Get lastUnsuccessfulBuild
    * @return lastUnsuccessfulBuild
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "lastUnsuccessfulBuild", required = false)
   public String getLastUnsuccessfulBuild() {
     return lastUnsuccessfulBuild;
   }
@@ -604,10 +580,9 @@ public class FreeStyleProject   {
   /**
    * Get nextBuildNumber
    * @return nextBuildNumber
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "nextBuildNumber", required = false)
   public Integer getNextBuildNumber() {
     return nextBuildNumber;
   }
@@ -624,10 +599,9 @@ public class FreeStyleProject   {
   /**
    * Get queueItem
    * @return queueItem
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "queueItem", required = false)
   public String getQueueItem() {
     return queueItem;
   }
@@ -644,10 +618,9 @@ public class FreeStyleProject   {
   /**
    * Get concurrentBuild
    * @return concurrentBuild
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "concurrentBuild", required = false)
   public Boolean getConcurrentBuild() {
     return concurrentBuild;
   }
@@ -664,11 +637,9 @@ public class FreeStyleProject   {
   /**
    * Get scm
    * @return scm
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "scm", required = false)
   public NullSCM getScm() {
     return scm;
   }
@@ -677,9 +648,8 @@ public class FreeStyleProject   {
     this.scm = scm;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -725,7 +695,6 @@ public class FreeStyleProject   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FreeStyleProject {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
@@ -761,7 +730,7 @@ public class FreeStyleProject   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

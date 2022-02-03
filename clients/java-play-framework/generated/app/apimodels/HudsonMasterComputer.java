@@ -13,57 +13,75 @@ import javax.validation.constraints.*;
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class HudsonMasterComputer   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("executors")
+  @Valid
+
   private List<HudsonMasterComputerexecutors> executors = null;
 
   @JsonProperty("icon")
-  private String icon = null;
+  
+  private String icon;
 
   @JsonProperty("iconClassName")
-  private String iconClassName = null;
+  
+  private String iconClassName;
 
   @JsonProperty("idle")
-  private Boolean idle = null;
+  
+  private Boolean idle;
 
   @JsonProperty("jnlpAgent")
-  private Boolean jnlpAgent = null;
+  
+  private Boolean jnlpAgent;
 
   @JsonProperty("launchSupported")
-  private Boolean launchSupported = null;
+  
+  private Boolean launchSupported;
 
   @JsonProperty("loadStatistics")
-  private Label1 loadStatistics = null;
+  @Valid
+
+  private Label1 loadStatistics;
 
   @JsonProperty("manualLaunchAllowed")
-  private Boolean manualLaunchAllowed = null;
+  
+  private Boolean manualLaunchAllowed;
 
   @JsonProperty("monitorData")
-  private HudsonMasterComputermonitorData monitorData = null;
+  @Valid
+
+  private HudsonMasterComputermonitorData monitorData;
 
   @JsonProperty("numExecutors")
-  private Integer numExecutors = null;
+  
+  private Integer numExecutors;
 
   @JsonProperty("offline")
-  private Boolean offline = null;
+  
+  private Boolean offline;
 
   @JsonProperty("offlineCause")
-  private String offlineCause = null;
+  
+  private String offlineCause;
 
   @JsonProperty("offlineCauseReason")
-  private String offlineCauseReason = null;
+  
+  private String offlineCauseReason;
 
   @JsonProperty("temporarilyOffline")
-  private Boolean temporarilyOffline = null;
+  
+  private Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -74,7 +92,7 @@ public class HudsonMasterComputer   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -91,7 +109,7 @@ public class HudsonMasterComputer   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -116,7 +134,6 @@ public class HudsonMasterComputer   {
    * Get executors
    * @return executors
   **/
-  @Valid
   public List<HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
@@ -134,7 +151,7 @@ public class HudsonMasterComputer   {
    * Get icon
    * @return icon
   **/
-    public String getIcon() {
+  public String getIcon() {
     return icon;
   }
 
@@ -151,7 +168,7 @@ public class HudsonMasterComputer   {
    * Get iconClassName
    * @return iconClassName
   **/
-    public String getIconClassName() {
+  public String getIconClassName() {
     return iconClassName;
   }
 
@@ -168,7 +185,7 @@ public class HudsonMasterComputer   {
    * Get idle
    * @return idle
   **/
-    public Boolean getIdle() {
+  public Boolean getIdle() {
     return idle;
   }
 
@@ -185,7 +202,7 @@ public class HudsonMasterComputer   {
    * Get jnlpAgent
    * @return jnlpAgent
   **/
-    public Boolean getJnlpAgent() {
+  public Boolean getJnlpAgent() {
     return jnlpAgent;
   }
 
@@ -202,7 +219,7 @@ public class HudsonMasterComputer   {
    * Get launchSupported
    * @return launchSupported
   **/
-    public Boolean getLaunchSupported() {
+  public Boolean getLaunchSupported() {
     return launchSupported;
   }
 
@@ -219,7 +236,6 @@ public class HudsonMasterComputer   {
    * Get loadStatistics
    * @return loadStatistics
   **/
-  @Valid
   public Label1 getLoadStatistics() {
     return loadStatistics;
   }
@@ -237,7 +253,7 @@ public class HudsonMasterComputer   {
    * Get manualLaunchAllowed
    * @return manualLaunchAllowed
   **/
-    public Boolean getManualLaunchAllowed() {
+  public Boolean getManualLaunchAllowed() {
     return manualLaunchAllowed;
   }
 
@@ -254,7 +270,6 @@ public class HudsonMasterComputer   {
    * Get monitorData
    * @return monitorData
   **/
-  @Valid
   public HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
   }
@@ -272,7 +287,7 @@ public class HudsonMasterComputer   {
    * Get numExecutors
    * @return numExecutors
   **/
-    public Integer getNumExecutors() {
+  public Integer getNumExecutors() {
     return numExecutors;
   }
 
@@ -289,7 +304,7 @@ public class HudsonMasterComputer   {
    * Get offline
    * @return offline
   **/
-    public Boolean getOffline() {
+  public Boolean getOffline() {
     return offline;
   }
 
@@ -306,7 +321,7 @@ public class HudsonMasterComputer   {
    * Get offlineCause
    * @return offlineCause
   **/
-    public String getOfflineCause() {
+  public String getOfflineCause() {
     return offlineCause;
   }
 
@@ -323,7 +338,7 @@ public class HudsonMasterComputer   {
    * Get offlineCauseReason
    * @return offlineCauseReason
   **/
-    public String getOfflineCauseReason() {
+  public String getOfflineCauseReason() {
     return offlineCauseReason;
   }
 
@@ -340,7 +355,7 @@ public class HudsonMasterComputer   {
    * Get temporarilyOffline
    * @return temporarilyOffline
   **/
-    public Boolean getTemporarilyOffline() {
+  public Boolean getTemporarilyOffline() {
     return temporarilyOffline;
   }
 
@@ -350,7 +365,7 @@ public class HudsonMasterComputer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -411,7 +426,7 @@ public class HudsonMasterComputer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -1,10 +1,10 @@
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE DeriveDataTypeable         #-}
+{-# LANGUAGE DeriveGeneric              #-}
 {-# OPTIONS_GHC -fno-warn-unused-binds -fno-warn-unused-imports #-}
 
 module SwaggyJenkins.Types (
   AllView (..),
-  Body (..),
   BranchImpl (..),
   BranchImpllinks (..),
   BranchImplpermissions (..),
@@ -54,12 +54,9 @@ module SwaggyJenkins.Types (
   MultibranchPipeline (..),
   NullSCM (..),
   Organisation (..),
-  Organisations (..),
   Pipeline (..),
-  PipelineActivities (..),
   PipelineActivity (..),
   PipelineActivityartifacts (..),
-  PipelineBranches (..),
   PipelineBranchesitem (..),
   PipelineBranchesitemlatestRun (..),
   PipelineBranchesitempullRequest (..),
@@ -67,42 +64,40 @@ module SwaggyJenkins.Types (
   PipelineFolderImpl (..),
   PipelineImpl (..),
   PipelineImpllinks (..),
-  PipelineQueue (..),
   PipelineRun (..),
   PipelineRunImpl (..),
   PipelineRunImpllinks (..),
   PipelineRunNode (..),
-  PipelineRunNodeSteps (..),
   PipelineRunNodeedges (..),
-  PipelineRunNodes (..),
-  PipelineRunSteps (..),
   PipelineRunartifacts (..),
-  PipelineRuns (..),
   PipelineStepImpl (..),
   PipelineStepImpllinks (..),
   PipelinelatestRun (..),
   PipelinelatestRunartifacts (..),
-  Pipelines (..),
   Queue (..),
   QueueBlockedItem (..),
   QueueItemImpl (..),
   QueueLeftItem (..),
   ResponseTimeMonitorData (..),
-  ScmOrganisations (..),
   StringParameterDefinition (..),
   StringParameterValue (..),
   SwapSpaceMonitorMemoryUsage2 (..),
   UnlabeledLoadStatistics (..),
   User (..),
-  UserFavorites (..),
-  Users (..),
   ) where
 
+import Data.Data (Data)
+import Data.UUID (UUID)
 import Data.List (stripPrefix)
 import Data.Maybe (fromMaybe)
 import Data.Aeson (Value, FromJSON(..), ToJSON(..), genericToJSON, genericParseJSON)
 import Data.Aeson.Types (Options(..), defaultOptions)
+import Data.Set (Set)
 import Data.Text (Text)
+import Data.Time
+import Data.Swagger (ToSchema, declareNamedSchema)
+import qualified Data.Swagger as Swagger
+import qualified Data.Char as Char
 import qualified Data.Text as T
 import qualified Data.Map as Map
 import GHC.Generics (Generic)
@@ -111,1257 +106,1609 @@ import Data.Function ((&))
 
 -- | 
 data AllView = AllView
-  { allViewUnderscoreclass :: Text -- ^ 
-  , allViewName :: Text -- ^ 
-  , allViewUrl :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { allViewUnderscoreclass :: Maybe Text -- ^ 
+  , allViewName :: Maybe Text -- ^ 
+  , allViewUrl :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON AllView where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "allView")
 instance ToJSON AllView where
   toJSON = genericToJSON (removeFieldLabelPrefix False "allView")
+instance ToSchema AllView where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "allView"
 
--- | 
-data Body = Body
-  { bodyFavorite :: Bool -- ^ 
-  } deriving (Show, Eq, Generic)
-
-instance FromJSON Body where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "body")
-instance ToJSON Body where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "body")
 
 -- | 
 data BranchImpl = BranchImpl
-  { branchImplUnderscoreclass :: Text -- ^ 
-  , branchImplDisplayName :: Text -- ^ 
-  , branchImplEstimatedDurationInMillis :: Int -- ^ 
-  , branchImplFullDisplayName :: Text -- ^ 
-  , branchImplFullName :: Text -- ^ 
-  , branchImplName :: Text -- ^ 
-  , branchImplOrganization :: Text -- ^ 
-  , branchImplParameters :: [StringParameterDefinition] -- ^ 
-  , branchImplPermissions :: BranchImplpermissions -- ^ 
-  , branchImplWeatherScore :: Int -- ^ 
-  , branchImplPullRequest :: Text -- ^ 
-  , branchImplUnderscorelinks :: BranchImpllinks -- ^ 
-  , branchImplLatestRun :: PipelineRunImpl -- ^ 
-  } deriving (Show, Eq, Generic)
+  { branchImplUnderscoreclass :: Maybe Text -- ^ 
+  , branchImplDisplayName :: Maybe Text -- ^ 
+  , branchImplEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , branchImplFullDisplayName :: Maybe Text -- ^ 
+  , branchImplFullName :: Maybe Text -- ^ 
+  , branchImplName :: Maybe Text -- ^ 
+  , branchImplOrganization :: Maybe Text -- ^ 
+  , branchImplParameters :: Maybe [StringParameterDefinition] -- ^ 
+  , branchImplPermissions :: Maybe BranchImplpermissions -- ^ 
+  , branchImplWeatherScore :: Maybe Int -- ^ 
+  , branchImplPullRequest :: Maybe Text -- ^ 
+  , branchImplUnderscorelinks :: Maybe BranchImpllinks -- ^ 
+  , branchImplLatestRun :: Maybe PipelineRunImpl -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON BranchImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "branchImpl")
 instance ToJSON BranchImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "branchImpl")
+instance ToSchema BranchImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "branchImpl"
+
 
 -- | 
 data BranchImpllinks = BranchImpllinks
-  { branchImpllinksSelf :: Link -- ^ 
-  , branchImpllinksActions :: Link -- ^ 
-  , branchImpllinksRuns :: Link -- ^ 
-  , branchImpllinksQueue :: Link -- ^ 
-  , branchImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { branchImpllinksSelf :: Maybe Link -- ^ 
+  , branchImpllinksActions :: Maybe Link -- ^ 
+  , branchImpllinksRuns :: Maybe Link -- ^ 
+  , branchImpllinksQueue :: Maybe Link -- ^ 
+  , branchImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON BranchImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "branchImpllinks")
 instance ToJSON BranchImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "branchImpllinks")
+instance ToSchema BranchImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "branchImpllinks"
+
 
 -- | 
 data BranchImplpermissions = BranchImplpermissions
-  { branchImplpermissionsCreate :: Bool -- ^ 
-  , branchImplpermissionsRead :: Bool -- ^ 
-  , branchImplpermissionsStart :: Bool -- ^ 
-  , branchImplpermissionsStop :: Bool -- ^ 
-  , branchImplpermissionsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { branchImplpermissionsCreate :: Maybe Bool -- ^ 
+  , branchImplpermissionsRead :: Maybe Bool -- ^ 
+  , branchImplpermissionsStart :: Maybe Bool -- ^ 
+  , branchImplpermissionsStop :: Maybe Bool -- ^ 
+  , branchImplpermissionsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON BranchImplpermissions where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "branchImplpermissions")
 instance ToJSON BranchImplpermissions where
   toJSON = genericToJSON (removeFieldLabelPrefix False "branchImplpermissions")
+instance ToSchema BranchImplpermissions where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "branchImplpermissions"
+
 
 -- | 
 data CauseAction = CauseAction
-  { causeActionUnderscoreclass :: Text -- ^ 
-  , causeActionCauses :: [CauseUserIdCause] -- ^ 
-  } deriving (Show, Eq, Generic)
+  { causeActionUnderscoreclass :: Maybe Text -- ^ 
+  , causeActionCauses :: Maybe [CauseUserIdCause] -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON CauseAction where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "causeAction")
 instance ToJSON CauseAction where
   toJSON = genericToJSON (removeFieldLabelPrefix False "causeAction")
+instance ToSchema CauseAction where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "causeAction"
+
 
 -- | 
 data CauseUserIdCause = CauseUserIdCause
-  { causeUserIdCauseUnderscoreclass :: Text -- ^ 
-  , causeUserIdCauseShortDescription :: Text -- ^ 
-  , causeUserIdCauseUserId :: Text -- ^ 
-  , causeUserIdCauseUserName :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { causeUserIdCauseUnderscoreclass :: Maybe Text -- ^ 
+  , causeUserIdCauseShortDescription :: Maybe Text -- ^ 
+  , causeUserIdCauseUserId :: Maybe Text -- ^ 
+  , causeUserIdCauseUserName :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON CauseUserIdCause where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "causeUserIdCause")
 instance ToJSON CauseUserIdCause where
   toJSON = genericToJSON (removeFieldLabelPrefix False "causeUserIdCause")
+instance ToSchema CauseUserIdCause where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "causeUserIdCause"
+
 
 -- | 
 data ClassesByClass = ClassesByClass
-  { classesByClassClasses :: [Text] -- ^ 
-  , classesByClassUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { classesByClassClasses :: Maybe [Text] -- ^ 
+  , classesByClassUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ClassesByClass where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "classesByClass")
 instance ToJSON ClassesByClass where
   toJSON = genericToJSON (removeFieldLabelPrefix False "classesByClass")
+instance ToSchema ClassesByClass where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "classesByClass"
+
 
 -- | 
 data ClockDifference = ClockDifference
-  { clockDifferenceUnderscoreclass :: Text -- ^ 
-  , clockDifferenceDiff :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { clockDifferenceUnderscoreclass :: Maybe Text -- ^ 
+  , clockDifferenceDiff :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ClockDifference where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "clockDifference")
 instance ToJSON ClockDifference where
   toJSON = genericToJSON (removeFieldLabelPrefix False "clockDifference")
+instance ToSchema ClockDifference where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "clockDifference"
+
 
 -- | 
 data ComputerSet = ComputerSet
-  { computerSetUnderscoreclass :: Text -- ^ 
-  , computerSetBusyExecutors :: Int -- ^ 
-  , computerSetComputer :: [HudsonMasterComputer] -- ^ 
-  , computerSetDisplayName :: Text -- ^ 
-  , computerSetTotalExecutors :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { computerSetUnderscoreclass :: Maybe Text -- ^ 
+  , computerSetBusyExecutors :: Maybe Int -- ^ 
+  , computerSetComputer :: Maybe [HudsonMasterComputer] -- ^ 
+  , computerSetDisplayName :: Maybe Text -- ^ 
+  , computerSetTotalExecutors :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ComputerSet where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "computerSet")
 instance ToJSON ComputerSet where
   toJSON = genericToJSON (removeFieldLabelPrefix False "computerSet")
+instance ToSchema ComputerSet where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "computerSet"
+
 
 -- | 
 data DefaultCrumbIssuer = DefaultCrumbIssuer
-  { defaultCrumbIssuerUnderscoreclass :: Text -- ^ 
-  , defaultCrumbIssuerCrumb :: Text -- ^ 
-  , defaultCrumbIssuerCrumbRequestField :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { defaultCrumbIssuerUnderscoreclass :: Maybe Text -- ^ 
+  , defaultCrumbIssuerCrumb :: Maybe Text -- ^ 
+  , defaultCrumbIssuerCrumbRequestField :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON DefaultCrumbIssuer where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "defaultCrumbIssuer")
 instance ToJSON DefaultCrumbIssuer where
   toJSON = genericToJSON (removeFieldLabelPrefix False "defaultCrumbIssuer")
+instance ToSchema DefaultCrumbIssuer where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "defaultCrumbIssuer"
+
 
 -- | 
 data DiskSpaceMonitorDescriptorDiskSpace = DiskSpaceMonitorDescriptorDiskSpace
-  { diskSpaceMonitorDescriptorDiskSpaceUnderscoreclass :: Text -- ^ 
-  , diskSpaceMonitorDescriptorDiskSpaceTimestamp :: Int -- ^ 
-  , diskSpaceMonitorDescriptorDiskSpacePath :: Text -- ^ 
-  , diskSpaceMonitorDescriptorDiskSpaceSize :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { diskSpaceMonitorDescriptorDiskSpaceUnderscoreclass :: Maybe Text -- ^ 
+  , diskSpaceMonitorDescriptorDiskSpaceTimestamp :: Maybe Int -- ^ 
+  , diskSpaceMonitorDescriptorDiskSpacePath :: Maybe Text -- ^ 
+  , diskSpaceMonitorDescriptorDiskSpaceSize :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON DiskSpaceMonitorDescriptorDiskSpace where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "diskSpaceMonitorDescriptorDiskSpace")
 instance ToJSON DiskSpaceMonitorDescriptorDiskSpace where
   toJSON = genericToJSON (removeFieldLabelPrefix False "diskSpaceMonitorDescriptorDiskSpace")
+instance ToSchema DiskSpaceMonitorDescriptorDiskSpace where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "diskSpaceMonitorDescriptorDiskSpace"
+
 
 -- | 
 data EmptyChangeLogSet = EmptyChangeLogSet
-  { emptyChangeLogSetUnderscoreclass :: Text -- ^ 
-  , emptyChangeLogSetKind :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { emptyChangeLogSetUnderscoreclass :: Maybe Text -- ^ 
+  , emptyChangeLogSetKind :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON EmptyChangeLogSet where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "emptyChangeLogSet")
 instance ToJSON EmptyChangeLogSet where
   toJSON = genericToJSON (removeFieldLabelPrefix False "emptyChangeLogSet")
+instance ToSchema EmptyChangeLogSet where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "emptyChangeLogSet"
+
 
 -- | 
 data ExtensionClassContainerImpl1 = ExtensionClassContainerImpl1
-  { extensionClassContainerImpl1Underscoreclass :: Text -- ^ 
-  , extensionClassContainerImpl1Underscorelinks :: ExtensionClassContainerImpl1links -- ^ 
-  , extensionClassContainerImpl1Map :: ExtensionClassContainerImpl1map -- ^ 
-  } deriving (Show, Eq, Generic)
+  { extensionClassContainerImpl1Underscoreclass :: Maybe Text -- ^ 
+  , extensionClassContainerImpl1Underscorelinks :: Maybe ExtensionClassContainerImpl1links -- ^ 
+  , extensionClassContainerImpl1Map :: Maybe ExtensionClassContainerImpl1map -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ExtensionClassContainerImpl1 where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassContainerImpl1")
 instance ToJSON ExtensionClassContainerImpl1 where
   toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassContainerImpl1")
+instance ToSchema ExtensionClassContainerImpl1 where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "extensionClassContainerImpl1"
+
 
 -- | 
 data ExtensionClassContainerImpl1links = ExtensionClassContainerImpl1links
-  { extensionClassContainerImpl1linksSelf :: Link -- ^ 
-  , extensionClassContainerImpl1linksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { extensionClassContainerImpl1linksSelf :: Maybe Link -- ^ 
+  , extensionClassContainerImpl1linksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ExtensionClassContainerImpl1links where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassContainerImpl1links")
 instance ToJSON ExtensionClassContainerImpl1links where
   toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassContainerImpl1links")
+instance ToSchema ExtensionClassContainerImpl1links where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "extensionClassContainerImpl1links"
+
 
 -- | 
 data ExtensionClassContainerImpl1map = ExtensionClassContainerImpl1map
-  { extensionClassContainerImpl1mapIoPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodPipelineImpl :: ExtensionClassImpl -- ^ 
-  , extensionClassContainerImpl1mapIoPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodMultiBranchPipelineImpl :: ExtensionClassImpl -- ^ 
-  , extensionClassContainerImpl1mapUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { extensionClassContainerImpl1mapIoPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodPipelineImpl :: Maybe ExtensionClassImpl -- ^ 
+  , extensionClassContainerImpl1mapIoPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodMultiBranchPipelineImpl :: Maybe ExtensionClassImpl -- ^ 
+  , extensionClassContainerImpl1mapUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ExtensionClassContainerImpl1map where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassContainerImpl1map")
 instance ToJSON ExtensionClassContainerImpl1map where
   toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassContainerImpl1map")
+instance ToSchema ExtensionClassContainerImpl1map where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "extensionClassContainerImpl1map"
+
 
 -- | 
 data ExtensionClassImpl = ExtensionClassImpl
-  { extensionClassImplUnderscoreclass :: Text -- ^ 
-  , extensionClassImplUnderscorelinks :: ExtensionClassImpllinks -- ^ 
-  , extensionClassImplClasses :: [Text] -- ^ 
-  } deriving (Show, Eq, Generic)
+  { extensionClassImplUnderscoreclass :: Maybe Text -- ^ 
+  , extensionClassImplUnderscorelinks :: Maybe ExtensionClassImpllinks -- ^ 
+  , extensionClassImplClasses :: Maybe [Text] -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ExtensionClassImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassImpl")
 instance ToJSON ExtensionClassImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassImpl")
+instance ToSchema ExtensionClassImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "extensionClassImpl"
+
 
 -- | 
 data ExtensionClassImpllinks = ExtensionClassImpllinks
-  { extensionClassImpllinksSelf :: Link -- ^ 
-  , extensionClassImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { extensionClassImpllinksSelf :: Maybe Link -- ^ 
+  , extensionClassImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ExtensionClassImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassImpllinks")
 instance ToJSON ExtensionClassImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassImpllinks")
+instance ToSchema ExtensionClassImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "extensionClassImpllinks"
+
 
 -- | 
 data FavoriteImpl = FavoriteImpl
-  { favoriteImplUnderscoreclass :: Text -- ^ 
-  , favoriteImplUnderscorelinks :: FavoriteImpllinks -- ^ 
-  , favoriteImplItem :: PipelineImpl -- ^ 
-  } deriving (Show, Eq, Generic)
+  { favoriteImplUnderscoreclass :: Maybe Text -- ^ 
+  , favoriteImplUnderscorelinks :: Maybe FavoriteImpllinks -- ^ 
+  , favoriteImplItem :: Maybe PipelineImpl -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON FavoriteImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "favoriteImpl")
 instance ToJSON FavoriteImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "favoriteImpl")
+instance ToSchema FavoriteImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "favoriteImpl"
+
 
 -- | 
 data FavoriteImpllinks = FavoriteImpllinks
-  { favoriteImpllinksSelf :: Link -- ^ 
-  , favoriteImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { favoriteImpllinksSelf :: Maybe Link -- ^ 
+  , favoriteImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON FavoriteImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "favoriteImpllinks")
 instance ToJSON FavoriteImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "favoriteImpllinks")
+instance ToSchema FavoriteImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "favoriteImpllinks"
+
 
 -- | 
 data FreeStyleBuild = FreeStyleBuild
-  { freeStyleBuildUnderscoreclass :: Text -- ^ 
-  , freeStyleBuildNumber :: Int -- ^ 
-  , freeStyleBuildUrl :: Text -- ^ 
-  , freeStyleBuildActions :: [CauseAction] -- ^ 
-  , freeStyleBuildBuilding :: Bool -- ^ 
-  , freeStyleBuildDescription :: Text -- ^ 
-  , freeStyleBuildDisplayName :: Text -- ^ 
-  , freeStyleBuildDuration :: Int -- ^ 
-  , freeStyleBuildEstimatedDuration :: Int -- ^ 
-  , freeStyleBuildExecutor :: Text -- ^ 
-  , freeStyleBuildFullDisplayName :: Text -- ^ 
-  , freeStyleBuildId :: Text -- ^ 
-  , freeStyleBuildKeepLog :: Bool -- ^ 
-  , freeStyleBuildQueueId :: Int -- ^ 
-  , freeStyleBuildResult :: Text -- ^ 
-  , freeStyleBuildTimestamp :: Int -- ^ 
-  , freeStyleBuildBuiltOn :: Text -- ^ 
-  , freeStyleBuildChangeSet :: EmptyChangeLogSet -- ^ 
-  } deriving (Show, Eq, Generic)
+  { freeStyleBuildUnderscoreclass :: Maybe Text -- ^ 
+  , freeStyleBuildNumber :: Maybe Int -- ^ 
+  , freeStyleBuildUrl :: Maybe Text -- ^ 
+  , freeStyleBuildActions :: Maybe [CauseAction] -- ^ 
+  , freeStyleBuildBuilding :: Maybe Bool -- ^ 
+  , freeStyleBuildDescription :: Maybe Text -- ^ 
+  , freeStyleBuildDisplayName :: Maybe Text -- ^ 
+  , freeStyleBuildDuration :: Maybe Int -- ^ 
+  , freeStyleBuildEstimatedDuration :: Maybe Int -- ^ 
+  , freeStyleBuildExecutor :: Maybe Text -- ^ 
+  , freeStyleBuildFullDisplayName :: Maybe Text -- ^ 
+  , freeStyleBuildId :: Maybe Text -- ^ 
+  , freeStyleBuildKeepLog :: Maybe Bool -- ^ 
+  , freeStyleBuildQueueId :: Maybe Int -- ^ 
+  , freeStyleBuildResult :: Maybe Text -- ^ 
+  , freeStyleBuildTimestamp :: Maybe Int -- ^ 
+  , freeStyleBuildBuiltOn :: Maybe Text -- ^ 
+  , freeStyleBuildChangeSet :: Maybe EmptyChangeLogSet -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON FreeStyleBuild where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleBuild")
 instance ToJSON FreeStyleBuild where
   toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleBuild")
+instance ToSchema FreeStyleBuild where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "freeStyleBuild"
+
 
 -- | 
 data FreeStyleProject = FreeStyleProject
-  { freeStyleProjectUnderscoreclass :: Text -- ^ 
-  , freeStyleProjectName :: Text -- ^ 
-  , freeStyleProjectUrl :: Text -- ^ 
-  , freeStyleProjectColor :: Text -- ^ 
-  , freeStyleProjectActions :: [FreeStyleProjectactions] -- ^ 
-  , freeStyleProjectDescription :: Text -- ^ 
-  , freeStyleProjectDisplayName :: Text -- ^ 
-  , freeStyleProjectDisplayNameOrNull :: Text -- ^ 
-  , freeStyleProjectFullDisplayName :: Text -- ^ 
-  , freeStyleProjectFullName :: Text -- ^ 
-  , freeStyleProjectBuildable :: Bool -- ^ 
-  , freeStyleProjectBuilds :: [FreeStyleBuild] -- ^ 
-  , freeStyleProjectFirstBuild :: FreeStyleBuild -- ^ 
-  , freeStyleProjectHealthReport :: [FreeStyleProjecthealthReport] -- ^ 
-  , freeStyleProjectInQueue :: Bool -- ^ 
-  , freeStyleProjectKeepDependencies :: Bool -- ^ 
-  , freeStyleProjectLastBuild :: FreeStyleBuild -- ^ 
-  , freeStyleProjectLastCompletedBuild :: FreeStyleBuild -- ^ 
-  , freeStyleProjectLastFailedBuild :: Text -- ^ 
-  , freeStyleProjectLastStableBuild :: FreeStyleBuild -- ^ 
-  , freeStyleProjectLastSuccessfulBuild :: FreeStyleBuild -- ^ 
-  , freeStyleProjectLastUnstableBuild :: Text -- ^ 
-  , freeStyleProjectLastUnsuccessfulBuild :: Text -- ^ 
-  , freeStyleProjectNextBuildNumber :: Int -- ^ 
-  , freeStyleProjectQueueItem :: Text -- ^ 
-  , freeStyleProjectConcurrentBuild :: Bool -- ^ 
-  , freeStyleProjectScm :: NullSCM -- ^ 
-  } deriving (Show, Eq, Generic)
+  { freeStyleProjectUnderscoreclass :: Maybe Text -- ^ 
+  , freeStyleProjectName :: Maybe Text -- ^ 
+  , freeStyleProjectUrl :: Maybe Text -- ^ 
+  , freeStyleProjectColor :: Maybe Text -- ^ 
+  , freeStyleProjectActions :: Maybe [FreeStyleProjectactions] -- ^ 
+  , freeStyleProjectDescription :: Maybe Text -- ^ 
+  , freeStyleProjectDisplayName :: Maybe Text -- ^ 
+  , freeStyleProjectDisplayNameOrNull :: Maybe Text -- ^ 
+  , freeStyleProjectFullDisplayName :: Maybe Text -- ^ 
+  , freeStyleProjectFullName :: Maybe Text -- ^ 
+  , freeStyleProjectBuildable :: Maybe Bool -- ^ 
+  , freeStyleProjectBuilds :: Maybe [FreeStyleBuild] -- ^ 
+  , freeStyleProjectFirstBuild :: Maybe FreeStyleBuild -- ^ 
+  , freeStyleProjectHealthReport :: Maybe [FreeStyleProjecthealthReport] -- ^ 
+  , freeStyleProjectInQueue :: Maybe Bool -- ^ 
+  , freeStyleProjectKeepDependencies :: Maybe Bool -- ^ 
+  , freeStyleProjectLastBuild :: Maybe FreeStyleBuild -- ^ 
+  , freeStyleProjectLastCompletedBuild :: Maybe FreeStyleBuild -- ^ 
+  , freeStyleProjectLastFailedBuild :: Maybe Text -- ^ 
+  , freeStyleProjectLastStableBuild :: Maybe FreeStyleBuild -- ^ 
+  , freeStyleProjectLastSuccessfulBuild :: Maybe FreeStyleBuild -- ^ 
+  , freeStyleProjectLastUnstableBuild :: Maybe Text -- ^ 
+  , freeStyleProjectLastUnsuccessfulBuild :: Maybe Text -- ^ 
+  , freeStyleProjectNextBuildNumber :: Maybe Int -- ^ 
+  , freeStyleProjectQueueItem :: Maybe Text -- ^ 
+  , freeStyleProjectConcurrentBuild :: Maybe Bool -- ^ 
+  , freeStyleProjectScm :: Maybe NullSCM -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON FreeStyleProject where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleProject")
 instance ToJSON FreeStyleProject where
   toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleProject")
+instance ToSchema FreeStyleProject where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "freeStyleProject"
+
 
 -- | 
 data FreeStyleProjectactions = FreeStyleProjectactions
-  { freeStyleProjectactionsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { freeStyleProjectactionsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON FreeStyleProjectactions where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleProjectactions")
 instance ToJSON FreeStyleProjectactions where
   toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleProjectactions")
+instance ToSchema FreeStyleProjectactions where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "freeStyleProjectactions"
+
 
 -- | 
 data FreeStyleProjecthealthReport = FreeStyleProjecthealthReport
-  { freeStyleProjecthealthReportDescription :: Text -- ^ 
-  , freeStyleProjecthealthReportIconClassName :: Text -- ^ 
-  , freeStyleProjecthealthReportIconUrl :: Text -- ^ 
-  , freeStyleProjecthealthReportScore :: Int -- ^ 
-  , freeStyleProjecthealthReportUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { freeStyleProjecthealthReportDescription :: Maybe Text -- ^ 
+  , freeStyleProjecthealthReportIconClassName :: Maybe Text -- ^ 
+  , freeStyleProjecthealthReportIconUrl :: Maybe Text -- ^ 
+  , freeStyleProjecthealthReportScore :: Maybe Int -- ^ 
+  , freeStyleProjecthealthReportUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON FreeStyleProjecthealthReport where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleProjecthealthReport")
 instance ToJSON FreeStyleProjecthealthReport where
   toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleProjecthealthReport")
+instance ToSchema FreeStyleProjecthealthReport where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "freeStyleProjecthealthReport"
+
 
 -- | 
 data GenericResource = GenericResource
-  { genericResourceUnderscoreclass :: Text -- ^ 
-  , genericResourceDisplayName :: Text -- ^ 
-  , genericResourceDurationInMillis :: Int -- ^ 
-  , genericResourceId :: Text -- ^ 
-  , genericResourceResult :: Text -- ^ 
-  , genericResourceStartTime :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { genericResourceUnderscoreclass :: Maybe Text -- ^ 
+  , genericResourceDisplayName :: Maybe Text -- ^ 
+  , genericResourceDurationInMillis :: Maybe Int -- ^ 
+  , genericResourceId :: Maybe Text -- ^ 
+  , genericResourceResult :: Maybe Text -- ^ 
+  , genericResourceStartTime :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GenericResource where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "genericResource")
 instance ToJSON GenericResource where
   toJSON = genericToJSON (removeFieldLabelPrefix False "genericResource")
+instance ToSchema GenericResource where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "genericResource"
+
 
 -- | 
 data GithubContent = GithubContent
-  { githubContentName :: Text -- ^ 
-  , githubContentSha :: Text -- ^ 
-  , githubContentUnderscoreclass :: Text -- ^ 
-  , githubContentRepo :: Text -- ^ 
-  , githubContentSize :: Int -- ^ 
-  , githubContentOwner :: Text -- ^ 
-  , githubContentPath :: Text -- ^ 
-  , githubContentBase64Data :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubContentName :: Maybe Text -- ^ 
+  , githubContentSha :: Maybe Text -- ^ 
+  , githubContentUnderscoreclass :: Maybe Text -- ^ 
+  , githubContentRepo :: Maybe Text -- ^ 
+  , githubContentSize :: Maybe Int -- ^ 
+  , githubContentOwner :: Maybe Text -- ^ 
+  , githubContentPath :: Maybe Text -- ^ 
+  , githubContentBase64Data :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubContent where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubContent")
 instance ToJSON GithubContent where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubContent")
+instance ToSchema GithubContent where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubContent"
+
 
 -- | 
 data GithubFile = GithubFile
-  { githubFileContent :: GithubContent -- ^ 
-  , githubFileUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubFileContent :: Maybe GithubContent -- ^ 
+  , githubFileUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubFile where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubFile")
 instance ToJSON GithubFile where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubFile")
+instance ToSchema GithubFile where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubFile"
+
 
 -- | 
 data GithubOrganization = GithubOrganization
-  { githubOrganizationUnderscoreclass :: Text -- ^ 
-  , githubOrganizationUnderscorelinks :: GithubOrganizationlinks -- ^ 
-  , githubOrganizationJenkinsOrganizationPipeline :: Bool -- ^ 
-  , githubOrganizationName :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubOrganizationUnderscoreclass :: Maybe Text -- ^ 
+  , githubOrganizationUnderscorelinks :: Maybe GithubOrganizationlinks -- ^ 
+  , githubOrganizationJenkinsOrganizationPipeline :: Maybe Bool -- ^ 
+  , githubOrganizationName :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubOrganization where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubOrganization")
 instance ToJSON GithubOrganization where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubOrganization")
+instance ToSchema GithubOrganization where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubOrganization"
+
 
 -- | 
 data GithubOrganizationlinks = GithubOrganizationlinks
-  { githubOrganizationlinksRepositories :: Link -- ^ 
-  , githubOrganizationlinksSelf :: Link -- ^ 
-  , githubOrganizationlinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubOrganizationlinksRepositories :: Maybe Link -- ^ 
+  , githubOrganizationlinksSelf :: Maybe Link -- ^ 
+  , githubOrganizationlinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubOrganizationlinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubOrganizationlinks")
 instance ToJSON GithubOrganizationlinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubOrganizationlinks")
+instance ToSchema GithubOrganizationlinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubOrganizationlinks"
+
 
 -- | 
 data GithubRepositories = GithubRepositories
-  { githubRepositoriesUnderscoreclass :: Text -- ^ 
-  , githubRepositoriesUnderscorelinks :: GithubRepositorieslinks -- ^ 
-  , githubRepositoriesItems :: [GithubRepository] -- ^ 
-  , githubRepositoriesLastPage :: Int -- ^ 
-  , githubRepositoriesNextPage :: Int -- ^ 
-  , githubRepositoriesPageSize :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRepositoriesUnderscoreclass :: Maybe Text -- ^ 
+  , githubRepositoriesUnderscorelinks :: Maybe GithubRepositorieslinks -- ^ 
+  , githubRepositoriesItems :: Maybe [GithubRepository] -- ^ 
+  , githubRepositoriesLastPage :: Maybe Int -- ^ 
+  , githubRepositoriesNextPage :: Maybe Int -- ^ 
+  , githubRepositoriesPageSize :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRepositories where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositories")
 instance ToJSON GithubRepositories where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositories")
+instance ToSchema GithubRepositories where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRepositories"
+
 
 -- | 
 data GithubRepositorieslinks = GithubRepositorieslinks
-  { githubRepositorieslinksSelf :: Link -- ^ 
-  , githubRepositorieslinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRepositorieslinksSelf :: Maybe Link -- ^ 
+  , githubRepositorieslinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRepositorieslinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositorieslinks")
 instance ToJSON GithubRepositorieslinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositorieslinks")
+instance ToSchema GithubRepositorieslinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRepositorieslinks"
+
 
 -- | 
 data GithubRepository = GithubRepository
-  { githubRepositoryUnderscoreclass :: Text -- ^ 
-  , githubRepositoryUnderscorelinks :: GithubRepositorylinks -- ^ 
-  , githubRepositoryDefaultBranch :: Text -- ^ 
-  , githubRepositoryDescription :: Text -- ^ 
-  , githubRepositoryName :: Text -- ^ 
-  , githubRepositoryPermissions :: GithubRepositorypermissions -- ^ 
-  , githubRepositoryPrivate :: Bool -- ^ 
-  , githubRepositoryFullName :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRepositoryUnderscoreclass :: Maybe Text -- ^ 
+  , githubRepositoryUnderscorelinks :: Maybe GithubRepositorylinks -- ^ 
+  , githubRepositoryDefaultBranch :: Maybe Text -- ^ 
+  , githubRepositoryDescription :: Maybe Text -- ^ 
+  , githubRepositoryName :: Maybe Text -- ^ 
+  , githubRepositoryPermissions :: Maybe GithubRepositorypermissions -- ^ 
+  , githubRepositoryPrivate :: Maybe Bool -- ^ 
+  , githubRepositoryFullName :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRepository where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepository")
 instance ToJSON GithubRepository where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepository")
+instance ToSchema GithubRepository where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRepository"
+
 
 -- | 
 data GithubRepositorylinks = GithubRepositorylinks
-  { githubRepositorylinksSelf :: Link -- ^ 
-  , githubRepositorylinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRepositorylinksSelf :: Maybe Link -- ^ 
+  , githubRepositorylinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRepositorylinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositorylinks")
 instance ToJSON GithubRepositorylinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositorylinks")
+instance ToSchema GithubRepositorylinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRepositorylinks"
+
 
 -- | 
 data GithubRepositorypermissions = GithubRepositorypermissions
-  { githubRepositorypermissionsAdmin :: Bool -- ^ 
-  , githubRepositorypermissionsPush :: Bool -- ^ 
-  , githubRepositorypermissionsPull :: Bool -- ^ 
-  , githubRepositorypermissionsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRepositorypermissionsAdmin :: Maybe Bool -- ^ 
+  , githubRepositorypermissionsPush :: Maybe Bool -- ^ 
+  , githubRepositorypermissionsPull :: Maybe Bool -- ^ 
+  , githubRepositorypermissionsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRepositorypermissions where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositorypermissions")
 instance ToJSON GithubRepositorypermissions where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositorypermissions")
+instance ToSchema GithubRepositorypermissions where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRepositorypermissions"
+
 
 -- | 
 data GithubRespositoryContainer = GithubRespositoryContainer
-  { githubRespositoryContainerUnderscoreclass :: Text -- ^ 
-  , githubRespositoryContainerUnderscorelinks :: GithubRespositoryContainerlinks -- ^ 
-  , githubRespositoryContainerRepositories :: GithubRepositories -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRespositoryContainerUnderscoreclass :: Maybe Text -- ^ 
+  , githubRespositoryContainerUnderscorelinks :: Maybe GithubRespositoryContainerlinks -- ^ 
+  , githubRespositoryContainerRepositories :: Maybe GithubRepositories -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRespositoryContainer where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRespositoryContainer")
 instance ToJSON GithubRespositoryContainer where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRespositoryContainer")
+instance ToSchema GithubRespositoryContainer where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRespositoryContainer"
+
 
 -- | 
 data GithubRespositoryContainerlinks = GithubRespositoryContainerlinks
-  { githubRespositoryContainerlinksSelf :: Link -- ^ 
-  , githubRespositoryContainerlinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubRespositoryContainerlinksSelf :: Maybe Link -- ^ 
+  , githubRespositoryContainerlinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubRespositoryContainerlinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRespositoryContainerlinks")
 instance ToJSON GithubRespositoryContainerlinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubRespositoryContainerlinks")
+instance ToSchema GithubRespositoryContainerlinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubRespositoryContainerlinks"
+
 
 -- | 
 data GithubScm = GithubScm
-  { githubScmUnderscoreclass :: Text -- ^ 
-  , githubScmUnderscorelinks :: GithubScmlinks -- ^ 
-  , githubScmCredentialId :: Text -- ^ 
-  , githubScmId :: Text -- ^ 
-  , githubScmUri :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubScmUnderscoreclass :: Maybe Text -- ^ 
+  , githubScmUnderscorelinks :: Maybe GithubScmlinks -- ^ 
+  , githubScmCredentialId :: Maybe Text -- ^ 
+  , githubScmId :: Maybe Text -- ^ 
+  , githubScmUri :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubScm where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubScm")
 instance ToJSON GithubScm where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubScm")
+instance ToSchema GithubScm where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubScm"
+
 
 -- | 
 data GithubScmlinks = GithubScmlinks
-  { githubScmlinksSelf :: Link -- ^ 
-  , githubScmlinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { githubScmlinksSelf :: Maybe Link -- ^ 
+  , githubScmlinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON GithubScmlinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubScmlinks")
 instance ToJSON GithubScmlinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "githubScmlinks")
+instance ToSchema GithubScmlinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "githubScmlinks"
+
 
 -- | 
 data Hudson = Hudson
-  { hudsonUnderscoreclass :: Text -- ^ 
-  , hudsonAssignedLabels :: [HudsonassignedLabels] -- ^ 
-  , hudsonMode :: Text -- ^ 
-  , hudsonNodeDescription :: Text -- ^ 
-  , hudsonNodeName :: Text -- ^ 
-  , hudsonNumExecutors :: Int -- ^ 
-  , hudsonDescription :: Text -- ^ 
-  , hudsonJobs :: [FreeStyleProject] -- ^ 
-  , hudsonPrimaryView :: AllView -- ^ 
-  , hudsonQuietingDown :: Bool -- ^ 
-  , hudsonSlaveAgentPort :: Int -- ^ 
-  , hudsonUnlabeledLoad :: UnlabeledLoadStatistics -- ^ 
-  , hudsonUseCrumbs :: Bool -- ^ 
-  , hudsonUseSecurity :: Bool -- ^ 
-  , hudsonViews :: [AllView] -- ^ 
-  } deriving (Show, Eq, Generic)
+  { hudsonUnderscoreclass :: Maybe Text -- ^ 
+  , hudsonAssignedLabels :: Maybe [HudsonassignedLabels] -- ^ 
+  , hudsonMode :: Maybe Text -- ^ 
+  , hudsonNodeDescription :: Maybe Text -- ^ 
+  , hudsonNodeName :: Maybe Text -- ^ 
+  , hudsonNumExecutors :: Maybe Int -- ^ 
+  , hudsonDescription :: Maybe Text -- ^ 
+  , hudsonJobs :: Maybe [FreeStyleProject] -- ^ 
+  , hudsonPrimaryView :: Maybe AllView -- ^ 
+  , hudsonQuietingDown :: Maybe Bool -- ^ 
+  , hudsonSlaveAgentPort :: Maybe Int -- ^ 
+  , hudsonUnlabeledLoad :: Maybe UnlabeledLoadStatistics -- ^ 
+  , hudsonUseCrumbs :: Maybe Bool -- ^ 
+  , hudsonUseSecurity :: Maybe Bool -- ^ 
+  , hudsonViews :: Maybe [AllView] -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON Hudson where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudson")
 instance ToJSON Hudson where
   toJSON = genericToJSON (removeFieldLabelPrefix False "hudson")
+instance ToSchema Hudson where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "hudson"
+
 
 -- | 
 data HudsonMasterComputer = HudsonMasterComputer
-  { hudsonMasterComputerUnderscoreclass :: Text -- ^ 
-  , hudsonMasterComputerDisplayName :: Text -- ^ 
-  , hudsonMasterComputerExecutors :: [HudsonMasterComputerexecutors] -- ^ 
-  , hudsonMasterComputerIcon :: Text -- ^ 
-  , hudsonMasterComputerIconClassName :: Text -- ^ 
-  , hudsonMasterComputerIdle :: Bool -- ^ 
-  , hudsonMasterComputerJnlpAgent :: Bool -- ^ 
-  , hudsonMasterComputerLaunchSupported :: Bool -- ^ 
-  , hudsonMasterComputerLoadStatistics :: Label1 -- ^ 
-  , hudsonMasterComputerManualLaunchAllowed :: Bool -- ^ 
-  , hudsonMasterComputerMonitorData :: HudsonMasterComputermonitorData -- ^ 
-  , hudsonMasterComputerNumExecutors :: Int -- ^ 
-  , hudsonMasterComputerOffline :: Bool -- ^ 
-  , hudsonMasterComputerOfflineCause :: Text -- ^ 
-  , hudsonMasterComputerOfflineCauseReason :: Text -- ^ 
-  , hudsonMasterComputerTemporarilyOffline :: Bool -- ^ 
-  } deriving (Show, Eq, Generic)
+  { hudsonMasterComputerUnderscoreclass :: Maybe Text -- ^ 
+  , hudsonMasterComputerDisplayName :: Maybe Text -- ^ 
+  , hudsonMasterComputerExecutors :: Maybe [HudsonMasterComputerexecutors] -- ^ 
+  , hudsonMasterComputerIcon :: Maybe Text -- ^ 
+  , hudsonMasterComputerIconClassName :: Maybe Text -- ^ 
+  , hudsonMasterComputerIdle :: Maybe Bool -- ^ 
+  , hudsonMasterComputerJnlpAgent :: Maybe Bool -- ^ 
+  , hudsonMasterComputerLaunchSupported :: Maybe Bool -- ^ 
+  , hudsonMasterComputerLoadStatistics :: Maybe Label1 -- ^ 
+  , hudsonMasterComputerManualLaunchAllowed :: Maybe Bool -- ^ 
+  , hudsonMasterComputerMonitorData :: Maybe HudsonMasterComputermonitorData -- ^ 
+  , hudsonMasterComputerNumExecutors :: Maybe Int -- ^ 
+  , hudsonMasterComputerOffline :: Maybe Bool -- ^ 
+  , hudsonMasterComputerOfflineCause :: Maybe Text -- ^ 
+  , hudsonMasterComputerOfflineCauseReason :: Maybe Text -- ^ 
+  , hudsonMasterComputerTemporarilyOffline :: Maybe Bool -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON HudsonMasterComputer where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonMasterComputer")
 instance ToJSON HudsonMasterComputer where
   toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonMasterComputer")
+instance ToSchema HudsonMasterComputer where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "hudsonMasterComputer"
+
 
 -- | 
 data HudsonMasterComputerexecutors = HudsonMasterComputerexecutors
-  { hudsonMasterComputerexecutorsCurrentExecutable :: FreeStyleBuild -- ^ 
-  , hudsonMasterComputerexecutorsIdle :: Bool -- ^ 
-  , hudsonMasterComputerexecutorsLikelyStuck :: Bool -- ^ 
-  , hudsonMasterComputerexecutorsNumber :: Int -- ^ 
-  , hudsonMasterComputerexecutorsProgress :: Int -- ^ 
-  , hudsonMasterComputerexecutorsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { hudsonMasterComputerexecutorsCurrentExecutable :: Maybe FreeStyleBuild -- ^ 
+  , hudsonMasterComputerexecutorsIdle :: Maybe Bool -- ^ 
+  , hudsonMasterComputerexecutorsLikelyStuck :: Maybe Bool -- ^ 
+  , hudsonMasterComputerexecutorsNumber :: Maybe Int -- ^ 
+  , hudsonMasterComputerexecutorsProgress :: Maybe Int -- ^ 
+  , hudsonMasterComputerexecutorsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON HudsonMasterComputerexecutors where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonMasterComputerexecutors")
 instance ToJSON HudsonMasterComputerexecutors where
   toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonMasterComputerexecutors")
+instance ToSchema HudsonMasterComputerexecutors where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "hudsonMasterComputerexecutors"
+
 
 -- | 
 data HudsonMasterComputermonitorData = HudsonMasterComputermonitorData
-  { hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodSwapSpaceMonitor :: SwapSpaceMonitorMemoryUsage2 -- ^ 
-  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodTemporarySpaceMonitor :: DiskSpaceMonitorDescriptorDiskSpace -- ^ 
-  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodDiskSpaceMonitor :: DiskSpaceMonitorDescriptorDiskSpace -- ^ 
-  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodArchitectureMonitor :: Text -- ^ 
-  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodResponseTimeMonitor :: ResponseTimeMonitorData -- ^ 
-  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodClockMonitor :: ClockDifference -- ^ 
-  , hudsonMasterComputermonitorDataUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodSwapSpaceMonitor :: Maybe SwapSpaceMonitorMemoryUsage2 -- ^ 
+  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodTemporarySpaceMonitor :: Maybe DiskSpaceMonitorDescriptorDiskSpace -- ^ 
+  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodDiskSpaceMonitor :: Maybe DiskSpaceMonitorDescriptorDiskSpace -- ^ 
+  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodArchitectureMonitor :: Maybe Text -- ^ 
+  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodResponseTimeMonitor :: Maybe ResponseTimeMonitorData -- ^ 
+  , hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodClockMonitor :: Maybe ClockDifference -- ^ 
+  , hudsonMasterComputermonitorDataUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON HudsonMasterComputermonitorData where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonMasterComputermonitorData")
 instance ToJSON HudsonMasterComputermonitorData where
   toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonMasterComputermonitorData")
+instance ToSchema HudsonMasterComputermonitorData where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "hudsonMasterComputermonitorData"
+
 
 -- | 
 data HudsonassignedLabels = HudsonassignedLabels
-  { hudsonassignedLabelsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { hudsonassignedLabelsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON HudsonassignedLabels where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonassignedLabels")
 instance ToJSON HudsonassignedLabels where
   toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonassignedLabels")
+instance ToSchema HudsonassignedLabels where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "hudsonassignedLabels"
+
 
 -- | 
 data InputStepImpl = InputStepImpl
-  { inputStepImplUnderscoreclass :: Text -- ^ 
-  , inputStepImplUnderscorelinks :: InputStepImpllinks -- ^ 
-  , inputStepImplId :: Text -- ^ 
-  , inputStepImplMessage :: Text -- ^ 
-  , inputStepImplOk :: Text -- ^ 
-  , inputStepImplParameters :: [StringParameterDefinition] -- ^ 
-  , inputStepImplSubmitter :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { inputStepImplUnderscoreclass :: Maybe Text -- ^ 
+  , inputStepImplUnderscorelinks :: Maybe InputStepImpllinks -- ^ 
+  , inputStepImplId :: Maybe Text -- ^ 
+  , inputStepImplMessage :: Maybe Text -- ^ 
+  , inputStepImplOk :: Maybe Text -- ^ 
+  , inputStepImplParameters :: Maybe [StringParameterDefinition] -- ^ 
+  , inputStepImplSubmitter :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON InputStepImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "inputStepImpl")
 instance ToJSON InputStepImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "inputStepImpl")
+instance ToSchema InputStepImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "inputStepImpl"
+
 
 -- | 
 data InputStepImpllinks = InputStepImpllinks
-  { inputStepImpllinksSelf :: Link -- ^ 
-  , inputStepImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { inputStepImpllinksSelf :: Maybe Link -- ^ 
+  , inputStepImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON InputStepImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "inputStepImpllinks")
 instance ToJSON InputStepImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "inputStepImpllinks")
+instance ToSchema InputStepImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "inputStepImpllinks"
+
 
 -- | 
 data Label1 = Label1
-  { label1Underscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { label1Underscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON Label1 where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "label1")
 instance ToJSON Label1 where
   toJSON = genericToJSON (removeFieldLabelPrefix False "label1")
+instance ToSchema Label1 where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "label1"
+
 
 -- | 
 data Link = Link
-  { linkUnderscoreclass :: Text -- ^ 
-  , linkHref :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { linkUnderscoreclass :: Maybe Text -- ^ 
+  , linkHref :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON Link where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "link")
 instance ToJSON Link where
   toJSON = genericToJSON (removeFieldLabelPrefix False "link")
+instance ToSchema Link where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "link"
+
 
 -- | 
 data ListView = ListView
-  { listViewUnderscoreclass :: Text -- ^ 
-  , listViewDescription :: Text -- ^ 
-  , listViewJobs :: [FreeStyleProject] -- ^ 
-  , listViewName :: Text -- ^ 
-  , listViewUrl :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { listViewUnderscoreclass :: Maybe Text -- ^ 
+  , listViewDescription :: Maybe Text -- ^ 
+  , listViewJobs :: Maybe [FreeStyleProject] -- ^ 
+  , listViewName :: Maybe Text -- ^ 
+  , listViewUrl :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ListView where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "listView")
 instance ToJSON ListView where
   toJSON = genericToJSON (removeFieldLabelPrefix False "listView")
+instance ToSchema ListView where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "listView"
+
 
 -- | 
 data MultibranchPipeline = MultibranchPipeline
-  { multibranchPipelineDisplayName :: Text -- ^ 
-  , multibranchPipelineEstimatedDurationInMillis :: Int -- ^ 
-  , multibranchPipelineLatestRun :: Text -- ^ 
-  , multibranchPipelineName :: Text -- ^ 
-  , multibranchPipelineOrganization :: Text -- ^ 
-  , multibranchPipelineWeatherScore :: Int -- ^ 
-  , multibranchPipelineBranchNames :: [Text] -- ^ 
-  , multibranchPipelineNumberOfFailingBranches :: Int -- ^ 
-  , multibranchPipelineNumberOfFailingPullRequests :: Int -- ^ 
-  , multibranchPipelineNumberOfSuccessfulBranches :: Int -- ^ 
-  , multibranchPipelineNumberOfSuccessfulPullRequests :: Int -- ^ 
-  , multibranchPipelineTotalNumberOfBranches :: Int -- ^ 
-  , multibranchPipelineTotalNumberOfPullRequests :: Int -- ^ 
-  , multibranchPipelineUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { multibranchPipelineDisplayName :: Maybe Text -- ^ 
+  , multibranchPipelineEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , multibranchPipelineLatestRun :: Maybe Text -- ^ 
+  , multibranchPipelineName :: Maybe Text -- ^ 
+  , multibranchPipelineOrganization :: Maybe Text -- ^ 
+  , multibranchPipelineWeatherScore :: Maybe Int -- ^ 
+  , multibranchPipelineBranchNames :: Maybe [Text] -- ^ 
+  , multibranchPipelineNumberOfFailingBranches :: Maybe Int -- ^ 
+  , multibranchPipelineNumberOfFailingPullRequests :: Maybe Int -- ^ 
+  , multibranchPipelineNumberOfSuccessfulBranches :: Maybe Int -- ^ 
+  , multibranchPipelineNumberOfSuccessfulPullRequests :: Maybe Int -- ^ 
+  , multibranchPipelineTotalNumberOfBranches :: Maybe Int -- ^ 
+  , multibranchPipelineTotalNumberOfPullRequests :: Maybe Int -- ^ 
+  , multibranchPipelineUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON MultibranchPipeline where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "multibranchPipeline")
 instance ToJSON MultibranchPipeline where
   toJSON = genericToJSON (removeFieldLabelPrefix False "multibranchPipeline")
+instance ToSchema MultibranchPipeline where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "multibranchPipeline"
+
 
 -- | 
 data NullSCM = NullSCM
-  { nullSCMUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { nullSCMUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON NullSCM where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "nullSCM")
 instance ToJSON NullSCM where
   toJSON = genericToJSON (removeFieldLabelPrefix False "nullSCM")
+instance ToSchema NullSCM where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "nullSCM"
+
 
 -- | 
 data Organisation = Organisation
-  { organisationUnderscoreclass :: Text -- ^ 
-  , organisationName :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { organisationUnderscoreclass :: Maybe Text -- ^ 
+  , organisationName :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON Organisation where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "organisation")
 instance ToJSON Organisation where
   toJSON = genericToJSON (removeFieldLabelPrefix False "organisation")
+instance ToSchema Organisation where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "organisation"
 
--- | 
-newtype Organisations = Organisations { unOrganisations :: Organisation }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data Pipeline = Pipeline
-  { pipelineUnderscoreclass :: Text -- ^ 
-  , pipelineOrganization :: Text -- ^ 
-  , pipelineName :: Text -- ^ 
-  , pipelineDisplayName :: Text -- ^ 
-  , pipelineFullName :: Text -- ^ 
-  , pipelineWeatherScore :: Int -- ^ 
-  , pipelineEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineLatestRun :: PipelinelatestRun -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineOrganization :: Maybe Text -- ^ 
+  , pipelineName :: Maybe Text -- ^ 
+  , pipelineDisplayName :: Maybe Text -- ^ 
+  , pipelineFullName :: Maybe Text -- ^ 
+  , pipelineWeatherScore :: Maybe Int -- ^ 
+  , pipelineEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineLatestRun :: Maybe PipelinelatestRun -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON Pipeline where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipeline")
 instance ToJSON Pipeline where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipeline")
+instance ToSchema Pipeline where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipeline"
 
--- | 
-newtype PipelineActivities = PipelineActivities { unPipelineActivities :: PipelineActivity }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data PipelineActivity = PipelineActivity
-  { pipelineActivityUnderscoreclass :: Text -- ^ 
-  , pipelineActivityArtifacts :: [PipelineActivityartifacts] -- ^ 
-  , pipelineActivityDurationInMillis :: Int -- ^ 
-  , pipelineActivityEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineActivityEnQueueTime :: Text -- ^ 
-  , pipelineActivityEndTime :: Text -- ^ 
-  , pipelineActivityId :: Text -- ^ 
-  , pipelineActivityOrganization :: Text -- ^ 
-  , pipelineActivityPipeline :: Text -- ^ 
-  , pipelineActivityResult :: Text -- ^ 
-  , pipelineActivityRunSummary :: Text -- ^ 
-  , pipelineActivityStartTime :: Text -- ^ 
-  , pipelineActivityState :: Text -- ^ 
-  , pipelineActivityType :: Text -- ^ 
-  , pipelineActivityCommitId :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineActivityUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineActivityArtifacts :: Maybe [PipelineActivityartifacts] -- ^ 
+  , pipelineActivityDurationInMillis :: Maybe Int -- ^ 
+  , pipelineActivityEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineActivityEnQueueTime :: Maybe Text -- ^ 
+  , pipelineActivityEndTime :: Maybe Text -- ^ 
+  , pipelineActivityId :: Maybe Text -- ^ 
+  , pipelineActivityOrganization :: Maybe Text -- ^ 
+  , pipelineActivityPipeline :: Maybe Text -- ^ 
+  , pipelineActivityResult :: Maybe Text -- ^ 
+  , pipelineActivityRunSummary :: Maybe Text -- ^ 
+  , pipelineActivityStartTime :: Maybe Text -- ^ 
+  , pipelineActivityState :: Maybe Text -- ^ 
+  , pipelineActivityType :: Maybe Text -- ^ 
+  , pipelineActivityCommitId :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineActivity where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineActivity")
 instance ToJSON PipelineActivity where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineActivity")
+instance ToSchema PipelineActivity where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineActivity"
+
 
 -- | 
 data PipelineActivityartifacts = PipelineActivityartifacts
-  { pipelineActivityartifactsName :: Text -- ^ 
-  , pipelineActivityartifactsSize :: Int -- ^ 
-  , pipelineActivityartifactsUrl :: Text -- ^ 
-  , pipelineActivityartifactsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineActivityartifactsName :: Maybe Text -- ^ 
+  , pipelineActivityartifactsSize :: Maybe Int -- ^ 
+  , pipelineActivityartifactsUrl :: Maybe Text -- ^ 
+  , pipelineActivityartifactsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineActivityartifacts where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineActivityartifacts")
 instance ToJSON PipelineActivityartifacts where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineActivityartifacts")
+instance ToSchema PipelineActivityartifacts where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineActivityartifacts"
 
--- | 
-newtype PipelineBranches = PipelineBranches { unPipelineBranches :: PipelineBranchesitem }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data PipelineBranchesitem = PipelineBranchesitem
-  { pipelineBranchesitemDisplayName :: Text -- ^ 
-  , pipelineBranchesitemEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineBranchesitemName :: Text -- ^ 
-  , pipelineBranchesitemWeatherScore :: Int -- ^ 
-  , pipelineBranchesitemLatestRun :: PipelineBranchesitemlatestRun -- ^ 
-  , pipelineBranchesitemOrganization :: Text -- ^ 
-  , pipelineBranchesitemPullRequest :: PipelineBranchesitempullRequest -- ^ 
-  , pipelineBranchesitemTotalNumberOfPullRequests :: Int -- ^ 
-  , pipelineBranchesitemUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineBranchesitemDisplayName :: Maybe Text -- ^ 
+  , pipelineBranchesitemEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineBranchesitemName :: Maybe Text -- ^ 
+  , pipelineBranchesitemWeatherScore :: Maybe Int -- ^ 
+  , pipelineBranchesitemLatestRun :: Maybe PipelineBranchesitemlatestRun -- ^ 
+  , pipelineBranchesitemOrganization :: Maybe Text -- ^ 
+  , pipelineBranchesitemPullRequest :: Maybe PipelineBranchesitempullRequest -- ^ 
+  , pipelineBranchesitemTotalNumberOfPullRequests :: Maybe Int -- ^ 
+  , pipelineBranchesitemUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineBranchesitem where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitem")
 instance ToJSON PipelineBranchesitem where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitem")
+instance ToSchema PipelineBranchesitem where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineBranchesitem"
+
 
 -- | 
 data PipelineBranchesitemlatestRun = PipelineBranchesitemlatestRun
-  { pipelineBranchesitemlatestRunDurationInMillis :: Int -- ^ 
-  , pipelineBranchesitemlatestRunEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineBranchesitemlatestRunEnQueueTime :: Text -- ^ 
-  , pipelineBranchesitemlatestRunEndTime :: Text -- ^ 
-  , pipelineBranchesitemlatestRunId :: Text -- ^ 
-  , pipelineBranchesitemlatestRunOrganization :: Text -- ^ 
-  , pipelineBranchesitemlatestRunPipeline :: Text -- ^ 
-  , pipelineBranchesitemlatestRunResult :: Text -- ^ 
-  , pipelineBranchesitemlatestRunRunSummary :: Text -- ^ 
-  , pipelineBranchesitemlatestRunStartTime :: Text -- ^ 
-  , pipelineBranchesitemlatestRunState :: Text -- ^ 
-  , pipelineBranchesitemlatestRunType :: Text -- ^ 
-  , pipelineBranchesitemlatestRunCommitId :: Text -- ^ 
-  , pipelineBranchesitemlatestRunUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineBranchesitemlatestRunDurationInMillis :: Maybe Int -- ^ 
+  , pipelineBranchesitemlatestRunEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineBranchesitemlatestRunEnQueueTime :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunEndTime :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunId :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunOrganization :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunPipeline :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunResult :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunRunSummary :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunStartTime :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunState :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunType :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunCommitId :: Maybe Text -- ^ 
+  , pipelineBranchesitemlatestRunUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineBranchesitemlatestRun where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitemlatestRun")
 instance ToJSON PipelineBranchesitemlatestRun where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitemlatestRun")
+instance ToSchema PipelineBranchesitemlatestRun where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineBranchesitemlatestRun"
+
 
 -- | 
 data PipelineBranchesitempullRequest = PipelineBranchesitempullRequest
-  { pipelineBranchesitempullRequestUnderscorelinks :: PipelineBranchesitempullRequestlinks -- ^ 
-  , pipelineBranchesitempullRequestAuthor :: Text -- ^ 
-  , pipelineBranchesitempullRequestId :: Text -- ^ 
-  , pipelineBranchesitempullRequestTitle :: Text -- ^ 
-  , pipelineBranchesitempullRequestUrl :: Text -- ^ 
-  , pipelineBranchesitempullRequestUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineBranchesitempullRequestUnderscorelinks :: Maybe PipelineBranchesitempullRequestlinks -- ^ 
+  , pipelineBranchesitempullRequestAuthor :: Maybe Text -- ^ 
+  , pipelineBranchesitempullRequestId :: Maybe Text -- ^ 
+  , pipelineBranchesitempullRequestTitle :: Maybe Text -- ^ 
+  , pipelineBranchesitempullRequestUrl :: Maybe Text -- ^ 
+  , pipelineBranchesitempullRequestUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineBranchesitempullRequest where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitempullRequest")
 instance ToJSON PipelineBranchesitempullRequest where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitempullRequest")
+instance ToSchema PipelineBranchesitempullRequest where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineBranchesitempullRequest"
+
 
 -- | 
 data PipelineBranchesitempullRequestlinks = PipelineBranchesitempullRequestlinks
-  { pipelineBranchesitempullRequestlinksSelf :: Text -- ^ 
-  , pipelineBranchesitempullRequestlinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineBranchesitempullRequestlinksSelf :: Maybe Text -- ^ 
+  , pipelineBranchesitempullRequestlinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineBranchesitempullRequestlinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitempullRequestlinks")
 instance ToJSON PipelineBranchesitempullRequestlinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitempullRequestlinks")
+instance ToSchema PipelineBranchesitempullRequestlinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineBranchesitempullRequestlinks"
+
 
 -- | 
 data PipelineFolderImpl = PipelineFolderImpl
-  { pipelineFolderImplUnderscoreclass :: Text -- ^ 
-  , pipelineFolderImplDisplayName :: Text -- ^ 
-  , pipelineFolderImplFullName :: Text -- ^ 
-  , pipelineFolderImplName :: Text -- ^ 
-  , pipelineFolderImplOrganization :: Text -- ^ 
-  , pipelineFolderImplNumberOfFolders :: Int -- ^ 
-  , pipelineFolderImplNumberOfPipelines :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineFolderImplUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineFolderImplDisplayName :: Maybe Text -- ^ 
+  , pipelineFolderImplFullName :: Maybe Text -- ^ 
+  , pipelineFolderImplName :: Maybe Text -- ^ 
+  , pipelineFolderImplOrganization :: Maybe Text -- ^ 
+  , pipelineFolderImplNumberOfFolders :: Maybe Int -- ^ 
+  , pipelineFolderImplNumberOfPipelines :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineFolderImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineFolderImpl")
 instance ToJSON PipelineFolderImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineFolderImpl")
+instance ToSchema PipelineFolderImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineFolderImpl"
+
 
 -- | 
 data PipelineImpl = PipelineImpl
-  { pipelineImplUnderscoreclass :: Text -- ^ 
-  , pipelineImplDisplayName :: Text -- ^ 
-  , pipelineImplEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineImplFullName :: Text -- ^ 
-  , pipelineImplLatestRun :: Text -- ^ 
-  , pipelineImplName :: Text -- ^ 
-  , pipelineImplOrganization :: Text -- ^ 
-  , pipelineImplWeatherScore :: Int -- ^ 
-  , pipelineImplUnderscorelinks :: PipelineImpllinks -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineImplUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineImplDisplayName :: Maybe Text -- ^ 
+  , pipelineImplEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineImplFullName :: Maybe Text -- ^ 
+  , pipelineImplLatestRun :: Maybe Text -- ^ 
+  , pipelineImplName :: Maybe Text -- ^ 
+  , pipelineImplOrganization :: Maybe Text -- ^ 
+  , pipelineImplWeatherScore :: Maybe Int -- ^ 
+  , pipelineImplUnderscorelinks :: Maybe PipelineImpllinks -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineImpl")
 instance ToJSON PipelineImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineImpl")
+instance ToSchema PipelineImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineImpl"
+
 
 -- | 
 data PipelineImpllinks = PipelineImpllinks
-  { pipelineImpllinksRuns :: Link -- ^ 
-  , pipelineImpllinksSelf :: Link -- ^ 
-  , pipelineImpllinksQueue :: Link -- ^ 
-  , pipelineImpllinksActions :: Link -- ^ 
-  , pipelineImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineImpllinksRuns :: Maybe Link -- ^ 
+  , pipelineImpllinksSelf :: Maybe Link -- ^ 
+  , pipelineImpllinksQueue :: Maybe Link -- ^ 
+  , pipelineImpllinksActions :: Maybe Link -- ^ 
+  , pipelineImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineImpllinks")
 instance ToJSON PipelineImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineImpllinks")
+instance ToSchema PipelineImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineImpllinks"
 
--- | 
-newtype PipelineQueue = PipelineQueue { unPipelineQueue :: QueueItemImpl }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data PipelineRun = PipelineRun
-  { pipelineRunUnderscoreclass :: Text -- ^ 
-  , pipelineRunArtifacts :: [PipelineRunartifacts] -- ^ 
-  , pipelineRunDurationInMillis :: Int -- ^ 
-  , pipelineRunEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineRunEnQueueTime :: Text -- ^ 
-  , pipelineRunEndTime :: Text -- ^ 
-  , pipelineRunId :: Text -- ^ 
-  , pipelineRunOrganization :: Text -- ^ 
-  , pipelineRunPipeline :: Text -- ^ 
-  , pipelineRunResult :: Text -- ^ 
-  , pipelineRunRunSummary :: Text -- ^ 
-  , pipelineRunStartTime :: Text -- ^ 
-  , pipelineRunState :: Text -- ^ 
-  , pipelineRunType :: Text -- ^ 
-  , pipelineRunCommitId :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineRunUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineRunArtifacts :: Maybe [PipelineRunartifacts] -- ^ 
+  , pipelineRunDurationInMillis :: Maybe Int -- ^ 
+  , pipelineRunEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineRunEnQueueTime :: Maybe Text -- ^ 
+  , pipelineRunEndTime :: Maybe Text -- ^ 
+  , pipelineRunId :: Maybe Text -- ^ 
+  , pipelineRunOrganization :: Maybe Text -- ^ 
+  , pipelineRunPipeline :: Maybe Text -- ^ 
+  , pipelineRunResult :: Maybe Text -- ^ 
+  , pipelineRunRunSummary :: Maybe Text -- ^ 
+  , pipelineRunStartTime :: Maybe Text -- ^ 
+  , pipelineRunState :: Maybe Text -- ^ 
+  , pipelineRunType :: Maybe Text -- ^ 
+  , pipelineRunCommitId :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineRun where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRun")
 instance ToJSON PipelineRun where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRun")
+instance ToSchema PipelineRun where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineRun"
+
 
 -- | 
 data PipelineRunImpl = PipelineRunImpl
-  { pipelineRunImplUnderscoreclass :: Text -- ^ 
-  , pipelineRunImplUnderscorelinks :: PipelineRunImpllinks -- ^ 
-  , pipelineRunImplDurationInMillis :: Int -- ^ 
-  , pipelineRunImplEnQueueTime :: Text -- ^ 
-  , pipelineRunImplEndTime :: Text -- ^ 
-  , pipelineRunImplEstimatedDurationInMillis :: Int -- ^ 
-  , pipelineRunImplId :: Text -- ^ 
-  , pipelineRunImplOrganization :: Text -- ^ 
-  , pipelineRunImplPipeline :: Text -- ^ 
-  , pipelineRunImplResult :: Text -- ^ 
-  , pipelineRunImplRunSummary :: Text -- ^ 
-  , pipelineRunImplStartTime :: Text -- ^ 
-  , pipelineRunImplState :: Text -- ^ 
-  , pipelineRunImplType :: Text -- ^ 
-  , pipelineRunImplCommitId :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineRunImplUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineRunImplUnderscorelinks :: Maybe PipelineRunImpllinks -- ^ 
+  , pipelineRunImplDurationInMillis :: Maybe Int -- ^ 
+  , pipelineRunImplEnQueueTime :: Maybe Text -- ^ 
+  , pipelineRunImplEndTime :: Maybe Text -- ^ 
+  , pipelineRunImplEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelineRunImplId :: Maybe Text -- ^ 
+  , pipelineRunImplOrganization :: Maybe Text -- ^ 
+  , pipelineRunImplPipeline :: Maybe Text -- ^ 
+  , pipelineRunImplResult :: Maybe Text -- ^ 
+  , pipelineRunImplRunSummary :: Maybe Text -- ^ 
+  , pipelineRunImplStartTime :: Maybe Text -- ^ 
+  , pipelineRunImplState :: Maybe Text -- ^ 
+  , pipelineRunImplType :: Maybe Text -- ^ 
+  , pipelineRunImplCommitId :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineRunImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunImpl")
 instance ToJSON PipelineRunImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunImpl")
+instance ToSchema PipelineRunImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineRunImpl"
+
 
 -- | 
 data PipelineRunImpllinks = PipelineRunImpllinks
-  { pipelineRunImpllinksNodes :: Link -- ^ 
-  , pipelineRunImpllinksLog :: Link -- ^ 
-  , pipelineRunImpllinksSelf :: Link -- ^ 
-  , pipelineRunImpllinksActions :: Link -- ^ 
-  , pipelineRunImpllinksSteps :: Link -- ^ 
-  , pipelineRunImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineRunImpllinksNodes :: Maybe Link -- ^ 
+  , pipelineRunImpllinksLog :: Maybe Link -- ^ 
+  , pipelineRunImpllinksSelf :: Maybe Link -- ^ 
+  , pipelineRunImpllinksActions :: Maybe Link -- ^ 
+  , pipelineRunImpllinksSteps :: Maybe Link -- ^ 
+  , pipelineRunImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineRunImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunImpllinks")
 instance ToJSON PipelineRunImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunImpllinks")
+instance ToSchema PipelineRunImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineRunImpllinks"
+
 
 -- | 
 data PipelineRunNode = PipelineRunNode
-  { pipelineRunNodeUnderscoreclass :: Text -- ^ 
-  , pipelineRunNodeDisplayName :: Text -- ^ 
-  , pipelineRunNodeDurationInMillis :: Int -- ^ 
-  , pipelineRunNodeEdges :: [PipelineRunNodeedges] -- ^ 
-  , pipelineRunNodeId :: Text -- ^ 
-  , pipelineRunNodeResult :: Text -- ^ 
-  , pipelineRunNodeStartTime :: Text -- ^ 
-  , pipelineRunNodeState :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineRunNodeUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineRunNodeDisplayName :: Maybe Text -- ^ 
+  , pipelineRunNodeDurationInMillis :: Maybe Int -- ^ 
+  , pipelineRunNodeEdges :: Maybe [PipelineRunNodeedges] -- ^ 
+  , pipelineRunNodeId :: Maybe Text -- ^ 
+  , pipelineRunNodeResult :: Maybe Text -- ^ 
+  , pipelineRunNodeStartTime :: Maybe Text -- ^ 
+  , pipelineRunNodeState :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineRunNode where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunNode")
 instance ToJSON PipelineRunNode where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunNode")
+instance ToSchema PipelineRunNode where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineRunNode"
 
--- | 
-newtype PipelineRunNodeSteps = PipelineRunNodeSteps { unPipelineRunNodeSteps :: PipelineStepImpl }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data PipelineRunNodeedges = PipelineRunNodeedges
-  { pipelineRunNodeedgesId :: Text -- ^ 
-  , pipelineRunNodeedgesUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineRunNodeedgesId :: Maybe Text -- ^ 
+  , pipelineRunNodeedgesUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineRunNodeedges where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunNodeedges")
 instance ToJSON PipelineRunNodeedges where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunNodeedges")
+instance ToSchema PipelineRunNodeedges where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineRunNodeedges"
 
--- | 
-newtype PipelineRunNodes = PipelineRunNodes { unPipelineRunNodes :: PipelineRunNode }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
-
--- | 
-newtype PipelineRunSteps = PipelineRunSteps { unPipelineRunSteps :: GenericResource }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data PipelineRunartifacts = PipelineRunartifacts
-  { pipelineRunartifactsName :: Text -- ^ 
-  , pipelineRunartifactsSize :: Int -- ^ 
-  , pipelineRunartifactsUrl :: Text -- ^ 
-  , pipelineRunartifactsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineRunartifactsName :: Maybe Text -- ^ 
+  , pipelineRunartifactsSize :: Maybe Int -- ^ 
+  , pipelineRunartifactsUrl :: Maybe Text -- ^ 
+  , pipelineRunartifactsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineRunartifacts where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunartifacts")
 instance ToJSON PipelineRunartifacts where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunartifacts")
+instance ToSchema PipelineRunartifacts where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineRunartifacts"
 
--- | 
-newtype PipelineRuns = PipelineRuns { unPipelineRuns :: PipelineRun }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data PipelineStepImpl = PipelineStepImpl
-  { pipelineStepImplUnderscoreclass :: Text -- ^ 
-  , pipelineStepImplUnderscorelinks :: PipelineStepImpllinks -- ^ 
-  , pipelineStepImplDisplayName :: Text -- ^ 
-  , pipelineStepImplDurationInMillis :: Int -- ^ 
-  , pipelineStepImplId :: Text -- ^ 
-  , pipelineStepImplInput :: InputStepImpl -- ^ 
-  , pipelineStepImplResult :: Text -- ^ 
-  , pipelineStepImplStartTime :: Text -- ^ 
-  , pipelineStepImplState :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineStepImplUnderscoreclass :: Maybe Text -- ^ 
+  , pipelineStepImplUnderscorelinks :: Maybe PipelineStepImpllinks -- ^ 
+  , pipelineStepImplDisplayName :: Maybe Text -- ^ 
+  , pipelineStepImplDurationInMillis :: Maybe Int -- ^ 
+  , pipelineStepImplId :: Maybe Text -- ^ 
+  , pipelineStepImplInput :: Maybe InputStepImpl -- ^ 
+  , pipelineStepImplResult :: Maybe Text -- ^ 
+  , pipelineStepImplStartTime :: Maybe Text -- ^ 
+  , pipelineStepImplState :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineStepImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineStepImpl")
 instance ToJSON PipelineStepImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineStepImpl")
+instance ToSchema PipelineStepImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineStepImpl"
+
 
 -- | 
 data PipelineStepImpllinks = PipelineStepImpllinks
-  { pipelineStepImpllinksSelf :: Link -- ^ 
-  , pipelineStepImpllinksActions :: Link -- ^ 
-  , pipelineStepImpllinksUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelineStepImpllinksSelf :: Maybe Link -- ^ 
+  , pipelineStepImpllinksActions :: Maybe Link -- ^ 
+  , pipelineStepImpllinksUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelineStepImpllinks where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineStepImpllinks")
 instance ToJSON PipelineStepImpllinks where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineStepImpllinks")
+instance ToSchema PipelineStepImpllinks where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelineStepImpllinks"
+
 
 -- | 
 data PipelinelatestRun = PipelinelatestRun
-  { pipelinelatestRunArtifacts :: [PipelinelatestRunartifacts] -- ^ 
-  , pipelinelatestRunDurationInMillis :: Int -- ^ 
-  , pipelinelatestRunEstimatedDurationInMillis :: Int -- ^ 
-  , pipelinelatestRunEnQueueTime :: Text -- ^ 
-  , pipelinelatestRunEndTime :: Text -- ^ 
-  , pipelinelatestRunId :: Text -- ^ 
-  , pipelinelatestRunOrganization :: Text -- ^ 
-  , pipelinelatestRunPipeline :: Text -- ^ 
-  , pipelinelatestRunResult :: Text -- ^ 
-  , pipelinelatestRunRunSummary :: Text -- ^ 
-  , pipelinelatestRunStartTime :: Text -- ^ 
-  , pipelinelatestRunState :: Text -- ^ 
-  , pipelinelatestRunType :: Text -- ^ 
-  , pipelinelatestRunCommitId :: Text -- ^ 
-  , pipelinelatestRunUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelinelatestRunArtifacts :: Maybe [PipelinelatestRunartifacts] -- ^ 
+  , pipelinelatestRunDurationInMillis :: Maybe Int -- ^ 
+  , pipelinelatestRunEstimatedDurationInMillis :: Maybe Int -- ^ 
+  , pipelinelatestRunEnQueueTime :: Maybe Text -- ^ 
+  , pipelinelatestRunEndTime :: Maybe Text -- ^ 
+  , pipelinelatestRunId :: Maybe Text -- ^ 
+  , pipelinelatestRunOrganization :: Maybe Text -- ^ 
+  , pipelinelatestRunPipeline :: Maybe Text -- ^ 
+  , pipelinelatestRunResult :: Maybe Text -- ^ 
+  , pipelinelatestRunRunSummary :: Maybe Text -- ^ 
+  , pipelinelatestRunStartTime :: Maybe Text -- ^ 
+  , pipelinelatestRunState :: Maybe Text -- ^ 
+  , pipelinelatestRunType :: Maybe Text -- ^ 
+  , pipelinelatestRunCommitId :: Maybe Text -- ^ 
+  , pipelinelatestRunUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelinelatestRun where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelinelatestRun")
 instance ToJSON PipelinelatestRun where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelinelatestRun")
+instance ToSchema PipelinelatestRun where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelinelatestRun"
+
 
 -- | 
 data PipelinelatestRunartifacts = PipelinelatestRunartifacts
-  { pipelinelatestRunartifactsName :: Text -- ^ 
-  , pipelinelatestRunartifactsSize :: Int -- ^ 
-  , pipelinelatestRunartifactsUrl :: Text -- ^ 
-  , pipelinelatestRunartifactsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { pipelinelatestRunartifactsName :: Maybe Text -- ^ 
+  , pipelinelatestRunartifactsSize :: Maybe Int -- ^ 
+  , pipelinelatestRunartifactsUrl :: Maybe Text -- ^ 
+  , pipelinelatestRunartifactsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON PipelinelatestRunartifacts where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelinelatestRunartifacts")
 instance ToJSON PipelinelatestRunartifacts where
   toJSON = genericToJSON (removeFieldLabelPrefix False "pipelinelatestRunartifacts")
+instance ToSchema PipelinelatestRunartifacts where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "pipelinelatestRunartifacts"
 
--- | 
-newtype Pipelines = Pipelines { unPipelines :: Pipeline }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data Queue = Queue
-  { queueUnderscoreclass :: Text -- ^ 
-  , queueItems :: [QueueBlockedItem] -- ^ 
-  } deriving (Show, Eq, Generic)
+  { queueUnderscoreclass :: Maybe Text -- ^ 
+  , queueItems :: Maybe [QueueBlockedItem] -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON Queue where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "queue")
 instance ToJSON Queue where
   toJSON = genericToJSON (removeFieldLabelPrefix False "queue")
+instance ToSchema Queue where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "queue"
+
 
 -- | 
 data QueueBlockedItem = QueueBlockedItem
-  { queueBlockedItemUnderscoreclass :: Text -- ^ 
-  , queueBlockedItemActions :: [CauseAction] -- ^ 
-  , queueBlockedItemBlocked :: Bool -- ^ 
-  , queueBlockedItemBuildable :: Bool -- ^ 
-  , queueBlockedItemId :: Int -- ^ 
-  , queueBlockedItemInQueueSince :: Int -- ^ 
-  , queueBlockedItemParams :: Text -- ^ 
-  , queueBlockedItemStuck :: Bool -- ^ 
-  , queueBlockedItemTask :: FreeStyleProject -- ^ 
-  , queueBlockedItemUrl :: Text -- ^ 
-  , queueBlockedItemWhy :: Text -- ^ 
-  , queueBlockedItemBuildableStartMilliseconds :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { queueBlockedItemUnderscoreclass :: Maybe Text -- ^ 
+  , queueBlockedItemActions :: Maybe [CauseAction] -- ^ 
+  , queueBlockedItemBlocked :: Maybe Bool -- ^ 
+  , queueBlockedItemBuildable :: Maybe Bool -- ^ 
+  , queueBlockedItemId :: Maybe Int -- ^ 
+  , queueBlockedItemInQueueSince :: Maybe Int -- ^ 
+  , queueBlockedItemParams :: Maybe Text -- ^ 
+  , queueBlockedItemStuck :: Maybe Bool -- ^ 
+  , queueBlockedItemTask :: Maybe FreeStyleProject -- ^ 
+  , queueBlockedItemUrl :: Maybe Text -- ^ 
+  , queueBlockedItemWhy :: Maybe Text -- ^ 
+  , queueBlockedItemBuildableStartMilliseconds :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON QueueBlockedItem where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "queueBlockedItem")
 instance ToJSON QueueBlockedItem where
   toJSON = genericToJSON (removeFieldLabelPrefix False "queueBlockedItem")
+instance ToSchema QueueBlockedItem where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "queueBlockedItem"
+
 
 -- | 
 data QueueItemImpl = QueueItemImpl
-  { queueItemImplUnderscoreclass :: Text -- ^ 
-  , queueItemImplExpectedBuildNumber :: Int -- ^ 
-  , queueItemImplId :: Text -- ^ 
-  , queueItemImplPipeline :: Text -- ^ 
-  , queueItemImplQueuedTime :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { queueItemImplUnderscoreclass :: Maybe Text -- ^ 
+  , queueItemImplExpectedBuildNumber :: Maybe Int -- ^ 
+  , queueItemImplId :: Maybe Text -- ^ 
+  , queueItemImplPipeline :: Maybe Text -- ^ 
+  , queueItemImplQueuedTime :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON QueueItemImpl where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "queueItemImpl")
 instance ToJSON QueueItemImpl where
   toJSON = genericToJSON (removeFieldLabelPrefix False "queueItemImpl")
+instance ToSchema QueueItemImpl where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "queueItemImpl"
+
 
 -- | 
 data QueueLeftItem = QueueLeftItem
-  { queueLeftItemUnderscoreclass :: Text -- ^ 
-  , queueLeftItemActions :: [CauseAction] -- ^ 
-  , queueLeftItemBlocked :: Bool -- ^ 
-  , queueLeftItemBuildable :: Bool -- ^ 
-  , queueLeftItemId :: Int -- ^ 
-  , queueLeftItemInQueueSince :: Int -- ^ 
-  , queueLeftItemParams :: Text -- ^ 
-  , queueLeftItemStuck :: Bool -- ^ 
-  , queueLeftItemTask :: FreeStyleProject -- ^ 
-  , queueLeftItemUrl :: Text -- ^ 
-  , queueLeftItemWhy :: Text -- ^ 
-  , queueLeftItemCancelled :: Bool -- ^ 
-  , queueLeftItemExecutable :: FreeStyleBuild -- ^ 
-  } deriving (Show, Eq, Generic)
+  { queueLeftItemUnderscoreclass :: Maybe Text -- ^ 
+  , queueLeftItemActions :: Maybe [CauseAction] -- ^ 
+  , queueLeftItemBlocked :: Maybe Bool -- ^ 
+  , queueLeftItemBuildable :: Maybe Bool -- ^ 
+  , queueLeftItemId :: Maybe Int -- ^ 
+  , queueLeftItemInQueueSince :: Maybe Int -- ^ 
+  , queueLeftItemParams :: Maybe Text -- ^ 
+  , queueLeftItemStuck :: Maybe Bool -- ^ 
+  , queueLeftItemTask :: Maybe FreeStyleProject -- ^ 
+  , queueLeftItemUrl :: Maybe Text -- ^ 
+  , queueLeftItemWhy :: Maybe Text -- ^ 
+  , queueLeftItemCancelled :: Maybe Bool -- ^ 
+  , queueLeftItemExecutable :: Maybe FreeStyleBuild -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON QueueLeftItem where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "queueLeftItem")
 instance ToJSON QueueLeftItem where
   toJSON = genericToJSON (removeFieldLabelPrefix False "queueLeftItem")
+instance ToSchema QueueLeftItem where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "queueLeftItem"
+
 
 -- | 
 data ResponseTimeMonitorData = ResponseTimeMonitorData
-  { responseTimeMonitorDataUnderscoreclass :: Text -- ^ 
-  , responseTimeMonitorDataTimestamp :: Int -- ^ 
-  , responseTimeMonitorDataAverage :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { responseTimeMonitorDataUnderscoreclass :: Maybe Text -- ^ 
+  , responseTimeMonitorDataTimestamp :: Maybe Int -- ^ 
+  , responseTimeMonitorDataAverage :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON ResponseTimeMonitorData where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "responseTimeMonitorData")
 instance ToJSON ResponseTimeMonitorData where
   toJSON = genericToJSON (removeFieldLabelPrefix False "responseTimeMonitorData")
+instance ToSchema ResponseTimeMonitorData where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "responseTimeMonitorData"
 
--- | 
-newtype ScmOrganisations = ScmOrganisations { unScmOrganisations :: GithubOrganization }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
 -- | 
 data StringParameterDefinition = StringParameterDefinition
-  { stringParameterDefinitionUnderscoreclass :: Text -- ^ 
-  , stringParameterDefinitionDefaultParameterValue :: StringParameterValue -- ^ 
-  , stringParameterDefinitionDescription :: Text -- ^ 
-  , stringParameterDefinitionName :: Text -- ^ 
-  , stringParameterDefinitionType :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { stringParameterDefinitionUnderscoreclass :: Maybe Text -- ^ 
+  , stringParameterDefinitionDefaultParameterValue :: Maybe StringParameterValue -- ^ 
+  , stringParameterDefinitionDescription :: Maybe Text -- ^ 
+  , stringParameterDefinitionName :: Maybe Text -- ^ 
+  , stringParameterDefinitionType :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON StringParameterDefinition where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "stringParameterDefinition")
 instance ToJSON StringParameterDefinition where
   toJSON = genericToJSON (removeFieldLabelPrefix False "stringParameterDefinition")
+instance ToSchema StringParameterDefinition where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "stringParameterDefinition"
+
 
 -- | 
 data StringParameterValue = StringParameterValue
-  { stringParameterValueUnderscoreclass :: Text -- ^ 
-  , stringParameterValueName :: Text -- ^ 
-  , stringParameterValueValue :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { stringParameterValueUnderscoreclass :: Maybe Text -- ^ 
+  , stringParameterValueName :: Maybe Text -- ^ 
+  , stringParameterValueValue :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON StringParameterValue where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "stringParameterValue")
 instance ToJSON StringParameterValue where
   toJSON = genericToJSON (removeFieldLabelPrefix False "stringParameterValue")
+instance ToSchema StringParameterValue where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "stringParameterValue"
+
 
 -- | 
 data SwapSpaceMonitorMemoryUsage2 = SwapSpaceMonitorMemoryUsage2
-  { swapSpaceMonitorMemoryUsage2Underscoreclass :: Text -- ^ 
-  , swapSpaceMonitorMemoryUsage2AvailablePhysicalMemory :: Int -- ^ 
-  , swapSpaceMonitorMemoryUsage2AvailableSwapSpace :: Int -- ^ 
-  , swapSpaceMonitorMemoryUsage2TotalPhysicalMemory :: Int -- ^ 
-  , swapSpaceMonitorMemoryUsage2TotalSwapSpace :: Int -- ^ 
-  } deriving (Show, Eq, Generic)
+  { swapSpaceMonitorMemoryUsage2Underscoreclass :: Maybe Text -- ^ 
+  , swapSpaceMonitorMemoryUsage2AvailablePhysicalMemory :: Maybe Int -- ^ 
+  , swapSpaceMonitorMemoryUsage2AvailableSwapSpace :: Maybe Int -- ^ 
+  , swapSpaceMonitorMemoryUsage2TotalPhysicalMemory :: Maybe Int -- ^ 
+  , swapSpaceMonitorMemoryUsage2TotalSwapSpace :: Maybe Int -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON SwapSpaceMonitorMemoryUsage2 where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "swapSpaceMonitorMemoryUsage2")
 instance ToJSON SwapSpaceMonitorMemoryUsage2 where
   toJSON = genericToJSON (removeFieldLabelPrefix False "swapSpaceMonitorMemoryUsage2")
+instance ToSchema SwapSpaceMonitorMemoryUsage2 where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "swapSpaceMonitorMemoryUsage2"
+
 
 -- | 
 data UnlabeledLoadStatistics = UnlabeledLoadStatistics
-  { unlabeledLoadStatisticsUnderscoreclass :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { unlabeledLoadStatisticsUnderscoreclass :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON UnlabeledLoadStatistics where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "unlabeledLoadStatistics")
 instance ToJSON UnlabeledLoadStatistics where
   toJSON = genericToJSON (removeFieldLabelPrefix False "unlabeledLoadStatistics")
+instance ToSchema UnlabeledLoadStatistics where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "unlabeledLoadStatistics"
+
 
 -- | 
 data User = User
-  { userUnderscoreclass :: Text -- ^ 
-  , userId :: Text -- ^ 
-  , userFullName :: Text -- ^ 
-  , userEmail :: Text -- ^ 
-  , userName :: Text -- ^ 
-  } deriving (Show, Eq, Generic)
+  { userUnderscoreclass :: Maybe Text -- ^ 
+  , userId :: Maybe Text -- ^ 
+  , userFullName :: Maybe Text -- ^ 
+  , userEmail :: Maybe Text -- ^ 
+  , userName :: Maybe Text -- ^ 
+  } deriving (Show, Eq, Generic, Data)
 
 instance FromJSON User where
   parseJSON = genericParseJSON (removeFieldLabelPrefix True "user")
 instance ToJSON User where
   toJSON = genericToJSON (removeFieldLabelPrefix False "user")
+instance ToSchema User where
+  declareNamedSchema = Swagger.genericDeclareNamedSchema
+    $ Swagger.fromAesonOptions
+    $ removeFieldLabelPrefix False "user"
 
--- | 
-newtype UserFavorites = UserFavorites { unUserFavorites :: FavoriteImpl }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
 
--- | 
-newtype Users = Users { unUsers :: User }
-  deriving (Show, Eq, FromJSON, ToJSON, Generic)
+uncapitalize :: String -> String
+uncapitalize (first:rest) = Char.toLower first : rest
+uncapitalize [] = []
 
--- Remove a field label prefix during JSON parsing.
--- Also perform any replacements for special characters.
+-- | Remove a field label prefix during JSON parsing.
+--   Also perform any replacements for special characters.
+--   The @forParsing@ parameter is to distinguish between the cases in which we're using this
+--   to power a @FromJSON@ or a @ToJSON@ instance. In the first case we're parsing, and we want
+--   to replace special characters with their quoted equivalents (because we cannot have special
+--   chars in identifier names), while we want to do vice versa when sending data instead.
 removeFieldLabelPrefix :: Bool -> String -> Options
 removeFieldLabelPrefix forParsing prefix =
   defaultOptions
-  {fieldLabelModifier = fromMaybe (error ("did not find prefix " ++ prefix)) . stripPrefix prefix . replaceSpecialChars}
+    { omitNothingFields  = True
+    , fieldLabelModifier = uncapitalize . fromMaybe (error ("did not find prefix " ++ prefix)) . stripPrefix prefix . replaceSpecialChars
+    }
   where
     replaceSpecialChars field = foldl (&) field (map mkCharReplacement specialChars)
     specialChars =
@@ -1389,6 +1736,7 @@ removeFieldLabelPrefix forParsing prefix =
       , (".", "'Period")
       , ("/", "'Slash")
       , (":", "'Colon")
+      , (";", "'Semicolon")
       , ("{", "'Left_Curly_Bracket")
       , ("|", "'Pipe")
       , ("<", "'LessThan")
@@ -1399,6 +1747,7 @@ removeFieldLabelPrefix forParsing prefix =
       , ("~", "'Tilde")
       , ("?", "'Question_Mark")
       , (">=", "'Greater_Than_Or_Equal_To")
+      , ("~=", "'Tilde_Equal")
       ]
     mkCharReplacement (replaceStr, searchStr) = T.unpack . replacer (T.pack searchStr) (T.pack replaceStr) . T.pack
     replacer =

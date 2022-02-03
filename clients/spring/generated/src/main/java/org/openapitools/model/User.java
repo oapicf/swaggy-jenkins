@@ -1,33 +1,40 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * User
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class User   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("email")
-  private String email = null;
+  private String email;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   public User propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -37,10 +44,9 @@ public class User   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -57,10 +63,9 @@ public class User   {
   /**
    * Get id
    * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "id", required = false)
   public String getId() {
     return id;
   }
@@ -77,10 +82,9 @@ public class User   {
   /**
    * Get fullName
    * @return fullName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullName", required = false)
   public String getFullName() {
     return fullName;
   }
@@ -97,10 +101,9 @@ public class User   {
   /**
    * Get email
    * @return email
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "email", required = false)
   public String getEmail() {
     return email;
   }
@@ -117,10 +120,9 @@ public class User   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -129,9 +131,8 @@ public class User   {
     this.name = name;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -155,7 +156,6 @@ public class User   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class User {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
@@ -169,7 +169,7 @@ public class User   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -1,4 +1,6 @@
+
 # Org.OpenAPITools.Model.GithubRepository
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -9,8 +11,10 @@ Name | Type | Description | Notes
 **Description** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **Permissions** | [**GithubRepositorypermissions**](GithubRepositorypermissions.md) |  | [optional] 
-**Private** | **bool?** |  | [optional] 
+**Private** | **bool** |  | [optional] 
 **FullName** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

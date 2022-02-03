@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.ClassesByClass do
   ]
 
   @type t :: %__MODULE__{
-    :"classes" => [String.t],
-    :"_class" => String.t
+    :"classes" => [String.t] | nil,
+    :"_class" => String.t | nil
   }
 end
 

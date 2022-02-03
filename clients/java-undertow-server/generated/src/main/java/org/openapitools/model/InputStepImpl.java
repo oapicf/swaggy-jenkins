@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -14,19 +24,19 @@ import org.openapitools.model.StringParameterDefinition;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class InputStepImpl   {
   
-  private String propertyClass = null;
-  private InputStepImpllinks links = null;
-  private String id = null;
-  private String message = null;
-  private String ok = null;
+  private String propertyClass;
+  private InputStepImpllinks links;
+  private String id;
+  private String message;
+  private String ok;
   private List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
-  private String submitter = null;
+  private String submitter;
 
   /**
-   **/
+   */
   public InputStepImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -43,7 +53,7 @@ public class InputStepImpl   {
   }
 
   /**
-   **/
+   */
   public InputStepImpl links(InputStepImpllinks links) {
     this.links = links;
     return this;
@@ -60,7 +70,7 @@ public class InputStepImpl   {
   }
 
   /**
-   **/
+   */
   public InputStepImpl id(String id) {
     this.id = id;
     return this;
@@ -77,7 +87,7 @@ public class InputStepImpl   {
   }
 
   /**
-   **/
+   */
   public InputStepImpl message(String message) {
     this.message = message;
     return this;
@@ -94,7 +104,7 @@ public class InputStepImpl   {
   }
 
   /**
-   **/
+   */
   public InputStepImpl ok(String ok) {
     this.ok = ok;
     return this;
@@ -111,7 +121,7 @@ public class InputStepImpl   {
   }
 
   /**
-   **/
+   */
   public InputStepImpl parameters(List<StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
@@ -128,7 +138,7 @@ public class InputStepImpl   {
   }
 
   /**
-   **/
+   */
   public InputStepImpl submitter(String submitter) {
     this.submitter = submitter;
     return this;
@@ -146,7 +156,7 @@ public class InputStepImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -188,7 +198,7 @@ public class InputStepImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

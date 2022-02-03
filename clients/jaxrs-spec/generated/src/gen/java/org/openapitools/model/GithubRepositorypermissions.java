@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class GithubRepositorypermissions   {
+
+@JsonTypeName("GithubRepositorypermissions")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class GithubRepositorypermissions   {
   
-  private @Valid Boolean admin = null;
-  private @Valid Boolean push = null;
-  private @Valid Boolean pull = null;
-  private @Valid String propertyClass = null;
+  private @Valid Boolean admin;
+  private @Valid Boolean push;
+  private @Valid Boolean pull;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -24,16 +30,20 @@ public class GithubRepositorypermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("admin")
   public Boolean getAdmin() {
     return admin;
   }
+
+  @JsonProperty("admin")
   public void setAdmin(Boolean admin) {
     this.admin = admin;
   }
 
-  /**
+/**
    **/
   public GithubRepositorypermissions push(Boolean push) {
     this.push = push;
@@ -41,16 +51,20 @@ public class GithubRepositorypermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("push")
   public Boolean getPush() {
     return push;
   }
+
+  @JsonProperty("push")
   public void setPush(Boolean push) {
     this.push = push;
   }
 
-  /**
+/**
    **/
   public GithubRepositorypermissions pull(Boolean pull) {
     this.pull = pull;
@@ -58,16 +72,20 @@ public class GithubRepositorypermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("pull")
   public Boolean getPull() {
     return pull;
   }
+
+  @JsonProperty("pull")
   public void setPull(Boolean pull) {
     this.pull = pull;
   }
 
-  /**
+/**
    **/
   public GithubRepositorypermissions propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -75,18 +93,22 @@ public class GithubRepositorypermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -94,10 +116,10 @@ public class GithubRepositorypermissions   {
       return false;
     }
     GithubRepositorypermissions githubRepositorypermissions = (GithubRepositorypermissions) o;
-    return Objects.equals(admin, githubRepositorypermissions.admin) &&
-        Objects.equals(push, githubRepositorypermissions.push) &&
-        Objects.equals(pull, githubRepositorypermissions.pull) &&
-        Objects.equals(propertyClass, githubRepositorypermissions.propertyClass);
+    return Objects.equals(this.admin, githubRepositorypermissions.admin) &&
+        Objects.equals(this.push, githubRepositorypermissions.push) &&
+        Objects.equals(this.pull, githubRepositorypermissions.pull) &&
+        Objects.equals(this.propertyClass, githubRepositorypermissions.propertyClass);
   }
 
   @Override
@@ -122,11 +144,13 @@ public class GithubRepositorypermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

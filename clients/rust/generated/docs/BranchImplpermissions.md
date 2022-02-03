@@ -1,13 +1,14 @@
 # BranchImplpermissions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**create** | **bool** |  | [optional] 
-**read** | **bool** |  | [optional] 
-**start** | **bool** |  | [optional] 
-**stop** | **bool** |  | [optional] 
-**_class** | **String** |  | [optional] 
+**create** | Option<**bool**> |  | [optional]
+**read** | Option<**bool**> |  | [optional]
+**start** | Option<**bool**> |  | [optional]
+**stop** | Option<**bool**> |  | [optional]
+**_class** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,12 +4,12 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseTimeMonitorData   {
   
-  private String propertyClass = null;
-  private Integer timestamp = null;
-  private Integer average = null;
+  private String propertyClass;
+  private Integer timestamp;
+  private Integer average;
 
   public ResponseTimeMonitorData () {
 

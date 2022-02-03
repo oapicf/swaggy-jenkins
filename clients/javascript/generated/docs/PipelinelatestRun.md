@@ -1,6 +1,7 @@
 # SwaggyJenkins.PipelinelatestRun
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **artifacts** | [**[PipelinelatestRunartifacts]**](PipelinelatestRunartifacts.md) |  | [optional] 

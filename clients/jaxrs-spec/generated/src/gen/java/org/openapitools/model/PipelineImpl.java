@@ -1,26 +1,32 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineImpllinks;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineImpl   {
+
+@JsonTypeName("PipelineImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String displayName = null;
-  private @Valid Integer estimatedDurationInMillis = null;
-  private @Valid String fullName = null;
-  private @Valid String latestRun = null;
-  private @Valid String name = null;
-  private @Valid String organization = null;
-  private @Valid Integer weatherScore = null;
-  private @Valid PipelineImpllinks links = null;
+  private @Valid String propertyClass;
+  private @Valid String displayName;
+  private @Valid Integer estimatedDurationInMillis;
+  private @Valid String fullName;
+  private @Valid String latestRun;
+  private @Valid String name;
+  private @Valid String organization;
+  private @Valid Integer weatherScore;
+  private @Valid PipelineImpllinks links;
 
   /**
    **/
@@ -30,16 +36,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public PipelineImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -47,16 +57,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public PipelineImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -64,16 +78,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
+
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  /**
+/**
    **/
   public PipelineImpl fullName(String fullName) {
     this.fullName = fullName;
@@ -81,16 +99,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
+
+  @JsonProperty("fullName")
   public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
-  /**
+/**
    **/
   public PipelineImpl latestRun(String latestRun) {
     this.latestRun = latestRun;
@@ -98,16 +120,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
   public String getLatestRun() {
     return latestRun;
   }
+
+  @JsonProperty("latestRun")
   public void setLatestRun(String latestRun) {
     this.latestRun = latestRun;
   }
 
-  /**
+/**
    **/
   public PipelineImpl name(String name) {
     this.name = name;
@@ -115,16 +141,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public PipelineImpl organization(String organization) {
     this.organization = organization;
@@ -132,16 +162,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public PipelineImpl weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -149,16 +183,20 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
+
+  @JsonProperty("weatherScore")
   public void setWeatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  /**
+/**
    **/
   public PipelineImpl links(PipelineImpllinks links) {
     this.links = links;
@@ -166,18 +204,22 @@ public class PipelineImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public PipelineImpllinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(PipelineImpllinks links) {
     this.links = links;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -185,15 +227,15 @@ public class PipelineImpl   {
       return false;
     }
     PipelineImpl pipelineImpl = (PipelineImpl) o;
-    return Objects.equals(propertyClass, pipelineImpl.propertyClass) &&
-        Objects.equals(displayName, pipelineImpl.displayName) &&
-        Objects.equals(estimatedDurationInMillis, pipelineImpl.estimatedDurationInMillis) &&
-        Objects.equals(fullName, pipelineImpl.fullName) &&
-        Objects.equals(latestRun, pipelineImpl.latestRun) &&
-        Objects.equals(name, pipelineImpl.name) &&
-        Objects.equals(organization, pipelineImpl.organization) &&
-        Objects.equals(weatherScore, pipelineImpl.weatherScore) &&
-        Objects.equals(links, pipelineImpl.links);
+    return Objects.equals(this.propertyClass, pipelineImpl.propertyClass) &&
+        Objects.equals(this.displayName, pipelineImpl.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.fullName, pipelineImpl.fullName) &&
+        Objects.equals(this.latestRun, pipelineImpl.latestRun) &&
+        Objects.equals(this.name, pipelineImpl.name) &&
+        Objects.equals(this.organization, pipelineImpl.organization) &&
+        Objects.equals(this.weatherScore, pipelineImpl.weatherScore) &&
+        Objects.equals(this.links, pipelineImpl.links);
   }
 
   @Override
@@ -223,11 +265,13 @@ public class PipelineImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

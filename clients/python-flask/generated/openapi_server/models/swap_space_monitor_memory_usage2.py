@@ -15,7 +15,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, available_physical_memory: int=None, available_swap_space: int=None, total_physical_memory: int=None, total_swap_space: int=None):  # noqa: E501
+    def __init__(self, _class=None, available_physical_memory=None, available_swap_space=None, total_physical_memory=None, total_swap_space=None):  # noqa: E501
         """SwapSpaceMonitorMemoryUsage2 - a model defined in OpenAPI
 
         :param _class: The _class of this SwapSpaceMonitorMemoryUsage2.  # noqa: E501
@@ -63,7 +63,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -73,7 +73,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -84,7 +84,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         self.__class = _class
 
     @property
-    def available_physical_memory(self) -> int:
+    def available_physical_memory(self):
         """Gets the available_physical_memory of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -94,7 +94,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         return self._available_physical_memory
 
     @available_physical_memory.setter
-    def available_physical_memory(self, available_physical_memory: int):
+    def available_physical_memory(self, available_physical_memory):
         """Sets the available_physical_memory of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -105,7 +105,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         self._available_physical_memory = available_physical_memory
 
     @property
-    def available_swap_space(self) -> int:
+    def available_swap_space(self):
         """Gets the available_swap_space of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -115,7 +115,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         return self._available_swap_space
 
     @available_swap_space.setter
-    def available_swap_space(self, available_swap_space: int):
+    def available_swap_space(self, available_swap_space):
         """Sets the available_swap_space of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -126,7 +126,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         self._available_swap_space = available_swap_space
 
     @property
-    def total_physical_memory(self) -> int:
+    def total_physical_memory(self):
         """Gets the total_physical_memory of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -136,7 +136,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         return self._total_physical_memory
 
     @total_physical_memory.setter
-    def total_physical_memory(self, total_physical_memory: int):
+    def total_physical_memory(self, total_physical_memory):
         """Sets the total_physical_memory of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -147,7 +147,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         self._total_physical_memory = total_physical_memory
 
     @property
-    def total_swap_space(self) -> int:
+    def total_swap_space(self):
         """Gets the total_swap_space of this SwapSpaceMonitorMemoryUsage2.
 
 
@@ -157,7 +157,7 @@ class SwapSpaceMonitorMemoryUsage2(Model):
         return self._total_swap_space
 
     @total_swap_space.setter
-    def total_swap_space(self, total_swap_space: int):
+    def total_swap_space(self, total_swap_space):
         """Sets the total_swap_space of this SwapSpaceMonitorMemoryUsage2.
 
 

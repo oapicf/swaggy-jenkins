@@ -9,29 +9,22 @@
  */
 goog.provide('API.Client.BlueOceanApi');
 
-goog.require('API.Client.Body');
 goog.require('API.Client.BranchImpl');
 goog.require('API.Client.FavoriteImpl');
+goog.require('API.Client.GithubOrganization');
 goog.require('API.Client.GithubScm');
 goog.require('API.Client.MultibranchPipeline');
 goog.require('API.Client.Organisation');
-goog.require('API.Client.Organisations');
 goog.require('API.Client.Pipeline');
-goog.require('API.Client.PipelineActivities');
+goog.require('API.Client.PipelineActivity');
 goog.require('API.Client.PipelineFolderImpl');
 goog.require('API.Client.PipelineImpl');
-goog.require('API.Client.PipelineQueue');
 goog.require('API.Client.PipelineRun');
 goog.require('API.Client.PipelineRunNode');
-goog.require('API.Client.PipelineRunNodeSteps');
-goog.require('API.Client.PipelineRunNodes');
-goog.require('API.Client.PipelineRuns');
 goog.require('API.Client.PipelineStepImpl');
-goog.require('API.Client.Pipelines');
 goog.require('API.Client.QueueItemImpl');
-goog.require('API.Client.ScmOrganisations');
+goog.require('API.Client.UNKNOWN_BASE_TYPE');
 goog.require('API.Client.User');
-goog.require('API.Client.UserFavorites');
 
 /**
  * @constructor
@@ -302,7 +295,7 @@ API.Client.BlueOceanApi.prototype.getOrganisation = function(organization, opt_e
  * 
  * Retrieve all organizations details
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.Organisations>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.Organisation>>}
  */
 API.Client.BlueOceanApi.prototype.getOrganisations = function(opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -378,7 +371,7 @@ API.Client.BlueOceanApi.prototype.getPipeline = function(organization, pipeline,
  * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.PipelineActivities>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.PipelineActivity>>}
  */
 API.Client.BlueOceanApi.prototype.getPipelineActivities = function(organization, pipeline, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -660,7 +653,7 @@ API.Client.BlueOceanApi.prototype.getPipelineFolderPipeline = function(organizat
  * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.PipelineQueue>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.QueueItemImpl>>}
  */
 API.Client.BlueOceanApi.prototype.getPipelineQueue = function(organization, pipeline, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -990,7 +983,7 @@ API.Client.BlueOceanApi.prototype.getPipelineRunNodeStepLog = function(organizat
  * @param {!string} run Name of the run
  * @param {!string} node Name of the node
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.PipelineRunNodeSteps>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.PipelineStepImpl>>}
  */
 API.Client.BlueOceanApi.prototype.getPipelineRunNodeSteps = function(organization, pipeline, run, node, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1044,7 +1037,7 @@ API.Client.BlueOceanApi.prototype.getPipelineRunNodeSteps = function(organizatio
  * @param {!string} pipeline Name of the pipeline
  * @param {!string} run Name of the run
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.PipelineRunNodes>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.PipelineRunNode>>}
  */
 API.Client.BlueOceanApi.prototype.getPipelineRunNodes = function(organization, pipeline, run, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1092,7 +1085,7 @@ API.Client.BlueOceanApi.prototype.getPipelineRunNodes = function(organization, p
  * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.PipelineRuns>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.PipelineRun>>}
  */
 API.Client.BlueOceanApi.prototype.getPipelineRuns = function(organization, pipeline, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1134,7 +1127,7 @@ API.Client.BlueOceanApi.prototype.getPipelineRuns = function(organization, pipel
  * Retrieve all pipelines details for an organization
  * @param {!string} organization Name of the organization
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.Pipelines>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.Pipeline>>}
  */
 API.Client.BlueOceanApi.prototype.getPipelines = function(organization, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1219,7 +1212,7 @@ API.Client.BlueOceanApi.prototype.getSCM = function(organization, scm, opt_extra
  * @param {!number=} opt_pageSize Number of items in a page
  * @param {!number=} opt_pageNumber Page number
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.ScmOrganisations>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.GithubOrganization>>}
  */
 API.Client.BlueOceanApi.prototype.getSCMOrganisationRepositories = function(organization, scm, scmOrganisation, opt_credentialId, opt_pageSize, opt_pageNumber, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1282,7 +1275,7 @@ API.Client.BlueOceanApi.prototype.getSCMOrganisationRepositories = function(orga
  * @param {!string} repository Name of the SCM repository
  * @param {!string=} opt_credentialId Credential ID
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.ScmOrganisations>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.GithubOrganization>>}
  */
 API.Client.BlueOceanApi.prototype.getSCMOrganisationRepository = function(organization, scm, scmOrganisation, repository, opt_credentialId, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1340,7 +1333,7 @@ API.Client.BlueOceanApi.prototype.getSCMOrganisationRepository = function(organi
  * @param {!string} scm Name of SCM
  * @param {!string=} opt_credentialId Credential ID
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.ScmOrganisations>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.GithubOrganization>>}
  */
 API.Client.BlueOceanApi.prototype.getSCMOrganisations = function(organization, scm, opt_credentialId, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1429,7 +1422,7 @@ API.Client.BlueOceanApi.prototype.getUser = function(organization, user, opt_ext
  * Retrieve user favorites details for an organization
  * @param {!string} user Name of the user
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
- * @return {!angular.$q.Promise<!API.Client.UserFavorites>}
+ * @return {!angular.$q.Promise<!Array<!API.Client.FavoriteImpl>>}
  */
 API.Client.BlueOceanApi.prototype.getUserFavorites = function(user, opt_extraHttpRequestParams) {
   /** @const {string} */
@@ -1595,11 +1588,11 @@ API.Client.BlueOceanApi.prototype.postPipelineRuns = function(organization, pipe
  * Favorite/unfavorite a pipeline
  * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
- * @param {!Body} body Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite
+ * @param {!UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.FavoriteImpl>}
  */
-API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, pipeline, body, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, pipeline, UNKNOWN_BASE_TYPE, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
       .replace('{' + 'organization' + '}', String(organization))
@@ -1618,16 +1611,16 @@ API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, p
   if (!pipeline) {
     throw new Error('Missing required parameter pipeline when calling putPipelineFavorite');
   }
-  // verify required parameter 'body' is set
-  if (!body) {
-    throw new Error('Missing required parameter body when calling putPipelineFavorite');
+  // verify required parameter 'UNKNOWN_BASE_TYPE' is set
+  if (!UNKNOWN_BASE_TYPE) {
+    throw new Error('Missing required parameter UNKNOWN_BASE_TYPE when calling putPipelineFavorite');
   }
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'PUT',
     url: path,
     json: true,
-    data: body,
+    data: UNKNOWN_BASE_TYPE,
         params: queryParameters,
     headers: headerParams
   };

@@ -14,7 +14,7 @@ generate:
 	  docker \
 		  run \
 		  --rm \
-		  -v ${PWD}:/local openapitools/openapi-generator-cli:v5.4.0 \
+		  -v /Users/cliffano/dev/workspace-studio/swaggy-jenkins:/local openapitools/openapi-generator-cli:v5.4.0 \
 		  generate \
 		  --input-spec /local/spec/jenkins-api.yml \
 		  --config /local/clients/$$lang/conf.json \

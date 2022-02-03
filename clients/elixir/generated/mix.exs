@@ -3,10 +3,12 @@ defmodule SwaggyJenkins.Mixfile do
 
   def project do
     [app: :swaggy_jenkins,
-     version: "0.1.0",
-     elixir: "~> 1.4",
+     version: "1.1.1",
+     elixir: "~> 1.6",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     package: package(),
+     description: "Jenkins API clients generated from Swagger / Open API specification",
      deps: deps()]
   end
 
@@ -24,13 +26,21 @@ defmodule SwaggyJenkins.Mixfile do
   #
   # Or git/path repositories:
   #
-  #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+  #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.3.0"}
   #
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 0.8"},
-      {:poison, ">= 1.0.0"}
+      {:tesla, "~> 1.2"},
+      {:poison, "~> 3.0"}
+    ]
+  end
+
+   defp package() do
+    [
+      name: "swaggy_jenkins",
+      files: ~w(lib mix.exs README* LICENSE*),
+      licenses: [""]
     ]
   end
 end

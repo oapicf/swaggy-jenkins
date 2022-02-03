@@ -1,6 +1,6 @@
 # RemoteAccessApi
 
-All URIs are relative to */*
+All URIs are relative to **
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,22 +26,25 @@ Method | HTTP request | Description
 [**postViewConfig**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml | 
 
 
-## **getComputer**
+
+## getComputer
 
 
 
 Retrieve computer details
 
 ### Example
+
 ```bash
  getComputer  depth=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **depth** | **integer** | Recursion depth in response model |
+ **depth** | **integer** | Recursion depth in response model | [default to null]
 
 ### Return type
 
@@ -53,23 +56,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJenkins**
+
+## getJenkins
 
 
 
 Retrieve Jenkins details
 
 ### Example
+
 ```bash
  getJenkins
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -82,27 +88,30 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJob**
+
+## getJob
 
 
 
 Retrieve job details
 
 ### Example
+
 ```bash
  getJob name=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
+ **name** | **string** | Name of the job | [default to null]
 
 ### Return type
 
@@ -114,27 +123,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJobConfig**
+
+## getJobConfig
 
 
 
 Retrieve job configuration
 
 ### Example
+
 ```bash
  getJobConfig name=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
+ **name** | **string** | Name of the job | [default to null]
 
 ### Return type
 
@@ -146,27 +158,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: text/xml
+- **Content-Type**: Not Applicable
+- **Accept**: text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJobLastBuild**
+
+## getJobLastBuild
 
 
 
 Retrieve job's last build details
 
 ### Example
+
 ```bash
  getJobLastBuild name=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
+ **name** | **string** | Name of the job | [default to null]
 
 ### Return type
 
@@ -178,29 +193,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJobProgressiveText**
+
+## getJobProgressiveText
 
 
 
 Retrieve job's build progressive text output
 
 ### Example
+
 ```bash
  getJobProgressiveText name=value number=value  start=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
- **number** | **string** | Build number |
- **start** | **string** | Starting point of progressive text output |
+ **name** | **string** | Name of the job | [default to null]
+ **number** | **string** | Build number | [default to null]
+ **start** | **string** | Starting point of progressive text output | [default to null]
 
 ### Return type
 
@@ -212,23 +230,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getQueue**
+
+## getQueue
 
 
 
 Retrieve queue details
 
 ### Example
+
 ```bash
  getQueue
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -241,27 +262,30 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getQueueItem**
+
+## getQueueItem
 
 
 
 Retrieve queued item details
 
 ### Example
+
 ```bash
  getQueueItem number=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **number** | **string** | Queue number |
+ **number** | **string** | Queue number | [default to null]
 
 ### Return type
 
@@ -273,27 +297,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getView**
+
+## getView
 
 
 
 Retrieve view details
 
 ### Example
+
 ```bash
  getView name=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the view |
+ **name** | **string** | Name of the view | [default to null]
 
 ### Return type
 
@@ -305,27 +332,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getViewConfig**
+
+## getViewConfig
 
 
 
 Retrieve view configuration
 
 ### Example
+
 ```bash
  getViewConfig name=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the view |
+ **name** | **string** | Name of the view | [default to null]
 
 ### Return type
 
@@ -337,23 +367,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: text/xml
+- **Content-Type**: Not Applicable
+- **Accept**: text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **headJenkins**
+
+## headJenkins
 
 
 
 Retrieve Jenkins headers
 
 ### Example
+
 ```bash
  headJenkins
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -366,31 +399,34 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postCreateItem**
+
+## postCreateItem
 
 
 
 Create a new job using job configuration, or copied from an existing job
 
 ### Example
+
 ```bash
  postCreateItem  name=value  from=value  mode=value Jenkins-Crumb:value Content-Type:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the new job |
- **from** | **string** | Existing job to copy from | [optional]
- **mode** | **string** | Set to 'copy' for copying an existing job | [optional]
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
- **contentType** | **string** | Content type header application/xml | [optional]
+ **name** | **string** | Name of the new job | [default to null]
+ **from** | **string** | Existing job to copy from | [optional] [default to null]
+ **mode** | **string** | Set to 'copy' for copying an existing job | [optional] [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
+ **contentType** | **string** | Content type header application/xml | [optional] [default to null]
  **body** | **string** | Job configuration in config.xml format | [optional]
 
 ### Return type
@@ -403,29 +439,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postCreateView**
+
+## postCreateView
 
 
 
 Create a new view using view configuration
 
 ### Example
+
 ```bash
  postCreateView  name=value Jenkins-Crumb:value Content-Type:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the new view |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
- **contentType** | **string** | Content type header application/xml | [optional]
+ **name** | **string** | Name of the new view | [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
+ **contentType** | **string** | Content type header application/xml | [optional] [default to null]
  **body** | **string** | View configuration in config.xml format | [optional]
 
 ### Return type
@@ -438,30 +477,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postJobBuild**
+
+## postJobBuild
 
 
 
 Build a job
 
 ### Example
+
 ```bash
  postJobBuild name=value  json=value  token=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
- **json** | **string** |  |
- **token** | **string** |  | [optional]
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **name** | **string** | Name of the job | [default to null]
+ **json** | **string** |  | [default to null]
+ **token** | **string** |  | [optional] [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -473,29 +515,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postJobConfig**
+
+## postJobConfig
 
 
 
 Update job configuration
 
 ### Example
+
 ```bash
  postJobConfig name=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
+ **name** | **string** | Name of the job | [default to null]
  **body** | **string** | Job configuration in config.xml format |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -507,28 +552,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postJobDelete**
+
+## postJobDelete
 
 
 
 Delete a job
 
 ### Example
+
 ```bash
  postJobDelete name=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **name** | **string** | Name of the job | [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -540,28 +588,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postJobDisable**
+
+## postJobDisable
 
 
 
 Disable a job
 
 ### Example
+
 ```bash
  postJobDisable name=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **name** | **string** | Name of the job | [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -573,28 +624,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postJobEnable**
+
+## postJobEnable
 
 
 
 Enable a job
 
 ### Example
+
 ```bash
  postJobEnable name=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **name** | **string** | Name of the job | [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -606,28 +660,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postJobLastBuildStop**
+
+## postJobLastBuildStop
 
 
 
 Stop a job
 
 ### Example
+
 ```bash
  postJobLastBuildStop name=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the job |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **name** | **string** | Name of the job | [default to null]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -639,29 +696,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postViewConfig**
+
+## postViewConfig
 
 
 
 Update view configuration
 
 ### Example
+
 ```bash
  postViewConfig name=value Jenkins-Crumb:value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** | Name of the view |
+ **name** | **string** | Name of the view | [default to null]
  **body** | **string** | View configuration in config.xml format |
- **jenkinsCrumb** | **string** | CSRF protection token | [optional]
+ **jenkinsCrumb** | **string** | CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -673,8 +733,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: */*
+- **Content-Type**: application/json
+- **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -14,7 +14,30 @@ type ExtensionClassContainerImpl1 struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *ExtensionClassContainerImpl1links `json:"_links,omitempty"`
+	Links ExtensionClassContainerImpl1links `json:"_links,omitempty"`
 
-	Map *ExtensionClassContainerImpl1map `json:"map,omitempty"`
+	Map ExtensionClassContainerImpl1map `json:"map,omitempty"`
+}
+
+// AssertExtensionClassContainerImpl1Required checks if the required fields are not zero-ed
+func AssertExtensionClassContainerImpl1Required(obj ExtensionClassContainerImpl1) error {
+	if err := AssertExtensionClassContainerImpl1linksRequired(obj.Links); err != nil {
+		return err
+	}
+	if err := AssertExtensionClassContainerImpl1mapRequired(obj.Map); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseExtensionClassContainerImpl1Required recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of ExtensionClassContainerImpl1 (e.g. [][]ExtensionClassContainerImpl1), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseExtensionClassContainerImpl1Required(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aExtensionClassContainerImpl1, ok := obj.(ExtensionClassContainerImpl1)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertExtensionClassContainerImpl1Required(aExtensionClassContainerImpl1)
+	})
 }

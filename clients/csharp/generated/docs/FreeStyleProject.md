@@ -1,4 +1,6 @@
+
 # Org.OpenAPITools.Model.FreeStyleProject
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -13,12 +15,12 @@ Name | Type | Description | Notes
 **DisplayNameOrNull** | **string** |  | [optional] 
 **FullDisplayName** | **string** |  | [optional] 
 **FullName** | **string** |  | [optional] 
-**Buildable** | **bool?** |  | [optional] 
+**Buildable** | **bool** |  | [optional] 
 **Builds** | [**List&lt;FreeStyleBuild&gt;**](FreeStyleBuild.md) |  | [optional] 
 **FirstBuild** | [**FreeStyleBuild**](FreeStyleBuild.md) |  | [optional] 
 **HealthReport** | [**List&lt;FreeStyleProjecthealthReport&gt;**](FreeStyleProjecthealthReport.md) |  | [optional] 
-**InQueue** | **bool?** |  | [optional] 
-**KeepDependencies** | **bool?** |  | [optional] 
+**InQueue** | **bool** |  | [optional] 
+**KeepDependencies** | **bool** |  | [optional] 
 **LastBuild** | [**FreeStyleBuild**](FreeStyleBuild.md) |  | [optional] 
 **LastCompletedBuild** | [**FreeStyleBuild**](FreeStyleBuild.md) |  | [optional] 
 **LastFailedBuild** | **string** |  | [optional] 
@@ -26,10 +28,12 @@ Name | Type | Description | Notes
 **LastSuccessfulBuild** | [**FreeStyleBuild**](FreeStyleBuild.md) |  | [optional] 
 **LastUnstableBuild** | **string** |  | [optional] 
 **LastUnsuccessfulBuild** | **string** |  | [optional] 
-**NextBuildNumber** | **int?** |  | [optional] 
+**NextBuildNumber** | **int** |  | [optional] 
 **QueueItem** | **string** |  | [optional] 
-**ConcurrentBuild** | **bool?** |  | [optional] 
+**ConcurrentBuild** | **bool** |  | [optional] 
 **Scm** | [**NullSCM**](NullSCM.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

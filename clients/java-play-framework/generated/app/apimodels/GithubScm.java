@@ -9,24 +9,29 @@ import javax.validation.constraints.*;
 /**
  * GithubScm
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubScm   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubScmlinks links = null;
+  @Valid
+
+  private GithubScmlinks links;
 
   @JsonProperty("credentialId")
-  private String credentialId = null;
+  
+  private String credentialId;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("uri")
-  private String uri = null;
+  
+  private String uri;
 
   public GithubScm propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -37,7 +42,7 @@ public class GithubScm   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -54,7 +59,6 @@ public class GithubScm   {
    * Get links
    * @return links
   **/
-  @Valid
   public GithubScmlinks getLinks() {
     return links;
   }
@@ -72,7 +76,7 @@ public class GithubScm   {
    * Get credentialId
    * @return credentialId
   **/
-    public String getCredentialId() {
+  public String getCredentialId() {
     return credentialId;
   }
 
@@ -89,7 +93,7 @@ public class GithubScm   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -106,7 +110,7 @@ public class GithubScm   {
    * Get uri
    * @return uri
   **/
-    public String getUri() {
+  public String getUri() {
     return uri;
   }
 
@@ -116,7 +120,7 @@ public class GithubScm   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -155,7 +159,7 @@ public class GithubScm   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

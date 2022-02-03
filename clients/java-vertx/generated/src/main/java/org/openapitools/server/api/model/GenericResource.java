@@ -4,15 +4,15 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GenericResource   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private Integer durationInMillis = null;
-  private String id = null;
-  private String result = null;
-  private String startTime = null;
+  private String propertyClass;
+  private String displayName;
+  private Integer durationInMillis;
+  private String id;
+  private String result;
+  private String startTime;
 
   public GenericResource () {
 

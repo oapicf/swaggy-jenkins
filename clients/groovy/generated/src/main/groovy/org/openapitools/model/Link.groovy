@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class Link {
-    String propertyClass = null
-
-    String href = null
-
+    
+    String propertyClass
+    
+    String href
 }

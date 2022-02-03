@@ -1,1092 +1,1144 @@
 package org.openapitools.api;
 
-import groovyx.net.http.*
-import static groovyx.net.http.ContentType.*
-import static groovyx.net.http.Method.*
 import org.openapitools.api.ApiUtils
-
-import org.openapitools.model.Body
 import org.openapitools.model.BranchImpl
 import org.openapitools.model.FavoriteImpl
+import org.openapitools.model.GithubOrganization
 import org.openapitools.model.GithubScm
 import org.openapitools.model.MultibranchPipeline
 import org.openapitools.model.Organisation
-import org.openapitools.model.Organisations
 import org.openapitools.model.Pipeline
-import org.openapitools.model.PipelineActivities
+import org.openapitools.model.PipelineActivity
 import org.openapitools.model.PipelineFolderImpl
 import org.openapitools.model.PipelineImpl
-import org.openapitools.model.PipelineQueue
 import org.openapitools.model.PipelineRun
 import org.openapitools.model.PipelineRunNode
-import org.openapitools.model.PipelineRunNodeSteps
-import org.openapitools.model.PipelineRunNodes
-import org.openapitools.model.PipelineRuns
 import org.openapitools.model.PipelineStepImpl
-import org.openapitools.model.Pipelines
 import org.openapitools.model.QueueItemImpl
-import org.openapitools.model.ScmOrganisations
+import org.openapitools.model.UNKNOWN_BASE_TYPE
 import org.openapitools.model.User
-import org.openapitools.model.UserFavorites
 
-import java.util.*;
-
-@Mixin(ApiUtils)
 class BlueOceanApi {
     String basePath = "http://localhost"
-    String versionPath = "/api/v1"
+    String versionPath = ""
+    ApiUtils apiUtils = new ApiUtils();
 
     def deletePipelineQueueItem ( String organization, String pipeline, String queue, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/queue/${queue}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (queue == null) {
             throw new RuntimeException("missing required params queue")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "DELETE", "",
                     null )
 
     }
 
     def getAuthenticatedUser ( String organization, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/user/"
+        String resourcePath = "/blue/rest/organizations/${organization}/user/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     User.class )
 
     }
 
     def getClasses ( String propertyClass, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/classes/{class}"
+        String resourcePath = "/blue/rest/classes/${class}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (propertyClass == null) {
             throw new RuntimeException("missing required params propertyClass")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 
     }
 
     def getJsonWebKey ( Integer key, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/jwt-auth/jwks/{key}"
+        String resourcePath = "/jwt-auth/jwks/${key}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (key == null) {
             throw new RuntimeException("missing required params key")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 
     }
 
     def getJsonWebToken ( Integer expiryTimeInMins, Integer maxExpiryTimeInMins, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
         String resourcePath = "/jwt-auth/token"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
-        if (!"null".equals(String.valueOf(expiryTimeInMins)))
-            queryParams.put("expiryTimeInMins", String.valueOf(expiryTimeInMins))
 
-        if (!"null".equals(String.valueOf(maxExpiryTimeInMins)))
-            queryParams.put("maxExpiryTimeInMins", String.valueOf(maxExpiryTimeInMins))
+        if (expiryTimeInMins != null) {
+            queryParams.put("expiryTimeInMins", expiryTimeInMins)
+        }
+        if (maxExpiryTimeInMins != null) {
+            queryParams.put("maxExpiryTimeInMins", maxExpiryTimeInMins)
+        }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 
     }
 
     def getOrganisation ( String organization, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}"
+        String resourcePath = "/blue/rest/organizations/${organization}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     Organisation.class )
 
     }
 
     def getOrganisations ( Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
         String resourcePath = "/blue/rest/organizations/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    Organisations.class )
+
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    Organisation.class )
 
     }
 
     def getPipeline ( String organization, String pipeline, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     Pipeline.class )
 
     }
 
     def getPipelineActivities ( String organization, String pipeline, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/activities"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    PipelineActivities.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    PipelineActivity.class )
 
     }
 
     def getPipelineBranch ( String organization, String pipeline, String branch, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/branches/${branch}/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (branch == null) {
             throw new RuntimeException("missing required params branch")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     BranchImpl.class )
 
     }
 
     def getPipelineBranchRun ( String organization, String pipeline, String branch, String run, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/branches/${branch}/runs/${run}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (branch == null) {
             throw new RuntimeException("missing required params branch")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     PipelineRun.class )
 
     }
 
     def getPipelineBranches ( String organization, String pipeline, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/branches"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     MultibranchPipeline.class )
 
     }
 
     def getPipelineFolder ( String organization, String folder, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{folder}/"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${folder}/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (folder == null) {
             throw new RuntimeException("missing required params folder")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     PipelineFolderImpl.class )
 
     }
 
     def getPipelineFolderPipeline ( String organization, String pipeline, String folder, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${folder}/pipelines/${pipeline}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (folder == null) {
             throw new RuntimeException("missing required params folder")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     PipelineImpl.class )
 
     }
 
     def getPipelineQueue ( String organization, String pipeline, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/queue"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    PipelineQueue.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    QueueItemImpl.class )
 
     }
 
     def getPipelineRun ( String organization, String pipeline, String run, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     PipelineRun.class )
 
     }
 
     def getPipelineRunLog ( String organization, String pipeline, String run, Integer start, Boolean download, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/log"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
 
-        if (!"null".equals(String.valueOf(start)))
-            queryParams.put("start", String.valueOf(start))
+        if (start != null) {
+            queryParams.put("start", start)
+        }
+        if (download != null) {
+            queryParams.put("download", download)
+        }
 
-        if (!"null".equals(String.valueOf(download)))
-            queryParams.put("download", String.valueOf(download))
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 
     }
 
     def getPipelineRunNode ( String organization, String pipeline, String run, String node, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
-
         // verify required params are set
         if (node == null) {
             throw new RuntimeException("missing required params node")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     PipelineRunNode.class )
 
     }
 
     def getPipelineRunNodeStep ( String organization, String pipeline, String run, String node, String step, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}/steps/${step}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
-
         // verify required params are set
         if (node == null) {
             throw new RuntimeException("missing required params node")
         }
-
         // verify required params are set
         if (step == null) {
             throw new RuntimeException("missing required params step")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     PipelineStepImpl.class )
 
     }
 
     def getPipelineRunNodeStepLog ( String organization, String pipeline, String run, String node, String step, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}/steps/${step}/log"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
-
         // verify required params are set
         if (node == null) {
             throw new RuntimeException("missing required params node")
         }
-
         // verify required params are set
         if (step == null) {
             throw new RuntimeException("missing required params step")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 
     }
 
     def getPipelineRunNodeSteps ( String organization, String pipeline, String run, String node, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}/steps"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
-
         // verify required params are set
         if (node == null) {
             throw new RuntimeException("missing required params node")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    PipelineRunNodeSteps.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    PipelineStepImpl.class )
 
     }
 
     def getPipelineRunNodes ( String organization, String pipeline, String run, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    PipelineRunNodes.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    PipelineRunNode.class )
 
     }
 
     def getPipelineRuns ( String organization, String pipeline, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    PipelineRuns.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    PipelineRun.class )
 
     }
 
     def getPipelines ( String organization, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    Pipelines.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    Pipeline.class )
 
     }
 
     def getSCM ( String organization, String scm, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/scm/{scm}"
+        String resourcePath = "/blue/rest/organizations/${organization}/scm/${scm}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (scm == null) {
             throw new RuntimeException("missing required params scm")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     GithubScm.class )
 
     }
 
     def getSCMOrganisationRepositories ( String organization, String scm, String scmOrganisation, String credentialId, Integer pageSize, Integer pageNumber, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories"
+        String resourcePath = "/blue/rest/organizations/${organization}/scm/${scm}/organizations/${scmOrganisation}/repositories"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (scm == null) {
             throw new RuntimeException("missing required params scm")
         }
-
         // verify required params are set
         if (scmOrganisation == null) {
             throw new RuntimeException("missing required params scmOrganisation")
         }
 
-        if (!"null".equals(String.valueOf(credentialId)))
-            queryParams.put("credentialId", String.valueOf(credentialId))
+        if (credentialId != null) {
+            queryParams.put("credentialId", credentialId)
+        }
+        if (pageSize != null) {
+            queryParams.put("pageSize", pageSize)
+        }
+        if (pageNumber != null) {
+            queryParams.put("pageNumber", pageNumber)
+        }
 
-        if (!"null".equals(String.valueOf(pageSize)))
-            queryParams.put("pageSize", String.valueOf(pageSize))
 
-        if (!"null".equals(String.valueOf(pageNumber)))
-            queryParams.put("pageNumber", String.valueOf(pageNumber))
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    ScmOrganisations.class )
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    GithubOrganization.class )
 
     }
 
     def getSCMOrganisationRepository ( String organization, String scm, String scmOrganisation, String repository, String credentialId, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}"
+        String resourcePath = "/blue/rest/organizations/${organization}/scm/${scm}/organizations/${scmOrganisation}/repositories/${repository}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (scm == null) {
             throw new RuntimeException("missing required params scm")
         }
-
         // verify required params are set
         if (scmOrganisation == null) {
             throw new RuntimeException("missing required params scmOrganisation")
         }
-
         // verify required params are set
         if (repository == null) {
             throw new RuntimeException("missing required params repository")
         }
 
-        if (!"null".equals(String.valueOf(credentialId)))
-            queryParams.put("credentialId", String.valueOf(credentialId))
+        if (credentialId != null) {
+            queryParams.put("credentialId", credentialId)
+        }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    ScmOrganisations.class )
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    GithubOrganization.class )
 
     }
 
     def getSCMOrganisations ( String organization, String scm, String credentialId, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/scm/{scm}/organizations"
+        String resourcePath = "/blue/rest/organizations/${organization}/scm/${scm}/organizations"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (scm == null) {
             throw new RuntimeException("missing required params scm")
         }
 
-        if (!"null".equals(String.valueOf(credentialId)))
-            queryParams.put("credentialId", String.valueOf(credentialId))
+        if (credentialId != null) {
+            queryParams.put("credentialId", credentialId)
+        }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    ScmOrganisations.class )
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    GithubOrganization.class )
 
     }
 
     def getUser ( String organization, String user, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/users/{user}"
+        String resourcePath = "/blue/rest/organizations/${organization}/users/${user}"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (user == null) {
             throw new RuntimeException("missing required params user")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     User.class )
 
     }
 
     def getUserFavorites ( String user, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/users/{user}/favorites"
+        String resourcePath = "/blue/rest/users/${user}/favorites"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (user == null) {
             throw new RuntimeException("missing required params user")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
-                    "GET", "",
-                    UserFavorites.class )
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "GET", "array",
+                    FavoriteImpl.class )
 
     }
 
     def getUsers ( String organization, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/users/"
+        String resourcePath = "/blue/rest/organizations/${organization}/users/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     User.class )
 
     }
 
     def postPipelineRun ( String organization, String pipeline, String run, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/replay"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "POST", "",
                     QueueItemImpl.class )
 
     }
 
     def postPipelineRuns ( String organization, String pipeline, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "POST", "",
                     QueueItemImpl.class )
 
     }
 
-    def putPipelineFavorite ( String organization, String pipeline, Body body, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
+    def putPipelineFavorite ( String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, Closure onSuccess, Closure onFailure)  {
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/favorite"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
-        if (body == null) {
-            throw new RuntimeException("missing required params body")
+        if (UNKNOWN_BASE_TYPE == null) {
+            throw new RuntimeException("missing required params UNKNOWN_BASE_TYPE")
         }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+        contentType = 'application/json';
+        bodyParams = UNKNOWN_BASE_TYPE
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "PUT", "",
                     FavoriteImpl.class )
 
     }
 
     def putPipelineRun ( String organization, String pipeline, String run, String blocking, Integer timeOutInSecs, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
-        String resourcePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop"
+        String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/stop"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (organization == null) {
             throw new RuntimeException("missing required params organization")
         }
-
         // verify required params are set
         if (pipeline == null) {
             throw new RuntimeException("missing required params pipeline")
         }
-
         // verify required params are set
         if (run == null) {
             throw new RuntimeException("missing required params run")
         }
 
-        if (!"null".equals(String.valueOf(blocking)))
-            queryParams.put("blocking", String.valueOf(blocking))
+        if (blocking != null) {
+            queryParams.put("blocking", blocking)
+        }
+        if (timeOutInSecs != null) {
+            queryParams.put("timeOutInSecs", timeOutInSecs)
+        }
 
-        if (!"null".equals(String.valueOf(timeOutInSecs)))
-            queryParams.put("timeOutInSecs", String.valueOf(timeOutInSecs))
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "PUT", "",
                     PipelineRun.class )
 
     }
 
     def search ( String q, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
         String resourcePath = "/blue/rest/search/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (q == null) {
             throw new RuntimeException("missing required params q")
         }
 
-        if (!"null".equals(String.valueOf(q)))
-            queryParams.put("q", String.valueOf(q))
+        if (q != null) {
+            queryParams.put("q", q)
+        }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 
     }
 
     def searchClasses ( String q, Closure onSuccess, Closure onFailure)  {
-        // create path and map path parameters (TODO)
         String resourcePath = "/blue/rest/classes/"
 
-        // query params
+        // params
         def queryParams = [:]
         def headerParams = [:]
+        def bodyParams
+        def contentType
 
         // verify required params are set
         if (q == null) {
             throw new RuntimeException("missing required params q")
         }
 
-        if (!"null".equals(String.valueOf(q)))
-            queryParams.put("q", String.valueOf(q))
+        if (q != null) {
+            queryParams.put("q", q)
+        }
 
-        // TODO: form params, body param not yet support
 
-        invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams,
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "GET", "",
                     String.class )
 

@@ -10,12 +10,12 @@ For more information, please visit [http://github.com/cliffano/swaggy-jenkins](h
 
 ## Requirements.
 
-Python 2.7 and 3.4+
+Python >=3.6
 
 ## Installation & Usage
 ### pip install
 
-If the python package is hosted on Github, you can install directly from Github
+If the python package is hosted on a repository, you can install directly using:
 
 ```sh
 pip install git+https://github.com/cliffano/swaggy-jenkins.git
@@ -24,7 +24,7 @@ pip install git+https://github.com/cliffano/swaggy-jenkins.git
 
 Then import the package:
 ```python
-import swaggyjenkins 
+import swaggyjenkins
 ```
 
 ### Setuptools
@@ -46,26 +46,40 @@ import swaggyjenkins
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-from __future__ import print_function
+
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
 from pprint import pprint
+from swaggyjenkins.api import base_api
+from swaggyjenkins.model.default_crumb_issuer import DefaultCrumbIssuer
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.BaseApi(swaggyjenkins.ApiClient(configuration))
 
-try:
-    api_response = api_instance.get_crumb()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling BaseApi->get_crumb: %s\n" % e)
-
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = base_api.BaseApi(api_client)
+    
+    try:
+        api_response = api_instance.get_crumb()
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling BaseApi->get_crumb: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -137,7 +151,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AllView](docs/AllView.md)
- - [Body](docs/Body.md)
  - [BranchImpl](docs/BranchImpl.md)
  - [BranchImpllinks](docs/BranchImpllinks.md)
  - [BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -238,6 +251,7 @@ Class | Method | HTTP request | Description
 
 - **Type**: HTTP basic authentication
 
+
 ## jwt_auth
 
 - **Type**: API key
@@ -249,4 +263,23 @@ Class | Method | HTTP request | Description
 
 blah@cliffano.com
 
+
+## Notes for Large OpenAPI documents
+If the OpenAPI document is large, imports in swaggyjenkins.apis and swaggyjenkins.models may fail with a
+RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
+
+Solution 1:
+Use specific imports for apis and models like:
+- `from swaggyjenkins.api.default_api import DefaultApi`
+- `from swaggyjenkins.model.pet import Pet`
+
+Solution 2:
+Before importing the package, adjust the maximum recursion limit as shown below:
+```
+import sys
+sys.setrecursionlimit(1500)
+import swaggyjenkins
+from swaggyjenkins.apis import *
+from swaggyjenkins.models import *
+```
 

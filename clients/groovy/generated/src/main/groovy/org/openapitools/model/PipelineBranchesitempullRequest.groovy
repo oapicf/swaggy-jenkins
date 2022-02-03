@@ -7,16 +7,16 @@ import org.openapitools.model.PipelineBranchesitempullRequestlinks;
 
 @Canonical
 class PipelineBranchesitempullRequest {
-    PipelineBranchesitempullRequestlinks links = null
-
-    String author = null
-
-    String id = null
-
-    String title = null
-
-    String url = null
-
-    String propertyClass = null
-
+    
+    PipelineBranchesitempullRequestlinks links
+    
+    String author
+    
+    String id
+    
+    String title
+    
+    String url
+    
+    String propertyClass
 }

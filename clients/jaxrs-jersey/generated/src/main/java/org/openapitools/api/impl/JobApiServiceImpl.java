@@ -11,12 +11,12 @@ import org.openapitools.api.NotFoundException;
 
 import java.io.InputStream;
 
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2019-04-10T13:31:48.444Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-02T10:45:25.136812Z[Etc/UTC]")
 public class JobApiServiceImpl extends JobApiService {
     @Override
     public Response getJob(String name, SecurityContext securityContext) throws NotFoundException {
@@ -39,7 +39,7 @@ public class JobApiServiceImpl extends JobApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response postJobBuild(String name,  @NotNull String json,  String token, String jenkinsCrumb, SecurityContext securityContext) throws NotFoundException {
+    public Response postJobBuild(String name,  @NotNull String json, String token, String jenkinsCrumb, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }

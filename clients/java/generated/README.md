@@ -1,8 +1,8 @@
 # swaggyjenkins
 
 Swaggy Jenkins
-- API version: 1.0.1
-  - Build date: 2019-04-09T13:12:39.103Z[GMT]
+- API version: 1.1.1
+  - Build date: 2022-02-02T10:43:57.983240Z[Etc/UTC]
 
 Jenkins API clients generated from Swagger / Open API specification
 
@@ -15,7 +15,7 @@ Jenkins API clients generated from Swagger / Open API specification
 
 Building the API client library requires:
 1. Java 1.7+
-2. Maven/Gradle
+2. Maven (3.8.3+)/Gradle (7.2+)
 
 ## Installation
 
@@ -51,7 +51,14 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.cliffano:swaggyjenkins:0.0.1"
+  repositories {
+    mavenCentral()     // Needed if the 'swaggyjenkins' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'swaggyjenkins' jar has been published to the local maven repo.
+  }
+
+  dependencies {
+     implementation "com.cliffano:swaggyjenkins:0.0.1"
+  }
 ```
 
 ### Others
@@ -73,33 +80,36 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import com.cliffano.swaggyjenkins.*;
+// Import classes:
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
 import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.model.*;
-import com.cliffano.swaggyjenkins.api.BaseRemoteAccessApi;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BaseApi;
 
-import java.io.File;
-import java.util.*;
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-public class BaseRemoteAccessApiExample {
-
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
-        // Configure HTTP basic authorization: jenkins_auth
-        HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-        jenkins_auth.setUsername("YOUR USERNAME");
-        jenkins_auth.setPassword("YOUR PASSWORD");
-
-        BaseRemoteAccessApi apiInstance = new BaseRemoteAccessApi();
-        try {
-            DefaultCrumbIssuer result = apiInstance.getCrumb();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling BaseRemoteAccessApi#getCrumb");
-            e.printStackTrace();
-        }
+    BaseApi apiInstance = new BaseApi(defaultClient);
+    try {
+      DefaultCrumbIssuer result = apiInstance.getCrumb();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BaseApi#getCrumb");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 
 ```
@@ -110,7 +120,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseRemoteAccessApi* | [**getCrumb**](docs/BaseRemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+*BaseApi* | [**getCrumb**](docs/BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *BlueOceanApi* | [**deletePipelineQueueItem**](docs/BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
 *BlueOceanApi* | [**getAuthenticatedUser**](docs/BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
 *BlueOceanApi* | [**getClasses**](docs/BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
@@ -149,7 +159,6 @@ Class | Method | HTTP request | Description
 *BlueOceanApi* | [**search**](docs/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
 *BlueOceanApi* | [**searchClasses**](docs/BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 *RemoteAccessApi* | [**getComputer**](docs/RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-*RemoteAccessApi* | [**getCrumb**](docs/RemoteAccessApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
 *RemoteAccessApi* | [**getJenkins**](docs/RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
 *RemoteAccessApi* | [**getJob**](docs/RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
 *RemoteAccessApi* | [**getJobConfig**](docs/RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
@@ -174,7 +183,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [AllView](docs/AllView.md)
- - [Body](docs/Body.md)
  - [BranchImpl](docs/BranchImpl.md)
  - [BranchImpllinks](docs/BranchImpllinks.md)
  - [BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -224,12 +232,9 @@ Class | Method | HTTP request | Description
  - [MultibranchPipeline](docs/MultibranchPipeline.md)
  - [NullSCM](docs/NullSCM.md)
  - [Organisation](docs/Organisation.md)
- - [Organisations](docs/Organisations.md)
  - [Pipeline](docs/Pipeline.md)
- - [PipelineActivities](docs/PipelineActivities.md)
  - [PipelineActivity](docs/PipelineActivity.md)
  - [PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
- - [PipelineBranches](docs/PipelineBranches.md)
  - [PipelineBranchesitem](docs/PipelineBranchesitem.md)
  - [PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
  - [PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
@@ -237,35 +242,26 @@ Class | Method | HTTP request | Description
  - [PipelineFolderImpl](docs/PipelineFolderImpl.md)
  - [PipelineImpl](docs/PipelineImpl.md)
  - [PipelineImpllinks](docs/PipelineImpllinks.md)
- - [PipelineQueue](docs/PipelineQueue.md)
  - [PipelineRun](docs/PipelineRun.md)
  - [PipelineRunImpl](docs/PipelineRunImpl.md)
  - [PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
  - [PipelineRunNode](docs/PipelineRunNode.md)
- - [PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
  - [PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
- - [PipelineRunNodes](docs/PipelineRunNodes.md)
- - [PipelineRunSteps](docs/PipelineRunSteps.md)
  - [PipelineRunartifacts](docs/PipelineRunartifacts.md)
- - [PipelineRuns](docs/PipelineRuns.md)
  - [PipelineStepImpl](docs/PipelineStepImpl.md)
  - [PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
  - [PipelinelatestRun](docs/PipelinelatestRun.md)
  - [PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
- - [Pipelines](docs/Pipelines.md)
  - [Queue](docs/Queue.md)
  - [QueueBlockedItem](docs/QueueBlockedItem.md)
  - [QueueItemImpl](docs/QueueItemImpl.md)
  - [QueueLeftItem](docs/QueueLeftItem.md)
  - [ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
- - [ScmOrganisations](docs/ScmOrganisations.md)
  - [StringParameterDefinition](docs/StringParameterDefinition.md)
  - [StringParameterValue](docs/StringParameterValue.md)
  - [SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
  - [User](docs/User.md)
- - [UserFavorites](docs/UserFavorites.md)
- - [Users](docs/Users.md)
 
 
 ## Documentation for Authorization

@@ -7,28 +7,28 @@ import javax.ws.rs.core.Response;
 
 import io.swagger.annotations.*;
 
+import java.io.InputStream;
 import java.util.Map;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-@Path("/computer")
+@Path("/computer/api/json")
 @Api(description = "the computer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2019-04-10T13:32:03.603Z[GMT]")
-public class ComputerApi {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class ComputerApi {
 
     @GET
-    @Path("/api/json")
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve computer details", response = ComputerSet.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess" })
+         }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved computer details", response = ComputerSet.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getComputer(@QueryParam("depth") @NotNull   @ApiParam("Recursion depth in response model")  Integer depth) {
+    public Response getComputer(@QueryParam("depth") @NotNull  @ApiParam("Recursion depth in response model")  Integer depth) {
         return Response.ok().entity("magic!").build();
     }
 }

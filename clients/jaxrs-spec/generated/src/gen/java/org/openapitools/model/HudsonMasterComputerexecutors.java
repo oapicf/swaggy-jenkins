@@ -1,23 +1,29 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FreeStyleBuild;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class HudsonMasterComputerexecutors   {
+
+@JsonTypeName("HudsonMasterComputerexecutors")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class HudsonMasterComputerexecutors   {
   
-  private @Valid FreeStyleBuild currentExecutable = null;
-  private @Valid Boolean idle = null;
-  private @Valid Boolean likelyStuck = null;
-  private @Valid Integer number = null;
-  private @Valid Integer progress = null;
-  private @Valid String propertyClass = null;
+  private @Valid FreeStyleBuild currentExecutable;
+  private @Valid Boolean idle;
+  private @Valid Boolean likelyStuck;
+  private @Valid Integer number;
+  private @Valid Integer progress;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -27,16 +33,20 @@ public class HudsonMasterComputerexecutors   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("currentExecutable")
   public FreeStyleBuild getCurrentExecutable() {
     return currentExecutable;
   }
+
+  @JsonProperty("currentExecutable")
   public void setCurrentExecutable(FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
   }
 
-  /**
+/**
    **/
   public HudsonMasterComputerexecutors idle(Boolean idle) {
     this.idle = idle;
@@ -44,16 +54,20 @@ public class HudsonMasterComputerexecutors   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("idle")
   public Boolean getIdle() {
     return idle;
   }
+
+  @JsonProperty("idle")
   public void setIdle(Boolean idle) {
     this.idle = idle;
   }
 
-  /**
+/**
    **/
   public HudsonMasterComputerexecutors likelyStuck(Boolean likelyStuck) {
     this.likelyStuck = likelyStuck;
@@ -61,16 +75,20 @@ public class HudsonMasterComputerexecutors   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("likelyStuck")
   public Boolean getLikelyStuck() {
     return likelyStuck;
   }
+
+  @JsonProperty("likelyStuck")
   public void setLikelyStuck(Boolean likelyStuck) {
     this.likelyStuck = likelyStuck;
   }
 
-  /**
+/**
    **/
   public HudsonMasterComputerexecutors number(Integer number) {
     this.number = number;
@@ -78,16 +96,20 @@ public class HudsonMasterComputerexecutors   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("number")
   public Integer getNumber() {
     return number;
   }
+
+  @JsonProperty("number")
   public void setNumber(Integer number) {
     this.number = number;
   }
 
-  /**
+/**
    **/
   public HudsonMasterComputerexecutors progress(Integer progress) {
     this.progress = progress;
@@ -95,16 +117,20 @@ public class HudsonMasterComputerexecutors   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("progress")
   public Integer getProgress() {
     return progress;
   }
+
+  @JsonProperty("progress")
   public void setProgress(Integer progress) {
     this.progress = progress;
   }
 
-  /**
+/**
    **/
   public HudsonMasterComputerexecutors propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -112,18 +138,22 @@ public class HudsonMasterComputerexecutors   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,12 +161,12 @@ public class HudsonMasterComputerexecutors   {
       return false;
     }
     HudsonMasterComputerexecutors hudsonMasterComputerexecutors = (HudsonMasterComputerexecutors) o;
-    return Objects.equals(currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
-        Objects.equals(idle, hudsonMasterComputerexecutors.idle) &&
-        Objects.equals(likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
-        Objects.equals(number, hudsonMasterComputerexecutors.number) &&
-        Objects.equals(progress, hudsonMasterComputerexecutors.progress) &&
-        Objects.equals(propertyClass, hudsonMasterComputerexecutors.propertyClass);
+    return Objects.equals(this.currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
+        Objects.equals(this.idle, hudsonMasterComputerexecutors.idle) &&
+        Objects.equals(this.likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
+        Objects.equals(this.number, hudsonMasterComputerexecutors.number) &&
+        Objects.equals(this.progress, hudsonMasterComputerexecutors.progress) &&
+        Objects.equals(this.propertyClass, hudsonMasterComputerexecutors.propertyClass);
   }
 
   @Override
@@ -163,11 +193,13 @@ public class HudsonMasterComputerexecutors   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

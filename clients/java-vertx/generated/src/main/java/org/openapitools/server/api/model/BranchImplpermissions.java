@@ -4,14 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BranchImplpermissions   {
   
-  private Boolean create = null;
-  private Boolean read = null;
-  private Boolean start = null;
-  private Boolean stop = null;
-  private String propertyClass = null;
+  private Boolean create;
+  private Boolean read;
+  private Boolean start;
+  private Boolean stop;
+  private String propertyClass;
 
   public BranchImplpermissions () {
 

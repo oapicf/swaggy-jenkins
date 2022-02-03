@@ -15,7 +15,7 @@ class QueueItemImpl(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, expected_build_number: int=None, id: str=None, pipeline: str=None, queued_time: int=None):  # noqa: E501
+    def __init__(self, _class=None, expected_build_number=None, id=None, pipeline=None, queued_time=None):  # noqa: E501
         """QueueItemImpl - a model defined in OpenAPI
 
         :param _class: The _class of this QueueItemImpl.  # noqa: E501
@@ -63,7 +63,7 @@ class QueueItemImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this QueueItemImpl.
 
 
@@ -73,7 +73,7 @@ class QueueItemImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this QueueItemImpl.
 
 
@@ -84,7 +84,7 @@ class QueueItemImpl(Model):
         self.__class = _class
 
     @property
-    def expected_build_number(self) -> int:
+    def expected_build_number(self):
         """Gets the expected_build_number of this QueueItemImpl.
 
 
@@ -94,7 +94,7 @@ class QueueItemImpl(Model):
         return self._expected_build_number
 
     @expected_build_number.setter
-    def expected_build_number(self, expected_build_number: int):
+    def expected_build_number(self, expected_build_number):
         """Sets the expected_build_number of this QueueItemImpl.
 
 
@@ -105,7 +105,7 @@ class QueueItemImpl(Model):
         self._expected_build_number = expected_build_number
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this QueueItemImpl.
 
 
@@ -115,7 +115,7 @@ class QueueItemImpl(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this QueueItemImpl.
 
 
@@ -126,7 +126,7 @@ class QueueItemImpl(Model):
         self._id = id
 
     @property
-    def pipeline(self) -> str:
+    def pipeline(self):
         """Gets the pipeline of this QueueItemImpl.
 
 
@@ -136,7 +136,7 @@ class QueueItemImpl(Model):
         return self._pipeline
 
     @pipeline.setter
-    def pipeline(self, pipeline: str):
+    def pipeline(self, pipeline):
         """Sets the pipeline of this QueueItemImpl.
 
 
@@ -147,7 +147,7 @@ class QueueItemImpl(Model):
         self._pipeline = pipeline
 
     @property
-    def queued_time(self) -> int:
+    def queued_time(self):
         """Gets the queued_time of this QueueItemImpl.
 
 
@@ -157,7 +157,7 @@ class QueueItemImpl(Model):
         return self._queued_time
 
     @queued_time.setter
-    def queued_time(self, queued_time: int):
+    def queued_time(self, queued_time):
         """Sets the queued_time of this QueueItemImpl.
 
 

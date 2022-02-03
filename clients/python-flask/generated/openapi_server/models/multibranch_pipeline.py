@@ -15,7 +15,7 @@ class MultibranchPipeline(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, display_name: str=None, estimated_duration_in_millis: int=None, latest_run: str=None, name: str=None, organization: str=None, weather_score: int=None, branch_names: List[str]=None, number_of_failing_branches: int=None, number_of_failing_pull_requests: int=None, number_of_successful_branches: int=None, number_of_successful_pull_requests: int=None, total_number_of_branches: int=None, total_number_of_pull_requests: int=None, _class: str=None):  # noqa: E501
+    def __init__(self, display_name=None, estimated_duration_in_millis=None, latest_run=None, name=None, organization=None, weather_score=None, branch_names=None, number_of_failing_branches=None, number_of_failing_pull_requests=None, number_of_successful_branches=None, number_of_successful_pull_requests=None, total_number_of_branches=None, total_number_of_pull_requests=None, _class=None):  # noqa: E501
         """MultibranchPipeline - a model defined in OpenAPI
 
         :param display_name: The display_name of this MultibranchPipeline.  # noqa: E501
@@ -108,7 +108,7 @@ class MultibranchPipeline(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def display_name(self) -> str:
+    def display_name(self):
         """Gets the display_name of this MultibranchPipeline.
 
 
@@ -118,7 +118,7 @@ class MultibranchPipeline(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name: str):
+    def display_name(self, display_name):
         """Sets the display_name of this MultibranchPipeline.
 
 
@@ -129,7 +129,7 @@ class MultibranchPipeline(Model):
         self._display_name = display_name
 
     @property
-    def estimated_duration_in_millis(self) -> int:
+    def estimated_duration_in_millis(self):
         """Gets the estimated_duration_in_millis of this MultibranchPipeline.
 
 
@@ -139,7 +139,7 @@ class MultibranchPipeline(Model):
         return self._estimated_duration_in_millis
 
     @estimated_duration_in_millis.setter
-    def estimated_duration_in_millis(self, estimated_duration_in_millis: int):
+    def estimated_duration_in_millis(self, estimated_duration_in_millis):
         """Sets the estimated_duration_in_millis of this MultibranchPipeline.
 
 
@@ -150,7 +150,7 @@ class MultibranchPipeline(Model):
         self._estimated_duration_in_millis = estimated_duration_in_millis
 
     @property
-    def latest_run(self) -> str:
+    def latest_run(self):
         """Gets the latest_run of this MultibranchPipeline.
 
 
@@ -160,7 +160,7 @@ class MultibranchPipeline(Model):
         return self._latest_run
 
     @latest_run.setter
-    def latest_run(self, latest_run: str):
+    def latest_run(self, latest_run):
         """Sets the latest_run of this MultibranchPipeline.
 
 
@@ -171,7 +171,7 @@ class MultibranchPipeline(Model):
         self._latest_run = latest_run
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this MultibranchPipeline.
 
 
@@ -181,7 +181,7 @@ class MultibranchPipeline(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this MultibranchPipeline.
 
 
@@ -192,7 +192,7 @@ class MultibranchPipeline(Model):
         self._name = name
 
     @property
-    def organization(self) -> str:
+    def organization(self):
         """Gets the organization of this MultibranchPipeline.
 
 
@@ -202,7 +202,7 @@ class MultibranchPipeline(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization: str):
+    def organization(self, organization):
         """Sets the organization of this MultibranchPipeline.
 
 
@@ -213,7 +213,7 @@ class MultibranchPipeline(Model):
         self._organization = organization
 
     @property
-    def weather_score(self) -> int:
+    def weather_score(self):
         """Gets the weather_score of this MultibranchPipeline.
 
 
@@ -223,7 +223,7 @@ class MultibranchPipeline(Model):
         return self._weather_score
 
     @weather_score.setter
-    def weather_score(self, weather_score: int):
+    def weather_score(self, weather_score):
         """Sets the weather_score of this MultibranchPipeline.
 
 
@@ -234,7 +234,7 @@ class MultibranchPipeline(Model):
         self._weather_score = weather_score
 
     @property
-    def branch_names(self) -> List[str]:
+    def branch_names(self):
         """Gets the branch_names of this MultibranchPipeline.
 
 
@@ -244,7 +244,7 @@ class MultibranchPipeline(Model):
         return self._branch_names
 
     @branch_names.setter
-    def branch_names(self, branch_names: List[str]):
+    def branch_names(self, branch_names):
         """Sets the branch_names of this MultibranchPipeline.
 
 
@@ -255,7 +255,7 @@ class MultibranchPipeline(Model):
         self._branch_names = branch_names
 
     @property
-    def number_of_failing_branches(self) -> int:
+    def number_of_failing_branches(self):
         """Gets the number_of_failing_branches of this MultibranchPipeline.
 
 
@@ -265,7 +265,7 @@ class MultibranchPipeline(Model):
         return self._number_of_failing_branches
 
     @number_of_failing_branches.setter
-    def number_of_failing_branches(self, number_of_failing_branches: int):
+    def number_of_failing_branches(self, number_of_failing_branches):
         """Sets the number_of_failing_branches of this MultibranchPipeline.
 
 
@@ -276,7 +276,7 @@ class MultibranchPipeline(Model):
         self._number_of_failing_branches = number_of_failing_branches
 
     @property
-    def number_of_failing_pull_requests(self) -> int:
+    def number_of_failing_pull_requests(self):
         """Gets the number_of_failing_pull_requests of this MultibranchPipeline.
 
 
@@ -286,7 +286,7 @@ class MultibranchPipeline(Model):
         return self._number_of_failing_pull_requests
 
     @number_of_failing_pull_requests.setter
-    def number_of_failing_pull_requests(self, number_of_failing_pull_requests: int):
+    def number_of_failing_pull_requests(self, number_of_failing_pull_requests):
         """Sets the number_of_failing_pull_requests of this MultibranchPipeline.
 
 
@@ -297,7 +297,7 @@ class MultibranchPipeline(Model):
         self._number_of_failing_pull_requests = number_of_failing_pull_requests
 
     @property
-    def number_of_successful_branches(self) -> int:
+    def number_of_successful_branches(self):
         """Gets the number_of_successful_branches of this MultibranchPipeline.
 
 
@@ -307,7 +307,7 @@ class MultibranchPipeline(Model):
         return self._number_of_successful_branches
 
     @number_of_successful_branches.setter
-    def number_of_successful_branches(self, number_of_successful_branches: int):
+    def number_of_successful_branches(self, number_of_successful_branches):
         """Sets the number_of_successful_branches of this MultibranchPipeline.
 
 
@@ -318,7 +318,7 @@ class MultibranchPipeline(Model):
         self._number_of_successful_branches = number_of_successful_branches
 
     @property
-    def number_of_successful_pull_requests(self) -> int:
+    def number_of_successful_pull_requests(self):
         """Gets the number_of_successful_pull_requests of this MultibranchPipeline.
 
 
@@ -328,7 +328,7 @@ class MultibranchPipeline(Model):
         return self._number_of_successful_pull_requests
 
     @number_of_successful_pull_requests.setter
-    def number_of_successful_pull_requests(self, number_of_successful_pull_requests: int):
+    def number_of_successful_pull_requests(self, number_of_successful_pull_requests):
         """Sets the number_of_successful_pull_requests of this MultibranchPipeline.
 
 
@@ -339,7 +339,7 @@ class MultibranchPipeline(Model):
         self._number_of_successful_pull_requests = number_of_successful_pull_requests
 
     @property
-    def total_number_of_branches(self) -> int:
+    def total_number_of_branches(self):
         """Gets the total_number_of_branches of this MultibranchPipeline.
 
 
@@ -349,7 +349,7 @@ class MultibranchPipeline(Model):
         return self._total_number_of_branches
 
     @total_number_of_branches.setter
-    def total_number_of_branches(self, total_number_of_branches: int):
+    def total_number_of_branches(self, total_number_of_branches):
         """Sets the total_number_of_branches of this MultibranchPipeline.
 
 
@@ -360,7 +360,7 @@ class MultibranchPipeline(Model):
         self._total_number_of_branches = total_number_of_branches
 
     @property
-    def total_number_of_pull_requests(self) -> int:
+    def total_number_of_pull_requests(self):
         """Gets the total_number_of_pull_requests of this MultibranchPipeline.
 
 
@@ -370,7 +370,7 @@ class MultibranchPipeline(Model):
         return self._total_number_of_pull_requests
 
     @total_number_of_pull_requests.setter
-    def total_number_of_pull_requests(self, total_number_of_pull_requests: int):
+    def total_number_of_pull_requests(self, total_number_of_pull_requests):
         """Sets the total_number_of_pull_requests of this MultibranchPipeline.
 
 
@@ -381,7 +381,7 @@ class MultibranchPipeline(Model):
         self._total_number_of_pull_requests = total_number_of_pull_requests
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this MultibranchPipeline.
 
 
@@ -391,7 +391,7 @@ class MultibranchPipeline(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this MultibranchPipeline.
 
 

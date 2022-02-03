@@ -43,8 +43,9 @@ Method | HTTP request | Description
 [**SearchClasses**](BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
 
 
-<a name="deletepipelinequeueitem"></a>
-# **DeletePipelineQueueItem**
+
+## DeletePipelineQueueItem
+
 > void DeletePipelineQueueItem (string organization, string pipeline, string queue)
 
 
@@ -52,8 +53,9 @@ Method | HTTP request | Description
 Delete queue item from an organization pipeline queue
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -63,24 +65,27 @@ namespace Example
 {
     public class DeletePipelineQueueItemExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var queue = queue_example;  // string | Name of the queue item
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var queue = "queue_example";  // string | Name of the queue item
 
             try
             {
                 apiInstance.DeletePipelineQueueItem(organization, pipeline, queue);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.DeletePipelineQueueItem: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -88,6 +93,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -105,13 +111,25 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getauthenticateduser"></a>
-# **GetAuthenticatedUser**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully deleted queue item |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAuthenticatedUser
+
 > User GetAuthenticatedUser (string organization)
 
 
@@ -119,8 +137,9 @@ void (empty response body)
 Retrieve authenticated user details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -130,23 +149,26 @@ namespace Example
 {
     public class GetAuthenticatedUserExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
                 User result = apiInstance.GetAuthenticatedUser(organization);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetAuthenticatedUser: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -154,6 +176,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -169,13 +192,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getclasses"></a>
-# **GetClasses**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved authenticated user details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetClasses
+
 > string GetClasses (string _class)
 
 
@@ -183,8 +218,9 @@ Name | Type | Description  | Notes
 Get a list of class names supported by a given class
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -194,23 +230,26 @@ namespace Example
 {
     public class GetClassesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var _class = _class_example;  // string | Name of the class
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var _class = "_class_example";  // string | Name of the class
 
             try
             {
                 string result = apiInstance.GetClasses(_class);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetClasses: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -218,6 +257,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -233,22 +273,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getjsonwebkey"></a>
-# **GetJsonWebKey**
-> string GetJsonWebKey (int? key)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved class names |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetJsonWebKey
+
+> string GetJsonWebKey (int key)
 
 
 
 Retrieve JSON Web Key
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -258,19 +311,22 @@ namespace Example
 {
     public class GetJsonWebKeyExample
     {
-        public void main()
+        public static void Main()
         {
-            var apiInstance = new BlueOceanApi();
-            var key = 56;  // int? | Key ID received as part of JWT header field kid
+            Configuration.Default.BasePath = "http://localhost";
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var key = 56;  // int | Key ID received as part of JWT header field kid
 
             try
             {
                 string result = apiInstance.GetJsonWebKey(key);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetJsonWebKey: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -279,9 +335,10 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key** | **int?**| Key ID received as part of JWT header field kid | 
+ **key** | **int**| Key ID received as part of JWT header field kid | 
 
 ### Return type
 
@@ -293,13 +350,25 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getjsonwebtoken"></a>
-# **GetJsonWebToken**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved JWT token |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetJsonWebToken
+
 > string GetJsonWebToken (int? expiryTimeInMins = null, int? maxExpiryTimeInMins = null)
 
 
@@ -307,8 +376,9 @@ No authorization required
 Retrieve JSON Web Token
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -318,9 +388,10 @@ namespace Example
 {
     public class GetJsonWebTokenExample
     {
-        public void main()
+        public static void Main()
         {
-            var apiInstance = new BlueOceanApi();
+            Configuration.Default.BasePath = "http://localhost";
+            var apiInstance = new BlueOceanApi(Configuration.Default);
             var expiryTimeInMins = 56;  // int? | Token expiry time in minutes, default: 30 minutes (optional) 
             var maxExpiryTimeInMins = 56;  // int? | Maximum token expiry time in minutes, default: 480 minutes (optional) 
 
@@ -329,9 +400,11 @@ namespace Example
                 string result = apiInstance.GetJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetJsonWebToken: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -339,6 +412,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -355,13 +429,25 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getorganisation"></a>
-# **GetOrganisation**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved JWT token |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganisation
+
 > Organisation GetOrganisation (string organization)
 
 
@@ -369,8 +455,9 @@ No authorization required
 Retrieve organization details
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -380,23 +467,26 @@ namespace Example
 {
     public class GetOrganisationExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
                 Organisation result = apiInstance.GetOrganisation(organization);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetOrganisation: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -404,6 +494,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -419,22 +510,36 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getorganisations"></a>
-# **GetOrganisations**
-> Organisations GetOrganisations ()
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+| **404** | Pipeline cannot be found on Jenkins instance |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganisations
+
+> List&lt;Organisation&gt; GetOrganisations ()
 
 
 
 Retrieve all organizations details
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -444,22 +549,25 @@ namespace Example
 {
     public class GetOrganisationsExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
+            var apiInstance = new BlueOceanApi(Configuration.Default);
 
             try
             {
-                Organisations result = apiInstance.GetOrganisations();
+                List<Organisation> result = apiInstance.GetOrganisations();
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetOrganisations: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -467,11 +575,12 @@ namespace Example
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**List&lt;Organisation&gt;**](Organisation.md)
 
 ### Authorization
 
@@ -479,13 +588,25 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipeline"></a>
-# **GetPipeline**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipelines details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipeline
+
 > Pipeline GetPipeline (string organization, string pipeline)
 
 
@@ -493,8 +614,9 @@ This endpoint does not need any parameter.
 Retrieve pipeline details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -504,24 +626,27 @@ namespace Example
 {
     public class GetPipelineExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
                 Pipeline result = apiInstance.GetPipeline(organization, pipeline);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipeline: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -529,6 +654,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -545,22 +671,36 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelineactivities"></a>
-# **GetPipelineActivities**
-> PipelineActivities GetPipelineActivities (string organization, string pipeline)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+| **404** | Pipeline cannot be found on Jenkins instance |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineActivities
+
+> List&lt;PipelineActivity&gt; GetPipelineActivities (string organization, string pipeline)
 
 
 
 Retrieve all activities details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -570,24 +710,27 @@ namespace Example
 {
     public class GetPipelineActivitiesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
-                PipelineActivities result = apiInstance.GetPipelineActivities(organization, pipeline);
+                List<PipelineActivity> result = apiInstance.GetPipelineActivities(organization, pipeline);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineActivities: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -596,6 +739,7 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
@@ -603,7 +747,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**List&lt;PipelineActivity&gt;**](PipelineActivity.md)
 
 ### Authorization
 
@@ -611,13 +755,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinebranch"></a>
-# **GetPipelineBranch**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved all activities details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineBranch
+
 > BranchImpl GetPipelineBranch (string organization, string pipeline, string branch)
 
 
@@ -625,8 +781,9 @@ Name | Type | Description  | Notes
 Retrieve branch details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -636,25 +793,28 @@ namespace Example
 {
     public class GetPipelineBranchExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var branch = branch_example;  // string | Name of the branch
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var branch = "branch_example";  // string | Name of the branch
 
             try
             {
                 BranchImpl result = apiInstance.GetPipelineBranch(organization, pipeline, branch);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranch: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -662,6 +822,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -679,13 +840,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinebranchrun"></a>
-# **GetPipelineBranchRun**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved branch details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineBranchRun
+
 > PipelineRun GetPipelineBranchRun (string organization, string pipeline, string branch, string run)
 
 
@@ -693,8 +866,9 @@ Name | Type | Description  | Notes
 Retrieve branch run details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -704,26 +878,29 @@ namespace Example
 {
     public class GetPipelineBranchRunExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var branch = branch_example;  // string | Name of the branch
-            var run = run_example;  // string | Name of the run
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var branch = "branch_example";  // string | Name of the branch
+            var run = "run_example";  // string | Name of the run
 
             try
             {
                 PipelineRun result = apiInstance.GetPipelineBranchRun(organization, pipeline, branch, run);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranchRun: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -731,6 +908,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -749,13 +927,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinebranches"></a>
-# **GetPipelineBranches**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineBranches
+
 > MultibranchPipeline GetPipelineBranches (string organization, string pipeline)
 
 
@@ -763,8 +953,9 @@ Name | Type | Description  | Notes
 Retrieve all branches details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -774,24 +965,27 @@ namespace Example
 {
     public class GetPipelineBranchesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
                 MultibranchPipeline result = apiInstance.GetPipelineBranches(organization, pipeline);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranches: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -799,6 +993,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -815,13 +1010,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinefolder"></a>
-# **GetPipelineFolder**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved all branches details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineFolder
+
 > PipelineFolderImpl GetPipelineFolder (string organization, string folder)
 
 
@@ -829,8 +1036,9 @@ Name | Type | Description  | Notes
 Retrieve pipeline folder for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -840,24 +1048,27 @@ namespace Example
 {
     public class GetPipelineFolderExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var folder = folder_example;  // string | Name of the folder
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var folder = "folder_example";  // string | Name of the folder
 
             try
             {
                 PipelineFolderImpl result = apiInstance.GetPipelineFolder(organization, folder);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineFolder: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -865,6 +1076,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -881,13 +1093,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinefolderpipeline"></a>
-# **GetPipelineFolderPipeline**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved folder details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineFolderPipeline
+
 > PipelineImpl GetPipelineFolderPipeline (string organization, string pipeline, string folder)
 
 
@@ -895,8 +1119,9 @@ Name | Type | Description  | Notes
 Retrieve pipeline details for an organization folder
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -906,25 +1131,28 @@ namespace Example
 {
     public class GetPipelineFolderPipelineExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var folder = folder_example;  // string | Name of the folder
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var folder = "folder_example";  // string | Name of the folder
 
             try
             {
                 PipelineImpl result = apiInstance.GetPipelineFolderPipeline(organization, pipeline, folder);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineFolderPipeline: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -932,6 +1160,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -949,22 +1178,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinequeue"></a>
-# **GetPipelineQueue**
-> PipelineQueue GetPipelineQueue (string organization, string pipeline)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineQueue
+
+> List&lt;QueueItemImpl&gt; GetPipelineQueue (string organization, string pipeline)
 
 
 
 Retrieve queue details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -974,24 +1216,27 @@ namespace Example
 {
     public class GetPipelineQueueExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
-                PipelineQueue result = apiInstance.GetPipelineQueue(organization, pipeline);
+                List<QueueItemImpl> result = apiInstance.GetPipelineQueue(organization, pipeline);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineQueue: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1000,6 +1245,7 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
@@ -1007,7 +1253,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**List&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1015,13 +1261,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerun"></a>
-# **GetPipelineRun**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved queue details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRun
+
 > PipelineRun GetPipelineRun (string organization, string pipeline, string run)
 
 
@@ -1029,8 +1287,9 @@ Name | Type | Description  | Notes
 Retrieve run details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1040,25 +1299,28 @@ namespace Example
 {
     public class GetPipelineRunExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
 
             try
             {
                 PipelineRun result = apiInstance.GetPipelineRun(organization, pipeline, run);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRun: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1066,6 +1328,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1083,13 +1346,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerunlog"></a>
-# **GetPipelineRunLog**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRunLog
+
 > string GetPipelineRunLog (string organization, string pipeline, string run, int? start = null, bool? download = null)
 
 
@@ -1097,8 +1372,9 @@ Name | Type | Description  | Notes
 Get log for a pipeline run
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1108,16 +1384,17 @@ namespace Example
 {
     public class GetPipelineRunLogExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
             var start = 56;  // int? | Start position of the log (optional) 
             var download = true;  // bool? | Set to true in order to download the file, otherwise it's passed as a response body (optional) 
 
@@ -1126,9 +1403,11 @@ namespace Example
                 string result = apiInstance.GetPipelineRunLog(organization, pipeline, run, start, download);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunLog: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1136,6 +1415,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1155,13 +1435,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerunnode"></a>
-# **GetPipelineRunNode**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline run log |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRunNode
+
 > PipelineRunNode GetPipelineRunNode (string organization, string pipeline, string run, string node)
 
 
@@ -1169,8 +1461,9 @@ Name | Type | Description  | Notes
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1180,26 +1473,29 @@ namespace Example
 {
     public class GetPipelineRunNodeExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
 
             try
             {
                 PipelineRunNode result = apiInstance.GetPipelineRunNode(organization, pipeline, run, node);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNode: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1207,6 +1503,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1225,13 +1522,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerunnodestep"></a>
-# **GetPipelineRunNodeStep**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run node details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRunNodeStep
+
 > PipelineStepImpl GetPipelineRunNodeStep (string organization, string pipeline, string run, string node, string step)
 
 
@@ -1239,8 +1548,9 @@ Name | Type | Description  | Notes
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1250,27 +1560,30 @@ namespace Example
 {
     public class GetPipelineRunNodeStepExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
-            var step = step_example;  // string | Name of the step
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
+            var step = "step_example";  // string | Name of the step
 
             try
             {
                 PipelineStepImpl result = apiInstance.GetPipelineRunNodeStep(organization, pipeline, run, node, step);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStep: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1278,6 +1591,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1297,13 +1611,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerunnodesteplog"></a>
-# **GetPipelineRunNodeStepLog**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run node step details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRunNodeStepLog
+
 > string GetPipelineRunNodeStepLog (string organization, string pipeline, string run, string node, string step)
 
 
@@ -1311,8 +1637,9 @@ Name | Type | Description  | Notes
 Get log for a pipeline run node step
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1322,27 +1649,30 @@ namespace Example
 {
     public class GetPipelineRunNodeStepLogExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
-            var step = step_example;  // string | Name of the step
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
+            var step = "step_example";  // string | Name of the step
 
             try
             {
                 string result = apiInstance.GetPipelineRunNodeStepLog(organization, pipeline, run, node, step);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStepLog: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1350,6 +1680,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1369,22 +1700,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerunnodesteps"></a>
-# **GetPipelineRunNodeSteps**
-> PipelineRunNodeSteps GetPipelineRunNodeSteps (string organization, string pipeline, string run, string node)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline run node step log |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRunNodeSteps
+
+> List&lt;PipelineStepImpl&gt; GetPipelineRunNodeSteps (string organization, string pipeline, string run, string node)
 
 
 
 Retrieve run node steps details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1394,26 +1738,29 @@ namespace Example
 {
     public class GetPipelineRunNodeStepsExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var node = node_example;  // string | Name of the node
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var node = "node_example";  // string | Name of the node
 
             try
             {
-                PipelineRunNodeSteps result = apiInstance.GetPipelineRunNodeSteps(organization, pipeline, run, node);
+                List<PipelineStepImpl> result = apiInstance.GetPipelineRunNodeSteps(organization, pipeline, run, node);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeSteps: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1421,6 +1768,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1431,7 +1779,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**List&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1439,22 +1787,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelinerunnodes"></a>
-# **GetPipelineRunNodes**
-> PipelineRunNodes GetPipelineRunNodes (string organization, string pipeline, string run)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run node steps details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRunNodes
+
+> List&lt;PipelineRunNode&gt; GetPipelineRunNodes (string organization, string pipeline, string run)
 
 
 
 Retrieve run nodes details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1464,25 +1825,28 @@ namespace Example
 {
     public class GetPipelineRunNodesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
 
             try
             {
-                PipelineRunNodes result = apiInstance.GetPipelineRunNodes(organization, pipeline, run);
+                List<PipelineRunNode> result = apiInstance.GetPipelineRunNodes(organization, pipeline, run);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodes: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1490,6 +1854,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1499,7 +1864,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**List&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1507,22 +1872,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelineruns"></a>
-# **GetPipelineRuns**
-> PipelineRuns GetPipelineRuns (string organization, string pipeline)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run nodes details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelineRuns
+
+> List&lt;PipelineRun&gt; GetPipelineRuns (string organization, string pipeline)
 
 
 
 Retrieve all runs details for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1532,24 +1910,27 @@ namespace Example
 {
     public class GetPipelineRunsExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
-                PipelineRuns result = apiInstance.GetPipelineRuns(organization, pipeline);
+                List<PipelineRun> result = apiInstance.GetPipelineRuns(organization, pipeline);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelineRuns: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1558,6 +1939,7 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
@@ -1565,7 +1947,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**List&lt;PipelineRun&gt;**](PipelineRun.md)
 
 ### Authorization
 
@@ -1573,22 +1955,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpipelines"></a>
-# **GetPipelines**
-> Pipelines GetPipelines (string organization)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved runs details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPipelines
+
+> List&lt;Pipeline&gt; GetPipelines (string organization)
 
 
 
 Retrieve all pipelines details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1598,23 +1993,26 @@ namespace Example
 {
     public class GetPipelinesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
-                Pipelines result = apiInstance.GetPipelines(organization);
+                List<Pipeline> result = apiInstance.GetPipelines(organization);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetPipelines: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1623,13 +2021,14 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**List&lt;Pipeline&gt;**](Pipeline.md)
 
 ### Authorization
 
@@ -1637,13 +2036,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getscm"></a>
-# **GetSCM**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipelines details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSCM
+
 > GithubScm GetSCM (string organization, string scm)
 
 
@@ -1651,8 +2062,9 @@ Name | Type | Description  | Notes
 Retrieve SCM details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1662,24 +2074,27 @@ namespace Example
 {
     public class GetSCMExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
 
             try
             {
                 GithubScm result = apiInstance.GetSCM(organization, scm);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetSCM: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1687,6 +2102,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1703,22 +2119,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getscmorganisationrepositories"></a>
-# **GetSCMOrganisationRepositories**
-> ScmOrganisations GetSCMOrganisationRepositories (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSCMOrganisationRepositories
+
+> List&lt;GithubOrganization&gt; GetSCMOrganisationRepositories (string organization, string scm, string scmOrganisation, string credentialId = null, int? pageSize = null, int? pageNumber = null)
 
 
 
 Retrieve SCM organization repositories details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1728,28 +2157,31 @@ namespace Example
 {
     public class GetSCMOrganisationRepositoriesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
-            var scmOrganisation = scmOrganisation_example;  // string | Name of the SCM organization
-            var credentialId = credentialId_example;  // string | Credential ID (optional) 
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
+            var scmOrganisation = "scmOrganisation_example";  // string | Name of the SCM organization
+            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
             var pageSize = 56;  // int? | Number of items in a page (optional) 
             var pageNumber = 56;  // int? | Page number (optional) 
 
             try
             {
-                ScmOrganisations result = apiInstance.GetSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+                List<GithubOrganization> result = apiInstance.GetSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationRepositories: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1757,6 +2189,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1769,7 +2202,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1777,22 +2210,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getscmorganisationrepository"></a>
-# **GetSCMOrganisationRepository**
-> ScmOrganisations GetSCMOrganisationRepository (string organization, string scm, string scmOrganisation, string repository, string credentialId = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM organization repositories details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSCMOrganisationRepository
+
+> List&lt;GithubOrganization&gt; GetSCMOrganisationRepository (string organization, string scm, string scmOrganisation, string repository, string credentialId = null)
 
 
 
 Retrieve SCM organization repository details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1802,27 +2248,30 @@ namespace Example
 {
     public class GetSCMOrganisationRepositoryExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
-            var scmOrganisation = scmOrganisation_example;  // string | Name of the SCM organization
-            var repository = repository_example;  // string | Name of the SCM repository
-            var credentialId = credentialId_example;  // string | Credential ID (optional) 
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
+            var scmOrganisation = "scmOrganisation_example";  // string | Name of the SCM organization
+            var repository = "repository_example";  // string | Name of the SCM repository
+            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
 
             try
             {
-                ScmOrganisations result = apiInstance.GetSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
+                List<GithubOrganization> result = apiInstance.GetSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationRepository: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1830,6 +2279,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1841,7 +2291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1849,22 +2299,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getscmorganisations"></a>
-# **GetSCMOrganisations**
-> ScmOrganisations GetSCMOrganisations (string organization, string scm, string credentialId = null)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM organizations details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSCMOrganisations
+
+> List&lt;GithubOrganization&gt; GetSCMOrganisations (string organization, string scm, string credentialId = null)
 
 
 
 Retrieve SCM organizations details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1874,25 +2337,28 @@ namespace Example
 {
     public class GetSCMOrganisationsExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var scm = scm_example;  // string | Name of SCM
-            var credentialId = credentialId_example;  // string | Credential ID (optional) 
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var scm = "scm_example";  // string | Name of SCM
+            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
 
             try
             {
-                ScmOrganisations result = apiInstance.GetSCMOrganisations(organization, scm, credentialId);
+                List<GithubOrganization> result = apiInstance.GetSCMOrganisations(organization, scm, credentialId);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisations: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1900,6 +2366,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1909,7 +2376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1917,13 +2384,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getuser"></a>
-# **GetUser**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM organizations details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUser
+
 > User GetUser (string organization, string user)
 
 
@@ -1931,8 +2410,9 @@ Name | Type | Description  | Notes
 Retrieve user details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -1942,24 +2422,27 @@ namespace Example
 {
     public class GetUserExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var user = user_example;  // string | Name of the user
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var user = "user_example";  // string | Name of the user
 
             try
             {
                 User result = apiInstance.GetUser(organization, user);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetUser: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -1967,6 +2450,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1983,22 +2467,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getuserfavorites"></a>
-# **GetUserFavorites**
-> UserFavorites GetUserFavorites (string user)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved users details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUserFavorites
+
+> List&lt;FavoriteImpl&gt; GetUserFavorites (string user)
 
 
 
 Retrieve user favorites details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2008,23 +2505,26 @@ namespace Example
 {
     public class GetUserFavoritesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var user = user_example;  // string | Name of the user
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var user = "user_example";  // string | Name of the user
 
             try
             {
-                UserFavorites result = apiInstance.GetUserFavorites(user);
+                List<FavoriteImpl> result = apiInstance.GetUserFavorites(user);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetUserFavorites: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2033,13 +2533,14 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user** | **string**| Name of the user | 
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**List&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -2047,13 +2548,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getusers"></a>
-# **GetUsers**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved users favorites details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUsers
+
 > User GetUsers (string organization)
 
 
@@ -2061,8 +2574,9 @@ Name | Type | Description  | Notes
 Retrieve users details for an organization
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2072,23 +2586,26 @@ namespace Example
 {
     public class GetUsersExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
 
             try
             {
                 User result = apiInstance.GetUsers(organization);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.GetUsers: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2096,6 +2613,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2111,13 +2629,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postpipelinerun"></a>
-# **PostPipelineRun**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved users details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostPipelineRun
+
 > QueueItemImpl PostPipelineRun (string organization, string pipeline, string run)
 
 
@@ -2125,8 +2655,9 @@ Name | Type | Description  | Notes
 Replay an organization pipeline run
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2136,25 +2667,28 @@ namespace Example
 {
     public class PostPipelineRunExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
 
             try
             {
                 QueueItemImpl result = apiInstance.PostPipelineRun(organization, pipeline, run);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.PostPipelineRun: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2162,6 +2696,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2179,13 +2714,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="postpipelineruns"></a>
-# **PostPipelineRuns**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully replayed a pipeline run |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostPipelineRuns
+
 > QueueItemImpl PostPipelineRuns (string organization, string pipeline)
 
 
@@ -2193,8 +2740,9 @@ Name | Type | Description  | Notes
 Start a build for an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2204,24 +2752,27 @@ namespace Example
 {
     public class PostPipelineRunsExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
 
             try
             {
                 QueueItemImpl result = apiInstance.PostPipelineRuns(organization, pipeline);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.PostPipelineRuns: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2229,6 +2780,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2245,22 +2797,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putpipelinefavorite"></a>
-# **PutPipelineFavorite**
-> FavoriteImpl PutPipelineFavorite (string organization, string pipeline, Body body)
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully started a build |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutPipelineFavorite
+
+> FavoriteImpl PutPipelineFavorite (string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
 
 
 
 Favorite/unfavorite a pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2270,25 +2835,28 @@ namespace Example
 {
     public class PutPipelineFavoriteExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var body = new Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
             try
             {
-                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, body);
+                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.PutPipelineFavorite: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2297,11 +2865,12 @@ namespace Example
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
  **pipeline** | **string**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+ **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -2313,13 +2882,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="putpipelinerun"></a>
-# **PutPipelineRun**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully favorited/unfavorited a pipeline |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutPipelineRun
+
 > PipelineRun PutPipelineRun (string organization, string pipeline, string run, string blocking = null, int? timeOutInSecs = null)
 
 
@@ -2327,8 +2908,9 @@ Name | Type | Description  | Notes
 Stop a build of an organization pipeline
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2338,17 +2920,18 @@ namespace Example
 {
     public class PutPipelineRunExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var organization = organization_example;  // string | Name of the organization
-            var pipeline = pipeline_example;  // string | Name of the pipeline
-            var run = run_example;  // string | Name of the run
-            var blocking = blocking_example;  // string | Set to true to make blocking stop, default: false (optional) 
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var organization = "organization_example";  // string | Name of the organization
+            var pipeline = "pipeline_example";  // string | Name of the pipeline
+            var run = "run_example";  // string | Name of the run
+            var blocking = "blocking_example";  // string | Set to true to make blocking stop, default: false (optional) 
             var timeOutInSecs = 56;  // int? | Timeout in seconds, default: 10 seconds (optional) 
 
             try
@@ -2356,9 +2939,11 @@ namespace Example
                 PipelineRun result = apiInstance.PutPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.PutPipelineRun: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2366,6 +2951,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2385,13 +2971,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="search"></a>
-# **Search**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully stopped a build |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## Search
+
 > string Search (string q)
 
 
@@ -2399,8 +2997,9 @@ Name | Type | Description  | Notes
 Search for any resource details
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2410,23 +3009,26 @@ namespace Example
 {
     public class SearchExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var q = q_example;  // string | Query string
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var q = "q_example";  // string | Query string
 
             try
             {
                 string result = apiInstance.Search(q);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.Search: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2434,6 +3036,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2449,13 +3052,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="searchclasses"></a>
-# **SearchClasses**
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved search result |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SearchClasses
+
 > string SearchClasses (string q)
 
 
@@ -2463,8 +3078,9 @@ Name | Type | Description  | Notes
 Get classes details
 
 ### Example
+
 ```csharp
-using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
@@ -2474,23 +3090,26 @@ namespace Example
 {
     public class SearchClassesExample
     {
-        public void main()
+        public static void Main()
         {
+            Configuration.Default.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BlueOceanApi();
-            var q = q_example;  // string | Query string containing an array of class names
+            var apiInstance = new BlueOceanApi(Configuration.Default);
+            var q = "q_example";  // string | Query string containing an array of class names
 
             try
             {
                 string result = apiInstance.SearchClasses(q);
                 Debug.WriteLine(result);
             }
-            catch (Exception e)
+            catch (ApiException e)
             {
                 Debug.Print("Exception when calling BlueOceanApi.SearchClasses: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
             }
         }
     }
@@ -2498,6 +3117,7 @@ namespace Example
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -2513,8 +3133,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved search result |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+[[Back to top]](#)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

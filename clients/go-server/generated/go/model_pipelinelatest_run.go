@@ -42,3 +42,25 @@ type PipelinelatestRun struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertPipelinelatestRunRequired checks if the required fields are not zero-ed
+func AssertPipelinelatestRunRequired(obj PipelinelatestRun) error {
+	for _, el := range obj.Artifacts {
+		if err := AssertPipelinelatestRunartifactsRequired(el); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AssertRecursePipelinelatestRunRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelinelatestRun (e.g. [][]PipelinelatestRun), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelinelatestRunRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelinelatestRun, ok := obj.(PipelinelatestRun)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelinelatestRunRequired(aPipelinelatestRun)
+	})
+}

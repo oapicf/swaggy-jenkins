@@ -7,14 +7,14 @@ import org.openapitools.model.StringParameterValue;
 
 @Canonical
 class StringParameterDefinition {
-    String propertyClass = null
-
-    StringParameterValue defaultParameterValue = null
-
-    String description = null
-
-    String name = null
-
-    String type = null
-
+    
+    String propertyClass
+    
+    StringParameterValue defaultParameterValue
+    
+    String description
+    
+    String name
+    
+    String type
 }

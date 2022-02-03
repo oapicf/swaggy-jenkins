@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
-
 import { BaseService } from './api/base.service';
 import { BlueOceanService } from './api/blueOcean.service';
 import { RemoteAccessService } from './api/remoteAccess.service';
@@ -11,13 +10,10 @@ import { RemoteAccessService } from './api/remoteAccess.service';
   imports:      [],
   declarations: [],
   exports:      [],
-  providers: [
-    BaseService,
-    BlueOceanService,
-    RemoteAccessService ]
+  providers: []
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<ApiModule> {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]

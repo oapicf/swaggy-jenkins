@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.HudsonMasterComputermonitorData
+
 ## Properties
 
 Name | Type | Description | Notes

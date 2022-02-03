@@ -12,30 +12,30 @@ import org.openapitools.model.StringParameterDefinition;
 
 @Canonical
 class BranchImpl {
-    String propertyClass = null
-
-    String displayName = null
-
-    Integer estimatedDurationInMillis = null
-
-    String fullDisplayName = null
-
-    String fullName = null
-
-    String name = null
-
-    String organization = null
-
+    
+    String propertyClass
+    
+    String displayName
+    
+    Integer estimatedDurationInMillis
+    
+    String fullDisplayName
+    
+    String fullName
+    
+    String name
+    
+    String organization
+    
     List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>()
-
-    BranchImplpermissions permissions = null
-
-    Integer weatherScore = null
-
-    String pullRequest = null
-
-    BranchImpllinks links = null
-
-    PipelineRunImpl latestRun = null
-
+    
+    BranchImplpermissions permissions
+    
+    Integer weatherScore
+    
+    String pullRequest
+    
+    BranchImpllinks links
+    
+    PipelineRunImpl latestRun
 }

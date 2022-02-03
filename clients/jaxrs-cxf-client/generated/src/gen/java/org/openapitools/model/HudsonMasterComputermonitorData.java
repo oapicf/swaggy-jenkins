@@ -6,37 +6,30 @@ import org.openapitools.model.ResponseTimeMonitorData;
 import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HudsonMasterComputermonitorData  {
   
   @ApiModelProperty(value = "")
-  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null;
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
   @ApiModelProperty(value = "")
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
   @ApiModelProperty(value = "")
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
   @ApiModelProperty(value = "")
-  private String hudsonNodeMonitorsArchitectureMonitor = null;
+  private String hudsonNodeMonitorsArchitectureMonitor;
 
   @ApiModelProperty(value = "")
-  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null;
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
   @ApiModelProperty(value = "")
-  private ClockDifference hudsonNodeMonitorsClockMonitor = null;
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
 
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
  /**
    * Get hudsonNodeMonitorsSwapSpaceMonitor
    * @return hudsonNodeMonitorsSwapSpaceMonitor
@@ -184,7 +177,7 @@ public class HudsonMasterComputermonitorData  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

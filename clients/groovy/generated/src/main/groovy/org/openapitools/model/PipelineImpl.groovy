@@ -7,22 +7,22 @@ import org.openapitools.model.PipelineImpllinks;
 
 @Canonical
 class PipelineImpl {
-    String propertyClass = null
-
-    String displayName = null
-
-    Integer estimatedDurationInMillis = null
-
-    String fullName = null
-
-    String latestRun = null
-
-    String name = null
-
-    String organization = null
-
-    Integer weatherScore = null
-
-    PipelineImpllinks links = null
-
+    
+    String propertyClass
+    
+    String displayName
+    
+    Integer estimatedDurationInMillis
+    
+    String fullName
+    
+    String latestRun
+    
+    String name
+    
+    String organization
+    
+    Integer weatherScore
+    
+    PipelineImpllinks links
 }

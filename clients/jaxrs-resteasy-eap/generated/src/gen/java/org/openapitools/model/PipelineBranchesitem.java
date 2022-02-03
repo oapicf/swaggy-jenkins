@@ -11,28 +11,27 @@ import org.openapitools.model.PipelineBranchesitempullRequest;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class PipelineBranchesitem   {
   
 
-  private String displayName = null;
+  private String displayName;
 
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
-  private String name = null;
+  private String name;
 
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
-  private PipelineBranchesitemlatestRun latestRun = null;
+  private PipelineBranchesitemlatestRun latestRun;
 
-  private String organization = null;
+  private String organization;
 
-  private PipelineBranchesitempullRequest pullRequest = null;
+  private PipelineBranchesitempullRequest pullRequest;
 
-  private Integer totalNumberOfPullRequests = null;
+  private Integer totalNumberOfPullRequests;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
   /**
    **/

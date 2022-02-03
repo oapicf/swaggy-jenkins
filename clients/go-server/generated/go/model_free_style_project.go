@@ -36,7 +36,7 @@ type FreeStyleProject struct {
 
 	Builds []FreeStyleBuild `json:"builds,omitempty"`
 
-	FirstBuild *FreeStyleBuild `json:"firstBuild,omitempty"`
+	FirstBuild FreeStyleBuild `json:"firstBuild,omitempty"`
 
 	HealthReport []FreeStyleProjecthealthReport `json:"healthReport,omitempty"`
 
@@ -44,15 +44,15 @@ type FreeStyleProject struct {
 
 	KeepDependencies bool `json:"keepDependencies,omitempty"`
 
-	LastBuild *FreeStyleBuild `json:"lastBuild,omitempty"`
+	LastBuild FreeStyleBuild `json:"lastBuild,omitempty"`
 
-	LastCompletedBuild *FreeStyleBuild `json:"lastCompletedBuild,omitempty"`
+	LastCompletedBuild FreeStyleBuild `json:"lastCompletedBuild,omitempty"`
 
 	LastFailedBuild string `json:"lastFailedBuild,omitempty"`
 
-	LastStableBuild *FreeStyleBuild `json:"lastStableBuild,omitempty"`
+	LastStableBuild FreeStyleBuild `json:"lastStableBuild,omitempty"`
 
-	LastSuccessfulBuild *FreeStyleBuild `json:"lastSuccessfulBuild,omitempty"`
+	LastSuccessfulBuild FreeStyleBuild `json:"lastSuccessfulBuild,omitempty"`
 
 	LastUnstableBuild string `json:"lastUnstableBuild,omitempty"`
 
@@ -64,5 +64,55 @@ type FreeStyleProject struct {
 
 	ConcurrentBuild bool `json:"concurrentBuild,omitempty"`
 
-	Scm *NullScm `json:"scm,omitempty"`
+	Scm NullScm `json:"scm,omitempty"`
+}
+
+// AssertFreeStyleProjectRequired checks if the required fields are not zero-ed
+func AssertFreeStyleProjectRequired(obj FreeStyleProject) error {
+	for _, el := range obj.Actions {
+		if err := AssertFreeStyleProjectactionsRequired(el); err != nil {
+			return err
+		}
+	}
+	for _, el := range obj.Builds {
+		if err := AssertFreeStyleBuildRequired(el); err != nil {
+			return err
+		}
+	}
+	if err := AssertFreeStyleBuildRequired(obj.FirstBuild); err != nil {
+		return err
+	}
+	for _, el := range obj.HealthReport {
+		if err := AssertFreeStyleProjecthealthReportRequired(el); err != nil {
+			return err
+		}
+	}
+	if err := AssertFreeStyleBuildRequired(obj.LastBuild); err != nil {
+		return err
+	}
+	if err := AssertFreeStyleBuildRequired(obj.LastCompletedBuild); err != nil {
+		return err
+	}
+	if err := AssertFreeStyleBuildRequired(obj.LastStableBuild); err != nil {
+		return err
+	}
+	if err := AssertFreeStyleBuildRequired(obj.LastSuccessfulBuild); err != nil {
+		return err
+	}
+	if err := AssertNullScmRequired(obj.Scm); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseFreeStyleProjectRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of FreeStyleProject (e.g. [][]FreeStyleProject), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseFreeStyleProjectRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aFreeStyleProject, ok := obj.(FreeStyleProject)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertFreeStyleProjectRequired(aFreeStyleProject)
+	})
 }

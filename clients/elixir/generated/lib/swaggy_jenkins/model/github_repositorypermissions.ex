@@ -16,10 +16,10 @@ defmodule SwaggyJenkins.Model.GithubRepositorypermissions do
   ]
 
   @type t :: %__MODULE__{
-    :"admin" => boolean(),
-    :"push" => boolean(),
-    :"pull" => boolean(),
-    :"_class" => String.t
+    :"admin" => boolean() | nil,
+    :"push" => boolean() | nil,
+    :"pull" => boolean() | nil,
+    :"_class" => String.t | nil
   }
 end
 

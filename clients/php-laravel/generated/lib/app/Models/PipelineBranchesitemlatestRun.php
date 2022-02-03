@@ -9,17 +9,17 @@ namespace app\Models;
  */
 class PipelineBranchesitemlatestRun {
 
-    /** @var int $duration_in_millis */
-    private $duration_in_millis;
+    /** @var int $durationInMillis */
+    private $durationInMillis;
 
-    /** @var int $estimated_duration_in_millis */
-    private $estimated_duration_in_millis;
+    /** @var int $estimatedDurationInMillis */
+    private $estimatedDurationInMillis;
 
-    /** @var string $en_queue_time */
-    private $en_queue_time;
+    /** @var string $enQueueTime */
+    private $enQueueTime;
 
-    /** @var string $end_time */
-    private $end_time;
+    /** @var string $endTime */
+    private $endTime;
 
     /** @var string $id */
     private $id;
@@ -33,11 +33,11 @@ class PipelineBranchesitemlatestRun {
     /** @var string $result */
     private $result;
 
-    /** @var string $run_summary */
-    private $run_summary;
+    /** @var string $runSummary */
+    private $runSummary;
 
-    /** @var string $start_time */
-    private $start_time;
+    /** @var string $startTime */
+    private $startTime;
 
     /** @var string $state */
     private $state;
@@ -45,10 +45,10 @@ class PipelineBranchesitemlatestRun {
     /** @var string $type */
     private $type;
 
-    /** @var string $commit_id */
-    private $commit_id;
+    /** @var string $commitId */
+    private $commitId;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

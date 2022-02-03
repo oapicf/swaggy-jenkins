@@ -6,6 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class Label1 {
-    String propertyClass = null
-
+    
+    String propertyClass
 }

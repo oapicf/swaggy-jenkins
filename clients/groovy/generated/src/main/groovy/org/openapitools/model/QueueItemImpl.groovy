@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class QueueItemImpl {
-    String propertyClass = null
-
-    Integer expectedBuildNumber = null
-
-    String id = null
-
-    String pipeline = null
-
-    Integer queuedTime = null
-
+    
+    String propertyClass
+    
+    Integer expectedBuildNumber
+    
+    String id
+    
+    String pipeline
+    
+    Integer queuedTime
 }

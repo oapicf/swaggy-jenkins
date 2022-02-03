@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.GithubContent;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubFile   {
   
-  private GithubContent content = null;
-  private String propertyClass = null;
+  private GithubContent content;
+  private String propertyClass;
 
   public GithubFile () {
 

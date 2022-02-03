@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.GithubScmlinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubScm   {
   
-  private String propertyClass = null;
-  private GithubScmlinks links = null;
-  private String credentialId = null;
-  private String id = null;
-  private String uri = null;
+  private String propertyClass;
+  private GithubScmlinks links;
+  private String credentialId;
+  private String id;
+  private String uri;
 
   public GithubScm () {
 

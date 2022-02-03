@@ -28,11 +28,36 @@ type QueueBlockedItem struct {
 
 	Stuck bool `json:"stuck,omitempty"`
 
-	Task *FreeStyleProject `json:"task,omitempty"`
+	Task FreeStyleProject `json:"task,omitempty"`
 
 	Url string `json:"url,omitempty"`
 
 	Why string `json:"why,omitempty"`
 
 	BuildableStartMilliseconds int32 `json:"buildableStartMilliseconds,omitempty"`
+}
+
+// AssertQueueBlockedItemRequired checks if the required fields are not zero-ed
+func AssertQueueBlockedItemRequired(obj QueueBlockedItem) error {
+	for _, el := range obj.Actions {
+		if err := AssertCauseActionRequired(el); err != nil {
+			return err
+		}
+	}
+	if err := AssertFreeStyleProjectRequired(obj.Task); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseQueueBlockedItemRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of QueueBlockedItem (e.g. [][]QueueBlockedItem), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseQueueBlockedItemRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aQueueBlockedItem, ok := obj.(QueueBlockedItem)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertQueueBlockedItemRequired(aQueueBlockedItem)
+	})
 }

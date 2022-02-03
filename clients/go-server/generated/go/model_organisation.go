@@ -16,3 +16,20 @@ type Organisation struct {
 
 	Name string `json:"name,omitempty"`
 }
+
+// AssertOrganisationRequired checks if the required fields are not zero-ed
+func AssertOrganisationRequired(obj Organisation) error {
+	return nil
+}
+
+// AssertRecurseOrganisationRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of Organisation (e.g. [][]Organisation), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseOrganisationRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aOrganisation, ok := obj.(Organisation)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertOrganisationRequired(aOrganisation)
+	})
+}

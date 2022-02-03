@@ -8,97 +8,90 @@ import org.openapitools.model.FreeStyleProjecthealthReport;
 import org.openapitools.model.NullSCM;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FreeStyleProject  {
   
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private String name = null;
+  private String name;
 
   @ApiModelProperty(value = "")
-  private String url = null;
+  private String url;
 
   @ApiModelProperty(value = "")
-  private String color = null;
+  private String color;
 
   @ApiModelProperty(value = "")
   private List<FreeStyleProjectactions> actions = null;
 
   @ApiModelProperty(value = "")
-  private String description = null;
+  private String description;
 
   @ApiModelProperty(value = "")
-  private String displayName = null;
+  private String displayName;
 
   @ApiModelProperty(value = "")
-  private String displayNameOrNull = null;
+  private String displayNameOrNull;
 
   @ApiModelProperty(value = "")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @ApiModelProperty(value = "")
-  private String fullName = null;
+  private String fullName;
 
   @ApiModelProperty(value = "")
-  private Boolean buildable = null;
+  private Boolean buildable;
 
   @ApiModelProperty(value = "")
   private List<FreeStyleBuild> builds = null;
 
   @ApiModelProperty(value = "")
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
   private List<FreeStyleProjecthealthReport> healthReport = null;
 
   @ApiModelProperty(value = "")
-  private Boolean inQueue = null;
+  private Boolean inQueue;
 
   @ApiModelProperty(value = "")
-  private Boolean keepDependencies = null;
+  private Boolean keepDependencies;
 
   @ApiModelProperty(value = "")
-  private FreeStyleBuild lastBuild = null;
+  private FreeStyleBuild lastBuild;
 
   @ApiModelProperty(value = "")
-  private FreeStyleBuild lastCompletedBuild = null;
+  private FreeStyleBuild lastCompletedBuild;
 
   @ApiModelProperty(value = "")
-  private String lastFailedBuild = null;
+  private String lastFailedBuild;
 
   @ApiModelProperty(value = "")
-  private FreeStyleBuild lastStableBuild = null;
+  private FreeStyleBuild lastStableBuild;
 
   @ApiModelProperty(value = "")
-  private FreeStyleBuild lastSuccessfulBuild = null;
+  private FreeStyleBuild lastSuccessfulBuild;
 
   @ApiModelProperty(value = "")
-  private String lastUnstableBuild = null;
+  private String lastUnstableBuild;
 
   @ApiModelProperty(value = "")
-  private String lastUnsuccessfulBuild = null;
+  private String lastUnsuccessfulBuild;
 
   @ApiModelProperty(value = "")
-  private Integer nextBuildNumber = null;
+  private Integer nextBuildNumber;
 
   @ApiModelProperty(value = "")
-  private String queueItem = null;
+  private String queueItem;
 
   @ApiModelProperty(value = "")
-  private Boolean concurrentBuild = null;
+  private Boolean concurrentBuild;
 
   @ApiModelProperty(value = "")
-  private NullSCM scm = null;
+  private NullSCM scm;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -641,7 +634,7 @@ public class FreeStyleProject  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

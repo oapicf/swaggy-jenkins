@@ -9,27 +9,37 @@ import javax.validation.constraints.*;
 /**
  * PipelineRunImpllinks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRunImpllinks   {
   @JsonProperty("nodes")
-  private Link nodes = null;
+  @Valid
+
+  private Link nodes;
 
   @JsonProperty("log")
-  private Link log = null;
+  @Valid
+
+  private Link log;
 
   @JsonProperty("self")
-  private Link self = null;
+  @Valid
+
+  private Link self;
 
   @JsonProperty("actions")
-  private Link actions = null;
+  @Valid
+
+  private Link actions;
 
   @JsonProperty("steps")
-  private Link steps = null;
+  @Valid
+
+  private Link steps;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public PipelineRunImpllinks nodes(Link nodes) {
     this.nodes = nodes;
@@ -40,7 +50,6 @@ public class PipelineRunImpllinks   {
    * Get nodes
    * @return nodes
   **/
-  @Valid
   public Link getNodes() {
     return nodes;
   }
@@ -58,7 +67,6 @@ public class PipelineRunImpllinks   {
    * Get log
    * @return log
   **/
-  @Valid
   public Link getLog() {
     return log;
   }
@@ -76,7 +84,6 @@ public class PipelineRunImpllinks   {
    * Get self
    * @return self
   **/
-  @Valid
   public Link getSelf() {
     return self;
   }
@@ -94,7 +101,6 @@ public class PipelineRunImpllinks   {
    * Get actions
    * @return actions
   **/
-  @Valid
   public Link getActions() {
     return actions;
   }
@@ -112,7 +118,6 @@ public class PipelineRunImpllinks   {
    * Get steps
    * @return steps
   **/
-  @Valid
   public Link getSteps() {
     return steps;
   }
@@ -130,7 +135,7 @@ public class PipelineRunImpllinks   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -140,7 +145,7 @@ public class PipelineRunImpllinks   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -181,7 +186,7 @@ public class PipelineRunImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

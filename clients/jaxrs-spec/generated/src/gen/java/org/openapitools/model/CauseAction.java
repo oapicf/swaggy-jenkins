@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseUserIdCause;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class CauseAction   {
+
+@JsonTypeName("CauseAction")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class CauseAction   {
   
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
   private @Valid List<CauseUserIdCause> causes = new ArrayList<CauseUserIdCause>();
 
   /**
@@ -25,16 +31,20 @@ public class CauseAction   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public CauseAction causes(List<CauseUserIdCause> causes) {
     this.causes = causes;
@@ -42,18 +52,38 @@ public class CauseAction   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("causes")
   public List<CauseUserIdCause> getCauses() {
     return causes;
   }
+
+  @JsonProperty("causes")
   public void setCauses(List<CauseUserIdCause> causes) {
     this.causes = causes;
   }
 
+  public CauseAction addCausesItem(CauseUserIdCause causesItem) {
+    if (this.causes == null) {
+      this.causes = new ArrayList<CauseUserIdCause>();
+    }
+
+    this.causes.add(causesItem);
+    return this;
+  }
+
+  public CauseAction removeCausesItem(CauseUserIdCause causesItem) {
+    if (causesItem != null && this.causes != null) {
+      this.causes.remove(causesItem);
+    }
+
+    return this;
+  }
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -61,8 +91,8 @@ public class CauseAction   {
       return false;
     }
     CauseAction causeAction = (CauseAction) o;
-    return Objects.equals(propertyClass, causeAction.propertyClass) &&
-        Objects.equals(causes, causeAction.causes);
+    return Objects.equals(this.propertyClass, causeAction.propertyClass) &&
+        Objects.equals(this.causes, causeAction.causes);
   }
 
   @Override
@@ -85,11 +115,13 @@ public class CauseAction   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

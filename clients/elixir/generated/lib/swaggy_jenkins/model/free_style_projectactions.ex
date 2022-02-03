@@ -13,7 +13,7 @@ defmodule SwaggyJenkins.Model.FreeStyleProjectactions do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t
+    :"_class" => String.t | nil
   }
 end
 

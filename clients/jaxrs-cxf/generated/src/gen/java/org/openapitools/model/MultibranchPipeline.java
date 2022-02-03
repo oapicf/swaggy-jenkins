@@ -6,58 +6,51 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MultibranchPipeline  {
   
   @ApiModelProperty(value = "")
-  private String displayName = null;
+  private String displayName;
 
   @ApiModelProperty(value = "")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
-  private String latestRun = null;
+  private String latestRun;
 
   @ApiModelProperty(value = "")
-  private String name = null;
+  private String name;
 
   @ApiModelProperty(value = "")
-  private String organization = null;
+  private String organization;
 
   @ApiModelProperty(value = "")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @ApiModelProperty(value = "")
   private List<String> branchNames = null;
 
   @ApiModelProperty(value = "")
-  private Integer numberOfFailingBranches = null;
+  private Integer numberOfFailingBranches;
 
   @ApiModelProperty(value = "")
-  private Integer numberOfFailingPullRequests = null;
+  private Integer numberOfFailingPullRequests;
 
   @ApiModelProperty(value = "")
-  private Integer numberOfSuccessfulBranches = null;
+  private Integer numberOfSuccessfulBranches;
 
   @ApiModelProperty(value = "")
-  private Integer numberOfSuccessfulPullRequests = null;
+  private Integer numberOfSuccessfulPullRequests;
 
   @ApiModelProperty(value = "")
-  private Integer totalNumberOfBranches = null;
+  private Integer totalNumberOfBranches;
 
   @ApiModelProperty(value = "")
-  private Integer totalNumberOfPullRequests = null;
+  private Integer totalNumberOfPullRequests;
 
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
  /**
    * Get displayName
    * @return displayName
@@ -343,7 +336,7 @@ public class MultibranchPipeline  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

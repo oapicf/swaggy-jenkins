@@ -1,21 +1,27 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class QueueItemImpl   {
+
+@JsonTypeName("QueueItemImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class QueueItemImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid Integer expectedBuildNumber = null;
-  private @Valid String id = null;
-  private @Valid String pipeline = null;
-  private @Valid Integer queuedTime = null;
+  private @Valid String propertyClass;
+  private @Valid Integer expectedBuildNumber;
+  private @Valid String id;
+  private @Valid String pipeline;
+  private @Valid Integer queuedTime;
 
   /**
    **/
@@ -25,16 +31,20 @@ public class QueueItemImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public QueueItemImpl expectedBuildNumber(Integer expectedBuildNumber) {
     this.expectedBuildNumber = expectedBuildNumber;
@@ -42,16 +52,20 @@ public class QueueItemImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("expectedBuildNumber")
   public Integer getExpectedBuildNumber() {
     return expectedBuildNumber;
   }
+
+  @JsonProperty("expectedBuildNumber")
   public void setExpectedBuildNumber(Integer expectedBuildNumber) {
     this.expectedBuildNumber = expectedBuildNumber;
   }
 
-  /**
+/**
    **/
   public QueueItemImpl id(String id) {
     this.id = id;
@@ -59,16 +73,20 @@ public class QueueItemImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public QueueItemImpl pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -76,16 +94,20 @@ public class QueueItemImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("pipeline")
   public String getPipeline() {
     return pipeline;
   }
+
+  @JsonProperty("pipeline")
   public void setPipeline(String pipeline) {
     this.pipeline = pipeline;
   }
 
-  /**
+/**
    **/
   public QueueItemImpl queuedTime(Integer queuedTime) {
     this.queuedTime = queuedTime;
@@ -93,18 +115,22 @@ public class QueueItemImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("queuedTime")
   public Integer getQueuedTime() {
     return queuedTime;
   }
+
+  @JsonProperty("queuedTime")
   public void setQueuedTime(Integer queuedTime) {
     this.queuedTime = queuedTime;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -112,11 +138,11 @@ public class QueueItemImpl   {
       return false;
     }
     QueueItemImpl queueItemImpl = (QueueItemImpl) o;
-    return Objects.equals(propertyClass, queueItemImpl.propertyClass) &&
-        Objects.equals(expectedBuildNumber, queueItemImpl.expectedBuildNumber) &&
-        Objects.equals(id, queueItemImpl.id) &&
-        Objects.equals(pipeline, queueItemImpl.pipeline) &&
-        Objects.equals(queuedTime, queueItemImpl.queuedTime);
+    return Objects.equals(this.propertyClass, queueItemImpl.propertyClass) &&
+        Objects.equals(this.expectedBuildNumber, queueItemImpl.expectedBuildNumber) &&
+        Objects.equals(this.id, queueItemImpl.id) &&
+        Objects.equals(this.pipeline, queueItemImpl.pipeline) &&
+        Objects.equals(this.queuedTime, queueItemImpl.queuedTime);
   }
 
   @Override
@@ -142,11 +168,13 @@ public class QueueItemImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

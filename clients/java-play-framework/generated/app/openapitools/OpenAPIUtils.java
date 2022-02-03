@@ -28,11 +28,11 @@ public class OpenAPIUtils {
         Set<ConstraintViolation<T>> constraintViolations = validator.validate(obj);
         if (constraintViolations.size() > 0) {
             StringBuilder errors = new StringBuilder();
-            for (ConstraintViolation<T> contraintes : constraintViolations) {
+            for (ConstraintViolation<T> constraints : constraintViolations) {
                 errors.append(String.format("%s.%s %s\n",
-                contraintes.getRootBeanClass().getSimpleName(),
-                contraintes.getPropertyPath(),
-                contraintes.getMessage()));
+                constraints.getRootBeanClass().getSimpleName(),
+                constraints.getPropertyPath(),
+                constraints.getMessage()));
             }
             throw new RuntimeException("Bean validation : " + errors);
         }
@@ -98,6 +98,6 @@ public class OpenAPIUtils {
     }
 
     public static String formatDatetime(Date date) {
-    	return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(date);
+        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.ROOT).format(date);
     }
 }

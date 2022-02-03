@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class EmptyChangeLogSet {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $kind */
     private $kind;

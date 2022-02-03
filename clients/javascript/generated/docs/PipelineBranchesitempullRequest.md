@@ -1,6 +1,7 @@
 # SwaggyJenkins.PipelineBranchesitempullRequest
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **links** | [**PipelineBranchesitempullRequestlinks**](PipelineBranchesitempullRequestlinks.md) |  | [optional] 

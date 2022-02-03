@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
@@ -14,37 +16,35 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class BranchImpl   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String displayName = null;
+  private String displayName;
 
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
-  private String fullName = null;
+  private String fullName;
 
-  private String name = null;
+  private String name;
 
-  private String organization = null;
+  private String organization;
 
   private List<StringParameterDefinition> parameters = null;
 
-  private BranchImplpermissions permissions = null;
+  private BranchImplpermissions permissions;
 
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
-  private String pullRequest = null;
+  private String pullRequest;
 
-  private BranchImpllinks links = null;
+  private BranchImpllinks links;
 
-  private PipelineRunImpl latestRun = null;
+  private PipelineRunImpl latestRun;
 
 
   /**
@@ -291,7 +291,7 @@ public class BranchImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -345,7 +345,7 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

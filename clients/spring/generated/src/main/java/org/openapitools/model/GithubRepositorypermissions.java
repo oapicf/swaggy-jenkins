@@ -1,30 +1,37 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * GithubRepositorypermissions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class GithubRepositorypermissions   {
+
   @JsonProperty("admin")
-  private Boolean admin = null;
+  private Boolean admin;
 
   @JsonProperty("push")
-  private Boolean push = null;
+  private Boolean push;
 
   @JsonProperty("pull")
-  private Boolean pull = null;
+  private Boolean pull;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public GithubRepositorypermissions admin(Boolean admin) {
     this.admin = admin;
@@ -34,10 +41,9 @@ public class GithubRepositorypermissions   {
   /**
    * Get admin
    * @return admin
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "admin", required = false)
   public Boolean getAdmin() {
     return admin;
   }
@@ -54,10 +60,9 @@ public class GithubRepositorypermissions   {
   /**
    * Get push
    * @return push
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "push", required = false)
   public Boolean getPush() {
     return push;
   }
@@ -74,10 +79,9 @@ public class GithubRepositorypermissions   {
   /**
    * Get pull
    * @return pull
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "pull", required = false)
   public Boolean getPull() {
     return pull;
   }
@@ -94,10 +98,9 @@ public class GithubRepositorypermissions   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -106,9 +109,8 @@ public class GithubRepositorypermissions   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,7 +133,6 @@ public class GithubRepositorypermissions   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubRepositorypermissions {\n");
-    
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
     sb.append("    push: ").append(toIndentedString(push)).append("\n");
     sb.append("    pull: ").append(toIndentedString(pull)).append("\n");
@@ -144,7 +145,7 @@ public class GithubRepositorypermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

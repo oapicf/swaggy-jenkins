@@ -7,14 +7,14 @@ import org.openapitools.model.Link;
 
 @Canonical
 class PipelineImpllinks {
-    Link runs = null
-
-    Link self = null
-
-    Link queue = null
-
-    Link actions = null
-
-    String propertyClass = null
-
+    
+    Link runs
+    
+    Link self
+    
+    Link queue
+    
+    Link actions
+    
+    String propertyClass
 }

@@ -43,7 +43,6 @@ Import the following:
 #import <OpenAPIClient/OAIDefaultConfiguration.h>
 // load models
 #import <OpenAPIClient/OAIAllView.h>
-#import <OpenAPIClient/OAIBody.h>
 #import <OpenAPIClient/OAIBranchImpl.h>
 #import <OpenAPIClient/OAIBranchImpllinks.h>
 #import <OpenAPIClient/OAIBranchImplpermissions.h>
@@ -93,12 +92,9 @@ Import the following:
 #import <OpenAPIClient/OAIMultibranchPipeline.h>
 #import <OpenAPIClient/OAINullSCM.h>
 #import <OpenAPIClient/OAIOrganisation.h>
-#import <OpenAPIClient/OAIOrganisations.h>
 #import <OpenAPIClient/OAIPipeline.h>
-#import <OpenAPIClient/OAIPipelineActivities.h>
 #import <OpenAPIClient/OAIPipelineActivity.h>
 #import <OpenAPIClient/OAIPipelineActivityartifacts.h>
-#import <OpenAPIClient/OAIPipelineBranches.h>
 #import <OpenAPIClient/OAIPipelineBranchesitem.h>
 #import <OpenAPIClient/OAIPipelineBranchesitemlatestRun.h>
 #import <OpenAPIClient/OAIPipelineBranchesitempullRequest.h>
@@ -106,35 +102,26 @@ Import the following:
 #import <OpenAPIClient/OAIPipelineFolderImpl.h>
 #import <OpenAPIClient/OAIPipelineImpl.h>
 #import <OpenAPIClient/OAIPipelineImpllinks.h>
-#import <OpenAPIClient/OAIPipelineQueue.h>
 #import <OpenAPIClient/OAIPipelineRun.h>
 #import <OpenAPIClient/OAIPipelineRunImpl.h>
 #import <OpenAPIClient/OAIPipelineRunImpllinks.h>
 #import <OpenAPIClient/OAIPipelineRunNode.h>
-#import <OpenAPIClient/OAIPipelineRunNodeSteps.h>
 #import <OpenAPIClient/OAIPipelineRunNodeedges.h>
-#import <OpenAPIClient/OAIPipelineRunNodes.h>
-#import <OpenAPIClient/OAIPipelineRunSteps.h>
 #import <OpenAPIClient/OAIPipelineRunartifacts.h>
-#import <OpenAPIClient/OAIPipelineRuns.h>
 #import <OpenAPIClient/OAIPipelineStepImpl.h>
 #import <OpenAPIClient/OAIPipelineStepImpllinks.h>
 #import <OpenAPIClient/OAIPipelinelatestRun.h>
 #import <OpenAPIClient/OAIPipelinelatestRunartifacts.h>
-#import <OpenAPIClient/OAIPipelines.h>
 #import <OpenAPIClient/OAIQueue.h>
 #import <OpenAPIClient/OAIQueueBlockedItem.h>
 #import <OpenAPIClient/OAIQueueItemImpl.h>
 #import <OpenAPIClient/OAIQueueLeftItem.h>
 #import <OpenAPIClient/OAIResponseTimeMonitorData.h>
-#import <OpenAPIClient/OAIScmOrganisations.h>
 #import <OpenAPIClient/OAIStringParameterDefinition.h>
 #import <OpenAPIClient/OAIStringParameterValue.h>
 #import <OpenAPIClient/OAISwapSpaceMonitorMemoryUsage2.h>
 #import <OpenAPIClient/OAIUnlabeledLoadStatistics.h>
 #import <OpenAPIClient/OAIUser.h>
-#import <OpenAPIClient/OAIUserFavorites.h>
-#import <OpenAPIClient/OAIUsers.h>
 // load API classes for accessing endpoints
 #import <OpenAPIClient/OAIBaseApi.h>
 #import <OpenAPIClient/OAIBlueOceanApi.h>
@@ -242,7 +229,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [OAIAllView](docs/OAIAllView.md)
- - [OAIBody](docs/OAIBody.md)
  - [OAIBranchImpl](docs/OAIBranchImpl.md)
  - [OAIBranchImpllinks](docs/OAIBranchImpllinks.md)
  - [OAIBranchImplpermissions](docs/OAIBranchImplpermissions.md)
@@ -292,12 +278,9 @@ Class | Method | HTTP request | Description
  - [OAIMultibranchPipeline](docs/OAIMultibranchPipeline.md)
  - [OAINullSCM](docs/OAINullSCM.md)
  - [OAIOrganisation](docs/OAIOrganisation.md)
- - [OAIOrganisations](docs/OAIOrganisations.md)
  - [OAIPipeline](docs/OAIPipeline.md)
- - [OAIPipelineActivities](docs/OAIPipelineActivities.md)
  - [OAIPipelineActivity](docs/OAIPipelineActivity.md)
  - [OAIPipelineActivityartifacts](docs/OAIPipelineActivityartifacts.md)
- - [OAIPipelineBranches](docs/OAIPipelineBranches.md)
  - [OAIPipelineBranchesitem](docs/OAIPipelineBranchesitem.md)
  - [OAIPipelineBranchesitemlatestRun](docs/OAIPipelineBranchesitemlatestRun.md)
  - [OAIPipelineBranchesitempullRequest](docs/OAIPipelineBranchesitempullRequest.md)
@@ -305,35 +288,26 @@ Class | Method | HTTP request | Description
  - [OAIPipelineFolderImpl](docs/OAIPipelineFolderImpl.md)
  - [OAIPipelineImpl](docs/OAIPipelineImpl.md)
  - [OAIPipelineImpllinks](docs/OAIPipelineImpllinks.md)
- - [OAIPipelineQueue](docs/OAIPipelineQueue.md)
  - [OAIPipelineRun](docs/OAIPipelineRun.md)
  - [OAIPipelineRunImpl](docs/OAIPipelineRunImpl.md)
  - [OAIPipelineRunImpllinks](docs/OAIPipelineRunImpllinks.md)
  - [OAIPipelineRunNode](docs/OAIPipelineRunNode.md)
- - [OAIPipelineRunNodeSteps](docs/OAIPipelineRunNodeSteps.md)
  - [OAIPipelineRunNodeedges](docs/OAIPipelineRunNodeedges.md)
- - [OAIPipelineRunNodes](docs/OAIPipelineRunNodes.md)
- - [OAIPipelineRunSteps](docs/OAIPipelineRunSteps.md)
  - [OAIPipelineRunartifacts](docs/OAIPipelineRunartifacts.md)
- - [OAIPipelineRuns](docs/OAIPipelineRuns.md)
  - [OAIPipelineStepImpl](docs/OAIPipelineStepImpl.md)
  - [OAIPipelineStepImpllinks](docs/OAIPipelineStepImpllinks.md)
  - [OAIPipelinelatestRun](docs/OAIPipelinelatestRun.md)
  - [OAIPipelinelatestRunartifacts](docs/OAIPipelinelatestRunartifacts.md)
- - [OAIPipelines](docs/OAIPipelines.md)
  - [OAIQueue](docs/OAIQueue.md)
  - [OAIQueueBlockedItem](docs/OAIQueueBlockedItem.md)
  - [OAIQueueItemImpl](docs/OAIQueueItemImpl.md)
  - [OAIQueueLeftItem](docs/OAIQueueLeftItem.md)
  - [OAIResponseTimeMonitorData](docs/OAIResponseTimeMonitorData.md)
- - [OAIScmOrganisations](docs/OAIScmOrganisations.md)
  - [OAIStringParameterDefinition](docs/OAIStringParameterDefinition.md)
  - [OAIStringParameterValue](docs/OAIStringParameterValue.md)
  - [OAISwapSpaceMonitorMemoryUsage2](docs/OAISwapSpaceMonitorMemoryUsage2.md)
  - [OAIUnlabeledLoadStatistics](docs/OAIUnlabeledLoadStatistics.md)
  - [OAIUser](docs/OAIUser.md)
- - [OAIUserFavorites](docs/OAIUserFavorites.md)
- - [OAIUsers](docs/OAIUsers.md)
 
 
 ## Documentation For Authorization
@@ -353,5 +327,4 @@ Class | Method | HTTP request | Description
 ## Author
 
 blah@cliffano.com
-
 

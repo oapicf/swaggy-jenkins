@@ -1,6 +1,7 @@
 # SwaggyJenkins.PipelineBranchesitemlatestRun
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **durationInMillis** | **Number** |  | [optional] 

@@ -15,8 +15,8 @@ class GithubContent {
     /** @var string $sha */
     private $sha;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $repo */
     private $repo;
@@ -30,7 +30,7 @@ class GithubContent {
     /** @var string $path */
     private $path;
 
-    /** @var string $base64_data */
-    private $base64_data;
+    /** @var string $base64Data */
+    private $base64Data;
 
 }

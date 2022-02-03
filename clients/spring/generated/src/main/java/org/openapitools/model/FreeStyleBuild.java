@@ -1,77 +1,84 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * FreeStyleBuild
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class FreeStyleBuild   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("number")
-  private Integer number = null;
+  private Integer number;
 
   @JsonProperty("url")
-  private String url = null;
+  private String url;
 
   @JsonProperty("actions")
   @Valid
   private List<CauseAction> actions = null;
 
   @JsonProperty("building")
-  private Boolean building = null;
+  private Boolean building;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("duration")
-  private Integer duration = null;
+  private Integer duration;
 
   @JsonProperty("estimatedDuration")
-  private Integer estimatedDuration = null;
+  private Integer estimatedDuration;
 
   @JsonProperty("executor")
-  private String executor = null;
+  private String executor;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("keepLog")
-  private Boolean keepLog = null;
+  private Boolean keepLog;
 
   @JsonProperty("queueId")
-  private Integer queueId = null;
+  private Integer queueId;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("timestamp")
-  private Integer timestamp = null;
+  private Integer timestamp;
 
   @JsonProperty("builtOn")
-  private String builtOn = null;
+  private String builtOn;
 
   @JsonProperty("changeSet")
-  private EmptyChangeLogSet changeSet = null;
+  private EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -81,10 +88,9 @@ public class FreeStyleBuild   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -101,10 +107,9 @@ public class FreeStyleBuild   {
   /**
    * Get number
    * @return number
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "number", required = false)
   public Integer getNumber() {
     return number;
   }
@@ -121,10 +126,9 @@ public class FreeStyleBuild   {
   /**
    * Get url
    * @return url
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "url", required = false)
   public String getUrl() {
     return url;
   }
@@ -149,11 +153,9 @@ public class FreeStyleBuild   {
   /**
    * Get actions
    * @return actions
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "actions", required = false)
   public List<CauseAction> getActions() {
     return actions;
   }
@@ -170,10 +172,9 @@ public class FreeStyleBuild   {
   /**
    * Get building
    * @return building
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "building", required = false)
   public Boolean getBuilding() {
     return building;
   }
@@ -190,10 +191,9 @@ public class FreeStyleBuild   {
   /**
    * Get description
    * @return description
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "description", required = false)
   public String getDescription() {
     return description;
   }
@@ -210,10 +210,9 @@ public class FreeStyleBuild   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -230,10 +229,9 @@ public class FreeStyleBuild   {
   /**
    * Get duration
    * @return duration
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "duration", required = false)
   public Integer getDuration() {
     return duration;
   }
@@ -250,10 +248,9 @@ public class FreeStyleBuild   {
   /**
    * Get estimatedDuration
    * @return estimatedDuration
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "estimatedDuration", required = false)
   public Integer getEstimatedDuration() {
     return estimatedDuration;
   }
@@ -270,10 +267,9 @@ public class FreeStyleBuild   {
   /**
    * Get executor
    * @return executor
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "executor", required = false)
   public String getExecutor() {
     return executor;
   }
@@ -290,10 +286,9 @@ public class FreeStyleBuild   {
   /**
    * Get fullDisplayName
    * @return fullDisplayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullDisplayName", required = false)
   public String getFullDisplayName() {
     return fullDisplayName;
   }
@@ -310,10 +305,9 @@ public class FreeStyleBuild   {
   /**
    * Get id
    * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "id", required = false)
   public String getId() {
     return id;
   }
@@ -330,10 +324,9 @@ public class FreeStyleBuild   {
   /**
    * Get keepLog
    * @return keepLog
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "keepLog", required = false)
   public Boolean getKeepLog() {
     return keepLog;
   }
@@ -350,10 +343,9 @@ public class FreeStyleBuild   {
   /**
    * Get queueId
    * @return queueId
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "queueId", required = false)
   public Integer getQueueId() {
     return queueId;
   }
@@ -370,10 +362,9 @@ public class FreeStyleBuild   {
   /**
    * Get result
    * @return result
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "result", required = false)
   public String getResult() {
     return result;
   }
@@ -390,10 +381,9 @@ public class FreeStyleBuild   {
   /**
    * Get timestamp
    * @return timestamp
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "timestamp", required = false)
   public Integer getTimestamp() {
     return timestamp;
   }
@@ -410,10 +400,9 @@ public class FreeStyleBuild   {
   /**
    * Get builtOn
    * @return builtOn
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "builtOn", required = false)
   public String getBuiltOn() {
     return builtOn;
   }
@@ -430,11 +419,9 @@ public class FreeStyleBuild   {
   /**
    * Get changeSet
    * @return changeSet
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "changeSet", required = false)
   public EmptyChangeLogSet getChangeSet() {
     return changeSet;
   }
@@ -443,9 +430,8 @@ public class FreeStyleBuild   {
     this.changeSet = changeSet;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -482,7 +468,6 @@ public class FreeStyleBuild   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FreeStyleBuild {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
@@ -509,7 +494,7 @@ public class FreeStyleBuild   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

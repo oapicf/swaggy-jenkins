@@ -25,19 +25,19 @@ defmodule SwaggyJenkins.Model.BranchImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"displayName" => String.t,
-    :"estimatedDurationInMillis" => integer(),
-    :"fullDisplayName" => String.t,
-    :"fullName" => String.t,
-    :"name" => String.t,
-    :"organization" => String.t,
-    :"parameters" => [StringParameterDefinition],
-    :"permissions" => BranchImplpermissions,
-    :"weatherScore" => integer(),
-    :"pullRequest" => String.t,
-    :"_links" => BranchImpllinks,
-    :"latestRun" => PipelineRunImpl
+    :"_class" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"estimatedDurationInMillis" => integer() | nil,
+    :"fullDisplayName" => String.t | nil,
+    :"fullName" => String.t | nil,
+    :"name" => String.t | nil,
+    :"organization" => String.t | nil,
+    :"parameters" => [SwaggyJenkins.Model.StringParameterDefinition.t] | nil,
+    :"permissions" => SwaggyJenkins.Model.BranchImplpermissions.t | nil,
+    :"weatherScore" => integer() | nil,
+    :"pullRequest" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.BranchImpllinks.t | nil,
+    :"latestRun" => SwaggyJenkins.Model.PipelineRunImpl.t | nil
   }
 end
 

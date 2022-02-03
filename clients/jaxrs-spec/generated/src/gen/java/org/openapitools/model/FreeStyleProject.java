@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
@@ -9,41 +11,45 @@ import org.openapitools.model.NullSCM;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class FreeStyleProject   {
+
+@JsonTypeName("FreeStyleProject")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class FreeStyleProject   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String name = null;
-  private @Valid String url = null;
-  private @Valid String color = null;
+  private @Valid String propertyClass;
+  private @Valid String name;
+  private @Valid String url;
+  private @Valid String color;
   private @Valid List<FreeStyleProjectactions> actions = new ArrayList<FreeStyleProjectactions>();
-  private @Valid String description = null;
-  private @Valid String displayName = null;
-  private @Valid String displayNameOrNull = null;
-  private @Valid String fullDisplayName = null;
-  private @Valid String fullName = null;
-  private @Valid Boolean buildable = null;
+  private @Valid String description;
+  private @Valid String displayName;
+  private @Valid String displayNameOrNull;
+  private @Valid String fullDisplayName;
+  private @Valid String fullName;
+  private @Valid Boolean buildable;
   private @Valid List<FreeStyleBuild> builds = new ArrayList<FreeStyleBuild>();
-  private @Valid FreeStyleBuild firstBuild = null;
+  private @Valid FreeStyleBuild firstBuild;
   private @Valid List<FreeStyleProjecthealthReport> healthReport = new ArrayList<FreeStyleProjecthealthReport>();
-  private @Valid Boolean inQueue = null;
-  private @Valid Boolean keepDependencies = null;
-  private @Valid FreeStyleBuild lastBuild = null;
-  private @Valid FreeStyleBuild lastCompletedBuild = null;
-  private @Valid String lastFailedBuild = null;
-  private @Valid FreeStyleBuild lastStableBuild = null;
-  private @Valid FreeStyleBuild lastSuccessfulBuild = null;
-  private @Valid String lastUnstableBuild = null;
-  private @Valid String lastUnsuccessfulBuild = null;
-  private @Valid Integer nextBuildNumber = null;
-  private @Valid String queueItem = null;
-  private @Valid Boolean concurrentBuild = null;
-  private @Valid NullSCM scm = null;
+  private @Valid Boolean inQueue;
+  private @Valid Boolean keepDependencies;
+  private @Valid FreeStyleBuild lastBuild;
+  private @Valid FreeStyleBuild lastCompletedBuild;
+  private @Valid String lastFailedBuild;
+  private @Valid FreeStyleBuild lastStableBuild;
+  private @Valid FreeStyleBuild lastSuccessfulBuild;
+  private @Valid String lastUnstableBuild;
+  private @Valid String lastUnsuccessfulBuild;
+  private @Valid Integer nextBuildNumber;
+  private @Valid String queueItem;
+  private @Valid Boolean concurrentBuild;
+  private @Valid NullSCM scm;
 
   /**
    **/
@@ -53,16 +59,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject name(String name) {
     this.name = name;
@@ -70,16 +80,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject url(String url) {
     this.url = url;
@@ -87,16 +101,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
     return url;
   }
+
+  @JsonProperty("url")
   public void setUrl(String url) {
     this.url = url;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject color(String color) {
     this.color = color;
@@ -104,16 +122,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("color")
   public String getColor() {
     return color;
   }
+
+  @JsonProperty("color")
   public void setColor(String color) {
     this.color = color;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject actions(List<FreeStyleProjectactions> actions) {
     this.actions = actions;
@@ -121,16 +143,36 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<FreeStyleProjectactions> getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(List<FreeStyleProjectactions> actions) {
     this.actions = actions;
   }
 
-  /**
+  public FreeStyleProject addActionsItem(FreeStyleProjectactions actionsItem) {
+    if (this.actions == null) {
+      this.actions = new ArrayList<FreeStyleProjectactions>();
+    }
+
+    this.actions.add(actionsItem);
+    return this;
+  }
+
+  public FreeStyleProject removeActionsItem(FreeStyleProjectactions actionsItem) {
+    if (actionsItem != null && this.actions != null) {
+      this.actions.remove(actionsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public FreeStyleProject description(String description) {
     this.description = description;
@@ -138,16 +180,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
     return description;
   }
+
+  @JsonProperty("description")
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject displayName(String displayName) {
     this.displayName = displayName;
@@ -155,16 +201,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject displayNameOrNull(String displayNameOrNull) {
     this.displayNameOrNull = displayNameOrNull;
@@ -172,16 +222,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayNameOrNull")
   public String getDisplayNameOrNull() {
     return displayNameOrNull;
   }
+
+  @JsonProperty("displayNameOrNull")
   public void setDisplayNameOrNull(String displayNameOrNull) {
     this.displayNameOrNull = displayNameOrNull;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
@@ -189,16 +243,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
     return fullDisplayName;
   }
+
+  @JsonProperty("fullDisplayName")
   public void setFullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject fullName(String fullName) {
     this.fullName = fullName;
@@ -206,16 +264,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
+
+  @JsonProperty("fullName")
   public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject buildable(Boolean buildable) {
     this.buildable = buildable;
@@ -223,16 +285,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("buildable")
   public Boolean getBuildable() {
     return buildable;
   }
+
+  @JsonProperty("buildable")
   public void setBuildable(Boolean buildable) {
     this.buildable = buildable;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject builds(List<FreeStyleBuild> builds) {
     this.builds = builds;
@@ -240,16 +306,36 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("builds")
   public List<FreeStyleBuild> getBuilds() {
     return builds;
   }
+
+  @JsonProperty("builds")
   public void setBuilds(List<FreeStyleBuild> builds) {
     this.builds = builds;
   }
 
-  /**
+  public FreeStyleProject addBuildsItem(FreeStyleBuild buildsItem) {
+    if (this.builds == null) {
+      this.builds = new ArrayList<FreeStyleBuild>();
+    }
+
+    this.builds.add(buildsItem);
+    return this;
+  }
+
+  public FreeStyleProject removeBuildsItem(FreeStyleBuild buildsItem) {
+    if (buildsItem != null && this.builds != null) {
+      this.builds.remove(buildsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public FreeStyleProject firstBuild(FreeStyleBuild firstBuild) {
     this.firstBuild = firstBuild;
@@ -257,16 +343,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("firstBuild")
   public FreeStyleBuild getFirstBuild() {
     return firstBuild;
   }
+
+  @JsonProperty("firstBuild")
   public void setFirstBuild(FreeStyleBuild firstBuild) {
     this.firstBuild = firstBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject healthReport(List<FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
@@ -274,16 +364,36 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("healthReport")
   public List<FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
+
+  @JsonProperty("healthReport")
   public void setHealthReport(List<FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
   }
 
-  /**
+  public FreeStyleProject addHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
+    if (this.healthReport == null) {
+      this.healthReport = new ArrayList<FreeStyleProjecthealthReport>();
+    }
+
+    this.healthReport.add(healthReportItem);
+    return this;
+  }
+
+  public FreeStyleProject removeHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
+    if (healthReportItem != null && this.healthReport != null) {
+      this.healthReport.remove(healthReportItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public FreeStyleProject inQueue(Boolean inQueue) {
     this.inQueue = inQueue;
@@ -291,16 +401,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("inQueue")
   public Boolean getInQueue() {
     return inQueue;
   }
+
+  @JsonProperty("inQueue")
   public void setInQueue(Boolean inQueue) {
     this.inQueue = inQueue;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject keepDependencies(Boolean keepDependencies) {
     this.keepDependencies = keepDependencies;
@@ -308,16 +422,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("keepDependencies")
   public Boolean getKeepDependencies() {
     return keepDependencies;
   }
+
+  @JsonProperty("keepDependencies")
   public void setKeepDependencies(Boolean keepDependencies) {
     this.keepDependencies = keepDependencies;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastBuild(FreeStyleBuild lastBuild) {
     this.lastBuild = lastBuild;
@@ -325,16 +443,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastBuild")
   public FreeStyleBuild getLastBuild() {
     return lastBuild;
   }
+
+  @JsonProperty("lastBuild")
   public void setLastBuild(FreeStyleBuild lastBuild) {
     this.lastBuild = lastBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastCompletedBuild(FreeStyleBuild lastCompletedBuild) {
     this.lastCompletedBuild = lastCompletedBuild;
@@ -342,16 +464,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastCompletedBuild")
   public FreeStyleBuild getLastCompletedBuild() {
     return lastCompletedBuild;
   }
+
+  @JsonProperty("lastCompletedBuild")
   public void setLastCompletedBuild(FreeStyleBuild lastCompletedBuild) {
     this.lastCompletedBuild = lastCompletedBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastFailedBuild(String lastFailedBuild) {
     this.lastFailedBuild = lastFailedBuild;
@@ -359,16 +485,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastFailedBuild")
   public String getLastFailedBuild() {
     return lastFailedBuild;
   }
+
+  @JsonProperty("lastFailedBuild")
   public void setLastFailedBuild(String lastFailedBuild) {
     this.lastFailedBuild = lastFailedBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastStableBuild(FreeStyleBuild lastStableBuild) {
     this.lastStableBuild = lastStableBuild;
@@ -376,16 +506,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastStableBuild")
   public FreeStyleBuild getLastStableBuild() {
     return lastStableBuild;
   }
+
+  @JsonProperty("lastStableBuild")
   public void setLastStableBuild(FreeStyleBuild lastStableBuild) {
     this.lastStableBuild = lastStableBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastSuccessfulBuild(FreeStyleBuild lastSuccessfulBuild) {
     this.lastSuccessfulBuild = lastSuccessfulBuild;
@@ -393,16 +527,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastSuccessfulBuild")
   public FreeStyleBuild getLastSuccessfulBuild() {
     return lastSuccessfulBuild;
   }
+
+  @JsonProperty("lastSuccessfulBuild")
   public void setLastSuccessfulBuild(FreeStyleBuild lastSuccessfulBuild) {
     this.lastSuccessfulBuild = lastSuccessfulBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastUnstableBuild(String lastUnstableBuild) {
     this.lastUnstableBuild = lastUnstableBuild;
@@ -410,16 +548,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastUnstableBuild")
   public String getLastUnstableBuild() {
     return lastUnstableBuild;
   }
+
+  @JsonProperty("lastUnstableBuild")
   public void setLastUnstableBuild(String lastUnstableBuild) {
     this.lastUnstableBuild = lastUnstableBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject lastUnsuccessfulBuild(String lastUnsuccessfulBuild) {
     this.lastUnsuccessfulBuild = lastUnsuccessfulBuild;
@@ -427,16 +569,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastUnsuccessfulBuild")
   public String getLastUnsuccessfulBuild() {
     return lastUnsuccessfulBuild;
   }
+
+  @JsonProperty("lastUnsuccessfulBuild")
   public void setLastUnsuccessfulBuild(String lastUnsuccessfulBuild) {
     this.lastUnsuccessfulBuild = lastUnsuccessfulBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject nextBuildNumber(Integer nextBuildNumber) {
     this.nextBuildNumber = nextBuildNumber;
@@ -444,16 +590,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("nextBuildNumber")
   public Integer getNextBuildNumber() {
     return nextBuildNumber;
   }
+
+  @JsonProperty("nextBuildNumber")
   public void setNextBuildNumber(Integer nextBuildNumber) {
     this.nextBuildNumber = nextBuildNumber;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject queueItem(String queueItem) {
     this.queueItem = queueItem;
@@ -461,16 +611,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("queueItem")
   public String getQueueItem() {
     return queueItem;
   }
+
+  @JsonProperty("queueItem")
   public void setQueueItem(String queueItem) {
     this.queueItem = queueItem;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject concurrentBuild(Boolean concurrentBuild) {
     this.concurrentBuild = concurrentBuild;
@@ -478,16 +632,20 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("concurrentBuild")
   public Boolean getConcurrentBuild() {
     return concurrentBuild;
   }
+
+  @JsonProperty("concurrentBuild")
   public void setConcurrentBuild(Boolean concurrentBuild) {
     this.concurrentBuild = concurrentBuild;
   }
 
-  /**
+/**
    **/
   public FreeStyleProject scm(NullSCM scm) {
     this.scm = scm;
@@ -495,18 +653,22 @@ public class FreeStyleProject   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("scm")
   public NullSCM getScm() {
     return scm;
   }
+
+  @JsonProperty("scm")
   public void setScm(NullSCM scm) {
     this.scm = scm;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -514,33 +676,33 @@ public class FreeStyleProject   {
       return false;
     }
     FreeStyleProject freeStyleProject = (FreeStyleProject) o;
-    return Objects.equals(propertyClass, freeStyleProject.propertyClass) &&
-        Objects.equals(name, freeStyleProject.name) &&
-        Objects.equals(url, freeStyleProject.url) &&
-        Objects.equals(color, freeStyleProject.color) &&
-        Objects.equals(actions, freeStyleProject.actions) &&
-        Objects.equals(description, freeStyleProject.description) &&
-        Objects.equals(displayName, freeStyleProject.displayName) &&
-        Objects.equals(displayNameOrNull, freeStyleProject.displayNameOrNull) &&
-        Objects.equals(fullDisplayName, freeStyleProject.fullDisplayName) &&
-        Objects.equals(fullName, freeStyleProject.fullName) &&
-        Objects.equals(buildable, freeStyleProject.buildable) &&
-        Objects.equals(builds, freeStyleProject.builds) &&
-        Objects.equals(firstBuild, freeStyleProject.firstBuild) &&
-        Objects.equals(healthReport, freeStyleProject.healthReport) &&
-        Objects.equals(inQueue, freeStyleProject.inQueue) &&
-        Objects.equals(keepDependencies, freeStyleProject.keepDependencies) &&
-        Objects.equals(lastBuild, freeStyleProject.lastBuild) &&
-        Objects.equals(lastCompletedBuild, freeStyleProject.lastCompletedBuild) &&
-        Objects.equals(lastFailedBuild, freeStyleProject.lastFailedBuild) &&
-        Objects.equals(lastStableBuild, freeStyleProject.lastStableBuild) &&
-        Objects.equals(lastSuccessfulBuild, freeStyleProject.lastSuccessfulBuild) &&
-        Objects.equals(lastUnstableBuild, freeStyleProject.lastUnstableBuild) &&
-        Objects.equals(lastUnsuccessfulBuild, freeStyleProject.lastUnsuccessfulBuild) &&
-        Objects.equals(nextBuildNumber, freeStyleProject.nextBuildNumber) &&
-        Objects.equals(queueItem, freeStyleProject.queueItem) &&
-        Objects.equals(concurrentBuild, freeStyleProject.concurrentBuild) &&
-        Objects.equals(scm, freeStyleProject.scm);
+    return Objects.equals(this.propertyClass, freeStyleProject.propertyClass) &&
+        Objects.equals(this.name, freeStyleProject.name) &&
+        Objects.equals(this.url, freeStyleProject.url) &&
+        Objects.equals(this.color, freeStyleProject.color) &&
+        Objects.equals(this.actions, freeStyleProject.actions) &&
+        Objects.equals(this.description, freeStyleProject.description) &&
+        Objects.equals(this.displayName, freeStyleProject.displayName) &&
+        Objects.equals(this.displayNameOrNull, freeStyleProject.displayNameOrNull) &&
+        Objects.equals(this.fullDisplayName, freeStyleProject.fullDisplayName) &&
+        Objects.equals(this.fullName, freeStyleProject.fullName) &&
+        Objects.equals(this.buildable, freeStyleProject.buildable) &&
+        Objects.equals(this.builds, freeStyleProject.builds) &&
+        Objects.equals(this.firstBuild, freeStyleProject.firstBuild) &&
+        Objects.equals(this.healthReport, freeStyleProject.healthReport) &&
+        Objects.equals(this.inQueue, freeStyleProject.inQueue) &&
+        Objects.equals(this.keepDependencies, freeStyleProject.keepDependencies) &&
+        Objects.equals(this.lastBuild, freeStyleProject.lastBuild) &&
+        Objects.equals(this.lastCompletedBuild, freeStyleProject.lastCompletedBuild) &&
+        Objects.equals(this.lastFailedBuild, freeStyleProject.lastFailedBuild) &&
+        Objects.equals(this.lastStableBuild, freeStyleProject.lastStableBuild) &&
+        Objects.equals(this.lastSuccessfulBuild, freeStyleProject.lastSuccessfulBuild) &&
+        Objects.equals(this.lastUnstableBuild, freeStyleProject.lastUnstableBuild) &&
+        Objects.equals(this.lastUnsuccessfulBuild, freeStyleProject.lastUnsuccessfulBuild) &&
+        Objects.equals(this.nextBuildNumber, freeStyleProject.nextBuildNumber) &&
+        Objects.equals(this.queueItem, freeStyleProject.queueItem) &&
+        Objects.equals(this.concurrentBuild, freeStyleProject.concurrentBuild) &&
+        Objects.equals(this.scm, freeStyleProject.scm);
   }
 
   @Override
@@ -588,11 +750,13 @@ public class FreeStyleProject   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

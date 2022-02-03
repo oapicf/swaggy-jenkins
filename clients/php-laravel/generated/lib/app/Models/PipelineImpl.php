@@ -9,20 +9,20 @@ namespace app\Models;
  */
 class PipelineImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $estimated_duration_in_millis */
-    private $estimated_duration_in_millis;
+    /** @var int $estimatedDurationInMillis */
+    private $estimatedDurationInMillis;
 
-    /** @var string $full_name */
-    private $full_name;
+    /** @var string $fullName */
+    private $fullName;
 
-    /** @var string $latest_run */
-    private $latest_run;
+    /** @var string $latestRun */
+    private $latestRun;
 
     /** @var string $name */
     private $name;
@@ -30,10 +30,10 @@ class PipelineImpl {
     /** @var string $organization */
     private $organization;
 
-    /** @var int $weather_score */
-    private $weather_score;
+    /** @var int $weatherScore */
+    private $weatherScore;
 
-    /** @var \app\Models\PipelineImpllinks $_links */
-    private $_links;
+    /** @var \app\Models\PipelineImpllinks $links */
+    private $links;
 
 }

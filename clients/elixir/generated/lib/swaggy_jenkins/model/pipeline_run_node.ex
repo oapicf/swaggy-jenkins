@@ -20,14 +20,14 @@ defmodule SwaggyJenkins.Model.PipelineRunNode do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"displayName" => String.t,
-    :"durationInMillis" => integer(),
-    :"edges" => [PipelineRunNodeedges],
-    :"id" => String.t,
-    :"result" => String.t,
-    :"startTime" => String.t,
-    :"state" => String.t
+    :"_class" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"durationInMillis" => integer() | nil,
+    :"edges" => [SwaggyJenkins.Model.PipelineRunNodeedges.t] | nil,
+    :"id" => String.t | nil,
+    :"result" => String.t | nil,
+    :"startTime" => String.t | nil,
+    :"state" => String.t | nil
   }
 end
 

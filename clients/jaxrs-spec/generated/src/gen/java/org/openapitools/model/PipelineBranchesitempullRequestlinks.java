@@ -1,18 +1,24 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineBranchesitempullRequestlinks   {
+
+@JsonTypeName("PipelineBranchesitempullRequestlinks")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineBranchesitempullRequestlinks   {
   
-  private @Valid String self = null;
-  private @Valid String propertyClass = null;
+  private @Valid String self;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -22,16 +28,20 @@ public class PipelineBranchesitempullRequestlinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("self")
   public String getSelf() {
     return self;
   }
+
+  @JsonProperty("self")
   public void setSelf(String self) {
     this.self = self;
   }
 
-  /**
+/**
    **/
   public PipelineBranchesitempullRequestlinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -39,18 +49,22 @@ public class PipelineBranchesitempullRequestlinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -58,8 +72,8 @@ public class PipelineBranchesitempullRequestlinks   {
       return false;
     }
     PipelineBranchesitempullRequestlinks pipelineBranchesitempullRequestlinks = (PipelineBranchesitempullRequestlinks) o;
-    return Objects.equals(self, pipelineBranchesitempullRequestlinks.self) &&
-        Objects.equals(propertyClass, pipelineBranchesitempullRequestlinks.propertyClass);
+    return Objects.equals(this.self, pipelineBranchesitempullRequestlinks.self) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitempullRequestlinks.propertyClass);
   }
 
   @Override
@@ -82,11 +96,13 @@ public class PipelineBranchesitempullRequestlinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

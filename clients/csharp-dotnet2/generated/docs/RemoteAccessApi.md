@@ -48,7 +48,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
@@ -113,7 +112,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
@@ -174,13 +172,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
+            var name = "name_example";  // string | Name of the job
 
             try
             {
@@ -239,13 +236,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
+            var name = "name_example";  // string | Name of the job
 
             try
             {
@@ -304,13 +300,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
+            var name = "name_example";  // string | Name of the job
 
             try
             {
@@ -369,15 +364,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var number = number_example;  // string | Build number
-            var start = start_example;  // string | Starting point of progressive text output
+            var name = "name_example";  // string | Name of the job
+            var number = "number_example";  // string | Build number
+            var start = "start_example";  // string | Starting point of progressive text output
 
             try
             {
@@ -437,7 +431,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
@@ -498,13 +491,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var number = number_example;  // string | Queue number
+            var number = "number_example";  // string | Queue number
 
             try
             {
@@ -563,13 +555,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the view
+            var name = "name_example";  // string | Name of the view
 
             try
             {
@@ -628,13 +619,12 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the view
+            var name = "name_example";  // string | Name of the view
 
             try
             {
@@ -693,7 +683,6 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
@@ -753,18 +742,17 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the new job
-            var from = from_example;  // string | Existing job to copy from (optional) 
-            var mode = mode_example;  // string | Set to 'copy' for copying an existing job (optional) 
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
-            var contentType = contentType_example;  // string | Content type header application/xml (optional) 
-            var body = body_example;  // string | Job configuration in config.xml format (optional) 
+            var name = "name_example";  // string | Name of the new job
+            var from = "from_example";  // string | Existing job to copy from (optional) 
+            var mode = "mode_example";  // string | Set to 'copy' for copying an existing job (optional) 
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
+            var contentType = "contentType_example";  // string | Content type header application/xml (optional) 
+            var body = "body_example";  // string | Job configuration in config.xml format (optional) 
 
             try
             {
@@ -827,16 +815,15 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the new view
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
-            var contentType = contentType_example;  // string | Content type header application/xml (optional) 
-            var body = body_example;  // string | View configuration in config.xml format (optional) 
+            var name = "name_example";  // string | Name of the new view
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
+            var contentType = "contentType_example";  // string | Content type header application/xml (optional) 
+            var body = "body_example";  // string | View configuration in config.xml format (optional) 
 
             try
             {
@@ -897,16 +884,15 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var json = json_example;  // string | 
-            var token = token_example;  // string |  (optional) 
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the job
+            var json = "json_example";  // string | 
+            var token = "token_example";  // string |  (optional) 
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {
@@ -967,15 +953,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var body = body_example;  // string | Job configuration in config.xml format
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the job
+            var body = "body_example";  // string | Job configuration in config.xml format
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {
@@ -1035,14 +1020,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the job
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {
@@ -1101,14 +1085,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the job
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {
@@ -1167,14 +1150,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the job
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {
@@ -1233,14 +1215,13 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the job
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the job
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {
@@ -1299,15 +1280,14 @@ namespace Example
     {
         public void main()
         {
-            
             // Configure HTTP basic authorization: jenkins_auth
             Configuration.Default.Username = "YOUR_USERNAME";
             Configuration.Default.Password = "YOUR_PASSWORD";
 
             var apiInstance = new RemoteAccessApi();
-            var name = name_example;  // string | Name of the view
-            var body = body_example;  // string | View configuration in config.xml format
-            var jenkinsCrumb = jenkinsCrumb_example;  // string | CSRF protection token (optional) 
+            var name = "name_example";  // string | Name of the view
+            var body = "body_example";  // string | View configuration in config.xml format
+            var jenkinsCrumb = "jenkinsCrumb_example";  // string | CSRF protection token (optional) 
 
             try
             {

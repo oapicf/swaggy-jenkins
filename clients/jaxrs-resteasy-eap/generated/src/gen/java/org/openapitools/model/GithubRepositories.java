@@ -13,22 +13,21 @@ import org.openapitools.model.GithubRepository;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class GithubRepositories   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private GithubRepositorieslinks links = null;
+  private GithubRepositorieslinks links;
 
   private List<GithubRepository> items = new ArrayList<GithubRepository>();
 
-  private Integer lastPage = null;
+  private Integer lastPage;
 
-  private Integer nextPage = null;
+  private Integer nextPage;
 
-  private Integer pageSize = null;
+  private Integer pageSize;
 
   /**
    **/

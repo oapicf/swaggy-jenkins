@@ -56,15 +56,6 @@ allViewUrlL f AllView{..} = (\allViewUrl -> AllView { allViewUrl, ..} ) <$> f al
 
 
 
--- * Body
-
--- | 'bodyFavorite' Lens
-bodyFavoriteL :: Lens_' Body (Bool)
-bodyFavoriteL f Body{..} = (\bodyFavorite -> Body { bodyFavorite, ..} ) <$> f bodyFavorite
-{-# INLINE bodyFavoriteL #-}
-
-
-
 -- * BranchImpl
 
 -- | 'branchImplClass' Lens
@@ -1521,10 +1512,6 @@ organisationNameL f Organisation{..} = (\organisationName -> Organisation { orga
 
 
 
--- * Organisations
-
-
-
 -- * Pipeline
 
 -- | 'pipelineClass' Lens
@@ -1566,10 +1553,6 @@ pipelineEstimatedDurationInMillisL f Pipeline{..} = (\pipelineEstimatedDurationI
 pipelineLatestRunL :: Lens_' Pipeline (Maybe PipelinelatestRun)
 pipelineLatestRunL f Pipeline{..} = (\pipelineLatestRun -> Pipeline { pipelineLatestRun, ..} ) <$> f pipelineLatestRun
 {-# INLINE pipelineLatestRunL #-}
-
-
-
--- * PipelineActivities
 
 
 
@@ -1673,10 +1656,6 @@ pipelineActivityartifactsUrlL f PipelineActivityartifacts{..} = (\pipelineActivi
 pipelineActivityartifactsClassL :: Lens_' PipelineActivityartifacts (Maybe Text)
 pipelineActivityartifactsClassL f PipelineActivityartifacts{..} = (\pipelineActivityartifactsClass -> PipelineActivityartifacts { pipelineActivityartifactsClass, ..} ) <$> f pipelineActivityartifactsClass
 {-# INLINE pipelineActivityartifactsClassL #-}
-
-
-
--- * PipelineBranches
 
 
 
@@ -1968,10 +1947,6 @@ pipelineImpllinksClassL f PipelineImpllinks{..} = (\pipelineImpllinksClass -> Pi
 
 
 
--- * PipelineQueue
-
-
-
 -- * PipelineRun
 
 -- | 'pipelineRunClass' Lens
@@ -2208,10 +2183,6 @@ pipelineRunNodeStateL f PipelineRunNode{..} = (\pipelineRunNodeState -> Pipeline
 
 
 
--- * PipelineRunNodeSteps
-
-
-
 -- * PipelineRunNodeedges
 
 -- | 'pipelineRunNodeedgesId' Lens
@@ -2223,14 +2194,6 @@ pipelineRunNodeedgesIdL f PipelineRunNodeedges{..} = (\pipelineRunNodeedgesId ->
 pipelineRunNodeedgesClassL :: Lens_' PipelineRunNodeedges (Maybe Text)
 pipelineRunNodeedgesClassL f PipelineRunNodeedges{..} = (\pipelineRunNodeedgesClass -> PipelineRunNodeedges { pipelineRunNodeedgesClass, ..} ) <$> f pipelineRunNodeedgesClass
 {-# INLINE pipelineRunNodeedgesClassL #-}
-
-
-
--- * PipelineRunNodes
-
-
-
--- * PipelineRunSteps
 
 
 
@@ -2255,10 +2218,6 @@ pipelineRunartifactsUrlL f PipelineRunartifacts{..} = (\pipelineRunartifactsUrl 
 pipelineRunartifactsClassL :: Lens_' PipelineRunartifacts (Maybe Text)
 pipelineRunartifactsClassL f PipelineRunartifacts{..} = (\pipelineRunartifactsClass -> PipelineRunartifacts { pipelineRunartifactsClass, ..} ) <$> f pipelineRunartifactsClass
 {-# INLINE pipelineRunartifactsClassL #-}
-
-
-
--- * PipelineRuns
 
 
 
@@ -2430,10 +2389,6 @@ pipelinelatestRunartifactsUrlL f PipelinelatestRunartifacts{..} = (\pipelinelate
 pipelinelatestRunartifactsClassL :: Lens_' PipelinelatestRunartifacts (Maybe Text)
 pipelinelatestRunartifactsClassL f PipelinelatestRunartifacts{..} = (\pipelinelatestRunartifactsClass -> PipelinelatestRunartifacts { pipelinelatestRunartifactsClass, ..} ) <$> f pipelinelatestRunartifactsClass
 {-# INLINE pipelinelatestRunartifactsClassL #-}
-
-
-
--- * Pipelines
 
 
 
@@ -2632,10 +2587,6 @@ responseTimeMonitorDataAverageL f ResponseTimeMonitorData{..} = (\responseTimeMo
 
 
 
--- * ScmOrganisations
-
-
-
 -- * StringParameterDefinition
 
 -- | 'stringParameterDefinitionClass' Lens
@@ -2748,13 +2699,5 @@ userEmailL f User{..} = (\userEmail -> User { userEmail, ..} ) <$> f userEmail
 userNameL :: Lens_' User (Maybe Text)
 userNameL f User{..} = (\userName -> User { userName, ..} ) <$> f userName
 {-# INLINE userNameL #-}
-
-
-
--- * UserFavorites
-
-
-
--- * Users
 
 

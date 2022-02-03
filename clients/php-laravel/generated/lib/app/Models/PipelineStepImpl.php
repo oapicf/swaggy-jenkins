@@ -9,17 +9,17 @@ namespace app\Models;
  */
 class PipelineStepImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\PipelineStepImpllinks $_links */
-    private $_links;
+    /** @var \app\Models\PipelineStepImpllinks $links */
+    private $links;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $duration_in_millis */
-    private $duration_in_millis;
+    /** @var int $durationInMillis */
+    private $durationInMillis;
 
     /** @var string $id */
     private $id;
@@ -30,8 +30,8 @@ class PipelineStepImpl {
     /** @var string $result */
     private $result;
 
-    /** @var string $start_time */
-    private $start_time;
+    /** @var string $startTime */
+    private $startTime;
 
     /** @var string $state */
     private $state;

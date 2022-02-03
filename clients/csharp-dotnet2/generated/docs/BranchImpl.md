@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.BranchImpl
+
 ## Properties
 
 Name | Type | Description | Notes

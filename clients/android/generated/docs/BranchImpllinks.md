@@ -1,7 +1,9 @@
 
+
 # BranchImpllinks
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **self** | [**Link**](Link.md) |  |  [optional]
@@ -9,6 +11,7 @@ Name | Type | Description | Notes
 **runs** | [**Link**](Link.md) |  |  [optional]
 **queue** | [**Link**](Link.md) |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

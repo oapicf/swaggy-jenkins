@@ -8,21 +8,24 @@ import javax.validation.constraints.*;
 /**
  * GithubRepositorypermissions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubRepositorypermissions   {
   @JsonProperty("admin")
-  private Boolean admin = null;
+  
+  private Boolean admin;
 
   @JsonProperty("push")
-  private Boolean push = null;
+  
+  private Boolean push;
 
   @JsonProperty("pull")
-  private Boolean pull = null;
+  
+  private Boolean pull;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public GithubRepositorypermissions admin(Boolean admin) {
     this.admin = admin;
@@ -33,7 +36,7 @@ public class GithubRepositorypermissions   {
    * Get admin
    * @return admin
   **/
-    public Boolean getAdmin() {
+  public Boolean getAdmin() {
     return admin;
   }
 
@@ -50,7 +53,7 @@ public class GithubRepositorypermissions   {
    * Get push
    * @return push
   **/
-    public Boolean getPush() {
+  public Boolean getPush() {
     return push;
   }
 
@@ -67,7 +70,7 @@ public class GithubRepositorypermissions   {
    * Get pull
    * @return pull
   **/
-    public Boolean getPull() {
+  public Boolean getPull() {
     return pull;
   }
 
@@ -84,7 +87,7 @@ public class GithubRepositorypermissions   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -94,7 +97,7 @@ public class GithubRepositorypermissions   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,7 +134,7 @@ public class GithubRepositorypermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

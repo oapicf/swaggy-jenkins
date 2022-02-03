@@ -1,7 +1,9 @@
 
+
 # Hudson
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -19,6 +21,7 @@ Name | Type | Description | Notes
 **useCrumbs** | **Boolean** |  |  [optional]
 **useSecurity** | **Boolean** |  |  [optional]
 **views** | [**List&lt;AllView&gt;**](AllView.md) |  |  [optional]
+
 
 
 

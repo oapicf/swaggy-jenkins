@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -16,25 +26,25 @@ import org.openapitools.model.StringParameterDefinition;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class BranchImpl   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private Integer estimatedDurationInMillis = null;
-  private String fullDisplayName = null;
-  private String fullName = null;
-  private String name = null;
-  private String organization = null;
+  private String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String fullDisplayName;
+  private String fullName;
+  private String name;
+  private String organization;
   private List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
-  private BranchImplpermissions permissions = null;
-  private Integer weatherScore = null;
-  private String pullRequest = null;
-  private BranchImpllinks links = null;
-  private PipelineRunImpl latestRun = null;
+  private BranchImplpermissions permissions;
+  private Integer weatherScore;
+  private String pullRequest;
+  private BranchImpllinks links;
+  private PipelineRunImpl latestRun;
 
   /**
-   **/
+   */
   public BranchImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -51,7 +61,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -68,7 +78,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
@@ -85,7 +95,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
     return this;
@@ -102,7 +112,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl fullName(String fullName) {
     this.fullName = fullName;
     return this;
@@ -119,7 +129,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl name(String name) {
     this.name = name;
     return this;
@@ -136,7 +146,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl organization(String organization) {
     this.organization = organization;
     return this;
@@ -153,7 +163,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl parameters(List<StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
@@ -170,7 +180,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl permissions(BranchImplpermissions permissions) {
     this.permissions = permissions;
     return this;
@@ -187,7 +197,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
@@ -204,7 +214,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl pullRequest(String pullRequest) {
     this.pullRequest = pullRequest;
     return this;
@@ -221,7 +231,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl links(BranchImpllinks links) {
     this.links = links;
     return this;
@@ -238,7 +248,7 @@ public class BranchImpl   {
   }
 
   /**
-   **/
+   */
   public BranchImpl latestRun(PipelineRunImpl latestRun) {
     this.latestRun = latestRun;
     return this;
@@ -256,7 +266,7 @@ public class BranchImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -310,7 +320,7 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

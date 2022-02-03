@@ -4,6 +4,9 @@ import java.util.Objects;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
@@ -12,37 +15,36 @@ import org.openapitools.model.NullSCM;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class FreeStyleProject   {
   
-  private String propertyClass = null;
-  private String name = null;
-  private String url = null;
-  private String color = null;
+  private String propertyClass;
+  private String name;
+  private String url;
+  private String color;
   private List<FreeStyleProjectactions> actions = new ArrayList<FreeStyleProjectactions>();
-  private String description = null;
-  private String displayName = null;
-  private String displayNameOrNull = null;
-  private String fullDisplayName = null;
-  private String fullName = null;
-  private Boolean buildable = null;
+  private String description;
+  private String displayName;
+  private String displayNameOrNull;
+  private String fullDisplayName;
+  private String fullName;
+  private Boolean buildable;
   private List<FreeStyleBuild> builds = new ArrayList<FreeStyleBuild>();
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
   private List<FreeStyleProjecthealthReport> healthReport = new ArrayList<FreeStyleProjecthealthReport>();
-  private Boolean inQueue = null;
-  private Boolean keepDependencies = null;
-  private FreeStyleBuild lastBuild = null;
-  private FreeStyleBuild lastCompletedBuild = null;
-  private String lastFailedBuild = null;
-  private FreeStyleBuild lastStableBuild = null;
-  private FreeStyleBuild lastSuccessfulBuild = null;
-  private String lastUnstableBuild = null;
-  private String lastUnsuccessfulBuild = null;
-  private Integer nextBuildNumber = null;
-  private String queueItem = null;
-  private Boolean concurrentBuild = null;
-  private NullSCM scm = null;
+  private Boolean inQueue;
+  private Boolean keepDependencies;
+  private FreeStyleBuild lastBuild;
+  private FreeStyleBuild lastCompletedBuild;
+  private String lastFailedBuild;
+  private FreeStyleBuild lastStableBuild;
+  private FreeStyleBuild lastSuccessfulBuild;
+  private String lastUnstableBuild;
+  private String lastUnsuccessfulBuild;
+  private Integer nextBuildNumber;
+  private String queueItem;
+  private Boolean concurrentBuild;
+  private NullSCM scm;
 
   /**
    **/
@@ -370,7 +372,7 @@ public class FreeStyleProject   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -452,7 +454,7 @@ public class FreeStyleProject   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

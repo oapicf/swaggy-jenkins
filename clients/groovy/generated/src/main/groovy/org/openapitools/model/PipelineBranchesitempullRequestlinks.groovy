@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class PipelineBranchesitempullRequestlinks {
-    String self = null
-
-    String propertyClass = null
-
+    
+    String self
+    
+    String propertyClass
 }

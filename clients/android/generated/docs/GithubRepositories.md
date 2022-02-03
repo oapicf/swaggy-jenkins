@@ -1,7 +1,9 @@
 
+
 # GithubRepositories
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -10,6 +12,7 @@ Name | Type | Description | Notes
 **lastPage** | **Integer** |  |  [optional]
 **nextPage** | **Integer** |  |  [optional]
 **pageSize** | **Integer** |  |  [optional]
+
 
 
 

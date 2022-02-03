@@ -14,11 +14,31 @@ type GithubScm struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *GithubScmlinks `json:"_links,omitempty"`
+	Links GithubScmlinks `json:"_links,omitempty"`
 
 	CredentialId string `json:"credentialId,omitempty"`
 
 	Id string `json:"id,omitempty"`
 
 	Uri string `json:"uri,omitempty"`
+}
+
+// AssertGithubScmRequired checks if the required fields are not zero-ed
+func AssertGithubScmRequired(obj GithubScm) error {
+	if err := AssertGithubScmlinksRequired(obj.Links); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseGithubScmRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubScm (e.g. [][]GithubScm), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubScmRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubScm, ok := obj.(GithubScm)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubScmRequired(aGithubScm)
+	})
 }

@@ -7,14 +7,14 @@ import org.openapitools.model.Link;
 
 @Canonical
 class BranchImpllinks {
-    Link self = null
-
-    Link actions = null
-
-    Link runs = null
-
-    Link queue = null
-
-    String propertyClass = null
-
+    
+    Link self
+    
+    Link actions
+    
+    Link runs
+    
+    Link queue
+    
+    String propertyClass
 }

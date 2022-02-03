@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
@@ -12,25 +14,23 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class InputStepImpl   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private InputStepImpllinks links = null;
+  private InputStepImpllinks links;
 
-  private String id = null;
+  private String id;
 
-  private String message = null;
+  private String message;
 
-  private String ok = null;
+  private String ok;
 
   private List<StringParameterDefinition> parameters = null;
 
-  private String submitter = null;
+  private String submitter;
 
 
   /**
@@ -169,7 +169,7 @@ public class InputStepImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -211,7 +211,7 @@ public class InputStepImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

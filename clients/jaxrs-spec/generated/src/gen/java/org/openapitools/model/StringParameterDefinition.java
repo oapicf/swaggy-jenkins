@@ -1,22 +1,28 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.StringParameterValue;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class StringParameterDefinition   {
+
+@JsonTypeName("StringParameterDefinition")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class StringParameterDefinition   {
   
-  private @Valid String propertyClass = null;
-  private @Valid StringParameterValue defaultParameterValue = null;
-  private @Valid String description = null;
-  private @Valid String name = null;
-  private @Valid String type = null;
+  private @Valid String propertyClass;
+  private @Valid StringParameterValue defaultParameterValue;
+  private @Valid String description;
+  private @Valid String name;
+  private @Valid String type;
 
   /**
    **/
@@ -26,16 +32,20 @@ public class StringParameterDefinition   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public StringParameterDefinition defaultParameterValue(StringParameterValue defaultParameterValue) {
     this.defaultParameterValue = defaultParameterValue;
@@ -43,16 +53,20 @@ public class StringParameterDefinition   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("defaultParameterValue")
   public StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
   }
+
+  @JsonProperty("defaultParameterValue")
   public void setDefaultParameterValue(StringParameterValue defaultParameterValue) {
     this.defaultParameterValue = defaultParameterValue;
   }
 
-  /**
+/**
    **/
   public StringParameterDefinition description(String description) {
     this.description = description;
@@ -60,16 +74,20 @@ public class StringParameterDefinition   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
     return description;
   }
+
+  @JsonProperty("description")
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /**
+/**
    **/
   public StringParameterDefinition name(String name) {
     this.name = name;
@@ -77,16 +95,20 @@ public class StringParameterDefinition   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public StringParameterDefinition type(String type) {
     this.type = type;
@@ -94,18 +116,22 @@ public class StringParameterDefinition   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("type")
   public String getType() {
     return type;
   }
+
+  @JsonProperty("type")
   public void setType(String type) {
     this.type = type;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -113,11 +139,11 @@ public class StringParameterDefinition   {
       return false;
     }
     StringParameterDefinition stringParameterDefinition = (StringParameterDefinition) o;
-    return Objects.equals(propertyClass, stringParameterDefinition.propertyClass) &&
-        Objects.equals(defaultParameterValue, stringParameterDefinition.defaultParameterValue) &&
-        Objects.equals(description, stringParameterDefinition.description) &&
-        Objects.equals(name, stringParameterDefinition.name) &&
-        Objects.equals(type, stringParameterDefinition.type);
+    return Objects.equals(this.propertyClass, stringParameterDefinition.propertyClass) &&
+        Objects.equals(this.defaultParameterValue, stringParameterDefinition.defaultParameterValue) &&
+        Objects.equals(this.description, stringParameterDefinition.description) &&
+        Objects.equals(this.name, stringParameterDefinition.name) &&
+        Objects.equals(this.type, stringParameterDefinition.type);
   }
 
   @Override
@@ -143,11 +169,13 @@ public class StringParameterDefinition   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

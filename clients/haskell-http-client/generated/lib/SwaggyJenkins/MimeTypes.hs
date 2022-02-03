@@ -204,13 +204,13 @@ instance MimeUnrender MimeNoContent NoContent where mimeUnrender _ = P.Right . P
 
 -- * Custom Mime Types
 
--- ** MimeTextxml
+-- ** MimeTextXml
 
-data MimeTextxml = MimeTextxml deriving (P.Typeable)
+data MimeTextXml = MimeTextXml deriving (P.Typeable)
 
 -- | @text/xml@
-instance MimeType MimeTextxml where
+instance MimeType MimeTextXml where
   mimeType _ = Just $ P.fromString "text/xml"
--- instance MimeRender MimeTextxml T.Text where mimeRender _ = undefined
--- instance MimeUnrender MimeTextxml T.Text where mimeUnrender _ = undefined
+-- instance MimeRender MimeTextXml T.Text where mimeRender _ = undefined
+-- instance MimeUnrender MimeTextXml T.Text where mimeUnrender _ = undefined
 

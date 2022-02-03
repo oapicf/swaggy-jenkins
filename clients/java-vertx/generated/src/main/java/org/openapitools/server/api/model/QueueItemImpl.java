@@ -4,14 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class QueueItemImpl   {
   
-  private String propertyClass = null;
-  private Integer expectedBuildNumber = null;
-  private String id = null;
-  private String pipeline = null;
-  private Integer queuedTime = null;
+  private String propertyClass;
+  private Integer expectedBuildNumber;
+  private String id;
+  private String pipeline;
+  private Integer queuedTime;
 
   public QueueItemImpl () {
 

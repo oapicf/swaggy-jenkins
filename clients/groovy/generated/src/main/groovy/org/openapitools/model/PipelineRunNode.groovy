@@ -9,20 +9,20 @@ import org.openapitools.model.PipelineRunNodeedges;
 
 @Canonical
 class PipelineRunNode {
-    String propertyClass = null
-
-    String displayName = null
-
-    Integer durationInMillis = null
-
+    
+    String propertyClass
+    
+    String displayName
+    
+    Integer durationInMillis
+    
     List<PipelineRunNodeedges> edges = new ArrayList<PipelineRunNodeedges>()
-
-    String id = null
-
-    String result = null
-
-    String startTime = null
-
-    String state = null
-
+    
+    String id
+    
+    String result
+    
+    String startTime
+    
+    String state
 }

@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -10,19 +20,19 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class PipelineFolderImpl   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private String fullName = null;
-  private String name = null;
-  private String organization = null;
-  private Integer numberOfFolders = null;
-  private Integer numberOfPipelines = null;
+  private String propertyClass;
+  private String displayName;
+  private String fullName;
+  private String name;
+  private String organization;
+  private Integer numberOfFolders;
+  private Integer numberOfPipelines;
 
   /**
-   **/
+   */
   public PipelineFolderImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -39,7 +49,7 @@ public class PipelineFolderImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineFolderImpl displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -56,7 +66,7 @@ public class PipelineFolderImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineFolderImpl fullName(String fullName) {
     this.fullName = fullName;
     return this;
@@ -73,7 +83,7 @@ public class PipelineFolderImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineFolderImpl name(String name) {
     this.name = name;
     return this;
@@ -90,7 +100,7 @@ public class PipelineFolderImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineFolderImpl organization(String organization) {
     this.organization = organization;
     return this;
@@ -107,7 +117,7 @@ public class PipelineFolderImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineFolderImpl numberOfFolders(Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
     return this;
@@ -124,7 +134,7 @@ public class PipelineFolderImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineFolderImpl numberOfPipelines(Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;
     return this;
@@ -142,7 +152,7 @@ public class PipelineFolderImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -184,7 +194,7 @@ public class PipelineFolderImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

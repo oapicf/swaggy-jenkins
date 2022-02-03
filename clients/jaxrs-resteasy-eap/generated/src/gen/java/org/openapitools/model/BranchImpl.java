@@ -15,36 +15,35 @@ import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class BranchImpl   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String displayName = null;
+  private String displayName;
 
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
-  private String fullName = null;
+  private String fullName;
 
-  private String name = null;
+  private String name;
 
-  private String organization = null;
+  private String organization;
 
   private List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
 
-  private BranchImplpermissions permissions = null;
+  private BranchImplpermissions permissions;
 
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
-  private String pullRequest = null;
+  private String pullRequest;
 
-  private BranchImpllinks links = null;
+  private BranchImpllinks links;
 
-  private PipelineRunImpl latestRun = null;
+  private PipelineRunImpl latestRun;
 
   /**
    **/

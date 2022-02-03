@@ -9,25 +9,25 @@ import org.openapitools.server.api.model.HudsonMasterComputerexecutors;
 import org.openapitools.server.api.model.HudsonMasterComputermonitorData;
 import org.openapitools.server.api.model.Label1;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HudsonMasterComputer   {
   
-  private String propertyClass = null;
-  private String displayName = null;
+  private String propertyClass;
+  private String displayName;
   private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
-  private String icon = null;
-  private String iconClassName = null;
-  private Boolean idle = null;
-  private Boolean jnlpAgent = null;
-  private Boolean launchSupported = null;
-  private Label1 loadStatistics = null;
-  private Boolean manualLaunchAllowed = null;
-  private HudsonMasterComputermonitorData monitorData = null;
-  private Integer numExecutors = null;
-  private Boolean offline = null;
-  private String offlineCause = null;
-  private String offlineCauseReason = null;
-  private Boolean temporarilyOffline = null;
+  private String icon;
+  private String iconClassName;
+  private Boolean idle;
+  private Boolean jnlpAgent;
+  private Boolean launchSupported;
+  private Label1 loadStatistics;
+  private Boolean manualLaunchAllowed;
+  private HudsonMasterComputermonitorData monitorData;
+  private Integer numExecutors;
+  private Boolean offline;
+  private String offlineCause;
+  private String offlineCauseReason;
+  private Boolean temporarilyOffline;
 
   public HudsonMasterComputer () {
 

@@ -6,6 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class NullSCM {
-    String propertyClass = null
-
+    
+    String propertyClass
 }

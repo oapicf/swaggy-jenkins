@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
@@ -10,39 +12,37 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class MultibranchPipeline   {
   
-  private String displayName = null;
+  private String displayName;
 
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
-  private String latestRun = null;
+  private String latestRun;
 
-  private String name = null;
+  private String name;
 
-  private String organization = null;
+  private String organization;
 
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   private List<String> branchNames = null;
 
-  private Integer numberOfFailingBranches = null;
+  private Integer numberOfFailingBranches;
 
-  private Integer numberOfFailingPullRequests = null;
+  private Integer numberOfFailingPullRequests;
 
-  private Integer numberOfSuccessfulBranches = null;
+  private Integer numberOfSuccessfulBranches;
 
-  private Integer numberOfSuccessfulPullRequests = null;
+  private Integer numberOfSuccessfulPullRequests;
 
-  private Integer totalNumberOfBranches = null;
+  private Integer totalNumberOfBranches;
 
-  private Integer totalNumberOfPullRequests = null;
+  private Integer totalNumberOfPullRequests;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
 
   /**
@@ -307,7 +307,7 @@ public class MultibranchPipeline   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -363,7 +363,7 @@ public class MultibranchPipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

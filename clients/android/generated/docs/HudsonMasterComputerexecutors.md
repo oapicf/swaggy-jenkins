@@ -1,7 +1,9 @@
 
+
 # HudsonMasterComputerexecutors
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currentExecutable** | [**FreeStyleBuild**](FreeStyleBuild.md) |  |  [optional]
@@ -10,6 +12,7 @@ Name | Type | Description | Notes
 **number** | **Integer** |  |  [optional]
 **progress** | **Integer** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

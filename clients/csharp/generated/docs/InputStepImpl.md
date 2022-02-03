@@ -1,4 +1,6 @@
+
 # Org.OpenAPITools.Model.InputStepImpl
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -11,5 +13,7 @@ Name | Type | Description | Notes
 **Parameters** | [**List&lt;StringParameterDefinition&gt;**](StringParameterDefinition.md) |  | [optional] 
 **Submitter** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

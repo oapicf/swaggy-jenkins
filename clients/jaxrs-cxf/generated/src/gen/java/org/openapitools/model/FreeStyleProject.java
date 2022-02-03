@@ -10,50 +10,43 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FreeStyleProject  {
   
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private String name = null;
+  private String name;
 
   @ApiModelProperty(value = "")
-  private String url = null;
+  private String url;
 
   @ApiModelProperty(value = "")
-  private String color = null;
+  private String color;
 
   @ApiModelProperty(value = "")
   @Valid
   private List<FreeStyleProjectactions> actions = null;
 
   @ApiModelProperty(value = "")
-  private String description = null;
+  private String description;
 
   @ApiModelProperty(value = "")
-  private String displayName = null;
+  private String displayName;
 
   @ApiModelProperty(value = "")
-  private String displayNameOrNull = null;
+  private String displayNameOrNull;
 
   @ApiModelProperty(value = "")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @ApiModelProperty(value = "")
-  private String fullName = null;
+  private String fullName;
 
   @ApiModelProperty(value = "")
-  private Boolean buildable = null;
+  private Boolean buildable;
 
   @ApiModelProperty(value = "")
   @Valid
@@ -61,55 +54,55 @@ public class FreeStyleProject  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
   @Valid
   private List<FreeStyleProjecthealthReport> healthReport = null;
 
   @ApiModelProperty(value = "")
-  private Boolean inQueue = null;
+  private Boolean inQueue;
 
   @ApiModelProperty(value = "")
-  private Boolean keepDependencies = null;
-
-  @ApiModelProperty(value = "")
-  @Valid
-  private FreeStyleBuild lastBuild = null;
+  private Boolean keepDependencies;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FreeStyleBuild lastCompletedBuild = null;
-
-  @ApiModelProperty(value = "")
-  private String lastFailedBuild = null;
+  private FreeStyleBuild lastBuild;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FreeStyleBuild lastStableBuild = null;
+  private FreeStyleBuild lastCompletedBuild;
+
+  @ApiModelProperty(value = "")
+  private String lastFailedBuild;
 
   @ApiModelProperty(value = "")
   @Valid
-  private FreeStyleBuild lastSuccessfulBuild = null;
-
-  @ApiModelProperty(value = "")
-  private String lastUnstableBuild = null;
-
-  @ApiModelProperty(value = "")
-  private String lastUnsuccessfulBuild = null;
-
-  @ApiModelProperty(value = "")
-  private Integer nextBuildNumber = null;
-
-  @ApiModelProperty(value = "")
-  private String queueItem = null;
-
-  @ApiModelProperty(value = "")
-  private Boolean concurrentBuild = null;
+  private FreeStyleBuild lastStableBuild;
 
   @ApiModelProperty(value = "")
   @Valid
-  private NullSCM scm = null;
+  private FreeStyleBuild lastSuccessfulBuild;
+
+  @ApiModelProperty(value = "")
+  private String lastUnstableBuild;
+
+  @ApiModelProperty(value = "")
+  private String lastUnsuccessfulBuild;
+
+  @ApiModelProperty(value = "")
+  private Integer nextBuildNumber;
+
+  @ApiModelProperty(value = "")
+  private String queueItem;
+
+  @ApiModelProperty(value = "")
+  private Boolean concurrentBuild;
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private NullSCM scm;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -652,7 +645,7 @@ public class FreeStyleProject  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

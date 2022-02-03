@@ -11,33 +11,41 @@ import javax.validation.constraints.*;
 /**
  * PipelineRunNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRunNode   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  
+  private Integer durationInMillis;
 
   @JsonProperty("edges")
+  @Valid
+
   private List<PipelineRunNodeedges> edges = null;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("result")
-  private String result = null;
+  
+  private String result;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  
+  private String state;
 
   public PipelineRunNode propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -48,7 +56,7 @@ public class PipelineRunNode   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -65,7 +73,7 @@ public class PipelineRunNode   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -82,7 +90,7 @@ public class PipelineRunNode   {
    * Get durationInMillis
    * @return durationInMillis
   **/
-    public Integer getDurationInMillis() {
+  public Integer getDurationInMillis() {
     return durationInMillis;
   }
 
@@ -107,7 +115,6 @@ public class PipelineRunNode   {
    * Get edges
    * @return edges
   **/
-  @Valid
   public List<PipelineRunNodeedges> getEdges() {
     return edges;
   }
@@ -125,7 +132,7 @@ public class PipelineRunNode   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -142,7 +149,7 @@ public class PipelineRunNode   {
    * Get result
    * @return result
   **/
-    public String getResult() {
+  public String getResult() {
     return result;
   }
 
@@ -159,7 +166,7 @@ public class PipelineRunNode   {
    * Get startTime
    * @return startTime
   **/
-    public String getStartTime() {
+  public String getStartTime() {
     return startTime;
   }
 
@@ -176,7 +183,7 @@ public class PipelineRunNode   {
    * Get state
    * @return state
   **/
-    public String getState() {
+  public String getState() {
     return state;
   }
 
@@ -186,7 +193,7 @@ public class PipelineRunNode   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -231,7 +238,7 @@ public class PipelineRunNode   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

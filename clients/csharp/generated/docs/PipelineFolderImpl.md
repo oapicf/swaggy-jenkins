@@ -1,4 +1,6 @@
+
 # Org.OpenAPITools.Model.PipelineFolderImpl
+
 ## Properties
 
 Name | Type | Description | Notes
@@ -8,8 +10,10 @@ Name | Type | Description | Notes
 **FullName** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **Organization** | **string** |  | [optional] 
-**NumberOfFolders** | **int?** |  | [optional] 
-**NumberOfPipelines** | **int?** |  | [optional] 
+**NumberOfFolders** | **int** |  | [optional] 
+**NumberOfPipelines** | **int** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 

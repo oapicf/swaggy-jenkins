@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.PipelineRunImpllinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineRunImpl   {
   
-  private String propertyClass = null;
-  private PipelineRunImpllinks links = null;
-  private Integer durationInMillis = null;
-  private String enQueueTime = null;
-  private String endTime = null;
-  private Integer estimatedDurationInMillis = null;
-  private String id = null;
-  private String organization = null;
-  private String pipeline = null;
-  private String result = null;
-  private String runSummary = null;
-  private String startTime = null;
-  private String state = null;
-  private String type = null;
-  private String commitId = null;
+  private String propertyClass;
+  private PipelineRunImpllinks links;
+  private Integer durationInMillis;
+  private String enQueueTime;
+  private String endTime;
+  private Integer estimatedDurationInMillis;
+  private String id;
+  private String organization;
+  private String pipeline;
+  private String result;
+  private String runSummary;
+  private String startTime;
+  private String state;
+  private String type;
+  private String commitId;
 
   public PipelineRunImpl () {
 

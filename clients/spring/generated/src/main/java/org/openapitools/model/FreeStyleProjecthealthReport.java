@@ -1,33 +1,40 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * FreeStyleProjecthealthReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class FreeStyleProjecthealthReport   {
+
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("iconClassName")
-  private String iconClassName = null;
+  private String iconClassName;
 
   @JsonProperty("iconUrl")
-  private String iconUrl = null;
+  private String iconUrl;
 
   @JsonProperty("score")
-  private Integer score = null;
+  private Integer score;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public FreeStyleProjecthealthReport description(String description) {
     this.description = description;
@@ -37,10 +44,9 @@ public class FreeStyleProjecthealthReport   {
   /**
    * Get description
    * @return description
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "description", required = false)
   public String getDescription() {
     return description;
   }
@@ -57,10 +63,9 @@ public class FreeStyleProjecthealthReport   {
   /**
    * Get iconClassName
    * @return iconClassName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "iconClassName", required = false)
   public String getIconClassName() {
     return iconClassName;
   }
@@ -77,10 +82,9 @@ public class FreeStyleProjecthealthReport   {
   /**
    * Get iconUrl
    * @return iconUrl
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "iconUrl", required = false)
   public String getIconUrl() {
     return iconUrl;
   }
@@ -97,10 +101,9 @@ public class FreeStyleProjecthealthReport   {
   /**
    * Get score
    * @return score
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "score", required = false)
   public Integer getScore() {
     return score;
   }
@@ -117,10 +120,9 @@ public class FreeStyleProjecthealthReport   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -129,9 +131,8 @@ public class FreeStyleProjecthealthReport   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -155,7 +156,6 @@ public class FreeStyleProjecthealthReport   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FreeStyleProjecthealthReport {\n");
-    
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    iconClassName: ").append(toIndentedString(iconClassName)).append("\n");
     sb.append("    iconUrl: ").append(toIndentedString(iconUrl)).append("\n");
@@ -169,7 +169,7 @@ public class FreeStyleProjecthealthReport   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -6,6 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class HudsonassignedLabels {
-    String propertyClass = null
-
+    
+    String propertyClass
 }

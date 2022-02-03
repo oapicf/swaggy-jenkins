@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.GithubOrganizationlinks
+
 ## Properties
 
 Name | Type | Description | Notes

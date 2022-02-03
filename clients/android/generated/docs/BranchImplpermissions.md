@@ -1,7 +1,9 @@
 
+
 # BranchImplpermissions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **create** | **Boolean** |  |  [optional]
@@ -9,6 +11,7 @@ Name | Type | Description | Notes
 **start** | **Boolean** |  |  [optional]
 **stop** | **Boolean** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

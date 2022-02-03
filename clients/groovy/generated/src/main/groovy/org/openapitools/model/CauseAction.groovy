@@ -9,8 +9,8 @@ import org.openapitools.model.CauseUserIdCause;
 
 @Canonical
 class CauseAction {
-    String propertyClass = null
-
+    
+    String propertyClass
+    
     List<CauseUserIdCause> causes = new ArrayList<CauseUserIdCause>()
-
 }

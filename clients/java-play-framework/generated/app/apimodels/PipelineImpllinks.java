@@ -9,24 +9,32 @@ import javax.validation.constraints.*;
 /**
  * PipelineImpllinks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineImpllinks   {
   @JsonProperty("runs")
-  private Link runs = null;
+  @Valid
+
+  private Link runs;
 
   @JsonProperty("self")
-  private Link self = null;
+  @Valid
+
+  private Link self;
 
   @JsonProperty("queue")
-  private Link queue = null;
+  @Valid
+
+  private Link queue;
 
   @JsonProperty("actions")
-  private Link actions = null;
+  @Valid
+
+  private Link actions;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public PipelineImpllinks runs(Link runs) {
     this.runs = runs;
@@ -37,7 +45,6 @@ public class PipelineImpllinks   {
    * Get runs
    * @return runs
   **/
-  @Valid
   public Link getRuns() {
     return runs;
   }
@@ -55,7 +62,6 @@ public class PipelineImpllinks   {
    * Get self
    * @return self
   **/
-  @Valid
   public Link getSelf() {
     return self;
   }
@@ -73,7 +79,6 @@ public class PipelineImpllinks   {
    * Get queue
    * @return queue
   **/
-  @Valid
   public Link getQueue() {
     return queue;
   }
@@ -91,7 +96,6 @@ public class PipelineImpllinks   {
    * Get actions
    * @return actions
   **/
-  @Valid
   public Link getActions() {
     return actions;
   }
@@ -109,7 +113,7 @@ public class PipelineImpllinks   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -119,7 +123,7 @@ public class PipelineImpllinks   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -158,7 +162,7 @@ public class PipelineImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

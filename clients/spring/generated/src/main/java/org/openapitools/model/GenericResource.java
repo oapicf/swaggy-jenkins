@@ -1,36 +1,43 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * GenericResource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class GenericResource   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  private String startTime;
 
   public GenericResource propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,10 +47,9 @@ public class GenericResource   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -60,10 +66,9 @@ public class GenericResource   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -80,10 +85,9 @@ public class GenericResource   {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "durationInMillis", required = false)
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -100,10 +104,9 @@ public class GenericResource   {
   /**
    * Get id
    * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "id", required = false)
   public String getId() {
     return id;
   }
@@ -120,10 +123,9 @@ public class GenericResource   {
   /**
    * Get result
    * @return result
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "result", required = false)
   public String getResult() {
     return result;
   }
@@ -140,10 +142,9 @@ public class GenericResource   {
   /**
    * Get startTime
    * @return startTime
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "startTime", required = false)
   public String getStartTime() {
     return startTime;
   }
@@ -152,9 +153,8 @@ public class GenericResource   {
     this.startTime = startTime;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -179,7 +179,6 @@ public class GenericResource   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GenericResource {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    durationInMillis: ").append(toIndentedString(durationInMillis)).append("\n");
@@ -194,7 +193,7 @@ public class GenericResource   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

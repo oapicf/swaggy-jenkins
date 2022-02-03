@@ -1,42 +1,102 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 class ResponseTimeMonitorData {
-  
-  String class_ = null;
-  
-  int timestamp = null;
-  
-  int average = null;
-  ResponseTimeMonitorData();
+  /// Returns a new [ResponseTimeMonitorData] instance.
+  ResponseTimeMonitorData({
+    this.class_,
+    this.timestamp,
+    this.average,
+  });
+
+  String class_;
+
+  int timestamp;
+
+  int average;
 
   @override
-  String toString() {
-    return 'ResponseTimeMonitorData[class_=$class_, timestamp=$timestamp, average=$average, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is ResponseTimeMonitorData &&
+     other.class_ == class_ &&
+     other.timestamp == timestamp &&
+     other.average == average;
 
-  ResponseTimeMonitorData.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    class_ = json['_class'];
-    timestamp = json['timestamp'];
-    average = json['average'];
-  }
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_.hashCode) +
+    (timestamp == null ? 0 : timestamp.hashCode) +
+    (average == null ? 0 : average.hashCode);
+
+  @override
+  String toString() => 'ResponseTimeMonitorData[class_=$class_, timestamp=$timestamp, average=$average]';
 
   Map<String, dynamic> toJson() {
-    return {
-      '_class': class_,
-      'timestamp': timestamp,
-      'average': average
-    };
+    final json = <String, dynamic>{};
+    if (class_ != null) {
+      json[r'_class'] = class_;
+    }
+    if (timestamp != null) {
+      json[r'timestamp'] = timestamp;
+    }
+    if (average != null) {
+      json[r'average'] = average;
+    }
+    return json;
   }
 
-  static List<ResponseTimeMonitorData> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ResponseTimeMonitorData>() : json.map((value) => new ResponseTimeMonitorData.fromJson(value)).toList();
+  /// Returns a new [ResponseTimeMonitorData] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ResponseTimeMonitorData fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return ResponseTimeMonitorData(
+        class_: mapValueOfType<String>(json, r'_class'),
+        timestamp: mapValueOfType<int>(json, r'timestamp'),
+        average: mapValueOfType<int>(json, r'average'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, ResponseTimeMonitorData> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ResponseTimeMonitorData>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ResponseTimeMonitorData.fromJson(value));
+  static List<ResponseTimeMonitorData> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(ResponseTimeMonitorData.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <ResponseTimeMonitorData>[];
+
+  static Map<String, ResponseTimeMonitorData> mapFromJson(dynamic json) {
+    final map = <String, ResponseTimeMonitorData>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = ResponseTimeMonitorData.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ResponseTimeMonitorData-objects as value to a dart map
+  static Map<String, List<ResponseTimeMonitorData>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<ResponseTimeMonitorData>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = ResponseTimeMonitorData.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
     }
     return map;
   }

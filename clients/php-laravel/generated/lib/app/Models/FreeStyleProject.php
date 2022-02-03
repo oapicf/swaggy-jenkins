@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class FreeStyleProject {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $name */
     private $name;
@@ -27,17 +27,17 @@ class FreeStyleProject {
     /** @var string $description */
     private $description;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var string $display_name_or_null */
-    private $display_name_or_null;
+    /** @var string $displayNameOrNull */
+    private $displayNameOrNull;
 
-    /** @var string $full_display_name */
-    private $full_display_name;
+    /** @var string $fullDisplayName */
+    private $fullDisplayName;
 
-    /** @var string $full_name */
-    private $full_name;
+    /** @var string $fullName */
+    private $fullName;
 
     /** @var bool $buildable */
     private $buildable;
@@ -45,47 +45,47 @@ class FreeStyleProject {
     /** @var \app\Models\FreeStyleBuild[] $builds */
     private $builds;
 
-    /** @var \app\Models\FreeStyleBuild $first_build */
-    private $first_build;
+    /** @var \app\Models\FreeStyleBuild $firstBuild */
+    private $firstBuild;
 
-    /** @var \app\Models\FreeStyleProjecthealthReport[] $health_report */
-    private $health_report;
+    /** @var \app\Models\FreeStyleProjecthealthReport[] $healthReport */
+    private $healthReport;
 
-    /** @var bool $in_queue */
-    private $in_queue;
+    /** @var bool $inQueue */
+    private $inQueue;
 
-    /** @var bool $keep_dependencies */
-    private $keep_dependencies;
+    /** @var bool $keepDependencies */
+    private $keepDependencies;
 
-    /** @var \app\Models\FreeStyleBuild $last_build */
-    private $last_build;
+    /** @var \app\Models\FreeStyleBuild $lastBuild */
+    private $lastBuild;
 
-    /** @var \app\Models\FreeStyleBuild $last_completed_build */
-    private $last_completed_build;
+    /** @var \app\Models\FreeStyleBuild $lastCompletedBuild */
+    private $lastCompletedBuild;
 
-    /** @var string $last_failed_build */
-    private $last_failed_build;
+    /** @var string $lastFailedBuild */
+    private $lastFailedBuild;
 
-    /** @var \app\Models\FreeStyleBuild $last_stable_build */
-    private $last_stable_build;
+    /** @var \app\Models\FreeStyleBuild $lastStableBuild */
+    private $lastStableBuild;
 
-    /** @var \app\Models\FreeStyleBuild $last_successful_build */
-    private $last_successful_build;
+    /** @var \app\Models\FreeStyleBuild $lastSuccessfulBuild */
+    private $lastSuccessfulBuild;
 
-    /** @var string $last_unstable_build */
-    private $last_unstable_build;
+    /** @var string $lastUnstableBuild */
+    private $lastUnstableBuild;
 
-    /** @var string $last_unsuccessful_build */
-    private $last_unsuccessful_build;
+    /** @var string $lastUnsuccessfulBuild */
+    private $lastUnsuccessfulBuild;
 
-    /** @var int $next_build_number */
-    private $next_build_number;
+    /** @var int $nextBuildNumber */
+    private $nextBuildNumber;
 
-    /** @var string $queue_item */
-    private $queue_item;
+    /** @var string $queueItem */
+    private $queueItem;
 
-    /** @var bool $concurrent_build */
-    private $concurrent_build;
+    /** @var bool $concurrentBuild */
+    private $concurrentBuild;
 
     /** @var \app\Models\NullSCM $scm */
     private $scm;

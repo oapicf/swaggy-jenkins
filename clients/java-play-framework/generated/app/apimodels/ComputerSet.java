@@ -11,24 +11,29 @@ import javax.validation.constraints.*;
 /**
  * ComputerSet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ComputerSet   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("busyExecutors")
-  private Integer busyExecutors = null;
+  
+  private Integer busyExecutors;
 
   @JsonProperty("computer")
+  @Valid
+
   private List<HudsonMasterComputer> computer = null;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("totalExecutors")
-  private Integer totalExecutors = null;
+  
+  private Integer totalExecutors;
 
   public ComputerSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -39,7 +44,7 @@ public class ComputerSet   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -56,7 +61,7 @@ public class ComputerSet   {
    * Get busyExecutors
    * @return busyExecutors
   **/
-    public Integer getBusyExecutors() {
+  public Integer getBusyExecutors() {
     return busyExecutors;
   }
 
@@ -81,7 +86,6 @@ public class ComputerSet   {
    * Get computer
    * @return computer
   **/
-  @Valid
   public List<HudsonMasterComputer> getComputer() {
     return computer;
   }
@@ -99,7 +103,7 @@ public class ComputerSet   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -116,7 +120,7 @@ public class ComputerSet   {
    * Get totalExecutors
    * @return totalExecutors
   **/
-    public Integer getTotalExecutors() {
+  public Integer getTotalExecutors() {
     return totalExecutors;
   }
 
@@ -126,7 +130,7 @@ public class ComputerSet   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -165,7 +169,7 @@ public class ComputerSet   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

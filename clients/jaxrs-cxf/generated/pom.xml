@@ -5,7 +5,9 @@
   <packaging>war</packaging>
   <name>openapi-cxf-server</name>
   <description>Jenkins API clients generated from Swagger / Open API specification</description>
-  <version>1.0.0</version>
+  <version>1.1.1</version>
+
+
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
@@ -39,8 +41,8 @@
         </configuration>
         <dependencies>
           <dependency>
-              <groupId>javax.validation</groupId>
-              <artifactId>validation-api</artifactId>
+              <groupId>jakarta.validation</groupId>
+              <artifactId>jakarta.validation-api</artifactId>
               <version>${beanvalidation-version}</version>
           </dependency>
         </dependencies>
@@ -84,7 +86,7 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <!-- build WAR file -->
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
@@ -122,8 +124,8 @@
     </dependency>
     <!-- Bean Validation API support -->
     <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
         <version>${beanvalidation-version}</version>
         <scope>provided</scope>
     </dependency>
@@ -134,7 +136,7 @@
         <version>${cxf-version}</version>
         <scope>test</scope>
     </dependency>
-    
+
      <!-- CXF server -->
     <dependency>
         <groupId>org.apache.cxf</groupId>
@@ -177,6 +179,12 @@
         <artifactId>jackson-datatype-joda</artifactId>
         <version>${jackson-jaxrs-version}</version>
     </dependency>
+    <dependency>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+        <version>${jakarta-annotation-version}</version>
+        <scope>provided</scope>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>
@@ -191,14 +199,14 @@
     <java.version>1.7</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <swagger-core-version>1.5.18</swagger-core-version>
+    <swagger-core-version>1.5.22</swagger-core-version>
     <jetty-version>9.2.9.v20150224</jetty-version>
-    <junit-version>4.12</junit-version>
-    <logback-version>1.1.7</logback-version>
-    <servlet-api-version>2.5</servlet-api-version>
-    <beanvalidation-version>1.1.0.Final</beanvalidation-version>
-    <cxf-version>3.2.5</cxf-version>
-    <jackson-jaxrs-version>2.9.6</jackson-jaxrs-version>
+    <junit-version>4.13.1</junit-version>
+    <logback-version>1.2.0</logback-version>
+    <beanvalidation-version>2.0.2</beanvalidation-version>
+    <cxf-version>3.3.0</cxf-version>
+    <jackson-jaxrs-version>2.9.9</jackson-jaxrs-version>
+    <jakarta-annotation-version>1.3.5</jakarta-annotation-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

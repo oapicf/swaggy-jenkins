@@ -38,7 +38,7 @@ Method | HTTP request | Description
 
 Retrieve computer details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -47,11 +47,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $depth = 56; # int | Recursion depth in response model
 
-eval { 
+eval {
     my $result = $api_instance->get_computer(depth => $depth);
     print Dumper($result);
 };
@@ -88,7 +89,7 @@ Name | Type | Description  | Notes
 
 Retrieve Jenkins details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -97,10 +98,11 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 
-eval { 
+eval {
     my $result = $api_instance->get_jenkins();
     print Dumper($result);
 };
@@ -134,7 +136,7 @@ This endpoint does not need any parameter.
 
 Retrieve job details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -143,11 +145,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 
-eval { 
+eval {
     my $result = $api_instance->get_job(name => $name);
     print Dumper($result);
 };
@@ -184,7 +187,7 @@ Name | Type | Description  | Notes
 
 Retrieve job configuration
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -193,11 +196,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 
-eval { 
+eval {
     my $result = $api_instance->get_job_config(name => $name);
     print Dumper($result);
 };
@@ -234,7 +238,7 @@ Name | Type | Description  | Notes
 
 Retrieve job's last build details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -243,11 +247,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 
-eval { 
+eval {
     my $result = $api_instance->get_job_last_build(name => $name);
     print Dumper($result);
 };
@@ -284,7 +289,7 @@ Name | Type | Description  | Notes
 
 Retrieve job's build progressive text output
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -293,13 +298,14 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 my $number = "number_example"; # string | Build number
 my $start = "start_example"; # string | Starting point of progressive text output
 
-eval { 
+eval {
     $api_instance->get_job_progressive_text(name => $name, number => $number, start => $start);
 };
 if ($@) {
@@ -337,7 +343,7 @@ void (empty response body)
 
 Retrieve queue details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -346,10 +352,11 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 
-eval { 
+eval {
     my $result = $api_instance->get_queue();
     print Dumper($result);
 };
@@ -383,7 +390,7 @@ This endpoint does not need any parameter.
 
 Retrieve queued item details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -392,11 +399,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $number = "number_example"; # string | Queue number
 
-eval { 
+eval {
     my $result = $api_instance->get_queue_item(number => $number);
     print Dumper($result);
 };
@@ -433,7 +441,7 @@ Name | Type | Description  | Notes
 
 Retrieve view details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -442,11 +450,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the view
 
-eval { 
+eval {
     my $result = $api_instance->get_view(name => $name);
     print Dumper($result);
 };
@@ -483,7 +492,7 @@ Name | Type | Description  | Notes
 
 Retrieve view configuration
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -492,11 +501,12 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the view
 
-eval { 
+eval {
     my $result = $api_instance->get_view_config(name => $name);
     print Dumper($result);
 };
@@ -533,7 +543,7 @@ Name | Type | Description  | Notes
 
 Retrieve Jenkins headers
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -542,10 +552,11 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 
-eval { 
+eval {
     $api_instance->head_jenkins();
 };
 if ($@) {
@@ -578,7 +589,7 @@ void (empty response body)
 
 Create a new job using job configuration, or copied from an existing job
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -587,6 +598,7 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the new job
@@ -596,7 +608,7 @@ my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 my $content_type = "content_type_example"; # string | Content type header application/xml
 my $body = WWW::OpenAPIClient::Object::string->new(); # string | Job configuration in config.xml format
 
-eval { 
+eval {
     $api_instance->post_create_item(name => $name, from => $from, mode => $mode, jenkins_crumb => $jenkins_crumb, content_type => $content_type, body => $body);
 };
 if ($@) {
@@ -637,7 +649,7 @@ void (empty response body)
 
 Create a new view using view configuration
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -646,6 +658,7 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the new view
@@ -653,7 +666,7 @@ my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 my $content_type = "content_type_example"; # string | Content type header application/xml
 my $body = WWW::OpenAPIClient::Object::string->new(); # string | View configuration in config.xml format
 
-eval { 
+eval {
     $api_instance->post_create_view(name => $name, jenkins_crumb => $jenkins_crumb, content_type => $content_type, body => $body);
 };
 if ($@) {
@@ -692,7 +705,7 @@ void (empty response body)
 
 Build a job
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -701,6 +714,7 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
@@ -708,7 +722,7 @@ my $json = "json_example"; # string |
 my $token = "token_example"; # string | 
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_job_build(name => $name, json => $json, token => $token, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {
@@ -747,7 +761,7 @@ void (empty response body)
 
 Update job configuration
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -756,13 +770,14 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 my $body = WWW::OpenAPIClient::Object::string->new(); # string | Job configuration in config.xml format
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_job_config(name => $name, body => $body, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {
@@ -800,7 +815,7 @@ void (empty response body)
 
 Delete a job
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -809,12 +824,13 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_job_delete(name => $name, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {
@@ -851,7 +867,7 @@ void (empty response body)
 
 Disable a job
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -860,12 +876,13 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_job_disable(name => $name, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {
@@ -902,7 +919,7 @@ void (empty response body)
 
 Enable a job
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -911,12 +928,13 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_job_enable(name => $name, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {
@@ -953,7 +971,7 @@ void (empty response body)
 
 Stop a job
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -962,12 +980,13 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the job
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_job_last_build_stop(name => $name, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {
@@ -1004,7 +1023,7 @@ void (empty response body)
 
 Update view configuration
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::RemoteAccessApi;
@@ -1013,13 +1032,14 @@ my $api_instance = WWW::OpenAPIClient::RemoteAccessApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $name = "name_example"; # string | Name of the view
 my $body = WWW::OpenAPIClient::Object::string->new(); # string | View configuration in config.xml format
 my $jenkins_crumb = "jenkins_crumb_example"; # string | CSRF protection token
 
-eval { 
+eval {
     $api_instance->post_view_config(name => $name, body => $body, jenkins_crumb => $jenkins_crumb);
 };
 if ($@) {

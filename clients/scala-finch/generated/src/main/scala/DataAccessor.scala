@@ -58,9 +58,9 @@ trait DataAccessor {
 
         /**
         * 
-        * @return A Organisations
+        * @return A Seq[Organisation]
         */
-        def BlueOcean_getOrganisations(): Either[CommonError,Organisations] = Left(TODO)
+        def BlueOcean_getOrganisations(): Either[CommonError,Seq[Organisation]] = Left(TODO)
 
         /**
         * 
@@ -70,9 +70,9 @@ trait DataAccessor {
 
         /**
         * 
-        * @return A PipelineActivities
+        * @return A Seq[PipelineActivity]
         */
-        def BlueOcean_getPipelineActivities(organization: String, pipeline: String): Either[CommonError,PipelineActivities] = Left(TODO)
+        def BlueOcean_getPipelineActivities(organization: String, pipeline: String): Either[CommonError,Seq[PipelineActivity]] = Left(TODO)
 
         /**
         * 
@@ -106,9 +106,9 @@ trait DataAccessor {
 
         /**
         * 
-        * @return A PipelineQueue
+        * @return A Seq[QueueItemImpl]
         */
-        def BlueOcean_getPipelineQueue(organization: String, pipeline: String): Either[CommonError,PipelineQueue] = Left(TODO)
+        def BlueOcean_getPipelineQueue(organization: String, pipeline: String): Either[CommonError,Seq[QueueItemImpl]] = Left(TODO)
 
         /**
         * 
@@ -142,27 +142,27 @@ trait DataAccessor {
 
         /**
         * 
-        * @return A PipelineRunNodeSteps
+        * @return A Seq[PipelineStepImpl]
         */
-        def BlueOcean_getPipelineRunNodeSteps(organization: String, pipeline: String, run: String, node: String): Either[CommonError,PipelineRunNodeSteps] = Left(TODO)
+        def BlueOcean_getPipelineRunNodeSteps(organization: String, pipeline: String, run: String, node: String): Either[CommonError,Seq[PipelineStepImpl]] = Left(TODO)
 
         /**
         * 
-        * @return A PipelineRunNodes
+        * @return A Seq[PipelineRunNode]
         */
-        def BlueOcean_getPipelineRunNodes(organization: String, pipeline: String, run: String): Either[CommonError,PipelineRunNodes] = Left(TODO)
+        def BlueOcean_getPipelineRunNodes(organization: String, pipeline: String, run: String): Either[CommonError,Seq[PipelineRunNode]] = Left(TODO)
 
         /**
         * 
-        * @return A PipelineRuns
+        * @return A Seq[PipelineRun]
         */
-        def BlueOcean_getPipelineRuns(organization: String, pipeline: String): Either[CommonError,PipelineRuns] = Left(TODO)
+        def BlueOcean_getPipelineRuns(organization: String, pipeline: String): Either[CommonError,Seq[PipelineRun]] = Left(TODO)
 
         /**
         * 
-        * @return A Pipelines
+        * @return A Seq[Pipeline]
         */
-        def BlueOcean_getPipelines(organization: String): Either[CommonError,Pipelines] = Left(TODO)
+        def BlueOcean_getPipelines(organization: String): Either[CommonError,Seq[Pipeline]] = Left(TODO)
 
         /**
         * 
@@ -172,21 +172,21 @@ trait DataAccessor {
 
         /**
         * 
-        * @return A ScmOrganisations
+        * @return A Seq[GithubOrganization]
         */
-        def BlueOcean_getSCMOrganisationRepositories(organization: String, scm: String, scmOrganisation: String, credentialId: Option[String], pageSize: Option[Int], pageNumber: Option[Int]): Either[CommonError,ScmOrganisations] = Left(TODO)
+        def BlueOcean_getSCMOrganisationRepositories(organization: String, scm: String, scmOrganisation: String, credentialId: Option[String], pageSize: Option[Int], pageNumber: Option[Int]): Either[CommonError,Seq[GithubOrganization]] = Left(TODO)
 
         /**
         * 
-        * @return A ScmOrganisations
+        * @return A Seq[GithubOrganization]
         */
-        def BlueOcean_getSCMOrganisationRepository(organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: Option[String]): Either[CommonError,ScmOrganisations] = Left(TODO)
+        def BlueOcean_getSCMOrganisationRepository(organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: Option[String]): Either[CommonError,Seq[GithubOrganization]] = Left(TODO)
 
         /**
         * 
-        * @return A ScmOrganisations
+        * @return A Seq[GithubOrganization]
         */
-        def BlueOcean_getSCMOrganisations(organization: String, scm: String, credentialId: Option[String]): Either[CommonError,ScmOrganisations] = Left(TODO)
+        def BlueOcean_getSCMOrganisations(organization: String, scm: String, credentialId: Option[String]): Either[CommonError,Seq[GithubOrganization]] = Left(TODO)
 
         /**
         * 
@@ -196,9 +196,9 @@ trait DataAccessor {
 
         /**
         * 
-        * @return A UserFavorites
+        * @return A Seq[FavoriteImpl]
         */
-        def BlueOcean_getUserFavorites(user: String): Either[CommonError,UserFavorites] = Left(TODO)
+        def BlueOcean_getUserFavorites(user: String): Either[CommonError,Seq[FavoriteImpl]] = Left(TODO)
 
         /**
         * 
@@ -222,7 +222,7 @@ trait DataAccessor {
         * 
         * @return A FavoriteImpl
         */
-        def BlueOcean_putPipelineFavorite(organization: String, pipeline: String, body: Body): Either[CommonError,FavoriteImpl] = Left(TODO)
+        def BlueOcean_putPipelineFavorite(organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE): Either[CommonError,FavoriteImpl] = Left(TODO)
 
         /**
         * 

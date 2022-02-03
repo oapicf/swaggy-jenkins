@@ -20,14 +20,14 @@ defmodule SwaggyJenkins.Model.GithubContent do
   ]
 
   @type t :: %__MODULE__{
-    :"name" => String.t,
-    :"sha" => String.t,
-    :"_class" => String.t,
-    :"repo" => String.t,
-    :"size" => integer(),
-    :"owner" => String.t,
-    :"path" => String.t,
-    :"base64Data" => String.t
+    :"name" => String.t | nil,
+    :"sha" => String.t | nil,
+    :"_class" => String.t | nil,
+    :"repo" => String.t | nil,
+    :"size" => integer() | nil,
+    :"owner" => String.t | nil,
+    :"path" => String.t | nil,
+    :"base64Data" => String.t | nil
   }
 end
 

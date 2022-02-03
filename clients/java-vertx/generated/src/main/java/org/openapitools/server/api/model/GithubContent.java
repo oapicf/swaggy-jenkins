@@ -4,17 +4,17 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubContent   {
   
-  private String name = null;
-  private String sha = null;
-  private String propertyClass = null;
-  private String repo = null;
-  private Integer size = null;
-  private String owner = null;
-  private String path = null;
-  private String base64Data = null;
+  private String name;
+  private String sha;
+  private String propertyClass;
+  private String repo;
+  private Integer size;
+  private String owner;
+  private String path;
+  private String base64Data;
 
   public GithubContent () {
 

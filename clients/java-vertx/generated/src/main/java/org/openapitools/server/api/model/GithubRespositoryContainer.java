@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.GithubRepositories;
 import org.openapitools.server.api.model.GithubRespositoryContainerlinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubRespositoryContainer   {
   
-  private String propertyClass = null;
-  private GithubRespositoryContainerlinks links = null;
-  private GithubRepositories repositories = null;
+  private String propertyClass;
+  private GithubRespositoryContainerlinks links;
+  private GithubRepositories repositories;
 
   public GithubRespositoryContainer () {
 

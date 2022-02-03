@@ -1,6 +1,7 @@
 # SwaggyJenkins.GithubOrganizationlinks
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **repositories** | [**Link**](Link.md) |  | [optional] 

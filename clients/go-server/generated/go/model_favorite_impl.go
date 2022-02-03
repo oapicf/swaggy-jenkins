@@ -14,7 +14,30 @@ type FavoriteImpl struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *FavoriteImpllinks `json:"_links,omitempty"`
+	Links FavoriteImpllinks `json:"_links,omitempty"`
 
-	Item *PipelineImpl `json:"item,omitempty"`
+	Item PipelineImpl `json:"item,omitempty"`
+}
+
+// AssertFavoriteImplRequired checks if the required fields are not zero-ed
+func AssertFavoriteImplRequired(obj FavoriteImpl) error {
+	if err := AssertFavoriteImpllinksRequired(obj.Links); err != nil {
+		return err
+	}
+	if err := AssertPipelineImplRequired(obj.Item); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseFavoriteImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of FavoriteImpl (e.g. [][]FavoriteImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseFavoriteImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aFavoriteImpl, ok := obj.(FavoriteImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertFavoriteImplRequired(aFavoriteImpl)
+	})
 }

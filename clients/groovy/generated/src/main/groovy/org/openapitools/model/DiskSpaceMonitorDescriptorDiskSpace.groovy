@@ -6,12 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class DiskSpaceMonitorDescriptorDiskSpace {
-    String propertyClass = null
-
-    Integer timestamp = null
-
-    String path = null
-
-    Integer size = null
-
+    
+    String propertyClass
+    
+    Integer timestamp
+    
+    String path
+    
+    Integer size
 }

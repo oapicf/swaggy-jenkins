@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class DefaultCrumbIssuer {
-    String propertyClass = null
-
-    String crumb = null
-
-    String crumbRequestField = null
-
+    
+    String propertyClass
+    
+    String crumb
+    
+    String crumbRequestField
 }

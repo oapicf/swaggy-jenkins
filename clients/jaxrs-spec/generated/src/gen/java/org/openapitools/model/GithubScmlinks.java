@@ -1,19 +1,25 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class GithubScmlinks   {
+
+@JsonTypeName("GithubScmlinks")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class GithubScmlinks   {
   
-  private @Valid Link self = null;
-  private @Valid String propertyClass = null;
+  private @Valid Link self;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -23,16 +29,20 @@ public class GithubScmlinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
+
+  @JsonProperty("self")
   public void setSelf(Link self) {
     this.self = self;
   }
 
-  /**
+/**
    **/
   public GithubScmlinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,18 +50,22 @@ public class GithubScmlinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -59,8 +73,8 @@ public class GithubScmlinks   {
       return false;
     }
     GithubScmlinks githubScmlinks = (GithubScmlinks) o;
-    return Objects.equals(self, githubScmlinks.self) &&
-        Objects.equals(propertyClass, githubScmlinks.propertyClass);
+    return Objects.equals(this.self, githubScmlinks.self) &&
+        Objects.equals(this.propertyClass, githubScmlinks.propertyClass);
   }
 
   @Override
@@ -83,11 +97,13 @@ public class GithubScmlinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

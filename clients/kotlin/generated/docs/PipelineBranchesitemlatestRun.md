@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **state** | **kotlin.String** |  |  [optional]
 **type** | **kotlin.String** |  |  [optional]
 **commitId** | **kotlin.String** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

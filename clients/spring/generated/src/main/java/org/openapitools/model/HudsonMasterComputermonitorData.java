@@ -1,43 +1,50 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ClockDifference;
 import org.openapitools.model.DiskSpaceMonitorDescriptorDiskSpace;
 import org.openapitools.model.ResponseTimeMonitorData;
 import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * HudsonMasterComputermonitorData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class HudsonMasterComputermonitorData   {
+
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
-  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null;
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
   @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
   @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
   @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
-  private String hudsonNodeMonitorsArchitectureMonitor = null;
+  private String hudsonNodeMonitorsArchitectureMonitor;
 
   @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
-  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null;
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
   @JsonProperty("hudson.node_monitors.ClockMonitor")
-  private ClockDifference hudsonNodeMonitorsClockMonitor = null;
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
@@ -47,11 +54,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get hudsonNodeMonitorsSwapSpaceMonitor
    * @return hudsonNodeMonitorsSwapSpaceMonitor
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "hudson.node_monitors.SwapSpaceMonitor", required = false)
   public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
@@ -68,11 +73,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get hudsonNodeMonitorsTemporarySpaceMonitor
    * @return hudsonNodeMonitorsTemporarySpaceMonitor
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "hudson.node_monitors.TemporarySpaceMonitor", required = false)
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
@@ -89,11 +92,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get hudsonNodeMonitorsDiskSpaceMonitor
    * @return hudsonNodeMonitorsDiskSpaceMonitor
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "hudson.node_monitors.DiskSpaceMonitor", required = false)
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
@@ -110,10 +111,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get hudsonNodeMonitorsArchitectureMonitor
    * @return hudsonNodeMonitorsArchitectureMonitor
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "hudson.node_monitors.ArchitectureMonitor", required = false)
   public String getHudsonNodeMonitorsArchitectureMonitor() {
     return hudsonNodeMonitorsArchitectureMonitor;
   }
@@ -130,11 +130,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get hudsonNodeMonitorsResponseTimeMonitor
    * @return hudsonNodeMonitorsResponseTimeMonitor
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "hudson.node_monitors.ResponseTimeMonitor", required = false)
   public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
@@ -151,11 +149,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get hudsonNodeMonitorsClockMonitor
    * @return hudsonNodeMonitorsClockMonitor
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "hudson.node_monitors.ClockMonitor", required = false)
   public ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
   }
@@ -172,10 +168,9 @@ public class HudsonMasterComputermonitorData   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -184,9 +179,8 @@ public class HudsonMasterComputermonitorData   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -212,7 +206,6 @@ public class HudsonMasterComputermonitorData   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HudsonMasterComputermonitorData {\n");
-    
     sb.append("    hudsonNodeMonitorsSwapSpaceMonitor: ").append(toIndentedString(hudsonNodeMonitorsSwapSpaceMonitor)).append("\n");
     sb.append("    hudsonNodeMonitorsTemporarySpaceMonitor: ").append(toIndentedString(hudsonNodeMonitorsTemporarySpaceMonitor)).append("\n");
     sb.append("    hudsonNodeMonitorsDiskSpaceMonitor: ").append(toIndentedString(hudsonNodeMonitorsDiskSpaceMonitor)).append("\n");
@@ -228,7 +221,7 @@ public class HudsonMasterComputermonitorData   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

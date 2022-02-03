@@ -1,33 +1,40 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * BranchImplpermissions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class BranchImplpermissions   {
+
   @JsonProperty("create")
-  private Boolean create = null;
+  private Boolean create;
 
   @JsonProperty("read")
-  private Boolean read = null;
+  private Boolean read;
 
   @JsonProperty("start")
-  private Boolean start = null;
+  private Boolean start;
 
   @JsonProperty("stop")
-  private Boolean stop = null;
+  private Boolean stop;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public BranchImplpermissions create(Boolean create) {
     this.create = create;
@@ -37,10 +44,9 @@ public class BranchImplpermissions   {
   /**
    * Get create
    * @return create
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "create", required = false)
   public Boolean getCreate() {
     return create;
   }
@@ -57,10 +63,9 @@ public class BranchImplpermissions   {
   /**
    * Get read
    * @return read
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "read", required = false)
   public Boolean getRead() {
     return read;
   }
@@ -77,10 +82,9 @@ public class BranchImplpermissions   {
   /**
    * Get start
    * @return start
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "start", required = false)
   public Boolean getStart() {
     return start;
   }
@@ -97,10 +101,9 @@ public class BranchImplpermissions   {
   /**
    * Get stop
    * @return stop
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "stop", required = false)
   public Boolean getStop() {
     return stop;
   }
@@ -117,10 +120,9 @@ public class BranchImplpermissions   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -129,9 +131,8 @@ public class BranchImplpermissions   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -155,7 +156,6 @@ public class BranchImplpermissions   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BranchImplpermissions {\n");
-    
     sb.append("    create: ").append(toIndentedString(create)).append("\n");
     sb.append("    read: ").append(toIndentedString(read)).append("\n");
     sb.append("    start: ").append(toIndentedString(start)).append("\n");
@@ -169,7 +169,7 @@ public class BranchImplpermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

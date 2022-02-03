@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.QueueBlockedItem;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class Queue   {
+
+@JsonTypeName("Queue")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class Queue   {
   
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
   private @Valid List<QueueBlockedItem> items = new ArrayList<QueueBlockedItem>();
 
   /**
@@ -25,16 +31,20 @@ public class Queue   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public Queue items(List<QueueBlockedItem> items) {
     this.items = items;
@@ -42,18 +52,38 @@ public class Queue   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("items")
   public List<QueueBlockedItem> getItems() {
     return items;
   }
+
+  @JsonProperty("items")
   public void setItems(List<QueueBlockedItem> items) {
     this.items = items;
   }
 
+  public Queue addItemsItem(QueueBlockedItem itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<QueueBlockedItem>();
+    }
+
+    this.items.add(itemsItem);
+    return this;
+  }
+
+  public Queue removeItemsItem(QueueBlockedItem itemsItem) {
+    if (itemsItem != null && this.items != null) {
+      this.items.remove(itemsItem);
+    }
+
+    return this;
+  }
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -61,8 +91,8 @@ public class Queue   {
       return false;
     }
     Queue queue = (Queue) o;
-    return Objects.equals(propertyClass, queue.propertyClass) &&
-        Objects.equals(items, queue.items);
+    return Objects.equals(this.propertyClass, queue.propertyClass) &&
+        Objects.equals(this.items, queue.items);
   }
 
   @Override
@@ -85,11 +115,13 @@ public class Queue   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

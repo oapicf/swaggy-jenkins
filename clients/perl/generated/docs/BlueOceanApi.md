@@ -55,7 +55,7 @@ Method | HTTP request | Description
 
 Delete queue item from an organization pipeline queue
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -64,13 +64,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $queue = "queue_example"; # string | Name of the queue item
 
-eval { 
+eval {
     $api_instance->delete_pipeline_queue_item(organization => $organization, pipeline => $pipeline, queue => $queue);
 };
 if ($@) {
@@ -108,7 +109,7 @@ void (empty response body)
 
 Retrieve authenticated user details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -117,11 +118,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 
-eval { 
+eval {
     my $result = $api_instance->get_authenticated_user(organization => $organization);
     print Dumper($result);
 };
@@ -158,7 +160,7 @@ Name | Type | Description  | Notes
 
 Get a list of class names supported by a given class
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -167,11 +169,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $class = "class_example"; # string | Name of the class
 
-eval { 
+eval {
     my $result = $api_instance->get_classes(class => $class);
     print Dumper($result);
 };
@@ -208,7 +211,7 @@ Name | Type | Description  | Notes
 
 Retrieve JSON Web Key
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -217,7 +220,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
 
 my $key = 56; # int | Key ID received as part of JWT header field kid
 
-eval { 
+eval {
     my $result = $api_instance->get_json_web_key(key => $key);
     print Dumper($result);
 };
@@ -254,7 +257,7 @@ No authorization required
 
 Retrieve JSON Web Token
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -264,7 +267,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
 my $expiry_time_in_mins = 56; # int | Token expiry time in minutes, default: 30 minutes
 my $max_expiry_time_in_mins = 56; # int | Maximum token expiry time in minutes, default: 480 minutes
 
-eval { 
+eval {
     my $result = $api_instance->get_json_web_token(expiry_time_in_mins => $expiry_time_in_mins, max_expiry_time_in_mins => $max_expiry_time_in_mins);
     print Dumper($result);
 };
@@ -302,7 +305,7 @@ No authorization required
 
 Retrieve organization details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -311,11 +314,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 
-eval { 
+eval {
     my $result = $api_instance->get_organisation(organization => $organization);
     print Dumper($result);
 };
@@ -346,13 +350,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_organisations**
-> Organisations get_organisations()
+> ARRAY[Organisation] get_organisations()
 
 
 
 Retrieve all organizations details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -361,10 +365,11 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 
-eval { 
+eval {
     my $result = $api_instance->get_organisations();
     print Dumper($result);
 };
@@ -378,7 +383,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**ARRAY[Organisation]**](Organisation.md)
 
 ### Authorization
 
@@ -398,7 +403,7 @@ This endpoint does not need any parameter.
 
 Retrieve pipeline details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -407,12 +412,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline(organization => $organization, pipeline => $pipeline);
     print Dumper($result);
 };
@@ -444,13 +450,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_activities**
-> PipelineActivities get_pipeline_activities(organization => $organization, pipeline => $pipeline)
+> ARRAY[PipelineActivity] get_pipeline_activities(organization => $organization, pipeline => $pipeline)
 
 
 
 Retrieve all activities details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -459,12 +465,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_activities(organization => $organization, pipeline => $pipeline);
     print Dumper($result);
 };
@@ -482,7 +489,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**ARRAY[PipelineActivity]**](PipelineActivity.md)
 
 ### Authorization
 
@@ -502,7 +509,7 @@ Name | Type | Description  | Notes
 
 Retrieve branch details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -511,13 +518,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $branch = "branch_example"; # string | Name of the branch
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_branch(organization => $organization, pipeline => $pipeline, branch => $branch);
     print Dumper($result);
 };
@@ -556,7 +564,7 @@ Name | Type | Description  | Notes
 
 Retrieve branch run details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -565,6 +573,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -572,7 +581,7 @@ my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $branch = "branch_example"; # string | Name of the branch
 my $run = "run_example"; # string | Name of the run
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_branch_run(organization => $organization, pipeline => $pipeline, branch => $branch, run => $run);
     print Dumper($result);
 };
@@ -612,7 +621,7 @@ Name | Type | Description  | Notes
 
 Retrieve all branches details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -621,12 +630,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_branches(organization => $organization, pipeline => $pipeline);
     print Dumper($result);
 };
@@ -664,7 +674,7 @@ Name | Type | Description  | Notes
 
 Retrieve pipeline folder for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -673,12 +683,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $folder = "folder_example"; # string | Name of the folder
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_folder(organization => $organization, folder => $folder);
     print Dumper($result);
 };
@@ -716,7 +727,7 @@ Name | Type | Description  | Notes
 
 Retrieve pipeline details for an organization folder
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -725,13 +736,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $folder = "folder_example"; # string | Name of the folder
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_folder_pipeline(organization => $organization, pipeline => $pipeline, folder => $folder);
     print Dumper($result);
 };
@@ -764,13 +776,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_queue**
-> PipelineQueue get_pipeline_queue(organization => $organization, pipeline => $pipeline)
+> ARRAY[QueueItemImpl] get_pipeline_queue(organization => $organization, pipeline => $pipeline)
 
 
 
 Retrieve queue details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -779,12 +791,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_queue(organization => $organization, pipeline => $pipeline);
     print Dumper($result);
 };
@@ -802,7 +815,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**ARRAY[QueueItemImpl]**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -822,7 +835,7 @@ Name | Type | Description  | Notes
 
 Retrieve run details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -831,13 +844,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $run = "run_example"; # string | Name of the run
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run(organization => $organization, pipeline => $pipeline, run => $run);
     print Dumper($result);
 };
@@ -876,7 +890,7 @@ Name | Type | Description  | Notes
 
 Get log for a pipeline run
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -885,6 +899,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -893,7 +908,7 @@ my $run = "run_example"; # string | Name of the run
 my $start = 56; # int | Start position of the log
 my $download = null; # boolean | Set to true in order to download the file, otherwise it's passed as a response body
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run_log(organization => $organization, pipeline => $pipeline, run => $run, start => $start, download => $download);
     print Dumper($result);
 };
@@ -934,7 +949,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -943,6 +958,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -950,7 +966,7 @@ my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $run = "run_example"; # string | Name of the run
 my $node = "node_example"; # string | Name of the node
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run_node(organization => $organization, pipeline => $pipeline, run => $run, node => $node);
     print Dumper($result);
 };
@@ -990,7 +1006,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -999,6 +1015,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -1007,7 +1024,7 @@ my $run = "run_example"; # string | Name of the run
 my $node = "node_example"; # string | Name of the node
 my $step = "step_example"; # string | Name of the step
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run_node_step(organization => $organization, pipeline => $pipeline, run => $run, node => $node, step => $step);
     print Dumper($result);
 };
@@ -1048,7 +1065,7 @@ Name | Type | Description  | Notes
 
 Get log for a pipeline run node step
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1057,6 +1074,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -1065,7 +1083,7 @@ my $run = "run_example"; # string | Name of the run
 my $node = "node_example"; # string | Name of the node
 my $step = "step_example"; # string | Name of the step
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run_node_step_log(organization => $organization, pipeline => $pipeline, run => $run, node => $node, step => $step);
     print Dumper($result);
 };
@@ -1100,13 +1118,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_run_node_steps**
-> PipelineRunNodeSteps get_pipeline_run_node_steps(organization => $organization, pipeline => $pipeline, run => $run, node => $node)
+> ARRAY[PipelineStepImpl] get_pipeline_run_node_steps(organization => $organization, pipeline => $pipeline, run => $run, node => $node)
 
 
 
 Retrieve run node steps details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1115,6 +1133,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -1122,7 +1141,7 @@ my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $run = "run_example"; # string | Name of the run
 my $node = "node_example"; # string | Name of the node
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run_node_steps(organization => $organization, pipeline => $pipeline, run => $run, node => $node);
     print Dumper($result);
 };
@@ -1142,7 +1161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**ARRAY[PipelineStepImpl]**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1156,13 +1175,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_run_nodes**
-> PipelineRunNodes get_pipeline_run_nodes(organization => $organization, pipeline => $pipeline, run => $run)
+> ARRAY[PipelineRunNode] get_pipeline_run_nodes(organization => $organization, pipeline => $pipeline, run => $run)
 
 
 
 Retrieve run nodes details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1171,13 +1190,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $run = "run_example"; # string | Name of the run
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_run_nodes(organization => $organization, pipeline => $pipeline, run => $run);
     print Dumper($result);
 };
@@ -1196,7 +1216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**ARRAY[PipelineRunNode]**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1210,13 +1230,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_runs**
-> PipelineRuns get_pipeline_runs(organization => $organization, pipeline => $pipeline)
+> ARRAY[PipelineRun] get_pipeline_runs(organization => $organization, pipeline => $pipeline)
 
 
 
 Retrieve all runs details for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1225,12 +1245,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 
-eval { 
+eval {
     my $result = $api_instance->get_pipeline_runs(organization => $organization, pipeline => $pipeline);
     print Dumper($result);
 };
@@ -1248,7 +1269,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**ARRAY[PipelineRun]**](PipelineRun.md)
 
 ### Authorization
 
@@ -1262,13 +1283,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipelines**
-> Pipelines get_pipelines(organization => $organization)
+> ARRAY[Pipeline] get_pipelines(organization => $organization)
 
 
 
 Retrieve all pipelines details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1277,11 +1298,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 
-eval { 
+eval {
     my $result = $api_instance->get_pipelines(organization => $organization);
     print Dumper($result);
 };
@@ -1298,7 +1320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**ARRAY[Pipeline]**](Pipeline.md)
 
 ### Authorization
 
@@ -1318,7 +1340,7 @@ Name | Type | Description  | Notes
 
 Retrieve SCM details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1327,12 +1349,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $scm = "scm_example"; # string | Name of SCM
 
-eval { 
+eval {
     my $result = $api_instance->get_scm(organization => $organization, scm => $scm);
     print Dumper($result);
 };
@@ -1364,13 +1387,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scm_organisation_repositories**
-> ScmOrganisations get_scm_organisation_repositories(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, credential_id => $credential_id, page_size => $page_size, page_number => $page_number)
+> ARRAY[GithubOrganization] get_scm_organisation_repositories(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, credential_id => $credential_id, page_size => $page_size, page_number => $page_number)
 
 
 
 Retrieve SCM organization repositories details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1379,6 +1402,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -1388,7 +1412,7 @@ my $credential_id = "credential_id_example"; # string | Credential ID
 my $page_size = 56; # int | Number of items in a page
 my $page_number = 56; # int | Page number
 
-eval { 
+eval {
     my $result = $api_instance->get_scm_organisation_repositories(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, credential_id => $credential_id, page_size => $page_size, page_number => $page_number);
     print Dumper($result);
 };
@@ -1410,7 +1434,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**ARRAY[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1424,13 +1448,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scm_organisation_repository**
-> ScmOrganisations get_scm_organisation_repository(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, repository => $repository, credential_id => $credential_id)
+> ARRAY[GithubOrganization] get_scm_organisation_repository(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, repository => $repository, credential_id => $credential_id)
 
 
 
 Retrieve SCM organization repository details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1439,6 +1463,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -1447,7 +1472,7 @@ my $scm_organisation = "scm_organisation_example"; # string | Name of the SCM or
 my $repository = "repository_example"; # string | Name of the SCM repository
 my $credential_id = "credential_id_example"; # string | Credential ID
 
-eval { 
+eval {
     my $result = $api_instance->get_scm_organisation_repository(organization => $organization, scm => $scm, scm_organisation => $scm_organisation, repository => $repository, credential_id => $credential_id);
     print Dumper($result);
 };
@@ -1468,7 +1493,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**ARRAY[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1482,13 +1507,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scm_organisations**
-> ScmOrganisations get_scm_organisations(organization => $organization, scm => $scm, credential_id => $credential_id)
+> ARRAY[GithubOrganization] get_scm_organisations(organization => $organization, scm => $scm, credential_id => $credential_id)
 
 
 
 Retrieve SCM organizations details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1497,13 +1522,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $scm = "scm_example"; # string | Name of SCM
 my $credential_id = "credential_id_example"; # string | Credential ID
 
-eval { 
+eval {
     my $result = $api_instance->get_scm_organisations(organization => $organization, scm => $scm, credential_id => $credential_id);
     print Dumper($result);
 };
@@ -1522,7 +1548,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**ARRAY[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1542,7 +1568,7 @@ Name | Type | Description  | Notes
 
 Retrieve user details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1551,12 +1577,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $user = "user_example"; # string | Name of the user
 
-eval { 
+eval {
     my $result = $api_instance->get_user(organization => $organization, user => $user);
     print Dumper($result);
 };
@@ -1588,13 +1615,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_favorites**
-> UserFavorites get_user_favorites(user => $user)
+> ARRAY[FavoriteImpl] get_user_favorites(user => $user)
 
 
 
 Retrieve user favorites details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1603,11 +1630,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $user = "user_example"; # string | Name of the user
 
-eval { 
+eval {
     my $result = $api_instance->get_user_favorites(user => $user);
     print Dumper($result);
 };
@@ -1624,7 +1652,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**ARRAY[FavoriteImpl]**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1644,7 +1672,7 @@ Name | Type | Description  | Notes
 
 Retrieve users details for an organization
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1653,11 +1681,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 
-eval { 
+eval {
     my $result = $api_instance->get_users(organization => $organization);
     print Dumper($result);
 };
@@ -1694,7 +1723,7 @@ Name | Type | Description  | Notes
 
 Replay an organization pipeline run
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1703,13 +1732,14 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 my $run = "run_example"; # string | Name of the run
 
-eval { 
+eval {
     my $result = $api_instance->post_pipeline_run(organization => $organization, pipeline => $pipeline, run => $run);
     print Dumper($result);
 };
@@ -1748,7 +1778,7 @@ Name | Type | Description  | Notes
 
 Start a build for an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1757,12 +1787,13 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
 
-eval { 
+eval {
     my $result = $api_instance->post_pipeline_runs(organization => $organization, pipeline => $pipeline);
     print Dumper($result);
 };
@@ -1794,13 +1825,13 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_favorite**
-> FavoriteImpl put_pipeline_favorite(organization => $organization, pipeline => $pipeline, body => $body)
+> FavoriteImpl put_pipeline_favorite(organization => $organization, pipeline => $pipeline, unknown_base_type => $unknown_base_type)
 
 
 
 Favorite/unfavorite a pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1809,14 +1840,15 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
-my $body = WWW::OpenAPIClient::Object::Body->new(); # Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+my $unknown_base_type = WWW::OpenAPIClient::Object::UNKNOWN_BASE_TYPE->new(); # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
-eval { 
-    my $result = $api_instance->put_pipeline_favorite(organization => $organization, pipeline => $pipeline, body => $body);
+eval {
+    my $result = $api_instance->put_pipeline_favorite(organization => $organization, pipeline => $pipeline, unknown_base_type => $unknown_base_type);
     print Dumper($result);
 };
 if ($@) {
@@ -1830,7 +1862,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
  **pipeline** | **string**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+ **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -1854,7 +1886,7 @@ Name | Type | Description  | Notes
 
 Stop a build of an organization pipeline
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1863,6 +1895,7 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $organization = "organization_example"; # string | Name of the organization
@@ -1871,7 +1904,7 @@ my $run = "run_example"; # string | Name of the run
 my $blocking = "blocking_example"; # string | Set to true to make blocking stop, default: false
 my $time_out_in_secs = 56; # int | Timeout in seconds, default: 10 seconds
 
-eval { 
+eval {
     my $result = $api_instance->put_pipeline_run(organization => $organization, pipeline => $pipeline, run => $run, blocking => $blocking, time_out_in_secs => $time_out_in_secs);
     print Dumper($result);
 };
@@ -1912,7 +1945,7 @@ Name | Type | Description  | Notes
 
 Search for any resource details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1921,11 +1954,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $q = "q_example"; # string | Query string
 
-eval { 
+eval {
     my $result = $api_instance->search(q => $q);
     print Dumper($result);
 };
@@ -1962,7 +1996,7 @@ Name | Type | Description  | Notes
 
 Get classes details
 
-### Example 
+### Example
 ```perl
 use Data::Dumper;
 use WWW::OpenAPIClient::BlueOceanApi;
@@ -1971,11 +2005,12 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
+    
 );
 
 my $q = "q_example"; # string | Query string containing an array of class names
 
-eval { 
+eval {
     my $result = $api_instance->search_classes(q => $q);
     print Dumper($result);
 };

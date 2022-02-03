@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ioPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodPipelineImpl** | [**ExtensionClassImpl**](ExtensionClassImpl.md) |  |  [optional]
-**ioPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodMultiBranchPipelineImpl** | [**ExtensionClassImpl**](ExtensionClassImpl.md) |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl** | [**ExtensionClassImpl**](ExtensionClassImpl.md) |  |  [optional]
+**ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl** | [**ExtensionClassImpl**](ExtensionClassImpl.md) |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

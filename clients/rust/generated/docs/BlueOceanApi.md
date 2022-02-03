@@ -4,59 +4,61 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_pipeline_queue_item**](BlueOceanApi.md#delete_pipeline_queue_item) | **Delete** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-[**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **Get** /blue/rest/organizations/{organization}/user/ | 
-[**get_classes**](BlueOceanApi.md#get_classes) | **Get** /blue/rest/classes/{class} | 
-[**get_json_web_key**](BlueOceanApi.md#get_json_web_key) | **Get** /jwt-auth/jwks/{key} | 
-[**get_json_web_token**](BlueOceanApi.md#get_json_web_token) | **Get** /jwt-auth/token | 
-[**get_organisation**](BlueOceanApi.md#get_organisation) | **Get** /blue/rest/organizations/{organization} | 
-[**get_organisations**](BlueOceanApi.md#get_organisations) | **Get** /blue/rest/organizations/ | 
-[**get_pipeline**](BlueOceanApi.md#get_pipeline) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-[**get_pipeline_activities**](BlueOceanApi.md#get_pipeline_activities) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-[**get_pipeline_branch**](BlueOceanApi.md#get_pipeline_branch) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-[**get_pipeline_branch_run**](BlueOceanApi.md#get_pipeline_branch_run) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-[**get_pipeline_branches**](BlueOceanApi.md#get_pipeline_branches) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-[**get_pipeline_folder**](BlueOceanApi.md#get_pipeline_folder) | **Get** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-[**get_pipeline_folder_pipeline**](BlueOceanApi.md#get_pipeline_folder_pipeline) | **Get** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-[**get_pipeline_queue**](BlueOceanApi.md#get_pipeline_queue) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-[**get_pipeline_run**](BlueOceanApi.md#get_pipeline_run) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-[**get_pipeline_run_log**](BlueOceanApi.md#get_pipeline_run_log) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-[**get_pipeline_run_node**](BlueOceanApi.md#get_pipeline_run_node) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-[**get_pipeline_run_node_step**](BlueOceanApi.md#get_pipeline_run_node_step) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-[**get_pipeline_run_node_step_log**](BlueOceanApi.md#get_pipeline_run_node_step_log) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-[**get_pipeline_run_node_steps**](BlueOceanApi.md#get_pipeline_run_node_steps) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-[**get_pipeline_run_nodes**](BlueOceanApi.md#get_pipeline_run_nodes) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-[**get_pipeline_runs**](BlueOceanApi.md#get_pipeline_runs) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**get_pipelines**](BlueOceanApi.md#get_pipelines) | **Get** /blue/rest/organizations/{organization}/pipelines/ | 
-[**get_scm**](BlueOceanApi.md#get_scm) | **Get** /blue/rest/organizations/{organization}/scm/{scm} | 
-[**get_scm_organisation_repositories**](BlueOceanApi.md#get_scm_organisation_repositories) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-[**get_scm_organisation_repository**](BlueOceanApi.md#get_scm_organisation_repository) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-[**get_scm_organisations**](BlueOceanApi.md#get_scm_organisations) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-[**get_user**](BlueOceanApi.md#get_user) | **Get** /blue/rest/organizations/{organization}/users/{user} | 
-[**get_user_favorites**](BlueOceanApi.md#get_user_favorites) | **Get** /blue/rest/users/{user}/favorites | 
-[**get_users**](BlueOceanApi.md#get_users) | **Get** /blue/rest/organizations/{organization}/users/ | 
-[**post_pipeline_run**](BlueOceanApi.md#post_pipeline_run) | **Post** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-[**post_pipeline_runs**](BlueOceanApi.md#post_pipeline_runs) | **Post** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**put_pipeline_favorite**](BlueOceanApi.md#put_pipeline_favorite) | **Put** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-[**put_pipeline_run**](BlueOceanApi.md#put_pipeline_run) | **Put** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-[**search**](BlueOceanApi.md#search) | **Get** /blue/rest/search/ | 
-[**search_classes**](BlueOceanApi.md#search_classes) | **Get** /blue/rest/classes/ | 
+[**delete_pipeline_queue_item**](BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+[**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
+[**get_classes**](BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 
+[**get_json_web_key**](BlueOceanApi.md#get_json_web_key) | **GET** /jwt-auth/jwks/{key} | 
+[**get_json_web_token**](BlueOceanApi.md#get_json_web_token) | **GET** /jwt-auth/token | 
+[**get_organisation**](BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organization} | 
+[**get_organisations**](BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ | 
+[**get_pipeline**](BlueOceanApi.md#get_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+[**get_pipeline_activities**](BlueOceanApi.md#get_pipeline_activities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+[**get_pipeline_branch**](BlueOceanApi.md#get_pipeline_branch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+[**get_pipeline_branch_run**](BlueOceanApi.md#get_pipeline_branch_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+[**get_pipeline_branches**](BlueOceanApi.md#get_pipeline_branches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+[**get_pipeline_folder**](BlueOceanApi.md#get_pipeline_folder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+[**get_pipeline_folder_pipeline**](BlueOceanApi.md#get_pipeline_folder_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+[**get_pipeline_queue**](BlueOceanApi.md#get_pipeline_queue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+[**get_pipeline_run**](BlueOceanApi.md#get_pipeline_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+[**get_pipeline_run_log**](BlueOceanApi.md#get_pipeline_run_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+[**get_pipeline_run_node**](BlueOceanApi.md#get_pipeline_run_node) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+[**get_pipeline_run_node_step**](BlueOceanApi.md#get_pipeline_run_node_step) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+[**get_pipeline_run_node_step_log**](BlueOceanApi.md#get_pipeline_run_node_step_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+[**get_pipeline_run_node_steps**](BlueOceanApi.md#get_pipeline_run_node_steps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+[**get_pipeline_run_nodes**](BlueOceanApi.md#get_pipeline_run_nodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+[**get_pipeline_runs**](BlueOceanApi.md#get_pipeline_runs) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**get_pipelines**](BlueOceanApi.md#get_pipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+[**get_scm**](BlueOceanApi.md#get_scm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+[**get_scm_organisation_repositories**](BlueOceanApi.md#get_scm_organisation_repositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+[**get_scm_organisation_repository**](BlueOceanApi.md#get_scm_organisation_repository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+[**get_scm_organisations**](BlueOceanApi.md#get_scm_organisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+[**get_user**](BlueOceanApi.md#get_user) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+[**get_user_favorites**](BlueOceanApi.md#get_user_favorites) | **GET** /blue/rest/users/{user}/favorites | 
+[**get_users**](BlueOceanApi.md#get_users) | **GET** /blue/rest/organizations/{organization}/users/ | 
+[**post_pipeline_run**](BlueOceanApi.md#post_pipeline_run) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+[**post_pipeline_runs**](BlueOceanApi.md#post_pipeline_runs) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**put_pipeline_favorite**](BlueOceanApi.md#put_pipeline_favorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+[**put_pipeline_run**](BlueOceanApi.md#put_pipeline_run) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+[**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+[**search_classes**](BlueOceanApi.md#search_classes) | **GET** /blue/rest/classes/ | 
 
 
-# **delete_pipeline_queue_item**
-> delete_pipeline_queue_item(ctx, organization, pipeline, queue)
+
+## delete_pipeline_queue_item
+
+> delete_pipeline_queue_item(organization, pipeline, queue)
 
 
 Delete queue item from an organization pipeline queue
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **queue** | **String**| Name of the queue item | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**queue** | **String** | Name of the queue item | [required] |
 
 ### Return type
 
@@ -68,27 +70,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_authenticated_user**
-> ::models::User get_authenticated_user(ctx, organization)
+
+## get_authenticated_user
+
+> crate::models::User get_authenticated_user(organization)
 
 
 Retrieve authenticated user details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
 
 ### Return type
 
-[**::models::User**](User.md)
+[**crate::models::User**](User.md)
 
 ### Authorization
 
@@ -96,23 +100,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_classes**
-> String get_classes(ctx, class)
+
+## get_classes
+
+> String get_classes(class)
 
 
 Get a list of class names supported by a given class
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **class** | **String**| Name of the class | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**class** | **String** | Name of the class | [required] |
 
 ### Return type
 
@@ -124,22 +130,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_json_web_key**
+
+## get_json_web_key
+
 > String get_json_web_key(key)
 
 
 Retrieve JSON Web Key
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-  **key** | **i32**| Key ID received as part of JWT header field kid | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**key** | **i32** | Key ID received as part of JWT header field kid | [required] |
 
 ### Return type
 
@@ -151,30 +160,26 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_json_web_token**
-> String get_json_web_token(optional)
+
+## get_json_web_token
+
+> String get_json_web_token(expiry_time_in_mins, max_expiry_time_in_mins)
 
 
 Retrieve JSON Web Token
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **expiry_time_in_mins** | **i32**| Token expiry time in minutes, default: 30 minutes | 
- **max_expiry_time_in_mins** | **i32**| Maximum token expiry time in minutes, default: 480 minutes | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**expiry_time_in_mins** | Option<**i32**> | Token expiry time in minutes, default: 30 minutes |  |
+**max_expiry_time_in_mins** | Option<**i32**> | Maximum token expiry time in minutes, default: 480 minutes |  |
 
 ### Return type
 
@@ -186,27 +191,29 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_organisation**
-> ::models::Organisation get_organisation(ctx, organization)
+
+## get_organisation
+
+> crate::models::Organisation get_organisation(organization)
 
 
 Retrieve organization details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
 
 ### Return type
 
-[**::models::Organisation**](Organisation.md)
+[**crate::models::Organisation**](Organisation.md)
 
 ### Authorization
 
@@ -214,23 +221,26 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_organisations**
-> ::models::Organisations get_organisations(ctx, )
+
+## get_organisations
+
+> Vec<crate::models::Organisation> get_organisations()
 
 
 Retrieve all organizations details
 
-### Required Parameters
+### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**::models::Organisations**](Organisations.md)
+[**Vec<crate::models::Organisation>**](Organisation.md)
 
 ### Authorization
 
@@ -238,28 +248,30 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline**
-> ::models::Pipeline get_pipeline(ctx, organization, pipeline)
+
+## get_pipeline
+
+> crate::models::Pipeline get_pipeline(organization, pipeline)
 
 
 Retrieve pipeline details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
 
 ### Return type
 
-[**::models::Pipeline**](Pipeline.md)
+[**crate::models::Pipeline**](Pipeline.md)
 
 ### Authorization
 
@@ -267,28 +279,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_activities**
-> ::models::PipelineActivities get_pipeline_activities(ctx, organization, pipeline)
+
+## get_pipeline_activities
+
+> Vec<crate::models::PipelineActivity> get_pipeline_activities(organization, pipeline)
 
 
 Retrieve all activities details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
 
 ### Return type
 
-[**::models::PipelineActivities**](PipelineActivities.md)
+[**Vec<crate::models::PipelineActivity>**](PipelineActivity.md)
 
 ### Authorization
 
@@ -296,29 +310,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_branch**
-> ::models::BranchImpl get_pipeline_branch(ctx, organization, pipeline, branch)
+
+## get_pipeline_branch
+
+> crate::models::BranchImpl get_pipeline_branch(organization, pipeline, branch)
 
 
 Retrieve branch details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **branch** | **String**| Name of the branch | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**branch** | **String** | Name of the branch | [required] |
 
 ### Return type
 
-[**::models::BranchImpl**](BranchImpl.md)
+[**crate::models::BranchImpl**](BranchImpl.md)
 
 ### Authorization
 
@@ -326,30 +342,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_branch_run**
-> ::models::PipelineRun get_pipeline_branch_run(ctx, organization, pipeline, branch, run)
+
+## get_pipeline_branch_run
+
+> crate::models::PipelineRun get_pipeline_branch_run(organization, pipeline, branch, run)
 
 
 Retrieve branch run details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **branch** | **String**| Name of the branch | 
-  **run** | **String**| Name of the run | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**branch** | **String** | Name of the branch | [required] |
+**run** | **String** | Name of the run | [required] |
 
 ### Return type
 
-[**::models::PipelineRun**](PipelineRun.md)
+[**crate::models::PipelineRun**](PipelineRun.md)
 
 ### Authorization
 
@@ -357,28 +375,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_branches**
-> ::models::MultibranchPipeline get_pipeline_branches(ctx, organization, pipeline)
+
+## get_pipeline_branches
+
+> crate::models::MultibranchPipeline get_pipeline_branches(organization, pipeline)
 
 
 Retrieve all branches details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
 
 ### Return type
 
-[**::models::MultibranchPipeline**](MultibranchPipeline.md)
+[**crate::models::MultibranchPipeline**](MultibranchPipeline.md)
 
 ### Authorization
 
@@ -386,28 +406,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_folder**
-> ::models::PipelineFolderImpl get_pipeline_folder(ctx, organization, folder)
+
+## get_pipeline_folder
+
+> crate::models::PipelineFolderImpl get_pipeline_folder(organization, folder)
 
 
 Retrieve pipeline folder for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **folder** | **String**| Name of the folder | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**folder** | **String** | Name of the folder | [required] |
 
 ### Return type
 
-[**::models::PipelineFolderImpl**](PipelineFolderImpl.md)
+[**crate::models::PipelineFolderImpl**](PipelineFolderImpl.md)
 
 ### Authorization
 
@@ -415,29 +437,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_folder_pipeline**
-> ::models::PipelineImpl get_pipeline_folder_pipeline(ctx, organization, pipeline, folder)
+
+## get_pipeline_folder_pipeline
+
+> crate::models::PipelineImpl get_pipeline_folder_pipeline(organization, pipeline, folder)
 
 
 Retrieve pipeline details for an organization folder
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **folder** | **String**| Name of the folder | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**folder** | **String** | Name of the folder | [required] |
 
 ### Return type
 
-[**::models::PipelineImpl**](PipelineImpl.md)
+[**crate::models::PipelineImpl**](PipelineImpl.md)
 
 ### Authorization
 
@@ -445,28 +469,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_queue**
-> ::models::PipelineQueue get_pipeline_queue(ctx, organization, pipeline)
+
+## get_pipeline_queue
+
+> Vec<crate::models::QueueItemImpl> get_pipeline_queue(organization, pipeline)
 
 
 Retrieve queue details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
 
 ### Return type
 
-[**::models::PipelineQueue**](PipelineQueue.md)
+[**Vec<crate::models::QueueItemImpl>**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -474,29 +500,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run**
-> ::models::PipelineRun get_pipeline_run(ctx, organization, pipeline, run)
+
+## get_pipeline_run
+
+> crate::models::PipelineRun get_pipeline_run(organization, pipeline, run)
 
 
 Retrieve run details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
 
 ### Return type
 
-[**::models::PipelineRun**](PipelineRun.md)
+[**crate::models::PipelineRun**](PipelineRun.md)
 
 ### Authorization
 
@@ -504,37 +532,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run_log**
-> String get_pipeline_run_log(ctx, organization, pipeline, run, optional)
+
+## get_pipeline_run_log
+
+> String get_pipeline_run_log(organization, pipeline, run, start, download)
 
 
 Get log for a pipeline run
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **start** | **i32**| Start position of the log | 
- **download** | **bool**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
+**start** | Option<**i32**> | Start position of the log |  |
+**download** | Option<**bool**> | Set to true in order to download the file, otherwise it's passed as a response body |  |
 
 ### Return type
 
@@ -546,30 +566,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run_node**
-> ::models::PipelineRunNode get_pipeline_run_node(ctx, organization, pipeline, run, node)
+
+## get_pipeline_run_node
+
+> crate::models::PipelineRunNode get_pipeline_run_node(organization, pipeline, run, node)
 
 
 Retrieve run node details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
-  **node** | **String**| Name of the node | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
+**node** | **String** | Name of the node | [required] |
 
 ### Return type
 
-[**::models::PipelineRunNode**](PipelineRunNode.md)
+[**crate::models::PipelineRunNode**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -577,31 +599,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run_node_step**
-> ::models::PipelineStepImpl get_pipeline_run_node_step(ctx, organization, pipeline, run, node, step)
+
+## get_pipeline_run_node_step
+
+> crate::models::PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, run, node, step)
 
 
 Retrieve run node details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
-  **node** | **String**| Name of the node | 
-  **step** | **String**| Name of the step | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
+**node** | **String** | Name of the node | [required] |
+**step** | **String** | Name of the step | [required] |
 
 ### Return type
 
-[**::models::PipelineStepImpl**](PipelineStepImpl.md)
+[**crate::models::PipelineStepImpl**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -609,27 +633,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run_node_step_log**
-> String get_pipeline_run_node_step_log(ctx, organization, pipeline, run, node, step)
+
+## get_pipeline_run_node_step_log
+
+> String get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
 
 
 Get log for a pipeline run node step
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
-  **node** | **String**| Name of the node | 
-  **step** | **String**| Name of the step | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
+**node** | **String** | Name of the node | [required] |
+**step** | **String** | Name of the step | [required] |
 
 ### Return type
 
@@ -641,30 +667,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run_node_steps**
-> ::models::PipelineRunNodeSteps get_pipeline_run_node_steps(ctx, organization, pipeline, run, node)
+
+## get_pipeline_run_node_steps
+
+> Vec<crate::models::PipelineStepImpl> get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 Retrieve run node steps details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
-  **node** | **String**| Name of the node | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
+**node** | **String** | Name of the node | [required] |
 
 ### Return type
 
-[**::models::PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**Vec<crate::models::PipelineStepImpl>**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -672,29 +700,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_run_nodes**
-> ::models::PipelineRunNodes get_pipeline_run_nodes(ctx, organization, pipeline, run)
+
+## get_pipeline_run_nodes
+
+> Vec<crate::models::PipelineRunNode> get_pipeline_run_nodes(organization, pipeline, run)
 
 
 Retrieve run nodes details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
 
 ### Return type
 
-[**::models::PipelineRunNodes**](PipelineRunNodes.md)
+[**Vec<crate::models::PipelineRunNode>**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -702,28 +732,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipeline_runs**
-> ::models::PipelineRuns get_pipeline_runs(ctx, organization, pipeline)
+
+## get_pipeline_runs
+
+> Vec<crate::models::PipelineRun> get_pipeline_runs(organization, pipeline)
 
 
 Retrieve all runs details for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
 
 ### Return type
 
-[**::models::PipelineRuns**](PipelineRuns.md)
+[**Vec<crate::models::PipelineRun>**](PipelineRun.md)
 
 ### Authorization
 
@@ -731,27 +763,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pipelines**
-> ::models::Pipelines get_pipelines(ctx, organization)
+
+## get_pipelines
+
+> Vec<crate::models::Pipeline> get_pipelines(organization)
 
 
 Retrieve all pipelines details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
 
 ### Return type
 
-[**::models::Pipelines**](Pipelines.md)
+[**Vec<crate::models::Pipeline>**](Pipeline.md)
 
 ### Authorization
 
@@ -759,28 +793,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_scm**
-> ::models::GithubScm get_scm(ctx, organization, scm)
+
+## get_scm
+
+> crate::models::GithubScm get_scm(organization, scm)
 
 
 Retrieve SCM details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **scm** | **String**| Name of SCM | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**scm** | **String** | Name of SCM | [required] |
 
 ### Return type
 
-[**::models::GithubScm**](GithubScm.md)
+[**crate::models::GithubScm**](GithubScm.md)
 
 ### Authorization
 
@@ -788,42 +824,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_scm_organisation_repositories**
-> ::models::ScmOrganisations get_scm_organisation_repositories(ctx, organization, scm, scm_organisation, optional)
+
+## get_scm_organisation_repositories
+
+> Vec<crate::models::GithubOrganization> get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id, page_size, page_number)
 
 
 Retrieve SCM organization repositories details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **scm** | **String**| Name of SCM | 
-  **scm_organisation** | **String**| Name of the SCM organization | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
- **scm_organisation** | **String**| Name of the SCM organization | 
- **credential_id** | **String**| Credential ID | 
- **page_size** | **i32**| Number of items in a page | 
- **page_number** | **i32**| Page number | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**scm** | **String** | Name of SCM | [required] |
+**scm_organisation** | **String** | Name of the SCM organization | [required] |
+**credential_id** | Option<**String**> | Credential ID |  |
+**page_size** | Option<**i32**> | Number of items in a page |  |
+**page_number** | Option<**i32**> | Page number |  |
 
 ### Return type
 
-[**::models::ScmOrganisations**](ScmOrganisations.md)
+[**Vec<crate::models::GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -831,42 +859,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_scm_organisation_repository**
-> ::models::ScmOrganisations get_scm_organisation_repository(ctx, organization, scm, scm_organisation, repository, optional)
+
+## get_scm_organisation_repository
+
+> Vec<crate::models::GithubOrganization> get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id)
 
 
 Retrieve SCM organization repository details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **scm** | **String**| Name of SCM | 
-  **scm_organisation** | **String**| Name of the SCM organization | 
-  **repository** | **String**| Name of the SCM repository | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
- **scm_organisation** | **String**| Name of the SCM organization | 
- **repository** | **String**| Name of the SCM repository | 
- **credential_id** | **String**| Credential ID | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**scm** | **String** | Name of SCM | [required] |
+**scm_organisation** | **String** | Name of the SCM organization | [required] |
+**repository** | **String** | Name of the SCM repository | [required] |
+**credential_id** | Option<**String**> | Credential ID |  |
 
 ### Return type
 
-[**::models::ScmOrganisations**](ScmOrganisations.md)
+[**Vec<crate::models::GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -874,38 +893,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_scm_organisations**
-> ::models::ScmOrganisations get_scm_organisations(ctx, organization, scm, optional)
+
+## get_scm_organisations
+
+> Vec<crate::models::GithubOrganization> get_scm_organisations(organization, scm, credential_id)
 
 
 Retrieve SCM organizations details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **scm** | **String**| Name of SCM | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
- **credential_id** | **String**| Credential ID | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**scm** | **String** | Name of SCM | [required] |
+**credential_id** | Option<**String**> | Credential ID |  |
 
 ### Return type
 
-[**::models::ScmOrganisations**](ScmOrganisations.md)
+[**Vec<crate::models::GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -913,28 +925,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_user**
-> ::models::User get_user(ctx, organization, user)
+
+## get_user
+
+> crate::models::User get_user(organization, user)
 
 
 Retrieve user details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **user** | **String**| Name of the user | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**user** | **String** | Name of the user | [required] |
 
 ### Return type
 
-[**::models::User**](User.md)
+[**crate::models::User**](User.md)
 
 ### Authorization
 
@@ -942,27 +956,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_user_favorites**
-> ::models::UserFavorites get_user_favorites(ctx, user)
+
+## get_user_favorites
+
+> Vec<crate::models::FavoriteImpl> get_user_favorites(user)
 
 
 Retrieve user favorites details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **user** | **String**| Name of the user | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user** | **String** | Name of the user | [required] |
 
 ### Return type
 
-[**::models::UserFavorites**](UserFavorites.md)
+[**Vec<crate::models::FavoriteImpl>**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -970,27 +986,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_users**
-> ::models::User get_users(ctx, organization)
+
+## get_users
+
+> crate::models::User get_users(organization)
 
 
 Retrieve users details for an organization
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
 
 ### Return type
 
-[**::models::User**](User.md)
+[**crate::models::User**](User.md)
 
 ### Authorization
 
@@ -998,29 +1016,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_pipeline_run**
-> ::models::QueueItemImpl post_pipeline_run(ctx, organization, pipeline, run)
+
+## post_pipeline_run
+
+> crate::models::QueueItemImpl post_pipeline_run(organization, pipeline, run)
 
 
 Replay an organization pipeline run
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
 
 ### Return type
 
-[**::models::QueueItemImpl**](QueueItemImpl.md)
+[**crate::models::QueueItemImpl**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1028,28 +1048,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **post_pipeline_runs**
-> ::models::QueueItemImpl post_pipeline_runs(ctx, organization, pipeline)
+
+## post_pipeline_runs
+
+> crate::models::QueueItemImpl post_pipeline_runs(organization, pipeline)
 
 
 Start a build for an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
 
 ### Return type
 
-[**::models::QueueItemImpl**](QueueItemImpl.md)
+[**crate::models::QueueItemImpl**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1057,29 +1079,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **put_pipeline_favorite**
-> ::models::FavoriteImpl put_pipeline_favorite(ctx, organization, pipeline, body)
+
+## put_pipeline_favorite
+
+> crate::models::FavoriteImpl put_pipeline_favorite(organization, pipeline, UNKNOWN_BASE_TYPE)
 
 
 Favorite/unfavorite a pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**UNKNOWN_BASE_TYPE** | Option<[**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)> | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | [required] |
 
 ### Return type
 
-[**::models::FavoriteImpl**](FavoriteImpl.md)
+[**crate::models::FavoriteImpl**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1087,41 +1111,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **put_pipeline_run**
-> ::models::PipelineRun put_pipeline_run(ctx, organization, pipeline, run, optional)
+
+## put_pipeline_run
+
+> crate::models::PipelineRun put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs)
 
 
 Stop a build of an organization pipeline
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **organization** | **String**| Name of the organization | 
-  **pipeline** | **String**| Name of the pipeline | 
-  **run** | **String**| Name of the run | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
 
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **blocking** | **String**| Set to true to make blocking stop, default: false | 
- **time_out_in_secs** | **i32**| Timeout in seconds, default: 10 seconds | 
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**organization** | **String** | Name of the organization | [required] |
+**pipeline** | **String** | Name of the pipeline | [required] |
+**run** | **String** | Name of the run | [required] |
+**blocking** | Option<**String**> | Set to true to make blocking stop, default: false |  |
+**time_out_in_secs** | Option<**i32**> | Timeout in seconds, default: 10 seconds |  |
 
 ### Return type
 
-[**::models::PipelineRun**](PipelineRun.md)
+[**crate::models::PipelineRun**](PipelineRun.md)
 
 ### Authorization
 
@@ -1129,23 +1145,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **search**
-> String search(ctx, q)
+
+## search
+
+> String search(q)
 
 
 Search for any resource details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **q** | **String**| Query string | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**q** | **String** | Query string | [required] |
 
 ### Return type
 
@@ -1157,23 +1175,25 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **search_classes**
-> String search_classes(ctx, q)
+
+## search_classes
+
+> String search_classes(q)
 
 
 Get classes details
 
-### Required Parameters
+### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **q** | **String**| Query string containing an array of class names | 
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**q** | **String** | Query string containing an array of class names | [required] |
 
 ### Return type
 
@@ -1185,8 +1205,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

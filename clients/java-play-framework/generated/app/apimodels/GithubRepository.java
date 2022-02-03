@@ -10,33 +10,42 @@ import javax.validation.constraints.*;
 /**
  * GithubRepository
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubRepository   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubRepositorylinks links = null;
+  @Valid
+
+  private GithubRepositorylinks links;
 
   @JsonProperty("defaultBranch")
-  private String defaultBranch = null;
+  
+  private String defaultBranch;
 
   @JsonProperty("description")
-  private String description = null;
+  
+  private String description;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("permissions")
-  private GithubRepositorypermissions permissions = null;
+  @Valid
+
+  private GithubRepositorypermissions permissions;
 
   @JsonProperty("private")
-  private Boolean _private = null;
+  
+  private Boolean _private;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  
+  private String fullName;
 
   public GithubRepository propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -47,7 +56,7 @@ public class GithubRepository   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -64,7 +73,6 @@ public class GithubRepository   {
    * Get links
    * @return links
   **/
-  @Valid
   public GithubRepositorylinks getLinks() {
     return links;
   }
@@ -82,7 +90,7 @@ public class GithubRepository   {
    * Get defaultBranch
    * @return defaultBranch
   **/
-    public String getDefaultBranch() {
+  public String getDefaultBranch() {
     return defaultBranch;
   }
 
@@ -99,7 +107,7 @@ public class GithubRepository   {
    * Get description
    * @return description
   **/
-    public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -116,7 +124,7 @@ public class GithubRepository   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -133,7 +141,6 @@ public class GithubRepository   {
    * Get permissions
    * @return permissions
   **/
-  @Valid
   public GithubRepositorypermissions getPermissions() {
     return permissions;
   }
@@ -151,7 +158,7 @@ public class GithubRepository   {
    * Get _private
    * @return _private
   **/
-    public Boolean getPrivate() {
+  public Boolean getPrivate() {
     return _private;
   }
 
@@ -168,7 +175,7 @@ public class GithubRepository   {
    * Get fullName
    * @return fullName
   **/
-    public String getFullName() {
+  public String getFullName() {
     return fullName;
   }
 
@@ -178,7 +185,7 @@ public class GithubRepository   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -223,7 +230,7 @@ public class GithubRepository   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

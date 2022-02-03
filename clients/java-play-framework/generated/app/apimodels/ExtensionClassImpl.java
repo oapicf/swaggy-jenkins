@@ -11,17 +11,20 @@ import javax.validation.constraints.*;
 /**
  * ExtensionClassImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ExtensionClassImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private ExtensionClassImpllinks links = null;
+  @Valid
+
+  private ExtensionClassImpllinks links;
 
   @JsonProperty("classes")
+  
   private List<String> classes = null;
 
   public ExtensionClassImpl propertyClass(String propertyClass) {
@@ -33,7 +36,7 @@ public class ExtensionClassImpl   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -50,7 +53,6 @@ public class ExtensionClassImpl   {
    * Get links
    * @return links
   **/
-  @Valid
   public ExtensionClassImpllinks getLinks() {
     return links;
   }
@@ -76,7 +78,7 @@ public class ExtensionClassImpl   {
    * Get classes
    * @return classes
   **/
-    public List<String> getClasses() {
+  public List<String> getClasses() {
     return classes;
   }
 
@@ -86,7 +88,7 @@ public class ExtensionClassImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -121,7 +123,7 @@ public class ExtensionClassImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

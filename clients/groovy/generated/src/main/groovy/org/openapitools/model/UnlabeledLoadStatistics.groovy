@@ -6,6 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class UnlabeledLoadStatistics {
-    String propertyClass = null
-
+    
+    String propertyClass
 }

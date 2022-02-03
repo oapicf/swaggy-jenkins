@@ -16,3 +16,20 @@ type PipelineBranchesitempullRequestlinks struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertPipelineBranchesitempullRequestlinksRequired checks if the required fields are not zero-ed
+func AssertPipelineBranchesitempullRequestlinksRequired(obj PipelineBranchesitempullRequestlinks) error {
+	return nil
+}
+
+// AssertRecursePipelineBranchesitempullRequestlinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineBranchesitempullRequestlinks (e.g. [][]PipelineBranchesitempullRequestlinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineBranchesitempullRequestlinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineBranchesitempullRequestlinks, ok := obj.(PipelineBranchesitempullRequestlinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineBranchesitempullRequestlinksRequired(aPipelineBranchesitempullRequestlinks)
+	})
+}

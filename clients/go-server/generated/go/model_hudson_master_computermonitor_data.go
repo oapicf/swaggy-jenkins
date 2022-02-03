@@ -12,17 +12,49 @@ package openapi
 
 type HudsonMasterComputermonitorData struct {
 
-	HudsonNodeMonitorsSwapSpaceMonitor *SwapSpaceMonitorMemoryUsage2 `json:"hudson.node_monitors.SwapSpaceMonitor,omitempty"`
+	HudsonNodeMonitorsSwapSpaceMonitor SwapSpaceMonitorMemoryUsage2 `json:"hudson.node_monitors.SwapSpaceMonitor,omitempty"`
 
-	HudsonNodeMonitorsTemporarySpaceMonitor *DiskSpaceMonitorDescriptorDiskSpace `json:"hudson.node_monitors.TemporarySpaceMonitor,omitempty"`
+	HudsonNodeMonitorsTemporarySpaceMonitor DiskSpaceMonitorDescriptorDiskSpace `json:"hudson.node_monitors.TemporarySpaceMonitor,omitempty"`
 
-	HudsonNodeMonitorsDiskSpaceMonitor *DiskSpaceMonitorDescriptorDiskSpace `json:"hudson.node_monitors.DiskSpaceMonitor,omitempty"`
+	HudsonNodeMonitorsDiskSpaceMonitor DiskSpaceMonitorDescriptorDiskSpace `json:"hudson.node_monitors.DiskSpaceMonitor,omitempty"`
 
 	HudsonNodeMonitorsArchitectureMonitor string `json:"hudson.node_monitors.ArchitectureMonitor,omitempty"`
 
-	HudsonNodeMonitorsResponseTimeMonitor *ResponseTimeMonitorData `json:"hudson.node_monitors.ResponseTimeMonitor,omitempty"`
+	HudsonNodeMonitorsResponseTimeMonitor ResponseTimeMonitorData `json:"hudson.node_monitors.ResponseTimeMonitor,omitempty"`
 
-	HudsonNodeMonitorsClockMonitor *ClockDifference `json:"hudson.node_monitors.ClockMonitor,omitempty"`
+	HudsonNodeMonitorsClockMonitor ClockDifference `json:"hudson.node_monitors.ClockMonitor,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertHudsonMasterComputermonitorDataRequired checks if the required fields are not zero-ed
+func AssertHudsonMasterComputermonitorDataRequired(obj HudsonMasterComputermonitorData) error {
+	if err := AssertSwapSpaceMonitorMemoryUsage2Required(obj.HudsonNodeMonitorsSwapSpaceMonitor); err != nil {
+		return err
+	}
+	if err := AssertDiskSpaceMonitorDescriptorDiskSpaceRequired(obj.HudsonNodeMonitorsTemporarySpaceMonitor); err != nil {
+		return err
+	}
+	if err := AssertDiskSpaceMonitorDescriptorDiskSpaceRequired(obj.HudsonNodeMonitorsDiskSpaceMonitor); err != nil {
+		return err
+	}
+	if err := AssertResponseTimeMonitorDataRequired(obj.HudsonNodeMonitorsResponseTimeMonitor); err != nil {
+		return err
+	}
+	if err := AssertClockDifferenceRequired(obj.HudsonNodeMonitorsClockMonitor); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseHudsonMasterComputermonitorDataRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of HudsonMasterComputermonitorData (e.g. [][]HudsonMasterComputermonitorData), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseHudsonMasterComputermonitorDataRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aHudsonMasterComputermonitorData, ok := obj.(HudsonMasterComputermonitorData)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertHudsonMasterComputermonitorDataRequired(aHudsonMasterComputermonitorData)
+	})
 }

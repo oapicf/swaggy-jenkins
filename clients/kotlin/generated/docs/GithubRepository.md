@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
-**Underscorelinks** | [**GithubRepositorylinks**](GithubRepositorylinks.md) |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
+**links** | [**GithubRepositorylinks**](GithubRepositorylinks.md) |  |  [optional]
 **defaultBranch** | **kotlin.String** |  |  [optional]
 **description** | **kotlin.String** |  |  [optional]
 **name** | **kotlin.String** |  |  [optional]

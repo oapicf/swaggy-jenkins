@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.ClockDifference
+
 ## Properties
 
 Name | Type | Description | Notes

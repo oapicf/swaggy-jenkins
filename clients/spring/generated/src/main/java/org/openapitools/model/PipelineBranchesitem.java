@@ -1,47 +1,54 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineBranchesitemlatestRun;
 import org.openapitools.model.PipelineBranchesitempullRequest;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * PipelineBranchesitem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class PipelineBranchesitem   {
+
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("latestRun")
-  private PipelineBranchesitemlatestRun latestRun = null;
+  private PipelineBranchesitemlatestRun latestRun;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("pullRequest")
-  private PipelineBranchesitempullRequest pullRequest = null;
+  private PipelineBranchesitempullRequest pullRequest;
 
   @JsonProperty("totalNumberOfPullRequests")
-  private Integer totalNumberOfPullRequests = null;
+  private Integer totalNumberOfPullRequests;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public PipelineBranchesitem displayName(String displayName) {
     this.displayName = displayName;
@@ -51,10 +58,9 @@ public class PipelineBranchesitem   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -71,10 +77,9 @@ public class PipelineBranchesitem   {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "estimatedDurationInMillis", required = false)
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -91,10 +96,9 @@ public class PipelineBranchesitem   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -111,10 +115,9 @@ public class PipelineBranchesitem   {
   /**
    * Get weatherScore
    * @return weatherScore
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "weatherScore", required = false)
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -131,11 +134,9 @@ public class PipelineBranchesitem   {
   /**
    * Get latestRun
    * @return latestRun
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "latestRun", required = false)
   public PipelineBranchesitemlatestRun getLatestRun() {
     return latestRun;
   }
@@ -152,10 +153,9 @@ public class PipelineBranchesitem   {
   /**
    * Get organization
    * @return organization
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "organization", required = false)
   public String getOrganization() {
     return organization;
   }
@@ -172,11 +172,9 @@ public class PipelineBranchesitem   {
   /**
    * Get pullRequest
    * @return pullRequest
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "pullRequest", required = false)
   public PipelineBranchesitempullRequest getPullRequest() {
     return pullRequest;
   }
@@ -193,10 +191,9 @@ public class PipelineBranchesitem   {
   /**
    * Get totalNumberOfPullRequests
    * @return totalNumberOfPullRequests
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "totalNumberOfPullRequests", required = false)
   public Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
   }
@@ -213,10 +210,9 @@ public class PipelineBranchesitem   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -225,9 +221,8 @@ public class PipelineBranchesitem   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -255,7 +250,6 @@ public class PipelineBranchesitem   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineBranchesitem {\n");
-    
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    estimatedDurationInMillis: ").append(toIndentedString(estimatedDurationInMillis)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -273,7 +267,7 @@ public class PipelineBranchesitem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

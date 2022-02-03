@@ -12,7 +12,27 @@ package openapi
 
 type GithubFile struct {
 
-	Content *GithubContent `json:"content,omitempty"`
+	Content GithubContent `json:"content,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertGithubFileRequired checks if the required fields are not zero-ed
+func AssertGithubFileRequired(obj GithubFile) error {
+	if err := AssertGithubContentRequired(obj.Content); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseGithubFileRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubFile (e.g. [][]GithubFile), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubFileRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubFile, ok := obj.(GithubFile)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubFileRequired(aGithubFile)
+	})
 }

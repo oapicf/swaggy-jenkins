@@ -1,12 +1,13 @@
 # DiskSpaceMonitorDescriptorDiskSpace
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **String** |  | [optional] 
-**timestamp** | **i32** |  | [optional] 
-**path** | **String** |  | [optional] 
-**size** | **i32** |  | [optional] 
+**_class** | Option<**String**> |  | [optional]
+**timestamp** | Option<**i32**> |  | [optional]
+**path** | Option<**String**> |  | [optional]
+**size** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -12,9 +12,32 @@ package openapi
 
 type ExtensionClassContainerImpl1map struct {
 
-	IoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl *ExtensionClassImpl `json:"io.jenkins.blueocean.service.embedded.rest.PipelineImpl,omitempty"`
+	IoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl ExtensionClassImpl `json:"io.jenkins.blueocean.service.embedded.rest.PipelineImpl,omitempty"`
 
-	IoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl *ExtensionClassImpl `json:"io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl,omitempty"`
+	IoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl ExtensionClassImpl `json:"io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertExtensionClassContainerImpl1mapRequired checks if the required fields are not zero-ed
+func AssertExtensionClassContainerImpl1mapRequired(obj ExtensionClassContainerImpl1map) error {
+	if err := AssertExtensionClassImplRequired(obj.IoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl); err != nil {
+		return err
+	}
+	if err := AssertExtensionClassImplRequired(obj.IoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseExtensionClassContainerImpl1mapRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of ExtensionClassContainerImpl1map (e.g. [][]ExtensionClassContainerImpl1map), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseExtensionClassContainerImpl1mapRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aExtensionClassContainerImpl1map, ok := obj.(ExtensionClassContainerImpl1map)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertExtensionClassContainerImpl1mapRequired(aExtensionClassContainerImpl1map)
+	})
 }

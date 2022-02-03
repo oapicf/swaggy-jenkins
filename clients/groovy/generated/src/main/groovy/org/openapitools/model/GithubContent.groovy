@@ -6,20 +6,20 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class GithubContent {
-    String name = null
-
-    String sha = null
-
-    String propertyClass = null
-
-    String repo = null
-
-    Integer size = null
-
-    String owner = null
-
-    String path = null
-
-    String base64Data = null
-
+    
+    String name
+    
+    String sha
+    
+    String propertyClass
+    
+    String repo
+    
+    Integer size
+    
+    String owner
+    
+    String path
+    
+    String base64Data
 }

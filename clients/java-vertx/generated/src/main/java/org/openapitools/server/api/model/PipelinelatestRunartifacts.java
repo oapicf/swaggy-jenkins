@@ -4,13 +4,13 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelinelatestRunartifacts   {
   
-  private String name = null;
-  private Integer size = null;
-  private String url = null;
-  private String propertyClass = null;
+  private String name;
+  private Integer size;
+  private String url;
+  private String propertyClass;
 
   public PipelinelatestRunartifacts () {
 

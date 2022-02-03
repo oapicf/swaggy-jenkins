@@ -9,54 +9,69 @@ import javax.validation.constraints.*;
 /**
  * PipelineRunImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRunImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private PipelineRunImpllinks links = null;
+  @Valid
+
+  private PipelineRunImpllinks links;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  
+  private Integer durationInMillis;
 
   @JsonProperty("enQueueTime")
-  private String enQueueTime = null;
+  
+  private String enQueueTime;
 
   @JsonProperty("endTime")
-  private String endTime = null;
+  
+  private String endTime;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("organization")
-  private String organization = null;
+  
+  private String organization;
 
   @JsonProperty("pipeline")
-  private String pipeline = null;
+  
+  private String pipeline;
 
   @JsonProperty("result")
-  private String result = null;
+  
+  private String result;
 
   @JsonProperty("runSummary")
-  private String runSummary = null;
+  
+  private String runSummary;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  
+  private String state;
 
   @JsonProperty("type")
-  private String type = null;
+  
+  private String type;
 
   @JsonProperty("commitId")
-  private String commitId = null;
+  
+  private String commitId;
 
   public PipelineRunImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -67,7 +82,7 @@ public class PipelineRunImpl   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -84,7 +99,6 @@ public class PipelineRunImpl   {
    * Get links
    * @return links
   **/
-  @Valid
   public PipelineRunImpllinks getLinks() {
     return links;
   }
@@ -102,7 +116,7 @@ public class PipelineRunImpl   {
    * Get durationInMillis
    * @return durationInMillis
   **/
-    public Integer getDurationInMillis() {
+  public Integer getDurationInMillis() {
     return durationInMillis;
   }
 
@@ -119,7 +133,7 @@ public class PipelineRunImpl   {
    * Get enQueueTime
    * @return enQueueTime
   **/
-    public String getEnQueueTime() {
+  public String getEnQueueTime() {
     return enQueueTime;
   }
 
@@ -136,7 +150,7 @@ public class PipelineRunImpl   {
    * Get endTime
    * @return endTime
   **/
-    public String getEndTime() {
+  public String getEndTime() {
     return endTime;
   }
 
@@ -153,7 +167,7 @@ public class PipelineRunImpl   {
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
   **/
-    public Integer getEstimatedDurationInMillis() {
+  public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
@@ -170,7 +184,7 @@ public class PipelineRunImpl   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -187,7 +201,7 @@ public class PipelineRunImpl   {
    * Get organization
    * @return organization
   **/
-    public String getOrganization() {
+  public String getOrganization() {
     return organization;
   }
 
@@ -204,7 +218,7 @@ public class PipelineRunImpl   {
    * Get pipeline
    * @return pipeline
   **/
-    public String getPipeline() {
+  public String getPipeline() {
     return pipeline;
   }
 
@@ -221,7 +235,7 @@ public class PipelineRunImpl   {
    * Get result
    * @return result
   **/
-    public String getResult() {
+  public String getResult() {
     return result;
   }
 
@@ -238,7 +252,7 @@ public class PipelineRunImpl   {
    * Get runSummary
    * @return runSummary
   **/
-    public String getRunSummary() {
+  public String getRunSummary() {
     return runSummary;
   }
 
@@ -255,7 +269,7 @@ public class PipelineRunImpl   {
    * Get startTime
    * @return startTime
   **/
-    public String getStartTime() {
+  public String getStartTime() {
     return startTime;
   }
 
@@ -272,7 +286,7 @@ public class PipelineRunImpl   {
    * Get state
    * @return state
   **/
-    public String getState() {
+  public String getState() {
     return state;
   }
 
@@ -289,7 +303,7 @@ public class PipelineRunImpl   {
    * Get type
    * @return type
   **/
-    public String getType() {
+  public String getType() {
     return type;
   }
 
@@ -306,7 +320,7 @@ public class PipelineRunImpl   {
    * Get commitId
    * @return commitId
   **/
-    public String getCommitId() {
+  public String getCommitId() {
     return commitId;
   }
 
@@ -316,7 +330,7 @@ public class PipelineRunImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -375,7 +389,7 @@ public class PipelineRunImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseAction;
@@ -7,26 +9,30 @@ import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class QueueBlockedItem   {
+
+@JsonTypeName("QueueBlockedItem")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class QueueBlockedItem   {
   
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
   private @Valid List<CauseAction> actions = new ArrayList<CauseAction>();
-  private @Valid Boolean blocked = null;
-  private @Valid Boolean buildable = null;
-  private @Valid Integer id = null;
-  private @Valid Integer inQueueSince = null;
-  private @Valid String params = null;
-  private @Valid Boolean stuck = null;
-  private @Valid FreeStyleProject task = null;
-  private @Valid String url = null;
-  private @Valid String why = null;
-  private @Valid Integer buildableStartMilliseconds = null;
+  private @Valid Boolean blocked;
+  private @Valid Boolean buildable;
+  private @Valid Integer id;
+  private @Valid Integer inQueueSince;
+  private @Valid String params;
+  private @Valid Boolean stuck;
+  private @Valid FreeStyleProject task;
+  private @Valid String url;
+  private @Valid String why;
+  private @Valid Integer buildableStartMilliseconds;
 
   /**
    **/
@@ -36,16 +42,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem actions(List<CauseAction> actions) {
     this.actions = actions;
@@ -53,16 +63,36 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<CauseAction> getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(List<CauseAction> actions) {
     this.actions = actions;
   }
 
-  /**
+  public QueueBlockedItem addActionsItem(CauseAction actionsItem) {
+    if (this.actions == null) {
+      this.actions = new ArrayList<CauseAction>();
+    }
+
+    this.actions.add(actionsItem);
+    return this;
+  }
+
+  public QueueBlockedItem removeActionsItem(CauseAction actionsItem) {
+    if (actionsItem != null && this.actions != null) {
+      this.actions.remove(actionsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public QueueBlockedItem blocked(Boolean blocked) {
     this.blocked = blocked;
@@ -70,16 +100,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("blocked")
   public Boolean getBlocked() {
     return blocked;
   }
+
+  @JsonProperty("blocked")
   public void setBlocked(Boolean blocked) {
     this.blocked = blocked;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem buildable(Boolean buildable) {
     this.buildable = buildable;
@@ -87,16 +121,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("buildable")
   public Boolean getBuildable() {
     return buildable;
   }
+
+  @JsonProperty("buildable")
   public void setBuildable(Boolean buildable) {
     this.buildable = buildable;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem id(Integer id) {
     this.id = id;
@@ -104,16 +142,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public Integer getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(Integer id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem inQueueSince(Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
@@ -121,16 +163,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("inQueueSince")
   public Integer getInQueueSince() {
     return inQueueSince;
   }
+
+  @JsonProperty("inQueueSince")
   public void setInQueueSince(Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem params(String params) {
     this.params = params;
@@ -138,16 +184,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("params")
   public String getParams() {
     return params;
   }
+
+  @JsonProperty("params")
   public void setParams(String params) {
     this.params = params;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem stuck(Boolean stuck) {
     this.stuck = stuck;
@@ -155,16 +205,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("stuck")
   public Boolean getStuck() {
     return stuck;
   }
+
+  @JsonProperty("stuck")
   public void setStuck(Boolean stuck) {
     this.stuck = stuck;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem task(FreeStyleProject task) {
     this.task = task;
@@ -172,16 +226,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("task")
   public FreeStyleProject getTask() {
     return task;
   }
+
+  @JsonProperty("task")
   public void setTask(FreeStyleProject task) {
     this.task = task;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem url(String url) {
     this.url = url;
@@ -189,16 +247,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
     return url;
   }
+
+  @JsonProperty("url")
   public void setUrl(String url) {
     this.url = url;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem why(String why) {
     this.why = why;
@@ -206,16 +268,20 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("why")
   public String getWhy() {
     return why;
   }
+
+  @JsonProperty("why")
   public void setWhy(String why) {
     this.why = why;
   }
 
-  /**
+/**
    **/
   public QueueBlockedItem buildableStartMilliseconds(Integer buildableStartMilliseconds) {
     this.buildableStartMilliseconds = buildableStartMilliseconds;
@@ -223,18 +289,22 @@ public class QueueBlockedItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("buildableStartMilliseconds")
   public Integer getBuildableStartMilliseconds() {
     return buildableStartMilliseconds;
   }
+
+  @JsonProperty("buildableStartMilliseconds")
   public void setBuildableStartMilliseconds(Integer buildableStartMilliseconds) {
     this.buildableStartMilliseconds = buildableStartMilliseconds;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -242,18 +312,18 @@ public class QueueBlockedItem   {
       return false;
     }
     QueueBlockedItem queueBlockedItem = (QueueBlockedItem) o;
-    return Objects.equals(propertyClass, queueBlockedItem.propertyClass) &&
-        Objects.equals(actions, queueBlockedItem.actions) &&
-        Objects.equals(blocked, queueBlockedItem.blocked) &&
-        Objects.equals(buildable, queueBlockedItem.buildable) &&
-        Objects.equals(id, queueBlockedItem.id) &&
-        Objects.equals(inQueueSince, queueBlockedItem.inQueueSince) &&
-        Objects.equals(params, queueBlockedItem.params) &&
-        Objects.equals(stuck, queueBlockedItem.stuck) &&
-        Objects.equals(task, queueBlockedItem.task) &&
-        Objects.equals(url, queueBlockedItem.url) &&
-        Objects.equals(why, queueBlockedItem.why) &&
-        Objects.equals(buildableStartMilliseconds, queueBlockedItem.buildableStartMilliseconds);
+    return Objects.equals(this.propertyClass, queueBlockedItem.propertyClass) &&
+        Objects.equals(this.actions, queueBlockedItem.actions) &&
+        Objects.equals(this.blocked, queueBlockedItem.blocked) &&
+        Objects.equals(this.buildable, queueBlockedItem.buildable) &&
+        Objects.equals(this.id, queueBlockedItem.id) &&
+        Objects.equals(this.inQueueSince, queueBlockedItem.inQueueSince) &&
+        Objects.equals(this.params, queueBlockedItem.params) &&
+        Objects.equals(this.stuck, queueBlockedItem.stuck) &&
+        Objects.equals(this.task, queueBlockedItem.task) &&
+        Objects.equals(this.url, queueBlockedItem.url) &&
+        Objects.equals(this.why, queueBlockedItem.why) &&
+        Objects.equals(this.buildableStartMilliseconds, queueBlockedItem.buildableStartMilliseconds);
   }
 
   @Override
@@ -286,11 +356,13 @@ public class QueueBlockedItem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

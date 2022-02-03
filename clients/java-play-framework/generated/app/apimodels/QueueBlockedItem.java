@@ -12,45 +12,58 @@ import javax.validation.constraints.*;
 /**
  * QueueBlockedItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class QueueBlockedItem   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("actions")
+  @Valid
+
   private List<CauseAction> actions = null;
 
   @JsonProperty("blocked")
-  private Boolean blocked = null;
+  
+  private Boolean blocked;
 
   @JsonProperty("buildable")
-  private Boolean buildable = null;
+  
+  private Boolean buildable;
 
   @JsonProperty("id")
-  private Integer id = null;
+  
+  private Integer id;
 
   @JsonProperty("inQueueSince")
-  private Integer inQueueSince = null;
+  
+  private Integer inQueueSince;
 
   @JsonProperty("params")
-  private String params = null;
+  
+  private String params;
 
   @JsonProperty("stuck")
-  private Boolean stuck = null;
+  
+  private Boolean stuck;
 
   @JsonProperty("task")
-  private FreeStyleProject task = null;
+  @Valid
+
+  private FreeStyleProject task;
 
   @JsonProperty("url")
-  private String url = null;
+  
+  private String url;
 
   @JsonProperty("why")
-  private String why = null;
+  
+  private String why;
 
   @JsonProperty("buildableStartMilliseconds")
-  private Integer buildableStartMilliseconds = null;
+  
+  private Integer buildableStartMilliseconds;
 
   public QueueBlockedItem propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -61,7 +74,7 @@ public class QueueBlockedItem   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -86,7 +99,6 @@ public class QueueBlockedItem   {
    * Get actions
    * @return actions
   **/
-  @Valid
   public List<CauseAction> getActions() {
     return actions;
   }
@@ -104,7 +116,7 @@ public class QueueBlockedItem   {
    * Get blocked
    * @return blocked
   **/
-    public Boolean getBlocked() {
+  public Boolean getBlocked() {
     return blocked;
   }
 
@@ -121,7 +133,7 @@ public class QueueBlockedItem   {
    * Get buildable
    * @return buildable
   **/
-    public Boolean getBuildable() {
+  public Boolean getBuildable() {
     return buildable;
   }
 
@@ -138,7 +150,7 @@ public class QueueBlockedItem   {
    * Get id
    * @return id
   **/
-    public Integer getId() {
+  public Integer getId() {
     return id;
   }
 
@@ -155,7 +167,7 @@ public class QueueBlockedItem   {
    * Get inQueueSince
    * @return inQueueSince
   **/
-    public Integer getInQueueSince() {
+  public Integer getInQueueSince() {
     return inQueueSince;
   }
 
@@ -172,7 +184,7 @@ public class QueueBlockedItem   {
    * Get params
    * @return params
   **/
-    public String getParams() {
+  public String getParams() {
     return params;
   }
 
@@ -189,7 +201,7 @@ public class QueueBlockedItem   {
    * Get stuck
    * @return stuck
   **/
-    public Boolean getStuck() {
+  public Boolean getStuck() {
     return stuck;
   }
 
@@ -206,7 +218,6 @@ public class QueueBlockedItem   {
    * Get task
    * @return task
   **/
-  @Valid
   public FreeStyleProject getTask() {
     return task;
   }
@@ -224,7 +235,7 @@ public class QueueBlockedItem   {
    * Get url
    * @return url
   **/
-    public String getUrl() {
+  public String getUrl() {
     return url;
   }
 
@@ -241,7 +252,7 @@ public class QueueBlockedItem   {
    * Get why
    * @return why
   **/
-    public String getWhy() {
+  public String getWhy() {
     return why;
   }
 
@@ -258,7 +269,7 @@ public class QueueBlockedItem   {
    * Get buildableStartMilliseconds
    * @return buildableStartMilliseconds
   **/
-    public Integer getBuildableStartMilliseconds() {
+  public Integer getBuildableStartMilliseconds() {
     return buildableStartMilliseconds;
   }
 
@@ -268,7 +279,7 @@ public class QueueBlockedItem   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -321,7 +332,7 @@ public class QueueBlockedItem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

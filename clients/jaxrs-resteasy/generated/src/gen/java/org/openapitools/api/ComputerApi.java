@@ -21,18 +21,19 @@ import javax.ws.rs.*;
 import javax.inject.Inject;
 
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
-@Path("/computer")
+@Path("/computer/api/json")
 
 
 @io.swagger.annotations.Api(description = "the computer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class ComputerApi  {
 
     @Inject ComputerApiService service;
 
     @GET
-    @Path("/api/json")
+    
     
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve computer details", response = ComputerSet.class, authorizations = {
@@ -44,7 +45,7 @@ public class ComputerApi  {
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getComputer( @NotNull  @QueryParam("depth") Integer depth,@Context SecurityContext securityContext)
+    public Response getComputer( @NotNull @QueryParam("depth") Integer depth,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.getComputer(depth,securityContext);
     }

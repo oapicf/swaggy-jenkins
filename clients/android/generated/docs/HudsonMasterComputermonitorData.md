@@ -1,7 +1,9 @@
 
+
 # HudsonMasterComputermonitorData
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hudsonNodeMonitorsSwapSpaceMonitor** | [**SwapSpaceMonitorMemoryUsage2**](SwapSpaceMonitorMemoryUsage2.md) |  |  [optional]
@@ -11,6 +13,7 @@ Name | Type | Description | Notes
 **hudsonNodeMonitorsResponseTimeMonitor** | [**ResponseTimeMonitorData**](ResponseTimeMonitorData.md) |  |  [optional]
 **hudsonNodeMonitorsClockMonitor** | [**ClockDifference**](ClockDifference.md) |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

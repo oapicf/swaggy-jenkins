@@ -10,18 +10,18 @@ import org.openapitools.model.StringParameterDefinition;
 
 @Canonical
 class InputStepImpl {
-    String propertyClass = null
-
-    InputStepImpllinks links = null
-
-    String id = null
-
-    String message = null
-
-    String ok = null
-
+    
+    String propertyClass
+    
+    InputStepImpllinks links
+    
+    String id
+    
+    String message
+    
+    String ok
+    
     List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>()
-
-    String submitter = null
-
+    
+    String submitter
 }

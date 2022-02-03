@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.ClockDifference do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"diff" => integer()
+    :"_class" => String.t | nil,
+    :"diff" => integer() | nil
   }
 end
 

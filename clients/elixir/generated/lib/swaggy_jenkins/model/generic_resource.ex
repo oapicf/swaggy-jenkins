@@ -18,12 +18,12 @@ defmodule SwaggyJenkins.Model.GenericResource do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"displayName" => String.t,
-    :"durationInMillis" => integer(),
-    :"id" => String.t,
-    :"result" => String.t,
-    :"startTime" => String.t
+    :"_class" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"durationInMillis" => integer() | nil,
+    :"id" => String.t | nil,
+    :"result" => String.t | nil,
+    :"startTime" => String.t | nil
   }
 end
 

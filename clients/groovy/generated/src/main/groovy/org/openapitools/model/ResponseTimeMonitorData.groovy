@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class ResponseTimeMonitorData {
-    String propertyClass = null
-
-    Integer timestamp = null
-
-    Integer average = null
-
+    
+    String propertyClass
+    
+    Integer timestamp
+    
+    Integer average
 }

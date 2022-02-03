@@ -1,22 +1,28 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubScmlinks;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class GithubScm   {
+
+@JsonTypeName("GithubScm")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class GithubScm   {
   
-  private @Valid String propertyClass = null;
-  private @Valid GithubScmlinks links = null;
-  private @Valid String credentialId = null;
-  private @Valid String id = null;
-  private @Valid String uri = null;
+  private @Valid String propertyClass;
+  private @Valid GithubScmlinks links;
+  private @Valid String credentialId;
+  private @Valid String id;
+  private @Valid String uri;
 
   /**
    **/
@@ -26,16 +32,20 @@ public class GithubScm   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public GithubScm links(GithubScmlinks links) {
     this.links = links;
@@ -43,16 +53,20 @@ public class GithubScm   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public GithubScmlinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(GithubScmlinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public GithubScm credentialId(String credentialId) {
     this.credentialId = credentialId;
@@ -60,16 +74,20 @@ public class GithubScm   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("credentialId")
   public String getCredentialId() {
     return credentialId;
   }
+
+  @JsonProperty("credentialId")
   public void setCredentialId(String credentialId) {
     this.credentialId = credentialId;
   }
 
-  /**
+/**
    **/
   public GithubScm id(String id) {
     this.id = id;
@@ -77,16 +95,20 @@ public class GithubScm   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public GithubScm uri(String uri) {
     this.uri = uri;
@@ -94,18 +116,22 @@ public class GithubScm   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("uri")
   public String getUri() {
     return uri;
   }
+
+  @JsonProperty("uri")
   public void setUri(String uri) {
     this.uri = uri;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -113,11 +139,11 @@ public class GithubScm   {
       return false;
     }
     GithubScm githubScm = (GithubScm) o;
-    return Objects.equals(propertyClass, githubScm.propertyClass) &&
-        Objects.equals(links, githubScm.links) &&
-        Objects.equals(credentialId, githubScm.credentialId) &&
-        Objects.equals(id, githubScm.id) &&
-        Objects.equals(uri, githubScm.uri);
+    return Objects.equals(this.propertyClass, githubScm.propertyClass) &&
+        Objects.equals(this.links, githubScm.links) &&
+        Objects.equals(this.credentialId, githubScm.credentialId) &&
+        Objects.equals(this.id, githubScm.id) &&
+        Objects.equals(this.uri, githubScm.uri);
   }
 
   @Override
@@ -143,11 +169,13 @@ public class GithubScm   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

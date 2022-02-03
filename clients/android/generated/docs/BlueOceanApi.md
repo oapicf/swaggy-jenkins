@@ -43,8 +43,9 @@ Method | HTTP request | Description
 [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 
 
-<a name="deletePipelineQueueItem"></a>
-# **deletePipelineQueueItem**
+
+## deletePipelineQueueItem
+
 > deletePipelineQueueItem(organization, pipeline, queue)
 
 
@@ -52,14 +53,15 @@ Method | HTTP request | Description
 Delete queue item from an organization pipeline queue
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String queue = "queue_example"; // String | Name of the queue item
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String queue = null; // String | Name of the queue item
 try {
     apiInstance.deletePipelineQueueItem(organization, pipeline, queue);
 } catch (ApiException e) {
@@ -70,11 +72,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **queue** | **String**| Name of the queue item |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **queue** | **String**| Name of the queue item | [default to null]
 
 ### Return type
 
@@ -86,11 +89,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="getAuthenticatedUser"></a>
-# **getAuthenticatedUser**
+
+## getAuthenticatedUser
+
 > User getAuthenticatedUser(organization)
 
 
@@ -98,12 +102,13 @@ null (empty response body)
 Retrieve authenticated user details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
+String organization = null; // String | Name of the organization
 try {
     User result = apiInstance.getAuthenticatedUser(organization);
     System.out.println(result);
@@ -115,9 +120,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
+ **organization** | **String**| Name of the organization | [default to null]
 
 ### Return type
 
@@ -129,11 +135,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getClasses"></a>
-# **getClasses**
+
+## getClasses
+
 > String getClasses(_class)
 
 
@@ -141,12 +148,13 @@ Name | Type | Description  | Notes
 Get a list of class names supported by a given class
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String _class = "_class_example"; // String | Name of the class
+String _class = null; // String | Name of the class
 try {
     String result = apiInstance.getClasses(_class);
     System.out.println(result);
@@ -158,9 +166,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_class** | **String**| Name of the class |
+ **_class** | **String**| Name of the class | [default to null]
 
 ### Return type
 
@@ -172,11 +181,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJsonWebKey"></a>
-# **getJsonWebKey**
+
+## getJsonWebKey
+
 > String getJsonWebKey(key)
 
 
@@ -184,12 +194,13 @@ Name | Type | Description  | Notes
 Retrieve JSON Web Key
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-Integer key = 56; // Integer | Key ID received as part of JWT header field kid
+Integer key = null; // Integer | Key ID received as part of JWT header field kid
 try {
     String result = apiInstance.getJsonWebKey(key);
     System.out.println(result);
@@ -201,9 +212,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key** | **Integer**| Key ID received as part of JWT header field kid |
+ **key** | **Integer**| Key ID received as part of JWT header field kid | [default to null]
 
 ### Return type
 
@@ -215,11 +227,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJsonWebToken"></a>
-# **getJsonWebToken**
+
+## getJsonWebToken
+
 > String getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
 
 
@@ -227,13 +240,14 @@ No authorization required
 Retrieve JSON Web Token
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-Integer expiryTimeInMins = 56; // Integer | Token expiry time in minutes, default: 30 minutes
-Integer maxExpiryTimeInMins = 56; // Integer | Maximum token expiry time in minutes, default: 480 minutes
+Integer expiryTimeInMins = null; // Integer | Token expiry time in minutes, default: 30 minutes
+Integer maxExpiryTimeInMins = null; // Integer | Maximum token expiry time in minutes, default: 480 minutes
 try {
     String result = apiInstance.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
     System.out.println(result);
@@ -245,10 +259,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expiryTimeInMins** | **Integer**| Token expiry time in minutes, default: 30 minutes | [optional]
- **maxExpiryTimeInMins** | **Integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional]
+ **expiryTimeInMins** | **Integer**| Token expiry time in minutes, default: 30 minutes | [optional] [default to null]
+ **maxExpiryTimeInMins** | **Integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional] [default to null]
 
 ### Return type
 
@@ -260,11 +275,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getOrganisation"></a>
-# **getOrganisation**
+
+## getOrganisation
+
 > Organisation getOrganisation(organization)
 
 
@@ -272,12 +288,13 @@ No authorization required
 Retrieve organization details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
+String organization = null; // String | Name of the organization
 try {
     Organisation result = apiInstance.getOrganisation(organization);
     System.out.println(result);
@@ -289,9 +306,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
+ **organization** | **String**| Name of the organization | [default to null]
 
 ### Return type
 
@@ -303,25 +321,27 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getOrganisations"></a>
-# **getOrganisations**
-> Organisations getOrganisations()
+
+## getOrganisations
+
+> List&lt;Organisation&gt; getOrganisations()
 
 
 
 Retrieve all organizations details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
 try {
-    Organisations result = apiInstance.getOrganisations();
+    List<Organisation> result = apiInstance.getOrganisations();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getOrganisations");
@@ -330,11 +350,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**List&lt;Organisation&gt;**](Organisation.md)
 
 ### Authorization
 
@@ -342,11 +363,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipeline"></a>
-# **getPipeline**
+
+## getPipeline
+
 > Pipeline getPipeline(organization, pipeline)
 
 
@@ -354,13 +376,14 @@ This endpoint does not need any parameter.
 Retrieve pipeline details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
 try {
     Pipeline result = apiInstance.getPipeline(organization, pipeline);
     System.out.println(result);
@@ -372,10 +395,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -387,27 +411,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineActivities"></a>
-# **getPipelineActivities**
-> PipelineActivities getPipelineActivities(organization, pipeline)
+
+## getPipelineActivities
+
+> List&lt;PipelineActivity&gt; getPipelineActivities(organization, pipeline)
 
 
 
 Retrieve all activities details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
 try {
-    PipelineActivities result = apiInstance.getPipelineActivities(organization, pipeline);
+    List<PipelineActivity> result = apiInstance.getPipelineActivities(organization, pipeline);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getPipelineActivities");
@@ -417,14 +443,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**List&lt;PipelineActivity&gt;**](PipelineActivity.md)
 
 ### Authorization
 
@@ -432,11 +459,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineBranch"></a>
-# **getPipelineBranch**
+
+## getPipelineBranch
+
 > BranchImpl getPipelineBranch(organization, pipeline, branch)
 
 
@@ -444,14 +472,15 @@ Name | Type | Description  | Notes
 Retrieve branch details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String branch = "branch_example"; // String | Name of the branch
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String branch = null; // String | Name of the branch
 try {
     BranchImpl result = apiInstance.getPipelineBranch(organization, pipeline, branch);
     System.out.println(result);
@@ -463,11 +492,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **branch** | **String**| Name of the branch |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **branch** | **String**| Name of the branch | [default to null]
 
 ### Return type
 
@@ -479,11 +509,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineBranchRun"></a>
-# **getPipelineBranchRun**
+
+## getPipelineBranchRun
+
 > PipelineRun getPipelineBranchRun(organization, pipeline, branch, run)
 
 
@@ -491,15 +522,16 @@ Name | Type | Description  | Notes
 Retrieve branch run details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String branch = "branch_example"; // String | Name of the branch
-String run = "run_example"; // String | Name of the run
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String branch = null; // String | Name of the branch
+String run = null; // String | Name of the run
 try {
     PipelineRun result = apiInstance.getPipelineBranchRun(organization, pipeline, branch, run);
     System.out.println(result);
@@ -511,12 +543,13 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **branch** | **String**| Name of the branch |
- **run** | **String**| Name of the run |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **branch** | **String**| Name of the branch | [default to null]
+ **run** | **String**| Name of the run | [default to null]
 
 ### Return type
 
@@ -528,11 +561,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineBranches"></a>
-# **getPipelineBranches**
+
+## getPipelineBranches
+
 > MultibranchPipeline getPipelineBranches(organization, pipeline)
 
 
@@ -540,13 +574,14 @@ Name | Type | Description  | Notes
 Retrieve all branches details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
 try {
     MultibranchPipeline result = apiInstance.getPipelineBranches(organization, pipeline);
     System.out.println(result);
@@ -558,10 +593,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -573,11 +609,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineFolder"></a>
-# **getPipelineFolder**
+
+## getPipelineFolder
+
 > PipelineFolderImpl getPipelineFolder(organization, folder)
 
 
@@ -585,13 +622,14 @@ Name | Type | Description  | Notes
 Retrieve pipeline folder for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String folder = "folder_example"; // String | Name of the folder
+String organization = null; // String | Name of the organization
+String folder = null; // String | Name of the folder
 try {
     PipelineFolderImpl result = apiInstance.getPipelineFolder(organization, folder);
     System.out.println(result);
@@ -603,10 +641,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **folder** | **String**| Name of the folder |
+ **organization** | **String**| Name of the organization | [default to null]
+ **folder** | **String**| Name of the folder | [default to null]
 
 ### Return type
 
@@ -618,11 +657,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineFolderPipeline"></a>
-# **getPipelineFolderPipeline**
+
+## getPipelineFolderPipeline
+
 > PipelineImpl getPipelineFolderPipeline(organization, pipeline, folder)
 
 
@@ -630,14 +670,15 @@ Name | Type | Description  | Notes
 Retrieve pipeline details for an organization folder
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String folder = "folder_example"; // String | Name of the folder
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String folder = null; // String | Name of the folder
 try {
     PipelineImpl result = apiInstance.getPipelineFolderPipeline(organization, pipeline, folder);
     System.out.println(result);
@@ -649,11 +690,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **folder** | **String**| Name of the folder |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **folder** | **String**| Name of the folder | [default to null]
 
 ### Return type
 
@@ -665,27 +707,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineQueue"></a>
-# **getPipelineQueue**
-> PipelineQueue getPipelineQueue(organization, pipeline)
+
+## getPipelineQueue
+
+> List&lt;QueueItemImpl&gt; getPipelineQueue(organization, pipeline)
 
 
 
 Retrieve queue details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
 try {
-    PipelineQueue result = apiInstance.getPipelineQueue(organization, pipeline);
+    List<QueueItemImpl> result = apiInstance.getPipelineQueue(organization, pipeline);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getPipelineQueue");
@@ -695,14 +739,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**List&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -710,11 +755,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRun"></a>
-# **getPipelineRun**
+
+## getPipelineRun
+
 > PipelineRun getPipelineRun(organization, pipeline, run)
 
 
@@ -722,14 +768,15 @@ Name | Type | Description  | Notes
 Retrieve run details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
 try {
     PipelineRun result = apiInstance.getPipelineRun(organization, pipeline, run);
     System.out.println(result);
@@ -741,11 +788,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
 
 ### Return type
 
@@ -757,11 +805,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunLog"></a>
-# **getPipelineRunLog**
+
+## getPipelineRunLog
+
 > String getPipelineRunLog(organization, pipeline, run, start, download)
 
 
@@ -769,16 +818,17 @@ Name | Type | Description  | Notes
 Get log for a pipeline run
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-Integer start = 56; // Integer | Start position of the log
-Boolean download = true; // Boolean | Set to true in order to download the file, otherwise it's passed as a response body
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
+Integer start = null; // Integer | Start position of the log
+Boolean download = null; // Boolean | Set to true in order to download the file, otherwise it's passed as a response body
 try {
     String result = apiInstance.getPipelineRunLog(organization, pipeline, run, start, download);
     System.out.println(result);
@@ -790,13 +840,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
- **start** | **Integer**| Start position of the log | [optional]
- **download** | **Boolean**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional]
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
+ **start** | **Integer**| Start position of the log | [optional] [default to null]
+ **download** | **Boolean**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] [default to null]
 
 ### Return type
 
@@ -808,11 +859,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNode"></a>
-# **getPipelineRunNode**
+
+## getPipelineRunNode
+
 > PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
 
 
@@ -820,15 +872,16 @@ Name | Type | Description  | Notes
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
+String node = null; // String | Name of the node
 try {
     PipelineRunNode result = apiInstance.getPipelineRunNode(organization, pipeline, run, node);
     System.out.println(result);
@@ -840,12 +893,13 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
- **node** | **String**| Name of the node |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
+ **node** | **String**| Name of the node | [default to null]
 
 ### Return type
 
@@ -857,11 +911,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodeStep"></a>
-# **getPipelineRunNodeStep**
+
+## getPipelineRunNodeStep
+
 > PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
 
 
@@ -869,16 +924,17 @@ Name | Type | Description  | Notes
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
-String step = "step_example"; // String | Name of the step
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
+String node = null; // String | Name of the node
+String step = null; // String | Name of the step
 try {
     PipelineStepImpl result = apiInstance.getPipelineRunNodeStep(organization, pipeline, run, node, step);
     System.out.println(result);
@@ -890,13 +946,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
- **node** | **String**| Name of the node |
- **step** | **String**| Name of the step |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
+ **node** | **String**| Name of the node | [default to null]
+ **step** | **String**| Name of the step | [default to null]
 
 ### Return type
 
@@ -908,11 +965,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodeStepLog"></a>
-# **getPipelineRunNodeStepLog**
+
+## getPipelineRunNodeStepLog
+
 > String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
 
 
@@ -920,16 +978,17 @@ Name | Type | Description  | Notes
 Get log for a pipeline run node step
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
-String step = "step_example"; // String | Name of the step
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
+String node = null; // String | Name of the node
+String step = null; // String | Name of the step
 try {
     String result = apiInstance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
     System.out.println(result);
@@ -941,13 +1000,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
- **node** | **String**| Name of the node |
- **step** | **String**| Name of the step |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
+ **node** | **String**| Name of the node | [default to null]
+ **step** | **String**| Name of the step | [default to null]
 
 ### Return type
 
@@ -959,29 +1019,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodeSteps"></a>
-# **getPipelineRunNodeSteps**
-> PipelineRunNodeSteps getPipelineRunNodeSteps(organization, pipeline, run, node)
+
+## getPipelineRunNodeSteps
+
+> List&lt;PipelineStepImpl&gt; getPipelineRunNodeSteps(organization, pipeline, run, node)
 
 
 
 Retrieve run node steps details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
+String node = null; // String | Name of the node
 try {
-    PipelineRunNodeSteps result = apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node);
+    List<PipelineStepImpl> result = apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeSteps");
@@ -991,16 +1053,17 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
- **node** | **String**| Name of the node |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
+ **node** | **String**| Name of the node | [default to null]
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**List&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1008,28 +1071,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodes"></a>
-# **getPipelineRunNodes**
-> PipelineRunNodes getPipelineRunNodes(organization, pipeline, run)
+
+## getPipelineRunNodes
+
+> List&lt;PipelineRunNode&gt; getPipelineRunNodes(organization, pipeline, run)
 
 
 
 Retrieve run nodes details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
 try {
-    PipelineRunNodes result = apiInstance.getPipelineRunNodes(organization, pipeline, run);
+    List<PipelineRunNode> result = apiInstance.getPipelineRunNodes(organization, pipeline, run);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodes");
@@ -1039,15 +1104,16 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**List&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1055,27 +1121,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRuns"></a>
-# **getPipelineRuns**
-> PipelineRuns getPipelineRuns(organization, pipeline)
+
+## getPipelineRuns
+
+> List&lt;PipelineRun&gt; getPipelineRuns(organization, pipeline)
 
 
 
 Retrieve all runs details for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
 try {
-    PipelineRuns result = apiInstance.getPipelineRuns(organization, pipeline);
+    List<PipelineRun> result = apiInstance.getPipelineRuns(organization, pipeline);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getPipelineRuns");
@@ -1085,14 +1153,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**List&lt;PipelineRun&gt;**](PipelineRun.md)
 
 ### Authorization
 
@@ -1100,26 +1169,28 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelines"></a>
-# **getPipelines**
-> Pipelines getPipelines(organization)
+
+## getPipelines
+
+> List&lt;Pipeline&gt; getPipelines(organization)
 
 
 
 Retrieve all pipelines details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
+String organization = null; // String | Name of the organization
 try {
-    Pipelines result = apiInstance.getPipelines(organization);
+    List<Pipeline> result = apiInstance.getPipelines(organization);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getPipelines");
@@ -1129,13 +1200,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
+ **organization** | **String**| Name of the organization | [default to null]
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**List&lt;Pipeline&gt;**](Pipeline.md)
 
 ### Authorization
 
@@ -1143,11 +1215,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCM"></a>
-# **getSCM**
+
+## getSCM
+
 > GithubScm getSCM(organization, scm)
 
 
@@ -1155,13 +1228,14 @@ Name | Type | Description  | Notes
 Retrieve SCM details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
+String organization = null; // String | Name of the organization
+String scm = null; // String | Name of SCM
 try {
     GithubScm result = apiInstance.getSCM(organization, scm);
     System.out.println(result);
@@ -1173,10 +1247,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **scm** | **String**| Name of SCM |
+ **organization** | **String**| Name of the organization | [default to null]
+ **scm** | **String**| Name of SCM | [default to null]
 
 ### Return type
 
@@ -1188,31 +1263,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCMOrganisationRepositories"></a>
-# **getSCMOrganisationRepositories**
-> ScmOrganisations getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
+
+## getSCMOrganisationRepositories
+
+> List&lt;GithubOrganization&gt; getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
 
 
 
 Retrieve SCM organization repositories details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-String scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-String credentialId = "credentialId_example"; // String | Credential ID
-Integer pageSize = 56; // Integer | Number of items in a page
-Integer pageNumber = 56; // Integer | Page number
+String organization = null; // String | Name of the organization
+String scm = null; // String | Name of SCM
+String scmOrganisation = null; // String | Name of the SCM organization
+String credentialId = null; // String | Credential ID
+Integer pageSize = null; // Integer | Number of items in a page
+Integer pageNumber = null; // Integer | Page number
 try {
-    ScmOrganisations result = apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+    List<GithubOrganization> result = apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getSCMOrganisationRepositories");
@@ -1222,18 +1299,19 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **scm** | **String**| Name of SCM |
- **scmOrganisation** | **String**| Name of the SCM organization |
- **credentialId** | **String**| Credential ID | [optional]
- **pageSize** | **Integer**| Number of items in a page | [optional]
- **pageNumber** | **Integer**| Page number | [optional]
+ **organization** | **String**| Name of the organization | [default to null]
+ **scm** | **String**| Name of SCM | [default to null]
+ **scmOrganisation** | **String**| Name of the SCM organization | [default to null]
+ **credentialId** | **String**| Credential ID | [optional] [default to null]
+ **pageSize** | **Integer**| Number of items in a page | [optional] [default to null]
+ **pageNumber** | **Integer**| Page number | [optional] [default to null]
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1241,30 +1319,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCMOrganisationRepository"></a>
-# **getSCMOrganisationRepository**
-> ScmOrganisations getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
+
+## getSCMOrganisationRepository
+
+> List&lt;GithubOrganization&gt; getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
 
 
 
 Retrieve SCM organization repository details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-String scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-String repository = "repository_example"; // String | Name of the SCM repository
-String credentialId = "credentialId_example"; // String | Credential ID
+String organization = null; // String | Name of the organization
+String scm = null; // String | Name of SCM
+String scmOrganisation = null; // String | Name of the SCM organization
+String repository = null; // String | Name of the SCM repository
+String credentialId = null; // String | Credential ID
 try {
-    ScmOrganisations result = apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
+    List<GithubOrganization> result = apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getSCMOrganisationRepository");
@@ -1274,17 +1354,18 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **scm** | **String**| Name of SCM |
- **scmOrganisation** | **String**| Name of the SCM organization |
- **repository** | **String**| Name of the SCM repository |
- **credentialId** | **String**| Credential ID | [optional]
+ **organization** | **String**| Name of the organization | [default to null]
+ **scm** | **String**| Name of SCM | [default to null]
+ **scmOrganisation** | **String**| Name of the SCM organization | [default to null]
+ **repository** | **String**| Name of the SCM repository | [default to null]
+ **credentialId** | **String**| Credential ID | [optional] [default to null]
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1292,28 +1373,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCMOrganisations"></a>
-# **getSCMOrganisations**
-> ScmOrganisations getSCMOrganisations(organization, scm, credentialId)
+
+## getSCMOrganisations
+
+> List&lt;GithubOrganization&gt; getSCMOrganisations(organization, scm, credentialId)
 
 
 
 Retrieve SCM organizations details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-String credentialId = "credentialId_example"; // String | Credential ID
+String organization = null; // String | Name of the organization
+String scm = null; // String | Name of SCM
+String credentialId = null; // String | Credential ID
 try {
-    ScmOrganisations result = apiInstance.getSCMOrganisations(organization, scm, credentialId);
+    List<GithubOrganization> result = apiInstance.getSCMOrganisations(organization, scm, credentialId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getSCMOrganisations");
@@ -1323,15 +1406,16 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **scm** | **String**| Name of SCM |
- **credentialId** | **String**| Credential ID | [optional]
+ **organization** | **String**| Name of the organization | [default to null]
+ **scm** | **String**| Name of SCM | [default to null]
+ **credentialId** | **String**| Credential ID | [optional] [default to null]
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1339,11 +1423,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getUser"></a>
-# **getUser**
+
+## getUser
+
 > User getUser(organization, user)
 
 
@@ -1351,13 +1436,14 @@ Name | Type | Description  | Notes
 Retrieve user details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String user = "user_example"; // String | Name of the user
+String organization = null; // String | Name of the organization
+String user = null; // String | Name of the user
 try {
     User result = apiInstance.getUser(organization, user);
     System.out.println(result);
@@ -1369,10 +1455,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **user** | **String**| Name of the user |
+ **organization** | **String**| Name of the organization | [default to null]
+ **user** | **String**| Name of the user | [default to null]
 
 ### Return type
 
@@ -1384,26 +1471,28 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getUserFavorites"></a>
-# **getUserFavorites**
-> UserFavorites getUserFavorites(user)
+
+## getUserFavorites
+
+> List&lt;FavoriteImpl&gt; getUserFavorites(user)
 
 
 
 Retrieve user favorites details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String user = "user_example"; // String | Name of the user
+String user = null; // String | Name of the user
 try {
-    UserFavorites result = apiInstance.getUserFavorites(user);
+    List<FavoriteImpl> result = apiInstance.getUserFavorites(user);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#getUserFavorites");
@@ -1413,13 +1502,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **String**| Name of the user |
+ **user** | **String**| Name of the user | [default to null]
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**List&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1427,11 +1517,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getUsers"></a>
-# **getUsers**
+
+## getUsers
+
 > User getUsers(organization)
 
 
@@ -1439,12 +1530,13 @@ Name | Type | Description  | Notes
 Retrieve users details for an organization
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
+String organization = null; // String | Name of the organization
 try {
     User result = apiInstance.getUsers(organization);
     System.out.println(result);
@@ -1456,9 +1548,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
+ **organization** | **String**| Name of the organization | [default to null]
 
 ### Return type
 
@@ -1470,11 +1563,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="postPipelineRun"></a>
-# **postPipelineRun**
+
+## postPipelineRun
+
 > QueueItemImpl postPipelineRun(organization, pipeline, run)
 
 
@@ -1482,14 +1576,15 @@ Name | Type | Description  | Notes
 Replay an organization pipeline run
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
 try {
     QueueItemImpl result = apiInstance.postPipelineRun(organization, pipeline, run);
     System.out.println(result);
@@ -1501,11 +1596,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
 
 ### Return type
 
@@ -1517,11 +1613,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="postPipelineRuns"></a>
-# **postPipelineRuns**
+
+## postPipelineRuns
+
 > QueueItemImpl postPipelineRuns(organization, pipeline)
 
 
@@ -1529,13 +1626,14 @@ Name | Type | Description  | Notes
 Start a build for an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
 try {
     QueueItemImpl result = apiInstance.postPipelineRuns(organization, pipeline);
     System.out.println(result);
@@ -1547,10 +1645,11 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -1562,28 +1661,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="putPipelineFavorite"></a>
-# **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
+
+## putPipelineFavorite
+
+> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
 
 
 
 Favorite/unfavorite a pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-Body body = new Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 try {
-    FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
+    FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#putPipelineFavorite");
@@ -1593,11 +1694,12 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite |
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 
@@ -1609,11 +1711,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-<a name="putPipelineRun"></a>
-# **putPipelineRun**
+
+## putPipelineRun
+
 > PipelineRun putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
 
 
@@ -1621,16 +1724,17 @@ Name | Type | Description  | Notes
 Stop a build of an organization pipeline
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String blocking = "blocking_example"; // String | Set to true to make blocking stop, default: false
-Integer timeOutInSecs = 56; // Integer | Timeout in seconds, default: 10 seconds
+String organization = null; // String | Name of the organization
+String pipeline = null; // String | Name of the pipeline
+String run = null; // String | Name of the run
+String blocking = null; // String | Set to true to make blocking stop, default: false
+Integer timeOutInSecs = null; // Integer | Timeout in seconds, default: 10 seconds
 try {
     PipelineRun result = apiInstance.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
     System.out.println(result);
@@ -1642,13 +1746,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization |
- **pipeline** | **String**| Name of the pipeline |
- **run** | **String**| Name of the run |
- **blocking** | **String**| Set to true to make blocking stop, default: false | [optional]
- **timeOutInSecs** | **Integer**| Timeout in seconds, default: 10 seconds | [optional]
+ **organization** | **String**| Name of the organization | [default to null]
+ **pipeline** | **String**| Name of the pipeline | [default to null]
+ **run** | **String**| Name of the run | [default to null]
+ **blocking** | **String**| Set to true to make blocking stop, default: false | [optional] [default to null]
+ **timeOutInSecs** | **Integer**| Timeout in seconds, default: 10 seconds | [optional] [default to null]
 
 ### Return type
 
@@ -1660,11 +1765,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="search"></a>
-# **search**
+
+## search
+
 > String search(q)
 
 
@@ -1672,12 +1778,13 @@ Name | Type | Description  | Notes
 Search for any resource details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String q = "q_example"; // String | Query string
+String q = null; // String | Query string
 try {
     String result = apiInstance.search(q);
     System.out.println(result);
@@ -1689,9 +1796,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **String**| Query string |
+ **q** | **String**| Query string | [default to null]
 
 ### Return type
 
@@ -1703,11 +1811,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="searchClasses"></a>
-# **searchClasses**
+
+## searchClasses
+
 > String searchClasses(q)
 
 
@@ -1715,12 +1824,13 @@ Name | Type | Description  | Notes
 Get classes details
 
 ### Example
+
 ```java
 // Import classes:
 //import org.openapitools.client.api.BlueOceanApi;
 
 BlueOceanApi apiInstance = new BlueOceanApi();
-String q = "q_example"; // String | Query string containing an array of class names
+String q = null; // String | Query string containing an array of class names
 try {
     String result = apiInstance.searchClasses(q);
     System.out.println(result);
@@ -1732,9 +1842,10 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **String**| Query string containing an array of class names |
+ **q** | **String**| Query string containing an array of class names | [default to null]
 
 ### Return type
 
@@ -1746,6 +1857,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

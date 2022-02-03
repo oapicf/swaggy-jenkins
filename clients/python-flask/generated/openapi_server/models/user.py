@@ -15,7 +15,7 @@ class User(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, id: str=None, full_name: str=None, email: str=None, name: str=None):  # noqa: E501
+    def __init__(self, _class=None, id=None, full_name=None, email=None, name=None):  # noqa: E501
         """User - a model defined in OpenAPI
 
         :param _class: The _class of this User.  # noqa: E501
@@ -63,7 +63,7 @@ class User(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this User.
 
 
@@ -73,7 +73,7 @@ class User(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this User.
 
 
@@ -84,7 +84,7 @@ class User(Model):
         self.__class = _class
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this User.
 
 
@@ -94,7 +94,7 @@ class User(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this User.
 
 
@@ -105,7 +105,7 @@ class User(Model):
         self._id = id
 
     @property
-    def full_name(self) -> str:
+    def full_name(self):
         """Gets the full_name of this User.
 
 
@@ -115,7 +115,7 @@ class User(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name: str):
+    def full_name(self, full_name):
         """Sets the full_name of this User.
 
 
@@ -126,7 +126,7 @@ class User(Model):
         self._full_name = full_name
 
     @property
-    def email(self) -> str:
+    def email(self):
         """Gets the email of this User.
 
 
@@ -136,7 +136,7 @@ class User(Model):
         return self._email
 
     @email.setter
-    def email(self, email: str):
+    def email(self, email):
         """Sets the email of this User.
 
 
@@ -147,7 +147,7 @@ class User(Model):
         self._email = email
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this User.
 
 
@@ -157,7 +157,7 @@ class User(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this User.
 
 

@@ -22,3 +22,20 @@ type SwapSpaceMonitorMemoryUsage2 struct {
 
 	TotalSwapSpace int32 `json:"totalSwapSpace,omitempty"`
 }
+
+// AssertSwapSpaceMonitorMemoryUsage2Required checks if the required fields are not zero-ed
+func AssertSwapSpaceMonitorMemoryUsage2Required(obj SwapSpaceMonitorMemoryUsage2) error {
+	return nil
+}
+
+// AssertRecurseSwapSpaceMonitorMemoryUsage2Required recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of SwapSpaceMonitorMemoryUsage2 (e.g. [][]SwapSpaceMonitorMemoryUsage2), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseSwapSpaceMonitorMemoryUsage2Required(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aSwapSpaceMonitorMemoryUsage2, ok := obj.(SwapSpaceMonitorMemoryUsage2)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertSwapSpaceMonitorMemoryUsage2Required(aSwapSpaceMonitorMemoryUsage2)
+	})
+}

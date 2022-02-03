@@ -4,34 +4,36 @@ import java.util.Objects;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class FreeStyleBuild   {
   
-  private String propertyClass = null;
-  private Integer number = null;
-  private String url = null;
+  private String propertyClass;
+  private Integer number;
+  private String url;
   private List<CauseAction> actions = new ArrayList<CauseAction>();
-  private Boolean building = null;
-  private String description = null;
-  private String displayName = null;
-  private Integer duration = null;
-  private Integer estimatedDuration = null;
-  private String executor = null;
-  private String fullDisplayName = null;
-  private String id = null;
-  private Boolean keepLog = null;
-  private Integer queueId = null;
-  private String result = null;
-  private Integer timestamp = null;
-  private String builtOn = null;
-  private EmptyChangeLogSet changeSet = null;
+  private Boolean building;
+  private String description;
+  private String displayName;
+  private Integer duration;
+  private Integer estimatedDuration;
+  private String executor;
+  private String fullDisplayName;
+  private String id;
+  private Boolean keepLog;
+  private Integer queueId;
+  private String result;
+  private Integer timestamp;
+  private String builtOn;
+  private EmptyChangeLogSet changeSet;
 
   /**
    **/
@@ -251,7 +253,7 @@ public class FreeStyleBuild   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -315,7 +317,7 @@ public class FreeStyleBuild   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

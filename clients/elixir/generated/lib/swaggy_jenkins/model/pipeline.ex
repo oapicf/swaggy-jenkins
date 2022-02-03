@@ -20,14 +20,14 @@ defmodule SwaggyJenkins.Model.Pipeline do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"organization" => String.t,
-    :"name" => String.t,
-    :"displayName" => String.t,
-    :"fullName" => String.t,
-    :"weatherScore" => integer(),
-    :"estimatedDurationInMillis" => integer(),
-    :"latestRun" => PipelinelatestRun
+    :"_class" => String.t | nil,
+    :"organization" => String.t | nil,
+    :"name" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"fullName" => String.t | nil,
+    :"weatherScore" => integer() | nil,
+    :"estimatedDurationInMillis" => integer() | nil,
+    :"latestRun" => SwaggyJenkins.Model.PipelinelatestRun.t | nil
   }
 end
 

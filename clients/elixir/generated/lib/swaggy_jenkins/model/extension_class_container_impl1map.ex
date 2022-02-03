@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.ExtensionClassContainerImpl1map do
   ]
 
   @type t :: %__MODULE__{
-    :"io.jenkins.blueocean.service.embedded.rest.PipelineImpl" => ExtensionClassImpl,
-    :"io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl" => ExtensionClassImpl,
-    :"_class" => String.t
+    :"io.jenkins.blueocean.service.embedded.rest.PipelineImpl" => SwaggyJenkins.Model.ExtensionClassImpl.t | nil,
+    :"io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl" => SwaggyJenkins.Model.ExtensionClassImpl.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

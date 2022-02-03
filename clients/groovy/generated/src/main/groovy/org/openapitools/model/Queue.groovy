@@ -9,8 +9,8 @@ import org.openapitools.model.QueueBlockedItem;
 
 @Canonical
 class Queue {
-    String propertyClass = null
-
+    
+    String propertyClass
+    
     List<QueueBlockedItem> items = new ArrayList<QueueBlockedItem>()
-
 }

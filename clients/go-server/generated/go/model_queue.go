@@ -16,3 +16,25 @@ type Queue struct {
 
 	Items []QueueBlockedItem `json:"items,omitempty"`
 }
+
+// AssertQueueRequired checks if the required fields are not zero-ed
+func AssertQueueRequired(obj Queue) error {
+	for _, el := range obj.Items {
+		if err := AssertQueueBlockedItemRequired(el); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AssertRecurseQueueRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of Queue (e.g. [][]Queue), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseQueueRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aQueue, ok := obj.(Queue)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertQueueRequired(aQueue)
+	})
+}

@@ -7,10 +7,10 @@ import org.openapitools.model.Link;
 
 @Canonical
 class GithubOrganizationlinks {
-    Link repositories = null
-
-    Link self = null
-
-    String propertyClass = null
-
+    
+    Link repositories
+    
+    Link self
+    
+    String propertyClass
 }

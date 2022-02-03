@@ -1,25 +1,31 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelinelatestRun;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class Pipeline   {
+
+@JsonTypeName("Pipeline")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class Pipeline   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String organization = null;
-  private @Valid String name = null;
-  private @Valid String displayName = null;
-  private @Valid String fullName = null;
-  private @Valid Integer weatherScore = null;
-  private @Valid Integer estimatedDurationInMillis = null;
-  private @Valid PipelinelatestRun latestRun = null;
+  private @Valid String propertyClass;
+  private @Valid String organization;
+  private @Valid String name;
+  private @Valid String displayName;
+  private @Valid String fullName;
+  private @Valid Integer weatherScore;
+  private @Valid Integer estimatedDurationInMillis;
+  private @Valid PipelinelatestRun latestRun;
 
   /**
    **/
@@ -29,16 +35,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public Pipeline organization(String organization) {
     this.organization = organization;
@@ -46,16 +56,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public Pipeline name(String name) {
     this.name = name;
@@ -63,16 +77,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public Pipeline displayName(String displayName) {
     this.displayName = displayName;
@@ -80,16 +98,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public Pipeline fullName(String fullName) {
     this.fullName = fullName;
@@ -97,16 +119,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
+
+  @JsonProperty("fullName")
   public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
-  /**
+/**
    **/
   public Pipeline weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -114,16 +140,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
+
+  @JsonProperty("weatherScore")
   public void setWeatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  /**
+/**
    **/
   public Pipeline estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -131,16 +161,20 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
+
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  /**
+/**
    **/
   public Pipeline latestRun(PipelinelatestRun latestRun) {
     this.latestRun = latestRun;
@@ -148,18 +182,22 @@ public class Pipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
   public PipelinelatestRun getLatestRun() {
     return latestRun;
   }
+
+  @JsonProperty("latestRun")
   public void setLatestRun(PipelinelatestRun latestRun) {
     this.latestRun = latestRun;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -167,14 +205,14 @@ public class Pipeline   {
       return false;
     }
     Pipeline pipeline = (Pipeline) o;
-    return Objects.equals(propertyClass, pipeline.propertyClass) &&
-        Objects.equals(organization, pipeline.organization) &&
-        Objects.equals(name, pipeline.name) &&
-        Objects.equals(displayName, pipeline.displayName) &&
-        Objects.equals(fullName, pipeline.fullName) &&
-        Objects.equals(weatherScore, pipeline.weatherScore) &&
-        Objects.equals(estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
-        Objects.equals(latestRun, pipeline.latestRun);
+    return Objects.equals(this.propertyClass, pipeline.propertyClass) &&
+        Objects.equals(this.organization, pipeline.organization) &&
+        Objects.equals(this.name, pipeline.name) &&
+        Objects.equals(this.displayName, pipeline.displayName) &&
+        Objects.equals(this.fullName, pipeline.fullName) &&
+        Objects.equals(this.weatherScore, pipeline.weatherScore) &&
+        Objects.equals(this.estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, pipeline.latestRun);
   }
 
   @Override
@@ -203,11 +241,13 @@ public class Pipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

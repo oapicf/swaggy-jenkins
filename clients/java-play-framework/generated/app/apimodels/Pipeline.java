@@ -9,33 +9,41 @@ import javax.validation.constraints.*;
 /**
  * Pipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Pipeline   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("organization")
-  private String organization = null;
+  
+  private String organization;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  
+  private String fullName;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  
+  private Integer weatherScore;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("latestRun")
-  private PipelinelatestRun latestRun = null;
+  @Valid
+
+  private PipelinelatestRun latestRun;
 
   public Pipeline propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -46,7 +54,7 @@ public class Pipeline   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -63,7 +71,7 @@ public class Pipeline   {
    * Get organization
    * @return organization
   **/
-    public String getOrganization() {
+  public String getOrganization() {
     return organization;
   }
 
@@ -80,7 +88,7 @@ public class Pipeline   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -97,7 +105,7 @@ public class Pipeline   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -114,7 +122,7 @@ public class Pipeline   {
    * Get fullName
    * @return fullName
   **/
-    public String getFullName() {
+  public String getFullName() {
     return fullName;
   }
 
@@ -131,7 +139,7 @@ public class Pipeline   {
    * Get weatherScore
    * @return weatherScore
   **/
-    public Integer getWeatherScore() {
+  public Integer getWeatherScore() {
     return weatherScore;
   }
 
@@ -148,7 +156,7 @@ public class Pipeline   {
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
   **/
-    public Integer getEstimatedDurationInMillis() {
+  public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
@@ -165,7 +173,6 @@ public class Pipeline   {
    * Get latestRun
    * @return latestRun
   **/
-  @Valid
   public PipelinelatestRun getLatestRun() {
     return latestRun;
   }
@@ -176,7 +183,7 @@ public class Pipeline   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -221,7 +228,7 @@ public class Pipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

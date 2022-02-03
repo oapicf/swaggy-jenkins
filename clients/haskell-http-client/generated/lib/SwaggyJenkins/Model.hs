@@ -70,8 +70,8 @@ import qualified Prelude as P
 -- ** Blocking
 newtype Blocking = Blocking { unBlocking :: Text } deriving (P.Eq, P.Show)
 
--- ** Body2
-newtype Body2 = Body2 { unBody2 :: Text } deriving (P.Eq, P.Show, A.ToJSON)
+-- ** Body
+newtype Body = Body { unBody :: Text } deriving (P.Eq, P.Show, A.ToJSON)
 
 -- ** Branch
 newtype Branch = Branch { unBranch :: Text } deriving (P.Eq, P.Show)
@@ -209,35 +209,6 @@ mkAllView =
   { allViewClass = Nothing
   , allViewName = Nothing
   , allViewUrl = Nothing
-  }
-
--- ** Body
--- | Body
-data Body = Body
-  { bodyFavorite :: !(Bool) -- ^ /Required/ "favorite"
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON Body
-instance A.FromJSON Body where
-  parseJSON = A.withObject "Body" $ \o ->
-    Body
-      <$> (o .:  "favorite")
-
--- | ToJSON Body
-instance A.ToJSON Body where
-  toJSON Body {..} =
-   _omitNulls
-      [ "favorite" .= bodyFavorite
-      ]
-
-
--- | Construct a value of type 'Body' (by applying it's required fields, if any)
-mkBody
-  :: Bool -- ^ 'bodyFavorite' 
-  -> Body
-mkBody bodyFavorite =
-  Body
-  { bodyFavorite
   }
 
 -- ** BranchImpl
@@ -2424,34 +2395,6 @@ mkOrganisation =
   , organisationName = Nothing
   }
 
--- ** Organisations
--- | Organisations
-data Organisations = Organisations
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON Organisations
-instance A.FromJSON Organisations where
-  parseJSON = A.withObject "Organisations" $ \o ->
-    pure Organisations
-      
-
--- | ToJSON Organisations
-instance A.ToJSON Organisations where
-  toJSON Organisations  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'Organisations' (by applying it's required fields, if any)
-mkOrganisations
-  :: Organisations
-mkOrganisations =
-  Organisations
-  { 
-  }
-
 -- ** Pipeline
 -- | Pipeline
 data Pipeline = Pipeline
@@ -2506,34 +2449,6 @@ mkPipeline =
   , pipelineWeatherScore = Nothing
   , pipelineEstimatedDurationInMillis = Nothing
   , pipelineLatestRun = Nothing
-  }
-
--- ** PipelineActivities
--- | PipelineActivities
-data PipelineActivities = PipelineActivities
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineActivities
-instance A.FromJSON PipelineActivities where
-  parseJSON = A.withObject "PipelineActivities" $ \o ->
-    pure PipelineActivities
-      
-
--- | ToJSON PipelineActivities
-instance A.ToJSON PipelineActivities where
-  toJSON PipelineActivities  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineActivities' (by applying it's required fields, if any)
-mkPipelineActivities
-  :: PipelineActivities
-mkPipelineActivities =
-  PipelineActivities
-  { 
   }
 
 -- ** PipelineActivity
@@ -2658,34 +2573,6 @@ mkPipelineActivityartifacts =
   , pipelineActivityartifactsSize = Nothing
   , pipelineActivityartifactsUrl = Nothing
   , pipelineActivityartifactsClass = Nothing
-  }
-
--- ** PipelineBranches
--- | PipelineBranches
-data PipelineBranches = PipelineBranches
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineBranches
-instance A.FromJSON PipelineBranches where
-  parseJSON = A.withObject "PipelineBranches" $ \o ->
-    pure PipelineBranches
-      
-
--- | ToJSON PipelineBranches
-instance A.ToJSON PipelineBranches where
-  toJSON PipelineBranches  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineBranches' (by applying it's required fields, if any)
-mkPipelineBranches
-  :: PipelineBranches
-mkPipelineBranches =
-  PipelineBranches
-  { 
   }
 
 -- ** PipelineBranchesitem
@@ -3064,34 +2951,6 @@ mkPipelineImpllinks =
   , pipelineImpllinksClass = Nothing
   }
 
--- ** PipelineQueue
--- | PipelineQueue
-data PipelineQueue = PipelineQueue
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineQueue
-instance A.FromJSON PipelineQueue where
-  parseJSON = A.withObject "PipelineQueue" $ \o ->
-    pure PipelineQueue
-      
-
--- | ToJSON PipelineQueue
-instance A.ToJSON PipelineQueue where
-  toJSON PipelineQueue  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineQueue' (by applying it's required fields, if any)
-mkPipelineQueue
-  :: PipelineQueue
-mkPipelineQueue =
-  PipelineQueue
-  { 
-  }
-
 -- ** PipelineRun
 -- | PipelineRun
 data PipelineRun = PipelineRun
@@ -3364,34 +3223,6 @@ mkPipelineRunNode =
   , pipelineRunNodeState = Nothing
   }
 
--- ** PipelineRunNodeSteps
--- | PipelineRunNodeSteps
-data PipelineRunNodeSteps = PipelineRunNodeSteps
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineRunNodeSteps
-instance A.FromJSON PipelineRunNodeSteps where
-  parseJSON = A.withObject "PipelineRunNodeSteps" $ \o ->
-    pure PipelineRunNodeSteps
-      
-
--- | ToJSON PipelineRunNodeSteps
-instance A.ToJSON PipelineRunNodeSteps where
-  toJSON PipelineRunNodeSteps  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineRunNodeSteps' (by applying it's required fields, if any)
-mkPipelineRunNodeSteps
-  :: PipelineRunNodeSteps
-mkPipelineRunNodeSteps =
-  PipelineRunNodeSteps
-  { 
-  }
-
 -- ** PipelineRunNodeedges
 -- | PipelineRunNodeedges
 data PipelineRunNodeedges = PipelineRunNodeedges
@@ -3422,62 +3253,6 @@ mkPipelineRunNodeedges =
   PipelineRunNodeedges
   { pipelineRunNodeedgesId = Nothing
   , pipelineRunNodeedgesClass = Nothing
-  }
-
--- ** PipelineRunNodes
--- | PipelineRunNodes
-data PipelineRunNodes = PipelineRunNodes
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineRunNodes
-instance A.FromJSON PipelineRunNodes where
-  parseJSON = A.withObject "PipelineRunNodes" $ \o ->
-    pure PipelineRunNodes
-      
-
--- | ToJSON PipelineRunNodes
-instance A.ToJSON PipelineRunNodes where
-  toJSON PipelineRunNodes  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineRunNodes' (by applying it's required fields, if any)
-mkPipelineRunNodes
-  :: PipelineRunNodes
-mkPipelineRunNodes =
-  PipelineRunNodes
-  { 
-  }
-
--- ** PipelineRunSteps
--- | PipelineRunSteps
-data PipelineRunSteps = PipelineRunSteps
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineRunSteps
-instance A.FromJSON PipelineRunSteps where
-  parseJSON = A.withObject "PipelineRunSteps" $ \o ->
-    pure PipelineRunSteps
-      
-
--- | ToJSON PipelineRunSteps
-instance A.ToJSON PipelineRunSteps where
-  toJSON PipelineRunSteps  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineRunSteps' (by applying it's required fields, if any)
-mkPipelineRunSteps
-  :: PipelineRunSteps
-mkPipelineRunSteps =
-  PipelineRunSteps
-  { 
   }
 
 -- ** PipelineRunartifacts
@@ -3518,34 +3293,6 @@ mkPipelineRunartifacts =
   , pipelineRunartifactsSize = Nothing
   , pipelineRunartifactsUrl = Nothing
   , pipelineRunartifactsClass = Nothing
-  }
-
--- ** PipelineRuns
--- | PipelineRuns
-data PipelineRuns = PipelineRuns
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON PipelineRuns
-instance A.FromJSON PipelineRuns where
-  parseJSON = A.withObject "PipelineRuns" $ \o ->
-    pure PipelineRuns
-      
-
--- | ToJSON PipelineRuns
-instance A.ToJSON PipelineRuns where
-  toJSON PipelineRuns  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'PipelineRuns' (by applying it's required fields, if any)
-mkPipelineRuns
-  :: PipelineRuns
-mkPipelineRuns =
-  PipelineRuns
-  { 
   }
 
 -- ** PipelineStepImpl
@@ -3766,34 +3513,6 @@ mkPipelinelatestRunartifacts =
   , pipelinelatestRunartifactsSize = Nothing
   , pipelinelatestRunartifactsUrl = Nothing
   , pipelinelatestRunartifactsClass = Nothing
-  }
-
--- ** Pipelines
--- | Pipelines
-data Pipelines = Pipelines
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON Pipelines
-instance A.FromJSON Pipelines where
-  parseJSON = A.withObject "Pipelines" $ \o ->
-    pure Pipelines
-      
-
--- | ToJSON Pipelines
-instance A.ToJSON Pipelines where
-  toJSON Pipelines  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'Pipelines' (by applying it's required fields, if any)
-mkPipelines
-  :: Pipelines
-mkPipelines =
-  Pipelines
-  { 
   }
 
 -- ** Queue
@@ -4056,34 +3775,6 @@ mkResponseTimeMonitorData =
   , responseTimeMonitorDataAverage = Nothing
   }
 
--- ** ScmOrganisations
--- | ScmOrganisations
-data ScmOrganisations = ScmOrganisations
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON ScmOrganisations
-instance A.FromJSON ScmOrganisations where
-  parseJSON = A.withObject "ScmOrganisations" $ \o ->
-    pure ScmOrganisations
-      
-
--- | ToJSON ScmOrganisations
-instance A.ToJSON ScmOrganisations where
-  toJSON ScmOrganisations  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'ScmOrganisations' (by applying it's required fields, if any)
-mkScmOrganisations
-  :: ScmOrganisations
-mkScmOrganisations =
-  ScmOrganisations
-  { 
-  }
-
 -- ** StringParameterDefinition
 -- | StringParameterDefinition
 data StringParameterDefinition = StringParameterDefinition
@@ -4280,62 +3971,6 @@ mkUser =
   , userName = Nothing
   }
 
--- ** UserFavorites
--- | UserFavorites
-data UserFavorites = UserFavorites
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON UserFavorites
-instance A.FromJSON UserFavorites where
-  parseJSON = A.withObject "UserFavorites" $ \o ->
-    pure UserFavorites
-      
-
--- | ToJSON UserFavorites
-instance A.ToJSON UserFavorites where
-  toJSON UserFavorites  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'UserFavorites' (by applying it's required fields, if any)
-mkUserFavorites
-  :: UserFavorites
-mkUserFavorites =
-  UserFavorites
-  { 
-  }
-
--- ** Users
--- | Users
-data Users = Users
-  { 
-  } deriving (P.Show, P.Eq, P.Typeable)
-
--- | FromJSON Users
-instance A.FromJSON Users where
-  parseJSON = A.withObject "Users" $ \o ->
-    pure Users
-      
-
--- | ToJSON Users
-instance A.ToJSON Users where
-  toJSON Users  =
-   _omitNulls
-      [ 
-      ]
-
-
--- | Construct a value of type 'Users' (by applying it's required fields, if any)
-mkUsers
-  :: Users
-mkUsers =
-  Users
-  { 
-  }
-
 
 
 
@@ -4367,4 +4002,5 @@ instance AuthMethod AuthApiKeyJwtAuth where
       then req `setHeader` toHeader ("Authorization", secret)
            & L.over rAuthTypesL (P.filter (/= P.typeOf a))
       else req
+
 

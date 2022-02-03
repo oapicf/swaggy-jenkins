@@ -12,40 +12,39 @@ import org.openapitools.model.PipelinelatestRunartifacts;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class PipelinelatestRun   {
   
 
   private List<PipelinelatestRunartifacts> artifacts = new ArrayList<PipelinelatestRunartifacts>();
 
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
-  private String enQueueTime = null;
+  private String enQueueTime;
 
-  private String endTime = null;
+  private String endTime;
 
-  private String id = null;
+  private String id;
 
-  private String organization = null;
+  private String organization;
 
-  private String pipeline = null;
+  private String pipeline;
 
-  private String result = null;
+  private String result;
 
-  private String runSummary = null;
+  private String runSummary;
 
-  private String startTime = null;
+  private String startTime;
 
-  private String state = null;
+  private String state;
 
-  private String type = null;
+  private String type;
 
-  private String commitId = null;
+  private String commitId;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
   /**
    **/

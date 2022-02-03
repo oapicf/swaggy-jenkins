@@ -14,13 +14,14 @@ the [Swagger Ada library](https://github.com/stcarrez/swagger-ada).
 When the GNAT Ada compiler and Swagger Ada libraries are installed,
 run the following command:
 
-```
+```shell
   gprbuild -p -PdefaultPackage
 ```
 
 After the build is successful, you will get the server binary
 in bin/-server and you can start it as follows:
-```
+
+```shell
   ./bin/-server
 ```
 
@@ -51,8 +52,8 @@ The server instance is represented by the **.Servers.Server_Type** Ada type.
 The REST API will need an instance of it to make the operation call.  Two server model
 exists:
 
-* The instance per request model creates an instance of the server type for each request.
-* The shared instance model shares the same instance across all concurrent REST requests.  This instance is protected using an Ada protected object which holds the server instance.
+- The instance per request model creates an instance of the server type for each request.
+- The shared instance model shares the same instance across all concurrent REST requests.  This instance is protected using an Ada protected object which holds the server instance.
 
 The choice of the server model is made at the compilation time by instantiating either
 the **.Skeletons.Skeleton** package or the **.Skeletons.Shared_Instance**
@@ -65,9 +66,9 @@ All you have to do is implement the server operation in the **src/-servers.adb**
 The package already contains the operation with its parameters and you only have to replace
 the **null** instruction by real code.
 
-# Documentation
+## Documentation
 
-## API Documentation
+### API Documentation
 
 All URIs are relative to *http://localhost*
 
@@ -98,10 +99,10 @@ Method | HTTP request | Description
 [**Get_Pipeline_Run_Nodes**](BlueOceanApi.md#Get_Pipeline_Run_Nodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
 [**Get_Pipeline_Runs**](BlueOceanApi.md#Get_Pipeline_Runs) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
 [**Get_Pipelines**](BlueOceanApi.md#Get_Pipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
-[**Get_S_C_M**](BlueOceanApi.md#Get_S_C_M) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
-[**Get_S_C_M_Organisation_Repositories**](BlueOceanApi.md#Get_S_C_M_Organisation_Repositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-[**Get_S_C_M_Organisation_Repository**](BlueOceanApi.md#Get_S_C_M_Organisation_Repository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-[**Get_S_C_M_Organisations**](BlueOceanApi.md#Get_S_C_M_Organisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+[**Get_SCM**](BlueOceanApi.md#Get_SCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+[**Get_SCMOrganisation_Repositories**](BlueOceanApi.md#Get_SCMOrganisation_Repositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+[**Get_SCMOrganisation_Repository**](BlueOceanApi.md#Get_SCMOrganisation_Repository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+[**Get_SCMOrganisations**](BlueOceanApi.md#Get_SCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
 [**Get_User**](BlueOceanApi.md#Get_User) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
 [**Get_User_Favorites**](BlueOceanApi.md#Get_User_Favorites) | **GET** /blue/rest/users/{user}/favorites | 
 [**Get_Users**](BlueOceanApi.md#Get_Users) | **GET** /blue/rest/organizations/{organization}/users/ | 
@@ -133,9 +134,9 @@ Method | HTTP request | Description
 [**Post_View_Config**](RemoteAccessApi.md#Post_View_Config) | **POST** /view/{name}/config.xml | 
 
 
-## Models
+### Models
+
  - [.Models.AllView_Type](AllView_Type.md)
- - [.Models.Body_Type](Body_Type.md)
  - [.Models.BranchImpl_Type](BranchImpl_Type.md)
  - [.Models.BranchImpllinks_Type](BranchImpllinks_Type.md)
  - [.Models.BranchImplpermissions_Type](BranchImplpermissions_Type.md)
@@ -185,11 +186,8 @@ Method | HTTP request | Description
  - [.Models.MultibranchPipeline_Type](MultibranchPipeline_Type.md)
  - [.Models.NullSCM_Type](NullSCM_Type.md)
  - [.Models.Organisation_Type](Organisation_Type.md)
- - [.Models.Organisations_Type](Organisations_Type.md)
- - [.Models.PipelineActivities_Type](PipelineActivities_Type.md)
  - [.Models.PipelineActivity_Type](PipelineActivity_Type.md)
  - [.Models.PipelineActivityartifacts_Type](PipelineActivityartifacts_Type.md)
- - [.Models.PipelineBranches_Type](PipelineBranches_Type.md)
  - [.Models.PipelineBranchesitem_Type](PipelineBranchesitem_Type.md)
  - [.Models.PipelineBranchesitemlatestRun_Type](PipelineBranchesitemlatestRun_Type.md)
  - [.Models.PipelineBranchesitempullRequest_Type](PipelineBranchesitempullRequest_Type.md)
@@ -197,45 +195,39 @@ Method | HTTP request | Description
  - [.Models.PipelineFolderImpl_Type](PipelineFolderImpl_Type.md)
  - [.Models.PipelineImpl_Type](PipelineImpl_Type.md)
  - [.Models.PipelineImpllinks_Type](PipelineImpllinks_Type.md)
- - [.Models.PipelineQueue_Type](PipelineQueue_Type.md)
  - [.Models.PipelineRunImpl_Type](PipelineRunImpl_Type.md)
  - [.Models.PipelineRunImpllinks_Type](PipelineRunImpllinks_Type.md)
- - [.Models.PipelineRunNodeSteps_Type](PipelineRunNodeSteps_Type.md)
  - [.Models.PipelineRunNode_Type](PipelineRunNode_Type.md)
  - [.Models.PipelineRunNodeedges_Type](PipelineRunNodeedges_Type.md)
- - [.Models.PipelineRunNodes_Type](PipelineRunNodes_Type.md)
- - [.Models.PipelineRunSteps_Type](PipelineRunSteps_Type.md)
  - [.Models.PipelineRun_Type](PipelineRun_Type.md)
  - [.Models.PipelineRunartifacts_Type](PipelineRunartifacts_Type.md)
- - [.Models.PipelineRuns_Type](PipelineRuns_Type.md)
  - [.Models.PipelineStepImpl_Type](PipelineStepImpl_Type.md)
  - [.Models.PipelineStepImpllinks_Type](PipelineStepImpllinks_Type.md)
  - [.Models.Pipeline_Type](Pipeline_Type.md)
  - [.Models.PipelinelatestRun_Type](PipelinelatestRun_Type.md)
  - [.Models.PipelinelatestRunartifacts_Type](PipelinelatestRunartifacts_Type.md)
- - [.Models.Pipelines_Type](Pipelines_Type.md)
  - [.Models.QueueBlockedItem_Type](QueueBlockedItem_Type.md)
  - [.Models.QueueItemImpl_Type](QueueItemImpl_Type.md)
  - [.Models.QueueLeftItem_Type](QueueLeftItem_Type.md)
  - [.Models.Queue_Type](Queue_Type.md)
  - [.Models.ResponseTimeMonitorData_Type](ResponseTimeMonitorData_Type.md)
- - [.Models.ScmOrganisations_Type](ScmOrganisations_Type.md)
  - [.Models.StringParameterDefinition_Type](StringParameterDefinition_Type.md)
  - [.Models.StringParameterValue_Type](StringParameterValue_Type.md)
  - [.Models.SwapSpaceMonitorMemoryUsage2_Type](SwapSpaceMonitorMemoryUsage2_Type.md)
  - [.Models.UnlabeledLoadStatistics_Type](UnlabeledLoadStatistics_Type.md)
- - [.Models.UserFavorites_Type](UserFavorites_Type.md)
  - [.Models.User_Type](User_Type.md)
- - [.Models.Users_Type](Users_Type.md)
 
 
-## Authorization
+### Authorization
+
 
 ## jenkinsAuth
+
 
 - **Type**: HTTP basic authentication
 
 ## jwtAuth
+
 
 - **Type**: API key
 - **API key parameter name**: Authorization

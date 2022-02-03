@@ -14,20 +14,22 @@ import (
 	"log"
 	"net/http"
 
-	// WARNING!
-	// Change this to a fully-qualified import path
-	// once you place this file into your project.
-	// For example,
-	//
-	//    sw "github.com/myname/myrepo/go"
-	//
-	sw "./go"
+	openapi "github.com/GIT_USER_ID/GIT_REPO_ID/go"
 )
 
 func main() {
 	log.Printf("Server started")
 
-	router := sw.NewRouter()
+	BaseApiService := openapi.NewBaseApiService()
+	BaseApiController := openapi.NewBaseApiController(BaseApiService)
+
+	BlueOceanApiService := openapi.NewBlueOceanApiService()
+	BlueOceanApiController := openapi.NewBlueOceanApiController(BlueOceanApiService)
+
+	RemoteAccessApiService := openapi.NewRemoteAccessApiService()
+	RemoteAccessApiController := openapi.NewRemoteAccessApiController(RemoteAccessApiService)
+
+	router := openapi.NewRouter(BaseApiController, BlueOceanApiController, RemoteAccessApiController)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

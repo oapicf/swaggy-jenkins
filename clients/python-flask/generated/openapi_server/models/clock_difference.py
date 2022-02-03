@@ -15,7 +15,7 @@ class ClockDifference(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, diff: int=None):  # noqa: E501
+    def __init__(self, _class=None, diff=None):  # noqa: E501
         """ClockDifference - a model defined in OpenAPI
 
         :param _class: The _class of this ClockDifference.  # noqa: E501
@@ -48,7 +48,7 @@ class ClockDifference(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this ClockDifference.
 
 
@@ -58,7 +58,7 @@ class ClockDifference(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this ClockDifference.
 
 
@@ -69,7 +69,7 @@ class ClockDifference(Model):
         self.__class = _class
 
     @property
-    def diff(self) -> int:
+    def diff(self):
         """Gets the diff of this ClockDifference.
 
 
@@ -79,7 +79,7 @@ class ClockDifference(Model):
         return self._diff
 
     @diff.setter
-    def diff(self, diff: int):
+    def diff(self, diff):
         """Sets the diff of this ClockDifference.
 
 

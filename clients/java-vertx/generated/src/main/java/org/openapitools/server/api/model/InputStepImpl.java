@@ -8,16 +8,16 @@ import java.util.List;
 import org.openapitools.server.api.model.InputStepImpllinks;
 import org.openapitools.server.api.model.StringParameterDefinition;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class InputStepImpl   {
   
-  private String propertyClass = null;
-  private InputStepImpllinks links = null;
-  private String id = null;
-  private String message = null;
-  private String ok = null;
+  private String propertyClass;
+  private InputStepImpllinks links;
+  private String id;
+  private String message;
+  private String ok;
   private List<StringParameterDefinition> parameters = new ArrayList<>();
-  private String submitter = null;
+  private String submitter;
 
   public InputStepImpl () {
 

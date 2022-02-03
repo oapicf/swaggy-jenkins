@@ -8,18 +8,20 @@ import javax.validation.constraints.*;
 /**
  * DefaultCrumbIssuer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class DefaultCrumbIssuer   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("crumb")
-  private String crumb = null;
+  
+  private String crumb;
 
   @JsonProperty("crumbRequestField")
-  private String crumbRequestField = null;
+  
+  private String crumbRequestField;
 
   public DefaultCrumbIssuer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -30,7 +32,7 @@ public class DefaultCrumbIssuer   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -47,7 +49,7 @@ public class DefaultCrumbIssuer   {
    * Get crumb
    * @return crumb
   **/
-    public String getCrumb() {
+  public String getCrumb() {
     return crumb;
   }
 
@@ -64,7 +66,7 @@ public class DefaultCrumbIssuer   {
    * Get crumbRequestField
    * @return crumbRequestField
   **/
-    public String getCrumbRequestField() {
+  public String getCrumbRequestField() {
     return crumbRequestField;
   }
 
@@ -74,7 +76,7 @@ public class DefaultCrumbIssuer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -109,7 +111,7 @@ public class DefaultCrumbIssuer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

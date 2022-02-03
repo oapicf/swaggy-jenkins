@@ -4,31 +4,24 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class QueueItemImpl  {
   
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private Integer expectedBuildNumber = null;
+  private Integer expectedBuildNumber;
 
   @ApiModelProperty(value = "")
-  private String id = null;
+  private String id;
 
   @ApiModelProperty(value = "")
-  private String pipeline = null;
+  private String pipeline;
 
   @ApiModelProperty(value = "")
-  private Integer queuedTime = null;
+  private Integer queuedTime;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -138,7 +131,7 @@ public class QueueItemImpl  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

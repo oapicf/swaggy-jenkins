@@ -28,3 +28,20 @@ type GithubContent struct {
 
 	Base64Data string `json:"base64Data,omitempty"`
 }
+
+// AssertGithubContentRequired checks if the required fields are not zero-ed
+func AssertGithubContentRequired(obj GithubContent) error {
+	return nil
+}
+
+// AssertRecurseGithubContentRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubContent (e.g. [][]GithubContent), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubContentRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubContent, ok := obj.(GithubContent)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubContentRequired(aGithubContent)
+	})
+}

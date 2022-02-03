@@ -15,7 +15,7 @@ class StringParameterValue(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, name: str=None, value: str=None):  # noqa: E501
+    def __init__(self, _class=None, name=None, value=None):  # noqa: E501
         """StringParameterValue - a model defined in OpenAPI
 
         :param _class: The _class of this StringParameterValue.  # noqa: E501
@@ -53,7 +53,7 @@ class StringParameterValue(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this StringParameterValue.
 
 
@@ -63,7 +63,7 @@ class StringParameterValue(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this StringParameterValue.
 
 
@@ -74,7 +74,7 @@ class StringParameterValue(Model):
         self.__class = _class
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this StringParameterValue.
 
 
@@ -84,7 +84,7 @@ class StringParameterValue(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this StringParameterValue.
 
 
@@ -95,7 +95,7 @@ class StringParameterValue(Model):
         self._name = name
 
     @property
-    def value(self) -> str:
+    def value(self):
         """Gets the value of this StringParameterValue.
 
 
@@ -105,7 +105,7 @@ class StringParameterValue(Model):
         return self._value
 
     @value.setter
-    def value(self, value: str):
+    def value(self, value):
         """Sets the value of this StringParameterValue.
 
 

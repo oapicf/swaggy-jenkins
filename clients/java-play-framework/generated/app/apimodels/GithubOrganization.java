@@ -9,21 +9,25 @@ import javax.validation.constraints.*;
 /**
  * GithubOrganization
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubOrganization   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubOrganizationlinks links = null;
+  @Valid
+
+  private GithubOrganizationlinks links;
 
   @JsonProperty("jenkinsOrganizationPipeline")
-  private Boolean jenkinsOrganizationPipeline = null;
+  
+  private Boolean jenkinsOrganizationPipeline;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   public GithubOrganization propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -34,7 +38,7 @@ public class GithubOrganization   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -51,7 +55,6 @@ public class GithubOrganization   {
    * Get links
    * @return links
   **/
-  @Valid
   public GithubOrganizationlinks getLinks() {
     return links;
   }
@@ -69,7 +72,7 @@ public class GithubOrganization   {
    * Get jenkinsOrganizationPipeline
    * @return jenkinsOrganizationPipeline
   **/
-    public Boolean getJenkinsOrganizationPipeline() {
+  public Boolean getJenkinsOrganizationPipeline() {
     return jenkinsOrganizationPipeline;
   }
 
@@ -86,7 +89,7 @@ public class GithubOrganization   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -96,7 +99,7 @@ public class GithubOrganization   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -133,7 +136,7 @@ public class GithubOrganization   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -7,8 +7,8 @@ import org.openapitools.model.Link;
 
 @Canonical
 class FavoriteImpllinks {
-    Link self = null
-
-    String propertyClass = null
-
+    
+    Link self
+    
+    String propertyClass
 }

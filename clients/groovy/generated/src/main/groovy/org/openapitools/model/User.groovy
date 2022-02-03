@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class User {
-    String propertyClass = null
-
-    String id = null
-
-    String fullName = null
-
-    String email = null
-
-    String name = null
-
+    
+    String propertyClass
+    
+    String id
+    
+    String fullName
+    
+    String email
+    
+    String name
 }

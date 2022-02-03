@@ -1,28 +1,35 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ExtensionClassImpl;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * ExtensionClassContainerImpl1map
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class ExtensionClassContainerImpl1map   {
+
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
-  private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = null;
+  private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
 
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
-  private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl = null;
+  private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {
     this.ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
@@ -32,11 +39,9 @@ public class ExtensionClassContainerImpl1map   {
   /**
    * Get ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl
    * @return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl", required = false)
   public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   }
@@ -53,11 +58,9 @@ public class ExtensionClassContainerImpl1map   {
   /**
    * Get ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl
    * @return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl", required = false)
   public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
   }
@@ -74,10 +77,9 @@ public class ExtensionClassContainerImpl1map   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -86,9 +88,8 @@ public class ExtensionClassContainerImpl1map   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -110,7 +111,6 @@ public class ExtensionClassContainerImpl1map   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExtensionClassContainerImpl1map {\n");
-    
     sb.append("    ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl: ").append(toIndentedString(ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl)).append("\n");
     sb.append("    ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl: ").append(toIndentedString(ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
@@ -122,7 +122,7 @@ public class ExtensionClassContainerImpl1map   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

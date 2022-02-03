@@ -1,22 +1,28 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class BranchImpllinks   {
+
+@JsonTypeName("BranchImpllinks")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class BranchImpllinks   {
   
-  private @Valid Link self = null;
-  private @Valid Link actions = null;
-  private @Valid Link runs = null;
-  private @Valid Link queue = null;
-  private @Valid String propertyClass = null;
+  private @Valid Link self;
+  private @Valid Link actions;
+  private @Valid Link runs;
+  private @Valid Link queue;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -26,16 +32,20 @@ public class BranchImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
+
+  @JsonProperty("self")
   public void setSelf(Link self) {
     this.self = self;
   }
 
-  /**
+/**
    **/
   public BranchImpllinks actions(Link actions) {
     this.actions = actions;
@@ -43,16 +53,20 @@ public class BranchImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(Link actions) {
     this.actions = actions;
   }
 
-  /**
+/**
    **/
   public BranchImpllinks runs(Link runs) {
     this.runs = runs;
@@ -60,16 +74,20 @@ public class BranchImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("runs")
   public Link getRuns() {
     return runs;
   }
+
+  @JsonProperty("runs")
   public void setRuns(Link runs) {
     this.runs = runs;
   }
 
-  /**
+/**
    **/
   public BranchImpllinks queue(Link queue) {
     this.queue = queue;
@@ -77,16 +95,20 @@ public class BranchImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("queue")
   public Link getQueue() {
     return queue;
   }
+
+  @JsonProperty("queue")
   public void setQueue(Link queue) {
     this.queue = queue;
   }
 
-  /**
+/**
    **/
   public BranchImpllinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -94,18 +116,22 @@ public class BranchImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -113,11 +139,11 @@ public class BranchImpllinks   {
       return false;
     }
     BranchImpllinks branchImpllinks = (BranchImpllinks) o;
-    return Objects.equals(self, branchImpllinks.self) &&
-        Objects.equals(actions, branchImpllinks.actions) &&
-        Objects.equals(runs, branchImpllinks.runs) &&
-        Objects.equals(queue, branchImpllinks.queue) &&
-        Objects.equals(propertyClass, branchImpllinks.propertyClass);
+    return Objects.equals(this.self, branchImpllinks.self) &&
+        Objects.equals(this.actions, branchImpllinks.actions) &&
+        Objects.equals(this.runs, branchImpllinks.runs) &&
+        Objects.equals(this.queue, branchImpllinks.queue) &&
+        Objects.equals(this.propertyClass, branchImpllinks.propertyClass);
   }
 
   @Override
@@ -143,11 +169,13 @@ public class BranchImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

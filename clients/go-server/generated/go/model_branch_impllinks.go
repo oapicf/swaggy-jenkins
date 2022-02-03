@@ -12,13 +12,42 @@ package openapi
 
 type BranchImpllinks struct {
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
-	Actions *Link `json:"actions,omitempty"`
+	Actions Link `json:"actions,omitempty"`
 
-	Runs *Link `json:"runs,omitempty"`
+	Runs Link `json:"runs,omitempty"`
 
-	Queue *Link `json:"queue,omitempty"`
+	Queue Link `json:"queue,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertBranchImpllinksRequired checks if the required fields are not zero-ed
+func AssertBranchImpllinksRequired(obj BranchImpllinks) error {
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Actions); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Runs); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Queue); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseBranchImpllinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of BranchImpllinks (e.g. [][]BranchImpllinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseBranchImpllinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aBranchImpllinks, ok := obj.(BranchImpllinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertBranchImpllinksRequired(aBranchImpllinks)
+	})
 }

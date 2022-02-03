@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.FreeStyleBuild;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HudsonMasterComputerexecutors   {
   
-  private FreeStyleBuild currentExecutable = null;
-  private Boolean idle = null;
-  private Boolean likelyStuck = null;
-  private Integer number = null;
-  private Integer progress = null;
-  private String propertyClass = null;
+  private FreeStyleBuild currentExecutable;
+  private Boolean idle;
+  private Boolean likelyStuck;
+  private Integer number;
+  private Integer progress;
+  private String propertyClass;
 
   public HudsonMasterComputerexecutors () {
 

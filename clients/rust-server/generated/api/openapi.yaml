@@ -15,15 +15,15 @@ paths:
       description: Retrieve Jenkins details
       operationId: getJenkins
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Hudson'
           description: Successfully retrieved Jenkins details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -33,7 +33,7 @@ paths:
       description: Retrieve Jenkins headers
       operationId: headJenkins
       responses:
-        200:
+        "200":
           description: Successfully retrieved Jenkins headers
           headers:
             x-jenkins:
@@ -42,9 +42,9 @@ paths:
               schema:
                 type: string
               style: simple
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -61,19 +61,18 @@ paths:
         name: depth
         required: true
         schema:
-          format: int32
           type: integer
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ComputerSet'
           description: Successfully retrieved computer details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -81,7 +80,8 @@ paths:
       - remoteAccess
   /createItem:
     post:
-      description: Create a new job using job configuration, or copied from an existing job
+      description: Create a new job using job configuration, or copied from an existing
+        job
       operationId: postCreateItem
       parameters:
       - description: Name of the new job
@@ -131,17 +131,18 @@ paths:
               type: string
         description: Job configuration in config.xml format
       responses:
-        200:
+        "200":
           description: Successfully created a new job
-        400:
+        "400":
           content:
             '*/*':
               schema:
                 type: string
-          description: An error has occurred - error message is embedded inside the HTML response
-        401:
+          description: An error has occurred - error message is embedded inside the
+            HTML response
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -183,17 +184,18 @@ paths:
               type: string
         description: View configuration in config.xml format
       responses:
-        200:
+        "200":
           description: Successfully created the view
-        400:
+        "400":
           content:
             '*/*':
               schema:
                 type: string
-          description: An error has occurred - error message is embedded inside the HTML response
-        401:
+          description: An error has occurred - error message is embedded inside the
+            HTML response
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -204,15 +206,15 @@ paths:
       description: Retrieve CSRF protection token
       operationId: getCrumb
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultCrumbIssuer'
           description: Successfully retrieved CSRF protection token
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -232,17 +234,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FreeStyleProject'
           description: Successfully retrieved job details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -284,15 +286,16 @@ paths:
           type: string
         style: simple
       responses:
-        200:
-          description: Successfully built the job (backward compatibility for older versions of Jenkins)
-        201:
+        "200":
+          description: Successfully built the job (backward compatibility for older
+            versions of Jenkins)
+        "201":
           description: Successfully built the job
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -312,17 +315,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             text/xml:
               schema:
                 type: string
           description: Successfully retrieved job configuration in config.xml format
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -356,19 +359,20 @@ paths:
         description: Job configuration in config.xml format
         required: true
       responses:
-        200:
+        "200":
           description: Successfully retrieved job configuration in config.xml format
-        400:
+        "400":
           content:
             '*/*':
               schema:
                 type: string
-          description: An error has occurred - error message is embedded inside the HTML response
-        401:
+          description: An error has occurred - error message is embedded inside the
+            HTML response
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -396,13 +400,13 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           description: Successfully deleted the job
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -430,13 +434,13 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           description: Successfully disabled the job
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -464,13 +468,13 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           description: Successfully enabled the job
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -490,17 +494,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FreeStyleBuild'
           description: Successfully retrieved job's last build details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -528,13 +532,13 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           description: Successfully stopped the job
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -570,13 +574,13 @@ paths:
           type: string
         style: form
       responses:
-        200:
+        "200":
           description: Successfully retrieved job's build progressive text output
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Job cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -587,15 +591,15 @@ paths:
       description: Retrieve queue details
       operationId: getQueue
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Queue'
           description: Successfully retrieved queue details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -615,15 +619,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Queue'
           description: Successfully retrieved queued item details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -643,17 +647,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListView'
           description: Successfully retrieved view details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: View cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -673,17 +677,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             text/xml:
               schema:
                 type: string
           description: Successfully retrieved view configuration in config.xml format
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: View cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -717,19 +721,20 @@ paths:
         description: View configuration in config.xml format
         required: true
       responses:
-        200:
+        "200":
           description: Successfully updated view configuration
-        400:
+        "400":
           content:
             '*/*':
               schema:
                 type: string
-          description: An error has occurred - error message is embedded inside the HTML response
-        401:
+          description: An error has occurred - error message is embedded inside the
+            HTML response
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: View cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -746,7 +751,6 @@ paths:
         name: expiryTimeInMins
         required: false
         schema:
-          format: int32
           type: integer
         style: form
       - description: 'Maximum token expiry time in minutes, default: 480 minutes'
@@ -755,19 +759,18 @@ paths:
         name: maxExpiryTimeInMins
         required: false
         schema:
-          format: int32
           type: integer
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved JWT token
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       tags:
       - blueOcean
@@ -782,19 +785,18 @@ paths:
         name: key
         required: true
         schema:
-          format: int32
           type: integer
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved JWT token
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       tags:
       - blueOcean
@@ -812,15 +814,15 @@ paths:
           type: string
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved search result
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -840,15 +842,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved class names
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -868,15 +870,15 @@ paths:
           type: string
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved search result
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -887,15 +889,15 @@ paths:
       description: Retrieve all organizations details
       operationId: getOrganisations
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Organisations'
           description: Successfully retrieved pipelines details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -915,17 +917,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Organisation'
           description: Successfully retrieved pipeline details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Pipeline cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -945,15 +947,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Pipelines'
           description: Successfully retrieved pipelines details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -981,17 +983,17 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Pipeline'
           description: Successfully retrieved pipeline details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
-        404:
+        "404":
           description: Pipeline cannot be found on Jenkins instance
       security:
       - jenkins_auth: []
@@ -1019,15 +1021,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineActivities'
           description: Successfully retrieved all activities details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1055,15 +1057,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MultibranchPipeline'
           description: Successfully retrieved all branches details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1099,15 +1101,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/BranchImpl'
           description: Successfully retrieved branch details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1151,15 +1153,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRun'
           description: Successfully retrieved run details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1187,15 +1189,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineFolderImpl'
           description: Successfully retrieved folder details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1231,15 +1233,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineImpl'
           description: Successfully retrieved pipeline details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1270,20 +1272,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/body'
+              properties:
+                favorite:
+                  type: boolean
+              required:
+              - favorite
         description: 'Set JSON string body to {"favorite": true} to favorite, set
           value to false to unfavorite'
         required: true
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/FavoriteImpl'
           description: Successfully favorited/unfavorited a pipeline
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1311,15 +1317,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineQueue'
           description: Successfully retrieved queue details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1355,11 +1361,11 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           description: Successfully deleted queue item
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1387,15 +1393,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRuns'
           description: Successfully retrieved runs details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1422,15 +1428,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueueItemImpl'
           description: Successfully started a build
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1466,15 +1472,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRun'
           description: Successfully retrieved run details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1510,15 +1516,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRunNodes'
           description: Successfully retrieved run nodes details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1562,15 +1568,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRunNode'
           description: Successfully retrieved run node details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1614,15 +1620,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRunNodeSteps'
           description: Successfully retrieved run node steps details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1674,15 +1680,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineStepImpl'
           description: Successfully retrieved run node step details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1734,15 +1740,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved pipeline run node step log
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1783,10 +1789,10 @@ paths:
         name: start
         required: false
         schema:
-          format: int32
           type: integer
         style: form
-      - description: Set to true in order to download the file, otherwise it's passed as a response body
+      - description: Set to true in order to download the file, otherwise it's passed
+          as a response body
         explode: true
         in: query
         name: download
@@ -1795,15 +1801,15 @@ paths:
           type: boolean
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 type: string
           description: Successfully retrieved pipeline run log
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1839,15 +1845,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/QueueItemImpl'
           description: Successfully replayed a pipeline run
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1896,19 +1902,18 @@ paths:
         name: timeOutInSecs
         required: false
         schema:
-          format: int32
           type: integer
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/PipelineRun'
           description: Successfully stopped a build
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1936,15 +1941,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GithubScm'
           description: Successfully retrieved SCM details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -1980,15 +1985,15 @@ paths:
           type: string
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScmOrganisations'
           description: Successfully retrieved SCM organizations details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2037,7 +2042,6 @@ paths:
         name: pageSize
         required: false
         schema:
-          format: int32
           type: integer
         style: form
       - description: Page number
@@ -2046,19 +2050,18 @@ paths:
         name: pageNumber
         required: false
         schema:
-          format: int32
           type: integer
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScmOrganisations'
           description: Successfully retrieved SCM organization repositories details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2110,15 +2113,15 @@ paths:
           type: string
         style: form
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScmOrganisations'
           description: Successfully retrieved SCM organizations details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2138,15 +2141,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: Successfully retrieved authenticated user details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2166,15 +2169,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: Successfully retrieved users details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2202,15 +2205,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
           description: Successfully retrieved users details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2230,15 +2233,15 @@ paths:
           type: string
         style: simple
       responses:
-        200:
+        "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserFavorites'
           description: Successfully retrieved users favorites details
-        401:
+        "401":
           description: Authentication failed - incorrect username and/or password
-        403:
+        "403":
           description: Jenkins requires authentication - please set username and password
       security:
       - jenkins_auth: []
@@ -2406,7 +2409,8 @@ components:
         '*/*':
           schema:
             type: string
-      description: An error has occurred - error message is embedded inside the HTML response
+      description: An error has occurred - error message is embedded inside the HTML
+        response
   schemas:
     FreeStyleBuild:
       example:
@@ -2454,7 +2458,6 @@ components:
         _class:
           type: string
         number:
-          format: int32
           type: integer
         url:
           type: string
@@ -2469,10 +2472,8 @@ components:
         displayName:
           type: string
         duration:
-          format: int32
           type: integer
         estimatedDuration:
-          format: int32
           type: integer
         executor:
           type: string
@@ -2483,12 +2484,10 @@ components:
         keepLog:
           type: boolean
         queueId:
-          format: int32
           type: integer
         result:
           type: string
         timestamp:
-          format: int32
           type: integer
         builtOn:
           type: string
@@ -2551,10 +2550,8 @@ components:
         likelyStuck:
           type: boolean
         number:
-          format: int32
           type: integer
         progress:
-          format: int32
           type: integer
         _class:
           type: string
@@ -2577,16 +2574,12 @@ components:
         _class:
           type: string
         availablePhysicalMemory:
-          format: int32
           type: integer
         availableSwapSpace:
-          format: int32
           type: integer
         totalPhysicalMemory:
-          format: int32
           type: integer
         totalSwapSpace:
-          format: int32
           type: integer
       type: object
     DiskSpaceMonitorDescriptorDiskSpace:
@@ -2599,12 +2592,10 @@ components:
         _class:
           type: string
         timestamp:
-          format: int32
           type: integer
         path:
           type: string
         size:
-          format: int32
           type: integer
       type: object
     ResponseTimeMonitorData:
@@ -2616,10 +2607,8 @@ components:
         _class:
           type: string
         timestamp:
-          format: int32
           type: integer
         average:
-          format: int32
           type: integer
       type: object
     ClockDifference:
@@ -2630,7 +2619,6 @@ components:
         _class:
           type: string
         diff:
-          format: int32
           type: integer
       type: object
     HudsonMasterComputermonitorData:
@@ -2838,7 +2826,6 @@ components:
         monitorData:
           $ref: '#/components/schemas/HudsonMasterComputermonitorData'
         numExecutors:
-          format: int32
           type: integer
         offline:
           type: boolean
@@ -3128,7 +3115,6 @@ components:
         _class:
           type: string
         busyExecutors:
-          format: int32
           type: integer
         computer:
           items:
@@ -3137,7 +3123,6 @@ components:
         displayName:
           type: string
         totalExecutors:
-          format: int32
           type: integer
       type: object
     DefaultCrumbIssuer:
@@ -3536,7 +3521,6 @@ components:
         lastUnsuccessfulBuild:
           type: string
         nextBuildNumber:
-          format: int32
           type: integer
         queueItem:
           type: string
@@ -4248,7 +4232,6 @@ components:
         nodeName:
           type: string
         numExecutors:
-          format: int32
           type: integer
         description:
           type: string
@@ -4261,7 +4244,6 @@ components:
         quietingDown:
           type: boolean
         slaveAgentPort:
-          format: int32
           type: integer
         unlabeledLoad:
           $ref: '#/components/schemas/UnlabeledLoadStatistics'
@@ -4296,7 +4278,6 @@ components:
         iconUrl:
           type: string
         score:
-          format: int32
           type: integer
         _class:
           type: string
@@ -4720,10 +4701,8 @@ components:
         buildable:
           type: boolean
         id:
-          format: int32
           type: integer
         inQueueSince:
-          format: int32
           type: integer
         params:
           type: string
@@ -4736,7 +4715,6 @@ components:
         why:
           type: string
         buildableStartMilliseconds:
-          format: int32
           type: integer
       type: object
     Queue:
@@ -5468,10 +5446,8 @@ components:
         buildable:
           type: boolean
         id:
-          format: int32
           type: integer
         inQueueSince:
-          format: int32
           type: integer
         params:
           type: string
@@ -6233,7 +6209,6 @@ components:
         displayName:
           type: string
         estimatedDurationInMillis:
-          format: int32
           type: integer
         latestRun:
           type: string
@@ -6242,29 +6217,22 @@ components:
         organization:
           type: string
         weatherScore:
-          format: int32
           type: integer
         branchNames:
           items:
             type: string
           type: array
         numberOfFailingBranches:
-          format: int32
           type: integer
         numberOfFailingPullRequests:
-          format: int32
           type: integer
         numberOfSuccessfulBranches:
-          format: int32
           type: integer
         numberOfSuccessfulPullRequests:
-          format: int32
           type: integer
         totalNumberOfBranches:
-          format: int32
           type: integer
         totalNumberOfPullRequests:
-          format: int32
           type: integer
         _class:
           type: string
@@ -6299,7 +6267,6 @@ components:
         displayName:
           type: string
         estimatedDurationInMillis:
-          format: int32
           type: integer
         fullName:
           type: string
@@ -6310,7 +6277,6 @@ components:
         organization:
           type: string
         weatherScore:
-          format: int32
           type: integer
         _links:
           $ref: '#/components/schemas/PipelineImpllinks'
@@ -6339,7 +6305,6 @@ components:
         name:
           type: string
         size:
-          format: int32
           type: integer
         url:
           type: string
@@ -6377,10 +6342,8 @@ components:
             $ref: '#/components/schemas/PipelinelatestRunartifacts'
           type: array
         durationInMillis:
-          format: int32
           type: integer
         estimatedDurationInMillis:
-          format: int32
           type: integer
         enQueueTime:
           type: string
@@ -6452,20 +6415,22 @@ components:
         fullName:
           type: string
         weatherScore:
-          format: int32
           type: integer
         estimatedDurationInMillis:
-          format: int32
           type: integer
         latestRun:
           $ref: '#/components/schemas/PipelinelatestRun'
       type: object
     PipelineActivityartifacts:
+      example:
+        size: 0
+        name: name
+        _class: _class
+        url: url
       properties:
         name:
           type: string
         size:
-          format: int32
           type: integer
         url:
           type: string
@@ -6473,6 +6438,30 @@ components:
           type: string
       type: object
     PipelineActivity:
+      example:
+        runSummary: runSummary
+        durationInMillis: 6
+        commitId: commitId
+        type: type
+        pipeline: pipeline
+        result: result
+        organization: organization
+        estimatedDurationInMillis: 1
+        enQueueTime: enQueueTime
+        startTime: startTime
+        _class: _class
+        endTime: endTime
+        id: id
+        state: state
+        artifacts:
+        - size: 0
+          name: name
+          _class: _class
+          url: url
+        - size: 0
+          name: name
+          _class: _class
+          url: url
       properties:
         _class:
           type: string
@@ -6481,10 +6470,8 @@ components:
             $ref: '#/components/schemas/PipelineActivityartifacts'
           type: array
         durationInMillis:
-          format: int32
           type: integer
         estimatedDurationInMillis:
-          format: int32
           type: integer
         enQueueTime:
           type: string
@@ -6653,7 +6640,6 @@ components:
         displayName:
           type: string
         estimatedDurationInMillis:
-          format: int32
           type: integer
         fullDisplayName:
           type: string
@@ -6670,7 +6656,6 @@ components:
         permissions:
           $ref: '#/components/schemas/BranchImplpermissions'
         weatherScore:
-          format: int32
           type: integer
         pullRequest:
           type: string
@@ -6682,10 +6667,8 @@ components:
     PipelineBranchesitemlatestRun:
       properties:
         durationInMillis:
-          format: int32
           type: integer
         estimatedDurationInMillis:
-          format: int32
           type: integer
         enQueueTime:
           type: string
@@ -6739,12 +6722,10 @@ components:
         displayName:
           type: string
         estimatedDurationInMillis:
-          format: int32
           type: integer
         name:
           type: string
         weatherScore:
-          format: int32
           type: integer
         latestRun:
           $ref: '#/components/schemas/PipelineBranchesitemlatestRun'
@@ -6753,7 +6734,6 @@ components:
         pullRequest:
           $ref: '#/components/schemas/PipelineBranchesitempullRequest'
         totalNumberOfPullRequests:
-          format: int32
           type: integer
         _class:
           type: string
@@ -6861,10 +6841,8 @@ components:
         organization:
           type: string
         numberOfFolders:
-          format: int32
           type: integer
         numberOfPipelines:
-          format: int32
           type: integer
       type: object
     QueueItemImpl:
@@ -6878,14 +6856,12 @@ components:
         _class:
           type: string
         expectedBuildNumber:
-          format: int32
           type: integer
         id:
           type: string
         pipeline:
           type: string
         queuedTime:
-          format: int32
           type: integer
       type: object
     PipelineQueue:
@@ -6902,7 +6878,6 @@ components:
         name:
           type: string
         size:
-          format: int32
           type: integer
         url:
           type: string
@@ -6942,10 +6917,8 @@ components:
             $ref: '#/components/schemas/PipelineRunartifacts'
           type: array
         durationInMillis:
-          format: int32
           type: integer
         estimatedDurationInMillis:
-          format: int32
           type: integer
         enQueueTime:
           type: string
@@ -7099,7 +7072,6 @@ components:
         displayName:
           type: string
         durationInMillis:
-          format: int32
           type: integer
         id:
           type: string
@@ -7146,7 +7118,6 @@ components:
         displayName:
           type: string
         durationInMillis:
-          format: int32
           type: integer
         edges:
           items:
@@ -7172,7 +7143,6 @@ components:
         displayName:
           type: string
         durationInMillis:
-          format: int32
           type: integer
         id:
           type: string
@@ -7239,7 +7209,6 @@ components:
         repo:
           type: string
         size:
-          format: int32
           type: integer
         owner:
           type: string
@@ -7317,13 +7286,10 @@ components:
             $ref: '#/components/schemas/GithubRepository'
           type: array
         lastPage:
-          format: int32
           type: integer
         nextPage:
-          format: int32
           type: integer
         pageSize:
-          format: int32
           type: integer
       type: object
     GithubRespositoryContainer:
@@ -7336,6 +7302,14 @@ components:
           $ref: '#/components/schemas/GithubRepositories'
       type: object
     GithubOrganizationlinks:
+      example:
+        repositories:
+          _class: _class
+          href: href
+        self:
+          _class: _class
+          href: href
+        _class: _class
       properties:
         repositories:
           $ref: '#/components/schemas/Link'
@@ -7345,6 +7319,18 @@ components:
           type: string
       type: object
     GithubOrganization:
+      example:
+        _links:
+          repositories:
+            _class: _class
+            href: href
+          self:
+            _class: _class
+            href: href
+          _class: _class
+        name: name
+        _class: _class
+        jenkinsOrganizationPipeline: true
       properties:
         _class:
           type: string
@@ -7476,14 +7462,12 @@ components:
         _links:
           $ref: '#/components/schemas/PipelineRunImpllinks'
         durationInMillis:
-          format: int32
           type: integer
         enQueueTime:
           type: string
         endTime:
           type: string
         estimatedDurationInMillis:
-          format: int32
           type: integer
         id:
           type: string
@@ -7512,12 +7496,6 @@ components:
       items:
         $ref: '#/components/schemas/User'
       type: array
-    body:
-      properties:
-        favorite:
-          type: boolean
-      required:
-      - favorite
   securitySchemes:
     jenkins_auth:
       scheme: basic

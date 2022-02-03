@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class HudsonMasterComputerexecutors {
 
-    /** @var \app\Models\FreeStyleBuild $current_executable */
-    private $current_executable;
+    /** @var \app\Models\FreeStyleBuild $currentExecutable */
+    private $currentExecutable;
 
     /** @var bool $idle */
     private $idle;
 
-    /** @var bool $likely_stuck */
-    private $likely_stuck;
+    /** @var bool $likelyStuck */
+    private $likelyStuck;
 
     /** @var int $number */
     private $number;
@@ -24,7 +24,7 @@ class HudsonMasterComputerexecutors {
     /** @var int $progress */
     private $progress;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -10,26 +20,26 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class PipelineBranchesitemlatestRun   {
   
-  private Integer durationInMillis = null;
-  private Integer estimatedDurationInMillis = null;
-  private String enQueueTime = null;
-  private String endTime = null;
-  private String id = null;
-  private String organization = null;
-  private String pipeline = null;
-  private String result = null;
-  private String runSummary = null;
-  private String startTime = null;
-  private String state = null;
-  private String type = null;
-  private String commitId = null;
-  private String propertyClass = null;
+  private Integer durationInMillis;
+  private Integer estimatedDurationInMillis;
+  private String enQueueTime;
+  private String endTime;
+  private String id;
+  private String organization;
+  private String pipeline;
+  private String result;
+  private String runSummary;
+  private String startTime;
+  private String state;
+  private String type;
+  private String commitId;
+  private String propertyClass;
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
@@ -46,7 +56,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
@@ -63,7 +73,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
     return this;
@@ -80,7 +90,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun endTime(String endTime) {
     this.endTime = endTime;
     return this;
@@ -97,7 +107,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun id(String id) {
     this.id = id;
     return this;
@@ -114,7 +124,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun organization(String organization) {
     this.organization = organization;
     return this;
@@ -131,7 +141,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun pipeline(String pipeline) {
     this.pipeline = pipeline;
     return this;
@@ -148,7 +158,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun result(String result) {
     this.result = result;
     return this;
@@ -165,7 +175,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun runSummary(String runSummary) {
     this.runSummary = runSummary;
     return this;
@@ -182,7 +192,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun startTime(String startTime) {
     this.startTime = startTime;
     return this;
@@ -199,7 +209,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun state(String state) {
     this.state = state;
     return this;
@@ -216,7 +226,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun type(String type) {
     this.type = type;
     return this;
@@ -233,7 +243,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun commitId(String commitId) {
     this.commitId = commitId;
     return this;
@@ -250,7 +260,7 @@ public class PipelineBranchesitemlatestRun   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitemlatestRun propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -268,7 +278,7 @@ public class PipelineBranchesitemlatestRun   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -324,7 +334,7 @@ public class PipelineBranchesitemlatestRun   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

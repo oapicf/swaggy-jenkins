@@ -1,18 +1,24 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class Link   {
+
+@JsonTypeName("Link")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class Link   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String href = null;
+  private @Valid String propertyClass;
+  private @Valid String href;
 
   /**
    **/
@@ -22,16 +28,20 @@ public class Link   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public Link href(String href) {
     this.href = href;
@@ -39,18 +49,22 @@ public class Link   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("href")
   public String getHref() {
     return href;
   }
+
+  @JsonProperty("href")
   public void setHref(String href) {
     this.href = href;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -58,8 +72,8 @@ public class Link   {
       return false;
     }
     Link link = (Link) o;
-    return Objects.equals(propertyClass, link.propertyClass) &&
-        Objects.equals(href, link.href);
+    return Objects.equals(this.propertyClass, link.propertyClass) &&
+        Objects.equals(this.href, link.href);
   }
 
   @Override
@@ -82,11 +96,13 @@ public class Link   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

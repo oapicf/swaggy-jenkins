@@ -9,24 +9,29 @@ import javax.validation.constraints.*;
 /**
  * StringParameterDefinition
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class StringParameterDefinition   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("defaultParameterValue")
-  private StringParameterValue defaultParameterValue = null;
+  @Valid
+
+  private StringParameterValue defaultParameterValue;
 
   @JsonProperty("description")
-  private String description = null;
+  
+  private String description;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("type")
-  private String type = null;
+  
+  private String type;
 
   public StringParameterDefinition propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -37,7 +42,7 @@ public class StringParameterDefinition   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -54,7 +59,6 @@ public class StringParameterDefinition   {
    * Get defaultParameterValue
    * @return defaultParameterValue
   **/
-  @Valid
   public StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
   }
@@ -72,7 +76,7 @@ public class StringParameterDefinition   {
    * Get description
    * @return description
   **/
-    public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -89,7 +93,7 @@ public class StringParameterDefinition   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -106,7 +110,7 @@ public class StringParameterDefinition   {
    * Get type
    * @return type
   **/
-    public String getType() {
+  public String getType() {
     return type;
   }
 
@@ -116,7 +120,7 @@ public class StringParameterDefinition   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -155,7 +159,7 @@ public class StringParameterDefinition   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

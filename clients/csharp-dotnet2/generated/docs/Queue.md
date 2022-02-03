@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.Queue
+
 ## Properties
 
 Name | Type | Description | Notes

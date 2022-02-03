@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.HudsonassignedLabels
+
 ## Properties
 
 Name | Type | Description | Notes

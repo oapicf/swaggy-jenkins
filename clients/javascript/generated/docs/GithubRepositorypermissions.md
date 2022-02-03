@@ -1,6 +1,7 @@
 # SwaggyJenkins.GithubRepositorypermissions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **admin** | **Boolean** |  | [optional] 

@@ -14,7 +14,7 @@ type InputStepImpl struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *InputStepImpllinks `json:"_links,omitempty"`
+	Links InputStepImpllinks `json:"_links,omitempty"`
 
 	Id string `json:"id,omitempty"`
 
@@ -25,4 +25,29 @@ type InputStepImpl struct {
 	Parameters []StringParameterDefinition `json:"parameters,omitempty"`
 
 	Submitter string `json:"submitter,omitempty"`
+}
+
+// AssertInputStepImplRequired checks if the required fields are not zero-ed
+func AssertInputStepImplRequired(obj InputStepImpl) error {
+	if err := AssertInputStepImpllinksRequired(obj.Links); err != nil {
+		return err
+	}
+	for _, el := range obj.Parameters {
+		if err := AssertStringParameterDefinitionRequired(el); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AssertRecurseInputStepImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of InputStepImpl (e.g. [][]InputStepImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseInputStepImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aInputStepImpl, ok := obj.(InputStepImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertInputStepImplRequired(aInputStepImpl)
+	})
 }

@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.ListView
+
 ## Properties
 
 Name | Type | Description | Notes

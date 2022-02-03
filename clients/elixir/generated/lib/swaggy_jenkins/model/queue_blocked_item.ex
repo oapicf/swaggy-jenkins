@@ -24,18 +24,18 @@ defmodule SwaggyJenkins.Model.QueueBlockedItem do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"actions" => [CauseAction],
-    :"blocked" => boolean(),
-    :"buildable" => boolean(),
-    :"id" => integer(),
-    :"inQueueSince" => integer(),
-    :"params" => String.t,
-    :"stuck" => boolean(),
-    :"task" => FreeStyleProject,
-    :"url" => String.t,
-    :"why" => String.t,
-    :"buildableStartMilliseconds" => integer()
+    :"_class" => String.t | nil,
+    :"actions" => [SwaggyJenkins.Model.CauseAction.t] | nil,
+    :"blocked" => boolean() | nil,
+    :"buildable" => boolean() | nil,
+    :"id" => integer() | nil,
+    :"inQueueSince" => integer() | nil,
+    :"params" => String.t | nil,
+    :"stuck" => boolean() | nil,
+    :"task" => SwaggyJenkins.Model.FreeStyleProject.t | nil,
+    :"url" => String.t | nil,
+    :"why" => String.t | nil,
+    :"buildableStartMilliseconds" => integer() | nil
   }
 end
 

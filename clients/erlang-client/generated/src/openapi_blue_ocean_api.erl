@@ -38,7 +38,7 @@
          search/2, search/3,
          search_classes/2, search_classes/3]).
 
--define(BASE_URL, "/").
+-define(BASE_URL, <<"">>).
 
 %% @doc 
 %% Delete queue item from an organization pipeline queue
@@ -52,7 +52,7 @@ delete_pipeline_queue_item(Ctx, Organization, Pipeline, Queue, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = delete,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/queue/", Queue, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/queue/", Queue, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -73,7 +73,7 @@ get_authenticated_user(Ctx, Organization, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/user/"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/user/">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -94,7 +94,7 @@ get_classes(Ctx, Class, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/classes/", Class, ""],
+    Path = [<<"/blue/rest/classes/", Class, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -115,7 +115,7 @@ get_json_web_key(Ctx, Key, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/jwt-auth/jwks/", Key, ""],
+    Path = [<<"/jwt-auth/jwks/", Key, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -136,7 +136,7 @@ get_json_web_token(Ctx, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/jwt-auth/token"],
+    Path = [<<"/jwt-auth/token">>],
     QS = lists:flatten([])++openapi_utils:optional_params(['expiryTimeInMins', 'maxExpiryTimeInMins'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -157,7 +157,7 @@ get_organisation(Ctx, Organization, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -168,17 +168,17 @@ get_organisation(Ctx, Organization, Optional) ->
 
 %% @doc 
 %% Retrieve all organizations details
--spec get_organisations(ctx:ctx()) -> {ok, openapi_organisations:openapi_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_organisations(ctx:ctx()) -> {ok, [openapi_organisation:openapi_organisation()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_organisations(Ctx) ->
     get_organisations(Ctx, #{}).
 
--spec get_organisations(ctx:ctx(), maps:map()) -> {ok, openapi_organisations:openapi_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_organisations(ctx:ctx(), maps:map()) -> {ok, [openapi_organisation:openapi_organisation()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_organisations(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/"],
+    Path = [<<"/blue/rest/organizations/">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -199,7 +199,7 @@ get_pipeline(Ctx, Organization, Pipeline, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -210,17 +210,17 @@ get_pipeline(Ctx, Organization, Pipeline, Optional) ->
 
 %% @doc 
 %% Retrieve all activities details for an organization pipeline
--spec get_pipeline_activities(ctx:ctx(), binary(), binary()) -> {ok, openapi_pipeline_activities:openapi_pipeline_activities(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_activities(ctx:ctx(), binary(), binary()) -> {ok, [openapi_pipeline_activity:openapi_pipeline_activity()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_activities(Ctx, Organization, Pipeline) ->
     get_pipeline_activities(Ctx, Organization, Pipeline, #{}).
 
--spec get_pipeline_activities(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_pipeline_activities:openapi_pipeline_activities(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_activities(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [openapi_pipeline_activity:openapi_pipeline_activity()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_activities(Ctx, Organization, Pipeline, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/activities"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/activities">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -241,7 +241,7 @@ get_pipeline_branch(Ctx, Organization, Pipeline, Branch, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/branches/", Branch, "/"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/branches/", Branch, "/">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -262,7 +262,7 @@ get_pipeline_branch_run(Ctx, Organization, Pipeline, Branch, Run, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/branches/", Branch, "/runs/", Run, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/branches/", Branch, "/runs/", Run, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -283,7 +283,7 @@ get_pipeline_branches(Ctx, Organization, Pipeline, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/branches"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/branches">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -304,7 +304,7 @@ get_pipeline_folder(Ctx, Organization, Folder, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Folder, "/"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Folder, "/">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -325,7 +325,7 @@ get_pipeline_folder_pipeline(Ctx, Organization, Pipeline, Folder, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Folder, "/pipelines/", Pipeline, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Folder, "/pipelines/", Pipeline, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -336,17 +336,17 @@ get_pipeline_folder_pipeline(Ctx, Organization, Pipeline, Folder, Optional) ->
 
 %% @doc 
 %% Retrieve queue details for an organization pipeline
--spec get_pipeline_queue(ctx:ctx(), binary(), binary()) -> {ok, openapi_pipeline_queue:openapi_pipeline_queue(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_queue(ctx:ctx(), binary(), binary()) -> {ok, [openapi_queue_item_impl:openapi_queue_item_impl()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_queue(Ctx, Organization, Pipeline) ->
     get_pipeline_queue(Ctx, Organization, Pipeline, #{}).
 
--spec get_pipeline_queue(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_pipeline_queue:openapi_pipeline_queue(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_queue(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [openapi_queue_item_impl:openapi_queue_item_impl()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_queue(Ctx, Organization, Pipeline, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/queue"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/queue">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -367,7 +367,7 @@ get_pipeline_run(Ctx, Organization, Pipeline, Run, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -388,7 +388,7 @@ get_pipeline_run_log(Ctx, Organization, Pipeline, Run, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/log"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/log">>],
     QS = lists:flatten([])++openapi_utils:optional_params(['start', 'download'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -409,7 +409,7 @@ get_pipeline_run_node(Ctx, Organization, Pipeline, Run, Node, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -430,7 +430,7 @@ get_pipeline_run_node_step(Ctx, Organization, Pipeline, Run, Node, Step, Optiona
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "/steps/", Step, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "/steps/", Step, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -451,7 +451,7 @@ get_pipeline_run_node_step_log(Ctx, Organization, Pipeline, Run, Node, Step, Opt
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "/steps/", Step, "/log"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "/steps/", Step, "/log">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -462,17 +462,17 @@ get_pipeline_run_node_step_log(Ctx, Organization, Pipeline, Run, Node, Step, Opt
 
 %% @doc 
 %% Retrieve run node steps details for an organization pipeline
--spec get_pipeline_run_node_steps(ctx:ctx(), binary(), binary(), binary(), binary()) -> {ok, openapi_pipeline_run_node_steps:openapi_pipeline_run_node_steps(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_run_node_steps(ctx:ctx(), binary(), binary(), binary(), binary()) -> {ok, [openapi_pipeline_step_impl:openapi_pipeline_step_impl()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_run_node_steps(Ctx, Organization, Pipeline, Run, Node) ->
     get_pipeline_run_node_steps(Ctx, Organization, Pipeline, Run, Node, #{}).
 
--spec get_pipeline_run_node_steps(ctx:ctx(), binary(), binary(), binary(), binary(), maps:map()) -> {ok, openapi_pipeline_run_node_steps:openapi_pipeline_run_node_steps(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_run_node_steps(ctx:ctx(), binary(), binary(), binary(), binary(), maps:map()) -> {ok, [openapi_pipeline_step_impl:openapi_pipeline_step_impl()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_run_node_steps(Ctx, Organization, Pipeline, Run, Node, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "/steps"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes/", Node, "/steps">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -483,17 +483,17 @@ get_pipeline_run_node_steps(Ctx, Organization, Pipeline, Run, Node, Optional) ->
 
 %% @doc 
 %% Retrieve run nodes details for an organization pipeline
--spec get_pipeline_run_nodes(ctx:ctx(), binary(), binary(), binary()) -> {ok, openapi_pipeline_run_nodes:openapi_pipeline_run_nodes(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_run_nodes(ctx:ctx(), binary(), binary(), binary()) -> {ok, [openapi_pipeline_run_node:openapi_pipeline_run_node()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_run_nodes(Ctx, Organization, Pipeline, Run) ->
     get_pipeline_run_nodes(Ctx, Organization, Pipeline, Run, #{}).
 
--spec get_pipeline_run_nodes(ctx:ctx(), binary(), binary(), binary(), maps:map()) -> {ok, openapi_pipeline_run_nodes:openapi_pipeline_run_nodes(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_run_nodes(ctx:ctx(), binary(), binary(), binary(), maps:map()) -> {ok, [openapi_pipeline_run_node:openapi_pipeline_run_node()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_run_nodes(Ctx, Organization, Pipeline, Run, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/nodes">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -504,17 +504,17 @@ get_pipeline_run_nodes(Ctx, Organization, Pipeline, Run, Optional) ->
 
 %% @doc 
 %% Retrieve all runs details for an organization pipeline
--spec get_pipeline_runs(ctx:ctx(), binary(), binary()) -> {ok, openapi_pipeline_runs:openapi_pipeline_runs(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_runs(ctx:ctx(), binary(), binary()) -> {ok, [openapi_pipeline_run:openapi_pipeline_run()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_runs(Ctx, Organization, Pipeline) ->
     get_pipeline_runs(Ctx, Organization, Pipeline, #{}).
 
--spec get_pipeline_runs(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_pipeline_runs:openapi_pipeline_runs(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipeline_runs(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [openapi_pipeline_run:openapi_pipeline_run()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipeline_runs(Ctx, Organization, Pipeline, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -525,17 +525,17 @@ get_pipeline_runs(Ctx, Organization, Pipeline, Optional) ->
 
 %% @doc 
 %% Retrieve all pipelines details for an organization
--spec get_pipelines(ctx:ctx(), binary()) -> {ok, openapi_pipelines:openapi_pipelines(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipelines(ctx:ctx(), binary()) -> {ok, [openapi_pipeline:openapi_pipeline()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipelines(Ctx, Organization) ->
     get_pipelines(Ctx, Organization, #{}).
 
--spec get_pipelines(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_pipelines:openapi_pipelines(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_pipelines(ctx:ctx(), binary(), maps:map()) -> {ok, [openapi_pipeline:openapi_pipeline()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_pipelines(Ctx, Organization, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -556,7 +556,7 @@ get_scm(Ctx, Organization, Scm, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/scm/", Scm, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/scm/", Scm, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -567,17 +567,17 @@ get_scm(Ctx, Organization, Scm, Optional) ->
 
 %% @doc 
 %% Retrieve SCM organization repositories details for an organization
--spec get_scm_organisation_repositories(ctx:ctx(), binary(), binary(), binary()) -> {ok, openapi_scm_organisations:openapi_scm_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_scm_organisation_repositories(ctx:ctx(), binary(), binary(), binary()) -> {ok, [openapi_github_organization:openapi_github_organization()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_scm_organisation_repositories(Ctx, Organization, Scm, ScmOrganisation) ->
     get_scm_organisation_repositories(Ctx, Organization, Scm, ScmOrganisation, #{}).
 
--spec get_scm_organisation_repositories(ctx:ctx(), binary(), binary(), binary(), maps:map()) -> {ok, openapi_scm_organisations:openapi_scm_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_scm_organisation_repositories(ctx:ctx(), binary(), binary(), binary(), maps:map()) -> {ok, [openapi_github_organization:openapi_github_organization()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_scm_organisation_repositories(Ctx, Organization, Scm, ScmOrganisation, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/scm/", Scm, "/organizations/", ScmOrganisation, "/repositories"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/scm/", Scm, "/organizations/", ScmOrganisation, "/repositories">>],
     QS = lists:flatten([])++openapi_utils:optional_params(['credentialId', 'pageSize', 'pageNumber'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -588,17 +588,17 @@ get_scm_organisation_repositories(Ctx, Organization, Scm, ScmOrganisation, Optio
 
 %% @doc 
 %% Retrieve SCM organization repository details for an organization
--spec get_scm_organisation_repository(ctx:ctx(), binary(), binary(), binary(), binary()) -> {ok, openapi_scm_organisations:openapi_scm_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_scm_organisation_repository(ctx:ctx(), binary(), binary(), binary(), binary()) -> {ok, [openapi_github_organization:openapi_github_organization()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_scm_organisation_repository(Ctx, Organization, Scm, ScmOrganisation, Repository) ->
     get_scm_organisation_repository(Ctx, Organization, Scm, ScmOrganisation, Repository, #{}).
 
--spec get_scm_organisation_repository(ctx:ctx(), binary(), binary(), binary(), binary(), maps:map()) -> {ok, openapi_scm_organisations:openapi_scm_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_scm_organisation_repository(ctx:ctx(), binary(), binary(), binary(), binary(), maps:map()) -> {ok, [openapi_github_organization:openapi_github_organization()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_scm_organisation_repository(Ctx, Organization, Scm, ScmOrganisation, Repository, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/scm/", Scm, "/organizations/", ScmOrganisation, "/repositories/", Repository, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/scm/", Scm, "/organizations/", ScmOrganisation, "/repositories/", Repository, "">>],
     QS = lists:flatten([])++openapi_utils:optional_params(['credentialId'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -609,17 +609,17 @@ get_scm_organisation_repository(Ctx, Organization, Scm, ScmOrganisation, Reposit
 
 %% @doc 
 %% Retrieve SCM organizations details for an organization
--spec get_scm_organisations(ctx:ctx(), binary(), binary()) -> {ok, openapi_scm_organisations:openapi_scm_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_scm_organisations(ctx:ctx(), binary(), binary()) -> {ok, [openapi_github_organization:openapi_github_organization()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_scm_organisations(Ctx, Organization, Scm) ->
     get_scm_organisations(Ctx, Organization, Scm, #{}).
 
--spec get_scm_organisations(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, openapi_scm_organisations:openapi_scm_organisations(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_scm_organisations(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [openapi_github_organization:openapi_github_organization()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_scm_organisations(Ctx, Organization, Scm, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/scm/", Scm, "/organizations"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/scm/", Scm, "/organizations">>],
     QS = lists:flatten([])++openapi_utils:optional_params(['credentialId'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -640,7 +640,7 @@ get_user(Ctx, Organization, User, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/users/", User, ""],
+    Path = [<<"/blue/rest/organizations/", Organization, "/users/", User, "">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -651,17 +651,17 @@ get_user(Ctx, Organization, User, Optional) ->
 
 %% @doc 
 %% Retrieve user favorites details for an organization
--spec get_user_favorites(ctx:ctx(), binary()) -> {ok, openapi_user_favorites:openapi_user_favorites(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_user_favorites(ctx:ctx(), binary()) -> {ok, [openapi_favorite_impl:openapi_favorite_impl()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_user_favorites(Ctx, User) ->
     get_user_favorites(Ctx, User, #{}).
 
--spec get_user_favorites(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_user_favorites:openapi_user_favorites(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_user_favorites(ctx:ctx(), binary(), maps:map()) -> {ok, [openapi_favorite_impl:openapi_favorite_impl()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_user_favorites(Ctx, User, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/users/", User, "/favorites"],
+    Path = [<<"/blue/rest/users/", User, "/favorites">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -682,7 +682,7 @@ get_users(Ctx, Organization, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/organizations/", Organization, "/users/"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/users/">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -703,7 +703,7 @@ post_pipeline_run(Ctx, Organization, Pipeline, Run, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/replay"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/replay">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -724,7 +724,7 @@ post_pipeline_runs(Ctx, Organization, Pipeline, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = post,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs">>],
     QS = [],
     Headers = [],
     Body1 = [],
@@ -735,20 +735,20 @@ post_pipeline_runs(Ctx, Organization, Pipeline, Optional) ->
 
 %% @doc 
 %% Favorite/unfavorite a pipeline
--spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), openapi_body:openapi_body()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-put_pipeline_favorite(Ctx, Organization, Pipeline, OpenapiBody) ->
-    put_pipeline_favorite(Ctx, Organization, Pipeline, OpenapiBody, #{}).
+-spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), UNKNOWN_BASE_TYPE:UNKNOWN_BASE_TYPE()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE) ->
+    put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE, #{}).
 
--spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), openapi_body:openapi_body(), maps:map()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-put_pipeline_favorite(Ctx, Organization, Pipeline, OpenapiBody, Optional) ->
+-spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), UNKNOWN_BASE_TYPE:UNKNOWN_BASE_TYPE(), maps:map()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = put,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/favorite"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/favorite">>],
     QS = [],
     Headers = [],
-    Body1 = OpenapiBody,
+    Body1 = UNKNOWNBASETYPE,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
@@ -766,7 +766,7 @@ put_pipeline_run(Ctx, Organization, Pipeline, Run, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = put,
-    Path = ["/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/stop"],
+    Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/runs/", Run, "/stop">>],
     QS = lists:flatten([])++openapi_utils:optional_params(['blocking', 'timeOutInSecs'], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -787,7 +787,7 @@ search(Ctx, Q, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/search/"],
+    Path = [<<"/blue/rest/search/">>],
     QS = lists:flatten([{<<"q">>, Q}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = [],
     Body1 = [],
@@ -808,7 +808,7 @@ search_classes(Ctx, Q, Optional) ->
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
     Method = get,
-    Path = ["/blue/rest/classes/"],
+    Path = [<<"/blue/rest/classes/">>],
     QS = lists:flatten([{<<"q">>, Q}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = [],
     Body1 = [],

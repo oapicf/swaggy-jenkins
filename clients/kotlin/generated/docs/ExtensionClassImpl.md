@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
-**Underscorelinks** | [**ExtensionClassImpllinks**](ExtensionClassImpllinks.md) |  |  [optional]
-**classes** | **kotlin.Array&lt;kotlin.String&gt;** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
+**links** | [**ExtensionClassImpllinks**](ExtensionClassImpllinks.md) |  |  [optional]
+**classes** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
 
 
 

@@ -1,7 +1,9 @@
 
+
 # FreeStyleProjecthealthReport
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **String** |  |  [optional]
@@ -9,6 +11,7 @@ Name | Type | Description | Notes
 **iconUrl** | **String** |  |  [optional]
 **score** | **Integer** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

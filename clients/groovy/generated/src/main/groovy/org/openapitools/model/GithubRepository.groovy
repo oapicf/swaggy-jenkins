@@ -8,20 +8,20 @@ import org.openapitools.model.GithubRepositorypermissions;
 
 @Canonical
 class GithubRepository {
-    String propertyClass = null
-
-    GithubRepositorylinks links = null
-
-    String defaultBranch = null
-
-    String description = null
-
-    String name = null
-
-    GithubRepositorypermissions permissions = null
-
-    Boolean _private = null
-
-    String fullName = null
-
+    
+    String propertyClass
+    
+    GithubRepositorylinks links
+    
+    String defaultBranch
+    
+    String description
+    
+    String name
+    
+    GithubRepositorypermissions permissions
+    
+    Boolean _private
+    
+    String fullName
 }

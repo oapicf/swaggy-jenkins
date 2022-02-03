@@ -1,34 +1,40 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.PipelinelatestRunartifacts;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelinelatestRun   {
+
+@JsonTypeName("PipelinelatestRun")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelinelatestRun   {
   
   private @Valid List<PipelinelatestRunartifacts> artifacts = new ArrayList<PipelinelatestRunartifacts>();
-  private @Valid Integer durationInMillis = null;
-  private @Valid Integer estimatedDurationInMillis = null;
-  private @Valid String enQueueTime = null;
-  private @Valid String endTime = null;
-  private @Valid String id = null;
-  private @Valid String organization = null;
-  private @Valid String pipeline = null;
-  private @Valid String result = null;
-  private @Valid String runSummary = null;
-  private @Valid String startTime = null;
-  private @Valid String state = null;
-  private @Valid String type = null;
-  private @Valid String commitId = null;
-  private @Valid String propertyClass = null;
+  private @Valid Integer durationInMillis;
+  private @Valid Integer estimatedDurationInMillis;
+  private @Valid String enQueueTime;
+  private @Valid String endTime;
+  private @Valid String id;
+  private @Valid String organization;
+  private @Valid String pipeline;
+  private @Valid String result;
+  private @Valid String runSummary;
+  private @Valid String startTime;
+  private @Valid String state;
+  private @Valid String type;
+  private @Valid String commitId;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -38,16 +44,36 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("artifacts")
   public List<PipelinelatestRunartifacts> getArtifacts() {
     return artifacts;
   }
+
+  @JsonProperty("artifacts")
   public void setArtifacts(List<PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 
-  /**
+  public PipelinelatestRun addArtifactsItem(PipelinelatestRunartifacts artifactsItem) {
+    if (this.artifacts == null) {
+      this.artifacts = new ArrayList<PipelinelatestRunartifacts>();
+    }
+
+    this.artifacts.add(artifactsItem);
+    return this;
+  }
+
+  public PipelinelatestRun removeArtifactsItem(PipelinelatestRunartifacts artifactsItem) {
+    if (artifactsItem != null && this.artifacts != null) {
+      this.artifacts.remove(artifactsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public PipelinelatestRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -55,16 +81,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
+
+  @JsonProperty("durationInMillis")
   public void setDurationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -72,16 +102,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
+
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -89,16 +123,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("enQueueTime")
   public String getEnQueueTime() {
     return enQueueTime;
   }
+
+  @JsonProperty("enQueueTime")
   public void setEnQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun endTime(String endTime) {
     this.endTime = endTime;
@@ -106,16 +144,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("endTime")
   public String getEndTime() {
     return endTime;
   }
+
+  @JsonProperty("endTime")
   public void setEndTime(String endTime) {
     this.endTime = endTime;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun id(String id) {
     this.id = id;
@@ -123,16 +165,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun organization(String organization) {
     this.organization = organization;
@@ -140,16 +186,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -157,16 +207,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("pipeline")
   public String getPipeline() {
     return pipeline;
   }
+
+  @JsonProperty("pipeline")
   public void setPipeline(String pipeline) {
     this.pipeline = pipeline;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun result(String result) {
     this.result = result;
@@ -174,16 +228,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("result")
   public String getResult() {
     return result;
   }
+
+  @JsonProperty("result")
   public void setResult(String result) {
     this.result = result;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -191,16 +249,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("runSummary")
   public String getRunSummary() {
     return runSummary;
   }
+
+  @JsonProperty("runSummary")
   public void setRunSummary(String runSummary) {
     this.runSummary = runSummary;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun startTime(String startTime) {
     this.startTime = startTime;
@@ -208,16 +270,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }
+
+  @JsonProperty("startTime")
   public void setStartTime(String startTime) {
     this.startTime = startTime;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun state(String state) {
     this.state = state;
@@ -225,16 +291,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("state")
   public String getState() {
     return state;
   }
+
+  @JsonProperty("state")
   public void setState(String state) {
     this.state = state;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun type(String type) {
     this.type = type;
@@ -242,16 +312,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("type")
   public String getType() {
     return type;
   }
+
+  @JsonProperty("type")
   public void setType(String type) {
     this.type = type;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun commitId(String commitId) {
     this.commitId = commitId;
@@ -259,16 +333,20 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("commitId")
   public String getCommitId() {
     return commitId;
   }
+
+  @JsonProperty("commitId")
   public void setCommitId(String commitId) {
     this.commitId = commitId;
   }
 
-  /**
+/**
    **/
   public PipelinelatestRun propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -276,18 +354,22 @@ public class PipelinelatestRun   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -295,21 +377,21 @@ public class PipelinelatestRun   {
       return false;
     }
     PipelinelatestRun pipelinelatestRun = (PipelinelatestRun) o;
-    return Objects.equals(artifacts, pipelinelatestRun.artifacts) &&
-        Objects.equals(durationInMillis, pipelinelatestRun.durationInMillis) &&
-        Objects.equals(estimatedDurationInMillis, pipelinelatestRun.estimatedDurationInMillis) &&
-        Objects.equals(enQueueTime, pipelinelatestRun.enQueueTime) &&
-        Objects.equals(endTime, pipelinelatestRun.endTime) &&
-        Objects.equals(id, pipelinelatestRun.id) &&
-        Objects.equals(organization, pipelinelatestRun.organization) &&
-        Objects.equals(pipeline, pipelinelatestRun.pipeline) &&
-        Objects.equals(result, pipelinelatestRun.result) &&
-        Objects.equals(runSummary, pipelinelatestRun.runSummary) &&
-        Objects.equals(startTime, pipelinelatestRun.startTime) &&
-        Objects.equals(state, pipelinelatestRun.state) &&
-        Objects.equals(type, pipelinelatestRun.type) &&
-        Objects.equals(commitId, pipelinelatestRun.commitId) &&
-        Objects.equals(propertyClass, pipelinelatestRun.propertyClass);
+    return Objects.equals(this.artifacts, pipelinelatestRun.artifacts) &&
+        Objects.equals(this.durationInMillis, pipelinelatestRun.durationInMillis) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelinelatestRun.estimatedDurationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelinelatestRun.enQueueTime) &&
+        Objects.equals(this.endTime, pipelinelatestRun.endTime) &&
+        Objects.equals(this.id, pipelinelatestRun.id) &&
+        Objects.equals(this.organization, pipelinelatestRun.organization) &&
+        Objects.equals(this.pipeline, pipelinelatestRun.pipeline) &&
+        Objects.equals(this.result, pipelinelatestRun.result) &&
+        Objects.equals(this.runSummary, pipelinelatestRun.runSummary) &&
+        Objects.equals(this.startTime, pipelinelatestRun.startTime) &&
+        Objects.equals(this.state, pipelinelatestRun.state) &&
+        Objects.equals(this.type, pipelinelatestRun.type) &&
+        Objects.equals(this.commitId, pipelinelatestRun.commitId) &&
+        Objects.equals(this.propertyClass, pipelinelatestRun.propertyClass);
   }
 
   @Override
@@ -345,11 +427,13 @@ public class PipelinelatestRun   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

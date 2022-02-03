@@ -6,6 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class FreeStyleProjectactions {
-    String propertyClass = null
-
+    
+    String propertyClass
 }

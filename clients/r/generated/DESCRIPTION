@@ -1,12 +1,14 @@
 Package: openapi
 Title: R Package Client for Swaggy Jenkins
 Version: 1.0.0
-Authors@R: person("OpenAPI Generator community", email = "team@openapitools.org", role = c("aut", "cre"))
+Authors@R: person("Cliffano Subagio", email = "blah@cliffano.com", role = c("aut", "cre"))
 Description: Jenkins API clients generated from Swagger / Open API specification
-Depends: R (>= 3.3.3)
+URL: https://github.com/GIT_USER_ID/GIT_REPO_ID
+BugReports: https://github.com/GIT_USER_ID/GIT_REPO_ID/issues
+Depends: R (>= 3.3)
 Encoding: UTF-8
 License: Unlicense
 LazyData: true
 Suggests: testthat
-Imports: jsonlite, httr, R6
+Imports: jsonlite, httr, R6, base64enc
 RoxygenNote: 6.0.1.9000

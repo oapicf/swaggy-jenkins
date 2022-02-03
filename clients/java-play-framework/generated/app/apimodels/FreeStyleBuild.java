@@ -12,63 +12,82 @@ import javax.validation.constraints.*;
 /**
  * FreeStyleBuild
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FreeStyleBuild   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("number")
-  private Integer number = null;
+  
+  private Integer number;
 
   @JsonProperty("url")
-  private String url = null;
+  
+  private String url;
 
   @JsonProperty("actions")
+  @Valid
+
   private List<CauseAction> actions = null;
 
   @JsonProperty("building")
-  private Boolean building = null;
+  
+  private Boolean building;
 
   @JsonProperty("description")
-  private String description = null;
+  
+  private String description;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("duration")
-  private Integer duration = null;
+  
+  private Integer duration;
 
   @JsonProperty("estimatedDuration")
-  private Integer estimatedDuration = null;
+  
+  private Integer estimatedDuration;
 
   @JsonProperty("executor")
-  private String executor = null;
+  
+  private String executor;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  
+  private String fullDisplayName;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("keepLog")
-  private Boolean keepLog = null;
+  
+  private Boolean keepLog;
 
   @JsonProperty("queueId")
-  private Integer queueId = null;
+  
+  private Integer queueId;
 
   @JsonProperty("result")
-  private String result = null;
+  
+  private String result;
 
   @JsonProperty("timestamp")
-  private Integer timestamp = null;
+  
+  private Integer timestamp;
 
   @JsonProperty("builtOn")
-  private String builtOn = null;
+  
+  private String builtOn;
 
   @JsonProperty("changeSet")
-  private EmptyChangeLogSet changeSet = null;
+  @Valid
+
+  private EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -79,7 +98,7 @@ public class FreeStyleBuild   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -96,7 +115,7 @@ public class FreeStyleBuild   {
    * Get number
    * @return number
   **/
-    public Integer getNumber() {
+  public Integer getNumber() {
     return number;
   }
 
@@ -113,7 +132,7 @@ public class FreeStyleBuild   {
    * Get url
    * @return url
   **/
-    public String getUrl() {
+  public String getUrl() {
     return url;
   }
 
@@ -138,7 +157,6 @@ public class FreeStyleBuild   {
    * Get actions
    * @return actions
   **/
-  @Valid
   public List<CauseAction> getActions() {
     return actions;
   }
@@ -156,7 +174,7 @@ public class FreeStyleBuild   {
    * Get building
    * @return building
   **/
-    public Boolean getBuilding() {
+  public Boolean getBuilding() {
     return building;
   }
 
@@ -173,7 +191,7 @@ public class FreeStyleBuild   {
    * Get description
    * @return description
   **/
-    public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -190,7 +208,7 @@ public class FreeStyleBuild   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -207,7 +225,7 @@ public class FreeStyleBuild   {
    * Get duration
    * @return duration
   **/
-    public Integer getDuration() {
+  public Integer getDuration() {
     return duration;
   }
 
@@ -224,7 +242,7 @@ public class FreeStyleBuild   {
    * Get estimatedDuration
    * @return estimatedDuration
   **/
-    public Integer getEstimatedDuration() {
+  public Integer getEstimatedDuration() {
     return estimatedDuration;
   }
 
@@ -241,7 +259,7 @@ public class FreeStyleBuild   {
    * Get executor
    * @return executor
   **/
-    public String getExecutor() {
+  public String getExecutor() {
     return executor;
   }
 
@@ -258,7 +276,7 @@ public class FreeStyleBuild   {
    * Get fullDisplayName
    * @return fullDisplayName
   **/
-    public String getFullDisplayName() {
+  public String getFullDisplayName() {
     return fullDisplayName;
   }
 
@@ -275,7 +293,7 @@ public class FreeStyleBuild   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -292,7 +310,7 @@ public class FreeStyleBuild   {
    * Get keepLog
    * @return keepLog
   **/
-    public Boolean getKeepLog() {
+  public Boolean getKeepLog() {
     return keepLog;
   }
 
@@ -309,7 +327,7 @@ public class FreeStyleBuild   {
    * Get queueId
    * @return queueId
   **/
-    public Integer getQueueId() {
+  public Integer getQueueId() {
     return queueId;
   }
 
@@ -326,7 +344,7 @@ public class FreeStyleBuild   {
    * Get result
    * @return result
   **/
-    public String getResult() {
+  public String getResult() {
     return result;
   }
 
@@ -343,7 +361,7 @@ public class FreeStyleBuild   {
    * Get timestamp
    * @return timestamp
   **/
-    public Integer getTimestamp() {
+  public Integer getTimestamp() {
     return timestamp;
   }
 
@@ -360,7 +378,7 @@ public class FreeStyleBuild   {
    * Get builtOn
    * @return builtOn
   **/
-    public String getBuiltOn() {
+  public String getBuiltOn() {
     return builtOn;
   }
 
@@ -377,7 +395,6 @@ public class FreeStyleBuild   {
    * Get changeSet
    * @return changeSet
   **/
-  @Valid
   public EmptyChangeLogSet getChangeSet() {
     return changeSet;
   }
@@ -388,7 +405,7 @@ public class FreeStyleBuild   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -453,7 +470,7 @@ public class FreeStyleBuild   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -28,7 +28,7 @@ Feature | HTTP request | Description
 
 # **computer**
 > computer (depth: INTEGER_32 ): detachable COMPUTER_SET
-	
+
 
 
 
@@ -39,7 +39,7 @@ Retrieve computer details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **depth** | **INTEGER_32**| Recursion depth in response model | 
+ **depth** | **INTEGER_32**| Recursion depth in response model | [default to null]
 
 ### Return type
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 # **head_jenkins**
 > head_jenkins 
-	
+
 
 
 
@@ -85,7 +85,7 @@ This endpoint does not need any parameter.
 
 # **jenkins**
 > jenkins : detachable HUDSON
-	
+
 
 
 
@@ -112,7 +112,7 @@ This endpoint does not need any parameter.
 
 # **job**
 > job (name: STRING_32 ): detachable FREE_STYLE_PROJECT
-	
+
 
 
 
@@ -123,7 +123,7 @@ Retrieve job details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
+ **name** | **STRING_32**| Name of the job | [default to null]
 
 ### Return type
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 # **job_config**
 > job_config (name: STRING_32 ): detachable STRING_32
-	
+
 
 
 
@@ -153,7 +153,7 @@ Retrieve job configuration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
+ **name** | **STRING_32**| Name of the job | [default to null]
 
 ### Return type
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 # **job_last_build**
 > job_last_build (name: STRING_32 ): detachable FREE_STYLE_BUILD
-	
+
 
 
 
@@ -183,7 +183,7 @@ Retrieve job's last build details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
+ **name** | **STRING_32**| Name of the job | [default to null]
 
 ### Return type
 
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 # **job_progressive_text**
 > job_progressive_text (name: STRING_32 ; number: STRING_32 ; start: STRING_32 )
-	
+
 
 
 
@@ -213,9 +213,9 @@ Retrieve job's build progressive text output
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
- **number** | **STRING_32**| Build number | 
- **start** | **STRING_32**| Starting point of progressive text output | 
+ **name** | **STRING_32**| Name of the job | [default to null]
+ **number** | **STRING_32**| Build number | [default to null]
+ **start** | **STRING_32**| Starting point of progressive text output | [default to null]
 
 ### Return type
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 # **post_create_item**
 > post_create_item (name: STRING_32 ; var_from:  detachable STRING_32 ; mode:  detachable STRING_32 ; jenkins__crumb:  detachable STRING_32 ; content__type:  detachable STRING_32 ; body:  detachable STRING_32 )
-	
+
 
 
 
@@ -245,11 +245,11 @@ Create a new job using job configuration, or copied from an existing job
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the new job | 
- **var_from** | **STRING_32**| Existing job to copy from | [optional] 
- **mode** | **STRING_32**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
- **content__type** | **STRING_32**| Content type header application/xml | [optional] 
+ **name** | **STRING_32**| Name of the new job | [default to null]
+ **var_from** | **STRING_32**| Existing job to copy from | [optional] [default to null]
+ **mode** | **STRING_32**| Set to &#39;copy&#39; for copying an existing job | [optional] [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
+ **content__type** | **STRING_32**| Content type header application/xml | [optional] [default to null]
  **body** | **STRING_32**| Job configuration in config.xml format | [optional] 
 
 ### Return type
@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
 
 # **post_create_view**
 > post_create_view (name: STRING_32 ; jenkins__crumb:  detachable STRING_32 ; content__type:  detachable STRING_32 ; body:  detachable STRING_32 )
-	
+
 
 
 
@@ -280,9 +280,9 @@ Create a new view using view configuration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the new view | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
- **content__type** | **STRING_32**| Content type header application/xml | [optional] 
+ **name** | **STRING_32**| Name of the new view | [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
+ **content__type** | **STRING_32**| Content type header application/xml | [optional] [default to null]
  **body** | **STRING_32**| View configuration in config.xml format | [optional] 
 
 ### Return type
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 # **post_job_build**
 > post_job_build (name: STRING_32 ; json: STRING_32 ; token:  detachable STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -313,10 +313,10 @@ Build a job
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
- **json** | **STRING_32**|  | 
- **token** | **STRING_32**|  | [optional] 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **name** | **STRING_32**| Name of the job | [default to null]
+ **json** | **STRING_32**|  | [default to null]
+ **token** | **STRING_32**|  | [optional] [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 # **post_job_config**
 > post_job_config (name: STRING_32 ; body: STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -346,9 +346,9 @@ Update job configuration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
+ **name** | **STRING_32**| Name of the job | [default to null]
  **body** | **STRING_32**| Job configuration in config.xml format | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -367,7 +367,7 @@ Name | Type | Description  | Notes
 
 # **post_job_delete**
 > post_job_delete (name: STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -378,8 +378,8 @@ Delete a job
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **name** | **STRING_32**| Name of the job | [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -398,7 +398,7 @@ Name | Type | Description  | Notes
 
 # **post_job_disable**
 > post_job_disable (name: STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -409,8 +409,8 @@ Disable a job
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **name** | **STRING_32**| Name of the job | [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -429,7 +429,7 @@ Name | Type | Description  | Notes
 
 # **post_job_enable**
 > post_job_enable (name: STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -440,8 +440,8 @@ Enable a job
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **name** | **STRING_32**| Name of the job | [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 # **post_job_last_build_stop**
 > post_job_last_build_stop (name: STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -471,8 +471,8 @@ Stop a job
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the job | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **name** | **STRING_32**| Name of the job | [default to null]
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -491,7 +491,7 @@ Name | Type | Description  | Notes
 
 # **post_view_config**
 > post_view_config (name: STRING_32 ; body: STRING_32 ; jenkins__crumb:  detachable STRING_32 )
-	
+
 
 
 
@@ -502,9 +502,9 @@ Update view configuration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the view | 
+ **name** | **STRING_32**| Name of the view | [default to null]
  **body** | **STRING_32**| View configuration in config.xml format | 
- **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] 
+ **jenkins__crumb** | **STRING_32**| CSRF protection token | [optional] [default to null]
 
 ### Return type
 
@@ -523,7 +523,7 @@ Name | Type | Description  | Notes
 
 # **queue**
 > queue : detachable QUEUE
-	
+
 
 
 
@@ -550,7 +550,7 @@ This endpoint does not need any parameter.
 
 # **queue_item**
 > queue_item (number: STRING_32 ): detachable QUEUE
-	
+
 
 
 
@@ -561,7 +561,7 @@ Retrieve queued item details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **number** | **STRING_32**| Queue number | 
+ **number** | **STRING_32**| Queue number | [default to null]
 
 ### Return type
 
@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 
 # **view**
 > view (name: STRING_32 ): detachable LIST_VIEW
-	
+
 
 
 
@@ -591,7 +591,7 @@ Retrieve view details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the view | 
+ **name** | **STRING_32**| Name of the view | [default to null]
 
 ### Return type
 
@@ -610,7 +610,7 @@ Name | Type | Description  | Notes
 
 # **view_config**
 > view_config (name: STRING_32 ): detachable STRING_32
-	
+
 
 
 
@@ -621,7 +621,7 @@ Retrieve view configuration
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **STRING_32**| Name of the view | 
+ **name** | **STRING_32**| Name of the view | [default to null]
 
 ### Return type
 

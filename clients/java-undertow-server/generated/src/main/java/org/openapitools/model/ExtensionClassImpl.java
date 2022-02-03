@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -13,15 +23,15 @@ import org.openapitools.model.ExtensionClassImpllinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class ExtensionClassImpl   {
   
-  private String propertyClass = null;
-  private ExtensionClassImpllinks links = null;
+  private String propertyClass;
+  private ExtensionClassImpllinks links;
   private List<String> classes = new ArrayList<String>();
 
   /**
-   **/
+   */
   public ExtensionClassImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -38,7 +48,7 @@ public class ExtensionClassImpl   {
   }
 
   /**
-   **/
+   */
   public ExtensionClassImpl links(ExtensionClassImpllinks links) {
     this.links = links;
     return this;
@@ -55,7 +65,7 @@ public class ExtensionClassImpl   {
   }
 
   /**
-   **/
+   */
   public ExtensionClassImpl classes(List<String> classes) {
     this.classes = classes;
     return this;
@@ -73,7 +83,7 @@ public class ExtensionClassImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -107,7 +117,7 @@ public class ExtensionClassImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

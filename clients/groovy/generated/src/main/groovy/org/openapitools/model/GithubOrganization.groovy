@@ -7,12 +7,12 @@ import org.openapitools.model.GithubOrganizationlinks;
 
 @Canonical
 class GithubOrganization {
-    String propertyClass = null
-
-    GithubOrganizationlinks links = null
-
-    Boolean jenkinsOrganizationPipeline = null
-
-    String name = null
-
+    
+    String propertyClass
+    
+    GithubOrganizationlinks links
+    
+    Boolean jenkinsOrganizationPipeline
+    
+    String name
 }

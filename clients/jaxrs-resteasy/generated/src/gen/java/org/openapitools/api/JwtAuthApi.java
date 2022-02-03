@@ -20,12 +20,13 @@ import javax.ws.rs.*;
 import javax.inject.Inject;
 
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 @Path("/jwt-auth")
 
 
 @io.swagger.annotations.Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class JwtAuthApi  {
 
     @Inject JwtAuthApiService service;
@@ -56,7 +57,7 @@ public class JwtAuthApi  {
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getJsonWebToken(  @QueryParam("expiryTimeInMins") Integer expiryTimeInMins,  @QueryParam("maxExpiryTimeInMins") Integer maxExpiryTimeInMins,@Context SecurityContext securityContext)
+    public Response getJsonWebToken( @QueryParam("expiryTimeInMins") Integer expiryTimeInMins, @QueryParam("maxExpiryTimeInMins") Integer maxExpiryTimeInMins,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.getJsonWebToken(expiryTimeInMins,maxExpiryTimeInMins,securityContext);
     }

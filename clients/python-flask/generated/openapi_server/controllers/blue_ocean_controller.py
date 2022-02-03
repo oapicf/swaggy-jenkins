@@ -1,29 +1,22 @@
 import connexion
 import six
 
-from openapi_server.models.body import Body  # noqa: E501
 from openapi_server.models.branch_impl import BranchImpl  # noqa: E501
 from openapi_server.models.favorite_impl import FavoriteImpl  # noqa: E501
+from openapi_server.models.github_organization import GithubOrganization  # noqa: E501
 from openapi_server.models.github_scm import GithubScm  # noqa: E501
 from openapi_server.models.multibranch_pipeline import MultibranchPipeline  # noqa: E501
 from openapi_server.models.organisation import Organisation  # noqa: E501
-from openapi_server.models.organisations import Organisations  # noqa: E501
 from openapi_server.models.pipeline import Pipeline  # noqa: E501
-from openapi_server.models.pipeline_activities import PipelineActivities  # noqa: E501
+from openapi_server.models.pipeline_activity import PipelineActivity  # noqa: E501
 from openapi_server.models.pipeline_folder_impl import PipelineFolderImpl  # noqa: E501
 from openapi_server.models.pipeline_impl import PipelineImpl  # noqa: E501
-from openapi_server.models.pipeline_queue import PipelineQueue  # noqa: E501
 from openapi_server.models.pipeline_run import PipelineRun  # noqa: E501
 from openapi_server.models.pipeline_run_node import PipelineRunNode  # noqa: E501
-from openapi_server.models.pipeline_run_node_steps import PipelineRunNodeSteps  # noqa: E501
-from openapi_server.models.pipeline_run_nodes import PipelineRunNodes  # noqa: E501
-from openapi_server.models.pipeline_runs import PipelineRuns  # noqa: E501
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl  # noqa: E501
-from openapi_server.models.pipelines import Pipelines  # noqa: E501
 from openapi_server.models.queue_item_impl import QueueItemImpl  # noqa: E501
-from openapi_server.models.scm_organisations import ScmOrganisations  # noqa: E501
+from openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE  # noqa: E501
 from openapi_server.models.user import User  # noqa: E501
-from openapi_server.models.user_favorites import UserFavorites  # noqa: E501
 from openapi_server import util
 
 
@@ -117,7 +110,7 @@ def get_organisations():  # noqa: E501
     Retrieve all organizations details # noqa: E501
 
 
-    :rtype: Organisations
+    :rtype: List[Organisation]
     """
     return 'do some magic!'
 
@@ -147,7 +140,7 @@ def get_pipeline_activities(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: PipelineActivities
+    :rtype: List[PipelineActivity]
     """
     return 'do some magic!'
 
@@ -245,7 +238,7 @@ def get_pipeline_queue(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: PipelineQueue
+    :rtype: List[QueueItemImpl]
     """
     return 'do some magic!'
 
@@ -363,7 +356,7 @@ def get_pipeline_run_node_steps(organization, pipeline, run, node):  # noqa: E50
     :param node: Name of the node
     :type node: str
 
-    :rtype: PipelineRunNodeSteps
+    :rtype: List[PipelineStepImpl]
     """
     return 'do some magic!'
 
@@ -380,7 +373,7 @@ def get_pipeline_run_nodes(organization, pipeline, run):  # noqa: E501
     :param run: Name of the run
     :type run: str
 
-    :rtype: PipelineRunNodes
+    :rtype: List[PipelineRunNode]
     """
     return 'do some magic!'
 
@@ -395,7 +388,7 @@ def get_pipeline_runs(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: PipelineRuns
+    :rtype: List[PipelineRun]
     """
     return 'do some magic!'
 
@@ -408,7 +401,7 @@ def get_pipelines(organization):  # noqa: E501
     :param organization: Name of the organization
     :type organization: str
 
-    :rtype: Pipelines
+    :rtype: List[Pipeline]
     """
     return 'do some magic!'
 
@@ -446,7 +439,7 @@ def get_scm_organisation_repositories(organization, scm, scm_organisation, crede
     :param page_number: Page number
     :type page_number: int
 
-    :rtype: ScmOrganisations
+    :rtype: List[GithubOrganization]
     """
     return 'do some magic!'
 
@@ -467,7 +460,7 @@ def get_scm_organisation_repository(organization, scm, scm_organisation, reposit
     :param credential_id: Credential ID
     :type credential_id: str
 
-    :rtype: ScmOrganisations
+    :rtype: List[GithubOrganization]
     """
     return 'do some magic!'
 
@@ -484,7 +477,7 @@ def get_scm_organisations(organization, scm, credential_id=None):  # noqa: E501
     :param credential_id: Credential ID
     :type credential_id: str
 
-    :rtype: ScmOrganisations
+    :rtype: List[GithubOrganization]
     """
     return 'do some magic!'
 
@@ -512,7 +505,7 @@ def get_user_favorites(user):  # noqa: E501
     :param user: Name of the user
     :type user: str
 
-    :rtype: UserFavorites
+    :rtype: List[FavoriteImpl]
     """
     return 'do some magic!'
 
@@ -562,7 +555,7 @@ def post_pipeline_runs(organization, pipeline):  # noqa: E501
     return 'do some magic!'
 
 
-def put_pipeline_favorite(organization, pipeline, body):  # noqa: E501
+def put_pipeline_favorite(organization, pipeline, unknown_base_type):  # noqa: E501
     """put_pipeline_favorite
 
     Favorite/unfavorite a pipeline # noqa: E501
@@ -571,13 +564,13 @@ def put_pipeline_favorite(organization, pipeline, body):  # noqa: E501
     :type organization: str
     :param pipeline: Name of the pipeline
     :type pipeline: str
-    :param body: Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite
-    :type body: dict | bytes
+    :param unknown_base_type: Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+    :type unknown_base_type: dict | bytes
 
     :rtype: FavoriteImpl
     """
     if connexion.request.is_json:
-        body = Body.from_dict(connexion.request.get_json())  # noqa: E501
+        unknown_base_type = UNKNOWN_BASE_TYPE.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

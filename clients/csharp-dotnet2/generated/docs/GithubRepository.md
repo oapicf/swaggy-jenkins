@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.GithubRepository
+
 ## Properties
 
 Name | Type | Description | Notes

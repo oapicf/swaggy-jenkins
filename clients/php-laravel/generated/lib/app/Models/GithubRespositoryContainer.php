@@ -9,11 +9,11 @@ namespace app\Models;
  */
 class GithubRespositoryContainer {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\GithubRespositoryContainerlinks $_links */
-    private $_links;
+    /** @var \app\Models\GithubRespositoryContainerlinks $links */
+    private $links;
 
     /** @var \app\Models\GithubRepositories $repositories */
     private $repositories;

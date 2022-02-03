@@ -16,3 +16,25 @@ type CauseAction struct {
 
 	Causes []CauseUserIdCause `json:"causes,omitempty"`
 }
+
+// AssertCauseActionRequired checks if the required fields are not zero-ed
+func AssertCauseActionRequired(obj CauseAction) error {
+	for _, el := range obj.Causes {
+		if err := AssertCauseUserIdCauseRequired(el); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AssertRecurseCauseActionRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of CauseAction (e.g. [][]CauseAction), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseCauseActionRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aCauseAction, ok := obj.(CauseAction)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertCauseActionRequired(aCauseAction)
+	})
+}

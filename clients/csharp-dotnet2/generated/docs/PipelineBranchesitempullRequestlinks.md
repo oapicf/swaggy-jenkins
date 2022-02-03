@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.PipelineBranchesitempullRequestlinks
+
 ## Properties
 
 Name | Type | Description | Notes

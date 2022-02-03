@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class Organisation {
-    String propertyClass = null
-
-    String name = null
-
+    
+    String propertyClass
+    
+    String name
 }

@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.Queue do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"items" => [QueueBlockedItem]
+    :"_class" => String.t | nil,
+    :"items" => [SwaggyJenkins.Model.QueueBlockedItem.t] | nil
   }
 end
 

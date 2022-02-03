@@ -15,7 +15,7 @@ class DefaultCrumbIssuer(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, crumb: str=None, crumb_request_field: str=None):  # noqa: E501
+    def __init__(self, _class=None, crumb=None, crumb_request_field=None):  # noqa: E501
         """DefaultCrumbIssuer - a model defined in OpenAPI
 
         :param _class: The _class of this DefaultCrumbIssuer.  # noqa: E501
@@ -53,7 +53,7 @@ class DefaultCrumbIssuer(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this DefaultCrumbIssuer.
 
 
@@ -63,7 +63,7 @@ class DefaultCrumbIssuer(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this DefaultCrumbIssuer.
 
 
@@ -74,7 +74,7 @@ class DefaultCrumbIssuer(Model):
         self.__class = _class
 
     @property
-    def crumb(self) -> str:
+    def crumb(self):
         """Gets the crumb of this DefaultCrumbIssuer.
 
 
@@ -84,7 +84,7 @@ class DefaultCrumbIssuer(Model):
         return self._crumb
 
     @crumb.setter
-    def crumb(self, crumb: str):
+    def crumb(self, crumb):
         """Sets the crumb of this DefaultCrumbIssuer.
 
 
@@ -95,7 +95,7 @@ class DefaultCrumbIssuer(Model):
         self._crumb = crumb
 
     @property
-    def crumb_request_field(self) -> str:
+    def crumb_request_field(self):
         """Gets the crumb_request_field of this DefaultCrumbIssuer.
 
 
@@ -105,7 +105,7 @@ class DefaultCrumbIssuer(Model):
         return self._crumb_request_field
 
     @crumb_request_field.setter
-    def crumb_request_field(self, crumb_request_field: str):
+    def crumb_request_field(self, crumb_request_field):
         """Sets the crumb_request_field of this DefaultCrumbIssuer.
 
 

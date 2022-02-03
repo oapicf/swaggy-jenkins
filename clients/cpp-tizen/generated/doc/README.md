@@ -38,11 +38,13 @@ Check out [Doxygen](https://www.doxygen.org/) for additional information about t
 ## I Don't want to run Doxygen. What are the API files for accessing the REST endpoints?
 All URIs are relative to http://localhosthttp://localhost
 
+
 ### BaseManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 *getCrumbSync* | *GET* /crumbIssuer/api/json | .
 *getCrumbASync* | *GET* /crumbIssuer/api/json | .
+
 
 ### BlueOceanManager
 Method | HTTP request | Description
@@ -122,6 +124,7 @@ Method | HTTP request | Description
 *searchClassesSync* | *GET* /blue/rest/classes/ | .
 *searchClassesASync* | *GET* /blue/rest/classes/ | .
 
+
 ### RemoteAccessManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -171,7 +174,6 @@ Method | HTTP request | Description
 Class | Description
 ------------- | -------------
  *AllView* | 
- *Body* | 
  *BranchImpl* | 
  *BranchImpllinks* | 
  *BranchImplpermissions* | 
@@ -221,12 +223,9 @@ Class | Description
  *MultibranchPipeline* | 
  *NullSCM* | 
  *Organisation* | 
- *Organisations* | 
  *Pipeline* | 
- *PipelineActivities* | 
  *PipelineActivity* | 
  *PipelineActivityartifacts* | 
- *PipelineBranches* | 
  *PipelineBranchesitem* | 
  *PipelineBranchesitemlatestRun* | 
  *PipelineBranchesitempullRequest* | 
@@ -234,33 +233,24 @@ Class | Description
  *PipelineFolderImpl* | 
  *PipelineImpl* | 
  *PipelineImpllinks* | 
- *PipelineQueue* | 
  *PipelineRun* | 
  *PipelineRunImpl* | 
  *PipelineRunImpllinks* | 
  *PipelineRunNode* | 
- *PipelineRunNodeSteps* | 
  *PipelineRunNodeedges* | 
- *PipelineRunNodes* | 
- *PipelineRunSteps* | 
  *PipelineRunartifacts* | 
- *PipelineRuns* | 
  *PipelineStepImpl* | 
  *PipelineStepImpllinks* | 
  *PipelinelatestRun* | 
  *PipelinelatestRunartifacts* | 
- *Pipelines* | 
  *Queue* | 
  *QueueBlockedItem* | 
  *QueueItemImpl* | 
  *QueueLeftItem* | 
  *ResponseTimeMonitorData* | 
- *ScmOrganisations* | 
  *StringParameterDefinition* | 
  *StringParameterValue* | 
  *SwapSpaceMonitorMemoryUsage2* | 
  *UnlabeledLoadStatistics* | 
  *User* | 
- *UserFavorites* | 
- *Users* | 
 

@@ -1,29 +1,36 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ExtensionClassContainerImpl1links;
 import org.openapitools.model.ExtensionClassContainerImpl1map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * ExtensionClassContainerImpl1
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class ExtensionClassContainerImpl1   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private ExtensionClassContainerImpl1links links = null;
+  private ExtensionClassContainerImpl1links links;
 
   @JsonProperty("map")
-  private ExtensionClassContainerImpl1map map = null;
+  private ExtensionClassContainerImpl1map map;
 
   public ExtensionClassContainerImpl1 propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -33,10 +40,9 @@ public class ExtensionClassContainerImpl1   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -53,11 +59,9 @@ public class ExtensionClassContainerImpl1   {
   /**
    * Get links
    * @return links
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "_links", required = false)
   public ExtensionClassContainerImpl1links getLinks() {
     return links;
   }
@@ -74,11 +78,9 @@ public class ExtensionClassContainerImpl1   {
   /**
    * Get map
    * @return map
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "map", required = false)
   public ExtensionClassContainerImpl1map getMap() {
     return map;
   }
@@ -87,9 +89,8 @@ public class ExtensionClassContainerImpl1   {
     this.map = map;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -111,7 +112,6 @@ public class ExtensionClassContainerImpl1   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExtensionClassContainerImpl1 {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    map: ").append(toIndentedString(map)).append("\n");
@@ -123,7 +123,7 @@ public class ExtensionClassContainerImpl1   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -13,7 +13,7 @@ defmodule SwaggyJenkins.Model.Label1 do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t
+    :"_class" => String.t | nil
   }
 end
 

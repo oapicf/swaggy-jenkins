@@ -26,3 +26,20 @@ type PipelineFolderImpl struct {
 
 	NumberOfPipelines int32 `json:"numberOfPipelines,omitempty"`
 }
+
+// AssertPipelineFolderImplRequired checks if the required fields are not zero-ed
+func AssertPipelineFolderImplRequired(obj PipelineFolderImpl) error {
+	return nil
+}
+
+// AssertRecursePipelineFolderImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineFolderImpl (e.g. [][]PipelineFolderImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineFolderImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineFolderImpl, ok := obj.(PipelineFolderImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineFolderImplRequired(aPipelineFolderImpl)
+	})
+}

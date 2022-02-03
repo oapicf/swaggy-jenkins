@@ -20,12 +20,13 @@ import javax.ws.rs.*;
 import javax.inject.Inject;
 
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 @Path("/createView")
 
 
 @io.swagger.annotations.Api(description = "the createView API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class CreateViewApi  {
 
     @Inject CreateViewApiService service;
@@ -45,7 +46,7 @@ public class CreateViewApi  {
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response postCreateView( @NotNull  @QueryParam("name") String name,@ApiParam(value = "CSRF protection token" )@HeaderParam("Jenkins-Crumb") String jenkinsCrumb,@ApiParam(value = "Content type header application/xml" )@HeaderParam("Content-Type") String contentType,@ApiParam(value = "View configuration in config.xml format" ) String body,@Context SecurityContext securityContext)
+    public Response postCreateView( @NotNull @QueryParam("name") String name, @ApiParam(value = "CSRF protection token" ) @HeaderParam("Jenkins-Crumb") String jenkinsCrumb, @ApiParam(value = "Content type header application/xml" ) @HeaderParam("Content-Type") String contentType,@ApiParam(value = "View configuration in config.xml format" ) @Valid String body,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.postCreateView(name,jenkinsCrumb,contentType,body,securityContext);
     }

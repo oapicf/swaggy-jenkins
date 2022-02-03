@@ -18,7 +18,7 @@ class PipelineActivityartifacts {
     /** @var string $url */
     private $url;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

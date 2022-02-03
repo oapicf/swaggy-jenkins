@@ -11,26 +11,25 @@ import org.openapitools.model.GithubRepositorypermissions;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class GithubRepository   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private GithubRepositorylinks links = null;
+  private GithubRepositorylinks links;
 
-  private String defaultBranch = null;
+  private String defaultBranch;
 
-  private String description = null;
+  private String description;
 
-  private String name = null;
+  private String name;
 
-  private GithubRepositorypermissions permissions = null;
+  private GithubRepositorypermissions permissions;
 
-  private Boolean _private = null;
+  private Boolean _private;
 
-  private String fullName = null;
+  private String fullName;
 
   /**
    **/

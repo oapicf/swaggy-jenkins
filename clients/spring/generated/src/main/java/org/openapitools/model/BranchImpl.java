@@ -1,64 +1,71 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
 import org.openapitools.model.PipelineRunImpl;
 import org.openapitools.model.StringParameterDefinition;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * BranchImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class BranchImpl   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("parameters")
   @Valid
   private List<StringParameterDefinition> parameters = null;
 
   @JsonProperty("permissions")
-  private BranchImplpermissions permissions = null;
+  private BranchImplpermissions permissions;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("pullRequest")
-  private String pullRequest = null;
+  private String pullRequest;
 
   @JsonProperty("_links")
-  private BranchImpllinks links = null;
+  private BranchImpllinks links;
 
   @JsonProperty("latestRun")
-  private PipelineRunImpl latestRun = null;
+  private PipelineRunImpl latestRun;
 
   public BranchImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -68,10 +75,9 @@ public class BranchImpl   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -88,10 +94,9 @@ public class BranchImpl   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -108,10 +113,9 @@ public class BranchImpl   {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "estimatedDurationInMillis", required = false)
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -128,10 +132,9 @@ public class BranchImpl   {
   /**
    * Get fullDisplayName
    * @return fullDisplayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullDisplayName", required = false)
   public String getFullDisplayName() {
     return fullDisplayName;
   }
@@ -148,10 +151,9 @@ public class BranchImpl   {
   /**
    * Get fullName
    * @return fullName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullName", required = false)
   public String getFullName() {
     return fullName;
   }
@@ -168,10 +170,9 @@ public class BranchImpl   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -188,10 +189,9 @@ public class BranchImpl   {
   /**
    * Get organization
    * @return organization
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "organization", required = false)
   public String getOrganization() {
     return organization;
   }
@@ -216,11 +216,9 @@ public class BranchImpl   {
   /**
    * Get parameters
    * @return parameters
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "parameters", required = false)
   public List<StringParameterDefinition> getParameters() {
     return parameters;
   }
@@ -237,11 +235,9 @@ public class BranchImpl   {
   /**
    * Get permissions
    * @return permissions
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "permissions", required = false)
   public BranchImplpermissions getPermissions() {
     return permissions;
   }
@@ -258,10 +254,9 @@ public class BranchImpl   {
   /**
    * Get weatherScore
    * @return weatherScore
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "weatherScore", required = false)
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -278,10 +273,9 @@ public class BranchImpl   {
   /**
    * Get pullRequest
    * @return pullRequest
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "pullRequest", required = false)
   public String getPullRequest() {
     return pullRequest;
   }
@@ -298,11 +292,9 @@ public class BranchImpl   {
   /**
    * Get links
    * @return links
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "_links", required = false)
   public BranchImpllinks getLinks() {
     return links;
   }
@@ -319,11 +311,9 @@ public class BranchImpl   {
   /**
    * Get latestRun
    * @return latestRun
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "latestRun", required = false)
   public PipelineRunImpl getLatestRun() {
     return latestRun;
   }
@@ -332,9 +322,8 @@ public class BranchImpl   {
     this.latestRun = latestRun;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -366,7 +355,6 @@ public class BranchImpl   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BranchImpl {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    estimatedDurationInMillis: ").append(toIndentedString(estimatedDurationInMillis)).append("\n");
@@ -388,7 +376,7 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

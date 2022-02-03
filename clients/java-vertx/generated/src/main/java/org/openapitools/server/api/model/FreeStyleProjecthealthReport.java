@@ -4,14 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FreeStyleProjecthealthReport   {
   
-  private String description = null;
-  private String iconClassName = null;
-  private String iconUrl = null;
-  private Integer score = null;
-  private String propertyClass = null;
+  private String description;
+  private String iconClassName;
+  private String iconUrl;
+  private Integer score;
+  private String propertyClass;
 
   public FreeStyleProjecthealthReport () {
 

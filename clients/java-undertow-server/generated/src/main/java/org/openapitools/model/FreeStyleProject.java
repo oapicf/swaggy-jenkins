@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -16,39 +26,39 @@ import org.openapitools.model.NullSCM;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class FreeStyleProject   {
   
-  private String propertyClass = null;
-  private String name = null;
-  private String url = null;
-  private String color = null;
+  private String propertyClass;
+  private String name;
+  private String url;
+  private String color;
   private List<FreeStyleProjectactions> actions = new ArrayList<FreeStyleProjectactions>();
-  private String description = null;
-  private String displayName = null;
-  private String displayNameOrNull = null;
-  private String fullDisplayName = null;
-  private String fullName = null;
-  private Boolean buildable = null;
+  private String description;
+  private String displayName;
+  private String displayNameOrNull;
+  private String fullDisplayName;
+  private String fullName;
+  private Boolean buildable;
   private List<FreeStyleBuild> builds = new ArrayList<FreeStyleBuild>();
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
   private List<FreeStyleProjecthealthReport> healthReport = new ArrayList<FreeStyleProjecthealthReport>();
-  private Boolean inQueue = null;
-  private Boolean keepDependencies = null;
-  private FreeStyleBuild lastBuild = null;
-  private FreeStyleBuild lastCompletedBuild = null;
-  private String lastFailedBuild = null;
-  private FreeStyleBuild lastStableBuild = null;
-  private FreeStyleBuild lastSuccessfulBuild = null;
-  private String lastUnstableBuild = null;
-  private String lastUnsuccessfulBuild = null;
-  private Integer nextBuildNumber = null;
-  private String queueItem = null;
-  private Boolean concurrentBuild = null;
-  private NullSCM scm = null;
+  private Boolean inQueue;
+  private Boolean keepDependencies;
+  private FreeStyleBuild lastBuild;
+  private FreeStyleBuild lastCompletedBuild;
+  private String lastFailedBuild;
+  private FreeStyleBuild lastStableBuild;
+  private FreeStyleBuild lastSuccessfulBuild;
+  private String lastUnstableBuild;
+  private String lastUnsuccessfulBuild;
+  private Integer nextBuildNumber;
+  private String queueItem;
+  private Boolean concurrentBuild;
+  private NullSCM scm;
 
   /**
-   **/
+   */
   public FreeStyleProject propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -65,7 +75,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject name(String name) {
     this.name = name;
     return this;
@@ -82,7 +92,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject url(String url) {
     this.url = url;
     return this;
@@ -99,7 +109,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject color(String color) {
     this.color = color;
     return this;
@@ -116,7 +126,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject actions(List<FreeStyleProjectactions> actions) {
     this.actions = actions;
     return this;
@@ -133,7 +143,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject description(String description) {
     this.description = description;
     return this;
@@ -150,7 +160,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -167,7 +177,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject displayNameOrNull(String displayNameOrNull) {
     this.displayNameOrNull = displayNameOrNull;
     return this;
@@ -184,7 +194,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
     return this;
@@ -201,7 +211,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject fullName(String fullName) {
     this.fullName = fullName;
     return this;
@@ -218,7 +228,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject buildable(Boolean buildable) {
     this.buildable = buildable;
     return this;
@@ -235,7 +245,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject builds(List<FreeStyleBuild> builds) {
     this.builds = builds;
     return this;
@@ -252,7 +262,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject firstBuild(FreeStyleBuild firstBuild) {
     this.firstBuild = firstBuild;
     return this;
@@ -269,7 +279,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject healthReport(List<FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
     return this;
@@ -286,7 +296,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject inQueue(Boolean inQueue) {
     this.inQueue = inQueue;
     return this;
@@ -303,7 +313,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject keepDependencies(Boolean keepDependencies) {
     this.keepDependencies = keepDependencies;
     return this;
@@ -320,7 +330,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastBuild(FreeStyleBuild lastBuild) {
     this.lastBuild = lastBuild;
     return this;
@@ -337,7 +347,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastCompletedBuild(FreeStyleBuild lastCompletedBuild) {
     this.lastCompletedBuild = lastCompletedBuild;
     return this;
@@ -354,7 +364,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastFailedBuild(String lastFailedBuild) {
     this.lastFailedBuild = lastFailedBuild;
     return this;
@@ -371,7 +381,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastStableBuild(FreeStyleBuild lastStableBuild) {
     this.lastStableBuild = lastStableBuild;
     return this;
@@ -388,7 +398,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastSuccessfulBuild(FreeStyleBuild lastSuccessfulBuild) {
     this.lastSuccessfulBuild = lastSuccessfulBuild;
     return this;
@@ -405,7 +415,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastUnstableBuild(String lastUnstableBuild) {
     this.lastUnstableBuild = lastUnstableBuild;
     return this;
@@ -422,7 +432,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject lastUnsuccessfulBuild(String lastUnsuccessfulBuild) {
     this.lastUnsuccessfulBuild = lastUnsuccessfulBuild;
     return this;
@@ -439,7 +449,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject nextBuildNumber(Integer nextBuildNumber) {
     this.nextBuildNumber = nextBuildNumber;
     return this;
@@ -456,7 +466,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject queueItem(String queueItem) {
     this.queueItem = queueItem;
     return this;
@@ -473,7 +483,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject concurrentBuild(Boolean concurrentBuild) {
     this.concurrentBuild = concurrentBuild;
     return this;
@@ -490,7 +500,7 @@ public class FreeStyleProject   {
   }
 
   /**
-   **/
+   */
   public FreeStyleProject scm(NullSCM scm) {
     this.scm = scm;
     return this;
@@ -508,7 +518,7 @@ public class FreeStyleProject   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -590,7 +600,7 @@ public class FreeStyleProject   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

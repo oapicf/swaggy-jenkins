@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.FreeStyleBuild
+
 ## Properties
 
 Name | Type | Description | Notes

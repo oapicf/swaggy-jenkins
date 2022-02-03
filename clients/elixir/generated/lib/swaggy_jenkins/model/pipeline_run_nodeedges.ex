@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.PipelineRunNodeedges do
   ]
 
   @type t :: %__MODULE__{
-    :"id" => String.t,
-    :"_class" => String.t
+    :"id" => String.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

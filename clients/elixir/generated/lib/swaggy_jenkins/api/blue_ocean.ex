@@ -23,8 +23,8 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec delete_pipeline_queue_item(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def delete_pipeline_queue_item(connection, organization, pipeline, queue, _opts \\ []) do
@@ -33,7 +33,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/queue/#{queue}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -46,17 +50,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.User{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.User.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_authenticated_user(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.User.t} | {:error, Tesla.Env.t}
+  @spec get_authenticated_user(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.User.t} | {:error, Tesla.Env.t}
   def get_authenticated_user(connection, organization, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/user/")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.User{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.User{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -69,17 +77,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_classes(Tesla.Env.client, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_classes(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_classes(connection, class, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/classes/#{class}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -92,17 +104,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_json_web_key(Tesla.Env.client, integer(), keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_json_web_key(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_json_web_key(connection, key, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/jwt-auth/jwks/#{key}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -116,10 +132,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     - :max_expiry_time_in_mins (integer()): Maximum token expiry time in minutes, default: 480 minutes
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_json_web_token(Tesla.Env.client, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_json_web_token(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_json_web_token(connection, opts \\ []) do
     optional_params = %{
       :"expiryTimeInMins" => :query,
@@ -131,7 +147,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -144,17 +164,22 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Organisation{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.Organisation.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_organisation(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.Organisation.t} | {:error, Tesla.Env.t}
+  @spec get_organisation(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.Organisation.t} | {:error, Tesla.Env.t}
   def get_organisation(connection, organization, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Organisation{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.Organisation{}},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -166,17 +191,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Organisations{}} on success
-  {:error, info} on failure
+  {:ok, [%Organisation{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_organisations(Tesla.Env.client, keyword()) :: {:ok, SwaggyJenkins.Model.Organisations.t} | {:error, Tesla.Env.t}
+  @spec get_organisations(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.Organisation.t)} | {:error, Tesla.Env.t}
   def get_organisations(connection, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Organisations{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.Organisation{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -190,17 +219,22 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Pipeline{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.Pipeline.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.Pipeline.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.Pipeline.t} | {:error, Tesla.Env.t}
   def get_pipeline(connection, organization, pipeline, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Pipeline{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.Pipeline{}},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -214,17 +248,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineActivities{}} on success
-  {:error, info} on failure
+  {:ok, [%PipelineActivity{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_activities(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineActivities.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_activities(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.PipelineActivity.t)} | {:error, Tesla.Env.t}
   def get_pipeline_activities(connection, organization, pipeline, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/activities")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineActivities{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.PipelineActivity{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -239,17 +277,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.BranchImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.BranchImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_branch(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.BranchImpl.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_branch(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.BranchImpl.t} | {:error, Tesla.Env.t}
   def get_pipeline_branch(connection, organization, pipeline, branch, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/branches/#{branch}/")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.BranchImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.BranchImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -265,17 +307,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRun{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineRun.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_branch_run(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRun.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_branch_run(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineRun.t} | {:error, Tesla.Env.t}
   def get_pipeline_branch_run(connection, organization, pipeline, branch, run, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/branches/#{branch}/runs/#{run}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRun{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineRun{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -289,17 +335,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.MultibranchPipeline{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.MultibranchPipeline.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_branches(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.MultibranchPipeline.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_branches(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.MultibranchPipeline.t} | {:error, Tesla.Env.t}
   def get_pipeline_branches(connection, organization, pipeline, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/branches")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.MultibranchPipeline{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.MultibranchPipeline{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -313,17 +363,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineFolderImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineFolderImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_folder(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineFolderImpl.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_folder(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineFolderImpl.t} | {:error, Tesla.Env.t}
   def get_pipeline_folder(connection, organization, folder, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{folder}/")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineFolderImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineFolderImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -338,17 +392,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_folder_pipeline(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineImpl.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_folder_pipeline(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineImpl.t} | {:error, Tesla.Env.t}
   def get_pipeline_folder_pipeline(connection, organization, pipeline, folder, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{folder}/pipelines/#{pipeline}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -362,17 +420,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineQueue{}} on success
-  {:error, info} on failure
+  {:ok, [%QueueItemImpl{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_queue(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineQueue.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_queue(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.QueueItemImpl.t)} | {:error, Tesla.Env.t}
   def get_pipeline_queue(connection, organization, pipeline, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/queue")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineQueue{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.QueueItemImpl{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -387,17 +449,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRun{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineRun.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRun.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineRun.t} | {:error, Tesla.Env.t}
   def get_pipeline_run(connection, organization, pipeline, run, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRun{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineRun{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -411,13 +477,13 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - run (String.t): Name of the run
   - opts (KeywordList): [optional] Optional parameters
     - :start (integer()): Start position of the log
-    - :download (boolean()): Set to true in order to download the file, otherwise it&#39;s passed as a response body
+    - :download (boolean()): Set to true in order to download the file, otherwise it's passed as a response body
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run_log(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run_log(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_pipeline_run_log(connection, organization, pipeline, run, opts \\ []) do
     optional_params = %{
       :"start" => :query,
@@ -429,7 +495,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -445,17 +515,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRunNode{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineRunNode.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run_node(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRunNode.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run_node(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineRunNode.t} | {:error, Tesla.Env.t}
   def get_pipeline_run_node(connection, organization, pipeline, run, node, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/nodes/#{node}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRunNode{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineRunNode{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -472,17 +546,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineStepImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineStepImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run_node_step(Tesla.Env.client, String.t, String.t, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineStepImpl.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run_node_step(Tesla.Env.client, String.t, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineStepImpl.t} | {:error, Tesla.Env.t}
   def get_pipeline_run_node_step(connection, organization, pipeline, run, node, step, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/nodes/#{node}/steps/#{step}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineStepImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineStepImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -499,17 +577,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run_node_step_log(Tesla.Env.client, String.t, String.t, String.t, String.t, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run_node_step_log(Tesla.Env.client, String.t, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_pipeline_run_node_step_log(connection, organization, pipeline, run, node, step, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/nodes/#{node}/steps/#{step}/log")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -525,17 +607,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRunNodeSteps{}} on success
-  {:error, info} on failure
+  {:ok, [%PipelineStepImpl{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run_node_steps(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRunNodeSteps.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run_node_steps(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.PipelineStepImpl.t)} | {:error, Tesla.Env.t}
   def get_pipeline_run_node_steps(connection, organization, pipeline, run, node, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/nodes/#{node}/steps")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRunNodeSteps{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.PipelineStepImpl{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -550,17 +636,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRunNodes{}} on success
-  {:error, info} on failure
+  {:ok, [%PipelineRunNode{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_run_nodes(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRunNodes.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_run_nodes(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.PipelineRunNode.t)} | {:error, Tesla.Env.t}
   def get_pipeline_run_nodes(connection, organization, pipeline, run, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/nodes")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRunNodes{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.PipelineRunNode{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -574,17 +664,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRuns{}} on success
-  {:error, info} on failure
+  {:ok, [%PipelineRun{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipeline_runs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRuns.t} | {:error, Tesla.Env.t}
+  @spec get_pipeline_runs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.PipelineRun.t)} | {:error, Tesla.Env.t}
   def get_pipeline_runs(connection, organization, pipeline, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRuns{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.PipelineRun{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -597,17 +691,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Pipelines{}} on success
-  {:error, info} on failure
+  {:ok, [%Pipeline{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_pipelines(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.Pipelines.t} | {:error, Tesla.Env.t}
+  @spec get_pipelines(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.Pipeline.t)} | {:error, Tesla.Env.t}
   def get_pipelines(connection, organization, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/pipelines/")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Pipelines{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.Pipeline{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -621,17 +719,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.GithubScm{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.GithubScm.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_scm(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.GithubScm.t} | {:error, Tesla.Env.t}
+  @spec get_scm(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.GithubScm.t} | {:error, Tesla.Env.t}
   def get_scm(connection, organization, scm, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/scm/#{scm}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.GithubScm{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.GithubScm{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -649,10 +751,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     - :page_number (integer()): Page number
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.ScmOrganisations{}} on success
-  {:error, info} on failure
+  {:ok, [%GithubOrganization{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_scm_organisation_repositories(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.ScmOrganisations.t} | {:error, Tesla.Env.t}
+  @spec get_scm_organisation_repositories(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.GithubOrganization.t)} | {:error, Tesla.Env.t}
   def get_scm_organisation_repositories(connection, organization, scm, scm_organisation, opts \\ []) do
     optional_params = %{
       :"credentialId" => :query,
@@ -665,7 +767,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.ScmOrganisations{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.GithubOrganization{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -682,10 +788,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     - :credential_id (String.t): Credential ID
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.ScmOrganisations{}} on success
-  {:error, info} on failure
+  {:ok, [%GithubOrganization{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_scm_organisation_repository(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.ScmOrganisations.t} | {:error, Tesla.Env.t}
+  @spec get_scm_organisation_repository(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.GithubOrganization.t)} | {:error, Tesla.Env.t}
   def get_scm_organisation_repository(connection, organization, scm, scm_organisation, repository, opts \\ []) do
     optional_params = %{
       :"credentialId" => :query
@@ -696,7 +802,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.ScmOrganisations{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.GithubOrganization{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -711,10 +821,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     - :credential_id (String.t): Credential ID
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.ScmOrganisations{}} on success
-  {:error, info} on failure
+  {:ok, [%GithubOrganization{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_scm_organisations(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.ScmOrganisations.t} | {:error, Tesla.Env.t}
+  @spec get_scm_organisations(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.GithubOrganization.t)} | {:error, Tesla.Env.t}
   def get_scm_organisations(connection, organization, scm, opts \\ []) do
     optional_params = %{
       :"credentialId" => :query
@@ -725,7 +835,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.ScmOrganisations{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.GithubOrganization{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -739,17 +853,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.User{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.User.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_user(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.User.t} | {:error, Tesla.Env.t}
+  @spec get_user(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.User.t} | {:error, Tesla.Env.t}
   def get_user(connection, organization, user, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/users/#{user}")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.User{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.User{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -762,17 +880,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.UserFavorites{}} on success
-  {:error, info} on failure
+  {:ok, [%FavoriteImpl{}, ...]} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_user_favorites(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.UserFavorites.t} | {:error, Tesla.Env.t}
+  @spec get_user_favorites(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, list(SwaggyJenkins.Model.FavoriteImpl.t)} | {:error, Tesla.Env.t}
   def get_user_favorites(connection, user, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/users/#{user}/favorites")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.UserFavorites{})
+    |> evaluate_response([
+      { 200, [%SwaggyJenkins.Model.FavoriteImpl{}]},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -785,17 +907,21 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.User{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.User.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_users(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.User.t} | {:error, Tesla.Env.t}
+  @spec get_users(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.User.t} | {:error, Tesla.Env.t}
   def get_users(connection, organization, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/blue/rest/organizations/#{organization}/users/")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.User{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.User{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -810,17 +936,22 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.QueueItemImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.QueueItemImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec post_pipeline_run(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.QueueItemImpl.t} | {:error, Tesla.Env.t}
+  @spec post_pipeline_run(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.QueueItemImpl.t} | {:error, Tesla.Env.t}
   def post_pipeline_run(connection, organization, pipeline, run, _opts \\ []) do
     %{}
     |> method(:post)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/replay")
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.QueueItemImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.QueueItemImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -834,17 +965,22 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.QueueItemImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.QueueItemImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec post_pipeline_runs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.QueueItemImpl.t} | {:error, Tesla.Env.t}
+  @spec post_pipeline_runs(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.QueueItemImpl.t} | {:error, Tesla.Env.t}
   def post_pipeline_runs(connection, organization, pipeline, _opts \\ []) do
     %{}
     |> method(:post)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs")
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.QueueItemImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.QueueItemImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -855,22 +991,26 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - connection (SwaggyJenkins.Connection): Connection to server
   - organization (String.t): Name of the organization
   - pipeline (String.t): Name of the pipeline
-  - body (Body): Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite
+  - u_nknownbasetype (UNKNOWN_BASE_TYPE): Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.FavoriteImpl{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.FavoriteImpl.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec put_pipeline_favorite(Tesla.Env.client, String.t, String.t, SwaggyJenkins.Model.Body.t, keyword()) :: {:ok, SwaggyJenkins.Model.FavoriteImpl.t} | {:error, Tesla.Env.t}
-  def put_pipeline_favorite(connection, organization, pipeline, body, _opts \\ []) do
+  @spec put_pipeline_favorite(Tesla.Env.client, String.t, String.t, SwaggyJenkins.Model.UNKNOWN_BASE_TYPE.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.FavoriteImpl.t} | {:error, Tesla.Env.t}
+  def put_pipeline_favorite(connection, organization, pipeline, u_nknownbasetype, _opts \\ []) do
     %{}
     |> method(:put)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/favorite")
-    |> add_param(:body, :"Body", body)
+    |> add_param(:body, :body, u_nknownbasetype)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.FavoriteImpl{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.FavoriteImpl{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -887,10 +1027,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     - :time_out_in_secs (integer()): Timeout in seconds, default: 10 seconds
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.PipelineRun{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.PipelineRun.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec put_pipeline_run(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.PipelineRun.t} | {:error, Tesla.Env.t}
+  @spec put_pipeline_run(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.PipelineRun.t} | {:error, Tesla.Env.t}
   def put_pipeline_run(connection, organization, pipeline, run, opts \\ []) do
     optional_params = %{
       :"blocking" => :query,
@@ -900,9 +1040,14 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> method(:put)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/runs/#{run}/stop")
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.PipelineRun{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.PipelineRun{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -915,10 +1060,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec search(Tesla.Env.client, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec search(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def search(connection, q, _opts \\ []) do
     %{}
     |> method(:get)
@@ -926,7 +1071,11 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_param(:query, :"q", q)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -939,10 +1088,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec search_classes(Tesla.Env.client, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec search_classes(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def search_classes(connection, q, _opts \\ []) do
     %{}
     |> method(:get)
@@ -950,6 +1099,10 @@ defmodule SwaggyJenkins.Api.BlueOcean do
     |> add_param(:query, :"q", q)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 end

@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.ComputerSet do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"busyExecutors" => integer(),
-    :"computer" => [HudsonMasterComputer],
-    :"displayName" => String.t,
-    :"totalExecutors" => integer()
+    :"_class" => String.t | nil,
+    :"busyExecutors" => integer() | nil,
+    :"computer" => [SwaggyJenkins.Model.HudsonMasterComputer.t] | nil,
+    :"displayName" => String.t | nil,
+    :"totalExecutors" => integer() | nil
   }
 end
 

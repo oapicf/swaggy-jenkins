@@ -1,7 +1,9 @@
 
+
 # ListView
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -9,6 +11,7 @@ Name | Type | Description | Notes
 **jobs** | [**List&lt;FreeStyleProject&gt;**](FreeStyleProject.md) |  |  [optional]
 **name** | **String** |  |  [optional]
 **url** | **String** |  |  [optional]
+
 
 
 

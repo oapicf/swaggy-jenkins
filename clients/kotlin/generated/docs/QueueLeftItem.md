@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
-**actions** | [**kotlin.Array&lt;CauseAction&gt;**](CauseAction.md) |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
+**actions** | [**kotlin.collections.List&lt;CauseAction&gt;**](CauseAction.md) |  |  [optional]
 **blocked** | **kotlin.Boolean** |  |  [optional]
 **buildable** | **kotlin.Boolean** |  |  [optional]
 **id** | **kotlin.Int** |  |  [optional]

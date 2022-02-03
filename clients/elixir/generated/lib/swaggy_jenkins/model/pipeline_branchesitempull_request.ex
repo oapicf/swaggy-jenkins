@@ -18,12 +18,12 @@ defmodule SwaggyJenkins.Model.PipelineBranchesitempullRequest do
   ]
 
   @type t :: %__MODULE__{
-    :"_links" => PipelineBranchesitempullRequestlinks,
-    :"author" => String.t,
-    :"id" => String.t,
-    :"title" => String.t,
-    :"url" => String.t,
-    :"_class" => String.t
+    :"_links" => SwaggyJenkins.Model.PipelineBranchesitempullRequestlinks.t | nil,
+    :"author" => String.t | nil,
+    :"id" => String.t | nil,
+    :"title" => String.t | nil,
+    :"url" => String.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

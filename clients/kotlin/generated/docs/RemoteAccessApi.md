@@ -66,7 +66,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -109,7 +112,10 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -156,7 +162,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -203,12 +212,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Accept**: Not defined
 
 <a name="getJobLastBuild"></a>
 # **getJobLastBuild**
@@ -250,7 +262,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -300,7 +315,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -343,7 +361,10 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -390,7 +411,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -437,7 +461,10 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -484,12 +511,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/xml
+ - **Accept**: Not defined
 
 <a name="headJenkins"></a>
 # **headJenkins**
@@ -526,7 +556,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -582,12 +615,15 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: Not defined
 
 <a name="postCreateView"></a>
 # **postCreateView**
@@ -634,12 +670,15 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: Not defined
 
 <a name="postJobBuild"></a>
 # **postJobBuild**
@@ -686,7 +725,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -736,12 +778,15 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: Not defined
 
 <a name="postJobDelete"></a>
 # **postJobDelete**
@@ -784,7 +829,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -832,7 +880,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -880,7 +931,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -928,7 +982,10 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
@@ -978,10 +1035,13 @@ null (empty response body)
 
 ### Authorization
 
-[jenkins_auth](../README.md#jenkins_auth)
+
+Configure jenkins_auth:
+    ApiClient.username = ""
+    ApiClient.password = ""
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: Not defined
 

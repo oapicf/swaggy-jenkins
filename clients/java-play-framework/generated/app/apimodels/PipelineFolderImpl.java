@@ -8,30 +8,36 @@ import javax.validation.constraints.*;
 /**
  * PipelineFolderImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineFolderImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  
+  private String fullName;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  
+  private String organization;
 
   @JsonProperty("numberOfFolders")
-  private Integer numberOfFolders = null;
+  
+  private Integer numberOfFolders;
 
   @JsonProperty("numberOfPipelines")
-  private Integer numberOfPipelines = null;
+  
+  private Integer numberOfPipelines;
 
   public PipelineFolderImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -42,7 +48,7 @@ public class PipelineFolderImpl   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -59,7 +65,7 @@ public class PipelineFolderImpl   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -76,7 +82,7 @@ public class PipelineFolderImpl   {
    * Get fullName
    * @return fullName
   **/
-    public String getFullName() {
+  public String getFullName() {
     return fullName;
   }
 
@@ -93,7 +99,7 @@ public class PipelineFolderImpl   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -110,7 +116,7 @@ public class PipelineFolderImpl   {
    * Get organization
    * @return organization
   **/
-    public String getOrganization() {
+  public String getOrganization() {
     return organization;
   }
 
@@ -127,7 +133,7 @@ public class PipelineFolderImpl   {
    * Get numberOfFolders
    * @return numberOfFolders
   **/
-    public Integer getNumberOfFolders() {
+  public Integer getNumberOfFolders() {
     return numberOfFolders;
   }
 
@@ -144,7 +150,7 @@ public class PipelineFolderImpl   {
    * Get numberOfPipelines
    * @return numberOfPipelines
   **/
-    public Integer getNumberOfPipelines() {
+  public Integer getNumberOfPipelines() {
     return numberOfPipelines;
   }
 
@@ -154,7 +160,7 @@ public class PipelineFolderImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -197,7 +203,7 @@ public class PipelineFolderImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

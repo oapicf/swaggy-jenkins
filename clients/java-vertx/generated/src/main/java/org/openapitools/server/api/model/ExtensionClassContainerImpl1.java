@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.ExtensionClassContainerImpl1links;
 import org.openapitools.server.api.model.ExtensionClassContainerImpl1map;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExtensionClassContainerImpl1   {
   
-  private String propertyClass = null;
-  private ExtensionClassContainerImpl1links links = null;
-  private ExtensionClassContainerImpl1map map = null;
+  private String propertyClass;
+  private ExtensionClassContainerImpl1links links;
+  private ExtensionClassContainerImpl1map map;
 
   public ExtensionClassContainerImpl1 () {
 

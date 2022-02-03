@@ -20,28 +20,28 @@ import java.util.List;
 import java.util.Map;
 
 public class RemoteAccessApiVerticle extends AbstractVerticle {
-    final static Logger LOGGER = LoggerFactory.getLogger(RemoteAccessApiVerticle.class); 
-    
-    final static String GETCOMPUTER_SERVICE_ID = "getComputer";
-    final static String GETJENKINS_SERVICE_ID = "getJenkins";
-    final static String GETJOB_SERVICE_ID = "getJob";
-    final static String GETJOBCONFIG_SERVICE_ID = "getJobConfig";
-    final static String GETJOBLASTBUILD_SERVICE_ID = "getJobLastBuild";
-    final static String GETJOBPROGRESSIVETEXT_SERVICE_ID = "getJobProgressiveText";
-    final static String GETQUEUE_SERVICE_ID = "getQueue";
-    final static String GETQUEUEITEM_SERVICE_ID = "getQueueItem";
-    final static String GETVIEW_SERVICE_ID = "getView";
-    final static String GETVIEWCONFIG_SERVICE_ID = "getViewConfig";
-    final static String HEADJENKINS_SERVICE_ID = "headJenkins";
-    final static String POSTCREATEITEM_SERVICE_ID = "postCreateItem";
-    final static String POSTCREATEVIEW_SERVICE_ID = "postCreateView";
-    final static String POSTJOBBUILD_SERVICE_ID = "postJobBuild";
-    final static String POSTJOBCONFIG_SERVICE_ID = "postJobConfig";
-    final static String POSTJOBDELETE_SERVICE_ID = "postJobDelete";
-    final static String POSTJOBDISABLE_SERVICE_ID = "postJobDisable";
-    final static String POSTJOBENABLE_SERVICE_ID = "postJobEnable";
-    final static String POSTJOBLASTBUILDSTOP_SERVICE_ID = "postJobLastBuildStop";
-    final static String POSTVIEWCONFIG_SERVICE_ID = "postViewConfig";
+    static final Logger LOGGER = LoggerFactory.getLogger(RemoteAccessApiVerticle.class);
+
+    static final String GETCOMPUTER_SERVICE_ID = "getComputer";
+    static final String GETJENKINS_SERVICE_ID = "getJenkins";
+    static final String GETJOB_SERVICE_ID = "getJob";
+    static final String GETJOBCONFIG_SERVICE_ID = "getJobConfig";
+    static final String GETJOBLASTBUILD_SERVICE_ID = "getJobLastBuild";
+    static final String GETJOBPROGRESSIVETEXT_SERVICE_ID = "getJobProgressiveText";
+    static final String GETQUEUE_SERVICE_ID = "getQueue";
+    static final String GETQUEUEITEM_SERVICE_ID = "getQueueItem";
+    static final String GETVIEW_SERVICE_ID = "getView";
+    static final String GETVIEWCONFIG_SERVICE_ID = "getViewConfig";
+    static final String HEADJENKINS_SERVICE_ID = "headJenkins";
+    static final String POSTCREATEITEM_SERVICE_ID = "postCreateItem";
+    static final String POSTCREATEVIEW_SERVICE_ID = "postCreateView";
+    static final String POSTJOBBUILD_SERVICE_ID = "postJobBuild";
+    static final String POSTJOBCONFIG_SERVICE_ID = "postJobConfig";
+    static final String POSTJOBDELETE_SERVICE_ID = "postJobDelete";
+    static final String POSTJOBDISABLE_SERVICE_ID = "postJobDisable";
+    static final String POSTJOBENABLE_SERVICE_ID = "postJobEnable";
+    static final String POSTJOBLASTBUILDSTOP_SERVICE_ID = "postJobLastBuildStop";
+    static final String POSTVIEWCONFIG_SERVICE_ID = "postViewConfig";
     
     final RemoteAccessApi service;
 
@@ -603,7 +603,7 @@ public class RemoteAccessApiVerticle extends AbstractVerticle {
         });
         
     }
-    
+
     private void manageError(Message<JsonObject> message, Throwable cause, String serviceName) {
         int code = MainApiException.INTERNAL_SERVER_ERROR.getStatusCode();
         String statusMessage = MainApiException.INTERNAL_SERVER_ERROR.getStatusMessage();
@@ -611,12 +611,12 @@ public class RemoteAccessApiVerticle extends AbstractVerticle {
             code = ((MainApiException)cause).getStatusCode();
             statusMessage = ((MainApiException)cause).getStatusMessage();
         } else {
-            logUnexpectedError(serviceName, cause); 
+            logUnexpectedError(serviceName, cause);
         }
-            
+
         message.fail(code, statusMessage);
     }
-    
+
     private void logUnexpectedError(String serviceName, Throwable cause) {
         LOGGER.error("Unexpected error in "+ serviceName, cause);
     }

@@ -20,3 +20,20 @@ type GithubRepositorypermissions struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertGithubRepositorypermissionsRequired checks if the required fields are not zero-ed
+func AssertGithubRepositorypermissionsRequired(obj GithubRepositorypermissions) error {
+	return nil
+}
+
+// AssertRecurseGithubRepositorypermissionsRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubRepositorypermissions (e.g. [][]GithubRepositorypermissions), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubRepositorypermissionsRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubRepositorypermissions, ok := obj.(GithubRepositorypermissions)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubRepositorypermissionsRequired(aGithubRepositorypermissions)
+	})
+}

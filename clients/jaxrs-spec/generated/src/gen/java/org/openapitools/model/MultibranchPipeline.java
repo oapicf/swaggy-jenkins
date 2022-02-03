@@ -1,32 +1,38 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class MultibranchPipeline   {
+
+@JsonTypeName("MultibranchPipeline")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class MultibranchPipeline   {
   
-  private @Valid String displayName = null;
-  private @Valid Integer estimatedDurationInMillis = null;
-  private @Valid String latestRun = null;
-  private @Valid String name = null;
-  private @Valid String organization = null;
-  private @Valid Integer weatherScore = null;
+  private @Valid String displayName;
+  private @Valid Integer estimatedDurationInMillis;
+  private @Valid String latestRun;
+  private @Valid String name;
+  private @Valid String organization;
+  private @Valid Integer weatherScore;
   private @Valid List<String> branchNames = new ArrayList<String>();
-  private @Valid Integer numberOfFailingBranches = null;
-  private @Valid Integer numberOfFailingPullRequests = null;
-  private @Valid Integer numberOfSuccessfulBranches = null;
-  private @Valid Integer numberOfSuccessfulPullRequests = null;
-  private @Valid Integer totalNumberOfBranches = null;
-  private @Valid Integer totalNumberOfPullRequests = null;
-  private @Valid String propertyClass = null;
+  private @Valid Integer numberOfFailingBranches;
+  private @Valid Integer numberOfFailingPullRequests;
+  private @Valid Integer numberOfSuccessfulBranches;
+  private @Valid Integer numberOfSuccessfulPullRequests;
+  private @Valid Integer totalNumberOfBranches;
+  private @Valid Integer totalNumberOfPullRequests;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -36,16 +42,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -53,16 +63,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
+
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline latestRun(String latestRun) {
     this.latestRun = latestRun;
@@ -70,16 +84,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
   public String getLatestRun() {
     return latestRun;
   }
+
+  @JsonProperty("latestRun")
   public void setLatestRun(String latestRun) {
     this.latestRun = latestRun;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline name(String name) {
     this.name = name;
@@ -87,16 +105,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline organization(String organization) {
     this.organization = organization;
@@ -104,16 +126,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -121,16 +147,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
+
+  @JsonProperty("weatherScore")
   public void setWeatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline branchNames(List<String> branchNames) {
     this.branchNames = branchNames;
@@ -138,16 +168,36 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("branchNames")
   public List<String> getBranchNames() {
     return branchNames;
   }
+
+  @JsonProperty("branchNames")
   public void setBranchNames(List<String> branchNames) {
     this.branchNames = branchNames;
   }
 
-  /**
+  public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
+    if (this.branchNames == null) {
+      this.branchNames = new ArrayList<String>();
+    }
+
+    this.branchNames.add(branchNamesItem);
+    return this;
+  }
+
+  public MultibranchPipeline removeBranchNamesItem(String branchNamesItem) {
+    if (branchNamesItem != null && this.branchNames != null) {
+      this.branchNames.remove(branchNamesItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public MultibranchPipeline numberOfFailingBranches(Integer numberOfFailingBranches) {
     this.numberOfFailingBranches = numberOfFailingBranches;
@@ -155,16 +205,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfFailingBranches")
   public Integer getNumberOfFailingBranches() {
     return numberOfFailingBranches;
   }
+
+  @JsonProperty("numberOfFailingBranches")
   public void setNumberOfFailingBranches(Integer numberOfFailingBranches) {
     this.numberOfFailingBranches = numberOfFailingBranches;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline numberOfFailingPullRequests(Integer numberOfFailingPullRequests) {
     this.numberOfFailingPullRequests = numberOfFailingPullRequests;
@@ -172,16 +226,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfFailingPullRequests")
   public Integer getNumberOfFailingPullRequests() {
     return numberOfFailingPullRequests;
   }
+
+  @JsonProperty("numberOfFailingPullRequests")
   public void setNumberOfFailingPullRequests(Integer numberOfFailingPullRequests) {
     this.numberOfFailingPullRequests = numberOfFailingPullRequests;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline numberOfSuccessfulBranches(Integer numberOfSuccessfulBranches) {
     this.numberOfSuccessfulBranches = numberOfSuccessfulBranches;
@@ -189,16 +247,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfSuccessfulBranches")
   public Integer getNumberOfSuccessfulBranches() {
     return numberOfSuccessfulBranches;
   }
+
+  @JsonProperty("numberOfSuccessfulBranches")
   public void setNumberOfSuccessfulBranches(Integer numberOfSuccessfulBranches) {
     this.numberOfSuccessfulBranches = numberOfSuccessfulBranches;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline numberOfSuccessfulPullRequests(Integer numberOfSuccessfulPullRequests) {
     this.numberOfSuccessfulPullRequests = numberOfSuccessfulPullRequests;
@@ -206,16 +268,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfSuccessfulPullRequests")
   public Integer getNumberOfSuccessfulPullRequests() {
     return numberOfSuccessfulPullRequests;
   }
+
+  @JsonProperty("numberOfSuccessfulPullRequests")
   public void setNumberOfSuccessfulPullRequests(Integer numberOfSuccessfulPullRequests) {
     this.numberOfSuccessfulPullRequests = numberOfSuccessfulPullRequests;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline totalNumberOfBranches(Integer totalNumberOfBranches) {
     this.totalNumberOfBranches = totalNumberOfBranches;
@@ -223,16 +289,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("totalNumberOfBranches")
   public Integer getTotalNumberOfBranches() {
     return totalNumberOfBranches;
   }
+
+  @JsonProperty("totalNumberOfBranches")
   public void setTotalNumberOfBranches(Integer totalNumberOfBranches) {
     this.totalNumberOfBranches = totalNumberOfBranches;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline totalNumberOfPullRequests(Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
@@ -240,16 +310,20 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("totalNumberOfPullRequests")
   public Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
   }
+
+  @JsonProperty("totalNumberOfPullRequests")
   public void setTotalNumberOfPullRequests(Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
   }
 
-  /**
+/**
    **/
   public MultibranchPipeline propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -257,18 +331,22 @@ public class MultibranchPipeline   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -276,20 +354,20 @@ public class MultibranchPipeline   {
       return false;
     }
     MultibranchPipeline multibranchPipeline = (MultibranchPipeline) o;
-    return Objects.equals(displayName, multibranchPipeline.displayName) &&
-        Objects.equals(estimatedDurationInMillis, multibranchPipeline.estimatedDurationInMillis) &&
-        Objects.equals(latestRun, multibranchPipeline.latestRun) &&
-        Objects.equals(name, multibranchPipeline.name) &&
-        Objects.equals(organization, multibranchPipeline.organization) &&
-        Objects.equals(weatherScore, multibranchPipeline.weatherScore) &&
-        Objects.equals(branchNames, multibranchPipeline.branchNames) &&
-        Objects.equals(numberOfFailingBranches, multibranchPipeline.numberOfFailingBranches) &&
-        Objects.equals(numberOfFailingPullRequests, multibranchPipeline.numberOfFailingPullRequests) &&
-        Objects.equals(numberOfSuccessfulBranches, multibranchPipeline.numberOfSuccessfulBranches) &&
-        Objects.equals(numberOfSuccessfulPullRequests, multibranchPipeline.numberOfSuccessfulPullRequests) &&
-        Objects.equals(totalNumberOfBranches, multibranchPipeline.totalNumberOfBranches) &&
-        Objects.equals(totalNumberOfPullRequests, multibranchPipeline.totalNumberOfPullRequests) &&
-        Objects.equals(propertyClass, multibranchPipeline.propertyClass);
+    return Objects.equals(this.displayName, multibranchPipeline.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, multibranchPipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, multibranchPipeline.latestRun) &&
+        Objects.equals(this.name, multibranchPipeline.name) &&
+        Objects.equals(this.organization, multibranchPipeline.organization) &&
+        Objects.equals(this.weatherScore, multibranchPipeline.weatherScore) &&
+        Objects.equals(this.branchNames, multibranchPipeline.branchNames) &&
+        Objects.equals(this.numberOfFailingBranches, multibranchPipeline.numberOfFailingBranches) &&
+        Objects.equals(this.numberOfFailingPullRequests, multibranchPipeline.numberOfFailingPullRequests) &&
+        Objects.equals(this.numberOfSuccessfulBranches, multibranchPipeline.numberOfSuccessfulBranches) &&
+        Objects.equals(this.numberOfSuccessfulPullRequests, multibranchPipeline.numberOfSuccessfulPullRequests) &&
+        Objects.equals(this.totalNumberOfBranches, multibranchPipeline.totalNumberOfBranches) &&
+        Objects.equals(this.totalNumberOfPullRequests, multibranchPipeline.totalNumberOfPullRequests) &&
+        Objects.equals(this.propertyClass, multibranchPipeline.propertyClass);
   }
 
   @Override
@@ -324,11 +402,13 @@ public class MultibranchPipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

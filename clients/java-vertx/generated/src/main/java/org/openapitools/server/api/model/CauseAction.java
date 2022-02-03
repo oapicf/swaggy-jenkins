@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.CauseUserIdCause;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CauseAction   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<CauseUserIdCause> causes = new ArrayList<>();
 
   public CauseAction () {

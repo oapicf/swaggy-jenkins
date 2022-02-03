@@ -14,23 +14,22 @@ import io.swagger.annotations.ApiModelProperty;
  * QueueItemImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class QueueItemImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("expectedBuildNumber")
-  private Integer expectedBuildNumber = null;
+  private Integer expectedBuildNumber;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("pipeline")
-  private String pipeline = null;
+  private String pipeline;
 
   @JsonProperty("queuedTime")
-  private Integer queuedTime = null;
+  private Integer queuedTime;
 
   public QueueItemImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -124,7 +123,7 @@ public class QueueItemImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -162,7 +161,7 @@ public class QueueItemImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

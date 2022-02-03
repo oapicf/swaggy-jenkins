@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
-**artifacts** | [**kotlin.Array&lt;PipelineActivityartifacts&gt;**](PipelineActivityartifacts.md) |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
+**artifacts** | [**kotlin.collections.List&lt;PipelineActivityartifacts&gt;**](PipelineActivityartifacts.md) |  |  [optional]
 **durationInMillis** | **kotlin.Int** |  |  [optional]
 **estimatedDurationInMillis** | **kotlin.Int** |  |  [optional]
 **enQueueTime** | **kotlin.String** |  |  [optional]

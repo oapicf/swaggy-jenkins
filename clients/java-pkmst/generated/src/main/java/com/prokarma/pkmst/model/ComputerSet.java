@@ -17,24 +17,23 @@ import java.util.List;
  * ComputerSet
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class ComputerSet   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("busyExecutors")
-  private Integer busyExecutors = null;
+  private Integer busyExecutors;
 
   @JsonProperty("computer")
   
   private List<HudsonMasterComputer> computer = null;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("totalExecutors")
-  private Integer totalExecutors = null;
+  private Integer totalExecutors;
 
   public ComputerSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -136,7 +135,7 @@ public class ComputerSet   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -174,7 +173,7 @@ public class ComputerSet   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.MultibranchPipeline
+
 ## Properties
 
 Name | Type | Description | Notes

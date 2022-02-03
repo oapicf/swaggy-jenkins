@@ -10,36 +10,46 @@ import javax.validation.constraints.*;
 /**
  * PipelineStepImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineStepImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private PipelineStepImpllinks links = null;
+  @Valid
+
+  private PipelineStepImpllinks links;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  
+  private Integer durationInMillis;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("input")
-  private InputStepImpl input = null;
+  @Valid
+
+  private InputStepImpl input;
 
   @JsonProperty("result")
-  private String result = null;
+  
+  private String result;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  
+  private String state;
 
   public PipelineStepImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -50,7 +60,7 @@ public class PipelineStepImpl   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -67,7 +77,6 @@ public class PipelineStepImpl   {
    * Get links
    * @return links
   **/
-  @Valid
   public PipelineStepImpllinks getLinks() {
     return links;
   }
@@ -85,7 +94,7 @@ public class PipelineStepImpl   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -102,7 +111,7 @@ public class PipelineStepImpl   {
    * Get durationInMillis
    * @return durationInMillis
   **/
-    public Integer getDurationInMillis() {
+  public Integer getDurationInMillis() {
     return durationInMillis;
   }
 
@@ -119,7 +128,7 @@ public class PipelineStepImpl   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -136,7 +145,6 @@ public class PipelineStepImpl   {
    * Get input
    * @return input
   **/
-  @Valid
   public InputStepImpl getInput() {
     return input;
   }
@@ -154,7 +162,7 @@ public class PipelineStepImpl   {
    * Get result
    * @return result
   **/
-    public String getResult() {
+  public String getResult() {
     return result;
   }
 
@@ -171,7 +179,7 @@ public class PipelineStepImpl   {
    * Get startTime
    * @return startTime
   **/
-    public String getStartTime() {
+  public String getStartTime() {
     return startTime;
   }
 
@@ -188,7 +196,7 @@ public class PipelineStepImpl   {
    * Get state
    * @return state
   **/
-    public String getState() {
+  public String getState() {
     return state;
   }
 
@@ -198,7 +206,7 @@ public class PipelineStepImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -245,7 +253,7 @@ public class PipelineStepImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

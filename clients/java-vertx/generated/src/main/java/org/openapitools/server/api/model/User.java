@@ -4,14 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User   {
   
-  private String propertyClass = null;
-  private String id = null;
-  private String fullName = null;
-  private String email = null;
-  private String name = null;
+  private String propertyClass;
+  private String id;
+  private String fullName;
+  private String email;
+  private String name;
 
   public User () {
 

@@ -17,7 +17,7 @@ import org.openapitools.api.impl.JwtAuthApiServiceImpl;
 import org.openapitools.api.impl.QueueApiServiceImpl;
 import org.openapitools.api.impl.ViewApiServiceImpl;
 
-@ApplicationPath("/")
+@ApplicationPath("")
 public class RestApplication extends Application {
 
 

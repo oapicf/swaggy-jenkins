@@ -29,7 +29,7 @@ GithubRepository::__init()
 	//description = std::string();
 	//name = std::string();
 	//permissions = new GithubRepositorypermissions();
-	//_private = bool(false);
+	//r_private = bool(false);
 	//fullName = std::string();
 }
 
@@ -66,10 +66,10 @@ GithubRepository::__cleanup()
 	//delete permissions;
 	//permissions = NULL;
 	//}
-	//if(_private != NULL) {
+	//if(r_private != NULL) {
 	//
-	//delete _private;
-	//_private = NULL;
+	//delete r_private;
+	//r_private = NULL;
 	//}
 	//if(fullName != NULL) {
 	//
@@ -156,13 +156,13 @@ GithubRepository::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *_privateKey = "private";
-	node = json_object_get_member(pJsonObject, _privateKey);
+	const gchar *r_privateKey = "private";
+	node = json_object_get_member(pJsonObject, r_privateKey);
 	if (node !=NULL) {
 	
 
 		if (isprimitive("bool")) {
-			jsonToValue(&_private, node, "bool", "");
+			jsonToValue(&r_private, node, "bool", "");
 		} else {
 			
 		}
@@ -255,14 +255,14 @@ GithubRepository::toJson()
 	const gchar *permissionsKey = "permissions";
 	json_object_set_member(pJsonObject, permissionsKey, node);
 	if (isprimitive("bool")) {
-		bool obj = getPrivate();
+		bool obj = getRPrivate();
 		node = converttoJson(&obj, "bool", "");
 	}
 	else {
 		
 	}
-	const gchar *_privateKey = "private";
-	json_object_set_member(pJsonObject, _privateKey, node);
+	const gchar *r_privateKey = "private";
+	json_object_set_member(pJsonObject, r_privateKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getFullName();
 		node = converttoJson(&obj, "std::string", "");
@@ -353,15 +353,15 @@ GithubRepository::setPermissions(GithubRepositorypermissions  permissions)
 }
 
 bool
-GithubRepository::getPrivate()
+GithubRepository::getRPrivate()
 {
-	return _private;
+	return r_private;
 }
 
 void
-GithubRepository::setPrivate(bool  _private)
+GithubRepository::setRPrivate(bool  r_private)
 {
-	this->_private = _private;
+	this->r_private = r_private;
 }
 
 std::string

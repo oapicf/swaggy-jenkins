@@ -1,7 +1,9 @@
 
+
 # PipelineRun
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -19,6 +21,7 @@ Name | Type | Description | Notes
 **state** | **String** |  |  [optional]
 **type** | **String** |  |  [optional]
 **commitId** | **String** |  |  [optional]
+
 
 
 

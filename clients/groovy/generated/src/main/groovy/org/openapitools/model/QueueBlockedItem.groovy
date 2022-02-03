@@ -10,28 +10,28 @@ import org.openapitools.model.FreeStyleProject;
 
 @Canonical
 class QueueBlockedItem {
-    String propertyClass = null
-
+    
+    String propertyClass
+    
     List<CauseAction> actions = new ArrayList<CauseAction>()
-
-    Boolean blocked = null
-
-    Boolean buildable = null
-
-    Integer id = null
-
-    Integer inQueueSince = null
-
-    String params = null
-
-    Boolean stuck = null
-
-    FreeStyleProject task = null
-
-    String url = null
-
-    String why = null
-
-    Integer buildableStartMilliseconds = null
-
+    
+    Boolean blocked
+    
+    Boolean buildable
+    
+    Integer id
+    
+    Integer inQueueSince
+    
+    String params
+    
+    Boolean stuck
+    
+    FreeStyleProject task
+    
+    String url
+    
+    String why
+    
+    Integer buildableStartMilliseconds
 }

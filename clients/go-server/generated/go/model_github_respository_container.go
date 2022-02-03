@@ -14,7 +14,30 @@ type GithubRespositoryContainer struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *GithubRespositoryContainerlinks `json:"_links,omitempty"`
+	Links GithubRespositoryContainerlinks `json:"_links,omitempty"`
 
-	Repositories *GithubRepositories `json:"repositories,omitempty"`
+	Repositories GithubRepositories `json:"repositories,omitempty"`
+}
+
+// AssertGithubRespositoryContainerRequired checks if the required fields are not zero-ed
+func AssertGithubRespositoryContainerRequired(obj GithubRespositoryContainer) error {
+	if err := AssertGithubRespositoryContainerlinksRequired(obj.Links); err != nil {
+		return err
+	}
+	if err := AssertGithubRepositoriesRequired(obj.Repositories); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseGithubRespositoryContainerRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubRespositoryContainer (e.g. [][]GithubRespositoryContainer), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubRespositoryContainerRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubRespositoryContainer, ok := obj.(GithubRespositoryContainer)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubRespositoryContainerRequired(aGithubRespositoryContainer)
+	})
 }

@@ -1,6 +1,6 @@
 # BlueOceanApi
 
-All URIs are relative to */*
+All URIs are relative to **
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -43,24 +43,27 @@ Method | HTTP request | Description
 [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 
 
-## **deletePipelineQueueItem**
+
+## deletePipelineQueueItem
 
 
 
 Delete queue item from an organization pipeline queue
 
 ### Example
+
 ```bash
  deletePipelineQueueItem organization=value pipeline=value queue=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **queue** | **string** | Name of the queue item |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **queue** | **string** | Name of the queue item | [default to null]
 
 ### Return type
 
@@ -72,27 +75,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: Not Applicable
+- **Content-Type**: Not Applicable
+- **Accept**: Not Applicable
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getAuthenticatedUser**
+
+## getAuthenticatedUser
 
 
 
 Retrieve authenticated user details for an organization
 
 ### Example
+
 ```bash
  getAuthenticatedUser organization=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
+ **organization** | **string** | Name of the organization | [default to null]
 
 ### Return type
 
@@ -104,27 +110,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getClasses**
+
+## getClasses
 
 
 
 Get a list of class names supported by a given class
 
 ### Example
+
 ```bash
  getClasses class=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **class** | **string** | Name of the class |
+ **class** | **string** | Name of the class | [default to null]
 
 ### Return type
 
@@ -136,27 +145,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJsonWebKey**
+
+## getJsonWebKey
 
 
 
 Retrieve JSON Web Key
 
 ### Example
+
 ```bash
  getJsonWebKey key=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key** | **integer** | Key ID received as part of JWT header field kid |
+ **key** | **integer** | Key ID received as part of JWT header field kid | [default to null]
 
 ### Return type
 
@@ -168,28 +180,31 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getJsonWebToken**
+
+## getJsonWebToken
 
 
 
 Retrieve JSON Web Token
 
 ### Example
+
 ```bash
  getJsonWebToken  expiryTimeInMins=value  maxExpiryTimeInMins=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expiryTimeInMins** | **integer** | Token expiry time in minutes, default: 30 minutes | [optional]
- **maxExpiryTimeInMins** | **integer** | Maximum token expiry time in minutes, default: 480 minutes | [optional]
+ **expiryTimeInMins** | **integer** | Token expiry time in minutes, default: 30 minutes | [optional] [default to null]
+ **maxExpiryTimeInMins** | **integer** | Maximum token expiry time in minutes, default: 480 minutes | [optional] [default to null]
 
 ### Return type
 
@@ -201,27 +216,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getOrganisation**
+
+## getOrganisation
 
 
 
 Retrieve organization details
 
 ### Example
+
 ```bash
  getOrganisation organization=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
+ **organization** | **string** | Name of the organization | [default to null]
 
 ### Return type
 
@@ -233,28 +251,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getOrganisations**
+
+## getOrganisations
 
 
 
 Retrieve all organizations details
 
 ### Example
+
 ```bash
  getOrganisations
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**array[Organisation]**](Organisation.md)
 
 ### Authorization
 
@@ -262,28 +283,31 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipeline**
+
+## getPipeline
 
 
 
 Retrieve pipeline details for an organization
 
 ### Example
+
 ```bash
  getPipeline organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -295,32 +319,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineActivities**
+
+## getPipelineActivities
 
 
 
 Retrieve all activities details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineActivities organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**array[PipelineActivity]**](PipelineActivity.md)
 
 ### Authorization
 
@@ -328,29 +355,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineBranch**
+
+## getPipelineBranch
 
 
 
 Retrieve branch details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineBranch organization=value pipeline=value branch=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **branch** | **string** | Name of the branch |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **branch** | **string** | Name of the branch | [default to null]
 
 ### Return type
 
@@ -362,30 +392,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineBranchRun**
+
+## getPipelineBranchRun
 
 
 
 Retrieve branch run details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineBranchRun organization=value pipeline=value branch=value run=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **branch** | **string** | Name of the branch |
- **run** | **string** | Name of the run |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **branch** | **string** | Name of the branch | [default to null]
+ **run** | **string** | Name of the run | [default to null]
 
 ### Return type
 
@@ -397,28 +430,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineBranches**
+
+## getPipelineBranches
 
 
 
 Retrieve all branches details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineBranches organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -430,28 +466,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineFolder**
+
+## getPipelineFolder
 
 
 
 Retrieve pipeline folder for an organization
 
 ### Example
+
 ```bash
  getPipelineFolder organization=value folder=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **folder** | **string** | Name of the folder |
+ **organization** | **string** | Name of the organization | [default to null]
+ **folder** | **string** | Name of the folder | [default to null]
 
 ### Return type
 
@@ -463,29 +502,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineFolderPipeline**
+
+## getPipelineFolderPipeline
 
 
 
 Retrieve pipeline details for an organization folder
 
 ### Example
+
 ```bash
  getPipelineFolderPipeline organization=value pipeline=value folder=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **folder** | **string** | Name of the folder |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **folder** | **string** | Name of the folder | [default to null]
 
 ### Return type
 
@@ -497,32 +539,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineQueue**
+
+## getPipelineQueue
 
 
 
 Retrieve queue details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineQueue organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**array[QueueItemImpl]**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -530,29 +575,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRun**
+
+## getPipelineRun
 
 
 
 Retrieve run details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineRun organization=value pipeline=value run=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
 
 ### Return type
 
@@ -564,31 +612,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRunLog**
+
+## getPipelineRunLog
 
 
 
 Get log for a pipeline run
 
 ### Example
+
 ```bash
  getPipelineRunLog organization=value pipeline=value run=value  start=value  download=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
- **start** | **integer** | Start position of the log | [optional]
- **download** | **boolean** | Set to true in order to download the file, otherwise it's passed as a response body | [optional]
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
+ **start** | **integer** | Start position of the log | [optional] [default to null]
+ **download** | **boolean** | Set to true in order to download the file, otherwise it's passed as a response body | [optional] [default to null]
 
 ### Return type
 
@@ -600,30 +651,33 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRunNode**
+
+## getPipelineRunNode
 
 
 
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineRunNode organization=value pipeline=value run=value node=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
- **node** | **string** | Name of the node |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
+ **node** | **string** | Name of the node | [default to null]
 
 ### Return type
 
@@ -635,31 +689,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRunNodeStep**
+
+## getPipelineRunNodeStep
 
 
 
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineRunNodeStep organization=value pipeline=value run=value node=value step=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
- **node** | **string** | Name of the node |
- **step** | **string** | Name of the step |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
+ **node** | **string** | Name of the node | [default to null]
+ **step** | **string** | Name of the step | [default to null]
 
 ### Return type
 
@@ -671,31 +728,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRunNodeStepLog**
+
+## getPipelineRunNodeStepLog
 
 
 
 Get log for a pipeline run node step
 
 ### Example
+
 ```bash
  getPipelineRunNodeStepLog organization=value pipeline=value run=value node=value step=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
- **node** | **string** | Name of the node |
- **step** | **string** | Name of the step |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
+ **node** | **string** | Name of the node | [default to null]
+ **step** | **string** | Name of the step | [default to null]
 
 ### Return type
 
@@ -707,34 +767,37 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRunNodeSteps**
+
+## getPipelineRunNodeSteps
 
 
 
 Retrieve run node steps details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineRunNodeSteps organization=value pipeline=value run=value node=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
- **node** | **string** | Name of the node |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
+ **node** | **string** | Name of the node | [default to null]
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**array[PipelineStepImpl]**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -742,33 +805,36 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRunNodes**
+
+## getPipelineRunNodes
 
 
 
 Retrieve run nodes details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineRunNodes organization=value pipeline=value run=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**array[PipelineRunNode]**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -776,32 +842,35 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelineRuns**
+
+## getPipelineRuns
 
 
 
 Retrieve all runs details for an organization pipeline
 
 ### Example
+
 ```bash
  getPipelineRuns organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**array[PipelineRun]**](PipelineRun.md)
 
 ### Authorization
 
@@ -809,31 +878,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getPipelines**
+
+## getPipelines
 
 
 
 Retrieve all pipelines details for an organization
 
 ### Example
+
 ```bash
  getPipelines organization=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
+ **organization** | **string** | Name of the organization | [default to null]
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**array[Pipeline]**](Pipeline.md)
 
 ### Authorization
 
@@ -841,28 +913,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getSCM**
+
+## getSCM
 
 
 
 Retrieve SCM details for an organization
 
 ### Example
+
 ```bash
  getSCM organization=value scm=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **scm** | **string** | Name of SCM |
+ **organization** | **string** | Name of the organization | [default to null]
+ **scm** | **string** | Name of SCM | [default to null]
 
 ### Return type
 
@@ -874,36 +949,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getSCMOrganisationRepositories**
+
+## getSCMOrganisationRepositories
 
 
 
 Retrieve SCM organization repositories details for an organization
 
 ### Example
+
 ```bash
  getSCMOrganisationRepositories organization=value scm=value scmOrganisation=value  credentialId=value  pageSize=value  pageNumber=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **scm** | **string** | Name of SCM |
- **scmOrganisation** | **string** | Name of the SCM organization |
- **credentialId** | **string** | Credential ID | [optional]
- **pageSize** | **integer** | Number of items in a page | [optional]
- **pageNumber** | **integer** | Page number | [optional]
+ **organization** | **string** | Name of the organization | [default to null]
+ **scm** | **string** | Name of SCM | [default to null]
+ **scmOrganisation** | **string** | Name of the SCM organization | [default to null]
+ **credentialId** | **string** | Credential ID | [optional] [default to null]
+ **pageSize** | **integer** | Number of items in a page | [optional] [default to null]
+ **pageNumber** | **integer** | Page number | [optional] [default to null]
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**array[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -911,35 +989,38 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getSCMOrganisationRepository**
+
+## getSCMOrganisationRepository
 
 
 
 Retrieve SCM organization repository details for an organization
 
 ### Example
+
 ```bash
  getSCMOrganisationRepository organization=value scm=value scmOrganisation=value repository=value  credentialId=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **scm** | **string** | Name of SCM |
- **scmOrganisation** | **string** | Name of the SCM organization |
- **repository** | **string** | Name of the SCM repository |
- **credentialId** | **string** | Credential ID | [optional]
+ **organization** | **string** | Name of the organization | [default to null]
+ **scm** | **string** | Name of SCM | [default to null]
+ **scmOrganisation** | **string** | Name of the SCM organization | [default to null]
+ **repository** | **string** | Name of the SCM repository | [default to null]
+ **credentialId** | **string** | Credential ID | [optional] [default to null]
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**array[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -947,33 +1028,36 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getSCMOrganisations**
+
+## getSCMOrganisations
 
 
 
 Retrieve SCM organizations details for an organization
 
 ### Example
+
 ```bash
  getSCMOrganisations organization=value scm=value  credentialId=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **scm** | **string** | Name of SCM |
- **credentialId** | **string** | Credential ID | [optional]
+ **organization** | **string** | Name of the organization | [default to null]
+ **scm** | **string** | Name of SCM | [default to null]
+ **credentialId** | **string** | Credential ID | [optional] [default to null]
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**array[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -981,28 +1065,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getUser**
+
+## getUser
 
 
 
 Retrieve user details for an organization
 
 ### Example
+
 ```bash
  getUser organization=value user=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **user** | **string** | Name of the user |
+ **organization** | **string** | Name of the organization | [default to null]
+ **user** | **string** | Name of the user | [default to null]
 
 ### Return type
 
@@ -1014,31 +1101,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getUserFavorites**
+
+## getUserFavorites
 
 
 
 Retrieve user favorites details for an organization
 
 ### Example
+
 ```bash
  getUserFavorites user=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **string** | Name of the user |
+ **user** | **string** | Name of the user | [default to null]
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**array[FavoriteImpl]**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1046,27 +1136,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **getUsers**
+
+## getUsers
 
 
 
 Retrieve users details for an organization
 
 ### Example
+
 ```bash
  getUsers organization=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
+ **organization** | **string** | Name of the organization | [default to null]
 
 ### Return type
 
@@ -1078,29 +1171,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postPipelineRun**
+
+## postPipelineRun
 
 
 
 Replay an organization pipeline run
 
 ### Example
+
 ```bash
  postPipelineRun organization=value pipeline=value run=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
 
 ### Return type
 
@@ -1112,28 +1208,31 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **postPipelineRuns**
+
+## postPipelineRuns
 
 
 
 Start a build for an organization pipeline
 
 ### Example
+
 ```bash
  postPipelineRuns organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -1145,29 +1244,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **putPipelineFavorite**
+
+## putPipelineFavorite
 
 
 
 Favorite/unfavorite a pipeline
 
 ### Example
+
 ```bash
  putPipelineFavorite organization=value pipeline=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **body** | [**Body**](Body.md) | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite |
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite |
 
 ### Return type
 
@@ -1179,31 +1281,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **putPipelineRun**
+
+## putPipelineRun
 
 
 
 Stop a build of an organization pipeline
 
 ### Example
+
 ```bash
  putPipelineRun organization=value pipeline=value run=value  blocking=value  timeOutInSecs=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **string** | Name of the organization |
- **pipeline** | **string** | Name of the pipeline |
- **run** | **string** | Name of the run |
- **blocking** | **string** | Set to true to make blocking stop, default: false | [optional]
- **timeOutInSecs** | **integer** | Timeout in seconds, default: 10 seconds | [optional]
+ **organization** | **string** | Name of the organization | [default to null]
+ **pipeline** | **string** | Name of the pipeline | [default to null]
+ **run** | **string** | Name of the run | [default to null]
+ **blocking** | **string** | Set to true to make blocking stop, default: false | [optional] [default to null]
+ **timeOutInSecs** | **integer** | Timeout in seconds, default: 10 seconds | [optional] [default to null]
 
 ### Return type
 
@@ -1215,27 +1320,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **search**
+
+## search
 
 
 
 Search for any resource details
 
 ### Example
+
 ```bash
  search  q=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string |
+ **q** | **string** | Query string | [default to null]
 
 ### Return type
 
@@ -1247,27 +1355,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## **searchClasses**
+
+## searchClasses
 
 
 
 Get classes details
 
 ### Example
+
 ```bash
  searchClasses  q=value
 ```
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **string** | Query string containing an array of class names |
+ **q** | **string** | Query string containing an array of class names | [default to null]
 
 ### Return type
 
@@ -1279,8 +1390,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not Applicable
- - **Accept**: application/json
+- **Content-Type**: Not Applicable
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

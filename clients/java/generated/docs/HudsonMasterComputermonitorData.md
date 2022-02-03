@@ -1,7 +1,10 @@
 
+
 # HudsonMasterComputermonitorData
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hudsonNodeMonitorsSwapSpaceMonitor** | [**SwapSpaceMonitorMemoryUsage2**](SwapSpaceMonitorMemoryUsage2.md) |  |  [optional]

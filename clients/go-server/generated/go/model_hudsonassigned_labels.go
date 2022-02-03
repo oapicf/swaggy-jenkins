@@ -14,3 +14,20 @@ type HudsonassignedLabels struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertHudsonassignedLabelsRequired checks if the required fields are not zero-ed
+func AssertHudsonassignedLabelsRequired(obj HudsonassignedLabels) error {
+	return nil
+}
+
+// AssertRecurseHudsonassignedLabelsRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of HudsonassignedLabels (e.g. [][]HudsonassignedLabels), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseHudsonassignedLabelsRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aHudsonassignedLabels, ok := obj.(HudsonassignedLabels)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertHudsonassignedLabelsRequired(aHudsonassignedLabels)
+	})
+}

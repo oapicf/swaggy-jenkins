@@ -9,27 +9,33 @@ import javax.validation.constraints.*;
 /**
  * PipelineBranchesitempullRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineBranchesitempullRequest   {
   @JsonProperty("_links")
-  private PipelineBranchesitempullRequestlinks links = null;
+  @Valid
+
+  private PipelineBranchesitempullRequestlinks links;
 
   @JsonProperty("author")
-  private String author = null;
+  
+  private String author;
 
   @JsonProperty("id")
-  private String id = null;
+  
+  private String id;
 
   @JsonProperty("title")
-  private String title = null;
+  
+  private String title;
 
   @JsonProperty("url")
-  private String url = null;
+  
+  private String url;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public PipelineBranchesitempullRequest links(PipelineBranchesitempullRequestlinks links) {
     this.links = links;
@@ -40,7 +46,6 @@ public class PipelineBranchesitempullRequest   {
    * Get links
    * @return links
   **/
-  @Valid
   public PipelineBranchesitempullRequestlinks getLinks() {
     return links;
   }
@@ -58,7 +63,7 @@ public class PipelineBranchesitempullRequest   {
    * Get author
    * @return author
   **/
-    public String getAuthor() {
+  public String getAuthor() {
     return author;
   }
 
@@ -75,7 +80,7 @@ public class PipelineBranchesitempullRequest   {
    * Get id
    * @return id
   **/
-    public String getId() {
+  public String getId() {
     return id;
   }
 
@@ -92,7 +97,7 @@ public class PipelineBranchesitempullRequest   {
    * Get title
    * @return title
   **/
-    public String getTitle() {
+  public String getTitle() {
     return title;
   }
 
@@ -109,7 +114,7 @@ public class PipelineBranchesitempullRequest   {
    * Get url
    * @return url
   **/
-    public String getUrl() {
+  public String getUrl() {
     return url;
   }
 
@@ -126,7 +131,7 @@ public class PipelineBranchesitempullRequest   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -136,7 +141,7 @@ public class PipelineBranchesitempullRequest   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -177,7 +182,7 @@ public class PipelineBranchesitempullRequest   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

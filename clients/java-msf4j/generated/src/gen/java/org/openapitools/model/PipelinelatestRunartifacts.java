@@ -9,19 +9,19 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * PipelinelatestRunartifacts
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class PipelinelatestRunartifacts   {
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("size")
-  private Integer size = null;
+  private Integer size;
 
   @JsonProperty("url")
-  private String url = null;
+  private String url;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public PipelinelatestRunartifacts name(String name) {
     this.name = name;
@@ -97,7 +97,7 @@ public class PipelinelatestRunartifacts   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -133,7 +133,7 @@ public class PipelinelatestRunartifacts   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

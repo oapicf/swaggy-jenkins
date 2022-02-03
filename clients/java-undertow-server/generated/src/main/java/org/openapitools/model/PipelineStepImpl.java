@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -12,21 +22,21 @@ import org.openapitools.model.PipelineStepImpllinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class PipelineStepImpl   {
   
-  private String propertyClass = null;
-  private PipelineStepImpllinks links = null;
-  private String displayName = null;
-  private Integer durationInMillis = null;
-  private String id = null;
-  private InputStepImpl input = null;
-  private String result = null;
-  private String startTime = null;
-  private String state = null;
+  private String propertyClass;
+  private PipelineStepImpllinks links;
+  private String displayName;
+  private Integer durationInMillis;
+  private String id;
+  private InputStepImpl input;
+  private String result;
+  private String startTime;
+  private String state;
 
   /**
-   **/
+   */
   public PipelineStepImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -43,7 +53,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl links(PipelineStepImpllinks links) {
     this.links = links;
     return this;
@@ -60,7 +70,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -77,7 +87,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
@@ -94,7 +104,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl id(String id) {
     this.id = id;
     return this;
@@ -111,7 +121,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl input(InputStepImpl input) {
     this.input = input;
     return this;
@@ -128,7 +138,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl result(String result) {
     this.result = result;
     return this;
@@ -145,7 +155,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl startTime(String startTime) {
     this.startTime = startTime;
     return this;
@@ -162,7 +172,7 @@ public class PipelineStepImpl   {
   }
 
   /**
-   **/
+   */
   public PipelineStepImpl state(String state) {
     this.state = state;
     return this;
@@ -180,7 +190,7 @@ public class PipelineStepImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -226,7 +236,7 @@ public class PipelineStepImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

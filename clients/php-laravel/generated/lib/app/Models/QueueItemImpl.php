@@ -9,11 +9,11 @@ namespace app\Models;
  */
 class QueueItemImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var int $expected_build_number */
-    private $expected_build_number;
+    /** @var int $expectedBuildNumber */
+    private $expectedBuildNumber;
 
     /** @var string $id */
     private $id;
@@ -21,7 +21,7 @@ class QueueItemImpl {
     /** @var string $pipeline */
     private $pipeline;
 
-    /** @var int $queued_time */
-    private $queued_time;
+    /** @var int $queuedTime */
+    private $queuedTime;
 
 }

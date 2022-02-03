@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.BranchImpllinks do
   ]
 
   @type t :: %__MODULE__{
-    :"self" => Link,
-    :"actions" => Link,
-    :"runs" => Link,
-    :"queue" => Link,
-    :"_class" => String.t
+    :"self" => SwaggyJenkins.Model.Link.t | nil,
+    :"actions" => SwaggyJenkins.Model.Link.t | nil,
+    :"runs" => SwaggyJenkins.Model.Link.t | nil,
+    :"queue" => SwaggyJenkins.Model.Link.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

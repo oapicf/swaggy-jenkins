@@ -24,7 +24,7 @@ class PipelineRunImpllinks {
     /** @var \app\Models\Link $steps */
     private $steps;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

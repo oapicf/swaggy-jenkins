@@ -1,28 +1,21 @@
 package com.prokarma.pkmst.controller;
 
-import com.prokarma.pkmst.model.Body;
 import com.prokarma.pkmst.model.BranchImpl;
 import com.prokarma.pkmst.model.FavoriteImpl;
+import com.prokarma.pkmst.model.GithubOrganization;
 import com.prokarma.pkmst.model.GithubScm;
 import com.prokarma.pkmst.model.MultibranchPipeline;
 import com.prokarma.pkmst.model.Organisation;
-import com.prokarma.pkmst.model.Organisations;
 import com.prokarma.pkmst.model.Pipeline;
-import com.prokarma.pkmst.model.PipelineActivities;
+import com.prokarma.pkmst.model.PipelineActivity;
 import com.prokarma.pkmst.model.PipelineFolderImpl;
 import com.prokarma.pkmst.model.PipelineImpl;
-import com.prokarma.pkmst.model.PipelineQueue;
 import com.prokarma.pkmst.model.PipelineRun;
 import com.prokarma.pkmst.model.PipelineRunNode;
-import com.prokarma.pkmst.model.PipelineRunNodeSteps;
-import com.prokarma.pkmst.model.PipelineRunNodes;
-import com.prokarma.pkmst.model.PipelineRuns;
 import com.prokarma.pkmst.model.PipelineStepImpl;
-import com.prokarma.pkmst.model.Pipelines;
 import com.prokarma.pkmst.model.QueueItemImpl;
-import com.prokarma.pkmst.model.ScmOrganisations;
+import com.prokarma.pkmst.model.UNKNOWN_BASE_TYPE;
 import com.prokarma.pkmst.model.User;
-import com.prokarma.pkmst.model.UserFavorites;
 
 import io.swagger.annotations.*;
 
@@ -41,12 +34,11 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 /**
- * Api implemention
+ * Api implementation
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 @Controller
 public class BlueOceanApiController implements BlueOceanApi {
     private final ObjectMapper objectMapper;
@@ -104,14 +96,14 @@ public class BlueOceanApiController implements BlueOceanApi {
         return new ResponseEntity<Organisation>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Organisations> getOrganisations(@RequestHeader(value = "Accept", required = false) String accept) throws Exception {
+    public ResponseEntity<List<Organisation>> getOrganisations(@RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<Organisations>(objectMapper.readValue("", Organisations.class), HttpStatus.OK);
+            return new ResponseEntity<List<Organisation>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<Organisations>(HttpStatus.OK);
+        return new ResponseEntity<List<Organisation>>(HttpStatus.OK);
     }
 
     public ResponseEntity<Pipeline> getPipeline(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
@@ -126,16 +118,16 @@ public class BlueOceanApiController implements BlueOceanApi {
         return new ResponseEntity<Pipeline>(HttpStatus.OK);
     }
 
-    public ResponseEntity<PipelineActivities> getPipelineActivities(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<PipelineActivity>> getPipelineActivities(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<PipelineActivities>(objectMapper.readValue("", PipelineActivities.class), HttpStatus.OK);
+            return new ResponseEntity<List<PipelineActivity>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<PipelineActivities>(HttpStatus.OK);
+        return new ResponseEntity<List<PipelineActivity>>(HttpStatus.OK);
     }
 
     public ResponseEntity<BranchImpl> getPipelineBranch(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
@@ -202,16 +194,16 @@ public class BlueOceanApiController implements BlueOceanApi {
         return new ResponseEntity<PipelineImpl>(HttpStatus.OK);
     }
 
-    public ResponseEntity<PipelineQueue> getPipelineQueue(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<QueueItemImpl>> getPipelineQueue(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<PipelineQueue>(objectMapper.readValue("", PipelineQueue.class), HttpStatus.OK);
+            return new ResponseEntity<List<QueueItemImpl>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<PipelineQueue>(HttpStatus.OK);
+        return new ResponseEntity<List<QueueItemImpl>>(HttpStatus.OK);
     }
 
     public ResponseEntity<PipelineRun> getPipelineRun(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
@@ -276,7 +268,7 @@ public class BlueOceanApiController implements BlueOceanApi {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    public ResponseEntity<PipelineRunNodeSteps> getPipelineRunNodeSteps(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<PipelineStepImpl>> getPipelineRunNodeSteps(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
         @ApiParam(value = "Name of the run",required=true ) @PathVariable("run") String run,
         @ApiParam(value = "Name of the node",required=true ) @PathVariable("node") String node,
@@ -284,46 +276,46 @@ public class BlueOceanApiController implements BlueOceanApi {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<PipelineRunNodeSteps>(objectMapper.readValue("", PipelineRunNodeSteps.class), HttpStatus.OK);
+            return new ResponseEntity<List<PipelineStepImpl>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<PipelineRunNodeSteps>(HttpStatus.OK);
+        return new ResponseEntity<List<PipelineStepImpl>>(HttpStatus.OK);
     }
 
-    public ResponseEntity<PipelineRunNodes> getPipelineRunNodes(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<PipelineRunNode>> getPipelineRunNodes(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
         @ApiParam(value = "Name of the run",required=true ) @PathVariable("run") String run,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<PipelineRunNodes>(objectMapper.readValue("", PipelineRunNodes.class), HttpStatus.OK);
+            return new ResponseEntity<List<PipelineRunNode>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<PipelineRunNodes>(HttpStatus.OK);
+        return new ResponseEntity<List<PipelineRunNode>>(HttpStatus.OK);
     }
 
-    public ResponseEntity<PipelineRuns> getPipelineRuns(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<PipelineRun>> getPipelineRuns(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<PipelineRuns>(objectMapper.readValue("", PipelineRuns.class), HttpStatus.OK);
+            return new ResponseEntity<List<PipelineRun>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<PipelineRuns>(HttpStatus.OK);
+        return new ResponseEntity<List<PipelineRun>>(HttpStatus.OK);
     }
 
-    public ResponseEntity<Pipelines> getPipelines(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<Pipeline>> getPipelines(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<Pipelines>(objectMapper.readValue("", Pipelines.class), HttpStatus.OK);
+            return new ResponseEntity<List<Pipeline>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<Pipelines>(HttpStatus.OK);
+        return new ResponseEntity<List<Pipeline>>(HttpStatus.OK);
     }
 
     public ResponseEntity<GithubScm> getSCM(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
@@ -338,7 +330,7 @@ public class BlueOceanApiController implements BlueOceanApi {
         return new ResponseEntity<GithubScm>(HttpStatus.OK);
     }
 
-    public ResponseEntity<ScmOrganisations> getSCMOrganisationRepositories(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<GithubOrganization>> getSCMOrganisationRepositories(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of SCM",required=true ) @PathVariable("scm") String scm,
         @ApiParam(value = "Name of the SCM organization",required=true ) @PathVariable("scmOrganisation") String scmOrganisation,
         @ApiParam(value = "Credential ID")  @RequestParam(value = "credentialId", required = false) String credentialId,
@@ -348,13 +340,13 @@ public class BlueOceanApiController implements BlueOceanApi {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<ScmOrganisations>(objectMapper.readValue("", ScmOrganisations.class), HttpStatus.OK);
+            return new ResponseEntity<List<GithubOrganization>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<ScmOrganisations>(HttpStatus.OK);
+        return new ResponseEntity<List<GithubOrganization>>(HttpStatus.OK);
     }
 
-    public ResponseEntity<ScmOrganisations> getSCMOrganisationRepository(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<GithubOrganization>> getSCMOrganisationRepository(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of SCM",required=true ) @PathVariable("scm") String scm,
         @ApiParam(value = "Name of the SCM organization",required=true ) @PathVariable("scmOrganisation") String scmOrganisation,
         @ApiParam(value = "Name of the SCM repository",required=true ) @PathVariable("repository") String repository,
@@ -363,23 +355,23 @@ public class BlueOceanApiController implements BlueOceanApi {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<ScmOrganisations>(objectMapper.readValue("", ScmOrganisations.class), HttpStatus.OK);
+            return new ResponseEntity<List<GithubOrganization>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<ScmOrganisations>(HttpStatus.OK);
+        return new ResponseEntity<List<GithubOrganization>>(HttpStatus.OK);
     }
 
-    public ResponseEntity<ScmOrganisations> getSCMOrganisations(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
+    public ResponseEntity<List<GithubOrganization>> getSCMOrganisations(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of SCM",required=true ) @PathVariable("scm") String scm,
         @ApiParam(value = "Credential ID")  @RequestParam(value = "credentialId", required = false) String credentialId,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<ScmOrganisations>(objectMapper.readValue("", ScmOrganisations.class), HttpStatus.OK);
+            return new ResponseEntity<List<GithubOrganization>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<ScmOrganisations>(HttpStatus.OK);
+        return new ResponseEntity<List<GithubOrganization>>(HttpStatus.OK);
     }
 
     public ResponseEntity<User> getUser(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
@@ -394,15 +386,15 @@ public class BlueOceanApiController implements BlueOceanApi {
         return new ResponseEntity<User>(HttpStatus.OK);
     }
 
-    public ResponseEntity<UserFavorites> getUserFavorites(@ApiParam(value = "Name of the user",required=true ) @PathVariable("user") String user,
+    public ResponseEntity<List<FavoriteImpl>> getUserFavorites(@ApiParam(value = "Name of the user",required=true ) @PathVariable("user") String user,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 
         if (accept != null && accept.contains("application/json")) {
-            return new ResponseEntity<UserFavorites>(objectMapper.readValue("", UserFavorites.class), HttpStatus.OK);
+            return new ResponseEntity<List<FavoriteImpl>>(objectMapper.readValue("", List.class), HttpStatus.OK);
         }
 
-        return new ResponseEntity<UserFavorites>(HttpStatus.OK);
+        return new ResponseEntity<List<FavoriteImpl>>(HttpStatus.OK);
     }
 
     public ResponseEntity<User> getUsers(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
@@ -443,7 +435,7 @@ public class BlueOceanApiController implements BlueOceanApi {
 
     public ResponseEntity<FavoriteImpl> putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
-        @ApiParam(value = "Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite" ,required=true )   @RequestBody Body body,
+        @ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true )   @RequestBody UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 

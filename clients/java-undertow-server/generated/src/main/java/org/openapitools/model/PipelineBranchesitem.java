@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -12,21 +22,21 @@ import org.openapitools.model.PipelineBranchesitempullRequest;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class PipelineBranchesitem   {
   
-  private String displayName = null;
-  private Integer estimatedDurationInMillis = null;
-  private String name = null;
-  private Integer weatherScore = null;
-  private PipelineBranchesitemlatestRun latestRun = null;
-  private String organization = null;
-  private PipelineBranchesitempullRequest pullRequest = null;
-  private Integer totalNumberOfPullRequests = null;
-  private String propertyClass = null;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String name;
+  private Integer weatherScore;
+  private PipelineBranchesitemlatestRun latestRun;
+  private String organization;
+  private PipelineBranchesitempullRequest pullRequest;
+  private Integer totalNumberOfPullRequests;
+  private String propertyClass;
 
   /**
-   **/
+   */
   public PipelineBranchesitem displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -43,7 +53,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
@@ -60,7 +70,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem name(String name) {
     this.name = name;
     return this;
@@ -77,7 +87,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
@@ -94,7 +104,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem latestRun(PipelineBranchesitemlatestRun latestRun) {
     this.latestRun = latestRun;
     return this;
@@ -111,7 +121,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem organization(String organization) {
     this.organization = organization;
     return this;
@@ -128,7 +138,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem pullRequest(PipelineBranchesitempullRequest pullRequest) {
     this.pullRequest = pullRequest;
     return this;
@@ -145,7 +155,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem totalNumberOfPullRequests(Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
     return this;
@@ -162,7 +172,7 @@ public class PipelineBranchesitem   {
   }
 
   /**
-   **/
+   */
   public PipelineBranchesitem propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -180,7 +190,7 @@ public class PipelineBranchesitem   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -226,7 +236,7 @@ public class PipelineBranchesitem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

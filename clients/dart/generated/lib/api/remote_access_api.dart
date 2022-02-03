@@ -1,1030 +1,1318 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 
-
 class RemoteAccessApi {
-  final ApiClient apiClient;
-
   RemoteAccessApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  /// 
-  ///
+  final ApiClient apiClient;
+
   /// Retrieve computer details
-  Future<ComputerSet> getComputer(int depth) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(depth == null) {
-     throw new ApiException(400, "Missing required param: depth");
-    }
-
-    // create path and map variables
-    String path = "/computer/api/json".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-      queryParams.addAll(_convertParametersForCollectionFormat("", "depth", depth));
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'ComputerSet') as ComputerSet;
-    } else {
-      return null;
-    }
-  }
-  /// 
   ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [int] depth (required):
+  ///   Recursion depth in response model
+  Future<Response> getComputerWithHttpInfo(int depth,) async {
+    // Verify required params are set.
+    if (depth == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: depth');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/computer/api/json';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'depth', depth));
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve computer details
+  ///
+  /// Parameters:
+  ///
+  /// * [int] depth (required):
+  ///   Recursion depth in response model
+  Future<ComputerSet> getComputer(int depth,) async {
+    final response = await getComputerWithHttpInfo(depth,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ComputerSet',) as ComputerSet;
+    
+    }
+    return Future<ComputerSet>.value();
+  }
+
+  /// Retrieve Jenkins details
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getJenkinsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/json';
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
   /// Retrieve Jenkins details
   Future<Hudson> getJenkins() async {
-    Object postBody = null;
-
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/api/json".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
+    final response = await getJenkinsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
-    else {
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Hudson',) as Hudson;
+    
     }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'Hudson') as Hudson;
-    } else {
-      return null;
-    }
+    return Future<Hudson>.value();
   }
-  /// 
-  ///
+
   /// Retrieve job details
-  Future<FreeStyleProject> getJob(String name) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
-
-    // create path and map variables
-    String path = "/job/{name}/api/json".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'FreeStyleProject') as FreeStyleProject;
-    } else {
-      return null;
-    }
-  }
-  /// 
   ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  Future<Response> getJobWithHttpInfo(String name,) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/api/json'
+      .replaceAll('{name}', name);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve job details
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  Future<FreeStyleProject> getJob(String name,) async {
+    final response = await getJobWithHttpInfo(name,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FreeStyleProject',) as FreeStyleProject;
+    
+    }
+    return Future<FreeStyleProject>.value();
+  }
+
   /// Retrieve job configuration
-  Future<String> getJobConfig(String name) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  Future<Response> getJobConfigWithHttpInfo(String name,) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
 
-    // create path and map variables
-    String path = "/job/{name}/config.xml".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/config.xml'
+      .replaceAll('{name}', name);
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    List<String> contentTypes = [];
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve job configuration
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  Future<String> getJobConfig(String name,) async {
+    final response = await getJobConfigWithHttpInfo(name,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
-    else {
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return Future<String>.value();
+  }
+
+  /// Retrieve job's last build details
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  Future<Response> getJobLastBuildWithHttpInfo(String name,) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/lastBuild/api/json'
+      .replaceAll('{name}', name);
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'String') as String;
-    } else {
-      return null;
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve job's last build details
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  Future<FreeStyleBuild> getJobLastBuild(String name,) async {
+    final response = await getJobLastBuildWithHttpInfo(name,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FreeStyleBuild',) as FreeStyleBuild;
+    
+    }
+    return Future<FreeStyleBuild>.value();
+  }
+
+  /// Retrieve job's build progressive text output
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] number (required):
+  ///   Build number
+  ///
+  /// * [String] start (required):
+  ///   Starting point of progressive text output
+  Future<Response> getJobProgressiveTextWithHttpInfo(String name, String number, String start,) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+    if (number == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: number');
+    }
+    if (start == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: start');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/{number}/logText/progressiveText'
+      .replaceAll('{name}', name)
+      .replaceAll('{number}', number);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'start', start));
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve job's build progressive text output
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] number (required):
+  ///   Build number
+  ///
+  /// * [String] start (required):
+  ///   Starting point of progressive text output
+  Future<void> getJobProgressiveText(String name, String number, String start,) async {
+    final response = await getJobProgressiveTextWithHttpInfo(name, number, start,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
+
+  /// Retrieve queue details
   ///
-  /// Retrieve job&#39;s last build details
-  Future<FreeStyleBuild> getJobLastBuild(String name) async {
-    Object postBody = null;
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getQueueWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/queue/api/json';
 
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    // create path and map variables
-    String path = "/job/{name}/lastBuild/api/json".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    List<String> contentTypes = [];
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'FreeStyleBuild') as FreeStyleBuild;
-    } else {
-      return null;
-    }
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
   }
-  /// 
-  ///
-  /// Retrieve job&#39;s build progressive text output
-  Future getJobProgressiveText(String name, String number, String start) async {
-    Object postBody = null;
 
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
-    if(number == null) {
-     throw new ApiException(400, "Missing required param: number");
-    }
-    if(start == null) {
-     throw new ApiException(400, "Missing required param: start");
-    }
-
-    // create path and map variables
-    String path = "/job/{name}/{number}/logText/progressiveText".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString()).replaceAll("{" + "number" + "}", number.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-      queryParams.addAll(_convertParametersForCollectionFormat("", "start", start));
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
-    }
-  }
-  /// 
-  ///
   /// Retrieve queue details
   Future<Queue> getQueue() async {
-    Object postBody = null;
-
-    // verify required params are set
-
-    // create path and map variables
-    String path = "/queue/api/json".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
+    final response = await getQueueWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
-    else {
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Queue',) as Queue;
+    
     }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'Queue') as Queue;
-    } else {
-      return null;
-    }
+    return Future<Queue>.value();
   }
-  /// 
-  ///
+
   /// Retrieve queued item details
-  Future<Queue> getQueueItem(String number) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(number == null) {
-     throw new ApiException(400, "Missing required param: number");
-    }
-
-    // create path and map variables
-    String path = "/queue/item/{number}/api/json".replaceAll("{format}","json").replaceAll("{" + "number" + "}", number.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'Queue') as Queue;
-    } else {
-      return null;
-    }
-  }
-  /// 
   ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] number (required):
+  ///   Queue number
+  Future<Response> getQueueItemWithHttpInfo(String number,) async {
+    // Verify required params are set.
+    if (number == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: number');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/queue/item/{number}/api/json'
+      .replaceAll('{number}', number);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve queued item details
+  ///
+  /// Parameters:
+  ///
+  /// * [String] number (required):
+  ///   Queue number
+  Future<Queue> getQueueItem(String number,) async {
+    final response = await getQueueItemWithHttpInfo(number,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Queue',) as Queue;
+    
+    }
+    return Future<Queue>.value();
+  }
+
   /// Retrieve view details
-  Future<ListView> getView(String name) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
-
-    // create path and map variables
-    String path = "/view/{name}/api/json".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'ListView') as ListView;
-    } else {
-      return null;
-    }
-  }
-  /// 
   ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the view
+  Future<Response> getViewWithHttpInfo(String name,) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/view/{name}/api/json'
+      .replaceAll('{name}', name);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve view details
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the view
+  Future<ListView> getView(String name,) async {
+    final response = await getViewWithHttpInfo(name,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListView',) as ListView;
+    
+    }
+    return Future<ListView>.value();
+  }
+
   /// Retrieve view configuration
-  Future<String> getViewConfig(String name) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
-
-    // create path and map variables
-    String path = "/view/{name}/config.xml".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'GET',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-      return apiClient.deserialize(response.body, 'String') as String;
-    } else {
-      return null;
-    }
-  }
-  /// 
   ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the view
+  Future<Response> getViewConfigWithHttpInfo(String name,) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/view/{name}/config.xml'
+      .replaceAll('{name}', name);
+
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Retrieve view configuration
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the view
+  Future<String> getViewConfig(String name,) async {
+    final response = await getViewConfigWithHttpInfo(name,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
+    
+    }
+    return Future<String>.value();
+  }
+
   /// Retrieve Jenkins headers
-  Future headJenkins() async {
-    Object postBody = null;
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> headJenkinsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/json';
 
-    // verify required params are set
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    // create path and map variables
-    String path = "/api/json".replaceAll("{format}","json");
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    List<String> contentTypes = [];
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
+    return apiClient.invokeAPI(
+      path,
+      'HEAD',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
 
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'HEAD',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+  /// Retrieve Jenkins headers
+  Future<void> headJenkins() async {
+    final response = await headJenkinsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Create a new job using job configuration, or copied from an existing job
-  Future postCreateItem(String name, { String from, String mode, String jenkinsCrumb, String contentType, String body }) async {
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the new job
+  ///
+  /// * [String] from:
+  ///   Existing job to copy from
+  ///
+  /// * [String] mode:
+  ///   Set to 'copy' for copying an existing job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  ///
+  /// * [String] contentType:
+  ///   Content type header application/xml
+  ///
+  /// * [String] body:
+  ///   Job configuration in config.xml format
+  Future<Response> postCreateItemWithHttpInfo(String name, { String from, String mode, String jenkinsCrumb, String contentType, String body, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/createItem';
+
+    // ignore: prefer_final_locals
     Object postBody = body;
 
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'name', name));
+    if (from != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'from', from));
+    }
+    if (mode != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'mode', mode));
     }
 
-    // create path and map variables
-    String path = "/createItem".replaceAll("{format}","json");
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-      queryParams.addAll(_convertParametersForCollectionFormat("", "name", name));
-    if(from != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "from", from));
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
-    if(mode != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "mode", mode));
-    }
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
-    headerParams["Content-Type"] = contentType;
-
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (contentType != null) {
+      headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>['application/json'];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Create a new job using job configuration, or copied from an existing job
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the new job
+  ///
+  /// * [String] from:
+  ///   Existing job to copy from
+  ///
+  /// * [String] mode:
+  ///   Set to 'copy' for copying an existing job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  ///
+  /// * [String] contentType:
+  ///   Content type header application/xml
+  ///
+  /// * [String] body:
+  ///   Job configuration in config.xml format
+  Future<void> postCreateItem(String name, { String from, String mode, String jenkinsCrumb, String contentType, String body, }) async {
+    final response = await postCreateItemWithHttpInfo(name,  from: from, mode: mode, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Create a new view using view configuration
-  Future postCreateView(String name, { String jenkinsCrumb, String contentType, String body }) async {
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the new view
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  ///
+  /// * [String] contentType:
+  ///   Content type header application/xml
+  ///
+  /// * [String] body:
+  ///   View configuration in config.xml format
+  Future<Response> postCreateViewWithHttpInfo(String name, { String jenkinsCrumb, String contentType, String body, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/createView';
+
+    // ignore: prefer_final_locals
     Object postBody = body;
 
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'name', name));
+
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
+    }
+    if (contentType != null) {
+      headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    // create path and map variables
-    String path = "/createView".replaceAll("{format}","json");
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>['application/json'];
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-      queryParams.addAll(_convertParametersForCollectionFormat("", "name", name));
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
-    headerParams["Content-Type"] = contentType;
 
-    List<String> contentTypes = ["application/json"];
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-    }
-
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
-
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+  /// Create a new view using view configuration
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the new view
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  ///
+  /// * [String] contentType:
+  ///   Content type header application/xml
+  ///
+  /// * [String] body:
+  ///   View configuration in config.xml format
+  Future<void> postCreateView(String name, { String jenkinsCrumb, String contentType, String body, }) async {
+    final response = await postCreateViewWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Build a job
-  Future postJobBuild(String name, String json, { String token, String jenkinsCrumb }) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] json (required):
+  ///
+  /// * [String] token:
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postJobBuildWithHttpInfo(String name, String json, { String token, String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
-    if(json == null) {
-     throw new ApiException(400, "Missing required param: json");
-    }
-
-    // create path and map variables
-    String path = "/job/{name}/build".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-      queryParams.addAll(_convertParametersForCollectionFormat("", "json", json));
-    if(token != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat("", "token", token));
-    }
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
-
-    List<String> contentTypes = [];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (json == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: json');
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/build'
+      .replaceAll('{name}', name);
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+    // ignore: prefer_final_locals
+    Object postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'json', json));
+    if (token != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat('', 'token', token));
+    }
+
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
+    }
+
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Build a job
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] json (required):
+  ///
+  /// * [String] token:
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postJobBuild(String name, String json, { String token, String jenkinsCrumb, }) async {
+    final response = await postJobBuildWithHttpInfo(name, json,  token: token, jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Update job configuration
-  Future postJobConfig(String name, String body, { String jenkinsCrumb }) async {
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] body (required):
+  ///   Job configuration in config.xml format
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postJobConfigWithHttpInfo(String name, String body, { String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+    if (body == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/config.xml'
+      .replaceAll('{name}', name);
+
+    // ignore: prefer_final_locals
     Object postBody = body;
 
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/job/{name}/config.xml".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
-
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>['application/json'];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Update job configuration
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] body (required):
+  ///   Job configuration in config.xml format
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postJobConfig(String name, String body, { String jenkinsCrumb, }) async {
+    final response = await postJobConfigWithHttpInfo(name, body,  jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Delete a job
-  Future postJobDelete(String name, { String jenkinsCrumb }) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postJobDeleteWithHttpInfo(String name, { String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
 
-    // create path and map variables
-    String path = "/job/{name}/doDelete".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/doDelete'
+      .replaceAll('{name}', name);
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    List<String> contentTypes = [];
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Delete a job
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postJobDelete(String name, { String jenkinsCrumb, }) async {
+    final response = await postJobDeleteWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Disable a job
-  Future postJobDisable(String name, { String jenkinsCrumb }) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postJobDisableWithHttpInfo(String name, { String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
 
-    // create path and map variables
-    String path = "/job/{name}/disable".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/disable'
+      .replaceAll('{name}', name);
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    List<String> contentTypes = [];
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Disable a job
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postJobDisable(String name, { String jenkinsCrumb, }) async {
+    final response = await postJobDisableWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Enable a job
-  Future postJobEnable(String name, { String jenkinsCrumb }) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postJobEnableWithHttpInfo(String name, { String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
 
-    // create path and map variables
-    String path = "/job/{name}/enable".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/enable'
+      .replaceAll('{name}', name);
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    List<String> contentTypes = [];
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Enable a job
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postJobEnable(String name, { String jenkinsCrumb, }) async {
+    final response = await postJobEnableWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Stop a job
-  Future postJobLastBuildStop(String name, { String jenkinsCrumb }) async {
-    Object postBody = null;
-
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postJobLastBuildStopWithHttpInfo(String name, { String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
     }
 
-    // create path and map variables
-    String path = "/job/{name}/lastBuild/stop".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
+    // ignore: prefer_const_declarations
+    final path = r'/job/{name}/lastBuild/stop'
+      .replaceAll('{name}', name);
 
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
+    // ignore: prefer_final_locals
+    Object postBody;
 
-    List<String> contentTypes = [];
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>[];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Stop a job
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the job
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postJobLastBuildStop(String name, { String jenkinsCrumb, }) async {
+    final response = await postJobLastBuildStopWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
-  /// 
-  ///
+
   /// Update view configuration
-  Future postViewConfig(String name, String body, { String jenkinsCrumb }) async {
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the view
+  ///
+  /// * [String] body (required):
+  ///   View configuration in config.xml format
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<Response> postViewConfigWithHttpInfo(String name, String body, { String jenkinsCrumb, }) async {
+    // Verify required params are set.
+    if (name == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
+    }
+    if (body == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
+    }
+
+    // ignore: prefer_const_declarations
+    final path = r'/view/{name}/config.xml'
+      .replaceAll('{name}', name);
+
+    // ignore: prefer_final_locals
     Object postBody = body;
 
-    // verify required params are set
-    if(name == null) {
-     throw new ApiException(400, "Missing required param: name");
-    }
-    if(body == null) {
-     throw new ApiException(400, "Missing required param: body");
-    }
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
 
-    // create path and map variables
-    String path = "/view/{name}/config.xml".replaceAll("{format}","json").replaceAll("{" + "name" + "}", name.toString());
-
-    // query params
-    List<QueryParam> queryParams = [];
-    Map<String, String> headerParams = {};
-    Map<String, String> formParams = {};
-    headerParams["Jenkins-Crumb"] = jenkinsCrumb;
-
-    List<String> contentTypes = ["application/json"];
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["jenkins_auth"];
-
-    if(contentType.startsWith("multipart/form-data")) {
-      bool hasFields = false;
-      MultipartRequest mp = new MultipartRequest(null, null);
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
+    if (jenkinsCrumb != null) {
+      headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    var response = await apiClient.invokeAPI(path,
-                                             'POST',
-                                             queryParams,
-                                             postBody,
-                                             headerParams,
-                                             formParams,
-                                             contentType,
-                                             authNames);
+    const authNames = <String>['jenkins_auth'];
+    const contentTypes = <String>['application/json'];
 
-    if(response.statusCode >= 400) {
-      throw new ApiException(response.statusCode, response.body);
-    } else if(response.body != null) {
-    } else {
-      return;
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes[0],
+      authNames,
+    );
+  }
+
+  /// Update view configuration
+  ///
+  /// Parameters:
+  ///
+  /// * [String] name (required):
+  ///   Name of the view
+  ///
+  /// * [String] body (required):
+  ///   View configuration in config.xml format
+  ///
+  /// * [String] jenkinsCrumb:
+  ///   CSRF protection token
+  Future<void> postViewConfig(String name, String body, { String jenkinsCrumb, }) async {
+    final response = await postViewConfigWithHttpInfo(name, body,  jenkinsCrumb: jenkinsCrumb, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
   }
 }

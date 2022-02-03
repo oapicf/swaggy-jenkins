@@ -15,7 +15,7 @@ class GenericResource(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, display_name: str=None, duration_in_millis: int=None, id: str=None, result: str=None, start_time: str=None):  # noqa: E501
+    def __init__(self, _class=None, display_name=None, duration_in_millis=None, id=None, result=None, start_time=None):  # noqa: E501
         """GenericResource - a model defined in OpenAPI
 
         :param _class: The _class of this GenericResource.  # noqa: E501
@@ -68,7 +68,7 @@ class GenericResource(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this GenericResource.
 
 
@@ -78,7 +78,7 @@ class GenericResource(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this GenericResource.
 
 
@@ -89,7 +89,7 @@ class GenericResource(Model):
         self.__class = _class
 
     @property
-    def display_name(self) -> str:
+    def display_name(self):
         """Gets the display_name of this GenericResource.
 
 
@@ -99,7 +99,7 @@ class GenericResource(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name: str):
+    def display_name(self, display_name):
         """Sets the display_name of this GenericResource.
 
 
@@ -110,7 +110,7 @@ class GenericResource(Model):
         self._display_name = display_name
 
     @property
-    def duration_in_millis(self) -> int:
+    def duration_in_millis(self):
         """Gets the duration_in_millis of this GenericResource.
 
 
@@ -120,7 +120,7 @@ class GenericResource(Model):
         return self._duration_in_millis
 
     @duration_in_millis.setter
-    def duration_in_millis(self, duration_in_millis: int):
+    def duration_in_millis(self, duration_in_millis):
         """Sets the duration_in_millis of this GenericResource.
 
 
@@ -131,7 +131,7 @@ class GenericResource(Model):
         self._duration_in_millis = duration_in_millis
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this GenericResource.
 
 
@@ -141,7 +141,7 @@ class GenericResource(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this GenericResource.
 
 
@@ -152,7 +152,7 @@ class GenericResource(Model):
         self._id = id
 
     @property
-    def result(self) -> str:
+    def result(self):
         """Gets the result of this GenericResource.
 
 
@@ -162,7 +162,7 @@ class GenericResource(Model):
         return self._result
 
     @result.setter
-    def result(self, result: str):
+    def result(self, result):
         """Sets the result of this GenericResource.
 
 
@@ -173,7 +173,7 @@ class GenericResource(Model):
         self._result = result
 
     @property
-    def start_time(self) -> str:
+    def start_time(self):
         """Gets the start_time of this GenericResource.
 
 
@@ -183,7 +183,7 @@ class GenericResource(Model):
         return self._start_time
 
     @start_time.setter
-    def start_time(self, start_time: str):
+    def start_time(self, start_time):
         """Sets the start_time of this GenericResource.
 
 

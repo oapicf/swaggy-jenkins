@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
@@ -7,20 +9,24 @@ import org.openapitools.model.GithubRepository;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class GithubRepositories   {
+
+@JsonTypeName("GithubRepositories")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class GithubRepositories   {
   
-  private @Valid String propertyClass = null;
-  private @Valid GithubRepositorieslinks links = null;
+  private @Valid String propertyClass;
+  private @Valid GithubRepositorieslinks links;
   private @Valid List<GithubRepository> items = new ArrayList<GithubRepository>();
-  private @Valid Integer lastPage = null;
-  private @Valid Integer nextPage = null;
-  private @Valid Integer pageSize = null;
+  private @Valid Integer lastPage;
+  private @Valid Integer nextPage;
+  private @Valid Integer pageSize;
 
   /**
    **/
@@ -30,16 +36,20 @@ public class GithubRepositories   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public GithubRepositories links(GithubRepositorieslinks links) {
     this.links = links;
@@ -47,16 +57,20 @@ public class GithubRepositories   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public GithubRepositorieslinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(GithubRepositorieslinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public GithubRepositories items(List<GithubRepository> items) {
     this.items = items;
@@ -64,16 +78,36 @@ public class GithubRepositories   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("items")
   public List<GithubRepository> getItems() {
     return items;
   }
+
+  @JsonProperty("items")
   public void setItems(List<GithubRepository> items) {
     this.items = items;
   }
 
-  /**
+  public GithubRepositories addItemsItem(GithubRepository itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<GithubRepository>();
+    }
+
+    this.items.add(itemsItem);
+    return this;
+  }
+
+  public GithubRepositories removeItemsItem(GithubRepository itemsItem) {
+    if (itemsItem != null && this.items != null) {
+      this.items.remove(itemsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public GithubRepositories lastPage(Integer lastPage) {
     this.lastPage = lastPage;
@@ -81,16 +115,20 @@ public class GithubRepositories   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("lastPage")
   public Integer getLastPage() {
     return lastPage;
   }
+
+  @JsonProperty("lastPage")
   public void setLastPage(Integer lastPage) {
     this.lastPage = lastPage;
   }
 
-  /**
+/**
    **/
   public GithubRepositories nextPage(Integer nextPage) {
     this.nextPage = nextPage;
@@ -98,16 +136,20 @@ public class GithubRepositories   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("nextPage")
   public Integer getNextPage() {
     return nextPage;
   }
+
+  @JsonProperty("nextPage")
   public void setNextPage(Integer nextPage) {
     this.nextPage = nextPage;
   }
 
-  /**
+/**
    **/
   public GithubRepositories pageSize(Integer pageSize) {
     this.pageSize = pageSize;
@@ -115,18 +157,22 @@ public class GithubRepositories   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("pageSize")
   public Integer getPageSize() {
     return pageSize;
   }
+
+  @JsonProperty("pageSize")
   public void setPageSize(Integer pageSize) {
     this.pageSize = pageSize;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -134,12 +180,12 @@ public class GithubRepositories   {
       return false;
     }
     GithubRepositories githubRepositories = (GithubRepositories) o;
-    return Objects.equals(propertyClass, githubRepositories.propertyClass) &&
-        Objects.equals(links, githubRepositories.links) &&
-        Objects.equals(items, githubRepositories.items) &&
-        Objects.equals(lastPage, githubRepositories.lastPage) &&
-        Objects.equals(nextPage, githubRepositories.nextPage) &&
-        Objects.equals(pageSize, githubRepositories.pageSize);
+    return Objects.equals(this.propertyClass, githubRepositories.propertyClass) &&
+        Objects.equals(this.links, githubRepositories.links) &&
+        Objects.equals(this.items, githubRepositories.items) &&
+        Objects.equals(this.lastPage, githubRepositories.lastPage) &&
+        Objects.equals(this.nextPage, githubRepositories.nextPage) &&
+        Objects.equals(this.pageSize, githubRepositories.pageSize);
   }
 
   @Override
@@ -166,11 +212,13 @@ public class GithubRepositories   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

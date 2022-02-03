@@ -13,46 +13,45 @@ import org.openapitools.model.EmptyChangeLogSet;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class FreeStyleBuild   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private Integer number = null;
+  private Integer number;
 
-  private String url = null;
+  private String url;
 
   private List<CauseAction> actions = new ArrayList<CauseAction>();
 
-  private Boolean building = null;
+  private Boolean building;
 
-  private String description = null;
+  private String description;
 
-  private String displayName = null;
+  private String displayName;
 
-  private Integer duration = null;
+  private Integer duration;
 
-  private Integer estimatedDuration = null;
+  private Integer estimatedDuration;
 
-  private String executor = null;
+  private String executor;
 
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
-  private String id = null;
+  private String id;
 
-  private Boolean keepLog = null;
+  private Boolean keepLog;
 
-  private Integer queueId = null;
+  private Integer queueId;
 
-  private String result = null;
+  private String result;
 
-  private Integer timestamp = null;
+  private Integer timestamp;
 
-  private String builtOn = null;
+  private String builtOn;
 
-  private EmptyChangeLogSet changeSet = null;
+  private EmptyChangeLogSet changeSet;
 
   /**
    **/

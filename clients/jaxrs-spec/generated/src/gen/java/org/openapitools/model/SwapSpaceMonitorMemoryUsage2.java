@@ -1,21 +1,27 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class SwapSpaceMonitorMemoryUsage2   {
+
+@JsonTypeName("SwapSpaceMonitorMemoryUsage2")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class SwapSpaceMonitorMemoryUsage2   {
   
-  private @Valid String propertyClass = null;
-  private @Valid Integer availablePhysicalMemory = null;
-  private @Valid Integer availableSwapSpace = null;
-  private @Valid Integer totalPhysicalMemory = null;
-  private @Valid Integer totalSwapSpace = null;
+  private @Valid String propertyClass;
+  private @Valid Integer availablePhysicalMemory;
+  private @Valid Integer availableSwapSpace;
+  private @Valid Integer totalPhysicalMemory;
+  private @Valid Integer totalSwapSpace;
 
   /**
    **/
@@ -25,16 +31,20 @@ public class SwapSpaceMonitorMemoryUsage2   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public SwapSpaceMonitorMemoryUsage2 availablePhysicalMemory(Integer availablePhysicalMemory) {
     this.availablePhysicalMemory = availablePhysicalMemory;
@@ -42,16 +52,20 @@ public class SwapSpaceMonitorMemoryUsage2   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("availablePhysicalMemory")
   public Integer getAvailablePhysicalMemory() {
     return availablePhysicalMemory;
   }
+
+  @JsonProperty("availablePhysicalMemory")
   public void setAvailablePhysicalMemory(Integer availablePhysicalMemory) {
     this.availablePhysicalMemory = availablePhysicalMemory;
   }
 
-  /**
+/**
    **/
   public SwapSpaceMonitorMemoryUsage2 availableSwapSpace(Integer availableSwapSpace) {
     this.availableSwapSpace = availableSwapSpace;
@@ -59,16 +73,20 @@ public class SwapSpaceMonitorMemoryUsage2   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("availableSwapSpace")
   public Integer getAvailableSwapSpace() {
     return availableSwapSpace;
   }
+
+  @JsonProperty("availableSwapSpace")
   public void setAvailableSwapSpace(Integer availableSwapSpace) {
     this.availableSwapSpace = availableSwapSpace;
   }
 
-  /**
+/**
    **/
   public SwapSpaceMonitorMemoryUsage2 totalPhysicalMemory(Integer totalPhysicalMemory) {
     this.totalPhysicalMemory = totalPhysicalMemory;
@@ -76,16 +94,20 @@ public class SwapSpaceMonitorMemoryUsage2   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("totalPhysicalMemory")
   public Integer getTotalPhysicalMemory() {
     return totalPhysicalMemory;
   }
+
+  @JsonProperty("totalPhysicalMemory")
   public void setTotalPhysicalMemory(Integer totalPhysicalMemory) {
     this.totalPhysicalMemory = totalPhysicalMemory;
   }
 
-  /**
+/**
    **/
   public SwapSpaceMonitorMemoryUsage2 totalSwapSpace(Integer totalSwapSpace) {
     this.totalSwapSpace = totalSwapSpace;
@@ -93,18 +115,22 @@ public class SwapSpaceMonitorMemoryUsage2   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("totalSwapSpace")
   public Integer getTotalSwapSpace() {
     return totalSwapSpace;
   }
+
+  @JsonProperty("totalSwapSpace")
   public void setTotalSwapSpace(Integer totalSwapSpace) {
     this.totalSwapSpace = totalSwapSpace;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -112,11 +138,11 @@ public class SwapSpaceMonitorMemoryUsage2   {
       return false;
     }
     SwapSpaceMonitorMemoryUsage2 swapSpaceMonitorMemoryUsage2 = (SwapSpaceMonitorMemoryUsage2) o;
-    return Objects.equals(propertyClass, swapSpaceMonitorMemoryUsage2.propertyClass) &&
-        Objects.equals(availablePhysicalMemory, swapSpaceMonitorMemoryUsage2.availablePhysicalMemory) &&
-        Objects.equals(availableSwapSpace, swapSpaceMonitorMemoryUsage2.availableSwapSpace) &&
-        Objects.equals(totalPhysicalMemory, swapSpaceMonitorMemoryUsage2.totalPhysicalMemory) &&
-        Objects.equals(totalSwapSpace, swapSpaceMonitorMemoryUsage2.totalSwapSpace);
+    return Objects.equals(this.propertyClass, swapSpaceMonitorMemoryUsage2.propertyClass) &&
+        Objects.equals(this.availablePhysicalMemory, swapSpaceMonitorMemoryUsage2.availablePhysicalMemory) &&
+        Objects.equals(this.availableSwapSpace, swapSpaceMonitorMemoryUsage2.availableSwapSpace) &&
+        Objects.equals(this.totalPhysicalMemory, swapSpaceMonitorMemoryUsage2.totalPhysicalMemory) &&
+        Objects.equals(this.totalSwapSpace, swapSpaceMonitorMemoryUsage2.totalSwapSpace);
   }
 
   @Override
@@ -142,11 +168,13 @@ public class SwapSpaceMonitorMemoryUsage2   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

@@ -19,13 +19,13 @@ defmodule SwaggyJenkins.Model.PipelineFolderImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"displayName" => String.t,
-    :"fullName" => String.t,
-    :"name" => String.t,
-    :"organization" => String.t,
-    :"numberOfFolders" => integer(),
-    :"numberOfPipelines" => integer()
+    :"_class" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"fullName" => String.t | nil,
+    :"name" => String.t | nil,
+    :"organization" => String.t | nil,
+    :"numberOfFolders" => integer() | nil,
+    :"numberOfPipelines" => integer() | nil
   }
 end
 

@@ -1,50 +1,120 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 class BranchImpllinks {
-  
-  Link self = null;
-  
-  Link actions = null;
-  
-  Link runs = null;
-  
-  Link queue = null;
-  
-  String class_ = null;
-  BranchImpllinks();
+  /// Returns a new [BranchImpllinks] instance.
+  BranchImpllinks({
+    this.self,
+    this.actions,
+    this.runs,
+    this.queue,
+    this.class_,
+  });
+
+  Link self;
+
+  Link actions;
+
+  Link runs;
+
+  Link queue;
+
+  String class_;
 
   @override
-  String toString() {
-    return 'BranchImpllinks[self=$self, actions=$actions, runs=$runs, queue=$queue, class_=$class_, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is BranchImpllinks &&
+     other.self == self &&
+     other.actions == actions &&
+     other.runs == runs &&
+     other.queue == queue &&
+     other.class_ == class_;
 
-  BranchImpllinks.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    self = new Link.fromJson(json['self']);
-    actions = new Link.fromJson(json['actions']);
-    runs = new Link.fromJson(json['runs']);
-    queue = new Link.fromJson(json['queue']);
-    class_ = json['_class'];
-  }
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (self == null ? 0 : self.hashCode) +
+    (actions == null ? 0 : actions.hashCode) +
+    (runs == null ? 0 : runs.hashCode) +
+    (queue == null ? 0 : queue.hashCode) +
+    (class_ == null ? 0 : class_.hashCode);
+
+  @override
+  String toString() => 'BranchImpllinks[self=$self, actions=$actions, runs=$runs, queue=$queue, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'self': self,
-      'actions': actions,
-      'runs': runs,
-      'queue': queue,
-      '_class': class_
-    };
+    final json = <String, dynamic>{};
+    if (self != null) {
+      json[r'self'] = self;
+    }
+    if (actions != null) {
+      json[r'actions'] = actions;
+    }
+    if (runs != null) {
+      json[r'runs'] = runs;
+    }
+    if (queue != null) {
+      json[r'queue'] = queue;
+    }
+    if (class_ != null) {
+      json[r'_class'] = class_;
+    }
+    return json;
   }
 
-  static List<BranchImpllinks> listFromJson(List<dynamic> json) {
-    return json == null ? new List<BranchImpllinks>() : json.map((value) => new BranchImpllinks.fromJson(value)).toList();
+  /// Returns a new [BranchImpllinks] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static BranchImpllinks fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return BranchImpllinks(
+        self: Link.fromJson(json[r'self']),
+        actions: Link.fromJson(json[r'actions']),
+        runs: Link.fromJson(json[r'runs']),
+        queue: Link.fromJson(json[r'queue']),
+        class_: mapValueOfType<String>(json, r'_class'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, BranchImpllinks> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, BranchImpllinks>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new BranchImpllinks.fromJson(value));
+  static List<BranchImpllinks> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(BranchImpllinks.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <BranchImpllinks>[];
+
+  static Map<String, BranchImpllinks> mapFromJson(dynamic json) {
+    final map = <String, BranchImpllinks>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = BranchImpllinks.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of BranchImpllinks-objects as value to a dart map
+  static Map<String, List<BranchImpllinks>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<BranchImpllinks>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = BranchImpllinks.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
     }
     return map;
   }

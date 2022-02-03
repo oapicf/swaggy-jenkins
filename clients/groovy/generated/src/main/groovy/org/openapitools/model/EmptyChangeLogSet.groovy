@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class EmptyChangeLogSet {
-    String propertyClass = null
-
-    String kind = null
-
+    
+    String propertyClass
+    
+    String kind
 }

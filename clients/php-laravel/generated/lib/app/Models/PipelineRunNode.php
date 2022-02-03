@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class PipelineRunNode {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $duration_in_millis */
-    private $duration_in_millis;
+    /** @var int $durationInMillis */
+    private $durationInMillis;
 
     /** @var \app\Models\PipelineRunNodeedges[] $edges */
     private $edges;
@@ -27,8 +27,8 @@ class PipelineRunNode {
     /** @var string $result */
     private $result;
 
-    /** @var string $start_time */
-    private $start_time;
+    /** @var string $startTime */
+    private $startTime;
 
     /** @var string $state */
     private $state;

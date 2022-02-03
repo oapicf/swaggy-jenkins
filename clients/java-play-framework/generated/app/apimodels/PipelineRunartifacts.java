@@ -8,21 +8,24 @@ import javax.validation.constraints.*;
 /**
  * PipelineRunartifacts
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRunartifacts   {
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("size")
-  private Integer size = null;
+  
+  private Integer size;
 
   @JsonProperty("url")
-  private String url = null;
+  
+  private String url;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public PipelineRunartifacts name(String name) {
     this.name = name;
@@ -33,7 +36,7 @@ public class PipelineRunartifacts   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -50,7 +53,7 @@ public class PipelineRunartifacts   {
    * Get size
    * @return size
   **/
-    public Integer getSize() {
+  public Integer getSize() {
     return size;
   }
 
@@ -67,7 +70,7 @@ public class PipelineRunartifacts   {
    * Get url
    * @return url
   **/
-    public String getUrl() {
+  public String getUrl() {
     return url;
   }
 
@@ -84,7 +87,7 @@ public class PipelineRunartifacts   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -94,7 +97,7 @@ public class PipelineRunartifacts   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,7 +134,7 @@ public class PipelineRunartifacts   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

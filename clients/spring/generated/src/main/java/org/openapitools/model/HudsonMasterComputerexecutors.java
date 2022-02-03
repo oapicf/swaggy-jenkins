@@ -1,37 +1,44 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FreeStyleBuild;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * HudsonMasterComputerexecutors
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class HudsonMasterComputerexecutors   {
+
   @JsonProperty("currentExecutable")
-  private FreeStyleBuild currentExecutable = null;
+  private FreeStyleBuild currentExecutable;
 
   @JsonProperty("idle")
-  private Boolean idle = null;
+  private Boolean idle;
 
   @JsonProperty("likelyStuck")
-  private Boolean likelyStuck = null;
+  private Boolean likelyStuck;
 
   @JsonProperty("number")
-  private Integer number = null;
+  private Integer number;
 
   @JsonProperty("progress")
-  private Integer progress = null;
+  private Integer progress;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public HudsonMasterComputerexecutors currentExecutable(FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
@@ -41,11 +48,9 @@ public class HudsonMasterComputerexecutors   {
   /**
    * Get currentExecutable
    * @return currentExecutable
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "currentExecutable", required = false)
   public FreeStyleBuild getCurrentExecutable() {
     return currentExecutable;
   }
@@ -62,10 +67,9 @@ public class HudsonMasterComputerexecutors   {
   /**
    * Get idle
    * @return idle
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "idle", required = false)
   public Boolean getIdle() {
     return idle;
   }
@@ -82,10 +86,9 @@ public class HudsonMasterComputerexecutors   {
   /**
    * Get likelyStuck
    * @return likelyStuck
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "likelyStuck", required = false)
   public Boolean getLikelyStuck() {
     return likelyStuck;
   }
@@ -102,10 +105,9 @@ public class HudsonMasterComputerexecutors   {
   /**
    * Get number
    * @return number
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "number", required = false)
   public Integer getNumber() {
     return number;
   }
@@ -122,10 +124,9 @@ public class HudsonMasterComputerexecutors   {
   /**
    * Get progress
    * @return progress
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "progress", required = false)
   public Integer getProgress() {
     return progress;
   }
@@ -142,10 +143,9 @@ public class HudsonMasterComputerexecutors   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -154,9 +154,8 @@ public class HudsonMasterComputerexecutors   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -181,7 +180,6 @@ public class HudsonMasterComputerexecutors   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HudsonMasterComputerexecutors {\n");
-    
     sb.append("    currentExecutable: ").append(toIndentedString(currentExecutable)).append("\n");
     sb.append("    idle: ").append(toIndentedString(idle)).append("\n");
     sb.append("    likelyStuck: ").append(toIndentedString(likelyStuck)).append("\n");
@@ -196,7 +194,7 @@ public class HudsonMasterComputerexecutors   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -10,36 +10,36 @@ import org.openapitools.server.api.model.FreeStyleProjectactions;
 import org.openapitools.server.api.model.FreeStyleProjecthealthReport;
 import org.openapitools.server.api.model.NullSCM;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FreeStyleProject   {
   
-  private String propertyClass = null;
-  private String name = null;
-  private String url = null;
-  private String color = null;
+  private String propertyClass;
+  private String name;
+  private String url;
+  private String color;
   private List<FreeStyleProjectactions> actions = new ArrayList<>();
-  private String description = null;
-  private String displayName = null;
-  private String displayNameOrNull = null;
-  private String fullDisplayName = null;
-  private String fullName = null;
-  private Boolean buildable = null;
+  private String description;
+  private String displayName;
+  private String displayNameOrNull;
+  private String fullDisplayName;
+  private String fullName;
+  private Boolean buildable;
   private List<FreeStyleBuild> builds = new ArrayList<>();
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
   private List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
-  private Boolean inQueue = null;
-  private Boolean keepDependencies = null;
-  private FreeStyleBuild lastBuild = null;
-  private FreeStyleBuild lastCompletedBuild = null;
-  private String lastFailedBuild = null;
-  private FreeStyleBuild lastStableBuild = null;
-  private FreeStyleBuild lastSuccessfulBuild = null;
-  private String lastUnstableBuild = null;
-  private String lastUnsuccessfulBuild = null;
-  private Integer nextBuildNumber = null;
-  private String queueItem = null;
-  private Boolean concurrentBuild = null;
-  private NullSCM scm = null;
+  private Boolean inQueue;
+  private Boolean keepDependencies;
+  private FreeStyleBuild lastBuild;
+  private FreeStyleBuild lastCompletedBuild;
+  private String lastFailedBuild;
+  private FreeStyleBuild lastStableBuild;
+  private FreeStyleBuild lastSuccessfulBuild;
+  private String lastUnstableBuild;
+  private String lastUnsuccessfulBuild;
+  private Integer nextBuildNumber;
+  private String queueItem;
+  private Boolean concurrentBuild;
+  private NullSCM scm;
 
   public FreeStyleProject () {
 

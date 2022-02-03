@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class PipelineFolderImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var string $full_name */
-    private $full_name;
+    /** @var string $fullName */
+    private $fullName;
 
     /** @var string $name */
     private $name;
@@ -24,10 +24,10 @@ class PipelineFolderImpl {
     /** @var string $organization */
     private $organization;
 
-    /** @var int $number_of_folders */
-    private $number_of_folders;
+    /** @var int $numberOfFolders */
+    private $numberOfFolders;
 
-    /** @var int $number_of_pipelines */
-    private $number_of_pipelines;
+    /** @var int $numberOfPipelines */
+    private $numberOfPipelines;
 
 }

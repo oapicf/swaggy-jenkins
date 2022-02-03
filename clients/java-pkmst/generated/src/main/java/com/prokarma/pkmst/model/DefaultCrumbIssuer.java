@@ -14,17 +14,16 @@ import io.swagger.annotations.ApiModelProperty;
  * DefaultCrumbIssuer
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class DefaultCrumbIssuer   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("crumb")
-  private String crumb = null;
+  private String crumb;
 
   @JsonProperty("crumbRequestField")
-  private String crumbRequestField = null;
+  private String crumbRequestField;
 
   public DefaultCrumbIssuer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -82,7 +81,7 @@ public class DefaultCrumbIssuer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -116,7 +115,7 @@ public class DefaultCrumbIssuer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

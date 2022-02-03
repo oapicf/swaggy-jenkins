@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -11,20 +21,20 @@ import org.openapitools.model.PipelinelatestRun;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class Pipeline   {
   
-  private String propertyClass = null;
-  private String organization = null;
-  private String name = null;
-  private String displayName = null;
-  private String fullName = null;
-  private Integer weatherScore = null;
-  private Integer estimatedDurationInMillis = null;
-  private PipelinelatestRun latestRun = null;
+  private String propertyClass;
+  private String organization;
+  private String name;
+  private String displayName;
+  private String fullName;
+  private Integer weatherScore;
+  private Integer estimatedDurationInMillis;
+  private PipelinelatestRun latestRun;
 
   /**
-   **/
+   */
   public Pipeline propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -41,7 +51,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline organization(String organization) {
     this.organization = organization;
     return this;
@@ -58,7 +68,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline name(String name) {
     this.name = name;
     return this;
@@ -75,7 +85,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -92,7 +102,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline fullName(String fullName) {
     this.fullName = fullName;
     return this;
@@ -109,7 +119,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
@@ -126,7 +136,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
@@ -143,7 +153,7 @@ public class Pipeline   {
   }
 
   /**
-   **/
+   */
   public Pipeline latestRun(PipelinelatestRun latestRun) {
     this.latestRun = latestRun;
     return this;
@@ -161,7 +171,7 @@ public class Pipeline   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -205,7 +215,7 @@ public class Pipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

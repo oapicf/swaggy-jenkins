@@ -9,11 +9,11 @@ namespace app\Models;
  */
 class ExtensionClassImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\ExtensionClassImpllinks $_links */
-    private $_links;
+    /** @var \app\Models\ExtensionClassImpllinks $links */
+    private $links;
 
     /** @var string[] $classes */
     private $classes;

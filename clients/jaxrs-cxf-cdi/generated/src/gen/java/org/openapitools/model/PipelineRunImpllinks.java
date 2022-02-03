@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
 
@@ -9,23 +11,21 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class PipelineRunImpllinks   {
   
-  private Link nodes = null;
+  private Link nodes;
 
-  private Link log = null;
+  private Link log;
 
-  private Link self = null;
+  private Link self;
 
-  private Link actions = null;
+  private Link actions;
 
-  private Link steps = null;
+  private Link steps;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
 
   /**
@@ -138,7 +138,7 @@ public class PipelineRunImpllinks   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -178,7 +178,7 @@ public class PipelineRunImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

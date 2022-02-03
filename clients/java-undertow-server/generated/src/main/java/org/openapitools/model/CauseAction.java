@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -13,14 +23,14 @@ import org.openapitools.model.CauseUserIdCause;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class CauseAction   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<CauseUserIdCause> causes = new ArrayList<CauseUserIdCause>();
 
   /**
-   **/
+   */
   public CauseAction propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -37,7 +47,7 @@ public class CauseAction   {
   }
 
   /**
-   **/
+   */
   public CauseAction causes(List<CauseUserIdCause> causes) {
     this.causes = causes;
     return this;
@@ -55,7 +65,7 @@ public class CauseAction   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -87,7 +97,7 @@ public class CauseAction   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

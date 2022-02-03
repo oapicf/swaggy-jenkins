@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.Link do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"href" => String.t
+    :"_class" => String.t | nil,
+    :"href" => String.t | nil
   }
 end
 

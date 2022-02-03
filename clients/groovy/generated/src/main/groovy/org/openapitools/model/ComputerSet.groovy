@@ -9,14 +9,14 @@ import org.openapitools.model.HudsonMasterComputer;
 
 @Canonical
 class ComputerSet {
-    String propertyClass = null
-
-    Integer busyExecutors = null
-
+    
+    String propertyClass
+    
+    Integer busyExecutors
+    
     List<HudsonMasterComputer> computer = new ArrayList<HudsonMasterComputer>()
-
-    String displayName = null
-
-    Integer totalExecutors = null
-
+    
+    String displayName
+    
+    Integer totalExecutors
 }

@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.PipelinelatestRunartifacts
+
 ## Properties
 
 Name | Type | Description | Notes

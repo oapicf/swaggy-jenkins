@@ -2,40 +2,33 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GithubContent  {
   
   @ApiModelProperty(value = "")
-  private String name = null;
+  private String name;
 
   @ApiModelProperty(value = "")
-  private String sha = null;
+  private String sha;
 
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private String repo = null;
+  private String repo;
 
   @ApiModelProperty(value = "")
-  private Integer size = null;
+  private Integer size;
 
   @ApiModelProperty(value = "")
-  private String owner = null;
+  private String owner;
 
   @ApiModelProperty(value = "")
-  private String path = null;
+  private String path;
 
   @ApiModelProperty(value = "")
-  private String base64Data = null;
+  private String base64Data;
  /**
    * Get name
    * @return name
@@ -202,7 +195,7 @@ public class GithubContent  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

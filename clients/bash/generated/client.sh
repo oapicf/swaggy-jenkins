@@ -24,7 +24,7 @@
 # 
 #
 
-# For improved pattern matching in case statemets
+# For improved pattern matching in case statements
 shopt -s extglob
 
 ###############################################################################
@@ -65,7 +65,7 @@ declare -A header_arguments
 declare -A operation_parameters
 
 ##
-# Declare colors with autodection if output is terminal
+# Declare colors with autodetection if output is terminal
 if [ -t 1 ]; then
     RED="$(tput setaf 1)"
     GREEN="$(tput setaf 2)"
@@ -183,7 +183,7 @@ operation_parameters_minimum_occurrences["postPipelineRuns:::organization"]=1
 operation_parameters_minimum_occurrences["postPipelineRuns:::pipeline"]=1
 operation_parameters_minimum_occurrences["putPipelineFavorite:::organization"]=1
 operation_parameters_minimum_occurrences["putPipelineFavorite:::pipeline"]=1
-operation_parameters_minimum_occurrences["putPipelineFavorite:::Body"]=1
+operation_parameters_minimum_occurrences["putPipelineFavorite:::UNKNOWN_BASE_TYPE"]=1
 operation_parameters_minimum_occurrences["putPipelineRun:::organization"]=1
 operation_parameters_minimum_occurrences["putPipelineRun:::pipeline"]=1
 operation_parameters_minimum_occurrences["putPipelineRun:::run"]=1
@@ -325,7 +325,7 @@ operation_parameters_maximum_occurrences["postPipelineRuns:::organization"]=0
 operation_parameters_maximum_occurrences["postPipelineRuns:::pipeline"]=0
 operation_parameters_maximum_occurrences["putPipelineFavorite:::organization"]=0
 operation_parameters_maximum_occurrences["putPipelineFavorite:::pipeline"]=0
-operation_parameters_maximum_occurrences["putPipelineFavorite:::Body"]=0
+operation_parameters_maximum_occurrences["putPipelineFavorite:::UNKNOWN_BASE_TYPE"]=0
 operation_parameters_maximum_occurrences["putPipelineRun:::organization"]=0
 operation_parameters_maximum_occurrences["putPipelineRun:::pipeline"]=0
 operation_parameters_maximum_occurrences["putPipelineRun:::run"]=0
@@ -464,7 +464,7 @@ operation_parameters_collection_type["postPipelineRuns:::organization"]=""
 operation_parameters_collection_type["postPipelineRuns:::pipeline"]=""
 operation_parameters_collection_type["putPipelineFavorite:::organization"]=""
 operation_parameters_collection_type["putPipelineFavorite:::pipeline"]=""
-operation_parameters_collection_type["putPipelineFavorite:::Body"]=""
+operation_parameters_collection_type["putPipelineFavorite:::UNKNOWN_BASE_TYPE"]=""
 operation_parameters_collection_type["putPipelineRun:::organization"]=""
 operation_parameters_collection_type["putPipelineRun:::pipeline"]=""
 operation_parameters_collection_type["putPipelineRun:::run"]=""
@@ -605,7 +605,7 @@ url_escape() {
        -e 's/(/%28/g' \
        -e 's/)/%29/g' \
        -e 's/:/%3A/g' \
-       -e 's/\t/%09/g' \
+       -e 's/\\t/%09/g' \
        -e 's/?/%3F/g' <<<"$raw_url");
 
     echo "$value"
@@ -685,6 +685,29 @@ body_parameters_to_json() {
 
 ##############################################################################
 #
+# Converts an associative array into form urlencoded string
+#
+##############################################################################
+body_parameters_to_form_urlencoded() {
+    local body_form_urlencoded="-d '"
+    local count=0
+    for key in "${!body_parameters[@]}"; do
+        if [[ $((count++)) -gt 0 ]]; then
+            body_form_urlencoded+="&"
+        fi
+        body_form_urlencoded+="${key}=${body_parameters[${key}]}"
+    done
+    body_form_urlencoded+="'"
+
+    if [[ "${#body_parameters[@]}" -eq 0 ]]; then
+        echo ""
+    else
+        echo "${body_form_urlencoded}"
+    fi
+}
+
+##############################################################################
+#
 # Helper method for showing error because for example echo in
 # build_request_path() is evaluated as part of command line not printed on
 # output. Anyway better idea for resource clean up ;-).
@@ -752,18 +775,16 @@ build_request_path() {
 
     local query_request_part=""
 
-    local count=0
     for qparam in "${query_params[@]}"; do
+        if [[ "${operation_parameters[$qparam]}" == "" ]]; then
+            continue
+        fi
+
         # Get the array of parameter values
         local parameter_value=""
         local parameter_values
         mapfile -t parameter_values < <(sed -e 's/'":::"'/\n/g' <<<"${operation_parameters[$qparam]}")
 
-        if [[ -n "${parameter_values[*]}" ]]; then
-            if [[ $((count++)) -gt 0 ]]; then
-                query_request_part+="&"
-            fi
-        fi
 
 
         #
@@ -779,7 +800,7 @@ build_request_path() {
                 parameter_value+="${qparam}=${qvalue}"
             done
         #
-        # Append parameters specified as 'mutli' collections i.e. param=value1&param=value2&...
+        # Append parameters specified as 'multi' collections i.e. param=value1&param=value2&...
         #
         elif [[ "${collection_type}" == "multi" ]]; then
             local vcount=0
@@ -831,6 +852,9 @@ build_request_path() {
         fi
 
         if [[ -n "${parameter_value}" ]]; then
+            if [[ -n "${query_request_part}" ]]; then
+                query_request_part+="&"
+            fi
             query_request_part+="${parameter_value}"
         fi
 
@@ -975,7 +999,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://localhost')"
     echo -e "         \\t\\t\\t\\trequired parameters or wrong content type"
     echo -e "  --dry-run\\t\\t\\t\\tPrint out the cURL command without"
     echo -e "           \\t\\t\\t\\texecuting it"
-    echo -e "  -nc,--no-colors\\t\\t\\tEnforce print without colors, otherwise autodected"
+    echo -e "  -nc,--no-colors\\t\\t\\tEnforce print without colors, otherwise autodetected"
     echo -e "  -ac,--accept ${YELLOW}<mime-type>${OFF}\\t\\tSet the 'Accept' header in the request"
     echo -e "  -ct,--content-type ${YELLOW}<mime-type>${OFF}\\tSet the 'Content-type' header in "
     echo -e "                                \\tthe request"
@@ -1046,9 +1070,9 @@ print_deletePipelineQueueItem_help() {
     echo -e "Delete queue item from an organization pipeline queue" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}queue${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the queue item ${YELLOW}Specify as: queue=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}queue${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the queue item ${YELLOW}Specify as: queue=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1070,7 +1094,7 @@ print_getAuthenticatedUser_help() {
     echo -e "Retrieve authenticated user details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1092,7 +1116,7 @@ print_getClasses_help() {
     echo -e "Get a list of class names supported by a given class" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}class${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the class ${YELLOW}Specify as: class=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}class${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the class ${YELLOW}Specify as: class=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1114,7 +1138,7 @@ print_getJsonWebKey_help() {
     echo -e "Retrieve JSON Web Key" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}key${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - Key ID received as part of JWT header field kid ${YELLOW}Specify as: key=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}key${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Key ID received as part of JWT header field kid ${YELLOW}Specify as: key=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1136,9 +1160,9 @@ print_getJsonWebToken_help() {
     echo -e "Retrieve JSON Web Token" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}expiryTimeInMins${OFF} ${BLUE}[integer]${OFF}${OFF} - Token expiry time in minutes, default: 30 minutes${YELLOW} Specify as: expiryTimeInMins=value${OFF}" \
+    echo -e "  * ${GREEN}expiryTimeInMins${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - Token expiry time in minutes, default: 30 minutes${YELLOW} Specify as: expiryTimeInMins=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}maxExpiryTimeInMins${OFF} ${BLUE}[integer]${OFF}${OFF} - Maximum token expiry time in minutes, default: 480 minutes${YELLOW} Specify as: maxExpiryTimeInMins=value${OFF}" \
+    echo -e "  * ${GREEN}maxExpiryTimeInMins${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - Maximum token expiry time in minutes, default: 480 minutes${YELLOW} Specify as: maxExpiryTimeInMins=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1161,7 +1185,7 @@ print_getOrganisation_help() {
     echo -e "Retrieve organization details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1205,8 +1229,8 @@ print_getPipeline_help() {
     echo -e "Retrieve pipeline details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1230,8 +1254,8 @@ print_getPipelineActivities_help() {
     echo -e "Retrieve all activities details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1253,9 +1277,9 @@ print_getPipelineBranch_help() {
     echo -e "Retrieve branch details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}branch${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the branch ${YELLOW}Specify as: branch=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}branch${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the branch ${YELLOW}Specify as: branch=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1277,10 +1301,10 @@ print_getPipelineBranchRun_help() {
     echo -e "Retrieve branch run details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}branch${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the branch ${YELLOW}Specify as: branch=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}branch${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the branch ${YELLOW}Specify as: branch=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1302,8 +1326,8 @@ print_getPipelineBranches_help() {
     echo -e "Retrieve all branches details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1325,8 +1349,8 @@ print_getPipelineFolder_help() {
     echo -e "Retrieve pipeline folder for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}folder${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the folder ${YELLOW}Specify as: folder=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}folder${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the folder ${YELLOW}Specify as: folder=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1348,9 +1372,9 @@ print_getPipelineFolderPipeline_help() {
     echo -e "Retrieve pipeline details for an organization folder" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}folder${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the folder ${YELLOW}Specify as: folder=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}folder${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the folder ${YELLOW}Specify as: folder=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1372,8 +1396,8 @@ print_getPipelineQueue_help() {
     echo -e "Retrieve queue details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1395,9 +1419,9 @@ print_getPipelineRun_help() {
     echo -e "Retrieve run details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1419,12 +1443,12 @@ print_getPipelineRunLog_help() {
     echo -e "Get log for a pipeline run" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}start${OFF} ${BLUE}[integer]${OFF}${OFF} - Start position of the log${YELLOW} Specify as: start=value${OFF}" \
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}start${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - Start position of the log${YELLOW} Specify as: start=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}download${OFF} ${BLUE}[boolean]${OFF}${OFF} - Set to true in order to download the file, otherwise it's passed as a response body${YELLOW} Specify as: download=value${OFF}" \
+    echo -e "  * ${GREEN}download${OFF} ${BLUE}[boolean]${OFF} ${CYAN}(default: null)${OFF} - Set to true in order to download the file, otherwise it's passed as a response body${YELLOW} Specify as: download=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1447,10 +1471,10 @@ print_getPipelineRunNode_help() {
     echo -e "Retrieve run node details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1472,11 +1496,11 @@ print_getPipelineRunNodeStep_help() {
     echo -e "Retrieve run node details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}step${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the step ${YELLOW}Specify as: step=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the step ${YELLOW}Specify as: step=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1498,11 +1522,11 @@ print_getPipelineRunNodeStepLog_help() {
     echo -e "Get log for a pipeline run node step" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}step${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the step ${YELLOW}Specify as: step=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}step${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the step ${YELLOW}Specify as: step=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1524,10 +1548,10 @@ print_getPipelineRunNodeSteps_help() {
     echo -e "Retrieve run node steps details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}node${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the node ${YELLOW}Specify as: node=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1549,9 +1573,9 @@ print_getPipelineRunNodes_help() {
     echo -e "Retrieve run nodes details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1573,8 +1597,8 @@ print_getPipelineRuns_help() {
     echo -e "Retrieve all runs details for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1596,7 +1620,7 @@ print_getPipelines_help() {
     echo -e "Retrieve all pipelines details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1618,8 +1642,8 @@ print_getSCM_help() {
     echo -e "Retrieve SCM details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1641,14 +1665,14 @@ print_getSCMOrganisationRepositories_help() {
     echo -e "Retrieve SCM organization repositories details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}scmOrganisation${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the SCM organization ${YELLOW}Specify as: scmOrganisation=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[string]${OFF}${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scmOrganisation${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the SCM organization ${YELLOW}Specify as: scmOrganisation=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pageSize${OFF} ${BLUE}[integer]${OFF}${OFF} - Number of items in a page${YELLOW} Specify as: pageSize=value${OFF}" \
+    echo -e "  * ${GREEN}pageSize${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - Number of items in a page${YELLOW} Specify as: pageSize=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pageNumber${OFF} ${BLUE}[integer]${OFF}${OFF} - Page number${YELLOW} Specify as: pageNumber=value${OFF}" \
+    echo -e "  * ${GREEN}pageNumber${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - Page number${YELLOW} Specify as: pageNumber=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1671,11 +1695,11 @@ print_getSCMOrganisationRepository_help() {
     echo -e "Retrieve SCM organization repository details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}scmOrganisation${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the SCM organization ${YELLOW}Specify as: scmOrganisation=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}repository${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the SCM repository ${YELLOW}Specify as: repository=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[string]${OFF}${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scmOrganisation${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the SCM organization ${YELLOW}Specify as: scmOrganisation=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}repository${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the SCM repository ${YELLOW}Specify as: repository=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1698,9 +1722,9 @@ print_getSCMOrganisations_help() {
     echo -e "Retrieve SCM organizations details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[string]${OFF}${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}scm${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of SCM ${YELLOW}Specify as: scm=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}credentialId${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Credential ID${YELLOW} Specify as: credentialId=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1723,8 +1747,8 @@ print_getUser_help() {
     echo -e "Retrieve user details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}user${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the user ${YELLOW}Specify as: user=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}user${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the user ${YELLOW}Specify as: user=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1746,7 +1770,7 @@ print_getUserFavorites_help() {
     echo -e "Retrieve user favorites details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}user${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the user ${YELLOW}Specify as: user=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}user${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the user ${YELLOW}Specify as: user=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1768,7 +1792,7 @@ print_getUsers_help() {
     echo -e "Retrieve users details for an organization" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1790,9 +1814,9 @@ print_postPipelineRun_help() {
     echo -e "Replay an organization pipeline run" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1814,8 +1838,8 @@ print_postPipelineRuns_help() {
     echo -e "Start a build for an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -1837,9 +1861,9 @@ print_putPipelineFavorite_help() {
     echo -e "Favorite/unfavorite a pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1862,12 +1886,12 @@ print_putPipelineRun_help() {
     echo -e "Stop a build of an organization pipeline" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}blocking${OFF} ${BLUE}[string]${OFF}${OFF} - Set to true to make blocking stop, default: false${YELLOW} Specify as: blocking=value${OFF}" \
+    echo -e "  * ${GREEN}organization${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the organization ${YELLOW}Specify as: organization=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}pipeline${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the pipeline ${YELLOW}Specify as: pipeline=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}run${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the run ${YELLOW}Specify as: run=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}blocking${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Set to true to make blocking stop, default: false${YELLOW} Specify as: blocking=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}timeOutInSecs${OFF} ${BLUE}[integer]${OFF}${OFF} - Timeout in seconds, default: 10 seconds${YELLOW} Specify as: timeOutInSecs=value${OFF}" \
+    echo -e "  * ${GREEN}timeOutInSecs${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - Timeout in seconds, default: 10 seconds${YELLOW} Specify as: timeOutInSecs=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1890,7 +1914,7 @@ print_search_help() {
     echo -e "Search for any resource details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}q${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Query string${YELLOW} Specify as: q=value${OFF}" \
+    echo -e "  * ${GREEN}q${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Query string${YELLOW} Specify as: q=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1913,7 +1937,7 @@ print_searchClasses_help() {
     echo -e "Get classes details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}q${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Query string containing an array of class names${YELLOW} Specify as: q=value${OFF}" \
+    echo -e "  * ${GREEN}q${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Query string containing an array of class names${YELLOW} Specify as: q=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1936,7 +1960,7 @@ print_getComputer_help() {
     echo -e "Retrieve computer details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}depth${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF}${OFF} - Recursion depth in response model${YELLOW} Specify as: depth=value${OFF}" \
+    echo -e "  * ${GREEN}depth${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Recursion depth in response model${YELLOW} Specify as: depth=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1979,7 +2003,7 @@ print_getJob_help() {
     echo -e "Retrieve job details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2003,7 +2027,7 @@ print_getJobConfig_help() {
     echo -e "Retrieve job configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2027,7 +2051,7 @@ print_getJobLastBuild_help() {
     echo -e "Retrieve job's last build details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2051,9 +2075,9 @@ print_getJobProgressiveText_help() {
     echo -e "Retrieve job's build progressive text output" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}number${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Build number ${YELLOW}Specify as: number=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}start${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Starting point of progressive text output${YELLOW} Specify as: start=value${OFF}" \
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}number${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Build number ${YELLOW}Specify as: number=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}start${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Starting point of progressive text output${YELLOW} Specify as: start=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -2098,7 +2122,7 @@ print_getQueueItem_help() {
     echo -e "Retrieve queued item details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}number${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Queue number ${YELLOW}Specify as: number=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}number${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Queue number ${YELLOW}Specify as: number=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2120,7 +2144,7 @@ print_getView_help() {
     echo -e "Retrieve view details" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2144,7 +2168,7 @@ print_getViewConfig_help() {
     echo -e "Retrieve view configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2190,14 +2214,14 @@ print_postCreateItem_help() {
     echo -e "Create a new job using job configuration, or copied from an existing job" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the new job${YELLOW} Specify as: name=value${OFF}" \
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the new job${YELLOW} Specify as: name=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF}${OFF} - Existing job to copy from${YELLOW} Specify as: from=value${OFF}" \
+    echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Existing job to copy from${YELLOW} Specify as: from=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}mode${OFF} ${BLUE}[string]${OFF}${OFF} - Set to 'copy' for copying an existing job${YELLOW} Specify as: mode=value${OFF}" \
+    echo -e "  * ${GREEN}mode${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Set to 'copy' for copying an existing job${YELLOW} Specify as: mode=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[string]${OFF}${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
@@ -2223,10 +2247,10 @@ print_postCreateView_help() {
     echo -e "Create a new view using view configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the new view${YELLOW} Specify as: name=value${OFF}" \
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the new view${YELLOW} Specify as: name=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[string]${OFF}${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
@@ -2252,12 +2276,12 @@ print_postJobBuild_help() {
     echo -e "Build a job" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}json${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - ${YELLOW} Specify as: json=value${OFF}" \
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}json${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: json=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}token${OFF} ${BLUE}[string]${OFF}${OFF} - ${YELLOW} Specify as: token=value${OFF}" \
+    echo -e "  * ${GREEN}token${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - ${YELLOW} Specify as: token=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2283,8 +2307,8 @@ print_postJobConfig_help() {
     echo -e "Update job configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
@@ -2312,8 +2336,8 @@ print_postJobDelete_help() {
     echo -e "Delete a job" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2337,8 +2361,8 @@ print_postJobDisable_help() {
     echo -e "Disable a job" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2362,8 +2386,8 @@ print_postJobEnable_help() {
     echo -e "Enable a job" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2387,8 +2411,8 @@ print_postJobLastBuildStop_help() {
     echo -e "Stop a job" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -2412,8 +2436,8 @@ print_postViewConfig_help() {
     echo -e "Update view configuration" | paste -sd' ' | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF}${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF}${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
@@ -2445,7 +2469,7 @@ call_getCrumb() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//crumbIssuer/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/crumbIssuer/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2461,9 +2485,9 @@ call_getCrumb() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2481,7 +2505,7 @@ call_deletePipelineQueueItem() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2497,9 +2521,9 @@ call_deletePipelineQueueItem() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2517,7 +2541,7 @@ call_getAuthenticatedUser() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/user/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/user/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2533,9 +2557,9 @@ call_getAuthenticatedUser() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2553,7 +2577,7 @@ call_getClasses() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/classes/{class}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/classes/{class}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2569,9 +2593,9 @@ call_getClasses() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2589,7 +2613,7 @@ call_getJsonWebKey() {
     local query_parameter_names=()
     local path
 
-    if ! path=$(build_request_path "//jwt-auth/jwks/{key}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/jwt-auth/jwks/{key}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2605,9 +2629,9 @@ call_getJsonWebKey() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2625,7 +2649,7 @@ call_getJsonWebToken() {
     local query_parameter_names=(expiryTimeInMins maxExpiryTimeInMins)
     local path
 
-    if ! path=$(build_request_path "//jwt-auth/token" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/jwt-auth/token" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2641,9 +2665,9 @@ call_getJsonWebToken() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2661,7 +2685,7 @@ call_getOrganisation() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2677,9 +2701,9 @@ call_getOrganisation() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2697,7 +2721,7 @@ call_getOrganisations() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2713,9 +2737,9 @@ call_getOrganisations() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2733,7 +2757,7 @@ call_getPipeline() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2749,9 +2773,9 @@ call_getPipeline() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2769,7 +2793,7 @@ call_getPipelineActivities() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2785,9 +2809,9 @@ call_getPipelineActivities() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2805,7 +2829,7 @@ call_getPipelineBranch() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2821,9 +2845,9 @@ call_getPipelineBranch() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2841,7 +2865,7 @@ call_getPipelineBranchRun() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2857,9 +2881,9 @@ call_getPipelineBranchRun() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2877,7 +2901,7 @@ call_getPipelineBranches() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2893,9 +2917,9 @@ call_getPipelineBranches() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2913,7 +2937,7 @@ call_getPipelineFolder() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{folder}/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{folder}/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2929,9 +2953,9 @@ call_getPipelineFolder() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2949,7 +2973,7 @@ call_getPipelineFolderPipeline() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -2965,9 +2989,9 @@ call_getPipelineFolderPipeline() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -2985,7 +3009,7 @@ call_getPipelineQueue() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3001,9 +3025,9 @@ call_getPipelineQueue() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3021,7 +3045,7 @@ call_getPipelineRun() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3037,9 +3061,9 @@ call_getPipelineRun() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3057,7 +3081,7 @@ call_getPipelineRunLog() {
     local query_parameter_names=(start download  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3073,9 +3097,9 @@ call_getPipelineRunLog() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3093,7 +3117,7 @@ call_getPipelineRunNode() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3109,9 +3133,9 @@ call_getPipelineRunNode() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3129,7 +3153,7 @@ call_getPipelineRunNodeStep() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3145,9 +3169,9 @@ call_getPipelineRunNodeStep() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3165,7 +3189,7 @@ call_getPipelineRunNodeStepLog() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3181,9 +3205,9 @@ call_getPipelineRunNodeStepLog() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3201,7 +3225,7 @@ call_getPipelineRunNodeSteps() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3217,9 +3241,9 @@ call_getPipelineRunNodeSteps() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3237,7 +3261,7 @@ call_getPipelineRunNodes() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3253,9 +3277,9 @@ call_getPipelineRunNodes() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3273,7 +3297,7 @@ call_getPipelineRuns() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3289,9 +3313,9 @@ call_getPipelineRuns() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3309,7 +3333,7 @@ call_getPipelines() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3325,9 +3349,9 @@ call_getPipelines() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3345,7 +3369,7 @@ call_getSCM() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/scm/{scm}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3361,9 +3385,9 @@ call_getSCM() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3381,7 +3405,7 @@ call_getSCMOrganisationRepositories() {
     local query_parameter_names=(credentialId pageSize pageNumber  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3397,9 +3421,9 @@ call_getSCMOrganisationRepositories() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3417,7 +3441,7 @@ call_getSCMOrganisationRepository() {
     local query_parameter_names=(credentialId  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3433,9 +3457,9 @@ call_getSCMOrganisationRepository() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3453,7 +3477,7 @@ call_getSCMOrganisations() {
     local query_parameter_names=(credentialId  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/scm/{scm}/organizations" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/scm/{scm}/organizations" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3469,9 +3493,9 @@ call_getSCMOrganisations() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3489,7 +3513,7 @@ call_getUser() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/users/{user}" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/users/{user}" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3505,9 +3529,9 @@ call_getUser() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3525,7 +3549,7 @@ call_getUserFavorites() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/users/{user}/favorites" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/users/{user}/favorites" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3541,9 +3565,9 @@ call_getUserFavorites() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3561,7 +3585,7 @@ call_getUsers() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/users/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/users/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3577,9 +3601,9 @@ call_getUsers() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3597,7 +3621,7 @@ call_postPipelineRun() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3613,9 +3637,9 @@ call_postPipelineRun() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3633,7 +3657,7 @@ call_postPipelineRuns() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3649,9 +3673,9 @@ call_postPipelineRuns() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3669,7 +3693,7 @@ call_putPipelineFavorite() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3689,7 +3713,7 @@ call_putPipelineFavorite() {
     #
     # Check if the user provided 'Content-type' headers in the
     # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
+    # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
         header_content_type="application/json"
@@ -3747,7 +3771,7 @@ call_putPipelineRun() {
     local query_parameter_names=(blocking timeOutInSecs  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3763,9 +3787,9 @@ call_putPipelineRun() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3783,7 +3807,7 @@ call_search() {
     local query_parameter_names=(q  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/search/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/search/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3799,9 +3823,9 @@ call_search() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3819,7 +3843,7 @@ call_searchClasses() {
     local query_parameter_names=(q  )
     local path
 
-    if ! path=$(build_request_path "//blue/rest/classes/" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/blue/rest/classes/" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3835,9 +3859,9 @@ call_searchClasses() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3855,7 +3879,7 @@ call_getComputer() {
     local query_parameter_names=(depth  )
     local path
 
-    if ! path=$(build_request_path "//computer/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/computer/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3871,9 +3895,9 @@ call_getComputer() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3891,7 +3915,7 @@ call_getJenkins() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3907,9 +3931,9 @@ call_getJenkins() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3927,7 +3951,7 @@ call_getJob() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3943,9 +3967,9 @@ call_getJob() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3963,7 +3987,7 @@ call_getJobConfig() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/config.xml" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/config.xml" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -3979,9 +4003,9 @@ call_getJobConfig() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -3999,7 +4023,7 @@ call_getJobLastBuild() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/lastBuild/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/lastBuild/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4015,9 +4039,9 @@ call_getJobLastBuild() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4035,7 +4059,7 @@ call_getJobProgressiveText() {
     local query_parameter_names=(start  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/{number}/logText/progressiveText" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/{number}/logText/progressiveText" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4051,9 +4075,9 @@ call_getJobProgressiveText() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4071,7 +4095,7 @@ call_getQueue() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//queue/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/queue/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4087,9 +4111,9 @@ call_getQueue() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4107,7 +4131,7 @@ call_getQueueItem() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//queue/item/{number}/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/queue/item/{number}/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4123,9 +4147,9 @@ call_getQueueItem() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4143,7 +4167,7 @@ call_getView() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//view/{name}/api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/view/{name}/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4159,9 +4183,9 @@ call_getView() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4179,7 +4203,7 @@ call_getViewConfig() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//view/{name}/config.xml" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/view/{name}/config.xml" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4195,9 +4219,9 @@ call_getViewConfig() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4215,7 +4239,7 @@ call_headJenkins() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//api/json" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/api/json" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4231,9 +4255,9 @@ call_headJenkins() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4251,7 +4275,7 @@ call_postCreateItem() {
     local query_parameter_names=(name from mode  )
     local path
 
-    if ! path=$(build_request_path "//createItem" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/createItem" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4271,7 +4295,7 @@ call_postCreateItem() {
     #
     # Check if the user provided 'Content-type' headers in the
     # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
+    # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
         header_content_type="application/json"
@@ -4329,7 +4353,7 @@ call_postCreateView() {
     local query_parameter_names=(name  )
     local path
 
-    if ! path=$(build_request_path "//createView" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/createView" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4349,7 +4373,7 @@ call_postCreateView() {
     #
     # Check if the user provided 'Content-type' headers in the
     # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
+    # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
         header_content_type="application/json"
@@ -4407,7 +4431,7 @@ call_postJobBuild() {
     local query_parameter_names=(json token  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/build" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/build" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4423,9 +4447,9 @@ call_postJobBuild() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4443,7 +4467,7 @@ call_postJobConfig() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/config.xml" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/config.xml" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4463,7 +4487,7 @@ call_postJobConfig() {
     #
     # Check if the user provided 'Content-type' headers in the
     # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
+    # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
         header_content_type="application/json"
@@ -4521,7 +4545,7 @@ call_postJobDelete() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/doDelete" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/doDelete" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4537,9 +4561,9 @@ call_postJobDelete() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4557,7 +4581,7 @@ call_postJobDisable() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/disable" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/disable" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4573,9 +4597,9 @@ call_postJobDisable() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4593,7 +4617,7 @@ call_postJobEnable() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/enable" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/enable" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4609,9 +4633,9 @@ call_postJobEnable() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4629,7 +4653,7 @@ call_postJobLastBuildStop() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//job/{name}/lastBuild/stop" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/job/{name}/lastBuild/stop" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4645,9 +4669,9 @@ call_postJobLastBuildStop() {
         basic_auth_option="-u ${basic_auth_credential}"
     fi
     if [[ "$print_curl" = true ]]; then
-        echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        echo "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     else
-        eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
+        eval "curl -d '' ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\""
     fi
 }
 
@@ -4665,7 +4689,7 @@ call_postViewConfig() {
     local query_parameter_names=(  )
     local path
 
-    if ! path=$(build_request_path "//view/{name}/config.xml" path_parameter_names query_parameter_names); then
+    if ! path=$(build_request_path "/view/{name}/config.xml" path_parameter_names query_parameter_names); then
         ERROR_MSG=$path
         exit 1
     fi
@@ -4685,7 +4709,7 @@ call_postViewConfig() {
     #
     # Check if the user provided 'Content-type' headers in the
     # command line. If not try to set them based on the OpenAPI specification
-    # if values produces and consumes are defined unambigously
+    # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
         header_content_type="application/json"
@@ -5010,7 +5034,7 @@ case $key in
     ;;
     *:=*)
     # Parse body arguments and convert them into top level
-    # JSON properties passed in the body content without qoutes
+    # JSON properties passed in the body content without quotes
     if [[ "$operation" ]]; then
         # ignore error about 'sep' being unused
         # shellcheck disable=SC2034
@@ -5018,7 +5042,7 @@ case $key in
         body_parameters[${body_key}]=${body_value}
     fi
     ;;
-    +\([^=]\):*)
+    +([^=]):*)
     # Parse header arguments and convert them into curl
     # only after the operation argument
     if [[ "$operation" ]]; then

@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class DiskSpaceMonitorDescriptorDiskSpace {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var int $timestamp */
     private $timestamp;

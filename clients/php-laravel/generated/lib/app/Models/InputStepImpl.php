@@ -9,11 +9,11 @@ namespace app\Models;
  */
 class InputStepImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\InputStepImpllinks $_links */
-    private $_links;
+    /** @var \app\Models\InputStepImpllinks $links */
+    private $links;
 
     /** @var string $id */
     private $id;

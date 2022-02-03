@@ -1,63 +1,70 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * MultibranchPipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class MultibranchPipeline   {
+
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("latestRun")
-  private String latestRun = null;
+  private String latestRun;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("branchNames")
   @Valid
   private List<String> branchNames = null;
 
   @JsonProperty("numberOfFailingBranches")
-  private Integer numberOfFailingBranches = null;
+  private Integer numberOfFailingBranches;
 
   @JsonProperty("numberOfFailingPullRequests")
-  private Integer numberOfFailingPullRequests = null;
+  private Integer numberOfFailingPullRequests;
 
   @JsonProperty("numberOfSuccessfulBranches")
-  private Integer numberOfSuccessfulBranches = null;
+  private Integer numberOfSuccessfulBranches;
 
   @JsonProperty("numberOfSuccessfulPullRequests")
-  private Integer numberOfSuccessfulPullRequests = null;
+  private Integer numberOfSuccessfulPullRequests;
 
   @JsonProperty("totalNumberOfBranches")
-  private Integer totalNumberOfBranches = null;
+  private Integer totalNumberOfBranches;
 
   @JsonProperty("totalNumberOfPullRequests")
-  private Integer totalNumberOfPullRequests = null;
+  private Integer totalNumberOfPullRequests;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public MultibranchPipeline displayName(String displayName) {
     this.displayName = displayName;
@@ -67,10 +74,9 @@ public class MultibranchPipeline   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -87,10 +93,9 @@ public class MultibranchPipeline   {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "estimatedDurationInMillis", required = false)
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -107,10 +112,9 @@ public class MultibranchPipeline   {
   /**
    * Get latestRun
    * @return latestRun
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "latestRun", required = false)
   public String getLatestRun() {
     return latestRun;
   }
@@ -127,10 +131,9 @@ public class MultibranchPipeline   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -147,10 +150,9 @@ public class MultibranchPipeline   {
   /**
    * Get organization
    * @return organization
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "organization", required = false)
   public String getOrganization() {
     return organization;
   }
@@ -167,10 +169,9 @@ public class MultibranchPipeline   {
   /**
    * Get weatherScore
    * @return weatherScore
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "weatherScore", required = false)
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -195,10 +196,9 @@ public class MultibranchPipeline   {
   /**
    * Get branchNames
    * @return branchNames
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "branchNames", required = false)
   public List<String> getBranchNames() {
     return branchNames;
   }
@@ -215,10 +215,9 @@ public class MultibranchPipeline   {
   /**
    * Get numberOfFailingBranches
    * @return numberOfFailingBranches
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numberOfFailingBranches", required = false)
   public Integer getNumberOfFailingBranches() {
     return numberOfFailingBranches;
   }
@@ -235,10 +234,9 @@ public class MultibranchPipeline   {
   /**
    * Get numberOfFailingPullRequests
    * @return numberOfFailingPullRequests
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numberOfFailingPullRequests", required = false)
   public Integer getNumberOfFailingPullRequests() {
     return numberOfFailingPullRequests;
   }
@@ -255,10 +253,9 @@ public class MultibranchPipeline   {
   /**
    * Get numberOfSuccessfulBranches
    * @return numberOfSuccessfulBranches
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numberOfSuccessfulBranches", required = false)
   public Integer getNumberOfSuccessfulBranches() {
     return numberOfSuccessfulBranches;
   }
@@ -275,10 +272,9 @@ public class MultibranchPipeline   {
   /**
    * Get numberOfSuccessfulPullRequests
    * @return numberOfSuccessfulPullRequests
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numberOfSuccessfulPullRequests", required = false)
   public Integer getNumberOfSuccessfulPullRequests() {
     return numberOfSuccessfulPullRequests;
   }
@@ -295,10 +291,9 @@ public class MultibranchPipeline   {
   /**
    * Get totalNumberOfBranches
    * @return totalNumberOfBranches
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "totalNumberOfBranches", required = false)
   public Integer getTotalNumberOfBranches() {
     return totalNumberOfBranches;
   }
@@ -315,10 +310,9 @@ public class MultibranchPipeline   {
   /**
    * Get totalNumberOfPullRequests
    * @return totalNumberOfPullRequests
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "totalNumberOfPullRequests", required = false)
   public Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
   }
@@ -335,10 +329,9 @@ public class MultibranchPipeline   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -347,9 +340,8 @@ public class MultibranchPipeline   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -382,7 +374,6 @@ public class MultibranchPipeline   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MultibranchPipeline {\n");
-    
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    estimatedDurationInMillis: ").append(toIndentedString(estimatedDurationInMillis)).append("\n");
     sb.append("    latestRun: ").append(toIndentedString(latestRun)).append("\n");
@@ -405,7 +396,7 @@ public class MultibranchPipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

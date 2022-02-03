@@ -12,26 +12,25 @@ import org.openapitools.model.PipelineRunNodeedges;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class PipelineRunNode   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String displayName = null;
+  private String displayName;
 
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   private List<PipelineRunNodeedges> edges = new ArrayList<PipelineRunNodeedges>();
 
-  private String id = null;
+  private String id;
 
-  private String result = null;
+  private String result;
 
-  private String startTime = null;
+  private String startTime;
 
-  private String state = null;
+  private String state;
 
   /**
    **/

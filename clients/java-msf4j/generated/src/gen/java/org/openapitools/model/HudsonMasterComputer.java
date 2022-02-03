@@ -14,55 +14,55 @@ import org.openapitools.model.Label1;
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class HudsonMasterComputer   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("executors")
   private List<HudsonMasterComputerexecutors> executors = null;
 
   @JsonProperty("icon")
-  private String icon = null;
+  private String icon;
 
   @JsonProperty("iconClassName")
-  private String iconClassName = null;
+  private String iconClassName;
 
   @JsonProperty("idle")
-  private Boolean idle = null;
+  private Boolean idle;
 
   @JsonProperty("jnlpAgent")
-  private Boolean jnlpAgent = null;
+  private Boolean jnlpAgent;
 
   @JsonProperty("launchSupported")
-  private Boolean launchSupported = null;
+  private Boolean launchSupported;
 
   @JsonProperty("loadStatistics")
-  private Label1 loadStatistics = null;
+  private Label1 loadStatistics;
 
   @JsonProperty("manualLaunchAllowed")
-  private Boolean manualLaunchAllowed = null;
+  private Boolean manualLaunchAllowed;
 
   @JsonProperty("monitorData")
-  private HudsonMasterComputermonitorData monitorData = null;
+  private HudsonMasterComputermonitorData monitorData;
 
   @JsonProperty("numExecutors")
-  private Integer numExecutors = null;
+  private Integer numExecutors;
 
   @JsonProperty("offline")
-  private Boolean offline = null;
+  private Boolean offline;
 
   @JsonProperty("offlineCause")
-  private String offlineCause = null;
+  private String offlineCause;
 
   @JsonProperty("offlineCauseReason")
-  private String offlineCauseReason = null;
+  private String offlineCauseReason;
 
   @JsonProperty("temporarilyOffline")
-  private Boolean temporarilyOffline = null;
+  private Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -362,7 +362,7 @@ public class HudsonMasterComputer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -422,7 +422,7 @@ public class HudsonMasterComputer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -10,22 +10,22 @@ import org.openapitools.server.api.model.BranchImplpermissions;
 import org.openapitools.server.api.model.PipelineRunImpl;
 import org.openapitools.server.api.model.StringParameterDefinition;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BranchImpl   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private Integer estimatedDurationInMillis = null;
-  private String fullDisplayName = null;
-  private String fullName = null;
-  private String name = null;
-  private String organization = null;
+  private String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String fullDisplayName;
+  private String fullName;
+  private String name;
+  private String organization;
   private List<StringParameterDefinition> parameters = new ArrayList<>();
-  private BranchImplpermissions permissions = null;
-  private Integer weatherScore = null;
-  private String pullRequest = null;
-  private BranchImpllinks links = null;
-  private PipelineRunImpl latestRun = null;
+  private BranchImplpermissions permissions;
+  private Integer weatherScore;
+  private String pullRequest;
+  private BranchImpllinks links;
+  private PipelineRunImpl latestRun;
 
   public BranchImpl () {
 

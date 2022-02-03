@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class GithubScm {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\GithubScmlinks $_links */
-    private $_links;
+    /** @var \app\Models\GithubScmlinks $links */
+    private $links;
 
-    /** @var string $credential_id */
-    private $credential_id;
+    /** @var string $credentialId */
+    private $credentialId;
 
     /** @var string $id */
     private $id;

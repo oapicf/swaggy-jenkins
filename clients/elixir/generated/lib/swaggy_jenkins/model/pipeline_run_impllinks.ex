@@ -18,12 +18,12 @@ defmodule SwaggyJenkins.Model.PipelineRunImpllinks do
   ]
 
   @type t :: %__MODULE__{
-    :"nodes" => Link,
-    :"log" => Link,
-    :"self" => Link,
-    :"actions" => Link,
-    :"steps" => Link,
-    :"_class" => String.t
+    :"nodes" => SwaggyJenkins.Model.Link.t | nil,
+    :"log" => SwaggyJenkins.Model.Link.t | nil,
+    :"self" => SwaggyJenkins.Model.Link.t | nil,
+    :"actions" => SwaggyJenkins.Model.Link.t | nil,
+    :"steps" => SwaggyJenkins.Model.Link.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

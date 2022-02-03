@@ -1,38 +1,93 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 class ClockDifference {
-  
-  String class_ = null;
-  
-  int diff = null;
-  ClockDifference();
+  /// Returns a new [ClockDifference] instance.
+  ClockDifference({
+    this.class_,
+    this.diff,
+  });
+
+  String class_;
+
+  int diff;
 
   @override
-  String toString() {
-    return 'ClockDifference[class_=$class_, diff=$diff, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is ClockDifference &&
+     other.class_ == class_ &&
+     other.diff == diff;
 
-  ClockDifference.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    class_ = json['_class'];
-    diff = json['diff'];
-  }
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_.hashCode) +
+    (diff == null ? 0 : diff.hashCode);
+
+  @override
+  String toString() => 'ClockDifference[class_=$class_, diff=$diff]';
 
   Map<String, dynamic> toJson() {
-    return {
-      '_class': class_,
-      'diff': diff
-    };
+    final json = <String, dynamic>{};
+    if (class_ != null) {
+      json[r'_class'] = class_;
+    }
+    if (diff != null) {
+      json[r'diff'] = diff;
+    }
+    return json;
   }
 
-  static List<ClockDifference> listFromJson(List<dynamic> json) {
-    return json == null ? new List<ClockDifference>() : json.map((value) => new ClockDifference.fromJson(value)).toList();
+  /// Returns a new [ClockDifference] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static ClockDifference fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return ClockDifference(
+        class_: mapValueOfType<String>(json, r'_class'),
+        diff: mapValueOfType<int>(json, r'diff'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, ClockDifference> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, ClockDifference>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new ClockDifference.fromJson(value));
+  static List<ClockDifference> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(ClockDifference.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <ClockDifference>[];
+
+  static Map<String, ClockDifference> mapFromJson(dynamic json) {
+    final map = <String, ClockDifference>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = ClockDifference.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of ClockDifference-objects as value to a dart map
+  static Map<String, List<ClockDifference>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<ClockDifference>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = ClockDifference.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
     }
     return map;
   }

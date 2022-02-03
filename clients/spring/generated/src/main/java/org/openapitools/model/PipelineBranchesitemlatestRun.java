@@ -1,60 +1,67 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * PipelineBranchesitemlatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class PipelineBranchesitemlatestRun   {
+
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("enQueueTime")
-  private String enQueueTime = null;
+  private String enQueueTime;
 
   @JsonProperty("endTime")
-  private String endTime = null;
+  private String endTime;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("pipeline")
-  private String pipeline = null;
+  private String pipeline;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("runSummary")
-  private String runSummary = null;
+  private String runSummary;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  private String state;
 
   @JsonProperty("type")
-  private String type = null;
+  private String type;
 
   @JsonProperty("commitId")
-  private String commitId = null;
+  private String commitId;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public PipelineBranchesitemlatestRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -64,10 +71,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "durationInMillis", required = false)
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -84,10 +90,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "estimatedDurationInMillis", required = false)
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -104,10 +109,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get enQueueTime
    * @return enQueueTime
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "enQueueTime", required = false)
   public String getEnQueueTime() {
     return enQueueTime;
   }
@@ -124,10 +128,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get endTime
    * @return endTime
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "endTime", required = false)
   public String getEndTime() {
     return endTime;
   }
@@ -144,10 +147,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get id
    * @return id
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "id", required = false)
   public String getId() {
     return id;
   }
@@ -164,10 +166,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get organization
    * @return organization
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "organization", required = false)
   public String getOrganization() {
     return organization;
   }
@@ -184,10 +185,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get pipeline
    * @return pipeline
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "pipeline", required = false)
   public String getPipeline() {
     return pipeline;
   }
@@ -204,10 +204,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get result
    * @return result
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "result", required = false)
   public String getResult() {
     return result;
   }
@@ -224,10 +223,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get runSummary
    * @return runSummary
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "runSummary", required = false)
   public String getRunSummary() {
     return runSummary;
   }
@@ -244,10 +242,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get startTime
    * @return startTime
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "startTime", required = false)
   public String getStartTime() {
     return startTime;
   }
@@ -264,10 +261,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get state
    * @return state
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "state", required = false)
   public String getState() {
     return state;
   }
@@ -284,10 +280,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get type
    * @return type
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "type", required = false)
   public String getType() {
     return type;
   }
@@ -304,10 +299,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get commitId
    * @return commitId
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "commitId", required = false)
   public String getCommitId() {
     return commitId;
   }
@@ -324,10 +318,9 @@ public class PipelineBranchesitemlatestRun   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -336,9 +329,8 @@ public class PipelineBranchesitemlatestRun   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -371,7 +363,6 @@ public class PipelineBranchesitemlatestRun   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineBranchesitemlatestRun {\n");
-    
     sb.append("    durationInMillis: ").append(toIndentedString(durationInMillis)).append("\n");
     sb.append("    estimatedDurationInMillis: ").append(toIndentedString(estimatedDurationInMillis)).append("\n");
     sb.append("    enQueueTime: ").append(toIndentedString(enQueueTime)).append("\n");
@@ -394,7 +385,7 @@ public class PipelineBranchesitemlatestRun   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

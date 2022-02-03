@@ -12,9 +12,32 @@ package openapi
 
 type PipelineStepImpllinks struct {
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
-	Actions *Link `json:"actions,omitempty"`
+	Actions Link `json:"actions,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertPipelineStepImpllinksRequired checks if the required fields are not zero-ed
+func AssertPipelineStepImpllinksRequired(obj PipelineStepImpllinks) error {
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Actions); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecursePipelineStepImpllinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineStepImpllinks (e.g. [][]PipelineStepImpllinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineStepImpllinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineStepImpllinks, ok := obj.(PipelineStepImpllinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineStepImpllinksRequired(aPipelineStepImpllinks)
+	})
 }

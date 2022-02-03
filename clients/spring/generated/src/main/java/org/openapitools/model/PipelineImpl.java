@@ -1,46 +1,53 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineImpllinks;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * PipelineImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class PipelineImpl   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("latestRun")
-  private String latestRun = null;
+  private String latestRun;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("_links")
-  private PipelineImpllinks links = null;
+  private PipelineImpllinks links;
 
   public PipelineImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -50,10 +57,9 @@ public class PipelineImpl   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -70,10 +76,9 @@ public class PipelineImpl   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -90,10 +95,9 @@ public class PipelineImpl   {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "estimatedDurationInMillis", required = false)
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -110,10 +114,9 @@ public class PipelineImpl   {
   /**
    * Get fullName
    * @return fullName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullName", required = false)
   public String getFullName() {
     return fullName;
   }
@@ -130,10 +133,9 @@ public class PipelineImpl   {
   /**
    * Get latestRun
    * @return latestRun
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "latestRun", required = false)
   public String getLatestRun() {
     return latestRun;
   }
@@ -150,10 +152,9 @@ public class PipelineImpl   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -170,10 +171,9 @@ public class PipelineImpl   {
   /**
    * Get organization
    * @return organization
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "organization", required = false)
   public String getOrganization() {
     return organization;
   }
@@ -190,10 +190,9 @@ public class PipelineImpl   {
   /**
    * Get weatherScore
    * @return weatherScore
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "weatherScore", required = false)
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -210,11 +209,9 @@ public class PipelineImpl   {
   /**
    * Get links
    * @return links
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "_links", required = false)
   public PipelineImpllinks getLinks() {
     return links;
   }
@@ -223,9 +220,8 @@ public class PipelineImpl   {
     this.links = links;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -253,7 +249,6 @@ public class PipelineImpl   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpl {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    estimatedDurationInMillis: ").append(toIndentedString(estimatedDurationInMillis)).append("\n");
@@ -271,7 +266,7 @@ public class PipelineImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

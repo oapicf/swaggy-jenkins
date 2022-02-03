@@ -1,7 +1,9 @@
 
+
 # PipelineBranchesitem
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **displayName** | **String** |  |  [optional]
@@ -13,6 +15,7 @@ Name | Type | Description | Notes
 **pullRequest** | [**PipelineBranchesitempullRequest**](PipelineBranchesitempullRequest.md) |  |  [optional]
 **totalNumberOfPullRequests** | **Integer** |  |  [optional]
 **_class** | **String** |  |  [optional]
+
 
 
 

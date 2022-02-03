@@ -14,61 +14,61 @@ import org.openapitools.model.EmptyChangeLogSet;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2019-04-10T13:31:12.702Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-02T10:44:21.668219Z[Etc/UTC]")
 public class FreeStyleBuild   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("number")
-  private Integer number = null;
+  private Integer number;
 
   @JsonProperty("url")
-  private String url = null;
+  private String url;
 
   @JsonProperty("actions")
   private List<CauseAction> actions = null;
 
   @JsonProperty("building")
-  private Boolean building = null;
+  private Boolean building;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("duration")
-  private Integer duration = null;
+  private Integer duration;
 
   @JsonProperty("estimatedDuration")
-  private Integer estimatedDuration = null;
+  private Integer estimatedDuration;
 
   @JsonProperty("executor")
-  private String executor = null;
+  private String executor;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("keepLog")
-  private Boolean keepLog = null;
+  private Boolean keepLog;
 
   @JsonProperty("queueId")
-  private Integer queueId = null;
+  private Integer queueId;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("timestamp")
-  private Integer timestamp = null;
+  private Integer timestamp;
 
   @JsonProperty("builtOn")
-  private String builtOn = null;
+  private String builtOn;
 
   @JsonProperty("changeSet")
-  private EmptyChangeLogSet changeSet = null;
+  private EmptyChangeLogSet changeSet;
 
   /**
    **/
@@ -378,7 +378,7 @@ public class FreeStyleBuild   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -442,7 +442,7 @@ public class FreeStyleBuild   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

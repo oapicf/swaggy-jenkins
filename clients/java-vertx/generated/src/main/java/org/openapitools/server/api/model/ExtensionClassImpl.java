@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.ExtensionClassImpllinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExtensionClassImpl   {
   
-  private String propertyClass = null;
-  private ExtensionClassImpllinks links = null;
+  private String propertyClass;
+  private ExtensionClassImpllinks links;
   private List<String> classes = new ArrayList<>();
 
   public ExtensionClassImpl () {

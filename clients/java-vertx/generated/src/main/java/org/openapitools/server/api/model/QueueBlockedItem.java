@@ -8,21 +8,21 @@ import java.util.List;
 import org.openapitools.server.api.model.CauseAction;
 import org.openapitools.server.api.model.FreeStyleProject;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class QueueBlockedItem   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<CauseAction> actions = new ArrayList<>();
-  private Boolean blocked = null;
-  private Boolean buildable = null;
-  private Integer id = null;
-  private Integer inQueueSince = null;
-  private String params = null;
-  private Boolean stuck = null;
-  private FreeStyleProject task = null;
-  private String url = null;
-  private String why = null;
-  private Integer buildableStartMilliseconds = null;
+  private Boolean blocked;
+  private Boolean buildable;
+  private Integer id;
+  private Integer inQueueSince;
+  private String params;
+  private Boolean stuck;
+  private FreeStyleProject task;
+  private String url;
+  private String why;
+  private Integer buildableStartMilliseconds;
 
   public QueueBlockedItem () {
 

@@ -15,64 +15,63 @@ import org.openapitools.model.NullSCM;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class FreeStyleProject   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String name = null;
+  private String name;
 
-  private String url = null;
+  private String url;
 
-  private String color = null;
+  private String color;
 
   private List<FreeStyleProjectactions> actions = new ArrayList<FreeStyleProjectactions>();
 
-  private String description = null;
+  private String description;
 
-  private String displayName = null;
+  private String displayName;
 
-  private String displayNameOrNull = null;
+  private String displayNameOrNull;
 
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
-  private String fullName = null;
+  private String fullName;
 
-  private Boolean buildable = null;
+  private Boolean buildable;
 
   private List<FreeStyleBuild> builds = new ArrayList<FreeStyleBuild>();
 
-  private FreeStyleBuild firstBuild = null;
+  private FreeStyleBuild firstBuild;
 
   private List<FreeStyleProjecthealthReport> healthReport = new ArrayList<FreeStyleProjecthealthReport>();
 
-  private Boolean inQueue = null;
+  private Boolean inQueue;
 
-  private Boolean keepDependencies = null;
+  private Boolean keepDependencies;
 
-  private FreeStyleBuild lastBuild = null;
+  private FreeStyleBuild lastBuild;
 
-  private FreeStyleBuild lastCompletedBuild = null;
+  private FreeStyleBuild lastCompletedBuild;
 
-  private String lastFailedBuild = null;
+  private String lastFailedBuild;
 
-  private FreeStyleBuild lastStableBuild = null;
+  private FreeStyleBuild lastStableBuild;
 
-  private FreeStyleBuild lastSuccessfulBuild = null;
+  private FreeStyleBuild lastSuccessfulBuild;
 
-  private String lastUnstableBuild = null;
+  private String lastUnstableBuild;
 
-  private String lastUnsuccessfulBuild = null;
+  private String lastUnsuccessfulBuild;
 
-  private Integer nextBuildNumber = null;
+  private Integer nextBuildNumber;
 
-  private String queueItem = null;
+  private String queueItem;
 
-  private Boolean concurrentBuild = null;
+  private Boolean concurrentBuild;
 
-  private NullSCM scm = null;
+  private NullSCM scm;
 
   /**
    **/

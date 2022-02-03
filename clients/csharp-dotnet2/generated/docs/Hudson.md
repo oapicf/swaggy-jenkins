@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.Hudson
+
 ## Properties
 
 Name | Type | Description | Notes

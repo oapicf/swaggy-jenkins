@@ -1,21 +1,27 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class ExtensionClassImpl   {
+
+@JsonTypeName("ExtensionClassImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class ExtensionClassImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid ExtensionClassImpllinks links = null;
+  private @Valid String propertyClass;
+  private @Valid ExtensionClassImpllinks links;
   private @Valid List<String> classes = new ArrayList<String>();
 
   /**
@@ -26,16 +32,20 @@ public class ExtensionClassImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public ExtensionClassImpl links(ExtensionClassImpllinks links) {
     this.links = links;
@@ -43,16 +53,20 @@ public class ExtensionClassImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public ExtensionClassImpllinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(ExtensionClassImpllinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public ExtensionClassImpl classes(List<String> classes) {
     this.classes = classes;
@@ -60,18 +74,38 @@ public class ExtensionClassImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("classes")
   public List<String> getClasses() {
     return classes;
   }
+
+  @JsonProperty("classes")
   public void setClasses(List<String> classes) {
     this.classes = classes;
   }
 
+  public ExtensionClassImpl addClassesItem(String classesItem) {
+    if (this.classes == null) {
+      this.classes = new ArrayList<String>();
+    }
+
+    this.classes.add(classesItem);
+    return this;
+  }
+
+  public ExtensionClassImpl removeClassesItem(String classesItem) {
+    if (classesItem != null && this.classes != null) {
+      this.classes.remove(classesItem);
+    }
+
+    return this;
+  }
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -79,9 +113,9 @@ public class ExtensionClassImpl   {
       return false;
     }
     ExtensionClassImpl extensionClassImpl = (ExtensionClassImpl) o;
-    return Objects.equals(propertyClass, extensionClassImpl.propertyClass) &&
-        Objects.equals(links, extensionClassImpl.links) &&
-        Objects.equals(classes, extensionClassImpl.classes);
+    return Objects.equals(this.propertyClass, extensionClassImpl.propertyClass) &&
+        Objects.equals(this.links, extensionClassImpl.links) &&
+        Objects.equals(this.classes, extensionClassImpl.classes);
   }
 
   @Override
@@ -105,11 +139,13 @@ public class ExtensionClassImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

@@ -22,16 +22,16 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.*;
 
-@Path("/view")
+@Path("/view/{name}")
 
 
 @io.swagger.annotations.Api(description = "the view API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class ViewApi  {
    private final ViewApiService delegate = ViewApiServiceFactory.getViewApi();
 
     @GET
-    @Path("/{name}/api/json")
+    @Path("/api/json")
     
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve view details", response = ListView.class, authorizations = {
@@ -51,7 +51,7 @@ public class ViewApi  {
         return delegate.getView(name);
     }
     @GET
-    @Path("/{name}/config.xml")
+    @Path("/config.xml")
     
     @Produces({ "text/xml" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve view configuration", response = String.class, authorizations = {
@@ -71,7 +71,7 @@ public class ViewApi  {
         return delegate.getViewConfig(name);
     }
     @POST
-    @Path("/{name}/config.xml")
+    @Path("/config.xml")
     @Consumes({ "application/json" })
     @Produces({ "*/*" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Update view configuration", response = Void.class, authorizations = {

@@ -15,7 +15,7 @@ class Organisation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, name: str=None):  # noqa: E501
+    def __init__(self, _class=None, name=None):  # noqa: E501
         """Organisation - a model defined in OpenAPI
 
         :param _class: The _class of this Organisation.  # noqa: E501
@@ -48,7 +48,7 @@ class Organisation(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this Organisation.
 
 
@@ -58,7 +58,7 @@ class Organisation(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this Organisation.
 
 
@@ -69,7 +69,7 @@ class Organisation(Model):
         self.__class = _class
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this Organisation.
 
 
@@ -79,7 +79,7 @@ class Organisation(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this Organisation.
 
 

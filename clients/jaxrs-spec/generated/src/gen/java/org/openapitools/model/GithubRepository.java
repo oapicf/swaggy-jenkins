@@ -1,26 +1,32 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositorylinks;
 import org.openapitools.model.GithubRepositorypermissions;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class GithubRepository   {
+
+@JsonTypeName("GithubRepository")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class GithubRepository   {
   
-  private @Valid String propertyClass = null;
-  private @Valid GithubRepositorylinks links = null;
-  private @Valid String defaultBranch = null;
-  private @Valid String description = null;
-  private @Valid String name = null;
-  private @Valid GithubRepositorypermissions permissions = null;
-  private @Valid Boolean _private = null;
-  private @Valid String fullName = null;
+  private @Valid String propertyClass;
+  private @Valid GithubRepositorylinks links;
+  private @Valid String defaultBranch;
+  private @Valid String description;
+  private @Valid String name;
+  private @Valid GithubRepositorypermissions permissions;
+  private @Valid Boolean _private;
+  private @Valid String fullName;
 
   /**
    **/
@@ -30,16 +36,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public GithubRepository links(GithubRepositorylinks links) {
     this.links = links;
@@ -47,16 +57,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public GithubRepositorylinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(GithubRepositorylinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public GithubRepository defaultBranch(String defaultBranch) {
     this.defaultBranch = defaultBranch;
@@ -64,16 +78,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("defaultBranch")
   public String getDefaultBranch() {
     return defaultBranch;
   }
+
+  @JsonProperty("defaultBranch")
   public void setDefaultBranch(String defaultBranch) {
     this.defaultBranch = defaultBranch;
   }
 
-  /**
+/**
    **/
   public GithubRepository description(String description) {
     this.description = description;
@@ -81,16 +99,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
     return description;
   }
+
+  @JsonProperty("description")
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /**
+/**
    **/
   public GithubRepository name(String name) {
     this.name = name;
@@ -98,16 +120,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public GithubRepository permissions(GithubRepositorypermissions permissions) {
     this.permissions = permissions;
@@ -115,16 +141,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("permissions")
   public GithubRepositorypermissions getPermissions() {
     return permissions;
   }
+
+  @JsonProperty("permissions")
   public void setPermissions(GithubRepositorypermissions permissions) {
     this.permissions = permissions;
   }
 
-  /**
+/**
    **/
   public GithubRepository _private(Boolean _private) {
     this._private = _private;
@@ -132,16 +162,20 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("private")
   public Boolean getPrivate() {
     return _private;
   }
+
+  @JsonProperty("private")
   public void setPrivate(Boolean _private) {
     this._private = _private;
   }
 
-  /**
+/**
    **/
   public GithubRepository fullName(String fullName) {
     this.fullName = fullName;
@@ -149,18 +183,22 @@ public class GithubRepository   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
+
+  @JsonProperty("fullName")
   public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -168,14 +206,14 @@ public class GithubRepository   {
       return false;
     }
     GithubRepository githubRepository = (GithubRepository) o;
-    return Objects.equals(propertyClass, githubRepository.propertyClass) &&
-        Objects.equals(links, githubRepository.links) &&
-        Objects.equals(defaultBranch, githubRepository.defaultBranch) &&
-        Objects.equals(description, githubRepository.description) &&
-        Objects.equals(name, githubRepository.name) &&
-        Objects.equals(permissions, githubRepository.permissions) &&
-        Objects.equals(_private, githubRepository._private) &&
-        Objects.equals(fullName, githubRepository.fullName);
+    return Objects.equals(this.propertyClass, githubRepository.propertyClass) &&
+        Objects.equals(this.links, githubRepository.links) &&
+        Objects.equals(this.defaultBranch, githubRepository.defaultBranch) &&
+        Objects.equals(this.description, githubRepository.description) &&
+        Objects.equals(this.name, githubRepository.name) &&
+        Objects.equals(this.permissions, githubRepository.permissions) &&
+        Objects.equals(this._private, githubRepository._private) &&
+        Objects.equals(this.fullName, githubRepository.fullName);
   }
 
   @Override
@@ -204,11 +242,13 @@ public class GithubRepository   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

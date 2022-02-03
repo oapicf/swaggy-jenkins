@@ -40,3 +40,20 @@ type PipelineBranchesitemlatestRun struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertPipelineBranchesitemlatestRunRequired checks if the required fields are not zero-ed
+func AssertPipelineBranchesitemlatestRunRequired(obj PipelineBranchesitemlatestRun) error {
+	return nil
+}
+
+// AssertRecursePipelineBranchesitemlatestRunRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineBranchesitemlatestRun (e.g. [][]PipelineBranchesitemlatestRun), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineBranchesitemlatestRunRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineBranchesitemlatestRun, ok := obj.(PipelineBranchesitemlatestRun)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineBranchesitemlatestRunRequired(aPipelineBranchesitemlatestRun)
+	})
+}

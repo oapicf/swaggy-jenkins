@@ -2,27 +2,27 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class BranchImplpermissions   {
   
-  private Boolean create = null;
+  private Boolean create;
 
-  private Boolean read = null;
+  private Boolean read;
 
-  private Boolean start = null;
+  private Boolean start;
 
-  private Boolean stop = null;
+  private Boolean stop;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
 
   /**
@@ -117,7 +117,7 @@ public class BranchImplpermissions   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -155,7 +155,7 @@ public class BranchImplpermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.BranchImpllinks
+
 ## Properties
 
 Name | Type | Description | Notes

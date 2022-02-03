@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.GithubOrganizationlinks do
   ]
 
   @type t :: %__MODULE__{
-    :"repositories" => Link,
-    :"self" => Link,
-    :"_class" => String.t
+    :"repositories" => SwaggyJenkins.Model.Link.t | nil,
+    :"self" => SwaggyJenkins.Model.Link.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

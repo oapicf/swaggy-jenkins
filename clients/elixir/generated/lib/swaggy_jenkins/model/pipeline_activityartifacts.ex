@@ -16,10 +16,10 @@ defmodule SwaggyJenkins.Model.PipelineActivityartifacts do
   ]
 
   @type t :: %__MODULE__{
-    :"name" => String.t,
-    :"size" => integer(),
-    :"url" => String.t,
-    :"_class" => String.t
+    :"name" => String.t | nil,
+    :"size" => integer() | nil,
+    :"url" => String.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

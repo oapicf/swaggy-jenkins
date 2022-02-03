@@ -15,7 +15,7 @@ class GithubRepositorypermissions(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, admin: bool=None, push: bool=None, pull: bool=None, _class: str=None):  # noqa: E501
+    def __init__(self, admin=None, push=None, pull=None, _class=None):  # noqa: E501
         """GithubRepositorypermissions - a model defined in OpenAPI
 
         :param admin: The admin of this GithubRepositorypermissions.  # noqa: E501
@@ -58,7 +58,7 @@ class GithubRepositorypermissions(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def admin(self) -> bool:
+    def admin(self):
         """Gets the admin of this GithubRepositorypermissions.
 
 
@@ -68,7 +68,7 @@ class GithubRepositorypermissions(Model):
         return self._admin
 
     @admin.setter
-    def admin(self, admin: bool):
+    def admin(self, admin):
         """Sets the admin of this GithubRepositorypermissions.
 
 
@@ -79,7 +79,7 @@ class GithubRepositorypermissions(Model):
         self._admin = admin
 
     @property
-    def push(self) -> bool:
+    def push(self):
         """Gets the push of this GithubRepositorypermissions.
 
 
@@ -89,7 +89,7 @@ class GithubRepositorypermissions(Model):
         return self._push
 
     @push.setter
-    def push(self, push: bool):
+    def push(self, push):
         """Sets the push of this GithubRepositorypermissions.
 
 
@@ -100,7 +100,7 @@ class GithubRepositorypermissions(Model):
         self._push = push
 
     @property
-    def pull(self) -> bool:
+    def pull(self):
         """Gets the pull of this GithubRepositorypermissions.
 
 
@@ -110,7 +110,7 @@ class GithubRepositorypermissions(Model):
         return self._pull
 
     @pull.setter
-    def pull(self, pull: bool):
+    def pull(self, pull):
         """Sets the pull of this GithubRepositorypermissions.
 
 
@@ -121,7 +121,7 @@ class GithubRepositorypermissions(Model):
         self._pull = pull
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this GithubRepositorypermissions.
 
 
@@ -131,7 +131,7 @@ class GithubRepositorypermissions(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this GithubRepositorypermissions.
 
 

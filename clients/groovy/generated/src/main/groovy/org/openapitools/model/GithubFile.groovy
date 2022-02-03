@@ -7,8 +7,8 @@ import org.openapitools.model.GithubContent;
 
 @Canonical
 class GithubFile {
-    GithubContent content = null
-
-    String propertyClass = null
-
+    
+    GithubContent content
+    
+    String propertyClass
 }

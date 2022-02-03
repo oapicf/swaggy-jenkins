@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -13,17 +23,17 @@ import org.openapitools.model.HudsonMasterComputer;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class ComputerSet   {
   
-  private String propertyClass = null;
-  private Integer busyExecutors = null;
+  private String propertyClass;
+  private Integer busyExecutors;
   private List<HudsonMasterComputer> computer = new ArrayList<HudsonMasterComputer>();
-  private String displayName = null;
-  private Integer totalExecutors = null;
+  private String displayName;
+  private Integer totalExecutors;
 
   /**
-   **/
+   */
   public ComputerSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -40,7 +50,7 @@ public class ComputerSet   {
   }
 
   /**
-   **/
+   */
   public ComputerSet busyExecutors(Integer busyExecutors) {
     this.busyExecutors = busyExecutors;
     return this;
@@ -57,7 +67,7 @@ public class ComputerSet   {
   }
 
   /**
-   **/
+   */
   public ComputerSet computer(List<HudsonMasterComputer> computer) {
     this.computer = computer;
     return this;
@@ -74,7 +84,7 @@ public class ComputerSet   {
   }
 
   /**
-   **/
+   */
   public ComputerSet displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -91,7 +101,7 @@ public class ComputerSet   {
   }
 
   /**
-   **/
+   */
   public ComputerSet totalExecutors(Integer totalExecutors) {
     this.totalExecutors = totalExecutors;
     return this;
@@ -109,7 +119,7 @@ public class ComputerSet   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -147,7 +157,7 @@ public class ComputerSet   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

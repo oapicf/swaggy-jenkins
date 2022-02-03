@@ -14,7 +14,7 @@ type PipelineStepImpl struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *PipelineStepImpllinks `json:"_links,omitempty"`
+	Links PipelineStepImpllinks `json:"_links,omitempty"`
 
 	DisplayName string `json:"displayName,omitempty"`
 
@@ -22,11 +22,34 @@ type PipelineStepImpl struct {
 
 	Id string `json:"id,omitempty"`
 
-	Input *InputStepImpl `json:"input,omitempty"`
+	Input InputStepImpl `json:"input,omitempty"`
 
 	Result string `json:"result,omitempty"`
 
 	StartTime string `json:"startTime,omitempty"`
 
 	State string `json:"state,omitempty"`
+}
+
+// AssertPipelineStepImplRequired checks if the required fields are not zero-ed
+func AssertPipelineStepImplRequired(obj PipelineStepImpl) error {
+	if err := AssertPipelineStepImpllinksRequired(obj.Links); err != nil {
+		return err
+	}
+	if err := AssertInputStepImplRequired(obj.Input); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecursePipelineStepImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineStepImpl (e.g. [][]PipelineStepImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineStepImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineStepImpl, ok := obj.(PipelineStepImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineStepImplRequired(aPipelineStepImpl)
+	})
 }

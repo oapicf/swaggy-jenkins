@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -14,18 +24,18 @@ import org.openapitools.model.GithubRepository;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class GithubRepositories   {
   
-  private String propertyClass = null;
-  private GithubRepositorieslinks links = null;
+  private String propertyClass;
+  private GithubRepositorieslinks links;
   private List<GithubRepository> items = new ArrayList<GithubRepository>();
-  private Integer lastPage = null;
-  private Integer nextPage = null;
-  private Integer pageSize = null;
+  private Integer lastPage;
+  private Integer nextPage;
+  private Integer pageSize;
 
   /**
-   **/
+   */
   public GithubRepositories propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -42,7 +52,7 @@ public class GithubRepositories   {
   }
 
   /**
-   **/
+   */
   public GithubRepositories links(GithubRepositorieslinks links) {
     this.links = links;
     return this;
@@ -59,7 +69,7 @@ public class GithubRepositories   {
   }
 
   /**
-   **/
+   */
   public GithubRepositories items(List<GithubRepository> items) {
     this.items = items;
     return this;
@@ -76,7 +86,7 @@ public class GithubRepositories   {
   }
 
   /**
-   **/
+   */
   public GithubRepositories lastPage(Integer lastPage) {
     this.lastPage = lastPage;
     return this;
@@ -93,7 +103,7 @@ public class GithubRepositories   {
   }
 
   /**
-   **/
+   */
   public GithubRepositories nextPage(Integer nextPage) {
     this.nextPage = nextPage;
     return this;
@@ -110,7 +120,7 @@ public class GithubRepositories   {
   }
 
   /**
-   **/
+   */
   public GithubRepositories pageSize(Integer pageSize) {
     this.pageSize = pageSize;
     return this;
@@ -128,7 +138,7 @@ public class GithubRepositories   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -168,7 +178,7 @@ public class GithubRepositories   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class GithubRepository {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\GithubRepositorylinks $_links */
-    private $_links;
+    /** @var \app\Models\GithubRepositorylinks $links */
+    private $links;
 
-    /** @var string $default_branch */
-    private $default_branch;
+    /** @var string $defaultBranch */
+    private $defaultBranch;
 
     /** @var string $description */
     private $description;
@@ -30,7 +30,7 @@ class GithubRepository {
     /** @var bool $private */
     private $private;
 
-    /** @var string $full_name */
-    private $full_name;
+    /** @var string $fullName */
+    private $fullName;
 
 }

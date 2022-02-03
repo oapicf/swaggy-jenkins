@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import io.swagger.annotations.*;
 import java.io.InputStream;
 
+import org.apache.cxf.jaxrs.ext.PATCH;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
@@ -24,7 +25,7 @@ import javax.validation.constraints.*;
 @Api(description = "the jwt-auth API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-10T13:31:43.820Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-02T10:45:17.573327Z[Etc/UTC]")
 
 public class JwtAuthApi  {
 
@@ -37,7 +38,7 @@ public class JwtAuthApi  {
     @Path("/jwks/{key}")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve JSON Web Key", response = String.class, tags={ "blueOcean",  })
+    @ApiOperation(value = "", notes = "Retrieve JSON Web Key", response = String.class, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved JWT token", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -55,7 +56,7 @@ public class JwtAuthApi  {
         @ApiResponse(code = 200, message = "Successfully retrieved JWT token", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getJsonWebToken( @ApiParam(value = "Token expiry time in minutes, default: 30 minutes")  @QueryParam("expiryTimeInMins") Integer expiryTimeInMins,  @ApiParam(value = "Maximum token expiry time in minutes, default: 480 minutes")  @QueryParam("maxExpiryTimeInMins") Integer maxExpiryTimeInMins) {
+    public Response getJsonWebToken(@ApiParam(value = "Token expiry time in minutes, default: 30 minutes")  @QueryParam("expiryTimeInMins") Integer expiryTimeInMins, @ApiParam(value = "Maximum token expiry time in minutes, default: 480 minutes")  @QueryParam("maxExpiryTimeInMins") Integer maxExpiryTimeInMins) {
         return delegate.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins, securityContext);
     }
 }

@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -14,30 +24,30 @@ import org.openapitools.model.EmptyChangeLogSet;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class FreeStyleBuild   {
   
-  private String propertyClass = null;
-  private Integer number = null;
-  private String url = null;
+  private String propertyClass;
+  private Integer number;
+  private String url;
   private List<CauseAction> actions = new ArrayList<CauseAction>();
-  private Boolean building = null;
-  private String description = null;
-  private String displayName = null;
-  private Integer duration = null;
-  private Integer estimatedDuration = null;
-  private String executor = null;
-  private String fullDisplayName = null;
-  private String id = null;
-  private Boolean keepLog = null;
-  private Integer queueId = null;
-  private String result = null;
-  private Integer timestamp = null;
-  private String builtOn = null;
-  private EmptyChangeLogSet changeSet = null;
+  private Boolean building;
+  private String description;
+  private String displayName;
+  private Integer duration;
+  private Integer estimatedDuration;
+  private String executor;
+  private String fullDisplayName;
+  private String id;
+  private Boolean keepLog;
+  private Integer queueId;
+  private String result;
+  private Integer timestamp;
+  private String builtOn;
+  private EmptyChangeLogSet changeSet;
 
   /**
-   **/
+   */
   public FreeStyleBuild propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -54,7 +64,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild number(Integer number) {
     this.number = number;
     return this;
@@ -71,7 +81,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild url(String url) {
     this.url = url;
     return this;
@@ -88,7 +98,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild actions(List<CauseAction> actions) {
     this.actions = actions;
     return this;
@@ -105,7 +115,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild building(Boolean building) {
     this.building = building;
     return this;
@@ -122,7 +132,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild description(String description) {
     this.description = description;
     return this;
@@ -139,7 +149,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -156,7 +166,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild duration(Integer duration) {
     this.duration = duration;
     return this;
@@ -173,7 +183,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild estimatedDuration(Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
     return this;
@@ -190,7 +200,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild executor(String executor) {
     this.executor = executor;
     return this;
@@ -207,7 +217,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
     return this;
@@ -224,7 +234,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild id(String id) {
     this.id = id;
     return this;
@@ -241,7 +251,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild keepLog(Boolean keepLog) {
     this.keepLog = keepLog;
     return this;
@@ -258,7 +268,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild queueId(Integer queueId) {
     this.queueId = queueId;
     return this;
@@ -275,7 +285,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild result(String result) {
     this.result = result;
     return this;
@@ -292,7 +302,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild timestamp(Integer timestamp) {
     this.timestamp = timestamp;
     return this;
@@ -309,7 +319,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild builtOn(String builtOn) {
     this.builtOn = builtOn;
     return this;
@@ -326,7 +336,7 @@ public class FreeStyleBuild   {
   }
 
   /**
-   **/
+   */
   public FreeStyleBuild changeSet(EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;
     return this;
@@ -344,7 +354,7 @@ public class FreeStyleBuild   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -408,7 +418,7 @@ public class FreeStyleBuild   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

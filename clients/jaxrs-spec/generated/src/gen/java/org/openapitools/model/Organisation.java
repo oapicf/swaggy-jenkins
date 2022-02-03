@@ -1,18 +1,24 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class Organisation   {
+
+@JsonTypeName("Organisation")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class Organisation   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String name = null;
+  private @Valid String propertyClass;
+  private @Valid String name;
 
   /**
    **/
@@ -22,16 +28,20 @@ public class Organisation   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public Organisation name(String name) {
     this.name = name;
@@ -39,18 +49,22 @@ public class Organisation   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -58,8 +72,8 @@ public class Organisation   {
       return false;
     }
     Organisation organisation = (Organisation) o;
-    return Objects.equals(propertyClass, organisation.propertyClass) &&
-        Objects.equals(name, organisation.name);
+    return Objects.equals(this.propertyClass, organisation.propertyClass) &&
+        Objects.equals(this.name, organisation.name);
   }
 
   @Override
@@ -82,11 +96,13 @@ public class Organisation   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

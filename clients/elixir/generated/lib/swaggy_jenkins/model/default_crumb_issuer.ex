@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.DefaultCrumbIssuer do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"crumb" => String.t,
-    :"crumbRequestField" => String.t
+    :"_class" => String.t | nil,
+    :"crumb" => String.t | nil,
+    :"crumbRequestField" => String.t | nil
   }
 end
 

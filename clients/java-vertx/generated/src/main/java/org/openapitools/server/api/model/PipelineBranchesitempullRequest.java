@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.PipelineBranchesitempullRequestlinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineBranchesitempullRequest   {
   
-  private PipelineBranchesitempullRequestlinks links = null;
-  private String author = null;
-  private String id = null;
-  private String title = null;
-  private String url = null;
-  private String propertyClass = null;
+  private PipelineBranchesitempullRequestlinks links;
+  private String author;
+  private String id;
+  private String title;
+  private String url;
+  private String propertyClass;
 
   public PipelineBranchesitempullRequest () {
 

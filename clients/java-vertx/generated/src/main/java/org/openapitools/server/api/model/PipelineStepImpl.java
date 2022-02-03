@@ -6,18 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.InputStepImpl;
 import org.openapitools.server.api.model.PipelineStepImpllinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineStepImpl   {
   
-  private String propertyClass = null;
-  private PipelineStepImpllinks links = null;
-  private String displayName = null;
-  private Integer durationInMillis = null;
-  private String id = null;
-  private InputStepImpl input = null;
-  private String result = null;
-  private String startTime = null;
-  private String state = null;
+  private String propertyClass;
+  private PipelineStepImpllinks links;
+  private String displayName;
+  private Integer durationInMillis;
+  private String id;
+  private InputStepImpl input;
+  private String result;
+  private String startTime;
+  private String state;
 
   public PipelineStepImpl () {
 

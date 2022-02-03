@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.GithubScm do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => GithubScmlinks,
-    :"credentialId" => String.t,
-    :"id" => String.t,
-    :"uri" => String.t
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.GithubScmlinks.t | nil,
+    :"credentialId" => String.t | nil,
+    :"id" => String.t | nil,
+    :"uri" => String.t | nil
   }
 end
 

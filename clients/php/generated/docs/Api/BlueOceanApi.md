@@ -1,59 +1,64 @@
 # OpenAPI\Client\BlueOceanApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-[**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
-[**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
-[**getJsonWebKey**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} | 
-[**getJsonWebToken**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token | 
-[**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
-[**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
-[**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-[**getPipelineActivities**](BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-[**getPipelineBranch**](BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-[**getPipelineBranchRun**](BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-[**getPipelineBranches**](BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-[**getPipelineFolder**](BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-[**getPipelineFolderPipeline**](BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-[**getPipelineQueue**](BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-[**getPipelineRun**](BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-[**getPipelineRunLog**](BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-[**getPipelineRunNode**](BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-[**getPipelineRunNodeStep**](BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-[**getPipelineRunNodeStepLog**](BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-[**getPipelineRunNodeSteps**](BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-[**getPipelineRunNodes**](BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-[**getPipelineRuns**](BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**getPipelines**](BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
-[**getSCM**](BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
-[**getSCMOrganisationRepositories**](BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-[**getSCMOrganisationRepository**](BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-[**getSCMOrganisations**](BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-[**getUser**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
-[**getUserFavorites**](BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites | 
-[**getUsers**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ | 
-[**postPipelineRun**](BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-[**postPipelineRuns**](BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**putPipelineFavorite**](BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-[**putPipelineRun**](BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-[**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
-[**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
+[**deletePipelineQueueItem()**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+[**getAuthenticatedUser()**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
+[**getClasses()**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
+[**getJsonWebKey()**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} | 
+[**getJsonWebToken()**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token | 
+[**getOrganisation()**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
+[**getOrganisations()**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
+[**getPipeline()**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+[**getPipelineActivities()**](BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+[**getPipelineBranch()**](BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+[**getPipelineBranchRun()**](BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+[**getPipelineBranches()**](BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+[**getPipelineFolder()**](BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+[**getPipelineFolderPipeline()**](BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+[**getPipelineQueue()**](BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+[**getPipelineRun()**](BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+[**getPipelineRunLog()**](BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+[**getPipelineRunNode()**](BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+[**getPipelineRunNodeStep()**](BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+[**getPipelineRunNodeStepLog()**](BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+[**getPipelineRunNodeSteps()**](BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+[**getPipelineRunNodes()**](BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+[**getPipelineRuns()**](BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**getPipelines()**](BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
+[**getSCM()**](BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
+[**getSCMOrganisationRepositories()**](BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+[**getSCMOrganisationRepository()**](BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+[**getSCMOrganisations()**](BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+[**getUser()**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
+[**getUserFavorites()**](BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites | 
+[**getUsers()**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ | 
+[**postPipelineRun()**](BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+[**postPipelineRuns()**](BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**putPipelineFavorite()**](BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+[**putPipelineRun()**](BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+[**search()**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
+[**searchClasses()**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 
 
-# **deletePipelineQueueItem**
-> deletePipelineQueueItem($organization, $pipeline, $queue)
+## `deletePipelineQueueItem()`
+
+```php
+deletePipelineQueueItem($organization, $pipeline, $queue)
+```
 
 
 
 Delete queue item from an organization pipeline queue
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -76,7 +81,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->deletePipelineQueueItem: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -97,22 +101,29 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getAuthenticatedUser**
-> \OpenAPI\Client\Model\User getAuthenticatedUser($organization)
+## `getAuthenticatedUser()`
+
+```php
+getAuthenticatedUser($organization): \OpenAPI\Client\Model\User
+```
 
 
 
 Retrieve authenticated user details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -134,7 +145,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getAuthenticatedUser: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -153,22 +163,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getClasses**
-> string getClasses($class)
+## `getClasses()`
+
+```php
+getClasses($class): string
+```
 
 
 
 Get a list of class names supported by a given class
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -190,7 +207,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getClasses: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -209,22 +225,30 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getJsonWebKey**
-> string getJsonWebKey($key)
+## `getJsonWebKey()`
+
+```php
+getJsonWebKey($key): string
+```
 
 
 
 Retrieve JSON Web Key
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new OpenAPI\Client\Api\BlueOceanApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -239,7 +263,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getJsonWebKey: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -258,22 +281,30 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getJsonWebToken**
-> string getJsonWebToken($expiry_time_in_mins, $max_expiry_time_in_mins)
+## `getJsonWebToken()`
+
+```php
+getJsonWebToken($expiry_time_in_mins, $max_expiry_time_in_mins): string
+```
 
 
 
 Retrieve JSON Web Token
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
+
 
 $apiInstance = new OpenAPI\Client\Api\BlueOceanApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -289,7 +320,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getJsonWebToken: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -309,22 +339,29 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getOrganisation**
-> \OpenAPI\Client\Model\Organisation getOrganisation($organization)
+## `getOrganisation()`
+
+```php
+getOrganisation($organization): \OpenAPI\Client\Model\Organisation
+```
 
 
 
 Retrieve organization details
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -346,7 +383,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getOrganisation: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -365,22 +401,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getOrganisations**
-> \OpenAPI\Client\Model\Organisations getOrganisations()
+## `getOrganisations()`
+
+```php
+getOrganisations(): \OpenAPI\Client\Model\Organisation[]
+```
 
 
 
 Retrieve all organizations details
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -401,15 +444,15 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getOrganisations: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Organisations**](../Model/Organisations.md)
+[**\OpenAPI\Client\Model\Organisation[]**](../Model/Organisation.md)
 
 ### Authorization
 
@@ -417,22 +460,29 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipeline**
-> \OpenAPI\Client\Model\Pipeline getPipeline($organization, $pipeline)
+## `getPipeline()`
+
+```php
+getPipeline($organization, $pipeline): \OpenAPI\Client\Model\Pipeline
+```
 
 
 
 Retrieve pipeline details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -455,7 +505,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipeline: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -475,22 +524,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineActivities**
-> \OpenAPI\Client\Model\PipelineActivities getPipelineActivities($organization, $pipeline)
+## `getPipelineActivities()`
+
+```php
+getPipelineActivities($organization, $pipeline): \OpenAPI\Client\Model\PipelineActivity[]
+```
 
 
 
 Retrieve all activities details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -513,7 +569,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineActivities: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -525,7 +580,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PipelineActivities**](../Model/PipelineActivities.md)
+[**\OpenAPI\Client\Model\PipelineActivity[]**](../Model/PipelineActivity.md)
 
 ### Authorization
 
@@ -533,22 +588,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineBranch**
-> \OpenAPI\Client\Model\BranchImpl getPipelineBranch($organization, $pipeline, $branch)
+## `getPipelineBranch()`
+
+```php
+getPipelineBranch($organization, $pipeline, $branch): \OpenAPI\Client\Model\BranchImpl
+```
 
 
 
 Retrieve branch details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -572,7 +634,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineBranch: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -593,22 +654,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineBranchRun**
-> \OpenAPI\Client\Model\PipelineRun getPipelineBranchRun($organization, $pipeline, $branch, $run)
+## `getPipelineBranchRun()`
+
+```php
+getPipelineBranchRun($organization, $pipeline, $branch, $run): \OpenAPI\Client\Model\PipelineRun
+```
 
 
 
 Retrieve branch run details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -633,7 +701,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineBranchRun: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -655,22 +722,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineBranches**
-> \OpenAPI\Client\Model\MultibranchPipeline getPipelineBranches($organization, $pipeline)
+## `getPipelineBranches()`
+
+```php
+getPipelineBranches($organization, $pipeline): \OpenAPI\Client\Model\MultibranchPipeline
+```
 
 
 
 Retrieve all branches details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -693,7 +767,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineBranches: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -713,22 +786,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineFolder**
-> \OpenAPI\Client\Model\PipelineFolderImpl getPipelineFolder($organization, $folder)
+## `getPipelineFolder()`
+
+```php
+getPipelineFolder($organization, $folder): \OpenAPI\Client\Model\PipelineFolderImpl
+```
 
 
 
 Retrieve pipeline folder for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -751,7 +831,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineFolder: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -771,22 +850,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineFolderPipeline**
-> \OpenAPI\Client\Model\PipelineImpl getPipelineFolderPipeline($organization, $pipeline, $folder)
+## `getPipelineFolderPipeline()`
+
+```php
+getPipelineFolderPipeline($organization, $pipeline, $folder): \OpenAPI\Client\Model\PipelineImpl
+```
 
 
 
 Retrieve pipeline details for an organization folder
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -810,7 +896,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineFolderPipeline: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -831,22 +916,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineQueue**
-> \OpenAPI\Client\Model\PipelineQueue getPipelineQueue($organization, $pipeline)
+## `getPipelineQueue()`
+
+```php
+getPipelineQueue($organization, $pipeline): \OpenAPI\Client\Model\QueueItemImpl[]
+```
 
 
 
 Retrieve queue details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -869,7 +961,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineQueue: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -881,7 +972,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PipelineQueue**](../Model/PipelineQueue.md)
+[**\OpenAPI\Client\Model\QueueItemImpl[]**](../Model/QueueItemImpl.md)
 
 ### Authorization
 
@@ -889,22 +980,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRun**
-> \OpenAPI\Client\Model\PipelineRun getPipelineRun($organization, $pipeline, $run)
+## `getPipelineRun()`
+
+```php
+getPipelineRun($organization, $pipeline, $run): \OpenAPI\Client\Model\PipelineRun
+```
 
 
 
 Retrieve run details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -928,7 +1026,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRun: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -949,22 +1046,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRunLog**
-> string getPipelineRunLog($organization, $pipeline, $run, $start, $download)
+## `getPipelineRunLog()`
+
+```php
+getPipelineRunLog($organization, $pipeline, $run, $start, $download): string
+```
 
 
 
 Get log for a pipeline run
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -990,7 +1094,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRunLog: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1013,22 +1116,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRunNode**
-> \OpenAPI\Client\Model\PipelineRunNode getPipelineRunNode($organization, $pipeline, $run, $node)
+## `getPipelineRunNode()`
+
+```php
+getPipelineRunNode($organization, $pipeline, $run, $node): \OpenAPI\Client\Model\PipelineRunNode
+```
 
 
 
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1053,7 +1163,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRunNode: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1075,22 +1184,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRunNodeStep**
-> \OpenAPI\Client\Model\PipelineStepImpl getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step)
+## `getPipelineRunNodeStep()`
+
+```php
+getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step): \OpenAPI\Client\Model\PipelineStepImpl
+```
 
 
 
 Retrieve run node details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1116,7 +1232,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRunNodeStep: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1139,22 +1254,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRunNodeStepLog**
-> string getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step)
+## `getPipelineRunNodeStepLog()`
+
+```php
+getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step): string
+```
 
 
 
 Get log for a pipeline run node step
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1180,7 +1302,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRunNodeStepLog: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1203,22 +1324,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRunNodeSteps**
-> \OpenAPI\Client\Model\PipelineRunNodeSteps getPipelineRunNodeSteps($organization, $pipeline, $run, $node)
+## `getPipelineRunNodeSteps()`
+
+```php
+getPipelineRunNodeSteps($organization, $pipeline, $run, $node): \OpenAPI\Client\Model\PipelineStepImpl[]
+```
 
 
 
 Retrieve run node steps details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1243,7 +1371,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRunNodeSteps: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1257,7 +1384,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PipelineRunNodeSteps**](../Model/PipelineRunNodeSteps.md)
+[**\OpenAPI\Client\Model\PipelineStepImpl[]**](../Model/PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1265,22 +1392,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRunNodes**
-> \OpenAPI\Client\Model\PipelineRunNodes getPipelineRunNodes($organization, $pipeline, $run)
+## `getPipelineRunNodes()`
+
+```php
+getPipelineRunNodes($organization, $pipeline, $run): \OpenAPI\Client\Model\PipelineRunNode[]
+```
 
 
 
 Retrieve run nodes details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1304,7 +1438,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRunNodes: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1317,7 +1450,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PipelineRunNodes**](../Model/PipelineRunNodes.md)
+[**\OpenAPI\Client\Model\PipelineRunNode[]**](../Model/PipelineRunNode.md)
 
 ### Authorization
 
@@ -1325,22 +1458,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelineRuns**
-> \OpenAPI\Client\Model\PipelineRuns getPipelineRuns($organization, $pipeline)
+## `getPipelineRuns()`
+
+```php
+getPipelineRuns($organization, $pipeline): \OpenAPI\Client\Model\PipelineRun[]
+```
 
 
 
 Retrieve all runs details for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1363,7 +1503,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelineRuns: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1375,7 +1514,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\PipelineRuns**](../Model/PipelineRuns.md)
+[**\OpenAPI\Client\Model\PipelineRun[]**](../Model/PipelineRun.md)
 
 ### Authorization
 
@@ -1383,22 +1522,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getPipelines**
-> \OpenAPI\Client\Model\Pipelines getPipelines($organization)
+## `getPipelines()`
+
+```php
+getPipelines($organization): \OpenAPI\Client\Model\Pipeline[]
+```
 
 
 
 Retrieve all pipelines details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1420,7 +1566,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getPipelines: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1431,7 +1576,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Pipelines**](../Model/Pipelines.md)
+[**\OpenAPI\Client\Model\Pipeline[]**](../Model/Pipeline.md)
 
 ### Authorization
 
@@ -1439,22 +1584,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getSCM**
-> \OpenAPI\Client\Model\GithubScm getSCM($organization, $scm)
+## `getSCM()`
+
+```php
+getSCM($organization, $scm): \OpenAPI\Client\Model\GithubScm
+```
 
 
 
 Retrieve SCM details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1477,7 +1629,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getSCM: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1497,22 +1648,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getSCMOrganisationRepositories**
-> \OpenAPI\Client\Model\ScmOrganisations getSCMOrganisationRepositories($organization, $scm, $scm_organisation, $credential_id, $page_size, $page_number)
+## `getSCMOrganisationRepositories()`
+
+```php
+getSCMOrganisationRepositories($organization, $scm, $scm_organisation, $credential_id, $page_size, $page_number): \OpenAPI\Client\Model\GithubOrganization[]
+```
 
 
 
 Retrieve SCM organization repositories details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1539,7 +1697,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getSCMOrganisationRepositories: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1555,7 +1712,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+[**\OpenAPI\Client\Model\GithubOrganization[]**](../Model/GithubOrganization.md)
 
 ### Authorization
 
@@ -1563,22 +1720,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getSCMOrganisationRepository**
-> \OpenAPI\Client\Model\ScmOrganisations getSCMOrganisationRepository($organization, $scm, $scm_organisation, $repository, $credential_id)
+## `getSCMOrganisationRepository()`
+
+```php
+getSCMOrganisationRepository($organization, $scm, $scm_organisation, $repository, $credential_id): \OpenAPI\Client\Model\GithubOrganization[]
+```
 
 
 
 Retrieve SCM organization repository details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1604,7 +1768,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getSCMOrganisationRepository: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1619,7 +1782,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+[**\OpenAPI\Client\Model\GithubOrganization[]**](../Model/GithubOrganization.md)
 
 ### Authorization
 
@@ -1627,22 +1790,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getSCMOrganisations**
-> \OpenAPI\Client\Model\ScmOrganisations getSCMOrganisations($organization, $scm, $credential_id)
+## `getSCMOrganisations()`
+
+```php
+getSCMOrganisations($organization, $scm, $credential_id): \OpenAPI\Client\Model\GithubOrganization[]
+```
 
 
 
 Retrieve SCM organizations details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1666,7 +1836,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getSCMOrganisations: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1679,7 +1848,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\ScmOrganisations**](../Model/ScmOrganisations.md)
+[**\OpenAPI\Client\Model\GithubOrganization[]**](../Model/GithubOrganization.md)
 
 ### Authorization
 
@@ -1687,22 +1856,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getUser**
-> \OpenAPI\Client\Model\User getUser($organization, $user)
+## `getUser()`
+
+```php
+getUser($organization, $user): \OpenAPI\Client\Model\User
+```
 
 
 
 Retrieve user details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1725,7 +1901,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getUser: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1745,22 +1920,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getUserFavorites**
-> \OpenAPI\Client\Model\UserFavorites getUserFavorites($user)
+## `getUserFavorites()`
+
+```php
+getUserFavorites($user): \OpenAPI\Client\Model\FavoriteImpl[]
+```
 
 
 
 Retrieve user favorites details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1782,7 +1964,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getUserFavorites: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1793,7 +1974,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\UserFavorites**](../Model/UserFavorites.md)
+[**\OpenAPI\Client\Model\FavoriteImpl[]**](../Model/FavoriteImpl.md)
 
 ### Authorization
 
@@ -1801,22 +1982,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getUsers**
-> \OpenAPI\Client\Model\User getUsers($organization)
+## `getUsers()`
+
+```php
+getUsers($organization): \OpenAPI\Client\Model\User
+```
 
 
 
 Retrieve users details for an organization
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1838,7 +2026,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->getUsers: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1857,22 +2044,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **postPipelineRun**
-> \OpenAPI\Client\Model\QueueItemImpl postPipelineRun($organization, $pipeline, $run)
+## `postPipelineRun()`
+
+```php
+postPipelineRun($organization, $pipeline, $run): \OpenAPI\Client\Model\QueueItemImpl
+```
 
 
 
 Replay an organization pipeline run
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1896,7 +2090,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->postPipelineRun: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1917,22 +2110,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **postPipelineRuns**
-> \OpenAPI\Client\Model\QueueItemImpl postPipelineRuns($organization, $pipeline)
+## `postPipelineRuns()`
+
+```php
+postPipelineRuns($organization, $pipeline): \OpenAPI\Client\Model\QueueItemImpl
+```
 
 
 
 Start a build for an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -1955,7 +2155,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->postPipelineRuns: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -1975,22 +2174,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **putPipelineFavorite**
-> \OpenAPI\Client\Model\FavoriteImpl putPipelineFavorite($organization, $pipeline, $body)
+## `putPipelineFavorite()`
+
+```php
+putPipelineFavorite($organization, $pipeline, $unknown_base_type): \OpenAPI\Client\Model\FavoriteImpl
+```
 
 
 
 Favorite/unfavorite a pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -2006,15 +2212,14 @@ $apiInstance = new OpenAPI\Client\Api\BlueOceanApi(
 );
 $organization = 'organization_example'; // string | Name of the organization
 $pipeline = 'pipeline_example'; // string | Name of the pipeline
-$body = new \OpenAPI\Client\Model\Body(); // \OpenAPI\Client\Model\Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+$unknown_base_type = new \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE(); // \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 try {
-    $result = $apiInstance->putPipelineFavorite($organization, $pipeline, $body);
+    $result = $apiInstance->putPipelineFavorite($organization, $pipeline, $unknown_base_type);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->putPipelineFavorite: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -2023,7 +2228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
- **body** | [**\OpenAPI\Client\Model\Body**](../Model/Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite |
+ **unknown_base_type** | [**\OpenAPI\Client\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 
@@ -2035,22 +2240,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **putPipelineRun**
-> \OpenAPI\Client\Model\PipelineRun putPipelineRun($organization, $pipeline, $run, $blocking, $time_out_in_secs)
+## `putPipelineRun()`
+
+```php
+putPipelineRun($organization, $pipeline, $run, $blocking, $time_out_in_secs): \OpenAPI\Client\Model\PipelineRun
+```
 
 
 
 Stop a build of an organization pipeline
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -2076,7 +2288,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->putPipelineRun: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -2099,22 +2310,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **search**
-> string search($q)
+## `search()`
+
+```php
+search($q): string
+```
 
 
 
 Search for any resource details
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -2136,7 +2354,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->search: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -2155,22 +2372,29 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **searchClasses**
-> string searchClasses($q)
+## `searchClasses()`
+
+```php
+searchClasses($q): string
+```
 
 
 
 Get classes details
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 // Configure HTTP basic authorization: jenkins_auth
 $config = OpenAPI\Client\Configuration::getDefaultConfiguration()
@@ -2192,7 +2416,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->searchClasses: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -2211,8 +2434,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)

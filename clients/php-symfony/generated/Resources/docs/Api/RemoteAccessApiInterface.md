@@ -34,7 +34,7 @@ services:
     acme.my_bundle.api.remoteAccess:
         class: Acme\MyBundle\Api\RemoteAccessApi
         tags:
-            - { name: "open_apiserver.api", api: "remoteAccess" }
+            - { name: "open_api_server.api", api: "remoteAccess" }
     # ...
 ```
 

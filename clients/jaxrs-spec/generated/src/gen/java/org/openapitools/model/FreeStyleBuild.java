@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseAction;
@@ -7,32 +9,36 @@ import org.openapitools.model.EmptyChangeLogSet;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class FreeStyleBuild   {
+
+@JsonTypeName("FreeStyleBuild")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class FreeStyleBuild   {
   
-  private @Valid String propertyClass = null;
-  private @Valid Integer number = null;
-  private @Valid String url = null;
+  private @Valid String propertyClass;
+  private @Valid Integer number;
+  private @Valid String url;
   private @Valid List<CauseAction> actions = new ArrayList<CauseAction>();
-  private @Valid Boolean building = null;
-  private @Valid String description = null;
-  private @Valid String displayName = null;
-  private @Valid Integer duration = null;
-  private @Valid Integer estimatedDuration = null;
-  private @Valid String executor = null;
-  private @Valid String fullDisplayName = null;
-  private @Valid String id = null;
-  private @Valid Boolean keepLog = null;
-  private @Valid Integer queueId = null;
-  private @Valid String result = null;
-  private @Valid Integer timestamp = null;
-  private @Valid String builtOn = null;
-  private @Valid EmptyChangeLogSet changeSet = null;
+  private @Valid Boolean building;
+  private @Valid String description;
+  private @Valid String displayName;
+  private @Valid Integer duration;
+  private @Valid Integer estimatedDuration;
+  private @Valid String executor;
+  private @Valid String fullDisplayName;
+  private @Valid String id;
+  private @Valid Boolean keepLog;
+  private @Valid Integer queueId;
+  private @Valid String result;
+  private @Valid Integer timestamp;
+  private @Valid String builtOn;
+  private @Valid EmptyChangeLogSet changeSet;
 
   /**
    **/
@@ -42,16 +48,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild number(Integer number) {
     this.number = number;
@@ -59,16 +69,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("number")
   public Integer getNumber() {
     return number;
   }
+
+  @JsonProperty("number")
   public void setNumber(Integer number) {
     this.number = number;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild url(String url) {
     this.url = url;
@@ -76,16 +90,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
     return url;
   }
+
+  @JsonProperty("url")
   public void setUrl(String url) {
     this.url = url;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild actions(List<CauseAction> actions) {
     this.actions = actions;
@@ -93,16 +111,36 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<CauseAction> getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(List<CauseAction> actions) {
     this.actions = actions;
   }
 
-  /**
+  public FreeStyleBuild addActionsItem(CauseAction actionsItem) {
+    if (this.actions == null) {
+      this.actions = new ArrayList<CauseAction>();
+    }
+
+    this.actions.add(actionsItem);
+    return this;
+  }
+
+  public FreeStyleBuild removeActionsItem(CauseAction actionsItem) {
+    if (actionsItem != null && this.actions != null) {
+      this.actions.remove(actionsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public FreeStyleBuild building(Boolean building) {
     this.building = building;
@@ -110,16 +148,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("building")
   public Boolean getBuilding() {
     return building;
   }
+
+  @JsonProperty("building")
   public void setBuilding(Boolean building) {
     this.building = building;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild description(String description) {
     this.description = description;
@@ -127,16 +169,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
     return description;
   }
+
+  @JsonProperty("description")
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild displayName(String displayName) {
     this.displayName = displayName;
@@ -144,16 +190,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild duration(Integer duration) {
     this.duration = duration;
@@ -161,16 +211,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("duration")
   public Integer getDuration() {
     return duration;
   }
+
+  @JsonProperty("duration")
   public void setDuration(Integer duration) {
     this.duration = duration;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild estimatedDuration(Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
@@ -178,16 +232,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDuration")
   public Integer getEstimatedDuration() {
     return estimatedDuration;
   }
+
+  @JsonProperty("estimatedDuration")
   public void setEstimatedDuration(Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild executor(String executor) {
     this.executor = executor;
@@ -195,16 +253,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("executor")
   public String getExecutor() {
     return executor;
   }
+
+  @JsonProperty("executor")
   public void setExecutor(String executor) {
     this.executor = executor;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
@@ -212,16 +274,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
     return fullDisplayName;
   }
+
+  @JsonProperty("fullDisplayName")
   public void setFullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild id(String id) {
     this.id = id;
@@ -229,16 +295,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild keepLog(Boolean keepLog) {
     this.keepLog = keepLog;
@@ -246,16 +316,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("keepLog")
   public Boolean getKeepLog() {
     return keepLog;
   }
+
+  @JsonProperty("keepLog")
   public void setKeepLog(Boolean keepLog) {
     this.keepLog = keepLog;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild queueId(Integer queueId) {
     this.queueId = queueId;
@@ -263,16 +337,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("queueId")
   public Integer getQueueId() {
     return queueId;
   }
+
+  @JsonProperty("queueId")
   public void setQueueId(Integer queueId) {
     this.queueId = queueId;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild result(String result) {
     this.result = result;
@@ -280,16 +358,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("result")
   public String getResult() {
     return result;
   }
+
+  @JsonProperty("result")
   public void setResult(String result) {
     this.result = result;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild timestamp(Integer timestamp) {
     this.timestamp = timestamp;
@@ -297,16 +379,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("timestamp")
   public Integer getTimestamp() {
     return timestamp;
   }
+
+  @JsonProperty("timestamp")
   public void setTimestamp(Integer timestamp) {
     this.timestamp = timestamp;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild builtOn(String builtOn) {
     this.builtOn = builtOn;
@@ -314,16 +400,20 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("builtOn")
   public String getBuiltOn() {
     return builtOn;
   }
+
+  @JsonProperty("builtOn")
   public void setBuiltOn(String builtOn) {
     this.builtOn = builtOn;
   }
 
-  /**
+/**
    **/
   public FreeStyleBuild changeSet(EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;
@@ -331,18 +421,22 @@ public class FreeStyleBuild   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("changeSet")
   public EmptyChangeLogSet getChangeSet() {
     return changeSet;
   }
+
+  @JsonProperty("changeSet")
   public void setChangeSet(EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -350,24 +444,24 @@ public class FreeStyleBuild   {
       return false;
     }
     FreeStyleBuild freeStyleBuild = (FreeStyleBuild) o;
-    return Objects.equals(propertyClass, freeStyleBuild.propertyClass) &&
-        Objects.equals(number, freeStyleBuild.number) &&
-        Objects.equals(url, freeStyleBuild.url) &&
-        Objects.equals(actions, freeStyleBuild.actions) &&
-        Objects.equals(building, freeStyleBuild.building) &&
-        Objects.equals(description, freeStyleBuild.description) &&
-        Objects.equals(displayName, freeStyleBuild.displayName) &&
-        Objects.equals(duration, freeStyleBuild.duration) &&
-        Objects.equals(estimatedDuration, freeStyleBuild.estimatedDuration) &&
-        Objects.equals(executor, freeStyleBuild.executor) &&
-        Objects.equals(fullDisplayName, freeStyleBuild.fullDisplayName) &&
-        Objects.equals(id, freeStyleBuild.id) &&
-        Objects.equals(keepLog, freeStyleBuild.keepLog) &&
-        Objects.equals(queueId, freeStyleBuild.queueId) &&
-        Objects.equals(result, freeStyleBuild.result) &&
-        Objects.equals(timestamp, freeStyleBuild.timestamp) &&
-        Objects.equals(builtOn, freeStyleBuild.builtOn) &&
-        Objects.equals(changeSet, freeStyleBuild.changeSet);
+    return Objects.equals(this.propertyClass, freeStyleBuild.propertyClass) &&
+        Objects.equals(this.number, freeStyleBuild.number) &&
+        Objects.equals(this.url, freeStyleBuild.url) &&
+        Objects.equals(this.actions, freeStyleBuild.actions) &&
+        Objects.equals(this.building, freeStyleBuild.building) &&
+        Objects.equals(this.description, freeStyleBuild.description) &&
+        Objects.equals(this.displayName, freeStyleBuild.displayName) &&
+        Objects.equals(this.duration, freeStyleBuild.duration) &&
+        Objects.equals(this.estimatedDuration, freeStyleBuild.estimatedDuration) &&
+        Objects.equals(this.executor, freeStyleBuild.executor) &&
+        Objects.equals(this.fullDisplayName, freeStyleBuild.fullDisplayName) &&
+        Objects.equals(this.id, freeStyleBuild.id) &&
+        Objects.equals(this.keepLog, freeStyleBuild.keepLog) &&
+        Objects.equals(this.queueId, freeStyleBuild.queueId) &&
+        Objects.equals(this.result, freeStyleBuild.result) &&
+        Objects.equals(this.timestamp, freeStyleBuild.timestamp) &&
+        Objects.equals(this.builtOn, freeStyleBuild.builtOn) &&
+        Objects.equals(this.changeSet, freeStyleBuild.changeSet);
   }
 
   @Override
@@ -406,11 +500,13 @@ public class FreeStyleBuild   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

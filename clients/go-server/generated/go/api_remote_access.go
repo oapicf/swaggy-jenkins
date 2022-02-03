@@ -11,125 +11,525 @@
 package openapi
 
 import (
+	"encoding/json"
 	"net/http"
+	"strings"
+
+	"github.com/gorilla/mux"
 )
 
+// RemoteAccessApiController binds http requests to an api service and writes the service results to the http response
+type RemoteAccessApiController struct {
+	service RemoteAccessApiServicer
+	errorHandler ErrorHandler
+}
+
+// RemoteAccessApiOption for how the controller is set up.
+type RemoteAccessApiOption func(*RemoteAccessApiController)
+
+// WithRemoteAccessApiErrorHandler inject ErrorHandler into controller
+func WithRemoteAccessApiErrorHandler(h ErrorHandler) RemoteAccessApiOption {
+	return func(c *RemoteAccessApiController) {
+		c.errorHandler = h
+	}
+}
+
+// NewRemoteAccessApiController creates a default api controller
+func NewRemoteAccessApiController(s RemoteAccessApiServicer, opts ...RemoteAccessApiOption) Router {
+	controller := &RemoteAccessApiController{
+		service:      s,
+		errorHandler: DefaultErrorHandler,
+	}
+
+	for _, opt := range opts {
+		opt(controller)
+	}
+
+	return controller
+}
+
+// Routes returns all of the api route for the RemoteAccessApiController
+func (c *RemoteAccessApiController) Routes() Routes {
+	return Routes{ 
+		{
+			"GetComputer",
+			strings.ToUpper("Get"),
+			"/computer/api/json",
+			c.GetComputer,
+		},
+		{
+			"GetJenkins",
+			strings.ToUpper("Get"),
+			"/api/json",
+			c.GetJenkins,
+		},
+		{
+			"GetJob",
+			strings.ToUpper("Get"),
+			"/job/{name}/api/json",
+			c.GetJob,
+		},
+		{
+			"GetJobConfig",
+			strings.ToUpper("Get"),
+			"/job/{name}/config.xml",
+			c.GetJobConfig,
+		},
+		{
+			"GetJobLastBuild",
+			strings.ToUpper("Get"),
+			"/job/{name}/lastBuild/api/json",
+			c.GetJobLastBuild,
+		},
+		{
+			"GetJobProgressiveText",
+			strings.ToUpper("Get"),
+			"/job/{name}/{number}/logText/progressiveText",
+			c.GetJobProgressiveText,
+		},
+		{
+			"GetQueue",
+			strings.ToUpper("Get"),
+			"/queue/api/json",
+			c.GetQueue,
+		},
+		{
+			"GetQueueItem",
+			strings.ToUpper("Get"),
+			"/queue/item/{number}/api/json",
+			c.GetQueueItem,
+		},
+		{
+			"GetView",
+			strings.ToUpper("Get"),
+			"/view/{name}/api/json",
+			c.GetView,
+		},
+		{
+			"GetViewConfig",
+			strings.ToUpper("Get"),
+			"/view/{name}/config.xml",
+			c.GetViewConfig,
+		},
+		{
+			"HeadJenkins",
+			strings.ToUpper("Head"),
+			"/api/json",
+			c.HeadJenkins,
+		},
+		{
+			"PostCreateItem",
+			strings.ToUpper("Post"),
+			"/createItem",
+			c.PostCreateItem,
+		},
+		{
+			"PostCreateView",
+			strings.ToUpper("Post"),
+			"/createView",
+			c.PostCreateView,
+		},
+		{
+			"PostJobBuild",
+			strings.ToUpper("Post"),
+			"/job/{name}/build",
+			c.PostJobBuild,
+		},
+		{
+			"PostJobConfig",
+			strings.ToUpper("Post"),
+			"/job/{name}/config.xml",
+			c.PostJobConfig,
+		},
+		{
+			"PostJobDelete",
+			strings.ToUpper("Post"),
+			"/job/{name}/doDelete",
+			c.PostJobDelete,
+		},
+		{
+			"PostJobDisable",
+			strings.ToUpper("Post"),
+			"/job/{name}/disable",
+			c.PostJobDisable,
+		},
+		{
+			"PostJobEnable",
+			strings.ToUpper("Post"),
+			"/job/{name}/enable",
+			c.PostJobEnable,
+		},
+		{
+			"PostJobLastBuildStop",
+			strings.ToUpper("Post"),
+			"/job/{name}/lastBuild/stop",
+			c.PostJobLastBuildStop,
+		},
+		{
+			"PostViewConfig",
+			strings.ToUpper("Post"),
+			"/view/{name}/config.xml",
+			c.PostViewConfig,
+		},
+	}
+}
+
 // GetComputer - 
-func GetComputer(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetComputer(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	depthParam, err := parseInt32Parameter(query.Get("depth"), true)
+	if err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.GetComputer(r.Context(), depthParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJenkins - 
-func GetJenkins(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetJenkins(w http.ResponseWriter, r *http.Request) {
+	result, err := c.service.GetJenkins(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJob - 
-func GetJob(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetJob(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	result, err := c.service.GetJob(r.Context(), nameParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJobConfig - 
-func GetJobConfig(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetJobConfig(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	result, err := c.service.GetJobConfig(r.Context(), nameParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJobLastBuild - 
-func GetJobLastBuild(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetJobLastBuild(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	result, err := c.service.GetJobLastBuild(r.Context(), nameParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetJobProgressiveText - 
-func GetJobProgressiveText(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetJobProgressiveText(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	nameParam := params["name"]
+	
+	numberParam := params["number"]
+	
+	startParam := query.Get("start")
+	result, err := c.service.GetJobProgressiveText(r.Context(), nameParam, numberParam, startParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetQueue - 
-func GetQueue(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetQueue(w http.ResponseWriter, r *http.Request) {
+	result, err := c.service.GetQueue(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetQueueItem - 
-func GetQueueItem(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetQueueItem(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	numberParam := params["number"]
+	
+	result, err := c.service.GetQueueItem(r.Context(), numberParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetView - 
-func GetView(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetView(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	result, err := c.service.GetView(r.Context(), nameParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // GetViewConfig - 
-func GetViewConfig(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) GetViewConfig(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	result, err := c.service.GetViewConfig(r.Context(), nameParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // HeadJenkins - 
-func HeadJenkins(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) HeadJenkins(w http.ResponseWriter, r *http.Request) {
+	result, err := c.service.HeadJenkins(r.Context())
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostCreateItem - 
-func PostCreateItem(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostCreateItem(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	nameParam := query.Get("name")
+	fromParam := query.Get("from")
+	modeParam := query.Get("mode")
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	contentTypeParam := r.Header.Get("Content-Type")
+	bodyParam := string{}
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&bodyParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.PostCreateItem(r.Context(), nameParam, fromParam, modeParam, jenkinsCrumbParam, contentTypeParam, bodyParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostCreateView - 
-func PostCreateView(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostCreateView(w http.ResponseWriter, r *http.Request) {
+	query := r.URL.Query()
+	nameParam := query.Get("name")
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	contentTypeParam := r.Header.Get("Content-Type")
+	bodyParam := string{}
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&bodyParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	result, err := c.service.PostCreateView(r.Context(), nameParam, jenkinsCrumbParam, contentTypeParam, bodyParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostJobBuild - 
-func PostJobBuild(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostJobBuild(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	query := r.URL.Query()
+	nameParam := params["name"]
+	
+	jsonParam := query.Get("json")
+	tokenParam := query.Get("token")
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostJobBuild(r.Context(), nameParam, jsonParam, tokenParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostJobConfig - 
-func PostJobConfig(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostJobConfig(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	bodyParam := string{}
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&bodyParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostJobConfig(r.Context(), nameParam, bodyParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostJobDelete - 
-func PostJobDelete(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostJobDelete(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostJobDelete(r.Context(), nameParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostJobDisable - 
-func PostJobDisable(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostJobDisable(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostJobDisable(r.Context(), nameParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostJobEnable - 
-func PostJobEnable(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostJobEnable(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostJobEnable(r.Context(), nameParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostJobLastBuildStop - 
-func PostJobLastBuildStop(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostJobLastBuildStop(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostJobLastBuildStop(r.Context(), nameParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }
 
 // PostViewConfig - 
-func PostViewConfig(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
+func (c *RemoteAccessApiController) PostViewConfig(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	nameParam := params["name"]
+	
+	bodyParam := string{}
+	d := json.NewDecoder(r.Body)
+	d.DisallowUnknownFields()
+	if err := d.Decode(&bodyParam); err != nil {
+		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
+		return
+	}
+	jenkinsCrumbParam := r.Header.Get("Jenkins-Crumb")
+	result, err := c.service.PostViewConfig(r.Context(), nameParam, bodyParam, jenkinsCrumbParam)
+	// If an error occurred, encode the error with the status code
+	if err != nil {
+		c.errorHandler(w, r, err, &result)
+		return
+	}
+	// If no error, encode the body and the result code
+	EncodeJSONResponse(result.Body, &result.Code, w)
+
 }

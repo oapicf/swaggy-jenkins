@@ -12,27 +12,34 @@ import javax.validation.constraints.*;
 /**
  * GithubRepositories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubRepositories   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubRepositorieslinks links = null;
+  @Valid
+
+  private GithubRepositorieslinks links;
 
   @JsonProperty("items")
+  @Valid
+
   private List<GithubRepository> items = null;
 
   @JsonProperty("lastPage")
-  private Integer lastPage = null;
+  
+  private Integer lastPage;
 
   @JsonProperty("nextPage")
-  private Integer nextPage = null;
+  
+  private Integer nextPage;
 
   @JsonProperty("pageSize")
-  private Integer pageSize = null;
+  
+  private Integer pageSize;
 
   public GithubRepositories propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -43,7 +50,7 @@ public class GithubRepositories   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -60,7 +67,6 @@ public class GithubRepositories   {
    * Get links
    * @return links
   **/
-  @Valid
   public GithubRepositorieslinks getLinks() {
     return links;
   }
@@ -86,7 +92,6 @@ public class GithubRepositories   {
    * Get items
    * @return items
   **/
-  @Valid
   public List<GithubRepository> getItems() {
     return items;
   }
@@ -104,7 +109,7 @@ public class GithubRepositories   {
    * Get lastPage
    * @return lastPage
   **/
-    public Integer getLastPage() {
+  public Integer getLastPage() {
     return lastPage;
   }
 
@@ -121,7 +126,7 @@ public class GithubRepositories   {
    * Get nextPage
    * @return nextPage
   **/
-    public Integer getNextPage() {
+  public Integer getNextPage() {
     return nextPage;
   }
 
@@ -138,7 +143,7 @@ public class GithubRepositories   {
    * Get pageSize
    * @return pageSize
   **/
-    public Integer getPageSize() {
+  public Integer getPageSize() {
     return pageSize;
   }
 
@@ -148,7 +153,7 @@ public class GithubRepositories   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -189,7 +194,7 @@ public class GithubRepositories   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

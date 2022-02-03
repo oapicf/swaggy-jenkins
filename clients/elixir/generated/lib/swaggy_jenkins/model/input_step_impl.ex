@@ -19,13 +19,13 @@ defmodule SwaggyJenkins.Model.InputStepImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => InputStepImpllinks,
-    :"id" => String.t,
-    :"message" => String.t,
-    :"ok" => String.t,
-    :"parameters" => [StringParameterDefinition],
-    :"submitter" => String.t
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.InputStepImpllinks.t | nil,
+    :"id" => String.t | nil,
+    :"message" => String.t | nil,
+    :"ok" => String.t | nil,
+    :"parameters" => [SwaggyJenkins.Model.StringParameterDefinition.t] | nil,
+    :"submitter" => String.t | nil
   }
 end
 

@@ -11,454 +11,208 @@
 package openapi
 
 import (
-	"fmt"
-	"net/http"
-	"strings"
-
+	"encoding/json"
+	"errors"
 	"github.com/gorilla/mux"
+	"io/ioutil"
+	"mime/multipart"
+	"net/http"
+	"os"
+	"strconv"
+	"strings"
 )
 
+// A Route defines the parameters for an api endpoint
 type Route struct {
-	Name        string
-	Method      string
-	Pattern     string
+	Name		string
+	Method	  string
+	Pattern	 string
 	HandlerFunc http.HandlerFunc
 }
 
+// Routes are a collection of defined api endpoints
 type Routes []Route
 
-func NewRouter() *mux.Router {
-	router := mux.NewRouter().StrictSlash(true)
-	for _, route := range routes {
-		var handler http.Handler
-		handler = route.HandlerFunc
-		handler = Logger(handler, route.Name)
+// Router defines the required methods for retrieving api routes
+type Router interface {
+	Routes() Routes
+}
 
-		router.
-			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			Handler(handler)
+const errMsgRequiredMissing = "required parameter is missing"
+
+// NewRouter creates a new router for any number of api routers
+func NewRouter(routers ...Router) *mux.Router {
+	router := mux.NewRouter().StrictSlash(true)
+	for _, api := range routers {
+		for _, route := range api.Routes() {
+			var handler http.Handler
+			handler = route.HandlerFunc
+			handler = Logger(handler, route.Name)
+
+			router.
+				Methods(route.Method).
+				Path(route.Pattern).
+				Name(route.Name).
+				Handler(handler)
+		}
 	}
 
 	return router
 }
 
-func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World!")
+// EncodeJSONResponse uses the json encoder to write an interface to the http response with an optional status code
+func EncodeJSONResponse(i interface{}, status *int, w http.ResponseWriter) error {
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	if status != nil {
+		w.WriteHeader(*status)
+	} else {
+		w.WriteHeader(http.StatusOK)
+	}
+
+	return json.NewEncoder(w).Encode(i)
 }
 
-var routes = Routes{
-	{
-		"Index",
-		"GET",
-		"//",
-		Index,
-	},
+// ReadFormFileToTempFile reads file data from a request form and writes it to a temporary file
+func ReadFormFileToTempFile(r *http.Request, key string) (*os.File, error) {
+	_, fileHeader, err := r.FormFile(key)
+	if err != nil {
+		return nil, err
+	}
 
-	{
-		"GetCrumb",
-		strings.ToUpper("Get"),
-		"//crumbIssuer/api/json",
-		GetCrumb,
-	},
+	return readFileHeaderToTempFile(fileHeader)
+}
 
-	{
-		"DeletePipelineQueueItem",
-		strings.ToUpper("Delete"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
-		DeletePipelineQueueItem,
-	},
+// ReadFormFilesToTempFiles reads files array data from a request form and writes it to a temporary files
+func ReadFormFilesToTempFiles(r *http.Request, key string) ([]*os.File, error) {
+	if err := r.ParseMultipartForm(32 << 20); err != nil {
+		return nil, err
+	}
 
-	{
-		"GetAuthenticatedUser",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/user/",
-		GetAuthenticatedUser,
-	},
+	files := make([]*os.File, 0, len(r.MultipartForm.File[key]))
 
-	{
-		"GetClasses",
-		strings.ToUpper("Get"),
-		"//blue/rest/classes/{class}",
-		GetClasses,
-	},
+	for _, fileHeader := range r.MultipartForm.File[key] {
+		file, err := readFileHeaderToTempFile(fileHeader)
+		if err != nil {
+			return nil, err
+		}
 
-	{
-		"GetJsonWebKey",
-		strings.ToUpper("Get"),
-		"//jwt-auth/jwks/{key}",
-		GetJsonWebKey,
-	},
+		files = append(files, file)
+	}
 
-	{
-		"GetJsonWebToken",
-		strings.ToUpper("Get"),
-		"//jwt-auth/token",
-		GetJsonWebToken,
-	},
+	return files, nil
+}
 
-	{
-		"GetOrganisation",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}",
-		GetOrganisation,
-	},
+// readFileHeaderToTempFile reads multipart.FileHeader and writes it to a temporary file
+func readFileHeaderToTempFile(fileHeader *multipart.FileHeader) (*os.File, error) {
+	formFile, err := fileHeader.Open()
+	if err != nil {
+		return nil, err
+	}
 
-	{
-		"GetOrganisations",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/",
-		GetOrganisations,
-	},
+	defer formFile.Close()
 
-	{
-		"GetPipeline",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}",
-		GetPipeline,
-	},
+	fileBytes, err := ioutil.ReadAll(formFile)
+	if err != nil {
+		return nil, err
+	}
 
-	{
-		"GetPipelineActivities",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities",
-		GetPipelineActivities,
-	},
+	file, err := ioutil.TempFile("", fileHeader.Filename)
+	if err != nil {
+		return nil, err
+	}
 
-	{
-		"GetPipelineBranch",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/",
-		GetPipelineBranch,
-	},
+	defer file.Close()
 
-	{
-		"GetPipelineBranchRun",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}",
-		GetPipelineBranchRun,
-	},
+	file.Write(fileBytes)
 
-	{
-		"GetPipelineBranches",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
-		GetPipelineBranches,
-	},
+	return file, nil
+}
 
-	{
-		"GetPipelineFolder",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{folder}/",
-		GetPipelineFolder,
-	},
+// parseInt64Parameter parses a string parameter to an int64.
+func parseInt64Parameter(param string, required bool) (int64, error) {
+	if param == "" {
+		if required {
+			return 0, errors.New(errMsgRequiredMissing)
+		}
 
-	{
-		"GetPipelineFolderPipeline",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}",
-		GetPipelineFolderPipeline,
-	},
+		return 0, nil
+	}
 
-	{
-		"GetPipelineQueue",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue",
-		GetPipelineQueue,
-	},
+	return strconv.ParseInt(param, 10, 64)
+}
 
-	{
-		"GetPipelineRun",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}",
-		GetPipelineRun,
-	},
+// parseInt32Parameter parses a string parameter to an int32.
+func parseInt32Parameter(param string, required bool) (int32, error) {
+	if param == "" {
+		if required {
+			return 0, errors.New(errMsgRequiredMissing)
+		}
 
-	{
-		"GetPipelineRunLog",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
-		GetPipelineRunLog,
-	},
+		return 0, nil
+	}
 
-	{
-		"GetPipelineRunNode",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}",
-		GetPipelineRunNode,
-	},
+	val, err := strconv.ParseInt(param, 10, 32)
+	if err != nil {
+		return -1, err
+	}
 
-	{
-		"GetPipelineRunNodeStep",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}",
-		GetPipelineRunNodeStep,
-	},
+	return int32(val), nil
+}
 
-	{
-		"GetPipelineRunNodeStepLog",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log",
-		GetPipelineRunNodeStepLog,
-	},
+// parseBoolParameter parses a string parameter to a bool
+func parseBoolParameter(param string) (bool, error) {
+	val, err := strconv.ParseBool(param)
+	if err != nil {
+		return false, err
+	}
 
-	{
-		"GetPipelineRunNodeSteps",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
-		GetPipelineRunNodeSteps,
-	},
+	return bool(val), nil
+}
 
-	{
-		"GetPipelineRunNodes",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
-		GetPipelineRunNodes,
-	},
+// parseInt64ArrayParameter parses a string parameter containing array of values to []int64.
+func parseInt64ArrayParameter(param, delim string, required bool) ([]int64, error) {
+	if param == "" {
+		if required {
+			return nil, errors.New(errMsgRequiredMissing)
+		}
 
-	{
-		"GetPipelineRuns",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
-		GetPipelineRuns,
-	},
+		return nil, nil
+	}
 
-	{
-		"GetPipelines",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/pipelines/",
-		GetPipelines,
-	},
+	str := strings.Split(param, delim)
+	ints := make([]int64, len(str))
 
-	{
-		"GetSCM",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/scm/{scm}",
-		GetSCM,
-	},
+	for i, s := range str {
+		if v, err := strconv.ParseInt(s, 10, 64); err != nil {
+			return nil, err
+		} else {
+			ints[i] = v
+		}
+	}
 
-	{
-		"GetSCMOrganisationRepositories",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories",
-		GetSCMOrganisationRepositories,
-	},
+	return ints, nil
+}
 
-	{
-		"GetSCMOrganisationRepository",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}",
-		GetSCMOrganisationRepository,
-	},
+// parseInt32ArrayParameter parses a string parameter containing array of values to []int32.
+func parseInt32ArrayParameter(param, delim string, required bool) ([]int32, error) {
+	if param == "" {
+		if required {
+			return nil, errors.New(errMsgRequiredMissing)
+		}
 
-	{
-		"GetSCMOrganisations",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/scm/{scm}/organizations",
-		GetSCMOrganisations,
-	},
+		return nil, nil
+	}
 
-	{
-		"GetUser",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/users/{user}",
-		GetUser,
-	},
+	str := strings.Split(param, delim)
+	ints := make([]int32, len(str))
 
-	{
-		"GetUserFavorites",
-		strings.ToUpper("Get"),
-		"//blue/rest/users/{user}/favorites",
-		GetUserFavorites,
-	},
+	for i, s := range str {
+		if v, err := strconv.ParseInt(s, 10, 32); err != nil {
+			return nil, err
+		} else {
+			ints[i] = int32(v)
+		}
+	}
 
-	{
-		"GetUsers",
-		strings.ToUpper("Get"),
-		"//blue/rest/organizations/{organization}/users/",
-		GetUsers,
-	},
-
-	{
-		"PostPipelineRun",
-		strings.ToUpper("Post"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
-		PostPipelineRun,
-	},
-
-	{
-		"PostPipelineRuns",
-		strings.ToUpper("Post"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
-		PostPipelineRuns,
-	},
-
-	{
-		"PutPipelineFavorite",
-		strings.ToUpper("Put"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
-		PutPipelineFavorite,
-	},
-
-	{
-		"PutPipelineRun",
-		strings.ToUpper("Put"),
-		"//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
-		PutPipelineRun,
-	},
-
-	{
-		"Search",
-		strings.ToUpper("Get"),
-		"//blue/rest/search/",
-		Search,
-	},
-
-	{
-		"SearchClasses",
-		strings.ToUpper("Get"),
-		"//blue/rest/classes/",
-		SearchClasses,
-	},
-
-	{
-		"GetComputer",
-		strings.ToUpper("Get"),
-		"//computer/api/json",
-		GetComputer,
-	},
-
-	{
-		"GetJenkins",
-		strings.ToUpper("Get"),
-		"//api/json",
-		GetJenkins,
-	},
-
-	{
-		"GetJob",
-		strings.ToUpper("Get"),
-		"//job/{name}/api/json",
-		GetJob,
-	},
-
-	{
-		"GetJobConfig",
-		strings.ToUpper("Get"),
-		"//job/{name}/config.xml",
-		GetJobConfig,
-	},
-
-	{
-		"GetJobLastBuild",
-		strings.ToUpper("Get"),
-		"//job/{name}/lastBuild/api/json",
-		GetJobLastBuild,
-	},
-
-	{
-		"GetJobProgressiveText",
-		strings.ToUpper("Get"),
-		"//job/{name}/{number}/logText/progressiveText",
-		GetJobProgressiveText,
-	},
-
-	{
-		"GetQueue",
-		strings.ToUpper("Get"),
-		"//queue/api/json",
-		GetQueue,
-	},
-
-	{
-		"GetQueueItem",
-		strings.ToUpper("Get"),
-		"//queue/item/{number}/api/json",
-		GetQueueItem,
-	},
-
-	{
-		"GetView",
-		strings.ToUpper("Get"),
-		"//view/{name}/api/json",
-		GetView,
-	},
-
-	{
-		"GetViewConfig",
-		strings.ToUpper("Get"),
-		"//view/{name}/config.xml",
-		GetViewConfig,
-	},
-
-	{
-		"HeadJenkins",
-		strings.ToUpper("Head"),
-		"//api/json",
-		HeadJenkins,
-	},
-
-	{
-		"PostCreateItem",
-		strings.ToUpper("Post"),
-		"//createItem",
-		PostCreateItem,
-	},
-
-	{
-		"PostCreateView",
-		strings.ToUpper("Post"),
-		"//createView",
-		PostCreateView,
-	},
-
-	{
-		"PostJobBuild",
-		strings.ToUpper("Post"),
-		"//job/{name}/build",
-		PostJobBuild,
-	},
-
-	{
-		"PostJobConfig",
-		strings.ToUpper("Post"),
-		"//job/{name}/config.xml",
-		PostJobConfig,
-	},
-
-	{
-		"PostJobDelete",
-		strings.ToUpper("Post"),
-		"//job/{name}/doDelete",
-		PostJobDelete,
-	},
-
-	{
-		"PostJobDisable",
-		strings.ToUpper("Post"),
-		"//job/{name}/disable",
-		PostJobDisable,
-	},
-
-	{
-		"PostJobEnable",
-		strings.ToUpper("Post"),
-		"//job/{name}/enable",
-		PostJobEnable,
-	},
-
-	{
-		"PostJobLastBuildStop",
-		strings.ToUpper("Post"),
-		"//job/{name}/lastBuild/stop",
-		PostJobLastBuildStop,
-	},
-
-	{
-		"PostViewConfig",
-		strings.ToUpper("Post"),
-		"//view/{name}/config.xml",
-		PostViewConfig,
-	},
+	return ints, nil
 }

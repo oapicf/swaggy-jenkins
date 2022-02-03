@@ -1,44 +1,51 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositorylinks;
 import org.openapitools.model.GithubRepositorypermissions;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * GithubRepository
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class GithubRepository   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubRepositorylinks links = null;
+  private GithubRepositorylinks links;
 
   @JsonProperty("defaultBranch")
-  private String defaultBranch = null;
+  private String defaultBranch;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("permissions")
-  private GithubRepositorypermissions permissions = null;
+  private GithubRepositorypermissions permissions;
 
   @JsonProperty("private")
-  private Boolean _private = null;
+  private Boolean _private;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   public GithubRepository propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -48,10 +55,9 @@ public class GithubRepository   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -68,11 +74,9 @@ public class GithubRepository   {
   /**
    * Get links
    * @return links
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "_links", required = false)
   public GithubRepositorylinks getLinks() {
     return links;
   }
@@ -89,10 +93,9 @@ public class GithubRepository   {
   /**
    * Get defaultBranch
    * @return defaultBranch
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "defaultBranch", required = false)
   public String getDefaultBranch() {
     return defaultBranch;
   }
@@ -109,10 +112,9 @@ public class GithubRepository   {
   /**
    * Get description
    * @return description
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "description", required = false)
   public String getDescription() {
     return description;
   }
@@ -129,10 +131,9 @@ public class GithubRepository   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -149,11 +150,9 @@ public class GithubRepository   {
   /**
    * Get permissions
    * @return permissions
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "permissions", required = false)
   public GithubRepositorypermissions getPermissions() {
     return permissions;
   }
@@ -170,10 +169,9 @@ public class GithubRepository   {
   /**
    * Get _private
    * @return _private
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "private", required = false)
   public Boolean getPrivate() {
     return _private;
   }
@@ -190,10 +188,9 @@ public class GithubRepository   {
   /**
    * Get fullName
    * @return fullName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullName", required = false)
   public String getFullName() {
     return fullName;
   }
@@ -202,9 +199,8 @@ public class GithubRepository   {
     this.fullName = fullName;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -231,7 +227,6 @@ public class GithubRepository   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubRepository {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    defaultBranch: ").append(toIndentedString(defaultBranch)).append("\n");
@@ -248,7 +243,7 @@ public class GithubRepository   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

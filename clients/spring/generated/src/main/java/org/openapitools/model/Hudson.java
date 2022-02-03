@@ -1,68 +1,75 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.AllView;
 import org.openapitools.model.FreeStyleProject;
 import org.openapitools.model.HudsonassignedLabels;
 import org.openapitools.model.UnlabeledLoadStatistics;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * Hudson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class Hudson   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("assignedLabels")
   @Valid
   private List<HudsonassignedLabels> assignedLabels = null;
 
   @JsonProperty("mode")
-  private String mode = null;
+  private String mode;
 
   @JsonProperty("nodeDescription")
-  private String nodeDescription = null;
+  private String nodeDescription;
 
   @JsonProperty("nodeName")
-  private String nodeName = null;
+  private String nodeName;
 
   @JsonProperty("numExecutors")
-  private Integer numExecutors = null;
+  private Integer numExecutors;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("jobs")
   @Valid
   private List<FreeStyleProject> jobs = null;
 
   @JsonProperty("primaryView")
-  private AllView primaryView = null;
+  private AllView primaryView;
 
   @JsonProperty("quietingDown")
-  private Boolean quietingDown = null;
+  private Boolean quietingDown;
 
   @JsonProperty("slaveAgentPort")
-  private Integer slaveAgentPort = null;
+  private Integer slaveAgentPort;
 
   @JsonProperty("unlabeledLoad")
-  private UnlabeledLoadStatistics unlabeledLoad = null;
+  private UnlabeledLoadStatistics unlabeledLoad;
 
   @JsonProperty("useCrumbs")
-  private Boolean useCrumbs = null;
+  private Boolean useCrumbs;
 
   @JsonProperty("useSecurity")
-  private Boolean useSecurity = null;
+  private Boolean useSecurity;
 
   @JsonProperty("views")
   @Valid
@@ -76,10 +83,9 @@ public class Hudson   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -104,11 +110,9 @@ public class Hudson   {
   /**
    * Get assignedLabels
    * @return assignedLabels
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "assignedLabels", required = false)
   public List<HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
@@ -125,10 +129,9 @@ public class Hudson   {
   /**
    * Get mode
    * @return mode
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "mode", required = false)
   public String getMode() {
     return mode;
   }
@@ -145,10 +148,9 @@ public class Hudson   {
   /**
    * Get nodeDescription
    * @return nodeDescription
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "nodeDescription", required = false)
   public String getNodeDescription() {
     return nodeDescription;
   }
@@ -165,10 +167,9 @@ public class Hudson   {
   /**
    * Get nodeName
    * @return nodeName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "nodeName", required = false)
   public String getNodeName() {
     return nodeName;
   }
@@ -185,10 +186,9 @@ public class Hudson   {
   /**
    * Get numExecutors
    * @return numExecutors
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numExecutors", required = false)
   public Integer getNumExecutors() {
     return numExecutors;
   }
@@ -205,10 +205,9 @@ public class Hudson   {
   /**
    * Get description
    * @return description
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "description", required = false)
   public String getDescription() {
     return description;
   }
@@ -233,11 +232,9 @@ public class Hudson   {
   /**
    * Get jobs
    * @return jobs
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "jobs", required = false)
   public List<FreeStyleProject> getJobs() {
     return jobs;
   }
@@ -254,11 +251,9 @@ public class Hudson   {
   /**
    * Get primaryView
    * @return primaryView
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "primaryView", required = false)
   public AllView getPrimaryView() {
     return primaryView;
   }
@@ -275,10 +270,9 @@ public class Hudson   {
   /**
    * Get quietingDown
    * @return quietingDown
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "quietingDown", required = false)
   public Boolean getQuietingDown() {
     return quietingDown;
   }
@@ -295,10 +289,9 @@ public class Hudson   {
   /**
    * Get slaveAgentPort
    * @return slaveAgentPort
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "slaveAgentPort", required = false)
   public Integer getSlaveAgentPort() {
     return slaveAgentPort;
   }
@@ -315,11 +308,9 @@ public class Hudson   {
   /**
    * Get unlabeledLoad
    * @return unlabeledLoad
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "unlabeledLoad", required = false)
   public UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
   }
@@ -336,10 +327,9 @@ public class Hudson   {
   /**
    * Get useCrumbs
    * @return useCrumbs
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "useCrumbs", required = false)
   public Boolean getUseCrumbs() {
     return useCrumbs;
   }
@@ -356,10 +346,9 @@ public class Hudson   {
   /**
    * Get useSecurity
    * @return useSecurity
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "useSecurity", required = false)
   public Boolean getUseSecurity() {
     return useSecurity;
   }
@@ -384,11 +373,9 @@ public class Hudson   {
   /**
    * Get views
    * @return views
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "views", required = false)
   public List<AllView> getViews() {
     return views;
   }
@@ -397,9 +384,8 @@ public class Hudson   {
     this.views = views;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -433,7 +419,6 @@ public class Hudson   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Hudson {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    assignedLabels: ").append(toIndentedString(assignedLabels)).append("\n");
     sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
@@ -457,7 +442,7 @@ public class Hudson   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -242,7 +242,7 @@ request_params('PutPipelineFavorite') ->
     [
         'organization',
         'pipeline',
-        'Body'
+        'UNKNOWN_BASE_TYPE'
     ];
 
 request_params('PutPipelineRun') ->
@@ -1206,7 +1206,7 @@ request_param_info('PutPipelineFavorite', 'pipeline') ->
         ]
     };
 
-request_param_info('PutPipelineFavorite', 'Body') ->
+request_param_info('PutPipelineFavorite', 'UNKNOWN_BASE_TYPE') ->
     #{
         source =>   body,
         rules => [
@@ -1725,7 +1725,7 @@ validate_response('GetOrganisation', 404, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetOrganisations', 200, Body, ValidatorState) ->
-    validate_response_body('Organisations', 'Organisations', Body, ValidatorState);
+    validate_response_body('list', 'Organisation', Body, ValidatorState);
 validate_response('GetOrganisations', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetOrganisations', 403, Body, ValidatorState) ->
@@ -1741,7 +1741,7 @@ validate_response('GetPipeline', 404, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetPipelineActivities', 200, Body, ValidatorState) ->
-    validate_response_body('PipelineActivities', 'PipelineActivities', Body, ValidatorState);
+    validate_response_body('list', 'PipelineActivity', Body, ValidatorState);
 validate_response('GetPipelineActivities', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetPipelineActivities', 403, Body, ValidatorState) ->
@@ -1783,7 +1783,7 @@ validate_response('GetPipelineFolderPipeline', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetPipelineQueue', 200, Body, ValidatorState) ->
-    validate_response_body('PipelineQueue', 'PipelineQueue', Body, ValidatorState);
+    validate_response_body('list', 'QueueItemImpl', Body, ValidatorState);
 validate_response('GetPipelineQueue', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetPipelineQueue', 403, Body, ValidatorState) ->
@@ -1825,28 +1825,28 @@ validate_response('GetPipelineRunNodeStepLog', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetPipelineRunNodeSteps', 200, Body, ValidatorState) ->
-    validate_response_body('PipelineRunNodeSteps', 'PipelineRunNodeSteps', Body, ValidatorState);
+    validate_response_body('list', 'PipelineStepImpl', Body, ValidatorState);
 validate_response('GetPipelineRunNodeSteps', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetPipelineRunNodeSteps', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetPipelineRunNodes', 200, Body, ValidatorState) ->
-    validate_response_body('PipelineRunNodes', 'PipelineRunNodes', Body, ValidatorState);
+    validate_response_body('list', 'PipelineRunNode', Body, ValidatorState);
 validate_response('GetPipelineRunNodes', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetPipelineRunNodes', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetPipelineRuns', 200, Body, ValidatorState) ->
-    validate_response_body('PipelineRuns', 'PipelineRuns', Body, ValidatorState);
+    validate_response_body('list', 'PipelineRun', Body, ValidatorState);
 validate_response('GetPipelineRuns', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetPipelineRuns', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetPipelines', 200, Body, ValidatorState) ->
-    validate_response_body('Pipelines', 'Pipelines', Body, ValidatorState);
+    validate_response_body('list', 'Pipeline', Body, ValidatorState);
 validate_response('GetPipelines', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetPipelines', 403, Body, ValidatorState) ->
@@ -1860,21 +1860,21 @@ validate_response('GetSCM', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetSCMOrganisationRepositories', 200, Body, ValidatorState) ->
-    validate_response_body('ScmOrganisations', 'ScmOrganisations', Body, ValidatorState);
+    validate_response_body('list', 'GithubOrganization', Body, ValidatorState);
 validate_response('GetSCMOrganisationRepositories', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetSCMOrganisationRepositories', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetSCMOrganisationRepository', 200, Body, ValidatorState) ->
-    validate_response_body('ScmOrganisations', 'ScmOrganisations', Body, ValidatorState);
+    validate_response_body('list', 'GithubOrganization', Body, ValidatorState);
 validate_response('GetSCMOrganisationRepository', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetSCMOrganisationRepository', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetSCMOrganisations', 200, Body, ValidatorState) ->
-    validate_response_body('ScmOrganisations', 'ScmOrganisations', Body, ValidatorState);
+    validate_response_body('list', 'GithubOrganization', Body, ValidatorState);
 validate_response('GetSCMOrganisations', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetSCMOrganisations', 403, Body, ValidatorState) ->
@@ -1888,7 +1888,7 @@ validate_response('GetUser', 403, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 
 validate_response('GetUserFavorites', 200, Body, ValidatorState) ->
-    validate_response_body('UserFavorites', 'UserFavorites', Body, ValidatorState);
+    validate_response_body('list', 'FavoriteImpl', Body, ValidatorState);
 validate_response('GetUserFavorites', 401, Body, ValidatorState) ->
     validate_response_body('', '', Body, ValidatorState);
 validate_response('GetUserFavorites', 403, Body, ValidatorState) ->
@@ -2250,7 +2250,7 @@ validate(Rule = {pattern, Pattern}, Name, Value, _ValidatorState) ->
     end;
 
 validate(Rule = schema, Name, Value, ValidatorState) ->
-    Definition =  list_to_binary("#/definitions/" ++ openapi_utils:to_list(Name)),
+    Definition =  list_to_binary("#/components/schemas/" ++ openapi_utils:to_list(Name)),
     try
         _ = validate_with_schema(Value, Definition, ValidatorState),
         ok
@@ -2286,10 +2286,10 @@ validation_error(ViolatedRule, Name, Info) ->
     throw({wrong_param, Name, ViolatedRule, Info}).
 
 -spec get_value(body | qs_val | header | binding, Name :: any(), Req0 :: cowboy_req:req()) ->
-    {Value :: any(), Req :: cowboy_req:req()} | 
+    {Value :: any(), Req :: cowboy_req:req()} |
     {error, Reason :: any(), Req :: cowboy_req:req()}.
 get_value(body, _Name, Req0) ->
-    {ok, Body, Req} = cowboy_req:body(Req0),
+    {ok, Body, Req} = cowboy_req:read_body(Req0),
     case prepare_body(Body) of
         {error, Reason} ->
             {error, Reason, Req};
@@ -2297,19 +2297,18 @@ get_value(body, _Name, Req0) ->
             {Value, Req}
     end;
 
-get_value(qs_val, Name, Req0) ->
-    {QS, Req} = cowboy_req:qs_vals(Req0),
+get_value(qs_val, Name, Req) ->
+    QS = cowboy_req:parse_qs(Req),
     Value = openapi_utils:get_opt(openapi_utils:to_qs(Name), QS),
     {Value, Req};
 
-get_value(header, Name, Req0) ->
-    {Headers, Req} = cowboy_req:headers(Req0),
-    Value = openapi_utils:get_opt(openapi_utils:to_header(Name), Headers),
+get_value(header, Name, Req) ->
+    Headers = cowboy_req:headers(Req),
+    Value =  maps:get(openapi_utils:to_header(Name), Headers, undefined),
     {Value, Req};
 
-get_value(binding, Name, Req0) ->
-    {Bindings, Req} = cowboy_req:bindings(Req0),
-    Value = openapi_utils:get_opt(openapi_utils:to_binding(Name), Bindings),
+get_value(binding, Name, Req) ->
+    Value = cowboy_req:binding(openapi_utils:to_binding(Name), Req),
     {Value, Req}.
 
 prepare_body(Body) ->
@@ -2317,7 +2316,7 @@ prepare_body(Body) ->
         <<"">> -> <<"">>;
         _ ->
             try
-                jsx:decode(Body, [return_maps]) 
+                jsx:decode(Body, [return_maps])
             catch
               error:_ ->
                 {error, {invalid_body, not_json, Body}}

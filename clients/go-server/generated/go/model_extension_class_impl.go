@@ -14,7 +14,27 @@ type ExtensionClassImpl struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *ExtensionClassImpllinks `json:"_links,omitempty"`
+	Links ExtensionClassImpllinks `json:"_links,omitempty"`
 
 	Classes []string `json:"classes,omitempty"`
+}
+
+// AssertExtensionClassImplRequired checks if the required fields are not zero-ed
+func AssertExtensionClassImplRequired(obj ExtensionClassImpl) error {
+	if err := AssertExtensionClassImpllinksRequired(obj.Links); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseExtensionClassImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of ExtensionClassImpl (e.g. [][]ExtensionClassImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseExtensionClassImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aExtensionClassImpl, ok := obj.(ExtensionClassImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertExtensionClassImplRequired(aExtensionClassImpl)
+	})
 }

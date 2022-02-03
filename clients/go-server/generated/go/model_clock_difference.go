@@ -16,3 +16,20 @@ type ClockDifference struct {
 
 	Diff int32 `json:"diff,omitempty"`
 }
+
+// AssertClockDifferenceRequired checks if the required fields are not zero-ed
+func AssertClockDifferenceRequired(obj ClockDifference) error {
+	return nil
+}
+
+// AssertRecurseClockDifferenceRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of ClockDifference (e.g. [][]ClockDifference), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseClockDifferenceRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aClockDifference, ok := obj.(ClockDifference)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertClockDifferenceRequired(aClockDifference)
+	})
+}

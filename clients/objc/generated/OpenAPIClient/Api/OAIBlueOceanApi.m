@@ -1,29 +1,22 @@
 #import "OAIBlueOceanApi.h"
 #import "OAIQueryParamCollection.h"
 #import "OAIApiClient.h"
-#import "OAIBody.h"
 #import "OAIBranchImpl.h"
 #import "OAIFavoriteImpl.h"
+#import "OAIGithubOrganization.h"
 #import "OAIGithubScm.h"
 #import "OAIMultibranchPipeline.h"
 #import "OAIOrganisation.h"
-#import "OAIOrganisations.h"
 #import "OAIPipeline.h"
-#import "OAIPipelineActivities.h"
+#import "OAIPipelineActivity.h"
 #import "OAIPipelineFolderImpl.h"
 #import "OAIPipelineImpl.h"
-#import "OAIPipelineQueue.h"
 #import "OAIPipelineRun.h"
 #import "OAIPipelineRunNode.h"
-#import "OAIPipelineRunNodeSteps.h"
-#import "OAIPipelineRunNodes.h"
-#import "OAIPipelineRuns.h"
 #import "OAIPipelineStepImpl.h"
-#import "OAIPipelines.h"
 #import "OAIQueueItemImpl.h"
-#import "OAIScmOrganisations.h"
 #import "OAIUser.h"
-#import "OAIUserFavorites.h"
+#import "UNKNOWN_BASE_TYPE.h"
 
 
 @interface OAIBlueOceanApi ()
@@ -511,10 +504,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 /// 
 /// Retrieve all organizations details
-///  @returns OAIOrganisations*
+///  @returns NSArray<OAIOrganisation>*
 ///
 -(NSURLSessionTask*) getOrganisationsWithCompletionHandler: 
-    (void (^)(OAIOrganisations* output, NSError* error)) handler {
+    (void (^)(NSArray<OAIOrganisation>* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/blue/rest/organizations/"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -552,10 +545,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIOrganisations*"
+                              responseType: @"NSArray<OAIOrganisation>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIOrganisations*)data, error);
+                                    handler((NSArray<OAIOrganisation>*)data, error);
                                 }
                             }];
 }
@@ -652,11 +645,11 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param pipeline Name of the pipeline 
 ///
-///  @returns OAIPipelineActivities*
+///  @returns NSArray<OAIPipelineActivity>*
 ///
 -(NSURLSessionTask*) getPipelineActivitiesWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    completionHandler: (void (^)(OAIPipelineActivities* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIPipelineActivity>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -722,10 +715,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIPipelineActivities*"
+                              responseType: @"NSArray<OAIPipelineActivity>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIPipelineActivities*)data, error);
+                                    handler((NSArray<OAIPipelineActivity>*)data, error);
                                 }
                             }];
 }
@@ -1230,11 +1223,11 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param pipeline Name of the pipeline 
 ///
-///  @returns OAIPipelineQueue*
+///  @returns NSArray<OAIQueueItemImpl>*
 ///
 -(NSURLSessionTask*) getPipelineQueueWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    completionHandler: (void (^)(OAIPipelineQueue* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIQueueItemImpl>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -1300,10 +1293,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIPipelineQueue*"
+                              responseType: @"NSArray<OAIQueueItemImpl>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIPipelineQueue*)data, error);
+                                    handler((NSArray<OAIQueueItemImpl>*)data, error);
                                 }
                             }];
 }
@@ -1926,13 +1919,13 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param node Name of the node 
 ///
-///  @returns OAIPipelineRunNodeSteps*
+///  @returns NSArray<OAIPipelineStepImpl>*
 ///
 -(NSURLSessionTask*) getPipelineRunNodeStepsWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
     run: (NSString*) run
     node: (NSString*) node
-    completionHandler: (void (^)(OAIPipelineRunNodeSteps* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIPipelineStepImpl>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2026,10 +2019,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIPipelineRunNodeSteps*"
+                              responseType: @"NSArray<OAIPipelineStepImpl>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIPipelineRunNodeSteps*)data, error);
+                                    handler((NSArray<OAIPipelineStepImpl>*)data, error);
                                 }
                             }];
 }
@@ -2043,12 +2036,12 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param run Name of the run 
 ///
-///  @returns OAIPipelineRunNodes*
+///  @returns NSArray<OAIPipelineRunNode>*
 ///
 -(NSURLSessionTask*) getPipelineRunNodesWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
     run: (NSString*) run
-    completionHandler: (void (^)(OAIPipelineRunNodes* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIPipelineRunNode>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2128,10 +2121,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIPipelineRunNodes*"
+                              responseType: @"NSArray<OAIPipelineRunNode>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIPipelineRunNodes*)data, error);
+                                    handler((NSArray<OAIPipelineRunNode>*)data, error);
                                 }
                             }];
 }
@@ -2143,11 +2136,11 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param pipeline Name of the pipeline 
 ///
-///  @returns OAIPipelineRuns*
+///  @returns NSArray<OAIPipelineRun>*
 ///
 -(NSURLSessionTask*) getPipelineRunsWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    completionHandler: (void (^)(OAIPipelineRuns* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIPipelineRun>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2213,10 +2206,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIPipelineRuns*"
+                              responseType: @"NSArray<OAIPipelineRun>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIPipelineRuns*)data, error);
+                                    handler((NSArray<OAIPipelineRun>*)data, error);
                                 }
                             }];
 }
@@ -2226,10 +2219,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 /// Retrieve all pipelines details for an organization
 ///  @param organization Name of the organization 
 ///
-///  @returns OAIPipelines*
+///  @returns NSArray<OAIPipeline>*
 ///
 -(NSURLSessionTask*) getPipelinesWithOrganization: (NSString*) organization
-    completionHandler: (void (^)(OAIPipelines* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIPipeline>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2281,10 +2274,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIPipelines*"
+                              responseType: @"NSArray<OAIPipeline>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIPipelines*)data, error);
+                                    handler((NSArray<OAIPipeline>*)data, error);
                                 }
                             }];
 }
@@ -2389,7 +2382,7 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param pageNumber Page number (optional)
 ///
-///  @returns OAIScmOrganisations*
+///  @returns NSArray<OAIGithubOrganization>*
 ///
 -(NSURLSessionTask*) getSCMOrganisationRepositoriesWithOrganization: (NSString*) organization
     scm: (NSString*) scm
@@ -2397,7 +2390,7 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
     credentialId: (NSString*) credentialId
     pageSize: (NSNumber*) pageSize
     pageNumber: (NSNumber*) pageNumber
-    completionHandler: (void (^)(OAIScmOrganisations* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIGithubOrganization>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2486,10 +2479,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIScmOrganisations*"
+                              responseType: @"NSArray<OAIGithubOrganization>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIScmOrganisations*)data, error);
+                                    handler((NSArray<OAIGithubOrganization>*)data, error);
                                 }
                             }];
 }
@@ -2507,14 +2500,14 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param credentialId Credential ID (optional)
 ///
-///  @returns OAIScmOrganisations*
+///  @returns NSArray<OAIGithubOrganization>*
 ///
 -(NSURLSessionTask*) getSCMOrganisationRepositoryWithOrganization: (NSString*) organization
     scm: (NSString*) scm
     scmOrganisation: (NSString*) scmOrganisation
     repository: (NSString*) repository
     credentialId: (NSString*) credentialId
-    completionHandler: (void (^)(OAIScmOrganisations* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIGithubOrganization>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2611,10 +2604,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIScmOrganisations*"
+                              responseType: @"NSArray<OAIGithubOrganization>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIScmOrganisations*)data, error);
+                                    handler((NSArray<OAIGithubOrganization>*)data, error);
                                 }
                             }];
 }
@@ -2628,12 +2621,12 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param credentialId Credential ID (optional)
 ///
-///  @returns OAIScmOrganisations*
+///  @returns NSArray<OAIGithubOrganization>*
 ///
 -(NSURLSessionTask*) getSCMOrganisationsWithOrganization: (NSString*) organization
     scm: (NSString*) scm
     credentialId: (NSString*) credentialId
-    completionHandler: (void (^)(OAIScmOrganisations* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIGithubOrganization>* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
         NSParameterAssert(organization);
@@ -2702,10 +2695,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIScmOrganisations*"
+                              responseType: @"NSArray<OAIGithubOrganization>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIScmOrganisations*)data, error);
+                                    handler((NSArray<OAIGithubOrganization>*)data, error);
                                 }
                             }];
 }
@@ -2800,10 +2793,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 /// Retrieve user favorites details for an organization
 ///  @param user Name of the user 
 ///
-///  @returns OAIUserFavorites*
+///  @returns NSArray<OAIFavoriteImpl>*
 ///
 -(NSURLSessionTask*) getUserFavoritesWithUser: (NSString*) user
-    completionHandler: (void (^)(OAIUserFavorites* output, NSError* error)) handler {
+    completionHandler: (void (^)(NSArray<OAIFavoriteImpl>* output, NSError* error)) handler {
     // verify the required parameter 'user' is set
     if (user == nil) {
         NSParameterAssert(user);
@@ -2855,10 +2848,10 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"OAIUserFavorites*"
+                              responseType: @"NSArray<OAIFavoriteImpl>*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((OAIUserFavorites*)data, error);
+                                    handler((NSArray<OAIFavoriteImpl>*)data, error);
                                 }
                             }];
 }
@@ -3125,13 +3118,13 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param pipeline Name of the pipeline 
 ///
-///  @param body Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite 
+///  @param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite 
 ///
 ///  @returns OAIFavoriteImpl*
 ///
 -(NSURLSessionTask*) putPipelineFavoriteWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    body: (OAIBody*) body
+    uNKNOWNBASETYPE: (UNKNOWN_BASE_TYPE*) uNKNOWNBASETYPE
     completionHandler: (void (^)(OAIFavoriteImpl* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
@@ -3155,11 +3148,11 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
         return nil;
     }
 
-    // verify the required parameter 'body' is set
-    if (body == nil) {
-        NSParameterAssert(body);
+    // verify the required parameter 'uNKNOWNBASETYPE' is set
+    if (uNKNOWNBASETYPE == nil) {
+        NSParameterAssert(uNKNOWNBASETYPE);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"body"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"uNKNOWNBASETYPE"] };
             NSError* error = [NSError errorWithDomain:kOAIBlueOceanApiErrorDomain code:kOAIBlueOceanApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
@@ -3197,7 +3190,7 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    bodyParam = body;
+    bodyParam = uNKNOWNBASETYPE;
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"PUT"

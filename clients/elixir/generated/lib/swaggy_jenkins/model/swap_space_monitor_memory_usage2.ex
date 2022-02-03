@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.SwapSpaceMonitorMemoryUsage2 do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"availablePhysicalMemory" => integer(),
-    :"availableSwapSpace" => integer(),
-    :"totalPhysicalMemory" => integer(),
-    :"totalSwapSpace" => integer()
+    :"_class" => String.t | nil,
+    :"availablePhysicalMemory" => integer() | nil,
+    :"availableSwapSpace" => integer() | nil,
+    :"totalPhysicalMemory" => integer() | nil,
+    :"totalSwapSpace" => integer() | nil
   }
 end
 

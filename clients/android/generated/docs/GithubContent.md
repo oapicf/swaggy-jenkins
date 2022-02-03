@@ -1,7 +1,9 @@
 
+
 # GithubContent
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  |  [optional]
@@ -12,6 +14,7 @@ Name | Type | Description | Notes
 **owner** | **String** |  |  [optional]
 **path** | **String** |  |  [optional]
 **base64Data** | **String** |  |  [optional]
+
 
 
 

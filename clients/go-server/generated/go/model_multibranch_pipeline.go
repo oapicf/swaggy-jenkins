@@ -40,3 +40,20 @@ type MultibranchPipeline struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertMultibranchPipelineRequired checks if the required fields are not zero-ed
+func AssertMultibranchPipelineRequired(obj MultibranchPipeline) error {
+	return nil
+}
+
+// AssertRecurseMultibranchPipelineRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of MultibranchPipeline (e.g. [][]MultibranchPipeline), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseMultibranchPipelineRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aMultibranchPipeline, ok := obj.(MultibranchPipeline)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertMultibranchPipelineRequired(aMultibranchPipeline)
+	})
+}

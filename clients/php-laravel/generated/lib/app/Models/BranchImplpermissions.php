@@ -21,7 +21,7 @@ class BranchImplpermissions {
     /** @var bool $stop */
     private $stop;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

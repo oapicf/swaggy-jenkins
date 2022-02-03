@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -15,25 +25,25 @@ import org.openapitools.model.FreeStyleProject;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class QueueLeftItem   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<CauseAction> actions = new ArrayList<CauseAction>();
-  private Boolean blocked = null;
-  private Boolean buildable = null;
-  private Integer id = null;
-  private Integer inQueueSince = null;
-  private String params = null;
-  private Boolean stuck = null;
-  private FreeStyleProject task = null;
-  private String url = null;
-  private String why = null;
-  private Boolean cancelled = null;
-  private FreeStyleBuild executable = null;
+  private Boolean blocked;
+  private Boolean buildable;
+  private Integer id;
+  private Integer inQueueSince;
+  private String params;
+  private Boolean stuck;
+  private FreeStyleProject task;
+  private String url;
+  private String why;
+  private Boolean cancelled;
+  private FreeStyleBuild executable;
 
   /**
-   **/
+   */
   public QueueLeftItem propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -50,7 +60,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem actions(List<CauseAction> actions) {
     this.actions = actions;
     return this;
@@ -67,7 +77,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem blocked(Boolean blocked) {
     this.blocked = blocked;
     return this;
@@ -84,7 +94,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem buildable(Boolean buildable) {
     this.buildable = buildable;
     return this;
@@ -101,7 +111,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem id(Integer id) {
     this.id = id;
     return this;
@@ -118,7 +128,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem inQueueSince(Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
     return this;
@@ -135,7 +145,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem params(String params) {
     this.params = params;
     return this;
@@ -152,7 +162,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem stuck(Boolean stuck) {
     this.stuck = stuck;
     return this;
@@ -169,7 +179,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem task(FreeStyleProject task) {
     this.task = task;
     return this;
@@ -186,7 +196,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem url(String url) {
     this.url = url;
     return this;
@@ -203,7 +213,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem why(String why) {
     this.why = why;
     return this;
@@ -220,7 +230,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem cancelled(Boolean cancelled) {
     this.cancelled = cancelled;
     return this;
@@ -237,7 +247,7 @@ public class QueueLeftItem   {
   }
 
   /**
-   **/
+   */
   public QueueLeftItem executable(FreeStyleBuild executable) {
     this.executable = executable;
     return this;
@@ -255,7 +265,7 @@ public class QueueLeftItem   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -309,7 +319,7 @@ public class QueueLeftItem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

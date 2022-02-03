@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class Link {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $href */
     private $href;

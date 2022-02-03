@@ -91,11 +91,11 @@ public:
 	void setPermissions(GithubRepositorypermissions  permissions);
 	/*! \brief Get 
 	 */
-	bool getPrivate();
+	bool getRPrivate();
 
 	/*! \brief Set 
 	 */
-	void setPrivate(bool  _private);
+	void setRPrivate(bool  r_private);
 	/*! \brief Get 
 	 */
 	std::string getFullName();
@@ -111,7 +111,7 @@ private:
 	std::string description;
 	std::string name;
 	GithubRepositorypermissions permissions;
-	bool _private;
+	bool r_private;
 	std::string fullName;
 	void __init();
 	void __cleanup();

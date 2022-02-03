@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -16,27 +26,27 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class Hudson   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>();
-  private String mode = null;
-  private String nodeDescription = null;
-  private String nodeName = null;
-  private Integer numExecutors = null;
-  private String description = null;
+  private String mode;
+  private String nodeDescription;
+  private String nodeName;
+  private Integer numExecutors;
+  private String description;
   private List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
-  private AllView primaryView = null;
-  private Boolean quietingDown = null;
-  private Integer slaveAgentPort = null;
-  private UnlabeledLoadStatistics unlabeledLoad = null;
-  private Boolean useCrumbs = null;
-  private Boolean useSecurity = null;
+  private AllView primaryView;
+  private Boolean quietingDown;
+  private Integer slaveAgentPort;
+  private UnlabeledLoadStatistics unlabeledLoad;
+  private Boolean useCrumbs;
+  private Boolean useSecurity;
   private List<AllView> views = new ArrayList<AllView>();
 
   /**
-   **/
+   */
   public Hudson propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -53,7 +63,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
     return this;
@@ -70,7 +80,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson mode(String mode) {
     this.mode = mode;
     return this;
@@ -87,7 +97,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson nodeDescription(String nodeDescription) {
     this.nodeDescription = nodeDescription;
     return this;
@@ -104,7 +114,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson nodeName(String nodeName) {
     this.nodeName = nodeName;
     return this;
@@ -121,7 +131,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson numExecutors(Integer numExecutors) {
     this.numExecutors = numExecutors;
     return this;
@@ -138,7 +148,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson description(String description) {
     this.description = description;
     return this;
@@ -155,7 +165,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson jobs(List<FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
@@ -172,7 +182,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson primaryView(AllView primaryView) {
     this.primaryView = primaryView;
     return this;
@@ -189,7 +199,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson quietingDown(Boolean quietingDown) {
     this.quietingDown = quietingDown;
     return this;
@@ -206,7 +216,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson slaveAgentPort(Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
     return this;
@@ -223,7 +233,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson unlabeledLoad(UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
     return this;
@@ -240,7 +250,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson useCrumbs(Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
     return this;
@@ -257,7 +267,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson useSecurity(Boolean useSecurity) {
     this.useSecurity = useSecurity;
     return this;
@@ -274,7 +284,7 @@ public class Hudson   {
   }
 
   /**
-   **/
+   */
   public Hudson views(List<AllView> views) {
     this.views = views;
     return this;
@@ -292,7 +302,7 @@ public class Hudson   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -350,7 +360,7 @@ public class Hudson   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

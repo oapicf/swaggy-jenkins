@@ -9,23 +9,23 @@ namespace app\Models;
  */
 class Hudson {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\HudsonassignedLabels[] $assigned_labels */
-    private $assigned_labels;
+    /** @var \app\Models\HudsonassignedLabels[] $assignedLabels */
+    private $assignedLabels;
 
     /** @var string $mode */
     private $mode;
 
-    /** @var string $node_description */
-    private $node_description;
+    /** @var string $nodeDescription */
+    private $nodeDescription;
 
-    /** @var string $node_name */
-    private $node_name;
+    /** @var string $nodeName */
+    private $nodeName;
 
-    /** @var int $num_executors */
-    private $num_executors;
+    /** @var int $numExecutors */
+    private $numExecutors;
 
     /** @var string $description */
     private $description;
@@ -33,23 +33,23 @@ class Hudson {
     /** @var \app\Models\FreeStyleProject[] $jobs */
     private $jobs;
 
-    /** @var \app\Models\AllView $primary_view */
-    private $primary_view;
+    /** @var \app\Models\AllView $primaryView */
+    private $primaryView;
 
-    /** @var bool $quieting_down */
-    private $quieting_down;
+    /** @var bool $quietingDown */
+    private $quietingDown;
 
-    /** @var int $slave_agent_port */
-    private $slave_agent_port;
+    /** @var int $slaveAgentPort */
+    private $slaveAgentPort;
 
-    /** @var \app\Models\UnlabeledLoadStatistics $unlabeled_load */
-    private $unlabeled_load;
+    /** @var \app\Models\UnlabeledLoadStatistics $unlabeledLoad */
+    private $unlabeledLoad;
 
-    /** @var bool $use_crumbs */
-    private $use_crumbs;
+    /** @var bool $useCrumbs */
+    private $useCrumbs;
 
-    /** @var bool $use_security */
-    private $use_security;
+    /** @var bool $useSecurity */
+    private $useSecurity;
 
     /** @var \app\Models\AllView[] $views */
     private $views;

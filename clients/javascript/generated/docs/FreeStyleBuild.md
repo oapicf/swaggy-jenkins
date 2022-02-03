@@ -1,10 +1,11 @@
 # SwaggyJenkins.FreeStyleBuild
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  | [optional] 
-**_number** | **Number** |  | [optional] 
+**number** | **Number** |  | [optional] 
 **url** | **String** |  | [optional] 
 **actions** | [**[CauseAction]**](CauseAction.md) |  | [optional] 
 **building** | **Boolean** |  | [optional] 

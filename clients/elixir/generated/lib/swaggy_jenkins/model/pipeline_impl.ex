@@ -21,15 +21,15 @@ defmodule SwaggyJenkins.Model.PipelineImpl do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"displayName" => String.t,
-    :"estimatedDurationInMillis" => integer(),
-    :"fullName" => String.t,
-    :"latestRun" => String.t,
-    :"name" => String.t,
-    :"organization" => String.t,
-    :"weatherScore" => integer(),
-    :"_links" => PipelineImpllinks
+    :"_class" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"estimatedDurationInMillis" => integer() | nil,
+    :"fullName" => String.t | nil,
+    :"latestRun" => String.t | nil,
+    :"name" => String.t | nil,
+    :"organization" => String.t | nil,
+    :"weatherScore" => integer() | nil,
+    :"_links" => SwaggyJenkins.Model.PipelineImpllinks.t | nil
   }
 end
 

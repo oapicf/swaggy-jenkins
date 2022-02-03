@@ -15,7 +15,7 @@ class PipelineRunNodeedges(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, _class: str=None):  # noqa: E501
+    def __init__(self, id=None, _class=None):  # noqa: E501
         """PipelineRunNodeedges - a model defined in OpenAPI
 
         :param id: The id of this PipelineRunNodeedges.  # noqa: E501
@@ -48,7 +48,7 @@ class PipelineRunNodeedges(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this PipelineRunNodeedges.
 
 
@@ -58,7 +58,7 @@ class PipelineRunNodeedges(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this PipelineRunNodeedges.
 
 
@@ -69,7 +69,7 @@ class PipelineRunNodeedges(Model):
         self._id = id
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this PipelineRunNodeedges.
 
 
@@ -79,7 +79,7 @@ class PipelineRunNodeedges(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this PipelineRunNodeedges.
 
 

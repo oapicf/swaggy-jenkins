@@ -1,6 +1,7 @@
 # SwaggyJenkins.BranchImplpermissions
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **create** | **Boolean** |  | [optional] 

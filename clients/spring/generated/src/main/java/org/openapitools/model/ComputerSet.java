@@ -1,37 +1,44 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * ComputerSet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class ComputerSet   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("busyExecutors")
-  private Integer busyExecutors = null;
+  private Integer busyExecutors;
 
   @JsonProperty("computer")
   @Valid
   private List<HudsonMasterComputer> computer = null;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("totalExecutors")
-  private Integer totalExecutors = null;
+  private Integer totalExecutors;
 
   public ComputerSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -41,10 +48,9 @@ public class ComputerSet   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -61,10 +67,9 @@ public class ComputerSet   {
   /**
    * Get busyExecutors
    * @return busyExecutors
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "busyExecutors", required = false)
   public Integer getBusyExecutors() {
     return busyExecutors;
   }
@@ -89,11 +94,9 @@ public class ComputerSet   {
   /**
    * Get computer
    * @return computer
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "computer", required = false)
   public List<HudsonMasterComputer> getComputer() {
     return computer;
   }
@@ -110,10 +113,9 @@ public class ComputerSet   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -130,10 +132,9 @@ public class ComputerSet   {
   /**
    * Get totalExecutors
    * @return totalExecutors
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "totalExecutors", required = false)
   public Integer getTotalExecutors() {
     return totalExecutors;
   }
@@ -142,9 +143,8 @@ public class ComputerSet   {
     this.totalExecutors = totalExecutors;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -168,7 +168,6 @@ public class ComputerSet   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ComputerSet {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    busyExecutors: ").append(toIndentedString(busyExecutors)).append("\n");
     sb.append("    computer: ").append(toIndentedString(computer)).append("\n");
@@ -182,7 +181,7 @@ public class ComputerSet   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

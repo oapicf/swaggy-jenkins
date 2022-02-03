@@ -1,7 +1,9 @@
 
+
 # PipelineStepImpl
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -13,6 +15,7 @@ Name | Type | Description | Notes
 **result** | **String** |  |  [optional]
 **startTime** | **String** |  |  [optional]
 **state** | **String** |  |  [optional]
+
 
 
 

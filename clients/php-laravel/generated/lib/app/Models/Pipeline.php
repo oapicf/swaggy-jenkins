@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class Pipeline {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $organization */
     private $organization;
@@ -18,19 +18,19 @@ class Pipeline {
     /** @var string $name */
     private $name;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var string $full_name */
-    private $full_name;
+    /** @var string $fullName */
+    private $fullName;
 
-    /** @var int $weather_score */
-    private $weather_score;
+    /** @var int $weatherScore */
+    private $weatherScore;
 
-    /** @var int $estimated_duration_in_millis */
-    private $estimated_duration_in_millis;
+    /** @var int $estimatedDurationInMillis */
+    private $estimatedDurationInMillis;
 
-    /** @var \app\Models\PipelinelatestRun $latest_run */
-    private $latest_run;
+    /** @var \app\Models\PipelinelatestRun $latestRun */
+    private $latestRun;
 
 }

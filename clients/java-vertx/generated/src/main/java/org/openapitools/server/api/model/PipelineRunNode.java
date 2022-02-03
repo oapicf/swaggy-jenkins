@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.PipelineRunNodeedges;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineRunNode   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private Integer durationInMillis = null;
+  private String propertyClass;
+  private String displayName;
+  private Integer durationInMillis;
   private List<PipelineRunNodeedges> edges = new ArrayList<>();
-  private String id = null;
-  private String result = null;
-  private String startTime = null;
-  private String state = null;
+  private String id;
+  private String result;
+  private String startTime;
+  private String state;
 
   public PipelineRunNode () {
 

@@ -15,7 +15,7 @@ class PipelineFolderImpl(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, display_name: str=None, full_name: str=None, name: str=None, organization: str=None, number_of_folders: int=None, number_of_pipelines: int=None):  # noqa: E501
+    def __init__(self, _class=None, display_name=None, full_name=None, name=None, organization=None, number_of_folders=None, number_of_pipelines=None):  # noqa: E501
         """PipelineFolderImpl - a model defined in OpenAPI
 
         :param _class: The _class of this PipelineFolderImpl.  # noqa: E501
@@ -73,7 +73,7 @@ class PipelineFolderImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this PipelineFolderImpl.
 
 
@@ -83,7 +83,7 @@ class PipelineFolderImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this PipelineFolderImpl.
 
 
@@ -94,7 +94,7 @@ class PipelineFolderImpl(Model):
         self.__class = _class
 
     @property
-    def display_name(self) -> str:
+    def display_name(self):
         """Gets the display_name of this PipelineFolderImpl.
 
 
@@ -104,7 +104,7 @@ class PipelineFolderImpl(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name: str):
+    def display_name(self, display_name):
         """Sets the display_name of this PipelineFolderImpl.
 
 
@@ -115,7 +115,7 @@ class PipelineFolderImpl(Model):
         self._display_name = display_name
 
     @property
-    def full_name(self) -> str:
+    def full_name(self):
         """Gets the full_name of this PipelineFolderImpl.
 
 
@@ -125,7 +125,7 @@ class PipelineFolderImpl(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name: str):
+    def full_name(self, full_name):
         """Sets the full_name of this PipelineFolderImpl.
 
 
@@ -136,7 +136,7 @@ class PipelineFolderImpl(Model):
         self._full_name = full_name
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this PipelineFolderImpl.
 
 
@@ -146,7 +146,7 @@ class PipelineFolderImpl(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this PipelineFolderImpl.
 
 
@@ -157,7 +157,7 @@ class PipelineFolderImpl(Model):
         self._name = name
 
     @property
-    def organization(self) -> str:
+    def organization(self):
         """Gets the organization of this PipelineFolderImpl.
 
 
@@ -167,7 +167,7 @@ class PipelineFolderImpl(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization: str):
+    def organization(self, organization):
         """Sets the organization of this PipelineFolderImpl.
 
 
@@ -178,7 +178,7 @@ class PipelineFolderImpl(Model):
         self._organization = organization
 
     @property
-    def number_of_folders(self) -> int:
+    def number_of_folders(self):
         """Gets the number_of_folders of this PipelineFolderImpl.
 
 
@@ -188,7 +188,7 @@ class PipelineFolderImpl(Model):
         return self._number_of_folders
 
     @number_of_folders.setter
-    def number_of_folders(self, number_of_folders: int):
+    def number_of_folders(self, number_of_folders):
         """Sets the number_of_folders of this PipelineFolderImpl.
 
 
@@ -199,7 +199,7 @@ class PipelineFolderImpl(Model):
         self._number_of_folders = number_of_folders
 
     @property
-    def number_of_pipelines(self) -> int:
+    def number_of_pipelines(self):
         """Gets the number_of_pipelines of this PipelineFolderImpl.
 
 
@@ -209,7 +209,7 @@ class PipelineFolderImpl(Model):
         return self._number_of_pipelines
 
     @number_of_pipelines.setter
-    def number_of_pipelines(self, number_of_pipelines: int):
+    def number_of_pipelines(self, number_of_pipelines):
         """Sets the number_of_pipelines of this PipelineFolderImpl.
 
 

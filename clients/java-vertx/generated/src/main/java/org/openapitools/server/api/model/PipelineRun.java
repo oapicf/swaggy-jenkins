@@ -7,24 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.PipelineRunartifacts;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineRun   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<PipelineRunartifacts> artifacts = new ArrayList<>();
-  private Integer durationInMillis = null;
-  private Integer estimatedDurationInMillis = null;
-  private String enQueueTime = null;
-  private String endTime = null;
-  private String id = null;
-  private String organization = null;
-  private String pipeline = null;
-  private String result = null;
-  private String runSummary = null;
-  private String startTime = null;
-  private String state = null;
-  private String type = null;
-  private String commitId = null;
+  private Integer durationInMillis;
+  private Integer estimatedDurationInMillis;
+  private String enQueueTime;
+  private String endTime;
+  private String id;
+  private String organization;
+  private String pipeline;
+  private String result;
+  private String runSummary;
+  private String startTime;
+  private String state;
+  private String type;
+  private String commitId;
 
   public PipelineRun () {
 

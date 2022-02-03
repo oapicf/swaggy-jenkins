@@ -8,10 +8,10 @@ import org.openapitools.model.GithubRespositoryContainerlinks;
 
 @Canonical
 class GithubRespositoryContainer {
-    String propertyClass = null
-
-    GithubRespositoryContainerlinks links = null
-
-    GithubRepositories repositories = null
-
+    
+    String propertyClass
+    
+    GithubRespositoryContainerlinks links
+    
+    GithubRepositories repositories
 }

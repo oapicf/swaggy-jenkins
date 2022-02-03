@@ -12,34 +12,34 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 
 @Canonical
 class Hudson {
-    String propertyClass = null
-
+    
+    String propertyClass
+    
     List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>()
-
-    String mode = null
-
-    String nodeDescription = null
-
-    String nodeName = null
-
-    Integer numExecutors = null
-
-    String description = null
-
+    
+    String mode
+    
+    String nodeDescription
+    
+    String nodeName
+    
+    Integer numExecutors
+    
+    String description
+    
     List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>()
-
-    AllView primaryView = null
-
-    Boolean quietingDown = null
-
-    Integer slaveAgentPort = null
-
-    UnlabeledLoadStatistics unlabeledLoad = null
-
-    Boolean useCrumbs = null
-
-    Boolean useSecurity = null
-
+    
+    AllView primaryView
+    
+    Boolean quietingDown
+    
+    Integer slaveAgentPort
+    
+    UnlabeledLoadStatistics unlabeledLoad
+    
+    Boolean useCrumbs
+    
+    Boolean useSecurity
+    
     List<AllView> views = new ArrayList<AllView>()
-
 }

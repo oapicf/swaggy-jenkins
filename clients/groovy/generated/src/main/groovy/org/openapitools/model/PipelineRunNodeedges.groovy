@@ -6,8 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class PipelineRunNodeedges {
-    String id = null
-
-    String propertyClass = null
-
+    
+    String id
+    
+    String propertyClass
 }

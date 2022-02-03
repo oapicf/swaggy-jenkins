@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -14,19 +24,19 @@ import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class HudsonMasterComputermonitorData   {
   
-  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null;
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null;
-  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null;
-  private String hudsonNodeMonitorsArchitectureMonitor = null;
-  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null;
-  private ClockDifference hudsonNodeMonitorsClockMonitor = null;
-  private String propertyClass = null;
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
+  private String hudsonNodeMonitorsArchitectureMonitor;
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
+  private String propertyClass;
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
     return this;
@@ -43,7 +53,7 @@ public class HudsonMasterComputermonitorData   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData hudsonNodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
     this.hudsonNodeMonitorsTemporarySpaceMonitor = hudsonNodeMonitorsTemporarySpaceMonitor;
     return this;
@@ -60,7 +70,7 @@ public class HudsonMasterComputermonitorData   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData hudsonNodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
     return this;
@@ -77,7 +87,7 @@ public class HudsonMasterComputermonitorData   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData hudsonNodeMonitorsArchitectureMonitor(String hudsonNodeMonitorsArchitectureMonitor) {
     this.hudsonNodeMonitorsArchitectureMonitor = hudsonNodeMonitorsArchitectureMonitor;
     return this;
@@ -94,7 +104,7 @@ public class HudsonMasterComputermonitorData   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData hudsonNodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
     return this;
@@ -111,7 +121,7 @@ public class HudsonMasterComputermonitorData   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData hudsonNodeMonitorsClockMonitor(ClockDifference hudsonNodeMonitorsClockMonitor) {
     this.hudsonNodeMonitorsClockMonitor = hudsonNodeMonitorsClockMonitor;
     return this;
@@ -128,7 +138,7 @@ public class HudsonMasterComputermonitorData   {
   }
 
   /**
-   **/
+   */
   public HudsonMasterComputermonitorData propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -146,7 +156,7 @@ public class HudsonMasterComputermonitorData   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -188,7 +198,7 @@ public class HudsonMasterComputermonitorData   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

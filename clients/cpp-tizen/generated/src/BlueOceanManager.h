@@ -5,29 +5,22 @@
 #include <cstring>
 #include <list>
 #include <glib.h>
-#include "Body.h"
 #include "BranchImpl.h"
 #include "FavoriteImpl.h"
+#include "GithubOrganization.h"
 #include "GithubScm.h"
 #include "MultibranchPipeline.h"
 #include "Organisation.h"
-#include "Organisations.h"
 #include "Pipeline.h"
-#include "PipelineActivities.h"
+#include "PipelineActivity.h"
 #include "PipelineFolderImpl.h"
 #include "PipelineImpl.h"
-#include "PipelineQueue.h"
 #include "PipelineRun.h"
 #include "PipelineRunNode.h"
-#include "PipelineRunNodeSteps.h"
-#include "PipelineRunNodes.h"
-#include "PipelineRuns.h"
 #include "PipelineStepImpl.h"
-#include "Pipelines.h"
 #include "QueueItemImpl.h"
-#include "ScmOrganisations.h"
+#include "UNKNOWN_BASE_TYPE.h"
 #include "User.h"
-#include "UserFavorites.h"
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -107,26 +100,26 @@ bool getAuthenticatedUserAsync(char * accessToken,
 /*! \brief . *Synchronous*
  *
  * Get a list of class names supported by a given class
- * \param _class Name of the class *Required*
+ * \param r_class Name of the class *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getClassesSync(char * accessToken,
-	std::string _class, 
+	std::string r_class, 
 	void(* handler)(std::string, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
  *
  * Get a list of class names supported by a given class
- * \param _class Name of the class *Required*
+ * \param r_class Name of the class *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getClassesAsync(char * accessToken,
-	std::string _class, 
+	std::string r_class, 
 	void(* handler)(std::string, Error, void* )
 	, void* userData);
 
@@ -223,7 +216,7 @@ bool getOrganisationAsync(char * accessToken,
  */
 bool getOrganisationsSync(char * accessToken,
 	
-	void(* handler)(Organisations, Error, void* )
+	void(* handler)(std::list<Organisation>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -235,7 +228,7 @@ bool getOrganisationsSync(char * accessToken,
  */
 bool getOrganisationsAsync(char * accessToken,
 	
-	void(* handler)(Organisations, Error, void* )
+	void(* handler)(std::list<Organisation>, Error, void* )
 	, void* userData);
 
 
@@ -279,7 +272,7 @@ bool getPipelineAsync(char * accessToken,
  */
 bool getPipelineActivitiesSync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineActivities, Error, void* )
+	void(* handler)(std::list<PipelineActivity>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -293,7 +286,7 @@ bool getPipelineActivitiesSync(char * accessToken,
  */
 bool getPipelineActivitiesAsync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineActivities, Error, void* )
+	void(* handler)(std::list<PipelineActivity>, Error, void* )
 	, void* userData);
 
 
@@ -461,7 +454,7 @@ bool getPipelineFolderPipelineAsync(char * accessToken,
  */
 bool getPipelineQueueSync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineQueue, Error, void* )
+	void(* handler)(std::list<QueueItemImpl>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -475,7 +468,7 @@ bool getPipelineQueueSync(char * accessToken,
  */
 bool getPipelineQueueAsync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineQueue, Error, void* )
+	void(* handler)(std::list<QueueItemImpl>, Error, void* )
 	, void* userData);
 
 
@@ -661,7 +654,7 @@ bool getPipelineRunNodeStepLogAsync(char * accessToken,
  */
 bool getPipelineRunNodeStepsSync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, std::string node, 
-	void(* handler)(PipelineRunNodeSteps, Error, void* )
+	void(* handler)(std::list<PipelineStepImpl>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -677,7 +670,7 @@ bool getPipelineRunNodeStepsSync(char * accessToken,
  */
 bool getPipelineRunNodeStepsAsync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, std::string node, 
-	void(* handler)(PipelineRunNodeSteps, Error, void* )
+	void(* handler)(std::list<PipelineStepImpl>, Error, void* )
 	, void* userData);
 
 
@@ -693,7 +686,7 @@ bool getPipelineRunNodeStepsAsync(char * accessToken,
  */
 bool getPipelineRunNodesSync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, 
-	void(* handler)(PipelineRunNodes, Error, void* )
+	void(* handler)(std::list<PipelineRunNode>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -708,7 +701,7 @@ bool getPipelineRunNodesSync(char * accessToken,
  */
 bool getPipelineRunNodesAsync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, 
-	void(* handler)(PipelineRunNodes, Error, void* )
+	void(* handler)(std::list<PipelineRunNode>, Error, void* )
 	, void* userData);
 
 
@@ -723,7 +716,7 @@ bool getPipelineRunNodesAsync(char * accessToken,
  */
 bool getPipelineRunsSync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineRuns, Error, void* )
+	void(* handler)(std::list<PipelineRun>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -737,7 +730,7 @@ bool getPipelineRunsSync(char * accessToken,
  */
 bool getPipelineRunsAsync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineRuns, Error, void* )
+	void(* handler)(std::list<PipelineRun>, Error, void* )
 	, void* userData);
 
 
@@ -751,7 +744,7 @@ bool getPipelineRunsAsync(char * accessToken,
  */
 bool getPipelinesSync(char * accessToken,
 	std::string organization, 
-	void(* handler)(Pipelines, Error, void* )
+	void(* handler)(std::list<Pipeline>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -764,7 +757,7 @@ bool getPipelinesSync(char * accessToken,
  */
 bool getPipelinesAsync(char * accessToken,
 	std::string organization, 
-	void(* handler)(Pipelines, Error, void* )
+	void(* handler)(std::list<Pipeline>, Error, void* )
 	, void* userData);
 
 
@@ -812,7 +805,7 @@ bool getSCMAsync(char * accessToken,
  */
 bool getSCMOrganisationRepositoriesSync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string credentialId, int pageSize, int pageNumber, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -830,7 +823,7 @@ bool getSCMOrganisationRepositoriesSync(char * accessToken,
  */
 bool getSCMOrganisationRepositoriesAsync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string credentialId, int pageSize, int pageNumber, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData);
 
 
@@ -848,7 +841,7 @@ bool getSCMOrganisationRepositoriesAsync(char * accessToken,
  */
 bool getSCMOrganisationRepositorySync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string repository, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -865,7 +858,7 @@ bool getSCMOrganisationRepositorySync(char * accessToken,
  */
 bool getSCMOrganisationRepositoryAsync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string repository, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData);
 
 
@@ -881,7 +874,7 @@ bool getSCMOrganisationRepositoryAsync(char * accessToken,
  */
 bool getSCMOrganisationsSync(char * accessToken,
 	std::string organization, std::string scm, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -896,7 +889,7 @@ bool getSCMOrganisationsSync(char * accessToken,
  */
 bool getSCMOrganisationsAsync(char * accessToken,
 	std::string organization, std::string scm, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData);
 
 
@@ -939,7 +932,7 @@ bool getUserAsync(char * accessToken,
  */
 bool getUserFavoritesSync(char * accessToken,
 	std::string user, 
-	void(* handler)(UserFavorites, Error, void* )
+	void(* handler)(std::list<FavoriteImpl>, Error, void* )
 	, void* userData);
 
 /*! \brief . *Asynchronous*
@@ -952,7 +945,7 @@ bool getUserFavoritesSync(char * accessToken,
  */
 bool getUserFavoritesAsync(char * accessToken,
 	std::string user, 
-	void(* handler)(UserFavorites, Error, void* )
+	void(* handler)(std::list<FavoriteImpl>, Error, void* )
 	, void* userData);
 
 
@@ -1048,13 +1041,13 @@ bool postPipelineRunsAsync(char * accessToken,
  * Favorite/unfavorite a pipeline
  * \param organization Name of the organization *Required*
  * \param pipeline Name of the pipeline *Required*
- * \param body Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite *Required*
+ * \param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool putPipelineFavoriteSync(char * accessToken,
-	std::string organization, std::string pipeline, Body body, 
+	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData);
 
@@ -1063,13 +1056,13 @@ bool putPipelineFavoriteSync(char * accessToken,
  * Favorite/unfavorite a pipeline
  * \param organization Name of the organization *Required*
  * \param pipeline Name of the pipeline *Required*
- * \param body Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite *Required*
+ * \param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool putPipelineFavoriteAsync(char * accessToken,
-	std::string organization, std::string pipeline, Body body, 
+	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData);
 

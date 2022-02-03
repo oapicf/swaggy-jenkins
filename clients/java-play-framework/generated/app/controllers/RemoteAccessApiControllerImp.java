@@ -11,117 +11,118 @@ import play.mvc.Http;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.io.FileInputStream;
+import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
-public class RemoteAccessApiControllerImp implements RemoteAccessApiControllerImpInterface {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
+public class RemoteAccessApiControllerImp extends RemoteAccessApiControllerImpInterface {
     @Override
-    public ComputerSet getComputer( @NotNull Integer depth) throws Exception {
+    public ComputerSet getComputer(Http.Request request, @NotNull Integer depth) throws Exception {
         //Do your magic!!!
         return new ComputerSet();
     }
 
     @Override
-    public Hudson getJenkins() throws Exception {
+    public Hudson getJenkins(Http.Request request) throws Exception {
         //Do your magic!!!
         return new Hudson();
     }
 
     @Override
-    public FreeStyleProject getJob(String name) throws Exception {
+    public FreeStyleProject getJob(Http.Request request, String name) throws Exception {
         //Do your magic!!!
         return new FreeStyleProject();
     }
 
     @Override
-    public String getJobConfig(String name) throws Exception {
+    public String getJobConfig(Http.Request request, String name) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public FreeStyleBuild getJobLastBuild(String name) throws Exception {
+    public FreeStyleBuild getJobLastBuild(Http.Request request, String name) throws Exception {
         //Do your magic!!!
         return new FreeStyleBuild();
     }
 
     @Override
-    public void getJobProgressiveText(String name, String number,  @NotNull String start) throws Exception {
+    public void getJobProgressiveText(Http.Request request, String name, String number, @NotNull String start) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public Queue getQueue() throws Exception {
-        //Do your magic!!!
-        return new Queue();
-    }
-
-    @Override
-    public Queue getQueueItem(String number) throws Exception {
+    public Queue getQueue(Http.Request request) throws Exception {
         //Do your magic!!!
         return new Queue();
     }
 
     @Override
-    public ListView getView(String name) throws Exception {
+    public Queue getQueueItem(Http.Request request, String number) throws Exception {
+        //Do your magic!!!
+        return new Queue();
+    }
+
+    @Override
+    public ListView getView(Http.Request request, String name) throws Exception {
         //Do your magic!!!
         return new ListView();
     }
 
     @Override
-    public String getViewConfig(String name) throws Exception {
+    public String getViewConfig(Http.Request request, String name) throws Exception {
         //Do your magic!!!
         return new String();
     }
 
     @Override
-    public void headJenkins() throws Exception {
+    public void headJenkins(Http.Request request) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postCreateItem( @NotNull String name, String from, String mode, String jenkinsCrumb, String contentType, String body) throws Exception {
+    public void postCreateItem(Http.Request request, @NotNull String name, String from, String mode, String jenkinsCrumb, String contentType, String body) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postCreateView( @NotNull String name, String jenkinsCrumb, String contentType, String body) throws Exception {
+    public void postCreateView(Http.Request request, @NotNull String name, String jenkinsCrumb, String contentType, String body) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postJobBuild(String name,  @NotNull String json, String token, String jenkinsCrumb) throws Exception {
+    public void postJobBuild(Http.Request request, String name, @NotNull String json, String token, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postJobConfig(String name, String body, String jenkinsCrumb) throws Exception {
+    public void postJobConfig(Http.Request request, String name, String body, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postJobDelete(String name, String jenkinsCrumb) throws Exception {
+    public void postJobDelete(Http.Request request, String name, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postJobDisable(String name, String jenkinsCrumb) throws Exception {
+    public void postJobDisable(Http.Request request, String name, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postJobEnable(String name, String jenkinsCrumb) throws Exception {
+    public void postJobEnable(Http.Request request, String name, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postJobLastBuildStop(String name, String jenkinsCrumb) throws Exception {
+    public void postJobLastBuildStop(Http.Request request, String name, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 
     @Override
-    public void postViewConfig(String name, String body, String jenkinsCrumb) throws Exception {
+    public void postViewConfig(Http.Request request, String name, String body, String jenkinsCrumb) throws Exception {
         //Do your magic!!!
     }
 

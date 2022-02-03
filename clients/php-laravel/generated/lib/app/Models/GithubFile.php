@@ -12,7 +12,7 @@ class GithubFile {
     /** @var \app\Models\GithubContent $content */
     private $content;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

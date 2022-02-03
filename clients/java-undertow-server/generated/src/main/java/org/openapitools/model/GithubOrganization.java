@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -11,16 +21,16 @@ import org.openapitools.model.GithubOrganizationlinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class GithubOrganization   {
   
-  private String propertyClass = null;
-  private GithubOrganizationlinks links = null;
-  private Boolean jenkinsOrganizationPipeline = null;
-  private String name = null;
+  private String propertyClass;
+  private GithubOrganizationlinks links;
+  private Boolean jenkinsOrganizationPipeline;
+  private String name;
 
   /**
-   **/
+   */
   public GithubOrganization propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -37,7 +47,7 @@ public class GithubOrganization   {
   }
 
   /**
-   **/
+   */
   public GithubOrganization links(GithubOrganizationlinks links) {
     this.links = links;
     return this;
@@ -54,7 +64,7 @@ public class GithubOrganization   {
   }
 
   /**
-   **/
+   */
   public GithubOrganization jenkinsOrganizationPipeline(Boolean jenkinsOrganizationPipeline) {
     this.jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
     return this;
@@ -71,7 +81,7 @@ public class GithubOrganization   {
   }
 
   /**
-   **/
+   */
   public GithubOrganization name(String name) {
     this.name = name;
     return this;
@@ -89,7 +99,7 @@ public class GithubOrganization   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -125,7 +135,7 @@ public class GithubOrganization   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -17,11 +17,11 @@ defmodule SwaggyJenkins.Model.ListView do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"description" => String.t,
-    :"jobs" => [FreeStyleProject],
-    :"name" => String.t,
-    :"url" => String.t
+    :"_class" => String.t | nil,
+    :"description" => String.t | nil,
+    :"jobs" => [SwaggyJenkins.Model.FreeStyleProject.t] | nil,
+    :"name" => String.t | nil,
+    :"url" => String.t | nil
   }
 end
 

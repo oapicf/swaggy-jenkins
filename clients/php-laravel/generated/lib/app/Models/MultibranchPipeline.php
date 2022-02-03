@@ -9,14 +9,14 @@ namespace app\Models;
  */
 class MultibranchPipeline {
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $estimated_duration_in_millis */
-    private $estimated_duration_in_millis;
+    /** @var int $estimatedDurationInMillis */
+    private $estimatedDurationInMillis;
 
-    /** @var string $latest_run */
-    private $latest_run;
+    /** @var string $latestRun */
+    private $latestRun;
 
     /** @var string $name */
     private $name;
@@ -24,31 +24,31 @@ class MultibranchPipeline {
     /** @var string $organization */
     private $organization;
 
-    /** @var int $weather_score */
-    private $weather_score;
+    /** @var int $weatherScore */
+    private $weatherScore;
 
-    /** @var string[] $branch_names */
-    private $branch_names;
+    /** @var string[] $branchNames */
+    private $branchNames;
 
-    /** @var int $number_of_failing_branches */
-    private $number_of_failing_branches;
+    /** @var int $numberOfFailingBranches */
+    private $numberOfFailingBranches;
 
-    /** @var int $number_of_failing_pull_requests */
-    private $number_of_failing_pull_requests;
+    /** @var int $numberOfFailingPullRequests */
+    private $numberOfFailingPullRequests;
 
-    /** @var int $number_of_successful_branches */
-    private $number_of_successful_branches;
+    /** @var int $numberOfSuccessfulBranches */
+    private $numberOfSuccessfulBranches;
 
-    /** @var int $number_of_successful_pull_requests */
-    private $number_of_successful_pull_requests;
+    /** @var int $numberOfSuccessfulPullRequests */
+    private $numberOfSuccessfulPullRequests;
 
-    /** @var int $total_number_of_branches */
-    private $total_number_of_branches;
+    /** @var int $totalNumberOfBranches */
+    private $totalNumberOfBranches;
 
-    /** @var int $total_number_of_pull_requests */
-    private $total_number_of_pull_requests;
+    /** @var int $totalNumberOfPullRequests */
+    private $totalNumberOfPullRequests;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

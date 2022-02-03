@@ -9,22 +9,22 @@ namespace app\Models;
  */
 class GithubRepositories {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\GithubRepositorieslinks $_links */
-    private $_links;
+    /** @var \app\Models\GithubRepositorieslinks $links */
+    private $links;
 
     /** @var \app\Models\GithubRepository[] $items */
     private $items;
 
-    /** @var int $last_page */
-    private $last_page;
+    /** @var int $lastPage */
+    private $lastPage;
 
-    /** @var int $next_page */
-    private $next_page;
+    /** @var int $nextPage */
+    private $nextPage;
 
-    /** @var int $page_size */
-    private $page_size;
+    /** @var int $pageSize */
+    private $pageSize;
 
 }

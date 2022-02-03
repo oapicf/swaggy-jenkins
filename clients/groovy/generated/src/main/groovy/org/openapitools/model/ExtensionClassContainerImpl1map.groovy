@@ -7,10 +7,10 @@ import org.openapitools.model.ExtensionClassImpl;
 
 @Canonical
 class ExtensionClassContainerImpl1map {
-    ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = null
-
-    ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl = null
-
-    String propertyClass = null
-
+    
+    ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl
+    
+    ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl
+    
+    String propertyClass
 }

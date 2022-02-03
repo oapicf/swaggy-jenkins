@@ -19,13 +19,13 @@ defmodule SwaggyJenkins.Model.HudsonMasterComputermonitorData do
   ]
 
   @type t :: %__MODULE__{
-    :"hudson.node_monitors.SwapSpaceMonitor" => SwapSpaceMonitorMemoryUsage2,
-    :"hudson.node_monitors.TemporarySpaceMonitor" => DiskSpaceMonitorDescriptorDiskSpace,
-    :"hudson.node_monitors.DiskSpaceMonitor" => DiskSpaceMonitorDescriptorDiskSpace,
-    :"hudson.node_monitors.ArchitectureMonitor" => String.t,
-    :"hudson.node_monitors.ResponseTimeMonitor" => ResponseTimeMonitorData,
-    :"hudson.node_monitors.ClockMonitor" => ClockDifference,
-    :"_class" => String.t
+    :"hudson.node_monitors.SwapSpaceMonitor" => SwaggyJenkins.Model.SwapSpaceMonitorMemoryUsage2.t | nil,
+    :"hudson.node_monitors.TemporarySpaceMonitor" => SwaggyJenkins.Model.DiskSpaceMonitorDescriptorDiskSpace.t | nil,
+    :"hudson.node_monitors.DiskSpaceMonitor" => SwaggyJenkins.Model.DiskSpaceMonitorDescriptorDiskSpace.t | nil,
+    :"hudson.node_monitors.ArchitectureMonitor" => String.t | nil,
+    :"hudson.node_monitors.ResponseTimeMonitor" => SwaggyJenkins.Model.ResponseTimeMonitorData.t | nil,
+    :"hudson.node_monitors.ClockMonitor" => SwaggyJenkins.Model.ClockDifference.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

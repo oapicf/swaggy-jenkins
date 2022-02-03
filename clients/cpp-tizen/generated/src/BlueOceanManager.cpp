@@ -142,7 +142,7 @@ static bool deletePipelineQueueItemHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = deletePipelineQueueItemProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -294,7 +294,7 @@ static bool getAuthenticatedUserHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getAuthenticatedUserProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -393,7 +393,7 @@ static bool getClassesProcessor(MemoryStruct_s p_chunk, long code, char* errorms
 }
 
 static bool getClassesHelper(char * accessToken,
-	std::string _class, 
+	std::string r_class, 
 	void(* handler)(std::string, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -417,12 +417,12 @@ static bool getClassesHelper(char * accessToken,
 	string url("/blue/rest/classes/{class}");
 	int pos;
 
-	string s__class("{");
-	s__class.append("class");
-	s__class.append("}");
-	pos = url.find(s__class);
-	url.erase(pos, s__class.length());
-	url.insert(pos, stringify(&_class, "std::string"));
+	string s_r_class("{");
+	s_r_class.append("class");
+	s_r_class.append("}");
+	pos = url.find(s_r_class);
+	url.erase(pos, s_r_class.length());
+	url.insert(pos, stringify(&r_class, "std::string"));
 
 	//TODO: free memory of errormsg, memorystruct
 	MemoryStruct_s* p_chunk = new MemoryStruct_s();
@@ -441,7 +441,7 @@ static bool getClassesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getClassesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -470,22 +470,22 @@ static bool getClassesHelper(char * accessToken,
 
 
 bool BlueOceanManager::getClassesAsync(char * accessToken,
-	std::string _class, 
+	std::string r_class, 
 	void(* handler)(std::string, Error, void* )
 	, void* userData)
 {
 	return getClassesHelper(accessToken,
-	_class, 
+	r_class, 
 	handler, userData, true);
 }
 
 bool BlueOceanManager::getClassesSync(char * accessToken,
-	std::string _class, 
+	std::string r_class, 
 	void(* handler)(std::string, Error, void* )
 	, void* userData)
 {
 	return getClassesHelper(accessToken,
-	_class, 
+	r_class, 
 	handler, userData, false);
 }
 
@@ -588,7 +588,7 @@ static bool getJsonWebKeyHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJsonWebKeyProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -743,7 +743,7 @@ static bool getJsonWebTokenHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJsonWebTokenProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -895,7 +895,7 @@ static bool getOrganisationHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getOrganisationProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -946,43 +946,35 @@ bool BlueOceanManager::getOrganisationSync(char * accessToken,
 static bool getOrganisationsProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(Organisations, Error, void* )
-	= reinterpret_cast<void(*)(Organisations, Error, void* )> (voidHandler);
+	void(* handler)(std::list<Organisation>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<Organisation>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<Organisation> out;
 	
-	Organisations out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("Organisations")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "Organisations", "Organisations");
-			json_node_free(pJson);
-
-			if ("Organisations" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			Organisation singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -1000,7 +992,7 @@ static bool getOrganisationsProcessor(MemoryStruct_s p_chunk, long code, char* e
 
 static bool getOrganisationsHelper(char * accessToken,
 	
-	void(* handler)(Organisations, Error, void* )
+	void(* handler)(std::list<Organisation>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -1041,7 +1033,7 @@ static bool getOrganisationsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getOrganisationsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1071,7 +1063,7 @@ static bool getOrganisationsHelper(char * accessToken,
 
 bool BlueOceanManager::getOrganisationsAsync(char * accessToken,
 	
-	void(* handler)(Organisations, Error, void* )
+	void(* handler)(std::list<Organisation>, Error, void* )
 	, void* userData)
 {
 	return getOrganisationsHelper(accessToken,
@@ -1081,7 +1073,7 @@ bool BlueOceanManager::getOrganisationsAsync(char * accessToken,
 
 bool BlueOceanManager::getOrganisationsSync(char * accessToken,
 	
-	void(* handler)(Organisations, Error, void* )
+	void(* handler)(std::list<Organisation>, Error, void* )
 	, void* userData)
 {
 	return getOrganisationsHelper(accessToken,
@@ -1199,7 +1191,7 @@ static bool getPipelineHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1250,43 +1242,35 @@ bool BlueOceanManager::getPipelineSync(char * accessToken,
 static bool getPipelineActivitiesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(PipelineActivities, Error, void* )
-	= reinterpret_cast<void(*)(PipelineActivities, Error, void* )> (voidHandler);
+	void(* handler)(std::list<PipelineActivity>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<PipelineActivity>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<PipelineActivity> out;
 	
-	PipelineActivities out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("PipelineActivities")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "PipelineActivities", "PipelineActivities");
-			json_node_free(pJson);
-
-			if ("PipelineActivities" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			PipelineActivity singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -1304,7 +1288,7 @@ static bool getPipelineActivitiesProcessor(MemoryStruct_s p_chunk, long code, ch
 
 static bool getPipelineActivitiesHelper(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineActivities, Error, void* )
+	void(* handler)(std::list<PipelineActivity>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -1357,7 +1341,7 @@ static bool getPipelineActivitiesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineActivitiesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1387,7 +1371,7 @@ static bool getPipelineActivitiesHelper(char * accessToken,
 
 bool BlueOceanManager::getPipelineActivitiesAsync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineActivities, Error, void* )
+	void(* handler)(std::list<PipelineActivity>, Error, void* )
 	, void* userData)
 {
 	return getPipelineActivitiesHelper(accessToken,
@@ -1397,7 +1381,7 @@ bool BlueOceanManager::getPipelineActivitiesAsync(char * accessToken,
 
 bool BlueOceanManager::getPipelineActivitiesSync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineActivities, Error, void* )
+	void(* handler)(std::list<PipelineActivity>, Error, void* )
 	, void* userData)
 {
 	return getPipelineActivitiesHelper(accessToken,
@@ -1521,7 +1505,7 @@ static bool getPipelineBranchHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineBranchProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1691,7 +1675,7 @@ static bool getPipelineBranchRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineBranchRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1849,7 +1833,7 @@ static bool getPipelineBranchesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineBranchesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2007,7 +1991,7 @@ static bool getPipelineFolderHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineFolderProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2171,7 +2155,7 @@ static bool getPipelineFolderPipelineHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineFolderPipelineProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2222,43 +2206,35 @@ bool BlueOceanManager::getPipelineFolderPipelineSync(char * accessToken,
 static bool getPipelineQueueProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(PipelineQueue, Error, void* )
-	= reinterpret_cast<void(*)(PipelineQueue, Error, void* )> (voidHandler);
+	void(* handler)(std::list<QueueItemImpl>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<QueueItemImpl>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<QueueItemImpl> out;
 	
-	PipelineQueue out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("PipelineQueue")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "PipelineQueue", "PipelineQueue");
-			json_node_free(pJson);
-
-			if ("PipelineQueue" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			QueueItemImpl singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -2276,7 +2252,7 @@ static bool getPipelineQueueProcessor(MemoryStruct_s p_chunk, long code, char* e
 
 static bool getPipelineQueueHelper(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineQueue, Error, void* )
+	void(* handler)(std::list<QueueItemImpl>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -2329,7 +2305,7 @@ static bool getPipelineQueueHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineQueueProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2359,7 +2335,7 @@ static bool getPipelineQueueHelper(char * accessToken,
 
 bool BlueOceanManager::getPipelineQueueAsync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineQueue, Error, void* )
+	void(* handler)(std::list<QueueItemImpl>, Error, void* )
 	, void* userData)
 {
 	return getPipelineQueueHelper(accessToken,
@@ -2369,7 +2345,7 @@ bool BlueOceanManager::getPipelineQueueAsync(char * accessToken,
 
 bool BlueOceanManager::getPipelineQueueSync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineQueue, Error, void* )
+	void(* handler)(std::list<QueueItemImpl>, Error, void* )
 	, void* userData)
 {
 	return getPipelineQueueHelper(accessToken,
@@ -2493,7 +2469,7 @@ static bool getPipelineRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2666,7 +2642,7 @@ static bool getPipelineRunLogHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunLogProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2836,7 +2812,7 @@ static bool getPipelineRunNodeHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3012,7 +2988,7 @@ static bool getPipelineRunNodeStepHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeStepProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3183,7 +3159,7 @@ static bool getPipelineRunNodeStepLogHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeStepLogProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3234,43 +3210,35 @@ bool BlueOceanManager::getPipelineRunNodeStepLogSync(char * accessToken,
 static bool getPipelineRunNodeStepsProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(PipelineRunNodeSteps, Error, void* )
-	= reinterpret_cast<void(*)(PipelineRunNodeSteps, Error, void* )> (voidHandler);
+	void(* handler)(std::list<PipelineStepImpl>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<PipelineStepImpl>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<PipelineStepImpl> out;
 	
-	PipelineRunNodeSteps out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("PipelineRunNodeSteps")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "PipelineRunNodeSteps", "PipelineRunNodeSteps");
-			json_node_free(pJson);
-
-			if ("PipelineRunNodeSteps" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			PipelineStepImpl singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -3288,7 +3256,7 @@ static bool getPipelineRunNodeStepsProcessor(MemoryStruct_s p_chunk, long code, 
 
 static bool getPipelineRunNodeStepsHelper(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, std::string node, 
-	void(* handler)(PipelineRunNodeSteps, Error, void* )
+	void(* handler)(std::list<PipelineStepImpl>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -3353,7 +3321,7 @@ static bool getPipelineRunNodeStepsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeStepsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3383,7 +3351,7 @@ static bool getPipelineRunNodeStepsHelper(char * accessToken,
 
 bool BlueOceanManager::getPipelineRunNodeStepsAsync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, std::string node, 
-	void(* handler)(PipelineRunNodeSteps, Error, void* )
+	void(* handler)(std::list<PipelineStepImpl>, Error, void* )
 	, void* userData)
 {
 	return getPipelineRunNodeStepsHelper(accessToken,
@@ -3393,7 +3361,7 @@ bool BlueOceanManager::getPipelineRunNodeStepsAsync(char * accessToken,
 
 bool BlueOceanManager::getPipelineRunNodeStepsSync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, std::string node, 
-	void(* handler)(PipelineRunNodeSteps, Error, void* )
+	void(* handler)(std::list<PipelineStepImpl>, Error, void* )
 	, void* userData)
 {
 	return getPipelineRunNodeStepsHelper(accessToken,
@@ -3404,43 +3372,35 @@ bool BlueOceanManager::getPipelineRunNodeStepsSync(char * accessToken,
 static bool getPipelineRunNodesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(PipelineRunNodes, Error, void* )
-	= reinterpret_cast<void(*)(PipelineRunNodes, Error, void* )> (voidHandler);
+	void(* handler)(std::list<PipelineRunNode>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<PipelineRunNode>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<PipelineRunNode> out;
 	
-	PipelineRunNodes out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("PipelineRunNodes")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "PipelineRunNodes", "PipelineRunNodes");
-			json_node_free(pJson);
-
-			if ("PipelineRunNodes" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			PipelineRunNode singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -3458,7 +3418,7 @@ static bool getPipelineRunNodesProcessor(MemoryStruct_s p_chunk, long code, char
 
 static bool getPipelineRunNodesHelper(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, 
-	void(* handler)(PipelineRunNodes, Error, void* )
+	void(* handler)(std::list<PipelineRunNode>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -3517,7 +3477,7 @@ static bool getPipelineRunNodesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3547,7 +3507,7 @@ static bool getPipelineRunNodesHelper(char * accessToken,
 
 bool BlueOceanManager::getPipelineRunNodesAsync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, 
-	void(* handler)(PipelineRunNodes, Error, void* )
+	void(* handler)(std::list<PipelineRunNode>, Error, void* )
 	, void* userData)
 {
 	return getPipelineRunNodesHelper(accessToken,
@@ -3557,7 +3517,7 @@ bool BlueOceanManager::getPipelineRunNodesAsync(char * accessToken,
 
 bool BlueOceanManager::getPipelineRunNodesSync(char * accessToken,
 	std::string organization, std::string pipeline, std::string run, 
-	void(* handler)(PipelineRunNodes, Error, void* )
+	void(* handler)(std::list<PipelineRunNode>, Error, void* )
 	, void* userData)
 {
 	return getPipelineRunNodesHelper(accessToken,
@@ -3568,43 +3528,35 @@ bool BlueOceanManager::getPipelineRunNodesSync(char * accessToken,
 static bool getPipelineRunsProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(PipelineRuns, Error, void* )
-	= reinterpret_cast<void(*)(PipelineRuns, Error, void* )> (voidHandler);
+	void(* handler)(std::list<PipelineRun>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<PipelineRun>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<PipelineRun> out;
 	
-	PipelineRuns out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("PipelineRuns")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "PipelineRuns", "PipelineRuns");
-			json_node_free(pJson);
-
-			if ("PipelineRuns" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			PipelineRun singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -3622,7 +3574,7 @@ static bool getPipelineRunsProcessor(MemoryStruct_s p_chunk, long code, char* er
 
 static bool getPipelineRunsHelper(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineRuns, Error, void* )
+	void(* handler)(std::list<PipelineRun>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -3675,7 +3627,7 @@ static bool getPipelineRunsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3705,7 +3657,7 @@ static bool getPipelineRunsHelper(char * accessToken,
 
 bool BlueOceanManager::getPipelineRunsAsync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineRuns, Error, void* )
+	void(* handler)(std::list<PipelineRun>, Error, void* )
 	, void* userData)
 {
 	return getPipelineRunsHelper(accessToken,
@@ -3715,7 +3667,7 @@ bool BlueOceanManager::getPipelineRunsAsync(char * accessToken,
 
 bool BlueOceanManager::getPipelineRunsSync(char * accessToken,
 	std::string organization, std::string pipeline, 
-	void(* handler)(PipelineRuns, Error, void* )
+	void(* handler)(std::list<PipelineRun>, Error, void* )
 	, void* userData)
 {
 	return getPipelineRunsHelper(accessToken,
@@ -3726,43 +3678,35 @@ bool BlueOceanManager::getPipelineRunsSync(char * accessToken,
 static bool getPipelinesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(Pipelines, Error, void* )
-	= reinterpret_cast<void(*)(Pipelines, Error, void* )> (voidHandler);
+	void(* handler)(std::list<Pipeline>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<Pipeline>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<Pipeline> out;
 	
-	Pipelines out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("Pipelines")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "Pipelines", "Pipelines");
-			json_node_free(pJson);
-
-			if ("Pipelines" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			Pipeline singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -3780,7 +3724,7 @@ static bool getPipelinesProcessor(MemoryStruct_s p_chunk, long code, char* error
 
 static bool getPipelinesHelper(char * accessToken,
 	std::string organization, 
-	void(* handler)(Pipelines, Error, void* )
+	void(* handler)(std::list<Pipeline>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -3827,7 +3771,7 @@ static bool getPipelinesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelinesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3857,7 +3801,7 @@ static bool getPipelinesHelper(char * accessToken,
 
 bool BlueOceanManager::getPipelinesAsync(char * accessToken,
 	std::string organization, 
-	void(* handler)(Pipelines, Error, void* )
+	void(* handler)(std::list<Pipeline>, Error, void* )
 	, void* userData)
 {
 	return getPipelinesHelper(accessToken,
@@ -3867,7 +3811,7 @@ bool BlueOceanManager::getPipelinesAsync(char * accessToken,
 
 bool BlueOceanManager::getPipelinesSync(char * accessToken,
 	std::string organization, 
-	void(* handler)(Pipelines, Error, void* )
+	void(* handler)(std::list<Pipeline>, Error, void* )
 	, void* userData)
 {
 	return getPipelinesHelper(accessToken,
@@ -3985,7 +3929,7 @@ static bool getSCMHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4036,43 +3980,35 @@ bool BlueOceanManager::getSCMSync(char * accessToken,
 static bool getSCMOrganisationRepositoriesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(ScmOrganisations, Error, void* )
-	= reinterpret_cast<void(*)(ScmOrganisations, Error, void* )> (voidHandler);
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<GithubOrganization>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<GithubOrganization> out;
 	
-	ScmOrganisations out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("ScmOrganisations")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "ScmOrganisations", "ScmOrganisations");
-			json_node_free(pJson);
-
-			if ("ScmOrganisations" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			GithubOrganization singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -4090,7 +4026,7 @@ static bool getSCMOrganisationRepositoriesProcessor(MemoryStruct_s p_chunk, long
 
 static bool getSCMOrganisationRepositoriesHelper(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string credentialId, int pageSize, int pageNumber, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -4170,7 +4106,7 @@ static bool getSCMOrganisationRepositoriesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMOrganisationRepositoriesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4200,7 +4136,7 @@ static bool getSCMOrganisationRepositoriesHelper(char * accessToken,
 
 bool BlueOceanManager::getSCMOrganisationRepositoriesAsync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string credentialId, int pageSize, int pageNumber, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData)
 {
 	return getSCMOrganisationRepositoriesHelper(accessToken,
@@ -4210,7 +4146,7 @@ bool BlueOceanManager::getSCMOrganisationRepositoriesAsync(char * accessToken,
 
 bool BlueOceanManager::getSCMOrganisationRepositoriesSync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string credentialId, int pageSize, int pageNumber, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData)
 {
 	return getSCMOrganisationRepositoriesHelper(accessToken,
@@ -4221,43 +4157,35 @@ bool BlueOceanManager::getSCMOrganisationRepositoriesSync(char * accessToken,
 static bool getSCMOrganisationRepositoryProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(ScmOrganisations, Error, void* )
-	= reinterpret_cast<void(*)(ScmOrganisations, Error, void* )> (voidHandler);
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<GithubOrganization>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<GithubOrganization> out;
 	
-	ScmOrganisations out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("ScmOrganisations")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "ScmOrganisations", "ScmOrganisations");
-			json_node_free(pJson);
-
-			if ("ScmOrganisations" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			GithubOrganization singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -4275,7 +4203,7 @@ static bool getSCMOrganisationRepositoryProcessor(MemoryStruct_s p_chunk, long c
 
 static bool getSCMOrganisationRepositoryHelper(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string repository, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -4347,7 +4275,7 @@ static bool getSCMOrganisationRepositoryHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMOrganisationRepositoryProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4377,7 +4305,7 @@ static bool getSCMOrganisationRepositoryHelper(char * accessToken,
 
 bool BlueOceanManager::getSCMOrganisationRepositoryAsync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string repository, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData)
 {
 	return getSCMOrganisationRepositoryHelper(accessToken,
@@ -4387,7 +4315,7 @@ bool BlueOceanManager::getSCMOrganisationRepositoryAsync(char * accessToken,
 
 bool BlueOceanManager::getSCMOrganisationRepositorySync(char * accessToken,
 	std::string organization, std::string scm, std::string scmOrganisation, std::string repository, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData)
 {
 	return getSCMOrganisationRepositoryHelper(accessToken,
@@ -4398,43 +4326,35 @@ bool BlueOceanManager::getSCMOrganisationRepositorySync(char * accessToken,
 static bool getSCMOrganisationsProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(ScmOrganisations, Error, void* )
-	= reinterpret_cast<void(*)(ScmOrganisations, Error, void* )> (voidHandler);
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<GithubOrganization>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<GithubOrganization> out;
 	
-	ScmOrganisations out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("ScmOrganisations")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "ScmOrganisations", "ScmOrganisations");
-			json_node_free(pJson);
-
-			if ("ScmOrganisations" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			GithubOrganization singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -4452,7 +4372,7 @@ static bool getSCMOrganisationsProcessor(MemoryStruct_s p_chunk, long code, char
 
 static bool getSCMOrganisationsHelper(char * accessToken,
 	std::string organization, std::string scm, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -4512,7 +4432,7 @@ static bool getSCMOrganisationsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMOrganisationsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4542,7 +4462,7 @@ static bool getSCMOrganisationsHelper(char * accessToken,
 
 bool BlueOceanManager::getSCMOrganisationsAsync(char * accessToken,
 	std::string organization, std::string scm, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData)
 {
 	return getSCMOrganisationsHelper(accessToken,
@@ -4552,7 +4472,7 @@ bool BlueOceanManager::getSCMOrganisationsAsync(char * accessToken,
 
 bool BlueOceanManager::getSCMOrganisationsSync(char * accessToken,
 	std::string organization, std::string scm, std::string credentialId, 
-	void(* handler)(ScmOrganisations, Error, void* )
+	void(* handler)(std::list<GithubOrganization>, Error, void* )
 	, void* userData)
 {
 	return getSCMOrganisationsHelper(accessToken,
@@ -4670,7 +4590,7 @@ static bool getUserHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getUserProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4721,43 +4641,35 @@ bool BlueOceanManager::getUserSync(char * accessToken,
 static bool getUserFavoritesProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, void* userData,
 	void(* voidHandler)())
 {
-	void(* handler)(UserFavorites, Error, void* )
-	= reinterpret_cast<void(*)(UserFavorites, Error, void* )> (voidHandler);
+	void(* handler)(std::list<FavoriteImpl>, Error, void* )
+	= reinterpret_cast<void(*)(std::list<FavoriteImpl>, Error, void* )> (voidHandler);
 	
 	JsonNode* pJson;
 	char * data = p_chunk.memory;
 
+	std::list<FavoriteImpl> out;
 	
-	UserFavorites out;
 
 	if (code >= 200 && code < 300) {
 		Error error(code, string("No Error"));
 
 
 
-
-		if (isprimitive("UserFavorites")) {
-			pJson = json_from_string(data, NULL);
-			jsonToValue(&out, pJson, "UserFavorites", "UserFavorites");
-			json_node_free(pJson);
-
-			if ("UserFavorites" == "std::string") {
-				string* val = (std::string*)(&out);
-				if (val->empty() && p_chunk.size>4) {
-					*val = string(p_chunk.memory, p_chunk.size);
-				}
-			}
-		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
+		pJson = json_from_string(data, NULL);
+		JsonArray * jsonarray = json_node_get_array (pJson);
+		guint length = json_array_get_length (jsonarray);
+		for(guint i = 0; i < length; i++){
+			JsonNode* myJson = json_array_get_element (jsonarray, i);
+			char * singlenodestr = json_to_string(myJson, false);
+			FavoriteImpl singlemodel;
+			singlemodel.fromJson(singlenodestr);
+			out.push_front(singlemodel);
+			g_free(static_cast<gpointer>(singlenodestr));
+			json_node_free(myJson);
 		}
-		handler(out, error, userData);
-		return true;
-		//TODO: handle case where json parsing has an error
+		json_array_unref (jsonarray);
+		json_node_free(pJson);
+
 
 	} else {
 		Error error;
@@ -4775,7 +4687,7 @@ static bool getUserFavoritesProcessor(MemoryStruct_s p_chunk, long code, char* e
 
 static bool getUserFavoritesHelper(char * accessToken,
 	std::string user, 
-	void(* handler)(UserFavorites, Error, void* )
+	void(* handler)(std::list<FavoriteImpl>, Error, void* )
 	, void* userData, bool isAsync)
 {
 
@@ -4822,7 +4734,7 @@ static bool getUserFavoritesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getUserFavoritesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4852,7 +4764,7 @@ static bool getUserFavoritesHelper(char * accessToken,
 
 bool BlueOceanManager::getUserFavoritesAsync(char * accessToken,
 	std::string user, 
-	void(* handler)(UserFavorites, Error, void* )
+	void(* handler)(std::list<FavoriteImpl>, Error, void* )
 	, void* userData)
 {
 	return getUserFavoritesHelper(accessToken,
@@ -4862,7 +4774,7 @@ bool BlueOceanManager::getUserFavoritesAsync(char * accessToken,
 
 bool BlueOceanManager::getUserFavoritesSync(char * accessToken,
 	std::string user, 
-	void(* handler)(UserFavorites, Error, void* )
+	void(* handler)(std::list<FavoriteImpl>, Error, void* )
 	, void* userData)
 {
 	return getUserFavoritesHelper(accessToken,
@@ -4974,7 +4886,7 @@ static bool getUsersHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getUsersProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5138,7 +5050,7 @@ static bool postPipelineRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postPipelineRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5296,7 +5208,7 @@ static bool postPipelineRunsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postPipelineRunsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5400,7 +5312,7 @@ static bool putPipelineFavoriteProcessor(MemoryStruct_s p_chunk, long code, char
 }
 
 static bool putPipelineFavoriteHelper(char * accessToken,
-	std::string organization, std::string pipeline, Body body, 
+	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -5421,11 +5333,11 @@ static bool putPipelineFavoriteHelper(char * accessToken,
 	JsonNode* node;
 	JsonArray* json_array;
 
-	if (isprimitive("Body")) {
-		node = converttoJson(&body, "Body", "");
+	if (isprimitive("UNKNOWN_BASE_TYPE")) {
+		node = converttoJson(&uNKNOWNBASETYPE, "UNKNOWN_BASE_TYPE", "");
 	}
 	
-	char *jsonStr =  body.toJson();
+	char *jsonStr =  uNKNOWNBASETYPE.toJson();
 	node = json_from_string(jsonStr, NULL);
 	g_free(static_cast<gpointer>(jsonStr));
 	
@@ -5467,7 +5379,7 @@ static bool putPipelineFavoriteHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = putPipelineFavoriteProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5496,22 +5408,22 @@ static bool putPipelineFavoriteHelper(char * accessToken,
 
 
 bool BlueOceanManager::putPipelineFavoriteAsync(char * accessToken,
-	std::string organization, std::string pipeline, Body body, 
+	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData)
 {
 	return putPipelineFavoriteHelper(accessToken,
-	organization, pipeline, body, 
+	organization, pipeline, uNKNOWNBASETYPE, 
 	handler, userData, true);
 }
 
 bool BlueOceanManager::putPipelineFavoriteSync(char * accessToken,
-	std::string organization, std::string pipeline, Body body, 
+	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData)
 {
 	return putPipelineFavoriteHelper(accessToken,
-	organization, pipeline, body, 
+	organization, pipeline, uNKNOWNBASETYPE, 
 	handler, userData, false);
 }
 
@@ -5645,7 +5557,7 @@ static bool putPipelineRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = putPipelineRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5790,7 +5702,7 @@ static bool searchHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = searchProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5935,7 +5847,7 @@ static bool searchClassesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = searchClassesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_free_all(headerList);
+		curl_slist_freeList_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);

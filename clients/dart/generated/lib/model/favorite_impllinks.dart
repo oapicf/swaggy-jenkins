@@ -1,38 +1,93 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+// @dart=2.0
+
+// ignore_for_file: unused_element, unused_import
+// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: lines_longer_than_80_chars
+
 part of openapi.api;
 
 class FavoriteImpllinks {
-  
-  Link self = null;
-  
-  String class_ = null;
-  FavoriteImpllinks();
+  /// Returns a new [FavoriteImpllinks] instance.
+  FavoriteImpllinks({
+    this.self,
+    this.class_,
+  });
+
+  Link self;
+
+  String class_;
 
   @override
-  String toString() {
-    return 'FavoriteImpllinks[self=$self, class_=$class_, ]';
-  }
+  bool operator ==(Object other) => identical(this, other) || other is FavoriteImpllinks &&
+     other.self == self &&
+     other.class_ == class_;
 
-  FavoriteImpllinks.fromJson(Map<String, dynamic> json) {
-    if (json == null) return;
-    self = new Link.fromJson(json['self']);
-    class_ = json['_class'];
-  }
+  @override
+  int get hashCode =>
+  // ignore: unnecessary_parenthesis
+    (self == null ? 0 : self.hashCode) +
+    (class_ == null ? 0 : class_.hashCode);
+
+  @override
+  String toString() => 'FavoriteImpllinks[self=$self, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    return {
-      'self': self,
-      '_class': class_
-    };
+    final json = <String, dynamic>{};
+    if (self != null) {
+      json[r'self'] = self;
+    }
+    if (class_ != null) {
+      json[r'_class'] = class_;
+    }
+    return json;
   }
 
-  static List<FavoriteImpllinks> listFromJson(List<dynamic> json) {
-    return json == null ? new List<FavoriteImpllinks>() : json.map((value) => new FavoriteImpllinks.fromJson(value)).toList();
+  /// Returns a new [FavoriteImpllinks] instance and imports its values from
+  /// [value] if it's a [Map], null otherwise.
+  // ignore: prefer_constructors_over_static_methods
+  static FavoriteImpllinks fromJson(dynamic value) {
+    if (value is Map) {
+      final json = value.cast<String, dynamic>();
+      return FavoriteImpllinks(
+        self: Link.fromJson(json[r'self']),
+        class_: mapValueOfType<String>(json, r'_class'),
+      );
+    }
+    return null;
   }
 
-  static Map<String, FavoriteImpllinks> mapFromJson(Map<String, Map<String, dynamic>> json) {
-    var map = new Map<String, FavoriteImpllinks>();
-    if (json != null && json.length > 0) {
-      json.forEach((String key, Map<String, dynamic> value) => map[key] = new FavoriteImpllinks.fromJson(value));
+  static List<FavoriteImpllinks> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
+    json is List && json.isNotEmpty
+      ? json.map(FavoriteImpllinks.fromJson).toList(growable: true == growable)
+      : true == emptyIsNull ? null : <FavoriteImpllinks>[];
+
+  static Map<String, FavoriteImpllinks> mapFromJson(dynamic json) {
+    final map = <String, FavoriteImpllinks>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) => map[key] = FavoriteImpllinks.fromJson(value));
+    }
+    return map;
+  }
+
+  // maps a json object with a list of FavoriteImpllinks-objects as value to a dart map
+  static Map<String, List<FavoriteImpllinks>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+    final map = <String, List<FavoriteImpllinks>>{};
+    if (json is Map && json.isNotEmpty) {
+      json
+        .cast<String, dynamic>()
+        .forEach((key, dynamic value) {
+          map[key] = FavoriteImpllinks.listFromJson(
+            value,
+            emptyIsNull: emptyIsNull,
+            growable: growable,
+          );
+        });
     }
     return map;
   }

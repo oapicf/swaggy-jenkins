@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineRunImpllinks;
 import javax.validation.constraints.*;
 
@@ -9,41 +11,39 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class PipelineRunImpl   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private PipelineRunImpllinks links = null;
+  private PipelineRunImpllinks links;
 
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
-  private String enQueueTime = null;
+  private String enQueueTime;
 
-  private String endTime = null;
+  private String endTime;
 
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
-  private String id = null;
+  private String id;
 
-  private String organization = null;
+  private String organization;
 
-  private String pipeline = null;
+  private String pipeline;
 
-  private String result = null;
+  private String result;
 
-  private String runSummary = null;
+  private String runSummary;
 
-  private String startTime = null;
+  private String startTime;
 
-  private String state = null;
+  private String state;
 
-  private String type = null;
+  private String type;
 
-  private String commitId = null;
+  private String commitId;
 
 
   /**
@@ -318,7 +318,7 @@ public class PipelineRunImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -376,7 +376,7 @@ public class PipelineRunImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

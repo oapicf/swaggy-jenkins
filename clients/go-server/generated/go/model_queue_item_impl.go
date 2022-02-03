@@ -22,3 +22,20 @@ type QueueItemImpl struct {
 
 	QueuedTime int32 `json:"queuedTime,omitempty"`
 }
+
+// AssertQueueItemImplRequired checks if the required fields are not zero-ed
+func AssertQueueItemImplRequired(obj QueueItemImpl) error {
+	return nil
+}
+
+// AssertRecurseQueueItemImplRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of QueueItemImpl (e.g. [][]QueueItemImpl), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseQueueItemImplRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aQueueItemImpl, ok := obj.(QueueItemImpl)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertQueueItemImplRequired(aQueueItemImpl)
+	})
+}

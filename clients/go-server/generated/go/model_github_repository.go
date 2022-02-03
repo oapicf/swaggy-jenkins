@@ -14,7 +14,7 @@ type GithubRepository struct {
 
 	Class string `json:"_class,omitempty"`
 
-	Links *GithubRepositorylinks `json:"_links,omitempty"`
+	Links GithubRepositorylinks `json:"_links,omitempty"`
 
 	DefaultBranch string `json:"defaultBranch,omitempty"`
 
@@ -22,9 +22,32 @@ type GithubRepository struct {
 
 	Name string `json:"name,omitempty"`
 
-	Permissions *GithubRepositorypermissions `json:"permissions,omitempty"`
+	Permissions GithubRepositorypermissions `json:"permissions,omitempty"`
 
 	Private bool `json:"private,omitempty"`
 
 	FullName string `json:"fullName,omitempty"`
+}
+
+// AssertGithubRepositoryRequired checks if the required fields are not zero-ed
+func AssertGithubRepositoryRequired(obj GithubRepository) error {
+	if err := AssertGithubRepositorylinksRequired(obj.Links); err != nil {
+		return err
+	}
+	if err := AssertGithubRepositorypermissionsRequired(obj.Permissions); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseGithubRepositoryRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubRepository (e.g. [][]GithubRepository), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubRepositoryRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubRepository, ok := obj.(GithubRepository)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubRepositoryRequired(aGithubRepository)
+	})
 }

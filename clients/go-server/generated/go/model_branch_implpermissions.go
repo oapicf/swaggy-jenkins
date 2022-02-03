@@ -22,3 +22,20 @@ type BranchImplpermissions struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertBranchImplpermissionsRequired checks if the required fields are not zero-ed
+func AssertBranchImplpermissionsRequired(obj BranchImplpermissions) error {
+	return nil
+}
+
+// AssertRecurseBranchImplpermissionsRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of BranchImplpermissions (e.g. [][]BranchImplpermissions), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseBranchImplpermissionsRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aBranchImplpermissions, ok := obj.(BranchImplpermissions)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertBranchImplpermissionsRequired(aBranchImplpermissions)
+	})
+}

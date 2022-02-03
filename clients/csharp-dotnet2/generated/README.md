@@ -141,7 +141,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Org.OpenAPITools.Model.AllView](docs/AllView.md)
- - [Org.OpenAPITools.Model.Body](docs/Body.md)
  - [Org.OpenAPITools.Model.BranchImpl](docs/BranchImpl.md)
  - [Org.OpenAPITools.Model.BranchImpllinks](docs/BranchImpllinks.md)
  - [Org.OpenAPITools.Model.BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -191,12 +190,9 @@ Class | Method | HTTP request | Description
  - [Org.OpenAPITools.Model.MultibranchPipeline](docs/MultibranchPipeline.md)
  - [Org.OpenAPITools.Model.NullSCM](docs/NullSCM.md)
  - [Org.OpenAPITools.Model.Organisation](docs/Organisation.md)
- - [Org.OpenAPITools.Model.Organisations](docs/Organisations.md)
  - [Org.OpenAPITools.Model.Pipeline](docs/Pipeline.md)
- - [Org.OpenAPITools.Model.PipelineActivities](docs/PipelineActivities.md)
  - [Org.OpenAPITools.Model.PipelineActivity](docs/PipelineActivity.md)
  - [Org.OpenAPITools.Model.PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
- - [Org.OpenAPITools.Model.PipelineBranches](docs/PipelineBranches.md)
  - [Org.OpenAPITools.Model.PipelineBranchesitem](docs/PipelineBranchesitem.md)
  - [Org.OpenAPITools.Model.PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
  - [Org.OpenAPITools.Model.PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
@@ -204,40 +200,32 @@ Class | Method | HTTP request | Description
  - [Org.OpenAPITools.Model.PipelineFolderImpl](docs/PipelineFolderImpl.md)
  - [Org.OpenAPITools.Model.PipelineImpl](docs/PipelineImpl.md)
  - [Org.OpenAPITools.Model.PipelineImpllinks](docs/PipelineImpllinks.md)
- - [Org.OpenAPITools.Model.PipelineQueue](docs/PipelineQueue.md)
  - [Org.OpenAPITools.Model.PipelineRun](docs/PipelineRun.md)
  - [Org.OpenAPITools.Model.PipelineRunImpl](docs/PipelineRunImpl.md)
  - [Org.OpenAPITools.Model.PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
  - [Org.OpenAPITools.Model.PipelineRunNode](docs/PipelineRunNode.md)
- - [Org.OpenAPITools.Model.PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
  - [Org.OpenAPITools.Model.PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
- - [Org.OpenAPITools.Model.PipelineRunNodes](docs/PipelineRunNodes.md)
- - [Org.OpenAPITools.Model.PipelineRunSteps](docs/PipelineRunSteps.md)
  - [Org.OpenAPITools.Model.PipelineRunartifacts](docs/PipelineRunartifacts.md)
- - [Org.OpenAPITools.Model.PipelineRuns](docs/PipelineRuns.md)
  - [Org.OpenAPITools.Model.PipelineStepImpl](docs/PipelineStepImpl.md)
  - [Org.OpenAPITools.Model.PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
  - [Org.OpenAPITools.Model.PipelinelatestRun](docs/PipelinelatestRun.md)
  - [Org.OpenAPITools.Model.PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
- - [Org.OpenAPITools.Model.Pipelines](docs/Pipelines.md)
  - [Org.OpenAPITools.Model.Queue](docs/Queue.md)
  - [Org.OpenAPITools.Model.QueueBlockedItem](docs/QueueBlockedItem.md)
  - [Org.OpenAPITools.Model.QueueItemImpl](docs/QueueItemImpl.md)
  - [Org.OpenAPITools.Model.QueueLeftItem](docs/QueueLeftItem.md)
  - [Org.OpenAPITools.Model.ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
- - [Org.OpenAPITools.Model.ScmOrganisations](docs/ScmOrganisations.md)
  - [Org.OpenAPITools.Model.StringParameterDefinition](docs/StringParameterDefinition.md)
  - [Org.OpenAPITools.Model.StringParameterValue](docs/StringParameterValue.md)
  - [Org.OpenAPITools.Model.SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [Org.OpenAPITools.Model.UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
  - [Org.OpenAPITools.Model.User](docs/User.md)
- - [Org.OpenAPITools.Model.UserFavorites](docs/UserFavorites.md)
- - [Org.OpenAPITools.Model.Users](docs/Users.md)
 
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
+Authentication schemes defined for the API:
 <a name="jenkins_auth"></a>
 ### jenkins_auth
 

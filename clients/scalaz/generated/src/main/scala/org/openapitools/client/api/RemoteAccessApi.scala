@@ -21,6 +21,13 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
+import org.openapitools.client.api.ComputerSet
+import org.openapitools.client.api.FreeStyleBuild
+import org.openapitools.client.api.FreeStyleProject
+import org.openapitools.client.api.Hudson
+import org.openapitools.client.api.ListView
+import org.openapitools.client.api.Queue
+
 object RemoteAccessApi {
 
   val client = PooledHttp1Client()
@@ -31,7 +38,7 @@ object RemoteAccessApi {
     implicit val returnTypeDecoder: EntityDecoder[ComputerSet] = jsonOf[ComputerSet]
 
     val path = "/computer/api/json"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -47,12 +54,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getJenkins(host: String): Task[Hudson] = {
     implicit val returnTypeDecoder: EntityDecoder[Hudson] = jsonOf[Hudson]
 
     val path = "/api/json"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -68,12 +75,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getJob(host: String, name: String): Task[FreeStyleProject] = {
     implicit val returnTypeDecoder: EntityDecoder[FreeStyleProject] = jsonOf[FreeStyleProject]
 
     val path = "/job/{name}/api/json".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -89,12 +96,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getJobConfig(host: String, name: String): Task[String] = {
     implicit val returnTypeDecoder: EntityDecoder[String] = jsonOf[String]
 
     val path = "/job/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -110,12 +117,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getJobLastBuild(host: String, name: String): Task[FreeStyleBuild] = {
     implicit val returnTypeDecoder: EntityDecoder[FreeStyleBuild] = jsonOf[FreeStyleBuild]
 
     val path = "/job/{name}/lastBuild/api/json".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -131,10 +138,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getJobProgressiveText(host: String, name: String, number: String, start: String)(implicit startQuery: QueryParam[String]): Task[Unit] = {
     val path = "/job/{name}/{number}/logText/progressiveText".replaceAll("\\{" + "name" + "\\}",escape(name.toString)).replaceAll("\\{" + "number" + "\\}",escape(number.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -150,12 +157,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getQueue(host: String): Task[Queue] = {
     implicit val returnTypeDecoder: EntityDecoder[Queue] = jsonOf[Queue]
 
     val path = "/queue/api/json"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -171,12 +178,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getQueueItem(host: String, number: String): Task[Queue] = {
     implicit val returnTypeDecoder: EntityDecoder[Queue] = jsonOf[Queue]
 
     val path = "/queue/item/{number}/api/json".replaceAll("\\{" + "number" + "\\}",escape(number.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -192,12 +199,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getView(host: String, name: String): Task[ListView] = {
     implicit val returnTypeDecoder: EntityDecoder[ListView] = jsonOf[ListView]
 
     val path = "/view/{name}/api/json".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -213,12 +220,12 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def getViewConfig(host: String, name: String): Task[String] = {
     implicit val returnTypeDecoder: EntityDecoder[String] = jsonOf[String]
 
     val path = "/view/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -234,10 +241,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def headJenkins(host: String): Task[Unit] = {
     val path = "/api/json"
-    
+
     val httpMethod = Method.HEAD
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -253,10 +260,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postCreateItem(host: String, name: String, from: String, mode: String, jenkinsCrumb: String, `contentType`: String, body: String)(implicit nameQuery: QueryParam[String], fromQuery: QueryParam[String], modeQuery: QueryParam[String]): Task[Unit] = {
     val path = "/createItem"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -272,10 +279,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postCreateView(host: String, name: String, jenkinsCrumb: String, `contentType`: String, body: String)(implicit nameQuery: QueryParam[String]): Task[Unit] = {
     val path = "/createView"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -291,10 +298,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postJobBuild(host: String, name: String, json: String, token: String, jenkinsCrumb: String)(implicit jsonQuery: QueryParam[String], tokenQuery: QueryParam[String]): Task[Unit] = {
     val path = "/job/{name}/build".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -310,10 +317,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postJobConfig(host: String, name: String, body: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -329,10 +336,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postJobDelete(host: String, name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/doDelete".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -348,10 +355,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postJobDisable(host: String, name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/disable".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -367,10 +374,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postJobEnable(host: String, name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/enable".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -386,10 +393,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postJobLastBuildStop(host: String, name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/lastBuild/stop".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -405,10 +412,10 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
   def postViewConfig(host: String, name: String, body: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/view/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -424,7 +431,7 @@ object RemoteAccessApi {
 
     } yield resp
   }
-  
+
 }
 
 class HttpServiceRemoteAccessApi(service: HttpService) {
@@ -436,7 +443,7 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
     implicit val returnTypeDecoder: EntityDecoder[ComputerSet] = jsonOf[ComputerSet]
 
     val path = "/computer/api/json"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -452,12 +459,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getJenkins(): Task[Hudson] = {
     implicit val returnTypeDecoder: EntityDecoder[Hudson] = jsonOf[Hudson]
 
     val path = "/api/json"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -473,12 +480,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getJob(name: String): Task[FreeStyleProject] = {
     implicit val returnTypeDecoder: EntityDecoder[FreeStyleProject] = jsonOf[FreeStyleProject]
 
     val path = "/job/{name}/api/json".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -494,12 +501,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getJobConfig(name: String): Task[String] = {
     implicit val returnTypeDecoder: EntityDecoder[String] = jsonOf[String]
 
     val path = "/job/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -515,12 +522,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getJobLastBuild(name: String): Task[FreeStyleBuild] = {
     implicit val returnTypeDecoder: EntityDecoder[FreeStyleBuild] = jsonOf[FreeStyleBuild]
 
     val path = "/job/{name}/lastBuild/api/json".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -536,10 +543,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getJobProgressiveText(name: String, number: String, start: String)(implicit startQuery: QueryParam[String]): Task[Unit] = {
     val path = "/job/{name}/{number}/logText/progressiveText".replaceAll("\\{" + "name" + "\\}",escape(name.toString)).replaceAll("\\{" + "number" + "\\}",escape(number.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -555,12 +562,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getQueue(): Task[Queue] = {
     implicit val returnTypeDecoder: EntityDecoder[Queue] = jsonOf[Queue]
 
     val path = "/queue/api/json"
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -576,12 +583,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getQueueItem(number: String): Task[Queue] = {
     implicit val returnTypeDecoder: EntityDecoder[Queue] = jsonOf[Queue]
 
     val path = "/queue/item/{number}/api/json".replaceAll("\\{" + "number" + "\\}",escape(number.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -597,12 +604,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getView(name: String): Task[ListView] = {
     implicit val returnTypeDecoder: EntityDecoder[ListView] = jsonOf[ListView]
 
     val path = "/view/{name}/api/json".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -618,12 +625,12 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def getViewConfig(name: String): Task[String] = {
     implicit val returnTypeDecoder: EntityDecoder[String] = jsonOf[String]
 
     val path = "/view/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.GET
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -639,10 +646,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def headJenkins(): Task[Unit] = {
     val path = "/api/json"
-    
+
     val httpMethod = Method.HEAD
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -658,10 +665,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postCreateItem(name: String, from: String, mode: String, jenkinsCrumb: String, `contentType`: String, body: String)(implicit nameQuery: QueryParam[String], fromQuery: QueryParam[String], modeQuery: QueryParam[String]): Task[Unit] = {
     val path = "/createItem"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -677,10 +684,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postCreateView(name: String, jenkinsCrumb: String, `contentType`: String, body: String)(implicit nameQuery: QueryParam[String]): Task[Unit] = {
     val path = "/createView"
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -696,10 +703,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postJobBuild(name: String, json: String, token: String, jenkinsCrumb: String)(implicit jsonQuery: QueryParam[String], tokenQuery: QueryParam[String]): Task[Unit] = {
     val path = "/job/{name}/build".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -715,10 +722,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postJobConfig(name: String, body: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -734,10 +741,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postJobDelete(name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/doDelete".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -753,10 +760,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postJobDisable(name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/disable".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -772,10 +779,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postJobEnable(name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/enable".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -791,10 +798,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postJobLastBuildStop(name: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/job/{name}/lastBuild/stop".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -810,10 +817,10 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
   def postViewConfig(name: String, body: String, jenkinsCrumb: String): Task[Unit] = {
     val path = "/view/{name}/config.xml".replaceAll("\\{" + "name" + "\\}",escape(name.toString))
-    
+
     val httpMethod = Method.POST
     val contentType = `Content-Type`(MediaType.`application/json`)
     val headers = Headers(
@@ -829,5 +836,5 @@ class HttpServiceRemoteAccessApi(service: HttpService) {
 
     } yield resp
   }
-  
+
 }

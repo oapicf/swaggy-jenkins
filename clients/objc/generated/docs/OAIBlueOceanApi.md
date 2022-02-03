@@ -55,7 +55,7 @@ Method | HTTP request | Description
 
 Delete queue item from an organization pipeline queue
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -112,7 +112,7 @@ void (empty response body)
 
 Retrieve authenticated user details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 Get a list of class names supported by a given class
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 Retrieve JSON Web Key
 
-### Example 
+### Example
 ```objc
 
 NSNumber* key = @56; // Key ID received as part of JWT header field kid
@@ -270,7 +270,7 @@ No authorization required
 
 Retrieve JSON Web Token
 
-### Example 
+### Example
 ```objc
 
 NSNumber* expiryTimeInMins = @56; // Token expiry time in minutes, default: 30 minutes (optional)
@@ -322,7 +322,7 @@ No authorization required
 
 Retrieve organization details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -369,14 +369,14 @@ Name | Type | Description  | Notes
 # **getOrganisations**
 ```objc
 -(NSURLSessionTask*) getOrganisationsWithCompletionHandler: 
-        (void (^)(OAIOrganisations* output, NSError* error)) handler;
+        (void (^)(NSArray<OAIOrganisation>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve all organizations details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -388,7 +388,7 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance getOrganisationsWithCompletionHandler: 
-          ^(OAIOrganisations* output, NSError* error) {
+          ^(NSArray<OAIOrganisation>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -403,7 +403,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**OAIOrganisations***](OAIOrganisations.md)
+[**NSArray<OAIOrganisation>***](OAIOrganisation.md)
 
 ### Authorization
 
@@ -427,7 +427,7 @@ This endpoint does not need any parameter.
 
 Retrieve pipeline details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -478,14 +478,14 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) getPipelineActivitiesWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-        completionHandler: (void (^)(OAIPipelineActivities* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIPipelineActivity>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve all activities details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -500,7 +500,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance getPipelineActivitiesWithOrganization:organization
               pipeline:pipeline
-          completionHandler: ^(OAIPipelineActivities* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIPipelineActivity>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -519,7 +519,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIPipelineActivities***](OAIPipelineActivities.md)
+[**NSArray<OAIPipelineActivity>***](OAIPipelineActivity.md)
 
 ### Authorization
 
@@ -544,7 +544,7 @@ Name | Type | Description  | Notes
 
 Retrieve branch details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -607,7 +607,7 @@ Name | Type | Description  | Notes
 
 Retrieve branch run details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -671,7 +671,7 @@ Name | Type | Description  | Notes
 
 Retrieve all branches details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -729,7 +729,7 @@ Name | Type | Description  | Notes
 
 Retrieve pipeline folder for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -788,7 +788,7 @@ Name | Type | Description  | Notes
 
 Retrieve pipeline details for an organization folder
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -842,14 +842,14 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) getPipelineQueueWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-        completionHandler: (void (^)(OAIPipelineQueue* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIQueueItemImpl>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve queue details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -864,7 +864,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance getPipelineQueueWithOrganization:organization
               pipeline:pipeline
-          completionHandler: ^(OAIPipelineQueue* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIQueueItemImpl>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -883,7 +883,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIPipelineQueue***](OAIPipelineQueue.md)
+[**NSArray<OAIQueueItemImpl>***](OAIQueueItemImpl.md)
 
 ### Authorization
 
@@ -908,7 +908,7 @@ Name | Type | Description  | Notes
 
 Retrieve run details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -972,7 +972,7 @@ Name | Type | Description  | Notes
 
 Get log for a pipeline run
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1041,7 +1041,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1108,7 +1108,7 @@ Name | Type | Description  | Notes
 
 Retrieve run node details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1178,7 +1178,7 @@ Name | Type | Description  | Notes
 
 Get log for a pipeline run node step
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1240,14 +1240,14 @@ Name | Type | Description  | Notes
     pipeline: (NSString*) pipeline
     run: (NSString*) run
     node: (NSString*) node
-        completionHandler: (void (^)(OAIPipelineRunNodeSteps* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIPipelineStepImpl>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve run node steps details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1266,7 +1266,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
               pipeline:pipeline
               run:run
               node:node
-          completionHandler: ^(OAIPipelineRunNodeSteps* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIPipelineStepImpl>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1287,7 +1287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIPipelineRunNodeSteps***](OAIPipelineRunNodeSteps.md)
+[**NSArray<OAIPipelineStepImpl>***](OAIPipelineStepImpl.md)
 
 ### Authorization
 
@@ -1305,14 +1305,14 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) getPipelineRunNodesWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
     run: (NSString*) run
-        completionHandler: (void (^)(OAIPipelineRunNodes* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIPipelineRunNode>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve run nodes details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1329,7 +1329,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 [apiInstance getPipelineRunNodesWithOrganization:organization
               pipeline:pipeline
               run:run
-          completionHandler: ^(OAIPipelineRunNodes* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIPipelineRunNode>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1349,7 +1349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIPipelineRunNodes***](OAIPipelineRunNodes.md)
+[**NSArray<OAIPipelineRunNode>***](OAIPipelineRunNode.md)
 
 ### Authorization
 
@@ -1366,14 +1366,14 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) getPipelineRunsWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-        completionHandler: (void (^)(OAIPipelineRuns* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIPipelineRun>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve all runs details for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1388,7 +1388,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance getPipelineRunsWithOrganization:organization
               pipeline:pipeline
-          completionHandler: ^(OAIPipelineRuns* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIPipelineRun>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1407,7 +1407,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIPipelineRuns***](OAIPipelineRuns.md)
+[**NSArray<OAIPipelineRun>***](OAIPipelineRun.md)
 
 ### Authorization
 
@@ -1423,14 +1423,14 @@ Name | Type | Description  | Notes
 # **getPipelines**
 ```objc
 -(NSURLSessionTask*) getPipelinesWithOrganization: (NSString*) organization
-        completionHandler: (void (^)(OAIPipelines* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIPipeline>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve all pipelines details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1443,7 +1443,7 @@ NSString* organization = @"organization_example"; // Name of the organization
 OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance getPipelinesWithOrganization:organization
-          completionHandler: ^(OAIPipelines* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIPipeline>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1461,7 +1461,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIPipelines***](OAIPipelines.md)
+[**NSArray<OAIPipeline>***](OAIPipeline.md)
 
 ### Authorization
 
@@ -1485,7 +1485,7 @@ Name | Type | Description  | Notes
 
 Retrieve SCM details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1540,14 +1540,14 @@ Name | Type | Description  | Notes
     credentialId: (NSString*) credentialId
     pageSize: (NSNumber*) pageSize
     pageNumber: (NSNumber*) pageNumber
-        completionHandler: (void (^)(OAIScmOrganisations* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIGithubOrganization>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve SCM organization repositories details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1570,7 +1570,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
               credentialId:credentialId
               pageSize:pageSize
               pageNumber:pageNumber
-          completionHandler: ^(OAIScmOrganisations* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIGithubOrganization>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1593,7 +1593,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIScmOrganisations***](OAIScmOrganisations.md)
+[**NSArray<OAIGithubOrganization>***](OAIGithubOrganization.md)
 
 ### Authorization
 
@@ -1613,14 +1613,14 @@ Name | Type | Description  | Notes
     scmOrganisation: (NSString*) scmOrganisation
     repository: (NSString*) repository
     credentialId: (NSString*) credentialId
-        completionHandler: (void (^)(OAIScmOrganisations* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIGithubOrganization>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve SCM organization repository details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1641,7 +1641,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
               scmOrganisation:scmOrganisation
               repository:repository
               credentialId:credentialId
-          completionHandler: ^(OAIScmOrganisations* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIGithubOrganization>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1663,7 +1663,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIScmOrganisations***](OAIScmOrganisations.md)
+[**NSArray<OAIGithubOrganization>***](OAIGithubOrganization.md)
 
 ### Authorization
 
@@ -1681,14 +1681,14 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) getSCMOrganisationsWithOrganization: (NSString*) organization
     scm: (NSString*) scm
     credentialId: (NSString*) credentialId
-        completionHandler: (void (^)(OAIScmOrganisations* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIGithubOrganization>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve SCM organizations details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1705,7 +1705,7 @@ OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 [apiInstance getSCMOrganisationsWithOrganization:organization
               scm:scm
               credentialId:credentialId
-          completionHandler: ^(OAIScmOrganisations* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIGithubOrganization>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1725,7 +1725,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIScmOrganisations***](OAIScmOrganisations.md)
+[**NSArray<OAIGithubOrganization>***](OAIGithubOrganization.md)
 
 ### Authorization
 
@@ -1749,7 +1749,7 @@ Name | Type | Description  | Notes
 
 Retrieve user details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1799,14 +1799,14 @@ Name | Type | Description  | Notes
 # **getUserFavorites**
 ```objc
 -(NSURLSessionTask*) getUserFavoritesWithUser: (NSString*) user
-        completionHandler: (void (^)(OAIUserFavorites* output, NSError* error)) handler;
+        completionHandler: (void (^)(NSArray<OAIFavoriteImpl>* output, NSError* error)) handler;
 ```
 
 
 
 Retrieve user favorites details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1819,7 +1819,7 @@ NSString* user = @"user_example"; // Name of the user
 OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance getUserFavoritesWithUser:user
-          completionHandler: ^(OAIUserFavorites* output, NSError* error) {
+          completionHandler: ^(NSArray<OAIFavoriteImpl>* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1837,7 +1837,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OAIUserFavorites***](OAIUserFavorites.md)
+[**NSArray<OAIFavoriteImpl>***](OAIFavoriteImpl.md)
 
 ### Authorization
 
@@ -1860,7 +1860,7 @@ Name | Type | Description  | Notes
 
 Retrieve users details for an organization
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1916,7 +1916,7 @@ Name | Type | Description  | Notes
 
 Replay an organization pipeline run
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1977,7 +1977,7 @@ Name | Type | Description  | Notes
 
 Start a build for an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -2028,7 +2028,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) putPipelineFavoriteWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    body: (OAIBody*) body
+    uNKNOWNBASETYPE: (UNKNOWN_BASE_TYPE*) uNKNOWNBASETYPE
         completionHandler: (void (^)(OAIFavoriteImpl* output, NSError* error)) handler;
 ```
 
@@ -2036,7 +2036,7 @@ Name | Type | Description  | Notes
 
 Favorite/unfavorite a pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -2046,13 +2046,13 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 NSString* organization = @"organization_example"; // Name of the organization
 NSString* pipeline = @"pipeline_example"; // Name of the pipeline
-OAIBody* body = [[OAIBody alloc] init]; // Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+UNKNOWN_BASE_TYPE* uNKNOWNBASETYPE = [[UNKNOWN_BASE_TYPE alloc] init]; // Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance putPipelineFavoriteWithOrganization:organization
               pipeline:pipeline
-              body:body
+              uNKNOWNBASETYPE:uNKNOWNBASETYPE
           completionHandler: ^(OAIFavoriteImpl* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -2069,7 +2069,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **NSString***| Name of the organization | 
  **pipeline** | **NSString***| Name of the pipeline | 
- **body** | [**OAIBody***](OAIBody.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+ **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE***](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -2100,7 +2100,7 @@ Name | Type | Description  | Notes
 
 Stop a build of an organization pipeline
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -2166,7 +2166,7 @@ Name | Type | Description  | Notes
 
 Search for any resource details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -2220,7 +2220,7 @@ Name | Type | Description  | Notes
 
 Get classes details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)

@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.ResponseTimeMonitorData do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"timestamp" => integer(),
-    :"average" => integer()
+    :"_class" => String.t | nil,
+    :"timestamp" => integer() | nil,
+    :"average" => integer() | nil
   }
 end
 

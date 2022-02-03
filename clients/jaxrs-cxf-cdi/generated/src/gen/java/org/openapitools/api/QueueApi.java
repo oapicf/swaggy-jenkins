@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import io.swagger.annotations.*;
 import java.io.InputStream;
 
+import org.apache.cxf.jaxrs.ext.PATCH;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
@@ -25,7 +26,7 @@ import javax.validation.constraints.*;
 @Api(description = "the queue API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-10T13:31:43.820Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-02T10:45:17.573327Z[Etc/UTC]")
 
 public class QueueApi  {
 
@@ -39,8 +40,9 @@ public class QueueApi  {
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve queue details", response = Queue.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess",  })
+         }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = Queue.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -54,8 +56,9 @@ public class QueueApi  {
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve queued item details", response = Queue.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "remoteAccess" })
+         }, tags={ "remoteAccess" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved queued item details", response = Queue.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),

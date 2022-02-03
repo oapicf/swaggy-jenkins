@@ -45,7 +45,7 @@ Feature | HTTP request | Description
 
 # **authenticated_user**
 > authenticated_user (organization: STRING_32 ): detachable USER
-	
+
 
 
 
@@ -56,7 +56,7 @@ Retrieve authenticated user details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
 
 ### Return type
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 # **classes**
 > classes (var_class: STRING_32 ): detachable STRING_32
-	
+
 
 
 
@@ -86,7 +86,7 @@ Get a list of class names supported by a given class
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **var_class** | **STRING_32**| Name of the class | 
+ **var_class** | **STRING_32**| Name of the class | [default to null]
 
 ### Return type
 
@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 
 # **delete_pipeline_queue_item**
 > delete_pipeline_queue_item (organization: STRING_32 ; pipeline: STRING_32 ; queue: STRING_32 )
-	
+
 
 
 
@@ -116,9 +116,9 @@ Delete queue item from an organization pipeline queue
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **queue** | **STRING_32**| Name of the queue item | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **queue** | **STRING_32**| Name of the queue item | [default to null]
 
 ### Return type
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 # **json_web_key**
 > json_web_key (key: INTEGER_32 ): detachable STRING_32
-	
+
 
 
 
@@ -148,7 +148,7 @@ Retrieve JSON Web Key
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key** | **INTEGER_32**| Key ID received as part of JWT header field kid | 
+ **key** | **INTEGER_32**| Key ID received as part of JWT header field kid | [default to null]
 
 ### Return type
 
@@ -167,7 +167,7 @@ No authorization required
 
 # **json_web_token**
 > json_web_token (expiry_time_in_mins:  detachable INTEGER_32 ; max_expiry_time_in_mins:  detachable INTEGER_32 ): detachable STRING_32
-	
+
 
 
 
@@ -178,8 +178,8 @@ Retrieve JSON Web Token
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expiry_time_in_mins** | **INTEGER_32**| Token expiry time in minutes, default: 30 minutes | [optional] 
- **max_expiry_time_in_mins** | **INTEGER_32**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+ **expiry_time_in_mins** | **INTEGER_32**| Token expiry time in minutes, default: 30 minutes | [optional] [default to null]
+ **max_expiry_time_in_mins** | **INTEGER_32**| Maximum token expiry time in minutes, default: 480 minutes | [optional] [default to null]
 
 ### Return type
 
@@ -198,7 +198,7 @@ No authorization required
 
 # **organisation**
 > organisation (organization: STRING_32 ): detachable ORGANISATION
-	
+
 
 
 
@@ -209,7 +209,7 @@ Retrieve organization details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
 
 ### Return type
 
@@ -227,8 +227,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **organisations**
-> organisations : detachable ORGANISATIONS
-	
+> organisations : detachable LIST [ORGANISATION]
+
 
 
 
@@ -240,7 +240,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ORGANISATIONS**](Organisations.md)
+[**LIST [ORGANISATION]**](Organisation.md)
 
 ### Authorization
 
@@ -255,7 +255,7 @@ This endpoint does not need any parameter.
 
 # **pipeline**
 > pipeline (organization: STRING_32 ; pipeline: STRING_32 ): detachable PIPELINE
-	
+
 
 
 
@@ -266,8 +266,8 @@ Retrieve pipeline details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -285,8 +285,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pipeline_activities**
-> pipeline_activities (organization: STRING_32 ; pipeline: STRING_32 ): detachable PIPELINE_ACTIVITIES
-	
+> pipeline_activities (organization: STRING_32 ; pipeline: STRING_32 ): detachable LIST [PIPELINE_ACTIVITY]
+
 
 
 
@@ -297,12 +297,12 @@ Retrieve all activities details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PIPELINE_ACTIVITIES**](PipelineActivities.md)
+[**LIST [PIPELINE_ACTIVITY]**](PipelineActivity.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_branch**
 > pipeline_branch (organization: STRING_32 ; pipeline: STRING_32 ; branch: STRING_32 ): detachable BRANCH_IMPL
-	
+
 
 
 
@@ -328,9 +328,9 @@ Retrieve branch details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **branch** | **STRING_32**| Name of the branch | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **branch** | **STRING_32**| Name of the branch | [default to null]
 
 ### Return type
 
@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_branch_run**
 > pipeline_branch_run (organization: STRING_32 ; pipeline: STRING_32 ; branch: STRING_32 ; run: STRING_32 ): detachable PIPELINE_RUN
-	
+
 
 
 
@@ -360,10 +360,10 @@ Retrieve branch run details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **branch** | **STRING_32**| Name of the branch | 
- **run** | **STRING_32**| Name of the run | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **branch** | **STRING_32**| Name of the branch | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
 
 ### Return type
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_branches**
 > pipeline_branches (organization: STRING_32 ; pipeline: STRING_32 ): detachable MULTIBRANCH_PIPELINE
-	
+
 
 
 
@@ -393,8 +393,8 @@ Retrieve all branches details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -413,7 +413,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_folder**
 > pipeline_folder (organization: STRING_32 ; folder: STRING_32 ): detachable PIPELINE_FOLDER_IMPL
-	
+
 
 
 
@@ -424,8 +424,8 @@ Retrieve pipeline folder for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **folder** | **STRING_32**| Name of the folder | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **folder** | **STRING_32**| Name of the folder | [default to null]
 
 ### Return type
 
@@ -444,7 +444,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_folder_pipeline**
 > pipeline_folder_pipeline (organization: STRING_32 ; pipeline: STRING_32 ; folder: STRING_32 ): detachable PIPELINE_IMPL
-	
+
 
 
 
@@ -455,9 +455,9 @@ Retrieve pipeline details for an organization folder
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **folder** | **STRING_32**| Name of the folder | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **folder** | **STRING_32**| Name of the folder | [default to null]
 
 ### Return type
 
@@ -475,8 +475,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pipeline_queue**
-> pipeline_queue (organization: STRING_32 ; pipeline: STRING_32 ): detachable PIPELINE_QUEUE
-	
+> pipeline_queue (organization: STRING_32 ; pipeline: STRING_32 ): detachable LIST [QUEUE_ITEM_IMPL]
+
 
 
 
@@ -487,12 +487,12 @@ Retrieve queue details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PIPELINE_QUEUE**](PipelineQueue.md)
+[**LIST [QUEUE_ITEM_IMPL]**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_run**
 > pipeline_run (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ): detachable PIPELINE_RUN
-	
+
 
 
 
@@ -518,9 +518,9 @@ Retrieve run details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
 
 ### Return type
 
@@ -539,7 +539,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_run_log**
 > pipeline_run_log (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; start:  detachable INTEGER_32 ; download:  detachable BOOLEAN ): detachable STRING_32
-	
+
 
 
 
@@ -550,11 +550,11 @@ Get log for a pipeline run
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
- **start** | **INTEGER_32**| Start position of the log | [optional] 
- **download** | **BOOLEAN**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
+ **start** | **INTEGER_32**| Start position of the log | [optional] [default to null]
+ **download** | **BOOLEAN**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] [default to null]
 
 ### Return type
 
@@ -573,7 +573,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_run_node**
 > pipeline_run_node (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; node: STRING_32 ): detachable PIPELINE_RUN_NODE
-	
+
 
 
 
@@ -584,10 +584,10 @@ Retrieve run node details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
- **node** | **STRING_32**| Name of the node | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
+ **node** | **STRING_32**| Name of the node | [default to null]
 
 ### Return type
 
@@ -606,7 +606,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_run_node_step**
 > pipeline_run_node_step (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; node: STRING_32 ; step: STRING_32 ): detachable PIPELINE_STEP_IMPL
-	
+
 
 
 
@@ -617,11 +617,11 @@ Retrieve run node details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
- **node** | **STRING_32**| Name of the node | 
- **step** | **STRING_32**| Name of the step | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
+ **node** | **STRING_32**| Name of the node | [default to null]
+ **step** | **STRING_32**| Name of the step | [default to null]
 
 ### Return type
 
@@ -640,7 +640,7 @@ Name | Type | Description  | Notes
 
 # **pipeline_run_node_step_log**
 > pipeline_run_node_step_log (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; node: STRING_32 ; step: STRING_32 ): detachable STRING_32
-	
+
 
 
 
@@ -651,11 +651,11 @@ Get log for a pipeline run node step
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
- **node** | **STRING_32**| Name of the node | 
- **step** | **STRING_32**| Name of the step | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
+ **node** | **STRING_32**| Name of the node | [default to null]
+ **step** | **STRING_32**| Name of the step | [default to null]
 
 ### Return type
 
@@ -673,8 +673,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pipeline_run_node_steps**
-> pipeline_run_node_steps (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; node: STRING_32 ): detachable PIPELINE_RUN_NODE_STEPS
-	
+> pipeline_run_node_steps (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; node: STRING_32 ): detachable LIST [PIPELINE_STEP_IMPL]
+
 
 
 
@@ -685,14 +685,14 @@ Retrieve run node steps details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
- **node** | **STRING_32**| Name of the node | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
+ **node** | **STRING_32**| Name of the node | [default to null]
 
 ### Return type
 
-[**PIPELINE_RUN_NODE_STEPS**](PipelineRunNodeSteps.md)
+[**LIST [PIPELINE_STEP_IMPL]**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -706,8 +706,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pipeline_run_nodes**
-> pipeline_run_nodes (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ): detachable PIPELINE_RUN_NODES
-	
+> pipeline_run_nodes (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ): detachable LIST [PIPELINE_RUN_NODE]
+
 
 
 
@@ -718,13 +718,13 @@ Retrieve run nodes details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
 
 ### Return type
 
-[**PIPELINE_RUN_NODES**](PipelineRunNodes.md)
+[**LIST [PIPELINE_RUN_NODE]**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -738,8 +738,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pipeline_runs**
-> pipeline_runs (organization: STRING_32 ; pipeline: STRING_32 ): detachable PIPELINE_RUNS
-	
+> pipeline_runs (organization: STRING_32 ; pipeline: STRING_32 ): detachable LIST [PIPELINE_RUN]
+
 
 
 
@@ -750,12 +750,12 @@ Retrieve all runs details for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
 
 ### Return type
 
-[**PIPELINE_RUNS**](PipelineRuns.md)
+[**LIST [PIPELINE_RUN]**](PipelineRun.md)
 
 ### Authorization
 
@@ -769,8 +769,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **pipelines**
-> pipelines (organization: STRING_32 ): detachable PIPELINES
-	
+> pipelines (organization: STRING_32 ): detachable LIST [PIPELINE]
+
 
 
 
@@ -781,11 +781,11 @@ Retrieve all pipelines details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
 
 ### Return type
 
-[**PIPELINES**](Pipelines.md)
+[**LIST [PIPELINE]**](Pipeline.md)
 
 ### Authorization
 
@@ -800,7 +800,7 @@ Name | Type | Description  | Notes
 
 # **post_pipeline_run**
 > post_pipeline_run (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ): detachable QUEUE_ITEM_IMPL
-	
+
 
 
 
@@ -811,9 +811,9 @@ Replay an organization pipeline run
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
 
 ### Return type
 
@@ -832,7 +832,7 @@ Name | Type | Description  | Notes
 
 # **post_pipeline_runs**
 > post_pipeline_runs (organization: STRING_32 ; pipeline: STRING_32 ): detachable QUEUE_ITEM_IMPL
-	
+
 
 
 
@@ -843,8 +843,8 @@ Start a build for an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
 
 ### Return type
 
@@ -862,8 +862,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_favorite**
-> put_pipeline_favorite (organization: STRING_32 ; pipeline: STRING_32 ; body: BODY ): detachable FAVORITE_IMPL
-	
+> put_pipeline_favorite (organization: STRING_32 ; pipeline: STRING_32 ; unknown_base_type: UNKNOWN_BASE_TYPE ): detachable FAVORITE_IMPL
+
 
 
 
@@ -874,9 +874,9 @@ Favorite/unfavorite a pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **body** | [**BODY**](BODY.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -895,7 +895,7 @@ Name | Type | Description  | Notes
 
 # **put_pipeline_run**
 > put_pipeline_run (organization: STRING_32 ; pipeline: STRING_32 ; run: STRING_32 ; blocking:  detachable STRING_32 ; time_out_in_secs:  detachable INTEGER_32 ): detachable PIPELINE_RUN
-	
+
 
 
 
@@ -906,11 +906,11 @@ Stop a build of an organization pipeline
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **pipeline** | **STRING_32**| Name of the pipeline | 
- **run** | **STRING_32**| Name of the run | 
- **blocking** | **STRING_32**| Set to true to make blocking stop, default: false | [optional] 
- **time_out_in_secs** | **INTEGER_32**| Timeout in seconds, default: 10 seconds | [optional] 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
+ **run** | **STRING_32**| Name of the run | [default to null]
+ **blocking** | **STRING_32**| Set to true to make blocking stop, default: false | [optional] [default to null]
+ **time_out_in_secs** | **INTEGER_32**| Timeout in seconds, default: 10 seconds | [optional] [default to null]
 
 ### Return type
 
@@ -929,7 +929,7 @@ Name | Type | Description  | Notes
 
 # **sc_m**
 > sc_m (organization: STRING_32 ; scm: STRING_32 ): detachable GITHUB_SCM
-	
+
 
 
 
@@ -940,8 +940,8 @@ Retrieve SCM details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **scm** | **STRING_32**| Name of SCM | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **scm** | **STRING_32**| Name of SCM | [default to null]
 
 ### Return type
 
@@ -959,8 +959,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sc_morganisation_repositories**
-> sc_morganisation_repositories (organization: STRING_32 ; scm: STRING_32 ; scm_organisation: STRING_32 ; credential_id:  detachable STRING_32 ; page_size:  detachable INTEGER_32 ; page_number:  detachable INTEGER_32 ): detachable SCM_ORGANISATIONS
-	
+> sc_morganisation_repositories (organization: STRING_32 ; scm: STRING_32 ; scm_organisation: STRING_32 ; credential_id:  detachable STRING_32 ; page_size:  detachable INTEGER_32 ; page_number:  detachable INTEGER_32 ): detachable LIST [GITHUB_ORGANIZATION]
+
 
 
 
@@ -971,16 +971,16 @@ Retrieve SCM organization repositories details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **scm** | **STRING_32**| Name of SCM | 
- **scm_organisation** | **STRING_32**| Name of the SCM organization | 
- **credential_id** | **STRING_32**| Credential ID | [optional] 
- **page_size** | **INTEGER_32**| Number of items in a page | [optional] 
- **page_number** | **INTEGER_32**| Page number | [optional] 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **scm** | **STRING_32**| Name of SCM | [default to null]
+ **scm_organisation** | **STRING_32**| Name of the SCM organization | [default to null]
+ **credential_id** | **STRING_32**| Credential ID | [optional] [default to null]
+ **page_size** | **INTEGER_32**| Number of items in a page | [optional] [default to null]
+ **page_number** | **INTEGER_32**| Page number | [optional] [default to null]
 
 ### Return type
 
-[**SCM_ORGANISATIONS**](ScmOrganisations.md)
+[**LIST [GITHUB_ORGANIZATION]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -994,8 +994,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sc_morganisation_repository**
-> sc_morganisation_repository (organization: STRING_32 ; scm: STRING_32 ; scm_organisation: STRING_32 ; repository: STRING_32 ; credential_id:  detachable STRING_32 ): detachable SCM_ORGANISATIONS
-	
+> sc_morganisation_repository (organization: STRING_32 ; scm: STRING_32 ; scm_organisation: STRING_32 ; repository: STRING_32 ; credential_id:  detachable STRING_32 ): detachable LIST [GITHUB_ORGANIZATION]
+
 
 
 
@@ -1006,15 +1006,15 @@ Retrieve SCM organization repository details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **scm** | **STRING_32**| Name of SCM | 
- **scm_organisation** | **STRING_32**| Name of the SCM organization | 
- **repository** | **STRING_32**| Name of the SCM repository | 
- **credential_id** | **STRING_32**| Credential ID | [optional] 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **scm** | **STRING_32**| Name of SCM | [default to null]
+ **scm_organisation** | **STRING_32**| Name of the SCM organization | [default to null]
+ **repository** | **STRING_32**| Name of the SCM repository | [default to null]
+ **credential_id** | **STRING_32**| Credential ID | [optional] [default to null]
 
 ### Return type
 
-[**SCM_ORGANISATIONS**](ScmOrganisations.md)
+[**LIST [GITHUB_ORGANIZATION]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1028,8 +1028,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sc_morganisations**
-> sc_morganisations (organization: STRING_32 ; scm: STRING_32 ; credential_id:  detachable STRING_32 ): detachable SCM_ORGANISATIONS
-	
+> sc_morganisations (organization: STRING_32 ; scm: STRING_32 ; credential_id:  detachable STRING_32 ): detachable LIST [GITHUB_ORGANIZATION]
+
 
 
 
@@ -1040,13 +1040,13 @@ Retrieve SCM organizations details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **scm** | **STRING_32**| Name of SCM | 
- **credential_id** | **STRING_32**| Credential ID | [optional] 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **scm** | **STRING_32**| Name of SCM | [default to null]
+ **credential_id** | **STRING_32**| Credential ID | [optional] [default to null]
 
 ### Return type
 
-[**SCM_ORGANISATIONS**](ScmOrganisations.md)
+[**LIST [GITHUB_ORGANIZATION]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1061,7 +1061,7 @@ Name | Type | Description  | Notes
 
 # **search**
 > search (q: STRING_32 ): detachable STRING_32
-	
+
 
 
 
@@ -1072,7 +1072,7 @@ Search for any resource details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **STRING_32**| Query string | 
+ **q** | **STRING_32**| Query string | [default to null]
 
 ### Return type
 
@@ -1091,7 +1091,7 @@ Name | Type | Description  | Notes
 
 # **search_classes**
 > search_classes (q: STRING_32 ): detachable STRING_32
-	
+
 
 
 
@@ -1102,7 +1102,7 @@ Get classes details
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **STRING_32**| Query string containing an array of class names | 
+ **q** | **STRING_32**| Query string containing an array of class names | [default to null]
 
 ### Return type
 
@@ -1121,7 +1121,7 @@ Name | Type | Description  | Notes
 
 # **user**
 > user (organization: STRING_32 ; user: STRING_32 ): detachable USER
-	
+
 
 
 
@@ -1132,8 +1132,8 @@ Retrieve user details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
- **user** | **STRING_32**| Name of the user | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
+ **user** | **STRING_32**| Name of the user | [default to null]
 
 ### Return type
 
@@ -1151,8 +1151,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **user_favorites**
-> user_favorites (user: STRING_32 ): detachable USER_FAVORITES
-	
+> user_favorites (user: STRING_32 ): detachable LIST [FAVORITE_IMPL]
+
 
 
 
@@ -1163,11 +1163,11 @@ Retrieve user favorites details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **STRING_32**| Name of the user | 
+ **user** | **STRING_32**| Name of the user | [default to null]
 
 ### Return type
 
-[**USER_FAVORITES**](UserFavorites.md)
+[**LIST [FAVORITE_IMPL]**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1182,7 +1182,7 @@ Name | Type | Description  | Notes
 
 # **users**
 > users (organization: STRING_32 ): detachable USER
-	
+
 
 
 
@@ -1193,7 +1193,7 @@ Retrieve users details for an organization
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **STRING_32**| Name of the organization | 
+ **organization** | **STRING_32**| Name of the organization | [default to null]
 
 ### Return type
 

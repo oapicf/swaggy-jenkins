@@ -12,7 +12,7 @@ class PipelineBranchesitempullRequestlinks {
     /** @var string $self */
     private $self;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

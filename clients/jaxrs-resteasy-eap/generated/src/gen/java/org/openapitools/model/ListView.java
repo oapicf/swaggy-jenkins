@@ -12,20 +12,19 @@ import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class ListView   {
   
 
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String description = null;
+  private String description;
 
   private List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
 
-  private String name = null;
+  private String name;
 
-  private String url = null;
+  private String url;
 
   /**
    **/

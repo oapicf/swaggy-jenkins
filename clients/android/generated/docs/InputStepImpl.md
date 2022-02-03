@@ -1,7 +1,9 @@
 
+
 # InputStepImpl
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -11,6 +13,7 @@ Name | Type | Description | Notes
 **ok** | **String** |  |  [optional]
 **parameters** | [**List&lt;StringParameterDefinition&gt;**](StringParameterDefinition.md) |  |  [optional]
 **submitter** | **String** |  |  [optional]
+
 
 
 

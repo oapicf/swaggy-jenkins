@@ -1,20 +1,26 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineStepImpllinks   {
+
+@JsonTypeName("PipelineStepImpllinks")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineStepImpllinks   {
   
-  private @Valid Link self = null;
-  private @Valid Link actions = null;
-  private @Valid String propertyClass = null;
+  private @Valid Link self;
+  private @Valid Link actions;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -24,16 +30,20 @@ public class PipelineStepImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
+
+  @JsonProperty("self")
   public void setSelf(Link self) {
     this.self = self;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpllinks actions(Link actions) {
     this.actions = actions;
@@ -41,16 +51,20 @@ public class PipelineStepImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(Link actions) {
     this.actions = actions;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpllinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -58,18 +72,22 @@ public class PipelineStepImpllinks   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -77,9 +95,9 @@ public class PipelineStepImpllinks   {
       return false;
     }
     PipelineStepImpllinks pipelineStepImpllinks = (PipelineStepImpllinks) o;
-    return Objects.equals(self, pipelineStepImpllinks.self) &&
-        Objects.equals(actions, pipelineStepImpllinks.actions) &&
-        Objects.equals(propertyClass, pipelineStepImpllinks.propertyClass);
+    return Objects.equals(this.self, pipelineStepImpllinks.self) &&
+        Objects.equals(this.actions, pipelineStepImpllinks.actions) &&
+        Objects.equals(this.propertyClass, pipelineStepImpllinks.propertyClass);
   }
 
   @Override
@@ -103,11 +121,13 @@ public class PipelineStepImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

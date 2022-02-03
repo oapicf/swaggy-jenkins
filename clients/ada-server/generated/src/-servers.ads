@@ -13,6 +13,7 @@ with Swagger.Servers;
 with .Models;
 with .Skeletons;
 package .Servers is
+   pragma Warnings (Off, "*use clause for package*");
    use .Models;
    type Server_Type is limited new .Skeletons.Server_Type with null record;
 
@@ -88,7 +89,7 @@ package .Servers is
    procedure Get_Organisations
       (Server : in out Server_Type
        ;
-       Result  : out .Models.Organisations_Type;
+       Result  : out .Models.Organisation_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -108,7 +109,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineActivities_Type;
+       Result  : out .Models.PipelineActivity_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -172,7 +173,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineQueue_Type;
+       Result  : out .Models.QueueItemImpl_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -246,7 +247,7 @@ package .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Node : in Swagger.UString;
-       Result  : out .Models.PipelineRunNodeSteps_Type;
+       Result  : out .Models.PipelineStepImpl_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -257,7 +258,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
-       Result  : out .Models.PipelineRunNodes_Type;
+       Result  : out .Models.PipelineRunNode_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -267,7 +268,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineRuns_Type;
+       Result  : out .Models.PipelineRun_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -276,13 +277,13 @@ package .Servers is
    procedure Get_Pipelines
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
-       Result  : out .Models.Pipelines_Type;
+       Result  : out .Models.Pipeline_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM details for an organization
    overriding
-   procedure Get_S_C_M
+   procedure Get_SCM
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
@@ -292,7 +293,7 @@ package .Servers is
    --  
    --  Retrieve SCM organization repositories details for an organization
    overriding
-   procedure Get_S_C_M_Organisation_Repositories
+   procedure Get_SCMOrganisation_Repositories
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
@@ -300,31 +301,31 @@ package .Servers is
        Credential_Id : in Swagger.Nullable_UString;
        Page_Size : in Swagger.Nullable_Integer;
        Page_Number : in Swagger.Nullable_Integer;
-       Result  : out .Models.ScmOrganisations_Type;
+       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM organization repository details for an organization
    overriding
-   procedure Get_S_C_M_Organisation_Repository
+   procedure Get_SCMOrganisation_Repository
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
        Scm_Organisation : in Swagger.UString;
        Repository : in Swagger.UString;
        Credential_Id : in Swagger.Nullable_UString;
-       Result  : out .Models.ScmOrganisations_Type;
+       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM organizations details for an organization
    overriding
-   procedure Get_S_C_M_Organisations
+   procedure Get_SCMOrganisations
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
        Credential_Id : in Swagger.Nullable_UString;
-       Result  : out .Models.ScmOrganisations_Type;
+       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -343,7 +344,7 @@ package .Servers is
    procedure Get_User_Favorites
       (Server : in out Server_Type;
        User : in Swagger.UString;
-       Result  : out .Models.UserFavorites_Type;
+       Result  : out .Models.FavoriteImpl_Type_Vectors.Vector;
        Context : in out Swagger.Servers.Context_Type);
 
    --  
@@ -383,7 +384,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Body_Type : in Body_Type;
+       U_NKNOWNBASETYPE : in UNKNOWN_BASE_TYPE;
        Result  : out .Models.FavoriteImpl_Type;
        Context : in out Swagger.Servers.Context_Type);
 

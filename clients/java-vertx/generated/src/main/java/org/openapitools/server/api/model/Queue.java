@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.QueueBlockedItem;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Queue   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<QueueBlockedItem> items = new ArrayList<>();
 
   public Queue () {

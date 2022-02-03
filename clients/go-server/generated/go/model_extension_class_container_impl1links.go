@@ -12,7 +12,27 @@ package openapi
 
 type ExtensionClassContainerImpl1links struct {
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertExtensionClassContainerImpl1linksRequired checks if the required fields are not zero-ed
+func AssertExtensionClassContainerImpl1linksRequired(obj ExtensionClassContainerImpl1links) error {
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseExtensionClassContainerImpl1linksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of ExtensionClassContainerImpl1links (e.g. [][]ExtensionClassContainerImpl1links), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseExtensionClassContainerImpl1linksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aExtensionClassContainerImpl1links, ok := obj.(ExtensionClassContainerImpl1links)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertExtensionClassContainerImpl1linksRequired(aExtensionClassContainerImpl1links)
+	})
 }

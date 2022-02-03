@@ -14,23 +14,22 @@ import io.swagger.annotations.ApiModelProperty;
  * SwapSpaceMonitorMemoryUsage2
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class SwapSpaceMonitorMemoryUsage2   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("availablePhysicalMemory")
-  private Integer availablePhysicalMemory = null;
+  private Integer availablePhysicalMemory;
 
   @JsonProperty("availableSwapSpace")
-  private Integer availableSwapSpace = null;
+  private Integer availableSwapSpace;
 
   @JsonProperty("totalPhysicalMemory")
-  private Integer totalPhysicalMemory = null;
+  private Integer totalPhysicalMemory;
 
   @JsonProperty("totalSwapSpace")
-  private Integer totalSwapSpace = null;
+  private Integer totalSwapSpace;
 
   public SwapSpaceMonitorMemoryUsage2 propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -124,7 +123,7 @@ public class SwapSpaceMonitorMemoryUsage2   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -162,7 +161,7 @@ public class SwapSpaceMonitorMemoryUsage2   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

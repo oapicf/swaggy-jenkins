@@ -66,16 +66,15 @@ import qualified Prelude as P
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getComputer 
+getComputer
   :: Depth -- ^ "depth" -  Recursion depth in response model
   -> SwaggyJenkinsRequest GetComputer MimeNoContent ComputerSet MimeJSON
 getComputer (Depth depth) =
   _mkRequest "GET" ["/computer/api/json"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("depth", Just depth)
+    `addQuery` toQuery ("depth", Just depth)
 
 data GetComputer  
-
 -- | @application/json@
 instance Produces GetComputer MimeJSON
 
@@ -88,14 +87,13 @@ instance Produces GetComputer MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getJenkins 
+getJenkins
   :: SwaggyJenkinsRequest GetJenkins MimeNoContent Hudson MimeJSON
 getJenkins =
   _mkRequest "GET" ["/api/json"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetJenkins  
-
 -- | @application/json@
 instance Produces GetJenkins MimeJSON
 
@@ -108,7 +106,7 @@ instance Produces GetJenkins MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getJob 
+getJob
   :: Name -- ^ "name" -  Name of the job
   -> SwaggyJenkinsRequest GetJob MimeNoContent FreeStyleProject MimeJSON
 getJob (Name name) =
@@ -116,7 +114,6 @@ getJob (Name name) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetJob  
-
 -- | @application/json@
 instance Produces GetJob MimeJSON
 
@@ -129,17 +126,16 @@ instance Produces GetJob MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getJobConfig 
+getJobConfig
   :: Name -- ^ "name" -  Name of the job
-  -> SwaggyJenkinsRequest GetJobConfig MimeNoContent Text MimeTextxml
+  -> SwaggyJenkinsRequest GetJobConfig MimeNoContent Text MimeTextXml
 getJobConfig (Name name) =
   _mkRequest "GET" ["/job/",toPath name,"/config.xml"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetJobConfig  
-
 -- | @text/xml@
-instance Produces GetJobConfig MimeTextxml
+instance Produces GetJobConfig MimeTextXml
 
 
 -- *** getJobLastBuild
@@ -150,7 +146,7 @@ instance Produces GetJobConfig MimeTextxml
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getJobLastBuild 
+getJobLastBuild
   :: Name -- ^ "name" -  Name of the job
   -> SwaggyJenkinsRequest GetJobLastBuild MimeNoContent FreeStyleBuild MimeJSON
 getJobLastBuild (Name name) =
@@ -158,7 +154,6 @@ getJobLastBuild (Name name) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetJobLastBuild  
-
 -- | @application/json@
 instance Produces GetJobLastBuild MimeJSON
 
@@ -171,7 +166,7 @@ instance Produces GetJobLastBuild MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getJobProgressiveText 
+getJobProgressiveText
   :: Name -- ^ "name" -  Name of the job
   -> Number -- ^ "number" -  Build number
   -> Start -- ^ "start" -  Starting point of progressive text output
@@ -179,10 +174,9 @@ getJobProgressiveText
 getJobProgressiveText (Name name) (Number number) (Start start) =
   _mkRequest "GET" ["/job/",toPath name,"/",toPath number,"/logText/progressiveText"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("start", Just start)
+    `addQuery` toQuery ("start", Just start)
 
 data GetJobProgressiveText  
-
 instance Produces GetJobProgressiveText MimeNoContent
 
 
@@ -194,14 +188,13 @@ instance Produces GetJobProgressiveText MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getQueue 
+getQueue
   :: SwaggyJenkinsRequest GetQueue MimeNoContent Queue MimeJSON
 getQueue =
   _mkRequest "GET" ["/queue/api/json"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetQueue  
-
 -- | @application/json@
 instance Produces GetQueue MimeJSON
 
@@ -214,7 +207,7 @@ instance Produces GetQueue MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getQueueItem 
+getQueueItem
   :: Number -- ^ "number" -  Queue number
   -> SwaggyJenkinsRequest GetQueueItem MimeNoContent Queue MimeJSON
 getQueueItem (Number number) =
@@ -222,7 +215,6 @@ getQueueItem (Number number) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetQueueItem  
-
 -- | @application/json@
 instance Produces GetQueueItem MimeJSON
 
@@ -235,7 +227,7 @@ instance Produces GetQueueItem MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getView 
+getView
   :: Name -- ^ "name" -  Name of the view
   -> SwaggyJenkinsRequest GetView MimeNoContent ListView MimeJSON
 getView (Name name) =
@@ -243,7 +235,6 @@ getView (Name name) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetView  
-
 -- | @application/json@
 instance Produces GetView MimeJSON
 
@@ -256,17 +247,16 @@ instance Produces GetView MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getViewConfig 
+getViewConfig
   :: Name -- ^ "name" -  Name of the view
-  -> SwaggyJenkinsRequest GetViewConfig MimeNoContent Text MimeTextxml
+  -> SwaggyJenkinsRequest GetViewConfig MimeNoContent Text MimeTextXml
 getViewConfig (Name name) =
   _mkRequest "GET" ["/view/",toPath name,"/config.xml"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetViewConfig  
-
 -- | @text/xml@
-instance Produces GetViewConfig MimeTextxml
+instance Produces GetViewConfig MimeTextXml
 
 
 -- *** headJenkins
@@ -277,14 +267,13 @@ instance Produces GetViewConfig MimeTextxml
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-headJenkins 
+headJenkins
   :: SwaggyJenkinsRequest HeadJenkins MimeNoContent NoContent MimeNoContent
 headJenkins =
   _mkRequest "HEAD" ["/api/json"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data HeadJenkins  
-
 instance Produces HeadJenkins MimeNoContent
 
 
@@ -296,48 +285,44 @@ instance Produces HeadJenkins MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
--- Note: Has 'Produces' instances, but no response schema
--- 
-postCreateItem 
+postCreateItem
   :: (Consumes PostCreateItem MimeJSON)
-  => Accept accept -- ^ request accept ('MimeType')
-  -> Name -- ^ "name" -  Name of the new job
-  -> SwaggyJenkinsRequest PostCreateItem MimeJSON res accept
-postCreateItem  _ (Name name) =
+  => Name -- ^ "name" -  Name of the new job
+  -> SwaggyJenkinsRequest PostCreateItem MimeJSON NoContent MimeNoContent
+postCreateItem (Name name) =
   _mkRequest "POST" ["/createItem"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("name", Just name)
+    `addQuery` toQuery ("name", Just name)
 
 data PostCreateItem 
 
 -- | /Body Param/ "body" - Job configuration in config.xml format
-instance HasBodyParam PostCreateItem Body2 
+instance HasBodyParam PostCreateItem Body 
 
 -- | /Optional Param/ "from" - Existing job to copy from
 instance HasOptionalParam PostCreateItem From where
   applyOptionalParam req (From xs) =
-    req `setQuery` toQuery ("from", Just xs)
+    req `addQuery` toQuery ("from", Just xs)
 
 -- | /Optional Param/ "mode" - Set to 'copy' for copying an existing job
 instance HasOptionalParam PostCreateItem Mode where
   applyOptionalParam req (Mode xs) =
-    req `setQuery` toQuery ("mode", Just xs)
+    req `addQuery` toQuery ("mode", Just xs)
 
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostCreateItem JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 
 -- | /Optional Param/ "Content-Type" - Content type header application/xml
 instance HasOptionalParam PostCreateItem ParamContentType where
   applyOptionalParam req (ParamContentType xs) =
-    req `setHeader` toHeader ("Content-Type", xs)
+    req `addHeader` toHeader ("Content-Type", xs)
 
 -- | @application/json@
 instance Consumes PostCreateItem MimeJSON
 
--- | @*/*@
-instance MimeType mtype => Produces PostCreateItem mtype
+instance Produces PostCreateItem MimeNoContent
 
 
 -- *** postCreateView
@@ -348,38 +333,34 @@ instance MimeType mtype => Produces PostCreateItem mtype
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
--- Note: Has 'Produces' instances, but no response schema
--- 
-postCreateView 
+postCreateView
   :: (Consumes PostCreateView MimeJSON)
-  => Accept accept -- ^ request accept ('MimeType')
-  -> Name -- ^ "name" -  Name of the new view
-  -> SwaggyJenkinsRequest PostCreateView MimeJSON res accept
-postCreateView  _ (Name name) =
+  => Name -- ^ "name" -  Name of the new view
+  -> SwaggyJenkinsRequest PostCreateView MimeJSON NoContent MimeNoContent
+postCreateView (Name name) =
   _mkRequest "POST" ["/createView"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("name", Just name)
+    `addQuery` toQuery ("name", Just name)
 
 data PostCreateView 
 
 -- | /Body Param/ "body" - View configuration in config.xml format
-instance HasBodyParam PostCreateView Body2 
+instance HasBodyParam PostCreateView Body 
 
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostCreateView JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 
 -- | /Optional Param/ "Content-Type" - Content type header application/xml
 instance HasOptionalParam PostCreateView ParamContentType where
   applyOptionalParam req (ParamContentType xs) =
-    req `setHeader` toHeader ("Content-Type", xs)
+    req `addHeader` toHeader ("Content-Type", xs)
 
 -- | @application/json@
 instance Consumes PostCreateView MimeJSON
 
--- | @*/*@
-instance MimeType mtype => Produces PostCreateView mtype
+instance Produces PostCreateView MimeNoContent
 
 
 -- *** postJobBuild
@@ -390,25 +371,24 @@ instance MimeType mtype => Produces PostCreateView mtype
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postJobBuild 
+postJobBuild
   :: Name -- ^ "name" -  Name of the job
   -> Json -- ^ "json"
   -> SwaggyJenkinsRequest PostJobBuild MimeNoContent NoContent MimeNoContent
 postJobBuild (Name name) (Json json) =
   _mkRequest "POST" ["/job/",toPath name,"/build"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("json", Just json)
+    `addQuery` toQuery ("json", Just json)
 
 data PostJobBuild  
 instance HasOptionalParam PostJobBuild Token where
   applyOptionalParam req (Token xs) =
-    req `setQuery` toQuery ("token", Just xs)
+    req `addQuery` toQuery ("token", Just xs)
 
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostJobBuild JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
-
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 instance Produces PostJobBuild MimeNoContent
 
 
@@ -420,15 +400,12 @@ instance Produces PostJobBuild MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
--- Note: Has 'Produces' instances, but no response schema
--- 
-postJobConfig 
-  :: (Consumes PostJobConfig MimeJSON, MimeRender MimeJSON Body2)
-  => Accept accept -- ^ request accept ('MimeType')
-  -> Body2 -- ^ "body" -  Job configuration in config.xml format
+postJobConfig
+  :: (Consumes PostJobConfig MimeJSON, MimeRender MimeJSON Body)
+  => Body -- ^ "body" -  Job configuration in config.xml format
   -> Name -- ^ "name" -  Name of the job
-  -> SwaggyJenkinsRequest PostJobConfig MimeJSON res accept
-postJobConfig  _ body (Name name) =
+  -> SwaggyJenkinsRequest PostJobConfig MimeJSON NoContent MimeNoContent
+postJobConfig body (Name name) =
   _mkRequest "POST" ["/job/",toPath name,"/config.xml"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
     `setBodyParam` body
@@ -436,18 +413,17 @@ postJobConfig  _ body (Name name) =
 data PostJobConfig 
 
 -- | /Body Param/ "body" - Job configuration in config.xml format
-instance HasBodyParam PostJobConfig Body2 
+instance HasBodyParam PostJobConfig Body 
 
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostJobConfig JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 
 -- | @application/json@
 instance Consumes PostJobConfig MimeJSON
 
--- | @*/*@
-instance MimeType mtype => Produces PostJobConfig mtype
+instance Produces PostJobConfig MimeNoContent
 
 
 -- *** postJobDelete
@@ -458,7 +434,7 @@ instance MimeType mtype => Produces PostJobConfig mtype
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postJobDelete 
+postJobDelete
   :: Name -- ^ "name" -  Name of the job
   -> SwaggyJenkinsRequest PostJobDelete MimeNoContent NoContent MimeNoContent
 postJobDelete (Name name) =
@@ -470,8 +446,7 @@ data PostJobDelete
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostJobDelete JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
-
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 instance Produces PostJobDelete MimeNoContent
 
 
@@ -483,7 +458,7 @@ instance Produces PostJobDelete MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postJobDisable 
+postJobDisable
   :: Name -- ^ "name" -  Name of the job
   -> SwaggyJenkinsRequest PostJobDisable MimeNoContent NoContent MimeNoContent
 postJobDisable (Name name) =
@@ -495,8 +470,7 @@ data PostJobDisable
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostJobDisable JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
-
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 instance Produces PostJobDisable MimeNoContent
 
 
@@ -508,7 +482,7 @@ instance Produces PostJobDisable MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postJobEnable 
+postJobEnable
   :: Name -- ^ "name" -  Name of the job
   -> SwaggyJenkinsRequest PostJobEnable MimeNoContent NoContent MimeNoContent
 postJobEnable (Name name) =
@@ -520,8 +494,7 @@ data PostJobEnable
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostJobEnable JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
-
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 instance Produces PostJobEnable MimeNoContent
 
 
@@ -533,7 +506,7 @@ instance Produces PostJobEnable MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postJobLastBuildStop 
+postJobLastBuildStop
   :: Name -- ^ "name" -  Name of the job
   -> SwaggyJenkinsRequest PostJobLastBuildStop MimeNoContent NoContent MimeNoContent
 postJobLastBuildStop (Name name) =
@@ -545,8 +518,7 @@ data PostJobLastBuildStop
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostJobLastBuildStop JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
-
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 instance Produces PostJobLastBuildStop MimeNoContent
 
 
@@ -558,15 +530,12 @@ instance Produces PostJobLastBuildStop MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
--- Note: Has 'Produces' instances, but no response schema
--- 
-postViewConfig 
-  :: (Consumes PostViewConfig MimeJSON, MimeRender MimeJSON Body2)
-  => Accept accept -- ^ request accept ('MimeType')
-  -> Body2 -- ^ "body" -  View configuration in config.xml format
+postViewConfig
+  :: (Consumes PostViewConfig MimeJSON, MimeRender MimeJSON Body)
+  => Body -- ^ "body" -  View configuration in config.xml format
   -> Name -- ^ "name" -  Name of the view
-  -> SwaggyJenkinsRequest PostViewConfig MimeJSON res accept
-postViewConfig  _ body (Name name) =
+  -> SwaggyJenkinsRequest PostViewConfig MimeJSON NoContent MimeNoContent
+postViewConfig body (Name name) =
   _mkRequest "POST" ["/view/",toPath name,"/config.xml"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
     `setBodyParam` body
@@ -574,16 +543,15 @@ postViewConfig  _ body (Name name) =
 data PostViewConfig 
 
 -- | /Body Param/ "body" - View configuration in config.xml format
-instance HasBodyParam PostViewConfig Body2 
+instance HasBodyParam PostViewConfig Body 
 
 -- | /Optional Param/ "Jenkins-Crumb" - CSRF protection token
 instance HasOptionalParam PostViewConfig JenkinsCrumb where
   applyOptionalParam req (JenkinsCrumb xs) =
-    req `setHeader` toHeader ("Jenkins-Crumb", xs)
+    req `addHeader` toHeader ("Jenkins-Crumb", xs)
 
 -- | @application/json@
 instance Consumes PostViewConfig MimeJSON
 
--- | @*/*@
-instance MimeType mtype => Produces PostViewConfig mtype
+instance Produces PostViewConfig MimeNoContent
 

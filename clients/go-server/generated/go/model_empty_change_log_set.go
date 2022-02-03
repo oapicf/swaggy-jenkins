@@ -16,3 +16,20 @@ type EmptyChangeLogSet struct {
 
 	Kind string `json:"kind,omitempty"`
 }
+
+// AssertEmptyChangeLogSetRequired checks if the required fields are not zero-ed
+func AssertEmptyChangeLogSetRequired(obj EmptyChangeLogSet) error {
+	return nil
+}
+
+// AssertRecurseEmptyChangeLogSetRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of EmptyChangeLogSet (e.g. [][]EmptyChangeLogSet), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseEmptyChangeLogSetRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aEmptyChangeLogSet, ok := obj.(EmptyChangeLogSet)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertEmptyChangeLogSetRequired(aEmptyChangeLogSet)
+	})
+}

@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.StringParameterValue;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StringParameterDefinition   {
   
-  private String propertyClass = null;
-  private StringParameterValue defaultParameterValue = null;
-  private String description = null;
-  private String name = null;
-  private String type = null;
+  private String propertyClass;
+  private StringParameterValue defaultParameterValue;
+  private String description;
+  private String name;
+  private String type;
 
   public StringParameterDefinition () {
 

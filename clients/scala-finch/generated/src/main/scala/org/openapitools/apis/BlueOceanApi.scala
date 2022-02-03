@@ -3,29 +3,22 @@ package org.openapitools.apis
 import java.io._
 import org.openapitools._
 import org.openapitools.models._
-import org.openapitools.models.Body
 import org.openapitools.models.BranchImpl
 import org.openapitools.models.FavoriteImpl
+import org.openapitools.models.GithubOrganization
 import org.openapitools.models.GithubScm
 import org.openapitools.models.MultibranchPipeline
 import org.openapitools.models.Organisation
-import org.openapitools.models.Organisations
 import org.openapitools.models.Pipeline
-import org.openapitools.models.PipelineActivities
+import org.openapitools.models.PipelineActivity
 import org.openapitools.models.PipelineFolderImpl
 import org.openapitools.models.PipelineImpl
-import org.openapitools.models.PipelineQueue
 import org.openapitools.models.PipelineRun
 import org.openapitools.models.PipelineRunNode
-import org.openapitools.models.PipelineRunNodeSteps
-import org.openapitools.models.PipelineRunNodes
-import org.openapitools.models.PipelineRuns
 import org.openapitools.models.PipelineStepImpl
-import org.openapitools.models.Pipelines
 import org.openapitools.models.QueueItemImpl
-import org.openapitools.models.ScmOrganisations
+import org.openapitools.models.UNKNOWN_BASE_TYPE
 import org.openapitools.models.User
-import org.openapitools.models.UserFavorites
 import io.finch.circe._
 import io.circe.generic.semiauto._
 import com.twitter.concurrent.AsyncStream
@@ -37,6 +30,7 @@ import com.twitter.util.Future
 import com.twitter.io.Buf
 import io.finch._, items._
 import java.io.File
+import java.nio.file.Files
 import java.time._
 
 object BlueOceanApi {
@@ -190,9 +184,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a Organisations
+        * @return An endpoint representing a Seq[Organisation]
         */
-        private def getOrganisations(da: DataAccessor): Endpoint[Organisations] =
+        private def getOrganisations(da: DataAccessor): Endpoint[Seq[Organisation]] =
         get("blue" :: "rest" :: "organizations") { () =>
           da.BlueOcean_getOrganisations() match {
             case Left(error) => checkError(error)
@@ -218,9 +212,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a PipelineActivities
+        * @return An endpoint representing a Seq[PipelineActivity]
         */
-        private def getPipelineActivities(da: DataAccessor): Endpoint[PipelineActivities] =
+        private def getPipelineActivities(da: DataAccessor): Endpoint[Seq[PipelineActivity]] =
         get("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "activities") { (organization: String, pipeline: String) =>
           da.BlueOcean_getPipelineActivities(organization, pipeline) match {
             case Left(error) => checkError(error)
@@ -302,9 +296,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a PipelineQueue
+        * @return An endpoint representing a Seq[QueueItemImpl]
         */
-        private def getPipelineQueue(da: DataAccessor): Endpoint[PipelineQueue] =
+        private def getPipelineQueue(da: DataAccessor): Endpoint[Seq[QueueItemImpl]] =
         get("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "queue") { (organization: String, pipeline: String) =>
           da.BlueOcean_getPipelineQueue(organization, pipeline) match {
             case Left(error) => checkError(error)
@@ -386,9 +380,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a PipelineRunNodeSteps
+        * @return An endpoint representing a Seq[PipelineStepImpl]
         */
-        private def getPipelineRunNodeSteps(da: DataAccessor): Endpoint[PipelineRunNodeSteps] =
+        private def getPipelineRunNodeSteps(da: DataAccessor): Endpoint[Seq[PipelineStepImpl]] =
         get("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "runs" :: string :: "nodes" :: string :: "steps") { (organization: String, pipeline: String, run: String, node: String) =>
           da.BlueOcean_getPipelineRunNodeSteps(organization, pipeline, run, node) match {
             case Left(error) => checkError(error)
@@ -400,9 +394,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a PipelineRunNodes
+        * @return An endpoint representing a Seq[PipelineRunNode]
         */
-        private def getPipelineRunNodes(da: DataAccessor): Endpoint[PipelineRunNodes] =
+        private def getPipelineRunNodes(da: DataAccessor): Endpoint[Seq[PipelineRunNode]] =
         get("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "runs" :: string :: "nodes") { (organization: String, pipeline: String, run: String) =>
           da.BlueOcean_getPipelineRunNodes(organization, pipeline, run) match {
             case Left(error) => checkError(error)
@@ -414,9 +408,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a PipelineRuns
+        * @return An endpoint representing a Seq[PipelineRun]
         */
-        private def getPipelineRuns(da: DataAccessor): Endpoint[PipelineRuns] =
+        private def getPipelineRuns(da: DataAccessor): Endpoint[Seq[PipelineRun]] =
         get("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "runs") { (organization: String, pipeline: String) =>
           da.BlueOcean_getPipelineRuns(organization, pipeline) match {
             case Left(error) => checkError(error)
@@ -428,9 +422,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a Pipelines
+        * @return An endpoint representing a Seq[Pipeline]
         */
-        private def getPipelines(da: DataAccessor): Endpoint[Pipelines] =
+        private def getPipelines(da: DataAccessor): Endpoint[Seq[Pipeline]] =
         get("blue" :: "rest" :: "organizations" :: string :: "pipelines") { (organization: String) =>
           da.BlueOcean_getPipelines(organization) match {
             case Left(error) => checkError(error)
@@ -456,9 +450,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a ScmOrganisations
+        * @return An endpoint representing a Seq[GithubOrganization]
         */
-        private def getSCMOrganisationRepositories(da: DataAccessor): Endpoint[ScmOrganisations] =
+        private def getSCMOrganisationRepositories(da: DataAccessor): Endpoint[Seq[GithubOrganization]] =
         get("blue" :: "rest" :: "organizations" :: string :: "scm" :: string :: "organizations" :: string :: "repositories" :: paramOption("credentialId") :: paramOption("pageSize").map(_.map(_.toInt)) :: paramOption("pageNumber").map(_.map(_.toInt))) { (organization: String, scm: String, scmOrganisation: String, credentialId: Option[String], pageSize: Option[Int], pageNumber: Option[Int]) =>
           da.BlueOcean_getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber) match {
             case Left(error) => checkError(error)
@@ -470,9 +464,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a ScmOrganisations
+        * @return An endpoint representing a Seq[GithubOrganization]
         */
-        private def getSCMOrganisationRepository(da: DataAccessor): Endpoint[ScmOrganisations] =
+        private def getSCMOrganisationRepository(da: DataAccessor): Endpoint[Seq[GithubOrganization]] =
         get("blue" :: "rest" :: "organizations" :: string :: "scm" :: string :: "organizations" :: string :: "repositories" :: string :: paramOption("credentialId")) { (organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: Option[String]) =>
           da.BlueOcean_getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId) match {
             case Left(error) => checkError(error)
@@ -484,9 +478,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a ScmOrganisations
+        * @return An endpoint representing a Seq[GithubOrganization]
         */
-        private def getSCMOrganisations(da: DataAccessor): Endpoint[ScmOrganisations] =
+        private def getSCMOrganisations(da: DataAccessor): Endpoint[Seq[GithubOrganization]] =
         get("blue" :: "rest" :: "organizations" :: string :: "scm" :: string :: "organizations" :: paramOption("credentialId")) { (organization: String, scm: String, credentialId: Option[String]) =>
           da.BlueOcean_getSCMOrganisations(organization, scm, credentialId) match {
             case Left(error) => checkError(error)
@@ -512,9 +506,9 @@ object BlueOceanApi {
 
         /**
         * 
-        * @return An endpoint representing a UserFavorites
+        * @return An endpoint representing a Seq[FavoriteImpl]
         */
-        private def getUserFavorites(da: DataAccessor): Endpoint[UserFavorites] =
+        private def getUserFavorites(da: DataAccessor): Endpoint[Seq[FavoriteImpl]] =
         get("blue" :: "rest" :: "users" :: string :: "favorites") { (user: String) =>
           da.BlueOcean_getUserFavorites(user) match {
             case Left(error) => checkError(error)
@@ -571,8 +565,8 @@ object BlueOceanApi {
         * @return An endpoint representing a FavoriteImpl
         */
         private def putPipelineFavorite(da: DataAccessor): Endpoint[FavoriteImpl] =
-        put("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "favorite" :: jsonBody[Body]) { (organization: String, pipeline: String, body: Body) =>
-          da.BlueOcean_putPipelineFavorite(organization, pipeline, body) match {
+        put("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "favorite" :: jsonBody[UNKNOWN_BASE_TYPE]) { (organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE) =>
+          da.BlueOcean_putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }
@@ -634,7 +628,7 @@ object BlueOceanApi {
     }
 
     private def bytesToFile(input: Array[Byte]): java.io.File = {
-      val file = File.createTempFile("tmpBlueOceanApi", null)
+      val file = Files.createTempFile("tmpBlueOceanApi", null).toFile
       val output = new FileOutputStream(file)
       output.write(input)
       file

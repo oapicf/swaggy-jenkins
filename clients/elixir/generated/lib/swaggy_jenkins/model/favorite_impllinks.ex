@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.FavoriteImpllinks do
   ]
 
   @type t :: %__MODULE__{
-    :"self" => Link,
-    :"_class" => String.t
+    :"self" => SwaggyJenkins.Model.Link.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

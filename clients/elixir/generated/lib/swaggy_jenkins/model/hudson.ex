@@ -27,21 +27,21 @@ defmodule SwaggyJenkins.Model.Hudson do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"assignedLabels" => [HudsonassignedLabels],
-    :"mode" => String.t,
-    :"nodeDescription" => String.t,
-    :"nodeName" => String.t,
-    :"numExecutors" => integer(),
-    :"description" => String.t,
-    :"jobs" => [FreeStyleProject],
-    :"primaryView" => AllView,
-    :"quietingDown" => boolean(),
-    :"slaveAgentPort" => integer(),
-    :"unlabeledLoad" => UnlabeledLoadStatistics,
-    :"useCrumbs" => boolean(),
-    :"useSecurity" => boolean(),
-    :"views" => [AllView]
+    :"_class" => String.t | nil,
+    :"assignedLabels" => [SwaggyJenkins.Model.HudsonassignedLabels.t] | nil,
+    :"mode" => String.t | nil,
+    :"nodeDescription" => String.t | nil,
+    :"nodeName" => String.t | nil,
+    :"numExecutors" => integer() | nil,
+    :"description" => String.t | nil,
+    :"jobs" => [SwaggyJenkins.Model.FreeStyleProject.t] | nil,
+    :"primaryView" => SwaggyJenkins.Model.AllView.t | nil,
+    :"quietingDown" => boolean() | nil,
+    :"slaveAgentPort" => integer() | nil,
+    :"unlabeledLoad" => SwaggyJenkins.Model.UnlabeledLoadStatistics.t | nil,
+    :"useCrumbs" => boolean() | nil,
+    :"useSecurity" => boolean() | nil,
+    :"views" => [SwaggyJenkins.Model.AllView.t] | nil
   }
 end
 

@@ -1,23 +1,29 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineFolderImpl   {
+
+@JsonTypeName("PipelineFolderImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineFolderImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String displayName = null;
-  private @Valid String fullName = null;
-  private @Valid String name = null;
-  private @Valid String organization = null;
-  private @Valid Integer numberOfFolders = null;
-  private @Valid Integer numberOfPipelines = null;
+  private @Valid String propertyClass;
+  private @Valid String displayName;
+  private @Valid String fullName;
+  private @Valid String name;
+  private @Valid String organization;
+  private @Valid Integer numberOfFolders;
+  private @Valid Integer numberOfPipelines;
 
   /**
    **/
@@ -27,16 +33,20 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public PipelineFolderImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -44,16 +54,20 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public PipelineFolderImpl fullName(String fullName) {
     this.fullName = fullName;
@@ -61,16 +75,20 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
+
+  @JsonProperty("fullName")
   public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
-  /**
+/**
    **/
   public PipelineFolderImpl name(String name) {
     this.name = name;
@@ -78,16 +96,20 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public PipelineFolderImpl organization(String organization) {
     this.organization = organization;
@@ -95,16 +117,20 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public PipelineFolderImpl numberOfFolders(Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
@@ -112,16 +138,20 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfFolders")
   public Integer getNumberOfFolders() {
     return numberOfFolders;
   }
+
+  @JsonProperty("numberOfFolders")
   public void setNumberOfFolders(Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
   }
 
-  /**
+/**
    **/
   public PipelineFolderImpl numberOfPipelines(Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;
@@ -129,18 +159,22 @@ public class PipelineFolderImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfPipelines")
   public Integer getNumberOfPipelines() {
     return numberOfPipelines;
   }
+
+  @JsonProperty("numberOfPipelines")
   public void setNumberOfPipelines(Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -148,13 +182,13 @@ public class PipelineFolderImpl   {
       return false;
     }
     PipelineFolderImpl pipelineFolderImpl = (PipelineFolderImpl) o;
-    return Objects.equals(propertyClass, pipelineFolderImpl.propertyClass) &&
-        Objects.equals(displayName, pipelineFolderImpl.displayName) &&
-        Objects.equals(fullName, pipelineFolderImpl.fullName) &&
-        Objects.equals(name, pipelineFolderImpl.name) &&
-        Objects.equals(organization, pipelineFolderImpl.organization) &&
-        Objects.equals(numberOfFolders, pipelineFolderImpl.numberOfFolders) &&
-        Objects.equals(numberOfPipelines, pipelineFolderImpl.numberOfPipelines);
+    return Objects.equals(this.propertyClass, pipelineFolderImpl.propertyClass) &&
+        Objects.equals(this.displayName, pipelineFolderImpl.displayName) &&
+        Objects.equals(this.fullName, pipelineFolderImpl.fullName) &&
+        Objects.equals(this.name, pipelineFolderImpl.name) &&
+        Objects.equals(this.organization, pipelineFolderImpl.organization) &&
+        Objects.equals(this.numberOfFolders, pipelineFolderImpl.numberOfFolders) &&
+        Objects.equals(this.numberOfPipelines, pipelineFolderImpl.numberOfPipelines);
   }
 
   @Override
@@ -182,11 +216,13 @@ public class PipelineFolderImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

@@ -54,28 +54,37 @@ Delete queue item from an organization pipeline queue
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String queue = "queue_example"; // String | Name of the queue item
-try {
-    apiInstance.deletePipelineQueueItem(organization, pipeline, queue);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#deletePipelineQueueItem");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String queue = "queue_example"; // String | Name of the queue item
+    try {
+      apiInstance.deletePipelineQueueItem(organization, pipeline, queue);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#deletePipelineQueueItem");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -100,6 +109,13 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully deleted queue item |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getAuthenticatedUser"></a>
 # **getAuthenticatedUser**
 > User getAuthenticatedUser(organization)
@@ -111,27 +127,36 @@ Retrieve authenticated user details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-try {
-    User result = apiInstance.getAuthenticatedUser(organization);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getAuthenticatedUser");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    try {
+      User result = apiInstance.getAuthenticatedUser(organization);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getAuthenticatedUser");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -154,6 +179,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved authenticated user details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getClasses"></a>
 # **getClasses**
 > String getClasses(propertyClass)
@@ -165,27 +197,36 @@ Get a list of class names supported by a given class
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String propertyClass = "propertyClass_example"; // String | Name of the class
-try {
-    String result = apiInstance.getClasses(propertyClass);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getClasses");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String propertyClass = "propertyClass_example"; // String | Name of the class
+    try {
+      String result = apiInstance.getClasses(propertyClass);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getClasses");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -208,6 +249,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved class names |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getJsonWebKey"></a>
 # **getJsonWebKey**
 > String getJsonWebKey(key)
@@ -219,18 +267,30 @@ Retrieve JSON Web Key
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-BlueOceanApi apiInstance = new BlueOceanApi();
-Integer key = 56; // Integer | Key ID received as part of JWT header field kid
-try {
-    String result = apiInstance.getJsonWebKey(key);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getJsonWebKey");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    Integer key = 56; // Integer | Key ID received as part of JWT header field kid
+    try {
+      String result = apiInstance.getJsonWebKey(key);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getJsonWebKey");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -253,6 +313,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved JWT token |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getJsonWebToken"></a>
 # **getJsonWebToken**
 > String getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
@@ -264,19 +331,31 @@ Retrieve JSON Web Token
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
 
-BlueOceanApi apiInstance = new BlueOceanApi();
-Integer expiryTimeInMins = 56; // Integer | Token expiry time in minutes, default: 30 minutes
-Integer maxExpiryTimeInMins = 56; // Integer | Maximum token expiry time in minutes, default: 480 minutes
-try {
-    String result = apiInstance.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getJsonWebToken");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    Integer expiryTimeInMins = 56; // Integer | Token expiry time in minutes, default: 30 minutes
+    Integer maxExpiryTimeInMins = 56; // Integer | Maximum token expiry time in minutes, default: 480 minutes
+    try {
+      String result = apiInstance.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getJsonWebToken");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -300,6 +379,13 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved JWT token |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getOrganisation"></a>
 # **getOrganisation**
 > Organisation getOrganisation(organization)
@@ -311,27 +397,36 @@ Retrieve organization details
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-try {
-    Organisation result = apiInstance.getOrganisation(organization);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getOrganisation");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    try {
+      Organisation result = apiInstance.getOrganisation(organization);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getOrganisation");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -354,9 +449,17 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipeline details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Pipeline cannot be found on Jenkins instance |  -  |
+
 <a name="getOrganisations"></a>
 # **getOrganisations**
-> Organisations getOrganisations()
+> List&lt;Organisation&gt; getOrganisations()
 
 
 
@@ -365,26 +468,35 @@ Retrieve all organizations details
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-try {
-    Organisations result = apiInstance.getOrganisations();
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getOrganisations");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    try {
+      List<Organisation> result = apiInstance.getOrganisations();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getOrganisations");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -393,7 +505,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**List&lt;Organisation&gt;**](Organisation.md)
 
 ### Authorization
 
@@ -403,6 +515,13 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipelines details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 
 <a name="getPipeline"></a>
 # **getPipeline**
@@ -415,28 +534,37 @@ Retrieve pipeline details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-try {
-    Pipeline result = apiInstance.getPipeline(organization, pipeline);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipeline");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    try {
+      Pipeline result = apiInstance.getPipeline(organization, pipeline);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipeline");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -460,9 +588,17 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipeline details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Pipeline cannot be found on Jenkins instance |  -  |
+
 <a name="getPipelineActivities"></a>
 # **getPipelineActivities**
-> PipelineActivities getPipelineActivities(organization, pipeline)
+> List&lt;PipelineActivity&gt; getPipelineActivities(organization, pipeline)
 
 
 
@@ -471,28 +607,37 @@ Retrieve all activities details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-try {
-    PipelineActivities result = apiInstance.getPipelineActivities(organization, pipeline);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineActivities");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    try {
+      List<PipelineActivity> result = apiInstance.getPipelineActivities(organization, pipeline);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineActivities");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -505,7 +650,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**List&lt;PipelineActivity&gt;**](PipelineActivity.md)
 
 ### Authorization
 
@@ -515,6 +660,13 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved all activities details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 
 <a name="getPipelineBranch"></a>
 # **getPipelineBranch**
@@ -527,29 +679,38 @@ Retrieve branch details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String branch = "branch_example"; // String | Name of the branch
-try {
-    BranchImpl result = apiInstance.getPipelineBranch(organization, pipeline, branch);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineBranch");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String branch = "branch_example"; // String | Name of the branch
+    try {
+      BranchImpl result = apiInstance.getPipelineBranch(organization, pipeline, branch);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineBranch");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -574,6 +735,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved branch details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineBranchRun"></a>
 # **getPipelineBranchRun**
 > PipelineRun getPipelineBranchRun(organization, pipeline, branch, run)
@@ -585,30 +753,39 @@ Retrieve branch run details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String branch = "branch_example"; // String | Name of the branch
-String run = "run_example"; // String | Name of the run
-try {
-    PipelineRun result = apiInstance.getPipelineBranchRun(organization, pipeline, branch, run);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineBranchRun");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String branch = "branch_example"; // String | Name of the branch
+    String run = "run_example"; // String | Name of the run
+    try {
+      PipelineRun result = apiInstance.getPipelineBranchRun(organization, pipeline, branch, run);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineBranchRun");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -634,6 +811,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved run details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineBranches"></a>
 # **getPipelineBranches**
 > MultibranchPipeline getPipelineBranches(organization, pipeline)
@@ -645,28 +829,37 @@ Retrieve all branches details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-try {
-    MultibranchPipeline result = apiInstance.getPipelineBranches(organization, pipeline);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineBranches");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    try {
+      MultibranchPipeline result = apiInstance.getPipelineBranches(organization, pipeline);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineBranches");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -690,6 +883,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved all branches details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineFolder"></a>
 # **getPipelineFolder**
 > PipelineFolderImpl getPipelineFolder(organization, folder)
@@ -701,28 +901,37 @@ Retrieve pipeline folder for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String folder = "folder_example"; // String | Name of the folder
-try {
-    PipelineFolderImpl result = apiInstance.getPipelineFolder(organization, folder);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineFolder");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String folder = "folder_example"; // String | Name of the folder
+    try {
+      PipelineFolderImpl result = apiInstance.getPipelineFolder(organization, folder);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineFolder");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -746,6 +955,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved folder details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineFolderPipeline"></a>
 # **getPipelineFolderPipeline**
 > PipelineImpl getPipelineFolderPipeline(organization, pipeline, folder)
@@ -757,29 +973,38 @@ Retrieve pipeline details for an organization folder
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String folder = "folder_example"; // String | Name of the folder
-try {
-    PipelineImpl result = apiInstance.getPipelineFolderPipeline(organization, pipeline, folder);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineFolderPipeline");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String folder = "folder_example"; // String | Name of the folder
+    try {
+      PipelineImpl result = apiInstance.getPipelineFolderPipeline(organization, pipeline, folder);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineFolderPipeline");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -804,9 +1029,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipeline details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineQueue"></a>
 # **getPipelineQueue**
-> PipelineQueue getPipelineQueue(organization, pipeline)
+> List&lt;QueueItemImpl&gt; getPipelineQueue(organization, pipeline)
 
 
 
@@ -815,28 +1047,37 @@ Retrieve queue details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-try {
-    PipelineQueue result = apiInstance.getPipelineQueue(organization, pipeline);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineQueue");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    try {
+      List<QueueItemImpl> result = apiInstance.getPipelineQueue(organization, pipeline);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineQueue");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -849,7 +1090,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**List&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -859,6 +1100,13 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved queue details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 
 <a name="getPipelineRun"></a>
 # **getPipelineRun**
@@ -871,29 +1119,38 @@ Retrieve run details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-try {
-    PipelineRun result = apiInstance.getPipelineRun(organization, pipeline, run);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRun");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    try {
+      PipelineRun result = apiInstance.getPipelineRun(organization, pipeline, run);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRun");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -918,6 +1175,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved run details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRunLog"></a>
 # **getPipelineRunLog**
 > String getPipelineRunLog(organization, pipeline, run, start, download)
@@ -929,31 +1193,40 @@ Get log for a pipeline run
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-Integer start = 56; // Integer | Start position of the log
-Boolean download = true; // Boolean | Set to true in order to download the file, otherwise it's passed as a response body
-try {
-    String result = apiInstance.getPipelineRunLog(organization, pipeline, run, start, download);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRunLog");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    Integer start = 56; // Integer | Start position of the log
+    Boolean download = true; // Boolean | Set to true in order to download the file, otherwise it's passed as a response body
+    try {
+      String result = apiInstance.getPipelineRunLog(organization, pipeline, run, start, download);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRunLog");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -980,6 +1253,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipeline run log |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRunNode"></a>
 # **getPipelineRunNode**
 > PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
@@ -991,30 +1271,39 @@ Retrieve run node details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
-try {
-    PipelineRunNode result = apiInstance.getPipelineRunNode(organization, pipeline, run, node);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRunNode");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    String node = "node_example"; // String | Name of the node
+    try {
+      PipelineRunNode result = apiInstance.getPipelineRunNode(organization, pipeline, run, node);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRunNode");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1040,6 +1329,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved run node details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRunNodeStep"></a>
 # **getPipelineRunNodeStep**
 > PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
@@ -1051,31 +1347,40 @@ Retrieve run node details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
-String step = "step_example"; // String | Name of the step
-try {
-    PipelineStepImpl result = apiInstance.getPipelineRunNodeStep(organization, pipeline, run, node, step);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeStep");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    String node = "node_example"; // String | Name of the node
+    String step = "step_example"; // String | Name of the step
+    try {
+      PipelineStepImpl result = apiInstance.getPipelineRunNodeStep(organization, pipeline, run, node, step);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeStep");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1102,6 +1407,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved run node step details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRunNodeStepLog"></a>
 # **getPipelineRunNodeStepLog**
 > String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
@@ -1113,31 +1425,40 @@ Get log for a pipeline run node step
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
-String step = "step_example"; // String | Name of the step
-try {
-    String result = apiInstance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeStepLog");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    String node = "node_example"; // String | Name of the node
+    String step = "step_example"; // String | Name of the step
+    try {
+      String result = apiInstance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeStepLog");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1164,9 +1485,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipeline run node step log |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRunNodeSteps"></a>
 # **getPipelineRunNodeSteps**
-> PipelineRunNodeSteps getPipelineRunNodeSteps(organization, pipeline, run, node)
+> List&lt;PipelineStepImpl&gt; getPipelineRunNodeSteps(organization, pipeline, run, node)
 
 
 
@@ -1175,30 +1503,39 @@ Retrieve run node steps details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String node = "node_example"; // String | Name of the node
-try {
-    PipelineRunNodeSteps result = apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeSteps");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    String node = "node_example"; // String | Name of the node
+    try {
+      List<PipelineStepImpl> result = apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodeSteps");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1213,7 +1550,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**List&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1224,9 +1561,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved run node steps details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRunNodes"></a>
 # **getPipelineRunNodes**
-> PipelineRunNodes getPipelineRunNodes(organization, pipeline, run)
+> List&lt;PipelineRunNode&gt; getPipelineRunNodes(organization, pipeline, run)
 
 
 
@@ -1235,29 +1579,38 @@ Retrieve run nodes details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-try {
-    PipelineRunNodes result = apiInstance.getPipelineRunNodes(organization, pipeline, run);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodes");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    try {
+      List<PipelineRunNode> result = apiInstance.getPipelineRunNodes(organization, pipeline, run);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRunNodes");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1271,7 +1624,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**List&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1282,9 +1635,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved run nodes details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelineRuns"></a>
 # **getPipelineRuns**
-> PipelineRuns getPipelineRuns(organization, pipeline)
+> List&lt;PipelineRun&gt; getPipelineRuns(organization, pipeline)
 
 
 
@@ -1293,28 +1653,37 @@ Retrieve all runs details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-try {
-    PipelineRuns result = apiInstance.getPipelineRuns(organization, pipeline);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelineRuns");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    try {
+      List<PipelineRun> result = apiInstance.getPipelineRuns(organization, pipeline);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelineRuns");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1327,7 +1696,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**List&lt;PipelineRun&gt;**](PipelineRun.md)
 
 ### Authorization
 
@@ -1338,9 +1707,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved runs details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getPipelines"></a>
 # **getPipelines**
-> Pipelines getPipelines(organization)
+> List&lt;Pipeline&gt; getPipelines(organization)
 
 
 
@@ -1349,27 +1725,36 @@ Retrieve all pipelines details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-try {
-    Pipelines result = apiInstance.getPipelines(organization);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getPipelines");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    try {
+      List<Pipeline> result = apiInstance.getPipelines(organization);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getPipelines");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1381,7 +1766,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**List&lt;Pipeline&gt;**](Pipeline.md)
 
 ### Authorization
 
@@ -1391,6 +1776,13 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved pipelines details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 
 <a name="getSCM"></a>
 # **getSCM**
@@ -1403,28 +1795,37 @@ Retrieve SCM details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-try {
-    GithubScm result = apiInstance.getSCM(organization, scm);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getSCM");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String scm = "scm_example"; // String | Name of SCM
+    try {
+      GithubScm result = apiInstance.getSCM(organization, scm);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getSCM");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1448,9 +1849,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved SCM details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getSCMOrganisationRepositories"></a>
 # **getSCMOrganisationRepositories**
-> ScmOrganisations getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
+> List&lt;GithubOrganization&gt; getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
 
 
 
@@ -1459,32 +1867,41 @@ Retrieve SCM organization repositories details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-String scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-String credentialId = "credentialId_example"; // String | Credential ID
-Integer pageSize = 56; // Integer | Number of items in a page
-Integer pageNumber = 56; // Integer | Page number
-try {
-    ScmOrganisations result = apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getSCMOrganisationRepositories");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String scm = "scm_example"; // String | Name of SCM
+    String scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
+    String credentialId = "credentialId_example"; // String | Credential ID
+    Integer pageSize = 56; // Integer | Number of items in a page
+    Integer pageNumber = 56; // Integer | Page number
+    try {
+      List<GithubOrganization> result = apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getSCMOrganisationRepositories");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1501,7 +1918,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1512,9 +1929,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved SCM organization repositories details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getSCMOrganisationRepository"></a>
 # **getSCMOrganisationRepository**
-> ScmOrganisations getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
+> List&lt;GithubOrganization&gt; getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
 
 
 
@@ -1523,31 +1947,40 @@ Retrieve SCM organization repository details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-String scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-String repository = "repository_example"; // String | Name of the SCM repository
-String credentialId = "credentialId_example"; // String | Credential ID
-try {
-    ScmOrganisations result = apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getSCMOrganisationRepository");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String scm = "scm_example"; // String | Name of SCM
+    String scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
+    String repository = "repository_example"; // String | Name of the SCM repository
+    String credentialId = "credentialId_example"; // String | Credential ID
+    try {
+      List<GithubOrganization> result = apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getSCMOrganisationRepository");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1563,7 +1996,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1574,9 +2007,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved SCM organizations details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getSCMOrganisations"></a>
 # **getSCMOrganisations**
-> ScmOrganisations getSCMOrganisations(organization, scm, credentialId)
+> List&lt;GithubOrganization&gt; getSCMOrganisations(organization, scm, credentialId)
 
 
 
@@ -1585,29 +2025,38 @@ Retrieve SCM organizations details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String scm = "scm_example"; // String | Name of SCM
-String credentialId = "credentialId_example"; // String | Credential ID
-try {
-    ScmOrganisations result = apiInstance.getSCMOrganisations(organization, scm, credentialId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getSCMOrganisations");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String scm = "scm_example"; // String | Name of SCM
+    String credentialId = "credentialId_example"; // String | Credential ID
+    try {
+      List<GithubOrganization> result = apiInstance.getSCMOrganisations(organization, scm, credentialId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getSCMOrganisations");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1621,7 +2070,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1631,6 +2080,13 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved SCM organizations details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 
 <a name="getUser"></a>
 # **getUser**
@@ -1643,28 +2099,37 @@ Retrieve user details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String user = "user_example"; // String | Name of the user
-try {
-    User result = apiInstance.getUser(organization, user);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getUser");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String user = "user_example"; // String | Name of the user
+    try {
+      User result = apiInstance.getUser(organization, user);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getUser");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1688,9 +2153,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved users details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="getUserFavorites"></a>
 # **getUserFavorites**
-> UserFavorites getUserFavorites(user)
+> List&lt;FavoriteImpl&gt; getUserFavorites(user)
 
 
 
@@ -1699,27 +2171,36 @@ Retrieve user favorites details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String user = "user_example"; // String | Name of the user
-try {
-    UserFavorites result = apiInstance.getUserFavorites(user);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getUserFavorites");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String user = "user_example"; // String | Name of the user
+    try {
+      List<FavoriteImpl> result = apiInstance.getUserFavorites(user);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getUserFavorites");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1731,7 +2212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**List&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1741,6 +2222,13 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved users favorites details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 
 <a name="getUsers"></a>
 # **getUsers**
@@ -1753,27 +2241,36 @@ Retrieve users details for an organization
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-try {
-    User result = apiInstance.getUsers(organization);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#getUsers");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    try {
+      User result = apiInstance.getUsers(organization);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#getUsers");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1796,6 +2293,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved users details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="postPipelineRun"></a>
 # **postPipelineRun**
 > QueueItemImpl postPipelineRun(organization, pipeline, run)
@@ -1807,29 +2311,38 @@ Replay an organization pipeline run
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-try {
-    QueueItemImpl result = apiInstance.postPipelineRun(organization, pipeline, run);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#postPipelineRun");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    try {
+      QueueItemImpl result = apiInstance.postPipelineRun(organization, pipeline, run);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#postPipelineRun");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1854,6 +2367,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully replayed a pipeline run |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="postPipelineRuns"></a>
 # **postPipelineRuns**
 > QueueItemImpl postPipelineRuns(organization, pipeline)
@@ -1865,28 +2385,37 @@ Start a build for an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-try {
-    QueueItemImpl result = apiInstance.postPipelineRuns(organization, pipeline);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#postPipelineRuns");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    try {
+      QueueItemImpl result = apiInstance.postPipelineRuns(organization, pipeline);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#postPipelineRuns");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1910,9 +2439,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully started a build |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="putPipelineFavorite"></a>
 # **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
+> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
 
 
 
@@ -1921,29 +2457,38 @@ Favorite/unfavorite a pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-Body body = new Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
-try {
-    FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#putPipelineFavorite");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+    try {
+      FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#putPipelineFavorite");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -1953,7 +2498,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization |
  **pipeline** | **String**| Name of the pipeline |
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite |
+ **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 
@@ -1968,6 +2513,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully favorited/unfavorited a pipeline |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="putPipelineRun"></a>
 # **putPipelineRun**
 > PipelineRun putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
@@ -1979,31 +2531,40 @@ Stop a build of an organization pipeline
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String organization = "organization_example"; // String | Name of the organization
-String pipeline = "pipeline_example"; // String | Name of the pipeline
-String run = "run_example"; // String | Name of the run
-String blocking = "blocking_example"; // String | Set to true to make blocking stop, default: false
-Integer timeOutInSecs = 56; // Integer | Timeout in seconds, default: 10 seconds
-try {
-    PipelineRun result = apiInstance.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#putPipelineRun");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String organization = "organization_example"; // String | Name of the organization
+    String pipeline = "pipeline_example"; // String | Name of the pipeline
+    String run = "run_example"; // String | Name of the run
+    String blocking = "blocking_example"; // String | Set to true to make blocking stop, default: false
+    Integer timeOutInSecs = 56; // Integer | Timeout in seconds, default: 10 seconds
+    try {
+      PipelineRun result = apiInstance.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#putPipelineRun");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -2030,6 +2591,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully stopped a build |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="search"></a>
 # **search**
 > String search(q)
@@ -2041,27 +2609,36 @@ Search for any resource details
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String q = "q_example"; // String | Query string
-try {
-    String result = apiInstance.search(q);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#search");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String q = "q_example"; // String | Query string
+    try {
+      String result = apiInstance.search(q);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#search");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -2084,6 +2661,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved search result |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 <a name="searchClasses"></a>
 # **searchClasses**
 > String searchClasses(q)
@@ -2095,27 +2679,36 @@ Get classes details
 ### Example
 ```java
 // Import classes:
-//import com.cliffano.swaggyjenkins.ApiClient;
-//import com.cliffano.swaggyjenkins.ApiException;
-//import com.cliffano.swaggyjenkins.Configuration;
-//import com.cliffano.swaggyjenkins.auth.*;
-//import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.cliffano.swaggyjenkins.ApiClient;
+import com.cliffano.swaggyjenkins.ApiException;
+import com.cliffano.swaggyjenkins.Configuration;
+import com.cliffano.swaggyjenkins.auth.*;
+import com.cliffano.swaggyjenkins.models.*;
+import com.cliffano.swaggyjenkins.api.BlueOceanApi;
 
-ApiClient defaultClient = Configuration.getDefaultApiClient();
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://localhost");
+    
+    // Configure HTTP basic authorization: jenkins_auth
+    HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
+    jenkins_auth.setUsername("YOUR USERNAME");
+    jenkins_auth.setPassword("YOUR PASSWORD");
 
-// Configure HTTP basic authorization: jenkins_auth
-HttpBasicAuth jenkins_auth = (HttpBasicAuth) defaultClient.getAuthentication("jenkins_auth");
-jenkins_auth.setUsername("YOUR USERNAME");
-jenkins_auth.setPassword("YOUR PASSWORD");
-
-BlueOceanApi apiInstance = new BlueOceanApi();
-String q = "q_example"; // String | Query string containing an array of class names
-try {
-    String result = apiInstance.searchClasses(q);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling BlueOceanApi#searchClasses");
-    e.printStackTrace();
+    BlueOceanApi apiInstance = new BlueOceanApi(defaultClient);
+    String q = "q_example"; // String | Query string containing an array of class names
+    try {
+      String result = apiInstance.searchClasses(q);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling BlueOceanApi#searchClasses");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
 }
 ```
 
@@ -2137,4 +2730,11 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved search result |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
 

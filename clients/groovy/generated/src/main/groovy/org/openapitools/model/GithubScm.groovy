@@ -7,14 +7,14 @@ import org.openapitools.model.GithubScmlinks;
 
 @Canonical
 class GithubScm {
-    String propertyClass = null
-
-    GithubScmlinks links = null
-
-    String credentialId = null
-
-    String id = null
-
-    String uri = null
-
+    
+    String propertyClass
+    
+    GithubScmlinks links
+    
+    String credentialId
+    
+    String id
+    
+    String uri
 }

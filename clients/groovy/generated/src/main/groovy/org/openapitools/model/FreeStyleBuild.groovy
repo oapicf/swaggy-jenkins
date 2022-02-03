@@ -10,40 +10,40 @@ import org.openapitools.model.EmptyChangeLogSet;
 
 @Canonical
 class FreeStyleBuild {
-    String propertyClass = null
-
-    Integer number = null
-
-    String url = null
-
+    
+    String propertyClass
+    
+    Integer number
+    
+    String url
+    
     List<CauseAction> actions = new ArrayList<CauseAction>()
-
-    Boolean building = null
-
-    String description = null
-
-    String displayName = null
-
-    Integer duration = null
-
-    Integer estimatedDuration = null
-
-    String executor = null
-
-    String fullDisplayName = null
-
-    String id = null
-
-    Boolean keepLog = null
-
-    Integer queueId = null
-
-    String result = null
-
-    Integer timestamp = null
-
-    String builtOn = null
-
-    EmptyChangeLogSet changeSet = null
-
+    
+    Boolean building
+    
+    String description
+    
+    String displayName
+    
+    Integer duration
+    
+    Integer estimatedDuration
+    
+    String executor
+    
+    String fullDisplayName
+    
+    String id
+    
+    Boolean keepLog
+    
+    Integer queueId
+    
+    String result
+    
+    Integer timestamp
+    
+    String builtOn
+    
+    EmptyChangeLogSet changeSet
 }

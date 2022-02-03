@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.FreeStyleProject;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ListView   {
   
-  private String propertyClass = null;
-  private String description = null;
+  private String propertyClass;
+  private String description;
   private List<FreeStyleProject> jobs = new ArrayList<>();
-  private String name = null;
-  private String url = null;
+  private String name;
+  private String url;
 
   public ListView () {
 

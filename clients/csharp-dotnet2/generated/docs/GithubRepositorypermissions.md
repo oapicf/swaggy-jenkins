@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.GithubRepositorypermissions
+
 ## Properties
 
 Name | Type | Description | Notes

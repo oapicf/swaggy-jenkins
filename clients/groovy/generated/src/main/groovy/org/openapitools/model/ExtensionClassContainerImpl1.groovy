@@ -8,10 +8,10 @@ import org.openapitools.model.ExtensionClassContainerImpl1map;
 
 @Canonical
 class ExtensionClassContainerImpl1 {
-    String propertyClass = null
-
-    ExtensionClassContainerImpl1links links = null
-
-    ExtensionClassContainerImpl1map map = null
-
+    
+    String propertyClass
+    
+    ExtensionClassContainerImpl1links links
+    
+    ExtensionClassContainerImpl1map map
 }

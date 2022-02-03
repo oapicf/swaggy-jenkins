@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.CauseAction
+
 ## Properties
 
 Name | Type | Description | Notes

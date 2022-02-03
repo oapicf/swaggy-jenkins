@@ -5,17 +5,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.PipelinelatestRun;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Pipeline   {
   
-  private String propertyClass = null;
-  private String organization = null;
-  private String name = null;
-  private String displayName = null;
-  private String fullName = null;
-  private Integer weatherScore = null;
-  private Integer estimatedDurationInMillis = null;
-  private PipelinelatestRun latestRun = null;
+  private String propertyClass;
+  private String organization;
+  private String name;
+  private String displayName;
+  private String fullName;
+  private Integer weatherScore;
+  private Integer estimatedDurationInMillis;
+  private PipelinelatestRun latestRun;
 
   public Pipeline () {
 

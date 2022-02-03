@@ -9,31 +9,31 @@ namespace app\Models;
  */
 class PipelineBranchesitem {
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $estimated_duration_in_millis */
-    private $estimated_duration_in_millis;
+    /** @var int $estimatedDurationInMillis */
+    private $estimatedDurationInMillis;
 
     /** @var string $name */
     private $name;
 
-    /** @var int $weather_score */
-    private $weather_score;
+    /** @var int $weatherScore */
+    private $weatherScore;
 
-    /** @var \app\Models\PipelineBranchesitemlatestRun $latest_run */
-    private $latest_run;
+    /** @var \app\Models\PipelineBranchesitemlatestRun $latestRun */
+    private $latestRun;
 
     /** @var string $organization */
     private $organization;
 
-    /** @var \app\Models\PipelineBranchesitempullRequest $pull_request */
-    private $pull_request;
+    /** @var \app\Models\PipelineBranchesitempullRequest $pullRequest */
+    private $pullRequest;
 
-    /** @var int $total_number_of_pull_requests */
-    private $total_number_of_pull_requests;
+    /** @var int $totalNumberOfPullRequests */
+    private $totalNumberOfPullRequests;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

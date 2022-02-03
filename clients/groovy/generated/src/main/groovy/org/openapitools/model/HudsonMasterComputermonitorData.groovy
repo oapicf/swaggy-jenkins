@@ -10,18 +10,18 @@ import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
 
 @Canonical
 class HudsonMasterComputermonitorData {
-    SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor = null
-
-    DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor = null
-
-    DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor = null
-
-    String hudsonNodeMonitorsArchitectureMonitor = null
-
-    ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor = null
-
-    ClockDifference hudsonNodeMonitorsClockMonitor = null
-
-    String propertyClass = null
-
+    
+    SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor
+    
+    DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor
+    
+    DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor
+    
+    String hudsonNodeMonitorsArchitectureMonitor
+    
+    ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor
+    
+    ClockDifference hudsonNodeMonitorsClockMonitor
+    
+    String propertyClass
 }

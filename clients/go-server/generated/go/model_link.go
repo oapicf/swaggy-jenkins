@@ -16,3 +16,20 @@ type Link struct {
 
 	Href string `json:"href,omitempty"`
 }
+
+// AssertLinkRequired checks if the required fields are not zero-ed
+func AssertLinkRequired(obj Link) error {
+	return nil
+}
+
+// AssertRecurseLinkRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of Link (e.g. [][]Link), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseLinkRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aLink, ok := obj.(Link)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertLinkRequired(aLink)
+	})
+}

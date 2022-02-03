@@ -9,49 +9,49 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * PipelineBranchesitemlatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class PipelineBranchesitemlatestRun   {
   @JsonProperty("durationInMillis")
-  private Integer durationInMillis = null;
+  private Integer durationInMillis;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("enQueueTime")
-  private String enQueueTime = null;
+  private String enQueueTime;
 
   @JsonProperty("endTime")
-  private String endTime = null;
+  private String endTime;
 
   @JsonProperty("id")
-  private String id = null;
+  private String id;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("pipeline")
-  private String pipeline = null;
+  private String pipeline;
 
   @JsonProperty("result")
-  private String result = null;
+  private String result;
 
   @JsonProperty("runSummary")
-  private String runSummary = null;
+  private String runSummary;
 
   @JsonProperty("startTime")
-  private String startTime = null;
+  private String startTime;
 
   @JsonProperty("state")
-  private String state = null;
+  private String state;
 
   @JsonProperty("type")
-  private String type = null;
+  private String type;
 
   @JsonProperty("commitId")
-  private String commitId = null;
+  private String commitId;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public PipelineBranchesitemlatestRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -307,7 +307,7 @@ public class PipelineBranchesitemlatestRun   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -363,7 +363,7 @@ public class PipelineBranchesitemlatestRun   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

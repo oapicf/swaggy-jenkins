@@ -30,24 +30,24 @@ defmodule SwaggyJenkins.Model.FreeStyleBuild do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"number" => integer(),
-    :"url" => String.t,
-    :"actions" => [CauseAction],
-    :"building" => boolean(),
-    :"description" => String.t,
-    :"displayName" => String.t,
-    :"duration" => integer(),
-    :"estimatedDuration" => integer(),
-    :"executor" => String.t,
-    :"fullDisplayName" => String.t,
-    :"id" => String.t,
-    :"keepLog" => boolean(),
-    :"queueId" => integer(),
-    :"result" => String.t,
-    :"timestamp" => integer(),
-    :"builtOn" => String.t,
-    :"changeSet" => EmptyChangeLogSet
+    :"_class" => String.t | nil,
+    :"number" => integer() | nil,
+    :"url" => String.t | nil,
+    :"actions" => [SwaggyJenkins.Model.CauseAction.t] | nil,
+    :"building" => boolean() | nil,
+    :"description" => String.t | nil,
+    :"displayName" => String.t | nil,
+    :"duration" => integer() | nil,
+    :"estimatedDuration" => integer() | nil,
+    :"executor" => String.t | nil,
+    :"fullDisplayName" => String.t | nil,
+    :"id" => String.t | nil,
+    :"keepLog" => boolean() | nil,
+    :"queueId" => integer() | nil,
+    :"result" => String.t | nil,
+    :"timestamp" => integer() | nil,
+    :"builtOn" => String.t | nil,
+    :"changeSet" => SwaggyJenkins.Model.EmptyChangeLogSet.t | nil
   }
 end
 

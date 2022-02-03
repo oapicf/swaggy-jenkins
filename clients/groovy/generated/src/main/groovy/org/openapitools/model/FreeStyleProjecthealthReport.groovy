@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class FreeStyleProjecthealthReport {
-    String description = null
-
-    String iconClassName = null
-
-    String iconUrl = null
-
-    Integer score = null
-
-    String propertyClass = null
-
+    
+    String description
+    
+    String iconClassName
+    
+    String iconUrl
+    
+    Integer score
+    
+    String propertyClass
 }

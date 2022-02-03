@@ -43,8 +43,9 @@ Method | HTTP request | Description
 [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 
 
-<a name="deletePipelineQueueItem"></a>
-# **deletePipelineQueueItem**
+
+## deletePipelineQueueItem
+
 > deletePipelineQueueItem(organization, pipeline, queue)
 
 
@@ -52,30 +53,30 @@ Method | HTTP request | Description
 Delete queue item from an organization pipeline queue
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var queue = "queue_example"; // String | Name of the queue item
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let queue = "queue_example"; // String | Name of the queue item
+apiInstance.deletePipelineQueueItem(organization, pipeline, queue, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully.');
   }
-};
-apiInstance.deletePipelineQueueItem(organization, pipeline, queue, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -93,11 +94,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
-<a name="getAuthenticatedUser"></a>
-# **getAuthenticatedUser**
+
+## getAuthenticatedUser
+
 > User getAuthenticatedUser(organization)
 
 
@@ -105,28 +107,28 @@ null (empty response body)
 Retrieve authenticated user details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+apiInstance.getAuthenticatedUser(organization, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getAuthenticatedUser(organization, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -142,11 +144,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getClasses"></a>
-# **getClasses**
+
+## getClasses
+
 > String getClasses(_class)
 
 
@@ -154,28 +157,28 @@ Name | Type | Description  | Notes
 Get a list of class names supported by a given class
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var _class = "_class_example"; // String | Name of the class
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let _class = "_class_example"; // String | Name of the class
+apiInstance.getClasses(_class, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getClasses(_class, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -191,11 +194,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJsonWebKey"></a>
-# **getJsonWebKey**
+
+## getJsonWebKey
+
 > String getJsonWebKey(key)
 
 
@@ -203,22 +207,23 @@ Name | Type | Description  | Notes
 Retrieve JSON Web Key
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var key = 56; // Number | Key ID received as part of JWT header field kid
-var callback = function(error, data, response) {
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let key = 56; // Number | Key ID received as part of JWT header field kid
+apiInstance.getJsonWebKey(key, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getJsonWebKey(key, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -234,11 +239,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getJsonWebToken"></a>
-# **getJsonWebToken**
+
+## getJsonWebToken
+
 > String getJsonWebToken(opts)
 
 
@@ -246,25 +252,26 @@ No authorization required
 Retrieve JSON Web Token
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var opts = {
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let opts = {
   'expiryTimeInMins': 56, // Number | Token expiry time in minutes, default: 30 minutes
   'maxExpiryTimeInMins': 56 // Number | Maximum token expiry time in minutes, default: 480 minutes
 };
-var callback = function(error, data, response) {
+apiInstance.getJsonWebToken(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getJsonWebToken(opts, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -281,11 +288,12 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getOrganisation"></a>
-# **getOrganisation**
+
+## getOrganisation
+
 > Organisation getOrganisation(organization)
 
 
@@ -293,28 +301,28 @@ No authorization required
 Retrieve organization details
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+apiInstance.getOrganisation(organization, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getOrganisation(organization, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,44 +338,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getOrganisations"></a>
-# **getOrganisations**
-> Organisations getOrganisations()
+
+## getOrganisations
+
+> [Organisation] getOrganisations()
 
 
 
 Retrieve all organizations details
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+apiInstance.getOrganisations((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getOrganisations(callback);
+});
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**[Organisation]**](Organisation.md)
 
 ### Authorization
 
@@ -375,11 +384,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipeline"></a>
-# **getPipeline**
+
+## getPipeline
+
 > Pipeline getPipeline(organization, pipeline)
 
 
@@ -387,29 +397,29 @@ This endpoint does not need any parameter.
 Retrieve pipeline details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+apiInstance.getPipeline(organization, pipeline, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipeline(organization, pipeline, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -426,41 +436,42 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineActivities"></a>
-# **getPipelineActivities**
-> PipelineActivities getPipelineActivities(organization, pipeline)
+
+## getPipelineActivities
+
+> [PipelineActivity] getPipelineActivities(organization, pipeline)
 
 
 
 Retrieve all activities details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+apiInstance.getPipelineActivities(organization, pipeline, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineActivities(organization, pipeline, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -469,7 +480,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**[PipelineActivity]**](PipelineActivity.md)
 
 ### Authorization
 
@@ -477,11 +488,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineBranch"></a>
-# **getPipelineBranch**
+
+## getPipelineBranch
+
 > BranchImpl getPipelineBranch(organization, pipeline, branch)
 
 
@@ -489,30 +501,30 @@ Name | Type | Description  | Notes
 Retrieve branch details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var branch = "branch_example"; // String | Name of the branch
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let branch = "branch_example"; // String | Name of the branch
+apiInstance.getPipelineBranch(organization, pipeline, branch, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineBranch(organization, pipeline, branch, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -530,11 +542,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineBranchRun"></a>
-# **getPipelineBranchRun**
+
+## getPipelineBranchRun
+
 > PipelineRun getPipelineBranchRun(organization, pipeline, branch, run)
 
 
@@ -542,31 +555,31 @@ Name | Type | Description  | Notes
 Retrieve branch run details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var branch = "branch_example"; // String | Name of the branch
-var run = "run_example"; // String | Name of the run
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let branch = "branch_example"; // String | Name of the branch
+let run = "run_example"; // String | Name of the run
+apiInstance.getPipelineBranchRun(organization, pipeline, branch, run, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineBranchRun(organization, pipeline, branch, run, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -585,11 +598,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineBranches"></a>
-# **getPipelineBranches**
+
+## getPipelineBranches
+
 > MultibranchPipeline getPipelineBranches(organization, pipeline)
 
 
@@ -597,29 +611,29 @@ Name | Type | Description  | Notes
 Retrieve all branches details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+apiInstance.getPipelineBranches(organization, pipeline, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineBranches(organization, pipeline, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -636,11 +650,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineFolder"></a>
-# **getPipelineFolder**
+
+## getPipelineFolder
+
 > PipelineFolderImpl getPipelineFolder(organization, folder)
 
 
@@ -648,29 +663,29 @@ Name | Type | Description  | Notes
 Retrieve pipeline folder for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var folder = "folder_example"; // String | Name of the folder
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let folder = "folder_example"; // String | Name of the folder
+apiInstance.getPipelineFolder(organization, folder, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineFolder(organization, folder, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -687,11 +702,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineFolderPipeline"></a>
-# **getPipelineFolderPipeline**
+
+## getPipelineFolderPipeline
+
 > PipelineImpl getPipelineFolderPipeline(organization, pipeline, folder)
 
 
@@ -699,30 +715,30 @@ Name | Type | Description  | Notes
 Retrieve pipeline details for an organization folder
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var folder = "folder_example"; // String | Name of the folder
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let folder = "folder_example"; // String | Name of the folder
+apiInstance.getPipelineFolderPipeline(organization, pipeline, folder, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineFolderPipeline(organization, pipeline, folder, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -740,41 +756,42 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineQueue"></a>
-# **getPipelineQueue**
-> PipelineQueue getPipelineQueue(organization, pipeline)
+
+## getPipelineQueue
+
+> [QueueItemImpl] getPipelineQueue(organization, pipeline)
 
 
 
 Retrieve queue details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+apiInstance.getPipelineQueue(organization, pipeline, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineQueue(organization, pipeline, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -783,7 +800,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**[QueueItemImpl]**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -791,11 +808,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRun"></a>
-# **getPipelineRun**
+
+## getPipelineRun
+
 > PipelineRun getPipelineRun(organization, pipeline, run)
 
 
@@ -803,30 +821,30 @@ Name | Type | Description  | Notes
 Retrieve run details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+apiInstance.getPipelineRun(organization, pipeline, run, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRun(organization, pipeline, run, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -844,11 +862,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunLog"></a>
-# **getPipelineRunLog**
+
+## getPipelineRunLog
+
 > String getPipelineRunLog(organization, pipeline, run, opts)
 
 
@@ -856,34 +875,34 @@ Name | Type | Description  | Notes
 Get log for a pipeline run
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var opts = {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+let opts = {
   'start': 56, // Number | Start position of the log
   'download': true // Boolean | Set to true in order to download the file, otherwise it's passed as a response body
 };
-var callback = function(error, data, response) {
+apiInstance.getPipelineRunLog(organization, pipeline, run, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRunLog(organization, pipeline, run, opts, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -903,11 +922,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNode"></a>
-# **getPipelineRunNode**
+
+## getPipelineRunNode
+
 > PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
 
 
@@ -915,31 +935,31 @@ Name | Type | Description  | Notes
 Retrieve run node details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var node = "node_example"; // String | Name of the node
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+let node = "node_example"; // String | Name of the node
+apiInstance.getPipelineRunNode(organization, pipeline, run, node, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRunNode(organization, pipeline, run, node, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -958,11 +978,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodeStep"></a>
-# **getPipelineRunNodeStep**
+
+## getPipelineRunNodeStep
+
 > PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
 
 
@@ -970,32 +991,32 @@ Name | Type | Description  | Notes
 Retrieve run node details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var node = "node_example"; // String | Name of the node
-var step = "step_example"; // String | Name of the step
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+let node = "node_example"; // String | Name of the node
+let step = "step_example"; // String | Name of the step
+apiInstance.getPipelineRunNodeStep(organization, pipeline, run, node, step, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRunNodeStep(organization, pipeline, run, node, step, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1015,11 +1036,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodeStepLog"></a>
-# **getPipelineRunNodeStepLog**
+
+## getPipelineRunNodeStepLog
+
 > String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
 
 
@@ -1027,32 +1049,32 @@ Name | Type | Description  | Notes
 Get log for a pipeline run node step
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var node = "node_example"; // String | Name of the node
-var step = "step_example"; // String | Name of the step
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+let node = "node_example"; // String | Name of the node
+let step = "step_example"; // String | Name of the step
+apiInstance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1072,43 +1094,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodeSteps"></a>
-# **getPipelineRunNodeSteps**
-> PipelineRunNodeSteps getPipelineRunNodeSteps(organization, pipeline, run, node)
+
+## getPipelineRunNodeSteps
+
+> [PipelineStepImpl] getPipelineRunNodeSteps(organization, pipeline, run, node)
 
 
 
 Retrieve run node steps details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var node = "node_example"; // String | Name of the node
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+let node = "node_example"; // String | Name of the node
+apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRunNodeSteps(organization, pipeline, run, node, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1119,7 +1142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**[PipelineStepImpl]**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1127,42 +1150,43 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRunNodes"></a>
-# **getPipelineRunNodes**
-> PipelineRunNodes getPipelineRunNodes(organization, pipeline, run)
+
+## getPipelineRunNodes
+
+> [PipelineRunNode] getPipelineRunNodes(organization, pipeline, run)
 
 
 
 Retrieve run nodes details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+apiInstance.getPipelineRunNodes(organization, pipeline, run, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRunNodes(organization, pipeline, run, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1172,7 +1196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**[PipelineRunNode]**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1180,41 +1204,42 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelineRuns"></a>
-# **getPipelineRuns**
-> PipelineRuns getPipelineRuns(organization, pipeline)
+
+## getPipelineRuns
+
+> [PipelineRun] getPipelineRuns(organization, pipeline)
 
 
 
 Retrieve all runs details for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+apiInstance.getPipelineRuns(organization, pipeline, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelineRuns(organization, pipeline, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1223,7 +1248,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**[PipelineRun]**](PipelineRun.md)
 
 ### Authorization
 
@@ -1231,40 +1256,41 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getPipelines"></a>
-# **getPipelines**
-> Pipelines getPipelines(organization)
+
+## getPipelines
+
+> [Pipeline] getPipelines(organization)
 
 
 
 Retrieve all pipelines details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+apiInstance.getPipelines(organization, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getPipelines(organization, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1272,7 +1298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**[Pipeline]**](Pipeline.md)
 
 ### Authorization
 
@@ -1280,11 +1306,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCM"></a>
-# **getSCM**
+
+## getSCM
+
 > GithubScm getSCM(organization, scm)
 
 
@@ -1292,29 +1319,29 @@ Name | Type | Description  | Notes
 Retrieve SCM details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var scm = "scm_example"; // String | Name of SCM
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let scm = "scm_example"; // String | Name of SCM
+apiInstance.getSCM(organization, scm, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getSCM(organization, scm, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1331,47 +1358,48 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCMOrganisationRepositories"></a>
-# **getSCMOrganisationRepositories**
-> ScmOrganisations getSCMOrganisationRepositories(organization, scm, scmOrganisation, opts)
+
+## getSCMOrganisationRepositories
+
+> [GithubOrganization] getSCMOrganisationRepositories(organization, scm, scmOrganisation, opts)
 
 
 
 Retrieve SCM organization repositories details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var scm = "scm_example"; // String | Name of SCM
-var scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-var opts = {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let scm = "scm_example"; // String | Name of SCM
+let scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
+let opts = {
   'credentialId': "credentialId_example", // String | Credential ID
   'pageSize': 56, // Number | Number of items in a page
   'pageNumber': 56 // Number | Page number
 };
-var callback = function(error, data, response) {
+apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, opts, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1384,7 +1412,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1392,46 +1420,47 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCMOrganisationRepository"></a>
-# **getSCMOrganisationRepository**
-> ScmOrganisations getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, opts)
+
+## getSCMOrganisationRepository
+
+> [GithubOrganization] getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, opts)
 
 
 
 Retrieve SCM organization repository details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var scm = "scm_example"; // String | Name of SCM
-var scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
-var repository = "repository_example"; // String | Name of the SCM repository
-var opts = {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let scm = "scm_example"; // String | Name of SCM
+let scmOrganisation = "scmOrganisation_example"; // String | Name of the SCM organization
+let repository = "repository_example"; // String | Name of the SCM repository
+let opts = {
   'credentialId': "credentialId_example" // String | Credential ID
 };
-var callback = function(error, data, response) {
+apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, opts, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1443,7 +1472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1451,44 +1480,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getSCMOrganisations"></a>
-# **getSCMOrganisations**
-> ScmOrganisations getSCMOrganisations(organization, scm, opts)
+
+## getSCMOrganisations
+
+> [GithubOrganization] getSCMOrganisations(organization, scm, opts)
 
 
 
 Retrieve SCM organizations details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var scm = "scm_example"; // String | Name of SCM
-var opts = {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let scm = "scm_example"; // String | Name of SCM
+let opts = {
   'credentialId': "credentialId_example" // String | Credential ID
 };
-var callback = function(error, data, response) {
+apiInstance.getSCMOrganisations(organization, scm, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getSCMOrganisations(organization, scm, opts, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1498,7 +1528,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1506,11 +1536,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getUser"></a>
-# **getUser**
+
+## getUser
+
 > User getUser(organization, user)
 
 
@@ -1518,29 +1549,29 @@ Name | Type | Description  | Notes
 Retrieve user details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var user = "user_example"; // String | Name of the user
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let user = "user_example"; // String | Name of the user
+apiInstance.getUser(organization, user, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getUser(organization, user, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1557,40 +1588,41 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getUserFavorites"></a>
-# **getUserFavorites**
-> UserFavorites getUserFavorites(user)
+
+## getUserFavorites
+
+> [FavoriteImpl] getUserFavorites(user)
 
 
 
 Retrieve user favorites details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var user = "user_example"; // String | Name of the user
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let user = "user_example"; // String | Name of the user
+apiInstance.getUserFavorites(user, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getUserFavorites(user, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1598,7 +1630,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**[FavoriteImpl]**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1606,11 +1638,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="getUsers"></a>
-# **getUsers**
+
+## getUsers
+
 > User getUsers(organization)
 
 
@@ -1618,28 +1651,28 @@ Name | Type | Description  | Notes
 Retrieve users details for an organization
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+apiInstance.getUsers(organization, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.getUsers(organization, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1655,11 +1688,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="postPipelineRun"></a>
-# **postPipelineRun**
+
+## postPipelineRun
+
 > QueueItemImpl postPipelineRun(organization, pipeline, run)
 
 
@@ -1667,30 +1701,30 @@ Name | Type | Description  | Notes
 Replay an organization pipeline run
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+apiInstance.postPipelineRun(organization, pipeline, run, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.postPipelineRun(organization, pipeline, run, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1708,11 +1742,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="postPipelineRuns"></a>
-# **postPipelineRuns**
+
+## postPipelineRuns
+
 > QueueItemImpl postPipelineRuns(organization, pipeline)
 
 
@@ -1720,29 +1755,29 @@ Name | Type | Description  | Notes
 Start a build for an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+apiInstance.postPipelineRuns(organization, pipeline, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.postPipelineRuns(organization, pipeline, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1759,48 +1794,49 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="putPipelineFavorite"></a>
-# **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
+
+## putPipelineFavorite
+
+> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
 
 
 
 Favorite/unfavorite a pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var body = new SwaggyJenkins.Body(); // Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let UNKNOWN_BASE_TYPE = new SwaggyJenkins.UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.putPipelineFavorite(organization, pipeline, body, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization | 
  **pipeline** | **String**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+ **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -1812,11 +1848,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-<a name="putPipelineRun"></a>
-# **putPipelineRun**
+
+## putPipelineRun
+
 > PipelineRun putPipelineRun(organization, pipeline, run, opts)
 
 
@@ -1824,34 +1861,34 @@ Name | Type | Description  | Notes
 Stop a build of an organization pipeline
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var organization = "organization_example"; // String | Name of the organization
-var pipeline = "pipeline_example"; // String | Name of the pipeline
-var run = "run_example"; // String | Name of the run
-var opts = {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let organization = "organization_example"; // String | Name of the organization
+let pipeline = "pipeline_example"; // String | Name of the pipeline
+let run = "run_example"; // String | Name of the run
+let opts = {
   'blocking': "blocking_example", // String | Set to true to make blocking stop, default: false
   'timeOutInSecs': 56 // Number | Timeout in seconds, default: 10 seconds
 };
-var callback = function(error, data, response) {
+apiInstance.putPipelineRun(organization, pipeline, run, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.putPipelineRun(organization, pipeline, run, opts, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1871,11 +1908,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="search"></a>
-# **search**
+
+## search
+
 > String search(q)
 
 
@@ -1883,28 +1921,28 @@ Name | Type | Description  | Notes
 Search for any resource details
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var q = "q_example"; // String | Query string
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let q = "q_example"; // String | Query string
+apiInstance.search(q, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.search(q, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1920,11 +1958,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-<a name="searchClasses"></a>
-# **searchClasses**
+
+## searchClasses
+
 > String searchClasses(q)
 
 
@@ -1932,28 +1971,28 @@ Name | Type | Description  | Notes
 Get classes details
 
 ### Example
-```javascript
-var SwaggyJenkins = require('swaggy-jenkins');
-var defaultClient = SwaggyJenkins.ApiClient.instance;
 
+```javascript
+import SwaggyJenkins from 'swaggy-jenkins';
+let defaultClient = SwaggyJenkins.ApiClient.instance;
 // Configure HTTP basic authorization: jenkins_auth
-var jenkins_auth = defaultClient.authentications['jenkins_auth'];
+let jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME';
 jenkins_auth.password = 'YOUR PASSWORD';
 
-var apiInstance = new SwaggyJenkins.BlueOceanApi();
-var q = "q_example"; // String | Query string containing an array of class names
-var callback = function(error, data, response) {
+let apiInstance = new SwaggyJenkins.BlueOceanApi();
+let q = "q_example"; // String | Query string containing an array of class names
+apiInstance.searchClasses(q, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
     console.log('API called successfully. Returned data: ' + data);
   }
-};
-apiInstance.searchClasses(q, callback);
+});
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -1969,6 +2008,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

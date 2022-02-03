@@ -9,10 +9,10 @@ import org.openapitools.model.ExtensionClassImpllinks;
 
 @Canonical
 class ExtensionClassImpl {
-    String propertyClass = null
-
-    ExtensionClassImpllinks links = null
-
+    
+    String propertyClass
+    
+    ExtensionClassImpllinks links
+    
     List<String> classes = new ArrayList<String>()
-
 }

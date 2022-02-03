@@ -15,7 +15,7 @@ class GithubContent(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, name: str=None, sha: str=None, _class: str=None, repo: str=None, size: int=None, owner: str=None, path: str=None, base64_data: str=None):  # noqa: E501
+    def __init__(self, name=None, sha=None, _class=None, repo=None, size=None, owner=None, path=None, base64_data=None):  # noqa: E501
         """GithubContent - a model defined in OpenAPI
 
         :param name: The name of this GithubContent.  # noqa: E501
@@ -78,7 +78,7 @@ class GithubContent(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this GithubContent.
 
 
@@ -88,7 +88,7 @@ class GithubContent(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this GithubContent.
 
 
@@ -99,7 +99,7 @@ class GithubContent(Model):
         self._name = name
 
     @property
-    def sha(self) -> str:
+    def sha(self):
         """Gets the sha of this GithubContent.
 
 
@@ -109,7 +109,7 @@ class GithubContent(Model):
         return self._sha
 
     @sha.setter
-    def sha(self, sha: str):
+    def sha(self, sha):
         """Sets the sha of this GithubContent.
 
 
@@ -120,7 +120,7 @@ class GithubContent(Model):
         self._sha = sha
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this GithubContent.
 
 
@@ -130,7 +130,7 @@ class GithubContent(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this GithubContent.
 
 
@@ -141,7 +141,7 @@ class GithubContent(Model):
         self.__class = _class
 
     @property
-    def repo(self) -> str:
+    def repo(self):
         """Gets the repo of this GithubContent.
 
 
@@ -151,7 +151,7 @@ class GithubContent(Model):
         return self._repo
 
     @repo.setter
-    def repo(self, repo: str):
+    def repo(self, repo):
         """Sets the repo of this GithubContent.
 
 
@@ -162,7 +162,7 @@ class GithubContent(Model):
         self._repo = repo
 
     @property
-    def size(self) -> int:
+    def size(self):
         """Gets the size of this GithubContent.
 
 
@@ -172,7 +172,7 @@ class GithubContent(Model):
         return self._size
 
     @size.setter
-    def size(self, size: int):
+    def size(self, size):
         """Sets the size of this GithubContent.
 
 
@@ -183,7 +183,7 @@ class GithubContent(Model):
         self._size = size
 
     @property
-    def owner(self) -> str:
+    def owner(self):
         """Gets the owner of this GithubContent.
 
 
@@ -193,7 +193,7 @@ class GithubContent(Model):
         return self._owner
 
     @owner.setter
-    def owner(self, owner: str):
+    def owner(self, owner):
         """Sets the owner of this GithubContent.
 
 
@@ -204,7 +204,7 @@ class GithubContent(Model):
         self._owner = owner
 
     @property
-    def path(self) -> str:
+    def path(self):
         """Gets the path of this GithubContent.
 
 
@@ -214,7 +214,7 @@ class GithubContent(Model):
         return self._path
 
     @path.setter
-    def path(self, path: str):
+    def path(self, path):
         """Sets the path of this GithubContent.
 
 
@@ -225,7 +225,7 @@ class GithubContent(Model):
         self._path = path
 
     @property
-    def base64_data(self) -> str:
+    def base64_data(self):
         """Gets the base64_data of this GithubContent.
 
 
@@ -235,7 +235,7 @@ class GithubContent(Model):
         return self._base64_data
 
     @base64_data.setter
-    def base64_data(self, base64_data: str):
+    def base64_data(self, base64_data):
         """Sets the base64_data of this GithubContent.
 
 

@@ -6,18 +6,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.PipelineBranchesitemlatestRun;
 import org.openapitools.server.api.model.PipelineBranchesitempullRequest;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelineBranchesitem   {
   
-  private String displayName = null;
-  private Integer estimatedDurationInMillis = null;
-  private String name = null;
-  private Integer weatherScore = null;
-  private PipelineBranchesitemlatestRun latestRun = null;
-  private String organization = null;
-  private PipelineBranchesitempullRequest pullRequest = null;
-  private Integer totalNumberOfPullRequests = null;
-  private String propertyClass = null;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String name;
+  private Integer weatherScore;
+  private PipelineBranchesitemlatestRun latestRun;
+  private String organization;
+  private PipelineBranchesitempullRequest pullRequest;
+  private Integer totalNumberOfPullRequests;
+  private String propertyClass;
 
   public PipelineBranchesitem () {
 

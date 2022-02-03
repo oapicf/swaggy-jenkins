@@ -20,48 +20,47 @@ import java.util.List;
  * BranchImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class BranchImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("parameters")
   
   private List<StringParameterDefinition> parameters = null;
 
   @JsonProperty("permissions")
-  private BranchImplpermissions permissions = null;
+  private BranchImplpermissions permissions;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("pullRequest")
-  private String pullRequest = null;
+  private String pullRequest;
 
   @JsonProperty("_links")
-  private BranchImpllinks links = null;
+  private BranchImpllinks links;
 
   @JsonProperty("latestRun")
-  private PipelineRunImpl latestRun = null;
+  private PipelineRunImpl latestRun;
 
   public BranchImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -307,7 +306,7 @@ public class BranchImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -361,7 +360,7 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

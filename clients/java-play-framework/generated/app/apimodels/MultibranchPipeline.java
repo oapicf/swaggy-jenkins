@@ -10,51 +10,64 @@ import javax.validation.constraints.*;
 /**
  * MultibranchPipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("latestRun")
-  private String latestRun = null;
+  
+  private String latestRun;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  
+  private String organization;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  
+  private Integer weatherScore;
 
   @JsonProperty("branchNames")
+  
   private List<String> branchNames = null;
 
   @JsonProperty("numberOfFailingBranches")
-  private Integer numberOfFailingBranches = null;
+  
+  private Integer numberOfFailingBranches;
 
   @JsonProperty("numberOfFailingPullRequests")
-  private Integer numberOfFailingPullRequests = null;
+  
+  private Integer numberOfFailingPullRequests;
 
   @JsonProperty("numberOfSuccessfulBranches")
-  private Integer numberOfSuccessfulBranches = null;
+  
+  private Integer numberOfSuccessfulBranches;
 
   @JsonProperty("numberOfSuccessfulPullRequests")
-  private Integer numberOfSuccessfulPullRequests = null;
+  
+  private Integer numberOfSuccessfulPullRequests;
 
   @JsonProperty("totalNumberOfBranches")
-  private Integer totalNumberOfBranches = null;
+  
+  private Integer totalNumberOfBranches;
 
   @JsonProperty("totalNumberOfPullRequests")
-  private Integer totalNumberOfPullRequests = null;
+  
+  private Integer totalNumberOfPullRequests;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   public MultibranchPipeline displayName(String displayName) {
     this.displayName = displayName;
@@ -65,7 +78,7 @@ public class MultibranchPipeline   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -82,7 +95,7 @@ public class MultibranchPipeline   {
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
   **/
-    public Integer getEstimatedDurationInMillis() {
+  public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
@@ -99,7 +112,7 @@ public class MultibranchPipeline   {
    * Get latestRun
    * @return latestRun
   **/
-    public String getLatestRun() {
+  public String getLatestRun() {
     return latestRun;
   }
 
@@ -116,7 +129,7 @@ public class MultibranchPipeline   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -133,7 +146,7 @@ public class MultibranchPipeline   {
    * Get organization
    * @return organization
   **/
-    public String getOrganization() {
+  public String getOrganization() {
     return organization;
   }
 
@@ -150,7 +163,7 @@ public class MultibranchPipeline   {
    * Get weatherScore
    * @return weatherScore
   **/
-    public Integer getWeatherScore() {
+  public Integer getWeatherScore() {
     return weatherScore;
   }
 
@@ -175,7 +188,7 @@ public class MultibranchPipeline   {
    * Get branchNames
    * @return branchNames
   **/
-    public List<String> getBranchNames() {
+  public List<String> getBranchNames() {
     return branchNames;
   }
 
@@ -192,7 +205,7 @@ public class MultibranchPipeline   {
    * Get numberOfFailingBranches
    * @return numberOfFailingBranches
   **/
-    public Integer getNumberOfFailingBranches() {
+  public Integer getNumberOfFailingBranches() {
     return numberOfFailingBranches;
   }
 
@@ -209,7 +222,7 @@ public class MultibranchPipeline   {
    * Get numberOfFailingPullRequests
    * @return numberOfFailingPullRequests
   **/
-    public Integer getNumberOfFailingPullRequests() {
+  public Integer getNumberOfFailingPullRequests() {
     return numberOfFailingPullRequests;
   }
 
@@ -226,7 +239,7 @@ public class MultibranchPipeline   {
    * Get numberOfSuccessfulBranches
    * @return numberOfSuccessfulBranches
   **/
-    public Integer getNumberOfSuccessfulBranches() {
+  public Integer getNumberOfSuccessfulBranches() {
     return numberOfSuccessfulBranches;
   }
 
@@ -243,7 +256,7 @@ public class MultibranchPipeline   {
    * Get numberOfSuccessfulPullRequests
    * @return numberOfSuccessfulPullRequests
   **/
-    public Integer getNumberOfSuccessfulPullRequests() {
+  public Integer getNumberOfSuccessfulPullRequests() {
     return numberOfSuccessfulPullRequests;
   }
 
@@ -260,7 +273,7 @@ public class MultibranchPipeline   {
    * Get totalNumberOfBranches
    * @return totalNumberOfBranches
   **/
-    public Integer getTotalNumberOfBranches() {
+  public Integer getTotalNumberOfBranches() {
     return totalNumberOfBranches;
   }
 
@@ -277,7 +290,7 @@ public class MultibranchPipeline   {
    * Get totalNumberOfPullRequests
    * @return totalNumberOfPullRequests
   **/
-    public Integer getTotalNumberOfPullRequests() {
+  public Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
   }
 
@@ -294,7 +307,7 @@ public class MultibranchPipeline   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -304,7 +317,7 @@ public class MultibranchPipeline   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -361,7 +374,7 @@ public class MultibranchPipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

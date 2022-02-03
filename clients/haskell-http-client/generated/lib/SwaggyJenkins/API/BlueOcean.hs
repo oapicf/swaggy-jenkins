@@ -66,7 +66,7 @@ import qualified Prelude as P
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-deletePipelineQueueItem 
+deletePipelineQueueItem
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Queue2 -- ^ "queue" -  Name of the queue item
@@ -76,7 +76,6 @@ deletePipelineQueueItem (Organization organization) (Pipeline2 pipeline) (Queue2
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data DeletePipelineQueueItem  
-
 instance Produces DeletePipelineQueueItem MimeNoContent
 
 
@@ -88,7 +87,7 @@ instance Produces DeletePipelineQueueItem MimeNoContent
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getAuthenticatedUser 
+getAuthenticatedUser
   :: Organization -- ^ "organization" -  Name of the organization
   -> SwaggyJenkinsRequest GetAuthenticatedUser MimeNoContent User MimeJSON
 getAuthenticatedUser (Organization organization) =
@@ -96,7 +95,6 @@ getAuthenticatedUser (Organization organization) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetAuthenticatedUser  
-
 -- | @application/json@
 instance Produces GetAuthenticatedUser MimeJSON
 
@@ -109,7 +107,7 @@ instance Produces GetAuthenticatedUser MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getClasses 
+getClasses
   :: ParamClass -- ^ "_class" -  Name of the class
   -> SwaggyJenkinsRequest GetClasses MimeNoContent Text MimeJSON
 getClasses (ParamClass _class) =
@@ -117,7 +115,6 @@ getClasses (ParamClass _class) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetClasses  
-
 -- | @application/json@
 instance Produces GetClasses MimeJSON
 
@@ -128,14 +125,13 @@ instance Produces GetClasses MimeJSON
 -- 
 -- Retrieve JSON Web Key
 -- 
-getJsonWebKey 
+getJsonWebKey
   :: Key -- ^ "key" -  Key ID received as part of JWT header field kid
   -> SwaggyJenkinsRequest GetJsonWebKey MimeNoContent Text MimeJSON
 getJsonWebKey (Key key) =
   _mkRequest "GET" ["/jwt-auth/jwks/",toPath key]
 
 data GetJsonWebKey  
-
 -- | @application/json@
 instance Produces GetJsonWebKey MimeJSON
 
@@ -146,7 +142,7 @@ instance Produces GetJsonWebKey MimeJSON
 -- 
 -- Retrieve JSON Web Token
 -- 
-getJsonWebToken 
+getJsonWebToken
   :: SwaggyJenkinsRequest GetJsonWebToken MimeNoContent Text MimeJSON
 getJsonWebToken =
   _mkRequest "GET" ["/jwt-auth/token"]
@@ -156,13 +152,12 @@ data GetJsonWebToken
 -- | /Optional Param/ "expiryTimeInMins" - Token expiry time in minutes, default: 30 minutes
 instance HasOptionalParam GetJsonWebToken ExpiryTimeInMins where
   applyOptionalParam req (ExpiryTimeInMins xs) =
-    req `setQuery` toQuery ("expiryTimeInMins", Just xs)
+    req `addQuery` toQuery ("expiryTimeInMins", Just xs)
 
 -- | /Optional Param/ "maxExpiryTimeInMins" - Maximum token expiry time in minutes, default: 480 minutes
 instance HasOptionalParam GetJsonWebToken MaxExpiryTimeInMins where
   applyOptionalParam req (MaxExpiryTimeInMins xs) =
-    req `setQuery` toQuery ("maxExpiryTimeInMins", Just xs)
-
+    req `addQuery` toQuery ("maxExpiryTimeInMins", Just xs)
 -- | @application/json@
 instance Produces GetJsonWebToken MimeJSON
 
@@ -175,7 +170,7 @@ instance Produces GetJsonWebToken MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getOrganisation 
+getOrganisation
   :: Organization -- ^ "organization" -  Name of the organization
   -> SwaggyJenkinsRequest GetOrganisation MimeNoContent Organisation MimeJSON
 getOrganisation (Organization organization) =
@@ -183,7 +178,6 @@ getOrganisation (Organization organization) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetOrganisation  
-
 -- | @application/json@
 instance Produces GetOrganisation MimeJSON
 
@@ -196,14 +190,13 @@ instance Produces GetOrganisation MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getOrganisations 
-  :: SwaggyJenkinsRequest GetOrganisations MimeNoContent Organisations MimeJSON
+getOrganisations
+  :: SwaggyJenkinsRequest GetOrganisations MimeNoContent [Organisation] MimeJSON
 getOrganisations =
   _mkRequest "GET" ["/blue/rest/organizations/"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetOrganisations  
-
 -- | @application/json@
 instance Produces GetOrganisations MimeJSON
 
@@ -216,7 +209,7 @@ instance Produces GetOrganisations MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipeline 
+getPipeline
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> SwaggyJenkinsRequest GetPipeline MimeNoContent Pipeline MimeJSON
@@ -225,7 +218,6 @@ getPipeline (Organization organization) (Pipeline2 pipeline) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipeline  
-
 -- | @application/json@
 instance Produces GetPipeline MimeJSON
 
@@ -238,16 +230,15 @@ instance Produces GetPipeline MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineActivities 
+getPipelineActivities
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
-  -> SwaggyJenkinsRequest GetPipelineActivities MimeNoContent PipelineActivities MimeJSON
+  -> SwaggyJenkinsRequest GetPipelineActivities MimeNoContent [PipelineActivity] MimeJSON
 getPipelineActivities (Organization organization) (Pipeline2 pipeline) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/activities"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineActivities  
-
 -- | @application/json@
 instance Produces GetPipelineActivities MimeJSON
 
@@ -260,7 +251,7 @@ instance Produces GetPipelineActivities MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineBranch 
+getPipelineBranch
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Branch -- ^ "branch" -  Name of the branch
@@ -270,7 +261,6 @@ getPipelineBranch (Organization organization) (Pipeline2 pipeline) (Branch branc
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineBranch  
-
 -- | @application/json@
 instance Produces GetPipelineBranch MimeJSON
 
@@ -283,7 +273,7 @@ instance Produces GetPipelineBranch MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineBranchRun 
+getPipelineBranchRun
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Branch -- ^ "branch" -  Name of the branch
@@ -294,7 +284,6 @@ getPipelineBranchRun (Organization organization) (Pipeline2 pipeline) (Branch br
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineBranchRun  
-
 -- | @application/json@
 instance Produces GetPipelineBranchRun MimeJSON
 
@@ -307,7 +296,7 @@ instance Produces GetPipelineBranchRun MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineBranches 
+getPipelineBranches
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> SwaggyJenkinsRequest GetPipelineBranches MimeNoContent MultibranchPipeline MimeJSON
@@ -316,7 +305,6 @@ getPipelineBranches (Organization organization) (Pipeline2 pipeline) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineBranches  
-
 -- | @application/json@
 instance Produces GetPipelineBranches MimeJSON
 
@@ -329,7 +317,7 @@ instance Produces GetPipelineBranches MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineFolder 
+getPipelineFolder
   :: Organization -- ^ "organization" -  Name of the organization
   -> Folder -- ^ "folder" -  Name of the folder
   -> SwaggyJenkinsRequest GetPipelineFolder MimeNoContent PipelineFolderImpl MimeJSON
@@ -338,7 +326,6 @@ getPipelineFolder (Organization organization) (Folder folder) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineFolder  
-
 -- | @application/json@
 instance Produces GetPipelineFolder MimeJSON
 
@@ -351,7 +338,7 @@ instance Produces GetPipelineFolder MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineFolderPipeline 
+getPipelineFolderPipeline
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Folder -- ^ "folder" -  Name of the folder
@@ -361,7 +348,6 @@ getPipelineFolderPipeline (Organization organization) (Pipeline2 pipeline) (Fold
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineFolderPipeline  
-
 -- | @application/json@
 instance Produces GetPipelineFolderPipeline MimeJSON
 
@@ -374,16 +360,15 @@ instance Produces GetPipelineFolderPipeline MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineQueue 
+getPipelineQueue
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
-  -> SwaggyJenkinsRequest GetPipelineQueue MimeNoContent PipelineQueue MimeJSON
+  -> SwaggyJenkinsRequest GetPipelineQueue MimeNoContent [QueueItemImpl] MimeJSON
 getPipelineQueue (Organization organization) (Pipeline2 pipeline) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/queue"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineQueue  
-
 -- | @application/json@
 instance Produces GetPipelineQueue MimeJSON
 
@@ -396,7 +381,7 @@ instance Produces GetPipelineQueue MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRun 
+getPipelineRun
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -406,7 +391,6 @@ getPipelineRun (Organization organization) (Pipeline2 pipeline) (Run run) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRun  
-
 -- | @application/json@
 instance Produces GetPipelineRun MimeJSON
 
@@ -419,7 +403,7 @@ instance Produces GetPipelineRun MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRunLog 
+getPipelineRunLog
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -433,13 +417,12 @@ data GetPipelineRunLog
 -- | /Optional Param/ "start" - Start position of the log
 instance HasOptionalParam GetPipelineRunLog StartInt where
   applyOptionalParam req (StartInt xs) =
-    req `setQuery` toQuery ("start", Just xs)
+    req `addQuery` toQuery ("start", Just xs)
 
 -- | /Optional Param/ "download" - Set to true in order to download the file, otherwise it's passed as a response body
 instance HasOptionalParam GetPipelineRunLog Download where
   applyOptionalParam req (Download xs) =
-    req `setQuery` toQuery ("download", Just xs)
-
+    req `addQuery` toQuery ("download", Just xs)
 -- | @application/json@
 instance Produces GetPipelineRunLog MimeJSON
 
@@ -452,7 +435,7 @@ instance Produces GetPipelineRunLog MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRunNode 
+getPipelineRunNode
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -463,7 +446,6 @@ getPipelineRunNode (Organization organization) (Pipeline2 pipeline) (Run run) (N
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRunNode  
-
 -- | @application/json@
 instance Produces GetPipelineRunNode MimeJSON
 
@@ -476,7 +458,7 @@ instance Produces GetPipelineRunNode MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRunNodeStep 
+getPipelineRunNodeStep
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -488,7 +470,6 @@ getPipelineRunNodeStep (Organization organization) (Pipeline2 pipeline) (Run run
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRunNodeStep  
-
 -- | @application/json@
 instance Produces GetPipelineRunNodeStep MimeJSON
 
@@ -501,7 +482,7 @@ instance Produces GetPipelineRunNodeStep MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRunNodeStepLog 
+getPipelineRunNodeStepLog
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -513,7 +494,6 @@ getPipelineRunNodeStepLog (Organization organization) (Pipeline2 pipeline) (Run 
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRunNodeStepLog  
-
 -- | @application/json@
 instance Produces GetPipelineRunNodeStepLog MimeJSON
 
@@ -526,18 +506,17 @@ instance Produces GetPipelineRunNodeStepLog MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRunNodeSteps 
+getPipelineRunNodeSteps
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
   -> Node -- ^ "node" -  Name of the node
-  -> SwaggyJenkinsRequest GetPipelineRunNodeSteps MimeNoContent PipelineRunNodeSteps MimeJSON
+  -> SwaggyJenkinsRequest GetPipelineRunNodeSteps MimeNoContent [PipelineStepImpl] MimeJSON
 getPipelineRunNodeSteps (Organization organization) (Pipeline2 pipeline) (Run run) (Node node) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/runs/",toPath run,"/nodes/",toPath node,"/steps"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRunNodeSteps  
-
 -- | @application/json@
 instance Produces GetPipelineRunNodeSteps MimeJSON
 
@@ -550,17 +529,16 @@ instance Produces GetPipelineRunNodeSteps MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRunNodes 
+getPipelineRunNodes
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
-  -> SwaggyJenkinsRequest GetPipelineRunNodes MimeNoContent PipelineRunNodes MimeJSON
+  -> SwaggyJenkinsRequest GetPipelineRunNodes MimeNoContent [PipelineRunNode] MimeJSON
 getPipelineRunNodes (Organization organization) (Pipeline2 pipeline) (Run run) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/runs/",toPath run,"/nodes"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRunNodes  
-
 -- | @application/json@
 instance Produces GetPipelineRunNodes MimeJSON
 
@@ -573,16 +551,15 @@ instance Produces GetPipelineRunNodes MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelineRuns 
+getPipelineRuns
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
-  -> SwaggyJenkinsRequest GetPipelineRuns MimeNoContent PipelineRuns MimeJSON
+  -> SwaggyJenkinsRequest GetPipelineRuns MimeNoContent [PipelineRun] MimeJSON
 getPipelineRuns (Organization organization) (Pipeline2 pipeline) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/runs"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelineRuns  
-
 -- | @application/json@
 instance Produces GetPipelineRuns MimeJSON
 
@@ -595,15 +572,14 @@ instance Produces GetPipelineRuns MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getPipelines 
+getPipelines
   :: Organization -- ^ "organization" -  Name of the organization
-  -> SwaggyJenkinsRequest GetPipelines MimeNoContent Pipelines MimeJSON
+  -> SwaggyJenkinsRequest GetPipelines MimeNoContent [Pipeline] MimeJSON
 getPipelines (Organization organization) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/pipelines/"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetPipelines  
-
 -- | @application/json@
 instance Produces GetPipelines MimeJSON
 
@@ -616,7 +592,7 @@ instance Produces GetPipelines MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getSCM 
+getSCM
   :: Organization -- ^ "organization" -  Name of the organization
   -> Scm -- ^ "scm" -  Name of SCM
   -> SwaggyJenkinsRequest GetSCM MimeNoContent GithubScm MimeJSON
@@ -625,7 +601,6 @@ getSCM (Organization organization) (Scm scm) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetSCM  
-
 -- | @application/json@
 instance Produces GetSCM MimeJSON
 
@@ -638,11 +613,11 @@ instance Produces GetSCM MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getSCMOrganisationRepositories 
+getSCMOrganisationRepositories
   :: Organization -- ^ "organization" -  Name of the organization
   -> Scm -- ^ "scm" -  Name of SCM
   -> ScmOrganisation -- ^ "scmOrganisation" -  Name of the SCM organization
-  -> SwaggyJenkinsRequest GetSCMOrganisationRepositories MimeNoContent ScmOrganisations MimeJSON
+  -> SwaggyJenkinsRequest GetSCMOrganisationRepositories MimeNoContent [GithubOrganization] MimeJSON
 getSCMOrganisationRepositories (Organization organization) (Scm scm) (ScmOrganisation scmOrganisation) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/scm/",toPath scm,"/organizations/",toPath scmOrganisation,"/repositories"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
@@ -652,18 +627,17 @@ data GetSCMOrganisationRepositories
 -- | /Optional Param/ "credentialId" - Credential ID
 instance HasOptionalParam GetSCMOrganisationRepositories CredentialId where
   applyOptionalParam req (CredentialId xs) =
-    req `setQuery` toQuery ("credentialId", Just xs)
+    req `addQuery` toQuery ("credentialId", Just xs)
 
 -- | /Optional Param/ "pageSize" - Number of items in a page
 instance HasOptionalParam GetSCMOrganisationRepositories PageSize where
   applyOptionalParam req (PageSize xs) =
-    req `setQuery` toQuery ("pageSize", Just xs)
+    req `addQuery` toQuery ("pageSize", Just xs)
 
 -- | /Optional Param/ "pageNumber" - Page number
 instance HasOptionalParam GetSCMOrganisationRepositories PageNumber where
   applyOptionalParam req (PageNumber xs) =
-    req `setQuery` toQuery ("pageNumber", Just xs)
-
+    req `addQuery` toQuery ("pageNumber", Just xs)
 -- | @application/json@
 instance Produces GetSCMOrganisationRepositories MimeJSON
 
@@ -676,12 +650,12 @@ instance Produces GetSCMOrganisationRepositories MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getSCMOrganisationRepository 
+getSCMOrganisationRepository
   :: Organization -- ^ "organization" -  Name of the organization
   -> Scm -- ^ "scm" -  Name of SCM
   -> ScmOrganisation -- ^ "scmOrganisation" -  Name of the SCM organization
   -> Repository -- ^ "repository" -  Name of the SCM repository
-  -> SwaggyJenkinsRequest GetSCMOrganisationRepository MimeNoContent ScmOrganisations MimeJSON
+  -> SwaggyJenkinsRequest GetSCMOrganisationRepository MimeNoContent [GithubOrganization] MimeJSON
 getSCMOrganisationRepository (Organization organization) (Scm scm) (ScmOrganisation scmOrganisation) (Repository repository) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/scm/",toPath scm,"/organizations/",toPath scmOrganisation,"/repositories/",toPath repository]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
@@ -691,8 +665,7 @@ data GetSCMOrganisationRepository
 -- | /Optional Param/ "credentialId" - Credential ID
 instance HasOptionalParam GetSCMOrganisationRepository CredentialId where
   applyOptionalParam req (CredentialId xs) =
-    req `setQuery` toQuery ("credentialId", Just xs)
-
+    req `addQuery` toQuery ("credentialId", Just xs)
 -- | @application/json@
 instance Produces GetSCMOrganisationRepository MimeJSON
 
@@ -705,10 +678,10 @@ instance Produces GetSCMOrganisationRepository MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getSCMOrganisations 
+getSCMOrganisations
   :: Organization -- ^ "organization" -  Name of the organization
   -> Scm -- ^ "scm" -  Name of SCM
-  -> SwaggyJenkinsRequest GetSCMOrganisations MimeNoContent ScmOrganisations MimeJSON
+  -> SwaggyJenkinsRequest GetSCMOrganisations MimeNoContent [GithubOrganization] MimeJSON
 getSCMOrganisations (Organization organization) (Scm scm) =
   _mkRequest "GET" ["/blue/rest/organizations/",toPath organization,"/scm/",toPath scm,"/organizations"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
@@ -718,8 +691,7 @@ data GetSCMOrganisations
 -- | /Optional Param/ "credentialId" - Credential ID
 instance HasOptionalParam GetSCMOrganisations CredentialId where
   applyOptionalParam req (CredentialId xs) =
-    req `setQuery` toQuery ("credentialId", Just xs)
-
+    req `addQuery` toQuery ("credentialId", Just xs)
 -- | @application/json@
 instance Produces GetSCMOrganisations MimeJSON
 
@@ -732,7 +704,7 @@ instance Produces GetSCMOrganisations MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getUser 
+getUser
   :: Organization -- ^ "organization" -  Name of the organization
   -> User2 -- ^ "user" -  Name of the user
   -> SwaggyJenkinsRequest GetUser MimeNoContent User MimeJSON
@@ -741,7 +713,6 @@ getUser (Organization organization) (User2 user) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetUser  
-
 -- | @application/json@
 instance Produces GetUser MimeJSON
 
@@ -754,15 +725,14 @@ instance Produces GetUser MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getUserFavorites 
+getUserFavorites
   :: User2 -- ^ "user" -  Name of the user
-  -> SwaggyJenkinsRequest GetUserFavorites MimeNoContent UserFavorites MimeJSON
+  -> SwaggyJenkinsRequest GetUserFavorites MimeNoContent [FavoriteImpl] MimeJSON
 getUserFavorites (User2 user) =
   _mkRequest "GET" ["/blue/rest/users/",toPath user,"/favorites"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetUserFavorites  
-
 -- | @application/json@
 instance Produces GetUserFavorites MimeJSON
 
@@ -775,7 +745,7 @@ instance Produces GetUserFavorites MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-getUsers 
+getUsers
   :: Organization -- ^ "organization" -  Name of the organization
   -> SwaggyJenkinsRequest GetUsers MimeNoContent User MimeJSON
 getUsers (Organization organization) =
@@ -783,7 +753,6 @@ getUsers (Organization organization) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data GetUsers  
-
 -- | @application/json@
 instance Produces GetUsers MimeJSON
 
@@ -796,7 +765,7 @@ instance Produces GetUsers MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postPipelineRun 
+postPipelineRun
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -806,7 +775,6 @@ postPipelineRun (Organization organization) (Pipeline2 pipeline) (Run run) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data PostPipelineRun  
-
 -- | @application/json@
 instance Produces PostPipelineRun MimeJSON
 
@@ -819,7 +787,7 @@ instance Produces PostPipelineRun MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-postPipelineRuns 
+postPipelineRuns
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> SwaggyJenkinsRequest PostPipelineRuns MimeNoContent QueueItemImpl MimeJSON
@@ -828,7 +796,6 @@ postPipelineRuns (Organization organization) (Pipeline2 pipeline) =
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
 
 data PostPipelineRuns  
-
 -- | @application/json@
 instance Produces PostPipelineRuns MimeJSON
 
@@ -841,21 +808,21 @@ instance Produces PostPipelineRuns MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-putPipelineFavorite 
-  :: (Consumes PutPipelineFavorite MimeJSON, MimeRender MimeJSON Body)
-  => Body -- ^ "body" -  Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+putPipelineFavorite
+  :: (Consumes PutPipelineFavorite MimeJSON, MimeRender MimeJSON UNKNOWN_BASE_TYPE)
+  => UNKNOWN_BASE_TYPE -- ^ "unknownBaseType" -  Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   -> Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> SwaggyJenkinsRequest PutPipelineFavorite MimeJSON FavoriteImpl MimeJSON
-putPipelineFavorite body (Organization organization) (Pipeline2 pipeline) =
+putPipelineFavorite unknownBaseType (Organization organization) (Pipeline2 pipeline) =
   _mkRequest "PUT" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/favorite"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setBodyParam` body
+    `setBodyParam` unknownBaseType
 
 data PutPipelineFavorite 
 
--- | /Body Param/ "Body" - Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
-instance HasBodyParam PutPipelineFavorite Body 
+-- | /Body Param/ "UNKNOWN_BASE_TYPE" - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+instance HasBodyParam PutPipelineFavorite UNKNOWN_BASE_TYPE 
 
 -- | @application/json@
 instance Consumes PutPipelineFavorite MimeJSON
@@ -872,7 +839,7 @@ instance Produces PutPipelineFavorite MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-putPipelineRun 
+putPipelineRun
   :: Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> Run -- ^ "run" -  Name of the run
@@ -886,13 +853,12 @@ data PutPipelineRun
 -- | /Optional Param/ "blocking" - Set to true to make blocking stop, default: false
 instance HasOptionalParam PutPipelineRun Blocking where
   applyOptionalParam req (Blocking xs) =
-    req `setQuery` toQuery ("blocking", Just xs)
+    req `addQuery` toQuery ("blocking", Just xs)
 
 -- | /Optional Param/ "timeOutInSecs" - Timeout in seconds, default: 10 seconds
 instance HasOptionalParam PutPipelineRun TimeOutInSecs where
   applyOptionalParam req (TimeOutInSecs xs) =
-    req `setQuery` toQuery ("timeOutInSecs", Just xs)
-
+    req `addQuery` toQuery ("timeOutInSecs", Just xs)
 -- | @application/json@
 instance Produces PutPipelineRun MimeJSON
 
@@ -905,16 +871,15 @@ instance Produces PutPipelineRun MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-search 
+search
   :: Q -- ^ "q" -  Query string
   -> SwaggyJenkinsRequest Search MimeNoContent Text MimeJSON
 search (Q q) =
   _mkRequest "GET" ["/blue/rest/search/"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("q", Just q)
+    `addQuery` toQuery ("q", Just q)
 
 data Search  
-
 -- | @application/json@
 instance Produces Search MimeJSON
 
@@ -927,16 +892,15 @@ instance Produces Search MimeJSON
 -- 
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
-searchClasses 
+searchClasses
   :: Q -- ^ "q" -  Query string containing an array of class names
   -> SwaggyJenkinsRequest SearchClasses MimeNoContent Text MimeJSON
 searchClasses (Q q) =
   _mkRequest "GET" ["/blue/rest/classes/"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setQuery` toQuery ("q", Just q)
+    `addQuery` toQuery ("q", Just q)
 
 data SearchClasses  
-
 -- | @application/json@
 instance Produces SearchClasses MimeJSON
 

@@ -1,74 +1,38 @@
 cmake_minimum_required (VERSION 3.2)
 
-project(server)
+project(api-server)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pg -g3" )
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -pg -g3" )
 
 include(ExternalProject)
 
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/external)
 
 ExternalProject_Add(PISTACHE
-    GIT_REPOSITORY https://github.com/oktal/pistache.git
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+    GIT_REPOSITORY https://github.com/pistacheio/pistache.git
+    BUILD_IN_SOURCE true
+    INSTALL_COMMAND meson setup build --prefix=${EXTERNAL_INSTALL_LOCATION} --libdir=lib && meson install -C build
 )
 
 ExternalProject_Add(NLOHMANN
     GIT_REPOSITORY https://github.com/nlohmann/json.git
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-
+    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION} -DJSON_BuildTests=OFF
 )
+
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
-include_directories(${EXTERNAL_INSTALL_LOCATION}/include/nlohmann)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
-
-link_directories(/usr/local/lib/)
-
-aux_source_directory(model MODEL_SOURCES)
-file(GLOB BASE_API_SOURCES
-"api/BaseApi.h"
-"api/BaseApi.cpp"
-"impl/BaseApiImpl.h"
-"impl/BaseApiImpl.cpp"
-)
-file(GLOB BLUE_OCEAN_API_SOURCES
-"api/BlueOceanApi.h"
-"api/BlueOceanApi.cpp"
-"impl/BlueOceanApiImpl.h"
-"impl/BlueOceanApiImpl.cpp"
-)
-file(GLOB REMOTE_ACCESS_API_SOURCES
-"api/RemoteAccessApi.h"
-"api/RemoteAccessApi.cpp"
-"impl/RemoteAccessApiImpl.h"
-"impl/RemoteAccessApiImpl.cpp"
-)
 
 include_directories(model)
 include_directories(api)
 include_directories(impl)
 
-set(BASE_API_SERVER_SOURCES
-BaseApiMainServer.cpp
-    ${MODEL_SOURCES}
-    ${BASE_API_SOURCES})
-set(BLUE_OCEAN_API_SERVER_SOURCES
-BlueOceanApiMainServer.cpp
-    ${MODEL_SOURCES}
-    ${BLUE_OCEAN_API_SOURCES})
-set(REMOTE_ACCESS_API_SERVER_SOURCES
-RemoteAccessApiMainServer.cpp
-    ${MODEL_SOURCES}
-    ${REMOTE_ACCESS_API_SOURCES})
+file(GLOB SRCS
+    ${CMAKE_CURRENT_SOURCE_DIR}/api/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/impl/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/model/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
+)
 
-add_executable(base_api_server
-${BASE_API_SERVER_SOURCES})
-add_executable(blue_ocean_api_server
-${BLUE_OCEAN_API_SERVER_SOURCES})
-add_executable(remote_access_api_server
-${REMOTE_ACCESS_API_SERVER_SOURCES})
-
-target_link_libraries(base_api_server pistache pthread)
-target_link_libraries(blue_ocean_api_server pistache pthread)
-target_link_libraries(remote_access_api_server pistache pthread)
-
+add_executable(${PROJECT_NAME} ${SRCS} )
+add_dependencies(${PROJECT_NAME} PISTACHE NLOHMANN)
+target_link_libraries(${PROJECT_NAME} pistache pthread)

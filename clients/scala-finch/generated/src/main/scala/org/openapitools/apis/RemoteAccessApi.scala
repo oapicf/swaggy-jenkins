@@ -20,6 +20,7 @@ import com.twitter.util.Future
 import com.twitter.io.Buf
 import io.finch._, items._
 import java.io.File
+import java.nio.file.Files
 import java.time._
 
 object RemoteAccessApi {
@@ -362,7 +363,7 @@ object RemoteAccessApi {
     }
 
     private def bytesToFile(input: Array[Byte]): java.io.File = {
-      val file = File.createTempFile("tmpRemoteAccessApi", null)
+      val file = Files.createTempFile("tmpRemoteAccessApi", null).toFile
       val output = new FileOutputStream(file)
       output.write(input)
       file

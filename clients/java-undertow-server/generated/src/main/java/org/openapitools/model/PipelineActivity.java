@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -13,27 +23,27 @@ import org.openapitools.model.PipelineActivityartifacts;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class PipelineActivity   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<PipelineActivityartifacts> artifacts = new ArrayList<PipelineActivityartifacts>();
-  private Integer durationInMillis = null;
-  private Integer estimatedDurationInMillis = null;
-  private String enQueueTime = null;
-  private String endTime = null;
-  private String id = null;
-  private String organization = null;
-  private String pipeline = null;
-  private String result = null;
-  private String runSummary = null;
-  private String startTime = null;
-  private String state = null;
-  private String type = null;
-  private String commitId = null;
+  private Integer durationInMillis;
+  private Integer estimatedDurationInMillis;
+  private String enQueueTime;
+  private String endTime;
+  private String id;
+  private String organization;
+  private String pipeline;
+  private String result;
+  private String runSummary;
+  private String startTime;
+  private String state;
+  private String type;
+  private String commitId;
 
   /**
-   **/
+   */
   public PipelineActivity propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -50,7 +60,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity artifacts(List<PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
@@ -67,7 +77,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
@@ -84,7 +94,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
@@ -101,7 +111,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
     return this;
@@ -118,7 +128,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity endTime(String endTime) {
     this.endTime = endTime;
     return this;
@@ -135,7 +145,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity id(String id) {
     this.id = id;
     return this;
@@ -152,7 +162,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity organization(String organization) {
     this.organization = organization;
     return this;
@@ -169,7 +179,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity pipeline(String pipeline) {
     this.pipeline = pipeline;
     return this;
@@ -186,7 +196,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity result(String result) {
     this.result = result;
     return this;
@@ -203,7 +213,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity runSummary(String runSummary) {
     this.runSummary = runSummary;
     return this;
@@ -220,7 +230,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity startTime(String startTime) {
     this.startTime = startTime;
     return this;
@@ -237,7 +247,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity state(String state) {
     this.state = state;
     return this;
@@ -254,7 +264,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity type(String type) {
     this.type = type;
     return this;
@@ -271,7 +281,7 @@ public class PipelineActivity   {
   }
 
   /**
-   **/
+   */
   public PipelineActivity commitId(String commitId) {
     this.commitId = commitId;
     return this;
@@ -289,7 +299,7 @@ public class PipelineActivity   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -347,7 +357,7 @@ public class PipelineActivity   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

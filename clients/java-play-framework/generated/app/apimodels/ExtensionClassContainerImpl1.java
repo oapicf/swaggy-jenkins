@@ -10,18 +10,22 @@ import javax.validation.constraints.*;
 /**
  * ExtensionClassContainerImpl1
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ExtensionClassContainerImpl1   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private ExtensionClassContainerImpl1links links = null;
+  @Valid
+
+  private ExtensionClassContainerImpl1links links;
 
   @JsonProperty("map")
-  private ExtensionClassContainerImpl1map map = null;
+  @Valid
+
+  private ExtensionClassContainerImpl1map map;
 
   public ExtensionClassContainerImpl1 propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -32,7 +36,7 @@ public class ExtensionClassContainerImpl1   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -49,7 +53,6 @@ public class ExtensionClassContainerImpl1   {
    * Get links
    * @return links
   **/
-  @Valid
   public ExtensionClassContainerImpl1links getLinks() {
     return links;
   }
@@ -67,7 +70,6 @@ public class ExtensionClassContainerImpl1   {
    * Get map
    * @return map
   **/
-  @Valid
   public ExtensionClassContainerImpl1map getMap() {
     return map;
   }
@@ -78,7 +80,7 @@ public class ExtensionClassContainerImpl1   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -113,7 +115,7 @@ public class ExtensionClassContainerImpl1   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

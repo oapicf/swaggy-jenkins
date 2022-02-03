@@ -8,10 +8,10 @@ import org.openapitools.model.PipelineImpl;
 
 @Canonical
 class FavoriteImpl {
-    String propertyClass = null
-
-    FavoriteImpllinks links = null
-
-    PipelineImpl item = null
-
+    
+    String propertyClass
+    
+    FavoriteImpllinks links
+    
+    PipelineImpl item
 }

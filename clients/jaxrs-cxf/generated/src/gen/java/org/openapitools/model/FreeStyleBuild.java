@@ -8,72 +8,65 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FreeStyleBuild  {
   
   @ApiModelProperty(value = "")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private Integer number = null;
+  private Integer number;
 
   @ApiModelProperty(value = "")
-  private String url = null;
+  private String url;
 
   @ApiModelProperty(value = "")
   @Valid
   private List<CauseAction> actions = null;
 
   @ApiModelProperty(value = "")
-  private Boolean building = null;
+  private Boolean building;
 
   @ApiModelProperty(value = "")
-  private String description = null;
+  private String description;
 
   @ApiModelProperty(value = "")
-  private String displayName = null;
+  private String displayName;
 
   @ApiModelProperty(value = "")
-  private Integer duration = null;
+  private Integer duration;
 
   @ApiModelProperty(value = "")
-  private Integer estimatedDuration = null;
+  private Integer estimatedDuration;
 
   @ApiModelProperty(value = "")
-  private String executor = null;
+  private String executor;
 
   @ApiModelProperty(value = "")
-  private String fullDisplayName = null;
+  private String fullDisplayName;
 
   @ApiModelProperty(value = "")
-  private String id = null;
+  private String id;
 
   @ApiModelProperty(value = "")
-  private Boolean keepLog = null;
+  private Boolean keepLog;
 
   @ApiModelProperty(value = "")
-  private Integer queueId = null;
+  private Integer queueId;
 
   @ApiModelProperty(value = "")
-  private String result = null;
+  private String result;
 
   @ApiModelProperty(value = "")
-  private Integer timestamp = null;
+  private Integer timestamp;
 
   @ApiModelProperty(value = "")
-  private String builtOn = null;
+  private String builtOn;
 
   @ApiModelProperty(value = "")
   @Valid
-  private EmptyChangeLogSet changeSet = null;
+  private EmptyChangeLogSet changeSet;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -435,7 +428,7 @@ public class FreeStyleBuild  {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private static String toIndentedString(java.lang.Object o) {
+  private static String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

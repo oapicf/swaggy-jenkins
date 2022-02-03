@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Underscoreclass** | **kotlin.String** |  |  [optional]
-**Underscorelinks** | [**GithubRespositoryContainerlinks**](GithubRespositoryContainerlinks.md) |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
+**links** | [**GithubRespositoryContainerlinks**](GithubRespositoryContainerlinks.md) |  |  [optional]
 **repositories** | [**GithubRepositories**](GithubRepositories.md) |  |  [optional]
 
 

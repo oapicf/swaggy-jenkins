@@ -15,8 +15,7 @@ For more information, please visit [http://github.com/cliffano/swaggy-jenkins](h
 
 #### npm
 
-To publish the library as a [npm](https://www.npmjs.com/),
-please follow the procedure in ["Publishing npm packages"](https://docs.npmjs.com/getting-started/publishing-npm-packages).
+To publish the library as a [npm](https://www.npmjs.com/), please follow the procedure in ["Publishing npm packages"](https://docs.npmjs.com/getting-started/publishing-npm-packages).
 
 Then install it via:
 
@@ -24,10 +23,15 @@ Then install it via:
 npm install swaggy-jenkins --save
 ```
 
+Finally, you need to build the module:
+
+```shell
+npm run build
+```
+
 ##### Local development
 
-To use the library locally without publishing to a remote npm registry, first install the dependencies by changing 
-into the directory containing `package.json` (and this README). Let's call this `JAVASCRIPT_CLIENT_DIR`. Then run:
+To use the library locally without publishing to a remote npm registry, first install the dependencies by changing into the directory containing `package.json` (and this README). Let's call this `JAVASCRIPT_CLIENT_DIR`. Then run:
 
 ```shell
 npm install
@@ -39,19 +43,21 @@ Next, [link](https://docs.npmjs.com/cli/link) it globally in npm with the follow
 npm link
 ```
 
-Finally, switch to the directory you want to use your swaggy-jenkins from, and run:
+To use the link you just defined in your project, switch to the directory you want to use your swaggy-jenkins from, and run:
 
 ```shell
 npm link /path/to/<JAVASCRIPT_CLIENT_DIR>
 ```
 
-You should now be able to `require('swaggy-jenkins')` in javascript files from the directory you ran the last 
-command above from.
+Finally, you need to build the module:
+
+```shell
+npm run build
+```
 
 #### git
-#
-If the library is hosted at a git repository, e.g.
-https://github.com/cliffano/swaggy-jenkins
+
+If the library is hosted at a git repository, e.g.https://github.com/cliffano/swaggy-jenkins
 then install it via:
 
 ```shell
@@ -62,8 +68,7 @@ then install it via:
 
 The library also works in the browser environment via npm and [browserify](http://browserify.org/). After following
 the above steps with Node.js and installing browserify with `npm install -g browserify`,
-perform the following (assuming *main.js* is your entry file, that's to say your javascript file where you actually 
-use this library):
+perform the following (assuming *main.js* is your entry file):
 
 ```shell
 browserify main.js > bundle.js
@@ -97,14 +102,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 var SwaggyJenkins = require('swaggy-jenkins');
 
 var defaultClient = SwaggyJenkins.ApiClient.instance;
-
 // Configure HTTP basic authorization: jenkins_auth
 var jenkins_auth = defaultClient.authentications['jenkins_auth'];
 jenkins_auth.username = 'YOUR USERNAME'
 jenkins_auth.password = 'YOUR PASSWORD'
 
 var api = new SwaggyJenkins.BaseApi()
-
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -185,7 +188,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [SwaggyJenkins.AllView](docs/AllView.md)
- - [SwaggyJenkins.Body](docs/Body.md)
  - [SwaggyJenkins.BranchImpl](docs/BranchImpl.md)
  - [SwaggyJenkins.BranchImpllinks](docs/BranchImpllinks.md)
  - [SwaggyJenkins.BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -235,12 +237,9 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.MultibranchPipeline](docs/MultibranchPipeline.md)
  - [SwaggyJenkins.NullSCM](docs/NullSCM.md)
  - [SwaggyJenkins.Organisation](docs/Organisation.md)
- - [SwaggyJenkins.Organisations](docs/Organisations.md)
  - [SwaggyJenkins.Pipeline](docs/Pipeline.md)
- - [SwaggyJenkins.PipelineActivities](docs/PipelineActivities.md)
  - [SwaggyJenkins.PipelineActivity](docs/PipelineActivity.md)
  - [SwaggyJenkins.PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
- - [SwaggyJenkins.PipelineBranches](docs/PipelineBranches.md)
  - [SwaggyJenkins.PipelineBranchesitem](docs/PipelineBranchesitem.md)
  - [SwaggyJenkins.PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
  - [SwaggyJenkins.PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
@@ -248,45 +247,40 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkins.PipelineFolderImpl](docs/PipelineFolderImpl.md)
  - [SwaggyJenkins.PipelineImpl](docs/PipelineImpl.md)
  - [SwaggyJenkins.PipelineImpllinks](docs/PipelineImpllinks.md)
- - [SwaggyJenkins.PipelineQueue](docs/PipelineQueue.md)
  - [SwaggyJenkins.PipelineRun](docs/PipelineRun.md)
  - [SwaggyJenkins.PipelineRunImpl](docs/PipelineRunImpl.md)
  - [SwaggyJenkins.PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
  - [SwaggyJenkins.PipelineRunNode](docs/PipelineRunNode.md)
- - [SwaggyJenkins.PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
  - [SwaggyJenkins.PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
- - [SwaggyJenkins.PipelineRunNodes](docs/PipelineRunNodes.md)
- - [SwaggyJenkins.PipelineRunSteps](docs/PipelineRunSteps.md)
  - [SwaggyJenkins.PipelineRunartifacts](docs/PipelineRunartifacts.md)
- - [SwaggyJenkins.PipelineRuns](docs/PipelineRuns.md)
  - [SwaggyJenkins.PipelineStepImpl](docs/PipelineStepImpl.md)
  - [SwaggyJenkins.PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
  - [SwaggyJenkins.PipelinelatestRun](docs/PipelinelatestRun.md)
  - [SwaggyJenkins.PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
- - [SwaggyJenkins.Pipelines](docs/Pipelines.md)
  - [SwaggyJenkins.Queue](docs/Queue.md)
  - [SwaggyJenkins.QueueBlockedItem](docs/QueueBlockedItem.md)
  - [SwaggyJenkins.QueueItemImpl](docs/QueueItemImpl.md)
  - [SwaggyJenkins.QueueLeftItem](docs/QueueLeftItem.md)
  - [SwaggyJenkins.ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
- - [SwaggyJenkins.ScmOrganisations](docs/ScmOrganisations.md)
  - [SwaggyJenkins.StringParameterDefinition](docs/StringParameterDefinition.md)
  - [SwaggyJenkins.StringParameterValue](docs/StringParameterValue.md)
  - [SwaggyJenkins.SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [SwaggyJenkins.UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
  - [SwaggyJenkins.User](docs/User.md)
- - [SwaggyJenkins.UserFavorites](docs/UserFavorites.md)
- - [SwaggyJenkins.Users](docs/Users.md)
 
 
 ## Documentation for Authorization
+
 
 
 ### jenkins_auth
 
 - **Type**: HTTP basic authentication
 
+
+
 ### jwt_auth
+
 
 - **Type**: API key
 - **API key parameter name**: Authorization

@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
@@ -11,21 +13,19 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class ListView   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String description = null;
+  private String description;
 
   private List<FreeStyleProject> jobs = null;
 
-  private String name = null;
+  private String name;
 
-  private String url = null;
+  private String url;
 
 
   /**
@@ -128,7 +128,7 @@ public class ListView   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -166,7 +166,7 @@ public class ListView   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

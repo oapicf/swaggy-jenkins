@@ -26,20 +26,20 @@ defmodule SwaggyJenkins.Model.MultibranchPipeline do
   ]
 
   @type t :: %__MODULE__{
-    :"displayName" => String.t,
-    :"estimatedDurationInMillis" => integer(),
-    :"latestRun" => String.t,
-    :"name" => String.t,
-    :"organization" => String.t,
-    :"weatherScore" => integer(),
-    :"branchNames" => [String.t],
-    :"numberOfFailingBranches" => integer(),
-    :"numberOfFailingPullRequests" => integer(),
-    :"numberOfSuccessfulBranches" => integer(),
-    :"numberOfSuccessfulPullRequests" => integer(),
-    :"totalNumberOfBranches" => integer(),
-    :"totalNumberOfPullRequests" => integer(),
-    :"_class" => String.t
+    :"displayName" => String.t | nil,
+    :"estimatedDurationInMillis" => integer() | nil,
+    :"latestRun" => String.t | nil,
+    :"name" => String.t | nil,
+    :"organization" => String.t | nil,
+    :"weatherScore" => integer() | nil,
+    :"branchNames" => [String.t] | nil,
+    :"numberOfFailingBranches" => integer() | nil,
+    :"numberOfFailingPullRequests" => integer() | nil,
+    :"numberOfSuccessfulBranches" => integer() | nil,
+    :"numberOfSuccessfulPullRequests" => integer() | nil,
+    :"totalNumberOfBranches" => integer() | nil,
+    :"totalNumberOfPullRequests" => integer() | nil,
+    :"_class" => String.t | nil
   }
 end
 

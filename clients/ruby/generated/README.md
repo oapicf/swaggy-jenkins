@@ -26,6 +26,7 @@ Then either install the gem locally:
 ```shell
 gem install ./swaggy_jenkins-0.0.1.gem
 ```
+
 (for development, run `gem install --dev ./swaggy_jenkins-0.0.1.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
@@ -51,6 +52,7 @@ ruby -Ilib script.rb
 ## Getting Started
 
 Please follow the [installation](#installation) procedure and then run the following code:
+
 ```ruby
 # Load the gem
 require 'swaggy_jenkins'
@@ -58,8 +60,8 @@ require 'swaggy_jenkins'
 # Setup authorization
 SwaggyJenkinsClient.configure do |config|
   # Configure HTTP basic authorization: jenkins_auth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
+  config.username = 'YOUR_USERNAME'
+  config.password = 'YOUR_PASSWORD'
 end
 
 api_instance = SwaggyJenkinsClient::BaseApi.new
@@ -142,7 +144,6 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [SwaggyJenkinsClient::AllView](docs/AllView.md)
- - [SwaggyJenkinsClient::Body](docs/Body.md)
  - [SwaggyJenkinsClient::BranchImpl](docs/BranchImpl.md)
  - [SwaggyJenkinsClient::BranchImpllinks](docs/BranchImpllinks.md)
  - [SwaggyJenkinsClient::BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -192,12 +193,9 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkinsClient::MultibranchPipeline](docs/MultibranchPipeline.md)
  - [SwaggyJenkinsClient::NullSCM](docs/NullSCM.md)
  - [SwaggyJenkinsClient::Organisation](docs/Organisation.md)
- - [SwaggyJenkinsClient::Organisations](docs/Organisations.md)
  - [SwaggyJenkinsClient::Pipeline](docs/Pipeline.md)
- - [SwaggyJenkinsClient::PipelineActivities](docs/PipelineActivities.md)
  - [SwaggyJenkinsClient::PipelineActivity](docs/PipelineActivity.md)
  - [SwaggyJenkinsClient::PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
- - [SwaggyJenkinsClient::PipelineBranches](docs/PipelineBranches.md)
  - [SwaggyJenkinsClient::PipelineBranchesitem](docs/PipelineBranchesitem.md)
  - [SwaggyJenkinsClient::PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
  - [SwaggyJenkinsClient::PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
@@ -205,35 +203,26 @@ Class | Method | HTTP request | Description
  - [SwaggyJenkinsClient::PipelineFolderImpl](docs/PipelineFolderImpl.md)
  - [SwaggyJenkinsClient::PipelineImpl](docs/PipelineImpl.md)
  - [SwaggyJenkinsClient::PipelineImpllinks](docs/PipelineImpllinks.md)
- - [SwaggyJenkinsClient::PipelineQueue](docs/PipelineQueue.md)
  - [SwaggyJenkinsClient::PipelineRun](docs/PipelineRun.md)
  - [SwaggyJenkinsClient::PipelineRunImpl](docs/PipelineRunImpl.md)
  - [SwaggyJenkinsClient::PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
  - [SwaggyJenkinsClient::PipelineRunNode](docs/PipelineRunNode.md)
- - [SwaggyJenkinsClient::PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
  - [SwaggyJenkinsClient::PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
- - [SwaggyJenkinsClient::PipelineRunNodes](docs/PipelineRunNodes.md)
- - [SwaggyJenkinsClient::PipelineRunSteps](docs/PipelineRunSteps.md)
  - [SwaggyJenkinsClient::PipelineRunartifacts](docs/PipelineRunartifacts.md)
- - [SwaggyJenkinsClient::PipelineRuns](docs/PipelineRuns.md)
  - [SwaggyJenkinsClient::PipelineStepImpl](docs/PipelineStepImpl.md)
  - [SwaggyJenkinsClient::PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
  - [SwaggyJenkinsClient::PipelinelatestRun](docs/PipelinelatestRun.md)
  - [SwaggyJenkinsClient::PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
- - [SwaggyJenkinsClient::Pipelines](docs/Pipelines.md)
  - [SwaggyJenkinsClient::Queue](docs/Queue.md)
  - [SwaggyJenkinsClient::QueueBlockedItem](docs/QueueBlockedItem.md)
  - [SwaggyJenkinsClient::QueueItemImpl](docs/QueueItemImpl.md)
  - [SwaggyJenkinsClient::QueueLeftItem](docs/QueueLeftItem.md)
  - [SwaggyJenkinsClient::ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
- - [SwaggyJenkinsClient::ScmOrganisations](docs/ScmOrganisations.md)
  - [SwaggyJenkinsClient::StringParameterDefinition](docs/StringParameterDefinition.md)
  - [SwaggyJenkinsClient::StringParameterValue](docs/StringParameterValue.md)
  - [SwaggyJenkinsClient::SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [SwaggyJenkinsClient::UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
  - [SwaggyJenkinsClient::User](docs/User.md)
- - [SwaggyJenkinsClient::UserFavorites](docs/UserFavorites.md)
- - [SwaggyJenkinsClient::Users](docs/Users.md)
 
 
 ## Documentation for Authorization
@@ -244,6 +233,7 @@ Class | Method | HTTP request | Description
 - **Type**: HTTP basic authentication
 
 ### jwt_auth
+
 
 - **Type**: API key
 - **API key parameter name**: Authorization

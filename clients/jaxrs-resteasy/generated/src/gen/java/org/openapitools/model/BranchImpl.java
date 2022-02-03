@@ -4,6 +4,9 @@ import java.util.Objects;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
@@ -12,23 +15,22 @@ import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class BranchImpl   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private Integer estimatedDurationInMillis = null;
-  private String fullDisplayName = null;
-  private String fullName = null;
-  private String name = null;
-  private String organization = null;
+  private String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String fullDisplayName;
+  private String fullName;
+  private String name;
+  private String organization;
   private List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
-  private BranchImplpermissions permissions = null;
-  private Integer weatherScore = null;
-  private String pullRequest = null;
-  private BranchImpllinks links = null;
-  private PipelineRunImpl latestRun = null;
+  private BranchImplpermissions permissions;
+  private Integer weatherScore;
+  private String pullRequest;
+  private BranchImpllinks links;
+  private PipelineRunImpl latestRun;
 
   /**
    **/
@@ -188,7 +190,7 @@ public class BranchImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -242,7 +244,7 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

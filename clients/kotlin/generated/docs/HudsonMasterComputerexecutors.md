@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **likelyStuck** | **kotlin.Boolean** |  |  [optional]
 **number** | **kotlin.Int** |  |  [optional]
 **progress** | **kotlin.Int** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

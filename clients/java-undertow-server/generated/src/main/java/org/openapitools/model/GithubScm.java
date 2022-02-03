@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -11,17 +21,17 @@ import org.openapitools.model.GithubScmlinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class GithubScm   {
   
-  private String propertyClass = null;
-  private GithubScmlinks links = null;
-  private String credentialId = null;
-  private String id = null;
-  private String uri = null;
+  private String propertyClass;
+  private GithubScmlinks links;
+  private String credentialId;
+  private String id;
+  private String uri;
 
   /**
-   **/
+   */
   public GithubScm propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -38,7 +48,7 @@ public class GithubScm   {
   }
 
   /**
-   **/
+   */
   public GithubScm links(GithubScmlinks links) {
     this.links = links;
     return this;
@@ -55,7 +65,7 @@ public class GithubScm   {
   }
 
   /**
-   **/
+   */
   public GithubScm credentialId(String credentialId) {
     this.credentialId = credentialId;
     return this;
@@ -72,7 +82,7 @@ public class GithubScm   {
   }
 
   /**
-   **/
+   */
   public GithubScm id(String id) {
     this.id = id;
     return this;
@@ -89,7 +99,7 @@ public class GithubScm   {
   }
 
   /**
-   **/
+   */
   public GithubScm uri(String uri) {
     this.uri = uri;
     return this;
@@ -107,7 +117,7 @@ public class GithubScm   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -145,7 +155,7 @@ public class GithubScm   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

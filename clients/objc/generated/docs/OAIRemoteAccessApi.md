@@ -36,7 +36,7 @@ Method | HTTP request | Description
 
 Retrieve computer details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 Retrieve Jenkins details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -140,7 +140,7 @@ This endpoint does not need any parameter.
 
 Retrieve job details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 Retrieve job configuration
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 Retrieve job's last build details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 Retrieve job's build progressive text output
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -361,7 +361,7 @@ void (empty response body)
 
 Retrieve queue details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -411,7 +411,7 @@ This endpoint does not need any parameter.
 
 Retrieve queued item details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -465,7 +465,7 @@ Name | Type | Description  | Notes
 
 Retrieve view details
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -519,7 +519,7 @@ Name | Type | Description  | Notes
 
 Retrieve view configuration
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -573,7 +573,7 @@ Name | Type | Description  | Notes
 
 Retrieve Jenkins headers
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -625,7 +625,7 @@ void (empty response body)
 
 Create a new job using job configuration, or copied from an existing job
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -694,7 +694,7 @@ void (empty response body)
 
 Create a new view using view configuration
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -757,7 +757,7 @@ void (empty response body)
 
 Build a job
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -819,7 +819,7 @@ void (empty response body)
 
 Update job configuration
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -877,7 +877,7 @@ void (empty response body)
 
 Delete a job
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -932,7 +932,7 @@ void (empty response body)
 
 Disable a job
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -987,7 +987,7 @@ void (empty response body)
 
 Enable a job
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1042,7 +1042,7 @@ void (empty response body)
 
 Stop a job
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)
@@ -1098,7 +1098,7 @@ void (empty response body)
 
 Update view configuration
 
-### Example 
+### Example
 ```objc
 OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 // Configure HTTP basic authorization (authentication scheme: jenkins_auth)

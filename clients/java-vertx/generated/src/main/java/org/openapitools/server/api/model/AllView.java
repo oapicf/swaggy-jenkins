@@ -4,12 +4,12 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AllView   {
   
-  private String propertyClass = null;
-  private String name = null;
-  private String url = null;
+  private String propertyClass;
+  private String name;
+  private String url;
 
   public AllView () {
 

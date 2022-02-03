@@ -20,3 +20,20 @@ type PipelineRunartifacts struct {
 
 	Class string `json:"_class,omitempty"`
 }
+
+// AssertPipelineRunartifactsRequired checks if the required fields are not zero-ed
+func AssertPipelineRunartifactsRequired(obj PipelineRunartifacts) error {
+	return nil
+}
+
+// AssertRecursePipelineRunartifactsRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of PipelineRunartifacts (e.g. [][]PipelineRunartifacts), otherwise ErrTypeAssertionError is thrown.
+func AssertRecursePipelineRunartifactsRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aPipelineRunartifacts, ok := obj.(PipelineRunartifacts)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertPipelineRunartifactsRequired(aPipelineRunartifacts)
+	})
+}

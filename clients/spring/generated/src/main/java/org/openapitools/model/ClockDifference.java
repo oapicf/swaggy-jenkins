@@ -1,24 +1,31 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * ClockDifference
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class ClockDifference   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("diff")
-  private Integer diff = null;
+  private Integer diff;
 
   public ClockDifference propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -28,10 +35,9 @@ public class ClockDifference   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -48,10 +54,9 @@ public class ClockDifference   {
   /**
    * Get diff
    * @return diff
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "diff", required = false)
   public Integer getDiff() {
     return diff;
   }
@@ -60,9 +65,8 @@ public class ClockDifference   {
     this.diff = diff;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -83,7 +87,6 @@ public class ClockDifference   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ClockDifference {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    diff: ").append(toIndentedString(diff)).append("\n");
     sb.append("}");
@@ -94,7 +97,7 @@ public class ClockDifference   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

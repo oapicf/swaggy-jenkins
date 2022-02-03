@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -12,20 +22,20 @@ import org.openapitools.model.GithubRepositorypermissions;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class GithubRepository   {
   
-  private String propertyClass = null;
-  private GithubRepositorylinks links = null;
-  private String defaultBranch = null;
-  private String description = null;
-  private String name = null;
-  private GithubRepositorypermissions permissions = null;
-  private Boolean _private = null;
-  private String fullName = null;
+  private String propertyClass;
+  private GithubRepositorylinks links;
+  private String defaultBranch;
+  private String description;
+  private String name;
+  private GithubRepositorypermissions permissions;
+  private Boolean _private;
+  private String fullName;
 
   /**
-   **/
+   */
   public GithubRepository propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -42,7 +52,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository links(GithubRepositorylinks links) {
     this.links = links;
     return this;
@@ -59,7 +69,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository defaultBranch(String defaultBranch) {
     this.defaultBranch = defaultBranch;
     return this;
@@ -76,7 +86,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository description(String description) {
     this.description = description;
     return this;
@@ -93,7 +103,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository name(String name) {
     this.name = name;
     return this;
@@ -110,7 +120,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository permissions(GithubRepositorypermissions permissions) {
     this.permissions = permissions;
     return this;
@@ -127,7 +137,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository _private(Boolean _private) {
     this._private = _private;
     return this;
@@ -144,7 +154,7 @@ public class GithubRepository   {
   }
 
   /**
-   **/
+   */
   public GithubRepository fullName(String fullName) {
     this.fullName = fullName;
     return this;
@@ -162,7 +172,7 @@ public class GithubRepository   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -206,7 +216,7 @@ public class GithubRepository   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

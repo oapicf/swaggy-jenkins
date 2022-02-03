@@ -14,32 +14,31 @@ import io.swagger.annotations.ApiModelProperty;
  * GithubContent
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class GithubContent   {
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("sha")
-  private String sha = null;
+  private String sha;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("repo")
-  private String repo = null;
+  private String repo;
 
   @JsonProperty("size")
-  private Integer size = null;
+  private Integer size;
 
   @JsonProperty("owner")
-  private String owner = null;
+  private String owner;
 
   @JsonProperty("path")
-  private String path = null;
+  private String path;
 
   @JsonProperty("base64Data")
-  private String base64Data = null;
+  private String base64Data;
 
   public GithubContent name(String name) {
     this.name = name;
@@ -187,7 +186,7 @@ public class GithubContent   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -231,7 +230,7 @@ public class GithubContent   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

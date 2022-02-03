@@ -1,6 +1,7 @@
 # Swaggy Jenkins Bash client
 
 ## Overview
+
 This is a Bash client script for accessing Swaggy Jenkins service.
 
 The script uses cURL underneath for making all REST calls.
@@ -37,12 +38,16 @@ $ echo '<body_content>' |  --host <hostname> --content-type json <operationId> -
 # }
 $ echo '<body_content>' |  --host <hostname> --content-type json <operationId> key1==value1 key2=value2 key3:=23 -
 
+# Make POST request with form data
+$  --host <hostname> <operationId> key1:=value1 key2:=value2 key3:=23
+
 # Preview the cURL command without actually executing it
 $  --host http://<hostname>:<port> --dry-run <operationid>
 
 ```
 
 ## Docker image
+
 You can easily create a Docker image containing a preconfigured environment
 for using the REST Bash client including working autocompletion and short
 welcome message with basic instructions, using the generated Dockerfile:
@@ -59,6 +64,7 @@ is also available.
 ## Shell completion
 
 ### Bash
+
 The generated bash-completion script can be either directly loaded to the current Bash session using:
 
 ```shell
@@ -72,10 +78,13 @@ sudo cp .bash-completion /etc/bash-completion.d/
 ```
 
 #### OS X
+
 On OSX you might need to install bash-completion using Homebrew:
+
 ```shell
 brew install bash-completion
 ```
+
 and add the following to the `~/.bashrc`:
 
 ```shell
@@ -85,12 +94,12 @@ fi
 ```
 
 ### Zsh
-In Zsh, the generated `_` Zsh completion file must be copied to one of the folders under `$FPATH` variable.
 
+In Zsh, the generated `_` Zsh completion file must be copied to one of the folders under `$FPATH` variable.
 
 ## Documentation for API Endpoints
 
-All URIs are relative to */*
+All URIs are relative to **
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -157,7 +166,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AllView](docs/AllView.md)
- - [Body](docs/Body.md)
  - [BranchImpl](docs/BranchImpl.md)
  - [BranchImpllinks](docs/BranchImpllinks.md)
  - [BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -207,12 +215,9 @@ Class | Method | HTTP request | Description
  - [MultibranchPipeline](docs/MultibranchPipeline.md)
  - [NullSCM](docs/NullSCM.md)
  - [Organisation](docs/Organisation.md)
- - [Organisations](docs/Organisations.md)
  - [Pipeline](docs/Pipeline.md)
- - [PipelineActivities](docs/PipelineActivities.md)
  - [PipelineActivity](docs/PipelineActivity.md)
  - [PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
- - [PipelineBranches](docs/PipelineBranches.md)
  - [PipelineBranchesitem](docs/PipelineBranchesitem.md)
  - [PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
  - [PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
@@ -220,35 +225,26 @@ Class | Method | HTTP request | Description
  - [PipelineFolderImpl](docs/PipelineFolderImpl.md)
  - [PipelineImpl](docs/PipelineImpl.md)
  - [PipelineImpllinks](docs/PipelineImpllinks.md)
- - [PipelineQueue](docs/PipelineQueue.md)
  - [PipelineRun](docs/PipelineRun.md)
  - [PipelineRunImpl](docs/PipelineRunImpl.md)
  - [PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
  - [PipelineRunNode](docs/PipelineRunNode.md)
- - [PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
  - [PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
- - [PipelineRunNodes](docs/PipelineRunNodes.md)
- - [PipelineRunSteps](docs/PipelineRunSteps.md)
  - [PipelineRunartifacts](docs/PipelineRunartifacts.md)
- - [PipelineRuns](docs/PipelineRuns.md)
  - [PipelineStepImpl](docs/PipelineStepImpl.md)
  - [PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
  - [PipelinelatestRun](docs/PipelinelatestRun.md)
  - [PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
- - [Pipelines](docs/Pipelines.md)
  - [Queue](docs/Queue.md)
  - [QueueBlockedItem](docs/QueueBlockedItem.md)
  - [QueueItemImpl](docs/QueueItemImpl.md)
  - [QueueLeftItem](docs/QueueLeftItem.md)
  - [ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
- - [ScmOrganisations](docs/ScmOrganisations.md)
  - [StringParameterDefinition](docs/StringParameterDefinition.md)
  - [StringParameterValue](docs/StringParameterValue.md)
  - [SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
  - [User](docs/User.md)
- - [UserFavorites](docs/UserFavorites.md)
- - [Users](docs/Users.md)
 
 
 ## Documentation For Authorization
@@ -259,6 +255,7 @@ Class | Method | HTTP request | Description
 - **Type**: HTTP basic authentication
 
 ## jwt_auth
+
 
 - **Type**: API key
 - **API key parameter name**: Authorization

@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
@@ -9,27 +11,31 @@ import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class BranchImpl   {
+
+@JsonTypeName("BranchImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class BranchImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String displayName = null;
-  private @Valid Integer estimatedDurationInMillis = null;
-  private @Valid String fullDisplayName = null;
-  private @Valid String fullName = null;
-  private @Valid String name = null;
-  private @Valid String organization = null;
+  private @Valid String propertyClass;
+  private @Valid String displayName;
+  private @Valid Integer estimatedDurationInMillis;
+  private @Valid String fullDisplayName;
+  private @Valid String fullName;
+  private @Valid String name;
+  private @Valid String organization;
   private @Valid List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
-  private @Valid BranchImplpermissions permissions = null;
-  private @Valid Integer weatherScore = null;
-  private @Valid String pullRequest = null;
-  private @Valid BranchImpllinks links = null;
-  private @Valid PipelineRunImpl latestRun = null;
+  private @Valid BranchImplpermissions permissions;
+  private @Valid Integer weatherScore;
+  private @Valid String pullRequest;
+  private @Valid BranchImpllinks links;
+  private @Valid PipelineRunImpl latestRun;
 
   /**
    **/
@@ -39,16 +45,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public BranchImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -56,16 +66,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public BranchImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -73,16 +87,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
+
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  /**
+/**
    **/
   public BranchImpl fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
@@ -90,16 +108,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
     return fullDisplayName;
   }
+
+  @JsonProperty("fullDisplayName")
   public void setFullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
 
-  /**
+/**
    **/
   public BranchImpl fullName(String fullName) {
     this.fullName = fullName;
@@ -107,16 +129,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
+
+  @JsonProperty("fullName")
   public void setFullName(String fullName) {
     this.fullName = fullName;
   }
 
-  /**
+/**
    **/
   public BranchImpl name(String name) {
     this.name = name;
@@ -124,16 +150,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public BranchImpl organization(String organization) {
     this.organization = organization;
@@ -141,16 +171,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public BranchImpl parameters(List<StringParameterDefinition> parameters) {
     this.parameters = parameters;
@@ -158,16 +192,36 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
   public List<StringParameterDefinition> getParameters() {
     return parameters;
   }
+
+  @JsonProperty("parameters")
   public void setParameters(List<StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
-  /**
+  public BranchImpl addParametersItem(StringParameterDefinition parametersItem) {
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<StringParameterDefinition>();
+    }
+
+    this.parameters.add(parametersItem);
+    return this;
+  }
+
+  public BranchImpl removeParametersItem(StringParameterDefinition parametersItem) {
+    if (parametersItem != null && this.parameters != null) {
+      this.parameters.remove(parametersItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public BranchImpl permissions(BranchImplpermissions permissions) {
     this.permissions = permissions;
@@ -175,16 +229,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("permissions")
   public BranchImplpermissions getPermissions() {
     return permissions;
   }
+
+  @JsonProperty("permissions")
   public void setPermissions(BranchImplpermissions permissions) {
     this.permissions = permissions;
   }
 
-  /**
+/**
    **/
   public BranchImpl weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -192,16 +250,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
+
+  @JsonProperty("weatherScore")
   public void setWeatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  /**
+/**
    **/
   public BranchImpl pullRequest(String pullRequest) {
     this.pullRequest = pullRequest;
@@ -209,16 +271,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("pullRequest")
   public String getPullRequest() {
     return pullRequest;
   }
+
+  @JsonProperty("pullRequest")
   public void setPullRequest(String pullRequest) {
     this.pullRequest = pullRequest;
   }
 
-  /**
+/**
    **/
   public BranchImpl links(BranchImpllinks links) {
     this.links = links;
@@ -226,16 +292,20 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public BranchImpllinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(BranchImpllinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public BranchImpl latestRun(PipelineRunImpl latestRun) {
     this.latestRun = latestRun;
@@ -243,18 +313,22 @@ public class BranchImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
   public PipelineRunImpl getLatestRun() {
     return latestRun;
   }
+
+  @JsonProperty("latestRun")
   public void setLatestRun(PipelineRunImpl latestRun) {
     this.latestRun = latestRun;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -262,19 +336,19 @@ public class BranchImpl   {
       return false;
     }
     BranchImpl branchImpl = (BranchImpl) o;
-    return Objects.equals(propertyClass, branchImpl.propertyClass) &&
-        Objects.equals(displayName, branchImpl.displayName) &&
-        Objects.equals(estimatedDurationInMillis, branchImpl.estimatedDurationInMillis) &&
-        Objects.equals(fullDisplayName, branchImpl.fullDisplayName) &&
-        Objects.equals(fullName, branchImpl.fullName) &&
-        Objects.equals(name, branchImpl.name) &&
-        Objects.equals(organization, branchImpl.organization) &&
-        Objects.equals(parameters, branchImpl.parameters) &&
-        Objects.equals(permissions, branchImpl.permissions) &&
-        Objects.equals(weatherScore, branchImpl.weatherScore) &&
-        Objects.equals(pullRequest, branchImpl.pullRequest) &&
-        Objects.equals(links, branchImpl.links) &&
-        Objects.equals(latestRun, branchImpl.latestRun);
+    return Objects.equals(this.propertyClass, branchImpl.propertyClass) &&
+        Objects.equals(this.displayName, branchImpl.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, branchImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.fullDisplayName, branchImpl.fullDisplayName) &&
+        Objects.equals(this.fullName, branchImpl.fullName) &&
+        Objects.equals(this.name, branchImpl.name) &&
+        Objects.equals(this.organization, branchImpl.organization) &&
+        Objects.equals(this.parameters, branchImpl.parameters) &&
+        Objects.equals(this.permissions, branchImpl.permissions) &&
+        Objects.equals(this.weatherScore, branchImpl.weatherScore) &&
+        Objects.equals(this.pullRequest, branchImpl.pullRequest) &&
+        Objects.equals(this.links, branchImpl.links) &&
+        Objects.equals(this.latestRun, branchImpl.latestRun);
   }
 
   @Override
@@ -308,11 +382,13 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

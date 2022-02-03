@@ -10,23 +10,23 @@ import org.openapitools.server.api.model.FreeStyleProject;
 import org.openapitools.server.api.model.HudsonassignedLabels;
 import org.openapitools.server.api.model.UnlabeledLoadStatistics;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Hudson   {
   
-  private String propertyClass = null;
+  private String propertyClass;
   private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
-  private String mode = null;
-  private String nodeDescription = null;
-  private String nodeName = null;
-  private Integer numExecutors = null;
-  private String description = null;
+  private String mode;
+  private String nodeDescription;
+  private String nodeName;
+  private Integer numExecutors;
+  private String description;
   private List<FreeStyleProject> jobs = new ArrayList<>();
-  private AllView primaryView = null;
-  private Boolean quietingDown = null;
-  private Integer slaveAgentPort = null;
-  private UnlabeledLoadStatistics unlabeledLoad = null;
-  private Boolean useCrumbs = null;
-  private Boolean useSecurity = null;
+  private AllView primaryView;
+  private Boolean quietingDown;
+  private Integer slaveAgentPort;
+  private UnlabeledLoadStatistics unlabeledLoad;
+  private Boolean useCrumbs;
+  private Boolean useSecurity;
   private List<AllView> views = new ArrayList<>();
 
   public Hudson () {

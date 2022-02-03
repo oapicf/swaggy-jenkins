@@ -18,12 +18,12 @@ defmodule SwaggyJenkins.Model.GithubRepositories do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"_links" => GithubRepositorieslinks,
-    :"items" => [GithubRepository],
-    :"lastPage" => integer(),
-    :"nextPage" => integer(),
-    :"pageSize" => integer()
+    :"_class" => String.t | nil,
+    :"_links" => SwaggyJenkins.Model.GithubRepositorieslinks.t | nil,
+    :"items" => [SwaggyJenkins.Model.GithubRepository.t] | nil,
+    :"lastPage" => integer() | nil,
+    :"nextPage" => integer() | nil,
+    :"pageSize" => integer() | nil
   }
 end
 

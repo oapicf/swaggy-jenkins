@@ -9,7 +9,7 @@ namespace app\Models;
  */
 class Label1 {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

@@ -1,16 +1,11 @@
-#![allow(unused_imports, unused_qualifications, unused_extern_crates)]
-extern crate chrono;
-extern crate uuid;
+#![allow(unused_qualifications)]
 
+use crate::models;
+#[cfg(any(feature = "client", feature = "server"))]
+use crate::header;
 
-use serde::ser::Serializer;
-
-use std::collections::HashMap;
-use models;
-use swagger;
-
-
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AllView {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -36,22 +31,133 @@ impl AllView {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct Body {
-    #[serde(rename = "favorite")]
-    pub favorite: bool,
+/// Converts the AllView value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for AllView {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+        params.join(",").to_string()
+    }
 }
 
-impl Body {
-    pub fn new(favorite: bool, ) -> Body {
-        Body {
-            favorite: favorite,
+/// Converts Query Parameters representation (style=form, explode=false) to a AllView value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for AllView {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub name: Vec<String>,
+            pub url: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing AllView".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing AllView".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(AllView {
+            _class: intermediate_rep._class.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<AllView> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<AllView>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<AllView>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for AllView - value: {} is invalid {}",
+                     hdr_value, e))
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<AllView> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <AllView as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into AllView - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl AllView {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -63,7 +169,7 @@ pub struct BranchImpl {
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "fullDisplayName")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -91,7 +197,7 @@ pub struct BranchImpl {
 
     #[serde(rename = "weatherScore")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub weather_score: Option<i32>,
+    pub weather_score: Option<isize>,
 
     #[serde(rename = "pullRequest")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -127,11 +233,211 @@ impl BranchImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the BranchImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for BranchImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref full_display_name) = self.full_display_name {
+            params.push("fullDisplayName".to_string());
+            params.push(full_display_name.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+        // Skipping parameters in query parameter serialization
+
+        // Skipping permissions in query parameter serialization
+
+
+        if let Some(ref weather_score) = self.weather_score {
+            params.push("weatherScore".to_string());
+            params.push(weather_score.to_string());
+        }
+
+
+        if let Some(ref pull_request) = self.pull_request {
+            params.push("pullRequest".to_string());
+            params.push(pull_request.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+        // Skipping latestRun in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a BranchImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for BranchImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub display_name: Vec<String>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub full_display_name: Vec<String>,
+            pub full_name: Vec<String>,
+            pub name: Vec<String>,
+            pub organization: Vec<String>,
+            pub parameters: Vec<Vec<models::StringParameterDefinition>>,
+            pub permissions: Vec<models::BranchImplpermissions>,
+            pub weather_score: Vec<isize>,
+            pub pull_request: Vec<String>,
+            pub _links: Vec<models::BranchImpllinks>,
+            pub latest_run: Vec<models::PipelineRunImpl>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing BranchImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullDisplayName" => intermediate_rep.full_display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "parameters" => return std::result::Result::Err("Parsing a container in this style is not supported in BranchImpl".to_string()),
+                    "permissions" => intermediate_rep.permissions.push(<models::BranchImplpermissions as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "weatherScore" => intermediate_rep.weather_score.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pullRequest" => intermediate_rep.pull_request.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::BranchImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "latestRun" => intermediate_rep.latest_run.push(<models::PipelineRunImpl as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing BranchImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(BranchImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            full_display_name: intermediate_rep.full_display_name.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            parameters: intermediate_rep.parameters.into_iter().next(),
+            permissions: intermediate_rep.permissions.into_iter().next(),
+            weather_score: intermediate_rep.weather_score.into_iter().next(),
+            pull_request: intermediate_rep.pull_request.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            latest_run: intermediate_rep.latest_run.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<BranchImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<BranchImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<BranchImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for BranchImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<BranchImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <BranchImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into BranchImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl BranchImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImpllinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "actions")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -154,7 +460,7 @@ pub struct BranchImpllinks {
 impl BranchImpllinks {
     pub fn new() -> BranchImpllinks {
         BranchImpllinks {
-            _self: None,
+            self_: None,
             actions: None,
             runs: None,
             queue: None,
@@ -163,7 +469,135 @@ impl BranchImpllinks {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the BranchImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for BranchImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+        // Skipping actions in query parameter serialization
+
+        // Skipping runs in query parameter serialization
+
+        // Skipping queue in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a BranchImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for BranchImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub actions: Vec<models::Link>,
+            pub runs: Vec<models::Link>,
+            pub queue: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing BranchImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => intermediate_rep.actions.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "runs" => intermediate_rep.runs.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "queue" => intermediate_rep.queue.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing BranchImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(BranchImpllinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            runs: intermediate_rep.runs.into_iter().next(),
+            queue: intermediate_rep.queue.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<BranchImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<BranchImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<BranchImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for BranchImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<BranchImpllinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <BranchImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into BranchImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl BranchImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImplpermissions {
     #[serde(rename = "create")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -199,7 +633,151 @@ impl BranchImplpermissions {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the BranchImplpermissions value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for BranchImplpermissions {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref create) = self.create {
+            params.push("create".to_string());
+            params.push(create.to_string());
+        }
+
+
+        if let Some(ref read) = self.read {
+            params.push("read".to_string());
+            params.push(read.to_string());
+        }
+
+
+        if let Some(ref start) = self.start {
+            params.push("start".to_string());
+            params.push(start.to_string());
+        }
+
+
+        if let Some(ref stop) = self.stop {
+            params.push("stop".to_string());
+            params.push(stop.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a BranchImplpermissions value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for BranchImplpermissions {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub create: Vec<bool>,
+            pub read: Vec<bool>,
+            pub start: Vec<bool>,
+            pub stop: Vec<bool>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing BranchImplpermissions".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "create" => intermediate_rep.create.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "read" => intermediate_rep.read.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "start" => intermediate_rep.start.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "stop" => intermediate_rep.stop.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing BranchImplpermissions".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(BranchImplpermissions {
+            create: intermediate_rep.create.into_iter().next(),
+            read: intermediate_rep.read.into_iter().next(),
+            start: intermediate_rep.start.into_iter().next(),
+            stop: intermediate_rep.stop.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<BranchImplpermissions> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<BranchImplpermissions>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<BranchImplpermissions>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for BranchImplpermissions - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<BranchImplpermissions> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <BranchImplpermissions as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into BranchImplpermissions - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl BranchImplpermissions {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CauseAction {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -220,7 +798,120 @@ impl CauseAction {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the CauseAction value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for CauseAction {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping causes in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a CauseAction value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for CauseAction {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub causes: Vec<Vec<models::CauseUserIdCause>>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing CauseAction".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "causes" => return std::result::Result::Err("Parsing a container in this style is not supported in CauseAction".to_string()),
+                    _ => return std::result::Result::Err("Unexpected key while parsing CauseAction".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(CauseAction {
+            _class: intermediate_rep._class.into_iter().next(),
+            causes: intermediate_rep.causes.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<CauseAction> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<CauseAction>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<CauseAction>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for CauseAction - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<CauseAction> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <CauseAction as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into CauseAction - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl CauseAction {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CauseUserIdCause {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -251,7 +942,142 @@ impl CauseUserIdCause {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the CauseUserIdCause value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for CauseUserIdCause {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref short_description) = self.short_description {
+            params.push("shortDescription".to_string());
+            params.push(short_description.to_string());
+        }
+
+
+        if let Some(ref user_id) = self.user_id {
+            params.push("userId".to_string());
+            params.push(user_id.to_string());
+        }
+
+
+        if let Some(ref user_name) = self.user_name {
+            params.push("userName".to_string());
+            params.push(user_name.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a CauseUserIdCause value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for CauseUserIdCause {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub short_description: Vec<String>,
+            pub user_id: Vec<String>,
+            pub user_name: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing CauseUserIdCause".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "shortDescription" => intermediate_rep.short_description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "userId" => intermediate_rep.user_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "userName" => intermediate_rep.user_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing CauseUserIdCause".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(CauseUserIdCause {
+            _class: intermediate_rep._class.into_iter().next(),
+            short_description: intermediate_rep.short_description.into_iter().next(),
+            user_id: intermediate_rep.user_id.into_iter().next(),
+            user_name: intermediate_rep.user_name.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<CauseUserIdCause> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<CauseUserIdCause>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<CauseUserIdCause>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for CauseUserIdCause - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<CauseUserIdCause> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <CauseUserIdCause as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into CauseUserIdCause - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl CauseUserIdCause {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ClassesByClass {
     #[serde(rename = "classes")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -272,7 +1098,124 @@ impl ClassesByClass {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ClassesByClass value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ClassesByClass {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref classes) = self.classes {
+            params.push("classes".to_string());
+            params.push(classes.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(",").to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ClassesByClass value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ClassesByClass {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub classes: Vec<Vec<String>>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ClassesByClass".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "classes" => return std::result::Result::Err("Parsing a container in this style is not supported in ClassesByClass".to_string()),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ClassesByClass".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ClassesByClass {
+            classes: intermediate_rep.classes.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ClassesByClass> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ClassesByClass>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ClassesByClass>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ClassesByClass - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ClassesByClass> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ClassesByClass as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ClassesByClass - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ClassesByClass {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ClockDifference {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -280,7 +1223,7 @@ pub struct ClockDifference {
 
     #[serde(rename = "diff")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub diff: Option<i32>,
+    pub diff: Option<isize>,
 
 }
 
@@ -293,7 +1236,124 @@ impl ClockDifference {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ClockDifference value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ClockDifference {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref diff) = self.diff {
+            params.push("diff".to_string());
+            params.push(diff.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ClockDifference value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ClockDifference {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub diff: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ClockDifference".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "diff" => intermediate_rep.diff.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ClockDifference".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ClockDifference {
+            _class: intermediate_rep._class.into_iter().next(),
+            diff: intermediate_rep.diff.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ClockDifference> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ClockDifference>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ClockDifference>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ClockDifference - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ClockDifference> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ClockDifference as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ClockDifference - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ClockDifference {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ComputerSet {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -301,7 +1361,7 @@ pub struct ComputerSet {
 
     #[serde(rename = "busyExecutors")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub busy_executors: Option<i32>,
+    pub busy_executors: Option<isize>,
 
     #[serde(rename = "computer")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -313,7 +1373,7 @@ pub struct ComputerSet {
 
     #[serde(rename = "totalExecutors")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub total_executors: Option<i32>,
+    pub total_executors: Option<isize>,
 
 }
 
@@ -329,7 +1389,147 @@ impl ComputerSet {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ComputerSet value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ComputerSet {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref busy_executors) = self.busy_executors {
+            params.push("busyExecutors".to_string());
+            params.push(busy_executors.to_string());
+        }
+
+        // Skipping computer in query parameter serialization
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref total_executors) = self.total_executors {
+            params.push("totalExecutors".to_string());
+            params.push(total_executors.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ComputerSet value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ComputerSet {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub busy_executors: Vec<isize>,
+            pub computer: Vec<Vec<models::HudsonMasterComputer>>,
+            pub display_name: Vec<String>,
+            pub total_executors: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ComputerSet".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "busyExecutors" => intermediate_rep.busy_executors.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "computer" => return std::result::Result::Err("Parsing a container in this style is not supported in ComputerSet".to_string()),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "totalExecutors" => intermediate_rep.total_executors.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ComputerSet".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ComputerSet {
+            _class: intermediate_rep._class.into_iter().next(),
+            busy_executors: intermediate_rep.busy_executors.into_iter().next(),
+            computer: intermediate_rep.computer.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            total_executors: intermediate_rep.total_executors.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ComputerSet> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ComputerSet>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ComputerSet>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ComputerSet - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ComputerSet> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ComputerSet as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ComputerSet - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ComputerSet {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DefaultCrumbIssuer {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -355,7 +1555,133 @@ impl DefaultCrumbIssuer {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the DefaultCrumbIssuer value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for DefaultCrumbIssuer {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref crumb) = self.crumb {
+            params.push("crumb".to_string());
+            params.push(crumb.to_string());
+        }
+
+
+        if let Some(ref crumb_request_field) = self.crumb_request_field {
+            params.push("crumbRequestField".to_string());
+            params.push(crumb_request_field.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a DefaultCrumbIssuer value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for DefaultCrumbIssuer {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub crumb: Vec<String>,
+            pub crumb_request_field: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing DefaultCrumbIssuer".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "crumb" => intermediate_rep.crumb.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "crumbRequestField" => intermediate_rep.crumb_request_field.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing DefaultCrumbIssuer".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(DefaultCrumbIssuer {
+            _class: intermediate_rep._class.into_iter().next(),
+            crumb: intermediate_rep.crumb.into_iter().next(),
+            crumb_request_field: intermediate_rep.crumb_request_field.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<DefaultCrumbIssuer> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<DefaultCrumbIssuer>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<DefaultCrumbIssuer>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for DefaultCrumbIssuer - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<DefaultCrumbIssuer> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <DefaultCrumbIssuer as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into DefaultCrumbIssuer - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl DefaultCrumbIssuer {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DiskSpaceMonitorDescriptorDiskSpace {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -363,7 +1689,7 @@ pub struct DiskSpaceMonitorDescriptorDiskSpace {
 
     #[serde(rename = "timestamp")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub timestamp: Option<i32>,
+    pub timestamp: Option<isize>,
 
     #[serde(rename = "path")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -371,7 +1697,7 @@ pub struct DiskSpaceMonitorDescriptorDiskSpace {
 
     #[serde(rename = "size")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub size: Option<i32>,
+    pub size: Option<isize>,
 
 }
 
@@ -386,7 +1712,142 @@ impl DiskSpaceMonitorDescriptorDiskSpace {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the DiskSpaceMonitorDescriptorDiskSpace value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for DiskSpaceMonitorDescriptorDiskSpace {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref timestamp) = self.timestamp {
+            params.push("timestamp".to_string());
+            params.push(timestamp.to_string());
+        }
+
+
+        if let Some(ref path) = self.path {
+            params.push("path".to_string());
+            params.push(path.to_string());
+        }
+
+
+        if let Some(ref size) = self.size {
+            params.push("size".to_string());
+            params.push(size.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a DiskSpaceMonitorDescriptorDiskSpace value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for DiskSpaceMonitorDescriptorDiskSpace {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub timestamp: Vec<isize>,
+            pub path: Vec<String>,
+            pub size: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing DiskSpaceMonitorDescriptorDiskSpace".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "timestamp" => intermediate_rep.timestamp.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "path" => intermediate_rep.path.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "size" => intermediate_rep.size.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing DiskSpaceMonitorDescriptorDiskSpace".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(DiskSpaceMonitorDescriptorDiskSpace {
+            _class: intermediate_rep._class.into_iter().next(),
+            timestamp: intermediate_rep.timestamp.into_iter().next(),
+            path: intermediate_rep.path.into_iter().next(),
+            size: intermediate_rep.size.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<DiskSpaceMonitorDescriptorDiskSpace> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<DiskSpaceMonitorDescriptorDiskSpace>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<DiskSpaceMonitorDescriptorDiskSpace>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for DiskSpaceMonitorDescriptorDiskSpace - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<DiskSpaceMonitorDescriptorDiskSpace> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into DiskSpaceMonitorDescriptorDiskSpace - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl DiskSpaceMonitorDescriptorDiskSpace {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct EmptyChangeLogSet {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -407,7 +1868,124 @@ impl EmptyChangeLogSet {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the EmptyChangeLogSet value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for EmptyChangeLogSet {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref kind) = self.kind {
+            params.push("kind".to_string());
+            params.push(kind.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a EmptyChangeLogSet value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for EmptyChangeLogSet {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub kind: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing EmptyChangeLogSet".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "kind" => intermediate_rep.kind.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing EmptyChangeLogSet".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(EmptyChangeLogSet {
+            _class: intermediate_rep._class.into_iter().next(),
+            kind: intermediate_rep.kind.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<EmptyChangeLogSet> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<EmptyChangeLogSet>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<EmptyChangeLogSet>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for EmptyChangeLogSet - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<EmptyChangeLogSet> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <EmptyChangeLogSet as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into EmptyChangeLogSet - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl EmptyChangeLogSet {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1 {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -433,11 +2011,129 @@ impl ExtensionClassContainerImpl1 {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ExtensionClassContainerImpl1 value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ExtensionClassContainerImpl1 {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+        // Skipping map in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ExtensionClassContainerImpl1 value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ExtensionClassContainerImpl1 {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::ExtensionClassContainerImpl1links>,
+            pub map: Vec<models::ExtensionClassContainerImpl1map>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ExtensionClassContainerImpl1".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::ExtensionClassContainerImpl1links as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "map" => intermediate_rep.map.push(<models::ExtensionClassContainerImpl1map as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ExtensionClassContainerImpl1".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ExtensionClassContainerImpl1 {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            map: intermediate_rep.map.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ExtensionClassContainerImpl1> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassContainerImpl1>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ExtensionClassContainerImpl1>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ExtensionClassContainerImpl1 - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ExtensionClassContainerImpl1> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ExtensionClassContainerImpl1 as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ExtensionClassContainerImpl1 - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ExtensionClassContainerImpl1 {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1links {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -448,13 +2144,126 @@ pub struct ExtensionClassContainerImpl1links {
 impl ExtensionClassContainerImpl1links {
     pub fn new() -> ExtensionClassContainerImpl1links {
         ExtensionClassContainerImpl1links {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ExtensionClassContainerImpl1links value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ExtensionClassContainerImpl1links {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ExtensionClassContainerImpl1links value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ExtensionClassContainerImpl1links {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ExtensionClassContainerImpl1links".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ExtensionClassContainerImpl1links".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ExtensionClassContainerImpl1links {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ExtensionClassContainerImpl1links> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassContainerImpl1links>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ExtensionClassContainerImpl1links>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ExtensionClassContainerImpl1links - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ExtensionClassContainerImpl1links> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ExtensionClassContainerImpl1links as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ExtensionClassContainerImpl1links - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ExtensionClassContainerImpl1links {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1map {
     #[serde(rename = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -480,7 +2289,125 @@ impl ExtensionClassContainerImpl1map {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ExtensionClassContainerImpl1map value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ExtensionClassContainerImpl1map {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping io.jenkins.blueocean.service.embedded.rest.PipelineImpl in query parameter serialization
+
+        // Skipping io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ExtensionClassContainerImpl1map value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ExtensionClassContainerImpl1map {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub io_jenkins_blueocean_service_embedded_rest_pipeline_impl: Vec<models::ExtensionClassImpl>,
+            pub io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: Vec<models::ExtensionClassImpl>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ExtensionClassContainerImpl1map".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "io.jenkins.blueocean.service.embedded.rest.PipelineImpl" => intermediate_rep.io_jenkins_blueocean_service_embedded_rest_pipeline_impl.push(<models::ExtensionClassImpl as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl" => intermediate_rep.io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl.push(<models::ExtensionClassImpl as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ExtensionClassContainerImpl1map".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ExtensionClassContainerImpl1map {
+            io_jenkins_blueocean_service_embedded_rest_pipeline_impl: intermediate_rep.io_jenkins_blueocean_service_embedded_rest_pipeline_impl.into_iter().next(),
+            io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: intermediate_rep.io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ExtensionClassContainerImpl1map> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassContainerImpl1map>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ExtensionClassContainerImpl1map>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ExtensionClassContainerImpl1map - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ExtensionClassContainerImpl1map> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ExtensionClassContainerImpl1map as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ExtensionClassContainerImpl1map - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ExtensionClassContainerImpl1map {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -506,11 +2433,133 @@ impl ExtensionClassImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ExtensionClassImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ExtensionClassImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref classes) = self.classes {
+            params.push("classes".to_string());
+            params.push(classes.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(",").to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ExtensionClassImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ExtensionClassImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::ExtensionClassImpllinks>,
+            pub classes: Vec<Vec<String>>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ExtensionClassImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::ExtensionClassImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "classes" => return std::result::Result::Err("Parsing a container in this style is not supported in ExtensionClassImpl".to_string()),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ExtensionClassImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ExtensionClassImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            classes: intermediate_rep.classes.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ExtensionClassImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ExtensionClassImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ExtensionClassImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ExtensionClassImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ExtensionClassImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ExtensionClassImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ExtensionClassImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassImpllinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -521,13 +2570,126 @@ pub struct ExtensionClassImpllinks {
 impl ExtensionClassImpllinks {
     pub fn new() -> ExtensionClassImpllinks {
         ExtensionClassImpllinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ExtensionClassImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ExtensionClassImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ExtensionClassImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ExtensionClassImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ExtensionClassImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ExtensionClassImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ExtensionClassImpllinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ExtensionClassImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ExtensionClassImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ExtensionClassImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ExtensionClassImpllinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ExtensionClassImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ExtensionClassImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ExtensionClassImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FavoriteImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -553,11 +2715,129 @@ impl FavoriteImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the FavoriteImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for FavoriteImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+        // Skipping item in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a FavoriteImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for FavoriteImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::FavoriteImpllinks>,
+            pub item: Vec<models::PipelineImpl>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing FavoriteImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::FavoriteImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "item" => intermediate_rep.item.push(<models::PipelineImpl as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing FavoriteImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(FavoriteImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            item: intermediate_rep.item.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<FavoriteImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<FavoriteImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<FavoriteImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for FavoriteImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<FavoriteImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <FavoriteImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into FavoriteImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl FavoriteImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FavoriteImpllinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -568,13 +2848,126 @@ pub struct FavoriteImpllinks {
 impl FavoriteImpllinks {
     pub fn new() -> FavoriteImpllinks {
         FavoriteImpllinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the FavoriteImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for FavoriteImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a FavoriteImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for FavoriteImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing FavoriteImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing FavoriteImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(FavoriteImpllinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<FavoriteImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<FavoriteImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<FavoriteImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for FavoriteImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<FavoriteImpllinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <FavoriteImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into FavoriteImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl FavoriteImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleBuild {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -582,7 +2975,7 @@ pub struct FreeStyleBuild {
 
     #[serde(rename = "number")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number: Option<i32>,
+    pub number: Option<isize>,
 
     #[serde(rename = "url")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -606,11 +2999,11 @@ pub struct FreeStyleBuild {
 
     #[serde(rename = "duration")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration: Option<i32>,
+    pub duration: Option<isize>,
 
     #[serde(rename = "estimatedDuration")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration: Option<i32>,
+    pub estimated_duration: Option<isize>,
 
     #[serde(rename = "executor")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -630,7 +3023,7 @@ pub struct FreeStyleBuild {
 
     #[serde(rename = "queueId")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub queue_id: Option<i32>,
+    pub queue_id: Option<isize>,
 
     #[serde(rename = "result")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -638,7 +3031,7 @@ pub struct FreeStyleBuild {
 
     #[serde(rename = "timestamp")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub timestamp: Option<i32>,
+    pub timestamp: Option<isize>,
 
     #[serde(rename = "builtOn")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -675,7 +3068,260 @@ impl FreeStyleBuild {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the FreeStyleBuild value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for FreeStyleBuild {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref number) = self.number {
+            params.push("number".to_string());
+            params.push(number.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+        // Skipping actions in query parameter serialization
+
+
+        if let Some(ref building) = self.building {
+            params.push("building".to_string());
+            params.push(building.to_string());
+        }
+
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref duration) = self.duration {
+            params.push("duration".to_string());
+            params.push(duration.to_string());
+        }
+
+
+        if let Some(ref estimated_duration) = self.estimated_duration {
+            params.push("estimatedDuration".to_string());
+            params.push(estimated_duration.to_string());
+        }
+
+
+        if let Some(ref executor) = self.executor {
+            params.push("executor".to_string());
+            params.push(executor.to_string());
+        }
+
+
+        if let Some(ref full_display_name) = self.full_display_name {
+            params.push("fullDisplayName".to_string());
+            params.push(full_display_name.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref keep_log) = self.keep_log {
+            params.push("keepLog".to_string());
+            params.push(keep_log.to_string());
+        }
+
+
+        if let Some(ref queue_id) = self.queue_id {
+            params.push("queueId".to_string());
+            params.push(queue_id.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref timestamp) = self.timestamp {
+            params.push("timestamp".to_string());
+            params.push(timestamp.to_string());
+        }
+
+
+        if let Some(ref built_on) = self.built_on {
+            params.push("builtOn".to_string());
+            params.push(built_on.to_string());
+        }
+
+        // Skipping changeSet in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a FreeStyleBuild value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for FreeStyleBuild {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub number: Vec<isize>,
+            pub url: Vec<String>,
+            pub actions: Vec<Vec<models::CauseAction>>,
+            pub building: Vec<bool>,
+            pub description: Vec<String>,
+            pub display_name: Vec<String>,
+            pub duration: Vec<isize>,
+            pub estimated_duration: Vec<isize>,
+            pub executor: Vec<String>,
+            pub full_display_name: Vec<String>,
+            pub id: Vec<String>,
+            pub keep_log: Vec<bool>,
+            pub queue_id: Vec<isize>,
+            pub result: Vec<String>,
+            pub timestamp: Vec<isize>,
+            pub built_on: Vec<String>,
+            pub change_set: Vec<models::EmptyChangeLogSet>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing FreeStyleBuild".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "number" => intermediate_rep.number.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => return std::result::Result::Err("Parsing a container in this style is not supported in FreeStyleBuild".to_string()),
+                    "building" => intermediate_rep.building.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "duration" => intermediate_rep.duration.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDuration" => intermediate_rep.estimated_duration.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "executor" => intermediate_rep.executor.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullDisplayName" => intermediate_rep.full_display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "keepLog" => intermediate_rep.keep_log.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "queueId" => intermediate_rep.queue_id.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "timestamp" => intermediate_rep.timestamp.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "builtOn" => intermediate_rep.built_on.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "changeSet" => intermediate_rep.change_set.push(<models::EmptyChangeLogSet as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing FreeStyleBuild".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(FreeStyleBuild {
+            _class: intermediate_rep._class.into_iter().next(),
+            number: intermediate_rep.number.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            building: intermediate_rep.building.into_iter().next(),
+            description: intermediate_rep.description.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            duration: intermediate_rep.duration.into_iter().next(),
+            estimated_duration: intermediate_rep.estimated_duration.into_iter().next(),
+            executor: intermediate_rep.executor.into_iter().next(),
+            full_display_name: intermediate_rep.full_display_name.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            keep_log: intermediate_rep.keep_log.into_iter().next(),
+            queue_id: intermediate_rep.queue_id.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            timestamp: intermediate_rep.timestamp.into_iter().next(),
+            built_on: intermediate_rep.built_on.into_iter().next(),
+            change_set: intermediate_rep.change_set.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<FreeStyleBuild> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleBuild>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<FreeStyleBuild>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for FreeStyleBuild - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<FreeStyleBuild> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <FreeStyleBuild as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into FreeStyleBuild - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl FreeStyleBuild {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProject {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -771,7 +3417,7 @@ pub struct FreeStyleProject {
 
     #[serde(rename = "nextBuildNumber")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub next_build_number: Option<i32>,
+    pub next_build_number: Option<isize>,
 
     #[serde(rename = "queueItem")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -821,7 +3467,313 @@ impl FreeStyleProject {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the FreeStyleProject value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for FreeStyleProject {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref color) = self.color {
+            params.push("color".to_string());
+            params.push(color.to_string());
+        }
+
+        // Skipping actions in query parameter serialization
+
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref display_name_or_null) = self.display_name_or_null {
+            params.push("displayNameOrNull".to_string());
+            params.push(display_name_or_null.to_string());
+        }
+
+
+        if let Some(ref full_display_name) = self.full_display_name {
+            params.push("fullDisplayName".to_string());
+            params.push(full_display_name.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+
+        if let Some(ref buildable) = self.buildable {
+            params.push("buildable".to_string());
+            params.push(buildable.to_string());
+        }
+
+        // Skipping builds in query parameter serialization
+
+        // Skipping firstBuild in query parameter serialization
+
+        // Skipping healthReport in query parameter serialization
+
+
+        if let Some(ref in_queue) = self.in_queue {
+            params.push("inQueue".to_string());
+            params.push(in_queue.to_string());
+        }
+
+
+        if let Some(ref keep_dependencies) = self.keep_dependencies {
+            params.push("keepDependencies".to_string());
+            params.push(keep_dependencies.to_string());
+        }
+
+        // Skipping lastBuild in query parameter serialization
+
+        // Skipping lastCompletedBuild in query parameter serialization
+
+
+        if let Some(ref last_failed_build) = self.last_failed_build {
+            params.push("lastFailedBuild".to_string());
+            params.push(last_failed_build.to_string());
+        }
+
+        // Skipping lastStableBuild in query parameter serialization
+
+        // Skipping lastSuccessfulBuild in query parameter serialization
+
+
+        if let Some(ref last_unstable_build) = self.last_unstable_build {
+            params.push("lastUnstableBuild".to_string());
+            params.push(last_unstable_build.to_string());
+        }
+
+
+        if let Some(ref last_unsuccessful_build) = self.last_unsuccessful_build {
+            params.push("lastUnsuccessfulBuild".to_string());
+            params.push(last_unsuccessful_build.to_string());
+        }
+
+
+        if let Some(ref next_build_number) = self.next_build_number {
+            params.push("nextBuildNumber".to_string());
+            params.push(next_build_number.to_string());
+        }
+
+
+        if let Some(ref queue_item) = self.queue_item {
+            params.push("queueItem".to_string());
+            params.push(queue_item.to_string());
+        }
+
+
+        if let Some(ref concurrent_build) = self.concurrent_build {
+            params.push("concurrentBuild".to_string());
+            params.push(concurrent_build.to_string());
+        }
+
+        // Skipping scm in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a FreeStyleProject value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for FreeStyleProject {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub name: Vec<String>,
+            pub url: Vec<String>,
+            pub color: Vec<String>,
+            pub actions: Vec<Vec<models::FreeStyleProjectactions>>,
+            pub description: Vec<String>,
+            pub display_name: Vec<String>,
+            pub display_name_or_null: Vec<String>,
+            pub full_display_name: Vec<String>,
+            pub full_name: Vec<String>,
+            pub buildable: Vec<bool>,
+            pub builds: Vec<Vec<models::FreeStyleBuild>>,
+            pub first_build: Vec<models::FreeStyleBuild>,
+            pub health_report: Vec<Vec<models::FreeStyleProjecthealthReport>>,
+            pub in_queue: Vec<bool>,
+            pub keep_dependencies: Vec<bool>,
+            pub last_build: Vec<models::FreeStyleBuild>,
+            pub last_completed_build: Vec<models::FreeStyleBuild>,
+            pub last_failed_build: Vec<String>,
+            pub last_stable_build: Vec<models::FreeStyleBuild>,
+            pub last_successful_build: Vec<models::FreeStyleBuild>,
+            pub last_unstable_build: Vec<String>,
+            pub last_unsuccessful_build: Vec<String>,
+            pub next_build_number: Vec<isize>,
+            pub queue_item: Vec<String>,
+            pub concurrent_build: Vec<bool>,
+            pub scm: Vec<models::NullScm>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing FreeStyleProject".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "color" => intermediate_rep.color.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => return std::result::Result::Err("Parsing a container in this style is not supported in FreeStyleProject".to_string()),
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayNameOrNull" => intermediate_rep.display_name_or_null.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullDisplayName" => intermediate_rep.full_display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "buildable" => intermediate_rep.buildable.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "builds" => return std::result::Result::Err("Parsing a container in this style is not supported in FreeStyleProject".to_string()),
+                    "firstBuild" => intermediate_rep.first_build.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "healthReport" => return std::result::Result::Err("Parsing a container in this style is not supported in FreeStyleProject".to_string()),
+                    "inQueue" => intermediate_rep.in_queue.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "keepDependencies" => intermediate_rep.keep_dependencies.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastBuild" => intermediate_rep.last_build.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastCompletedBuild" => intermediate_rep.last_completed_build.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastFailedBuild" => intermediate_rep.last_failed_build.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastStableBuild" => intermediate_rep.last_stable_build.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastSuccessfulBuild" => intermediate_rep.last_successful_build.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastUnstableBuild" => intermediate_rep.last_unstable_build.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "lastUnsuccessfulBuild" => intermediate_rep.last_unsuccessful_build.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "nextBuildNumber" => intermediate_rep.next_build_number.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "queueItem" => intermediate_rep.queue_item.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "concurrentBuild" => intermediate_rep.concurrent_build.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "scm" => intermediate_rep.scm.push(<models::NullScm as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing FreeStyleProject".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(FreeStyleProject {
+            _class: intermediate_rep._class.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            color: intermediate_rep.color.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            description: intermediate_rep.description.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            display_name_or_null: intermediate_rep.display_name_or_null.into_iter().next(),
+            full_display_name: intermediate_rep.full_display_name.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+            buildable: intermediate_rep.buildable.into_iter().next(),
+            builds: intermediate_rep.builds.into_iter().next(),
+            first_build: intermediate_rep.first_build.into_iter().next(),
+            health_report: intermediate_rep.health_report.into_iter().next(),
+            in_queue: intermediate_rep.in_queue.into_iter().next(),
+            keep_dependencies: intermediate_rep.keep_dependencies.into_iter().next(),
+            last_build: intermediate_rep.last_build.into_iter().next(),
+            last_completed_build: intermediate_rep.last_completed_build.into_iter().next(),
+            last_failed_build: intermediate_rep.last_failed_build.into_iter().next(),
+            last_stable_build: intermediate_rep.last_stable_build.into_iter().next(),
+            last_successful_build: intermediate_rep.last_successful_build.into_iter().next(),
+            last_unstable_build: intermediate_rep.last_unstable_build.into_iter().next(),
+            last_unsuccessful_build: intermediate_rep.last_unsuccessful_build.into_iter().next(),
+            next_build_number: intermediate_rep.next_build_number.into_iter().next(),
+            queue_item: intermediate_rep.queue_item.into_iter().next(),
+            concurrent_build: intermediate_rep.concurrent_build.into_iter().next(),
+            scm: intermediate_rep.scm.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<FreeStyleProject> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleProject>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<FreeStyleProject>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for FreeStyleProject - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<FreeStyleProject> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <FreeStyleProject as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into FreeStyleProject - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl FreeStyleProject {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProjectactions {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -837,7 +3789,115 @@ impl FreeStyleProjectactions {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the FreeStyleProjectactions value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for FreeStyleProjectactions {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a FreeStyleProjectactions value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for FreeStyleProjectactions {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing FreeStyleProjectactions".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing FreeStyleProjectactions".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(FreeStyleProjectactions {
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<FreeStyleProjectactions> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleProjectactions>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<FreeStyleProjectactions>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for FreeStyleProjectactions - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<FreeStyleProjectactions> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <FreeStyleProjectactions as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into FreeStyleProjectactions - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl FreeStyleProjectactions {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProjecthealthReport {
     #[serde(rename = "description")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -853,7 +3913,7 @@ pub struct FreeStyleProjecthealthReport {
 
     #[serde(rename = "score")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub score: Option<i32>,
+    pub score: Option<isize>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -873,7 +3933,151 @@ impl FreeStyleProjecthealthReport {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the FreeStyleProjecthealthReport value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for FreeStyleProjecthealthReport {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+
+        if let Some(ref icon_class_name) = self.icon_class_name {
+            params.push("iconClassName".to_string());
+            params.push(icon_class_name.to_string());
+        }
+
+
+        if let Some(ref icon_url) = self.icon_url {
+            params.push("iconUrl".to_string());
+            params.push(icon_url.to_string());
+        }
+
+
+        if let Some(ref score) = self.score {
+            params.push("score".to_string());
+            params.push(score.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a FreeStyleProjecthealthReport value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for FreeStyleProjecthealthReport {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub description: Vec<String>,
+            pub icon_class_name: Vec<String>,
+            pub icon_url: Vec<String>,
+            pub score: Vec<isize>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing FreeStyleProjecthealthReport".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "iconClassName" => intermediate_rep.icon_class_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "iconUrl" => intermediate_rep.icon_url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "score" => intermediate_rep.score.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing FreeStyleProjecthealthReport".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(FreeStyleProjecthealthReport {
+            description: intermediate_rep.description.into_iter().next(),
+            icon_class_name: intermediate_rep.icon_class_name.into_iter().next(),
+            icon_url: intermediate_rep.icon_url.into_iter().next(),
+            score: intermediate_rep.score.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<FreeStyleProjecthealthReport> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleProjecthealthReport>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<FreeStyleProjecthealthReport>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for FreeStyleProjecthealthReport - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<FreeStyleProjecthealthReport> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <FreeStyleProjecthealthReport as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into FreeStyleProjecthealthReport - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl FreeStyleProjecthealthReport {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GenericResource {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -885,7 +4089,7 @@ pub struct GenericResource {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -914,7 +4118,160 @@ impl GenericResource {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GenericResource value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GenericResource {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GenericResource value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GenericResource {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub display_name: Vec<String>,
+            pub duration_in_millis: Vec<isize>,
+            pub id: Vec<String>,
+            pub result: Vec<String>,
+            pub start_time: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GenericResource".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GenericResource".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GenericResource {
+            _class: intermediate_rep._class.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GenericResource> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GenericResource>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GenericResource>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GenericResource - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GenericResource> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GenericResource as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GenericResource - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GenericResource {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubContent {
     #[serde(rename = "name")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -934,7 +4291,7 @@ pub struct GithubContent {
 
     #[serde(rename = "size")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub size: Option<i32>,
+    pub size: Option<isize>,
 
     #[serde(rename = "owner")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -965,7 +4322,178 @@ impl GithubContent {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubContent value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubContent {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref sha) = self.sha {
+            params.push("sha".to_string());
+            params.push(sha.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref repo) = self.repo {
+            params.push("repo".to_string());
+            params.push(repo.to_string());
+        }
+
+
+        if let Some(ref size) = self.size {
+            params.push("size".to_string());
+            params.push(size.to_string());
+        }
+
+
+        if let Some(ref owner) = self.owner {
+            params.push("owner".to_string());
+            params.push(owner.to_string());
+        }
+
+
+        if let Some(ref path) = self.path {
+            params.push("path".to_string());
+            params.push(path.to_string());
+        }
+
+
+        if let Some(ref base64_data) = self.base64_data {
+            params.push("base64Data".to_string());
+            params.push(base64_data.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubContent value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubContent {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub name: Vec<String>,
+            pub sha: Vec<String>,
+            pub _class: Vec<String>,
+            pub repo: Vec<String>,
+            pub size: Vec<isize>,
+            pub owner: Vec<String>,
+            pub path: Vec<String>,
+            pub base64_data: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubContent".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "sha" => intermediate_rep.sha.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "repo" => intermediate_rep.repo.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "size" => intermediate_rep.size.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "owner" => intermediate_rep.owner.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "path" => intermediate_rep.path.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "base64Data" => intermediate_rep.base64_data.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubContent".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubContent {
+            name: intermediate_rep.name.into_iter().next(),
+            sha: intermediate_rep.sha.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+            repo: intermediate_rep.repo.into_iter().next(),
+            size: intermediate_rep.size.into_iter().next(),
+            owner: intermediate_rep.owner.into_iter().next(),
+            path: intermediate_rep.path.into_iter().next(),
+            base64_data: intermediate_rep.base64_data.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubContent> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubContent>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubContent>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubContent - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubContent> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubContent as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubContent - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubContent {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubFile {
     #[serde(rename = "content")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -986,7 +4514,120 @@ impl GithubFile {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubFile value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubFile {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping content in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubFile value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubFile {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub content: Vec<models::GithubContent>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubFile".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "content" => intermediate_rep.content.push(<models::GithubContent as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubFile".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubFile {
+            content: intermediate_rep.content.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubFile> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubFile>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubFile>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubFile - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubFile> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubFile as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubFile - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubFile {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubOrganization {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1017,7 +4658,138 @@ impl GithubOrganization {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubOrganization value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubOrganization {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref jenkins_organization_pipeline) = self.jenkins_organization_pipeline {
+            params.push("jenkinsOrganizationPipeline".to_string());
+            params.push(jenkins_organization_pipeline.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubOrganization value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubOrganization {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::GithubOrganizationlinks>,
+            pub jenkins_organization_pipeline: Vec<bool>,
+            pub name: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubOrganization".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::GithubOrganizationlinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "jenkinsOrganizationPipeline" => intermediate_rep.jenkins_organization_pipeline.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubOrganization".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubOrganization {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            jenkins_organization_pipeline: intermediate_rep.jenkins_organization_pipeline.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubOrganization> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubOrganization>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubOrganization>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubOrganization - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubOrganization> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubOrganization as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubOrganization - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubOrganization {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubOrganizationlinks {
     #[serde(rename = "repositories")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1025,7 +4797,7 @@ pub struct GithubOrganizationlinks {
 
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1037,13 +4809,131 @@ impl GithubOrganizationlinks {
     pub fn new() -> GithubOrganizationlinks {
         GithubOrganizationlinks {
             repositories: None,
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubOrganizationlinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubOrganizationlinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping repositories in query parameter serialization
+
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubOrganizationlinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubOrganizationlinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub repositories: Vec<models::Link>,
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubOrganizationlinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "repositories" => intermediate_rep.repositories.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubOrganizationlinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubOrganizationlinks {
+            repositories: intermediate_rep.repositories.into_iter().next(),
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubOrganizationlinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubOrganizationlinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubOrganizationlinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubOrganizationlinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubOrganizationlinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubOrganizationlinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubOrganizationlinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubOrganizationlinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositories {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1059,15 +4949,15 @@ pub struct GithubRepositories {
 
     #[serde(rename = "lastPage")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub last_page: Option<i32>,
+    pub last_page: Option<isize>,
 
     #[serde(rename = "nextPage")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub next_page: Option<i32>,
+    pub next_page: Option<isize>,
 
     #[serde(rename = "pageSize")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub page_size: Option<i32>,
+    pub page_size: Option<isize>,
 
 }
 
@@ -1084,11 +4974,156 @@ impl GithubRepositories {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRepositories value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRepositories {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+        // Skipping items in query parameter serialization
+
+
+        if let Some(ref last_page) = self.last_page {
+            params.push("lastPage".to_string());
+            params.push(last_page.to_string());
+        }
+
+
+        if let Some(ref next_page) = self.next_page {
+            params.push("nextPage".to_string());
+            params.push(next_page.to_string());
+        }
+
+
+        if let Some(ref page_size) = self.page_size {
+            params.push("pageSize".to_string());
+            params.push(page_size.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRepositories value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRepositories {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::GithubRepositorieslinks>,
+            pub items: Vec<Vec<models::GithubRepository>>,
+            pub last_page: Vec<isize>,
+            pub next_page: Vec<isize>,
+            pub page_size: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRepositories".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::GithubRepositorieslinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "items" => return std::result::Result::Err("Parsing a container in this style is not supported in GithubRepositories".to_string()),
+                    "lastPage" => intermediate_rep.last_page.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "nextPage" => intermediate_rep.next_page.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pageSize" => intermediate_rep.page_size.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRepositories".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRepositories {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            items: intermediate_rep.items.into_iter().next(),
+            last_page: intermediate_rep.last_page.into_iter().next(),
+            next_page: intermediate_rep.next_page.into_iter().next(),
+            page_size: intermediate_rep.page_size.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRepositories> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositories>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRepositories>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRepositories - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRepositories> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRepositories as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRepositories - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRepositories {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorieslinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1099,13 +5134,126 @@ pub struct GithubRepositorieslinks {
 impl GithubRepositorieslinks {
     pub fn new() -> GithubRepositorieslinks {
         GithubRepositorieslinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRepositorieslinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRepositorieslinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRepositorieslinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRepositorieslinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRepositorieslinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRepositorieslinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRepositorieslinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRepositorieslinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositorieslinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRepositorieslinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRepositorieslinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRepositorieslinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRepositorieslinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRepositorieslinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRepositorieslinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepository {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1156,11 +5304,174 @@ impl GithubRepository {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRepository value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRepository {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref default_branch) = self.default_branch {
+            params.push("defaultBranch".to_string());
+            params.push(default_branch.to_string());
+        }
+
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+        // Skipping permissions in query parameter serialization
+
+
+        if let Some(ref private) = self.private {
+            params.push("private".to_string());
+            params.push(private.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRepository value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRepository {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::GithubRepositorylinks>,
+            pub default_branch: Vec<String>,
+            pub description: Vec<String>,
+            pub name: Vec<String>,
+            pub permissions: Vec<models::GithubRepositorypermissions>,
+            pub private: Vec<bool>,
+            pub full_name: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRepository".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::GithubRepositorylinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "defaultBranch" => intermediate_rep.default_branch.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "permissions" => intermediate_rep.permissions.push(<models::GithubRepositorypermissions as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "private" => intermediate_rep.private.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRepository".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRepository {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            default_branch: intermediate_rep.default_branch.into_iter().next(),
+            description: intermediate_rep.description.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            permissions: intermediate_rep.permissions.into_iter().next(),
+            private: intermediate_rep.private.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRepository> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepository>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRepository>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRepository - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRepository> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRepository as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRepository - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRepository {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorylinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1171,13 +5482,126 @@ pub struct GithubRepositorylinks {
 impl GithubRepositorylinks {
     pub fn new() -> GithubRepositorylinks {
         GithubRepositorylinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRepositorylinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRepositorylinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRepositorylinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRepositorylinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRepositorylinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRepositorylinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRepositorylinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRepositorylinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositorylinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRepositorylinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRepositorylinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRepositorylinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRepositorylinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRepositorylinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRepositorylinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorypermissions {
     #[serde(rename = "admin")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1208,7 +5632,142 @@ impl GithubRepositorypermissions {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRepositorypermissions value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRepositorypermissions {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref admin) = self.admin {
+            params.push("admin".to_string());
+            params.push(admin.to_string());
+        }
+
+
+        if let Some(ref push) = self.push {
+            params.push("push".to_string());
+            params.push(push.to_string());
+        }
+
+
+        if let Some(ref pull) = self.pull {
+            params.push("pull".to_string());
+            params.push(pull.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRepositorypermissions value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRepositorypermissions {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub admin: Vec<bool>,
+            pub push: Vec<bool>,
+            pub pull: Vec<bool>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRepositorypermissions".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "admin" => intermediate_rep.admin.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "push" => intermediate_rep.push.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pull" => intermediate_rep.pull.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRepositorypermissions".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRepositorypermissions {
+            admin: intermediate_rep.admin.into_iter().next(),
+            push: intermediate_rep.push.into_iter().next(),
+            pull: intermediate_rep.pull.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRepositorypermissions> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositorypermissions>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRepositorypermissions>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRepositorypermissions - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRepositorypermissions> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRepositorypermissions as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRepositorypermissions - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRepositorypermissions {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRespositoryContainer {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1234,11 +5793,129 @@ impl GithubRespositoryContainer {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRespositoryContainer value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRespositoryContainer {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+        // Skipping repositories in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRespositoryContainer value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRespositoryContainer {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::GithubRespositoryContainerlinks>,
+            pub repositories: Vec<models::GithubRepositories>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRespositoryContainer".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::GithubRespositoryContainerlinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "repositories" => intermediate_rep.repositories.push(<models::GithubRepositories as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRespositoryContainer".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRespositoryContainer {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            repositories: intermediate_rep.repositories.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRespositoryContainer> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRespositoryContainer>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRespositoryContainer>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRespositoryContainer - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRespositoryContainer> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRespositoryContainer as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRespositoryContainer - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRespositoryContainer {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRespositoryContainerlinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1249,13 +5926,126 @@ pub struct GithubRespositoryContainerlinks {
 impl GithubRespositoryContainerlinks {
     pub fn new() -> GithubRespositoryContainerlinks {
         GithubRespositoryContainerlinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubRespositoryContainerlinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubRespositoryContainerlinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubRespositoryContainerlinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubRespositoryContainerlinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubRespositoryContainerlinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubRespositoryContainerlinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubRespositoryContainerlinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubRespositoryContainerlinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubRespositoryContainerlinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubRespositoryContainerlinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubRespositoryContainerlinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubRespositoryContainerlinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubRespositoryContainerlinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubRespositoryContainerlinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubRespositoryContainerlinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubScm {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1291,11 +6081,151 @@ impl GithubScm {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubScm value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubScm {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref credential_id) = self.credential_id {
+            params.push("credentialId".to_string());
+            params.push(credential_id.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref uri) = self.uri {
+            params.push("uri".to_string());
+            params.push(uri.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubScm value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubScm {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::GithubScmlinks>,
+            pub credential_id: Vec<String>,
+            pub id: Vec<String>,
+            pub uri: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubScm".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::GithubScmlinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "credentialId" => intermediate_rep.credential_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "uri" => intermediate_rep.uri.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubScm".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubScm {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            credential_id: intermediate_rep.credential_id.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            uri: intermediate_rep.uri.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubScm> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubScm>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubScm>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubScm - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubScm> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubScm as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubScm - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubScm {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubScmlinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1306,13 +6236,126 @@ pub struct GithubScmlinks {
 impl GithubScmlinks {
     pub fn new() -> GithubScmlinks {
         GithubScmlinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the GithubScmlinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for GithubScmlinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a GithubScmlinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for GithubScmlinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing GithubScmlinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing GithubScmlinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(GithubScmlinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<GithubScmlinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<GithubScmlinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<GithubScmlinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for GithubScmlinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<GithubScmlinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <GithubScmlinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into GithubScmlinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl GithubScmlinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Hudson {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1336,7 +6379,7 @@ pub struct Hudson {
 
     #[serde(rename = "numExecutors")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub num_executors: Option<i32>,
+    pub num_executors: Option<isize>,
 
     #[serde(rename = "description")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1356,7 +6399,7 @@ pub struct Hudson {
 
     #[serde(rename = "slaveAgentPort")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub slave_agent_port: Option<i32>,
+    pub slave_agent_port: Option<isize>,
 
     #[serde(rename = "unlabeledLoad")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1398,7 +6441,221 @@ impl Hudson {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the Hudson value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for Hudson {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping assignedLabels in query parameter serialization
+
+
+        if let Some(ref mode) = self.mode {
+            params.push("mode".to_string());
+            params.push(mode.to_string());
+        }
+
+
+        if let Some(ref node_description) = self.node_description {
+            params.push("nodeDescription".to_string());
+            params.push(node_description.to_string());
+        }
+
+
+        if let Some(ref node_name) = self.node_name {
+            params.push("nodeName".to_string());
+            params.push(node_name.to_string());
+        }
+
+
+        if let Some(ref num_executors) = self.num_executors {
+            params.push("numExecutors".to_string());
+            params.push(num_executors.to_string());
+        }
+
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+        // Skipping jobs in query parameter serialization
+
+        // Skipping primaryView in query parameter serialization
+
+
+        if let Some(ref quieting_down) = self.quieting_down {
+            params.push("quietingDown".to_string());
+            params.push(quieting_down.to_string());
+        }
+
+
+        if let Some(ref slave_agent_port) = self.slave_agent_port {
+            params.push("slaveAgentPort".to_string());
+            params.push(slave_agent_port.to_string());
+        }
+
+        // Skipping unlabeledLoad in query parameter serialization
+
+
+        if let Some(ref use_crumbs) = self.use_crumbs {
+            params.push("useCrumbs".to_string());
+            params.push(use_crumbs.to_string());
+        }
+
+
+        if let Some(ref use_security) = self.use_security {
+            params.push("useSecurity".to_string());
+            params.push(use_security.to_string());
+        }
+
+        // Skipping views in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a Hudson value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for Hudson {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub assigned_labels: Vec<Vec<models::HudsonassignedLabels>>,
+            pub mode: Vec<String>,
+            pub node_description: Vec<String>,
+            pub node_name: Vec<String>,
+            pub num_executors: Vec<isize>,
+            pub description: Vec<String>,
+            pub jobs: Vec<Vec<models::FreeStyleProject>>,
+            pub primary_view: Vec<models::AllView>,
+            pub quieting_down: Vec<bool>,
+            pub slave_agent_port: Vec<isize>,
+            pub unlabeled_load: Vec<models::UnlabeledLoadStatistics>,
+            pub use_crumbs: Vec<bool>,
+            pub use_security: Vec<bool>,
+            pub views: Vec<Vec<models::AllView>>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing Hudson".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "assignedLabels" => return std::result::Result::Err("Parsing a container in this style is not supported in Hudson".to_string()),
+                    "mode" => intermediate_rep.mode.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "nodeDescription" => intermediate_rep.node_description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "nodeName" => intermediate_rep.node_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numExecutors" => intermediate_rep.num_executors.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "jobs" => return std::result::Result::Err("Parsing a container in this style is not supported in Hudson".to_string()),
+                    "primaryView" => intermediate_rep.primary_view.push(<models::AllView as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "quietingDown" => intermediate_rep.quieting_down.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "slaveAgentPort" => intermediate_rep.slave_agent_port.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "unlabeledLoad" => intermediate_rep.unlabeled_load.push(<models::UnlabeledLoadStatistics as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "useCrumbs" => intermediate_rep.use_crumbs.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "useSecurity" => intermediate_rep.use_security.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "views" => return std::result::Result::Err("Parsing a container in this style is not supported in Hudson".to_string()),
+                    _ => return std::result::Result::Err("Unexpected key while parsing Hudson".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(Hudson {
+            _class: intermediate_rep._class.into_iter().next(),
+            assigned_labels: intermediate_rep.assigned_labels.into_iter().next(),
+            mode: intermediate_rep.mode.into_iter().next(),
+            node_description: intermediate_rep.node_description.into_iter().next(),
+            node_name: intermediate_rep.node_name.into_iter().next(),
+            num_executors: intermediate_rep.num_executors.into_iter().next(),
+            description: intermediate_rep.description.into_iter().next(),
+            jobs: intermediate_rep.jobs.into_iter().next(),
+            primary_view: intermediate_rep.primary_view.into_iter().next(),
+            quieting_down: intermediate_rep.quieting_down.into_iter().next(),
+            slave_agent_port: intermediate_rep.slave_agent_port.into_iter().next(),
+            unlabeled_load: intermediate_rep.unlabeled_load.into_iter().next(),
+            use_crumbs: intermediate_rep.use_crumbs.into_iter().next(),
+            use_security: intermediate_rep.use_security.into_iter().next(),
+            views: intermediate_rep.views.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<Hudson> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<Hudson>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<Hudson>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for Hudson - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<Hudson> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <Hudson as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into Hudson - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl Hudson {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputer {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1446,7 +6703,7 @@ pub struct HudsonMasterComputer {
 
     #[serde(rename = "numExecutors")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub num_executors: Option<i32>,
+    pub num_executors: Option<isize>,
 
     #[serde(rename = "offline")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1489,7 +6746,238 @@ impl HudsonMasterComputer {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the HudsonMasterComputer value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for HudsonMasterComputer {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+        // Skipping executors in query parameter serialization
+
+
+        if let Some(ref icon) = self.icon {
+            params.push("icon".to_string());
+            params.push(icon.to_string());
+        }
+
+
+        if let Some(ref icon_class_name) = self.icon_class_name {
+            params.push("iconClassName".to_string());
+            params.push(icon_class_name.to_string());
+        }
+
+
+        if let Some(ref idle) = self.idle {
+            params.push("idle".to_string());
+            params.push(idle.to_string());
+        }
+
+
+        if let Some(ref jnlp_agent) = self.jnlp_agent {
+            params.push("jnlpAgent".to_string());
+            params.push(jnlp_agent.to_string());
+        }
+
+
+        if let Some(ref launch_supported) = self.launch_supported {
+            params.push("launchSupported".to_string());
+            params.push(launch_supported.to_string());
+        }
+
+        // Skipping loadStatistics in query parameter serialization
+
+
+        if let Some(ref manual_launch_allowed) = self.manual_launch_allowed {
+            params.push("manualLaunchAllowed".to_string());
+            params.push(manual_launch_allowed.to_string());
+        }
+
+        // Skipping monitorData in query parameter serialization
+
+
+        if let Some(ref num_executors) = self.num_executors {
+            params.push("numExecutors".to_string());
+            params.push(num_executors.to_string());
+        }
+
+
+        if let Some(ref offline) = self.offline {
+            params.push("offline".to_string());
+            params.push(offline.to_string());
+        }
+
+
+        if let Some(ref offline_cause) = self.offline_cause {
+            params.push("offlineCause".to_string());
+            params.push(offline_cause.to_string());
+        }
+
+
+        if let Some(ref offline_cause_reason) = self.offline_cause_reason {
+            params.push("offlineCauseReason".to_string());
+            params.push(offline_cause_reason.to_string());
+        }
+
+
+        if let Some(ref temporarily_offline) = self.temporarily_offline {
+            params.push("temporarilyOffline".to_string());
+            params.push(temporarily_offline.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a HudsonMasterComputer value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for HudsonMasterComputer {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub display_name: Vec<String>,
+            pub executors: Vec<Vec<models::HudsonMasterComputerexecutors>>,
+            pub icon: Vec<String>,
+            pub icon_class_name: Vec<String>,
+            pub idle: Vec<bool>,
+            pub jnlp_agent: Vec<bool>,
+            pub launch_supported: Vec<bool>,
+            pub load_statistics: Vec<models::Label1>,
+            pub manual_launch_allowed: Vec<bool>,
+            pub monitor_data: Vec<models::HudsonMasterComputermonitorData>,
+            pub num_executors: Vec<isize>,
+            pub offline: Vec<bool>,
+            pub offline_cause: Vec<String>,
+            pub offline_cause_reason: Vec<String>,
+            pub temporarily_offline: Vec<bool>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing HudsonMasterComputer".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "executors" => return std::result::Result::Err("Parsing a container in this style is not supported in HudsonMasterComputer".to_string()),
+                    "icon" => intermediate_rep.icon.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "iconClassName" => intermediate_rep.icon_class_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "idle" => intermediate_rep.idle.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "jnlpAgent" => intermediate_rep.jnlp_agent.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "launchSupported" => intermediate_rep.launch_supported.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "loadStatistics" => intermediate_rep.load_statistics.push(<models::Label1 as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "manualLaunchAllowed" => intermediate_rep.manual_launch_allowed.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "monitorData" => intermediate_rep.monitor_data.push(<models::HudsonMasterComputermonitorData as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numExecutors" => intermediate_rep.num_executors.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "offline" => intermediate_rep.offline.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "offlineCause" => intermediate_rep.offline_cause.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "offlineCauseReason" => intermediate_rep.offline_cause_reason.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "temporarilyOffline" => intermediate_rep.temporarily_offline.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing HudsonMasterComputer".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(HudsonMasterComputer {
+            _class: intermediate_rep._class.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            executors: intermediate_rep.executors.into_iter().next(),
+            icon: intermediate_rep.icon.into_iter().next(),
+            icon_class_name: intermediate_rep.icon_class_name.into_iter().next(),
+            idle: intermediate_rep.idle.into_iter().next(),
+            jnlp_agent: intermediate_rep.jnlp_agent.into_iter().next(),
+            launch_supported: intermediate_rep.launch_supported.into_iter().next(),
+            load_statistics: intermediate_rep.load_statistics.into_iter().next(),
+            manual_launch_allowed: intermediate_rep.manual_launch_allowed.into_iter().next(),
+            monitor_data: intermediate_rep.monitor_data.into_iter().next(),
+            num_executors: intermediate_rep.num_executors.into_iter().next(),
+            offline: intermediate_rep.offline.into_iter().next(),
+            offline_cause: intermediate_rep.offline_cause.into_iter().next(),
+            offline_cause_reason: intermediate_rep.offline_cause_reason.into_iter().next(),
+            temporarily_offline: intermediate_rep.temporarily_offline.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<HudsonMasterComputer> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<HudsonMasterComputer>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<HudsonMasterComputer>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for HudsonMasterComputer - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<HudsonMasterComputer> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <HudsonMasterComputer as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into HudsonMasterComputer - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl HudsonMasterComputer {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputerexecutors {
     #[serde(rename = "currentExecutable")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1505,11 +6993,11 @@ pub struct HudsonMasterComputerexecutors {
 
     #[serde(rename = "number")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number: Option<i32>,
+    pub number: Option<isize>,
 
     #[serde(rename = "progress")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub progress: Option<i32>,
+    pub progress: Option<isize>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1530,7 +7018,156 @@ impl HudsonMasterComputerexecutors {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the HudsonMasterComputerexecutors value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for HudsonMasterComputerexecutors {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping currentExecutable in query parameter serialization
+
+
+        if let Some(ref idle) = self.idle {
+            params.push("idle".to_string());
+            params.push(idle.to_string());
+        }
+
+
+        if let Some(ref likely_stuck) = self.likely_stuck {
+            params.push("likelyStuck".to_string());
+            params.push(likely_stuck.to_string());
+        }
+
+
+        if let Some(ref number) = self.number {
+            params.push("number".to_string());
+            params.push(number.to_string());
+        }
+
+
+        if let Some(ref progress) = self.progress {
+            params.push("progress".to_string());
+            params.push(progress.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a HudsonMasterComputerexecutors value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for HudsonMasterComputerexecutors {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub current_executable: Vec<models::FreeStyleBuild>,
+            pub idle: Vec<bool>,
+            pub likely_stuck: Vec<bool>,
+            pub number: Vec<isize>,
+            pub progress: Vec<isize>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing HudsonMasterComputerexecutors".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "currentExecutable" => intermediate_rep.current_executable.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "idle" => intermediate_rep.idle.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "likelyStuck" => intermediate_rep.likely_stuck.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "number" => intermediate_rep.number.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "progress" => intermediate_rep.progress.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing HudsonMasterComputerexecutors".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(HudsonMasterComputerexecutors {
+            current_executable: intermediate_rep.current_executable.into_iter().next(),
+            idle: intermediate_rep.idle.into_iter().next(),
+            likely_stuck: intermediate_rep.likely_stuck.into_iter().next(),
+            number: intermediate_rep.number.into_iter().next(),
+            progress: intermediate_rep.progress.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<HudsonMasterComputerexecutors> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<HudsonMasterComputerexecutors>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<HudsonMasterComputerexecutors>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for HudsonMasterComputerexecutors - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<HudsonMasterComputerexecutors> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <HudsonMasterComputerexecutors as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into HudsonMasterComputerexecutors - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl HudsonMasterComputerexecutors {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputermonitorData {
     #[serde(rename = "hudson.node_monitors.SwapSpaceMonitor")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1576,7 +7213,149 @@ impl HudsonMasterComputermonitorData {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the HudsonMasterComputermonitorData value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for HudsonMasterComputermonitorData {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping hudson.node_monitors.SwapSpaceMonitor in query parameter serialization
+
+        // Skipping hudson.node_monitors.TemporarySpaceMonitor in query parameter serialization
+
+        // Skipping hudson.node_monitors.DiskSpaceMonitor in query parameter serialization
+
+
+        if let Some(ref hudson_node_monitors_architecture_monitor) = self.hudson_node_monitors_architecture_monitor {
+            params.push("hudson.node_monitors.ArchitectureMonitor".to_string());
+            params.push(hudson_node_monitors_architecture_monitor.to_string());
+        }
+
+        // Skipping hudson.node_monitors.ResponseTimeMonitor in query parameter serialization
+
+        // Skipping hudson.node_monitors.ClockMonitor in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a HudsonMasterComputermonitorData value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for HudsonMasterComputermonitorData {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub hudson_node_monitors_swap_space_monitor: Vec<models::SwapSpaceMonitorMemoryUsage2>,
+            pub hudson_node_monitors_temporary_space_monitor: Vec<models::DiskSpaceMonitorDescriptorDiskSpace>,
+            pub hudson_node_monitors_disk_space_monitor: Vec<models::DiskSpaceMonitorDescriptorDiskSpace>,
+            pub hudson_node_monitors_architecture_monitor: Vec<String>,
+            pub hudson_node_monitors_response_time_monitor: Vec<models::ResponseTimeMonitorData>,
+            pub hudson_node_monitors_clock_monitor: Vec<models::ClockDifference>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing HudsonMasterComputermonitorData".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "hudson.node_monitors.SwapSpaceMonitor" => intermediate_rep.hudson_node_monitors_swap_space_monitor.push(<models::SwapSpaceMonitorMemoryUsage2 as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "hudson.node_monitors.TemporarySpaceMonitor" => intermediate_rep.hudson_node_monitors_temporary_space_monitor.push(<models::DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "hudson.node_monitors.DiskSpaceMonitor" => intermediate_rep.hudson_node_monitors_disk_space_monitor.push(<models::DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "hudson.node_monitors.ArchitectureMonitor" => intermediate_rep.hudson_node_monitors_architecture_monitor.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "hudson.node_monitors.ResponseTimeMonitor" => intermediate_rep.hudson_node_monitors_response_time_monitor.push(<models::ResponseTimeMonitorData as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "hudson.node_monitors.ClockMonitor" => intermediate_rep.hudson_node_monitors_clock_monitor.push(<models::ClockDifference as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing HudsonMasterComputermonitorData".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(HudsonMasterComputermonitorData {
+            hudson_node_monitors_swap_space_monitor: intermediate_rep.hudson_node_monitors_swap_space_monitor.into_iter().next(),
+            hudson_node_monitors_temporary_space_monitor: intermediate_rep.hudson_node_monitors_temporary_space_monitor.into_iter().next(),
+            hudson_node_monitors_disk_space_monitor: intermediate_rep.hudson_node_monitors_disk_space_monitor.into_iter().next(),
+            hudson_node_monitors_architecture_monitor: intermediate_rep.hudson_node_monitors_architecture_monitor.into_iter().next(),
+            hudson_node_monitors_response_time_monitor: intermediate_rep.hudson_node_monitors_response_time_monitor.into_iter().next(),
+            hudson_node_monitors_clock_monitor: intermediate_rep.hudson_node_monitors_clock_monitor.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<HudsonMasterComputermonitorData> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<HudsonMasterComputermonitorData>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<HudsonMasterComputermonitorData>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for HudsonMasterComputermonitorData - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<HudsonMasterComputermonitorData> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <HudsonMasterComputermonitorData as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into HudsonMasterComputermonitorData - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl HudsonMasterComputermonitorData {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonassignedLabels {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1592,7 +7371,115 @@ impl HudsonassignedLabels {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the HudsonassignedLabels value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for HudsonassignedLabels {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a HudsonassignedLabels value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for HudsonassignedLabels {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing HudsonassignedLabels".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing HudsonassignedLabels".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(HudsonassignedLabels {
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<HudsonassignedLabels> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<HudsonassignedLabels>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<HudsonassignedLabels>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for HudsonassignedLabels - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<HudsonassignedLabels> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <HudsonassignedLabels as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into HudsonassignedLabels - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl HudsonassignedLabels {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct InputStepImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1638,11 +7525,165 @@ impl InputStepImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the InputStepImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for InputStepImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref message) = self.message {
+            params.push("message".to_string());
+            params.push(message.to_string());
+        }
+
+
+        if let Some(ref ok) = self.ok {
+            params.push("ok".to_string());
+            params.push(ok.to_string());
+        }
+
+        // Skipping parameters in query parameter serialization
+
+
+        if let Some(ref submitter) = self.submitter {
+            params.push("submitter".to_string());
+            params.push(submitter.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a InputStepImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for InputStepImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::InputStepImpllinks>,
+            pub id: Vec<String>,
+            pub message: Vec<String>,
+            pub ok: Vec<String>,
+            pub parameters: Vec<Vec<models::StringParameterDefinition>>,
+            pub submitter: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing InputStepImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::InputStepImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "message" => intermediate_rep.message.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "ok" => intermediate_rep.ok.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "parameters" => return std::result::Result::Err("Parsing a container in this style is not supported in InputStepImpl".to_string()),
+                    "submitter" => intermediate_rep.submitter.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing InputStepImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(InputStepImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            message: intermediate_rep.message.into_iter().next(),
+            ok: intermediate_rep.ok.into_iter().next(),
+            parameters: intermediate_rep.parameters.into_iter().next(),
+            submitter: intermediate_rep.submitter.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<InputStepImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<InputStepImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<InputStepImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for InputStepImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<InputStepImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <InputStepImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into InputStepImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl InputStepImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct InputStepImpllinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1653,13 +7694,126 @@ pub struct InputStepImpllinks {
 impl InputStepImpllinks {
     pub fn new() -> InputStepImpllinks {
         InputStepImpllinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the InputStepImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for InputStepImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a InputStepImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for InputStepImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing InputStepImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing InputStepImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(InputStepImpllinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<InputStepImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<InputStepImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<InputStepImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for InputStepImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<InputStepImpllinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <InputStepImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into InputStepImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl InputStepImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Label1 {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1675,7 +7829,115 @@ impl Label1 {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the Label1 value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for Label1 {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a Label1 value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for Label1 {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing Label1".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing Label1".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(Label1 {
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<Label1> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<Label1>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<Label1>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for Label1 - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<Label1> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <Label1 as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into Label1 - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl Label1 {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Link {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1696,7 +7958,124 @@ impl Link {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the Link value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for Link {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref href) = self.href {
+            params.push("href".to_string());
+            params.push(href.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a Link value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for Link {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub href: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing Link".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "href" => intermediate_rep.href.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing Link".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(Link {
+            _class: intermediate_rep._class.into_iter().next(),
+            href: intermediate_rep.href.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<Link> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<Link>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<Link>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for Link - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<Link> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <Link as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into Link - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl Link {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ListView {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1732,7 +8111,147 @@ impl ListView {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the ListView value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ListView {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+        // Skipping jobs in query parameter serialization
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a ListView value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ListView {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub description: Vec<String>,
+            pub jobs: Vec<Vec<models::FreeStyleProject>>,
+            pub name: Vec<String>,
+            pub url: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ListView".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "jobs" => return std::result::Result::Err("Parsing a container in this style is not supported in ListView".to_string()),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ListView".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ListView {
+            _class: intermediate_rep._class.into_iter().next(),
+            description: intermediate_rep.description.into_iter().next(),
+            jobs: intermediate_rep.jobs.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<ListView> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ListView>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ListView>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ListView - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ListView> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ListView as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ListView - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl ListView {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct MultibranchPipeline {
     #[serde(rename = "displayName")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1740,7 +8259,7 @@ pub struct MultibranchPipeline {
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "latestRun")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1756,7 +8275,7 @@ pub struct MultibranchPipeline {
 
     #[serde(rename = "weatherScore")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub weather_score: Option<i32>,
+    pub weather_score: Option<isize>,
 
     #[serde(rename = "branchNames")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1764,27 +8283,27 @@ pub struct MultibranchPipeline {
 
     #[serde(rename = "numberOfFailingBranches")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number_of_failing_branches: Option<i32>,
+    pub number_of_failing_branches: Option<isize>,
 
     #[serde(rename = "numberOfFailingPullRequests")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number_of_failing_pull_requests: Option<i32>,
+    pub number_of_failing_pull_requests: Option<isize>,
 
     #[serde(rename = "numberOfSuccessfulBranches")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number_of_successful_branches: Option<i32>,
+    pub number_of_successful_branches: Option<isize>,
 
     #[serde(rename = "numberOfSuccessfulPullRequests")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number_of_successful_pull_requests: Option<i32>,
+    pub number_of_successful_pull_requests: Option<isize>,
 
     #[serde(rename = "totalNumberOfBranches")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub total_number_of_branches: Option<i32>,
+    pub total_number_of_branches: Option<isize>,
 
     #[serde(rename = "totalNumberOfPullRequests")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub total_number_of_pull_requests: Option<i32>,
+    pub total_number_of_pull_requests: Option<isize>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1813,7 +8332,232 @@ impl MultibranchPipeline {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the MultibranchPipeline value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for MultibranchPipeline {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref latest_run) = self.latest_run {
+            params.push("latestRun".to_string());
+            params.push(latest_run.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref weather_score) = self.weather_score {
+            params.push("weatherScore".to_string());
+            params.push(weather_score.to_string());
+        }
+
+
+        if let Some(ref branch_names) = self.branch_names {
+            params.push("branchNames".to_string());
+            params.push(branch_names.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(",").to_string());
+        }
+
+
+        if let Some(ref number_of_failing_branches) = self.number_of_failing_branches {
+            params.push("numberOfFailingBranches".to_string());
+            params.push(number_of_failing_branches.to_string());
+        }
+
+
+        if let Some(ref number_of_failing_pull_requests) = self.number_of_failing_pull_requests {
+            params.push("numberOfFailingPullRequests".to_string());
+            params.push(number_of_failing_pull_requests.to_string());
+        }
+
+
+        if let Some(ref number_of_successful_branches) = self.number_of_successful_branches {
+            params.push("numberOfSuccessfulBranches".to_string());
+            params.push(number_of_successful_branches.to_string());
+        }
+
+
+        if let Some(ref number_of_successful_pull_requests) = self.number_of_successful_pull_requests {
+            params.push("numberOfSuccessfulPullRequests".to_string());
+            params.push(number_of_successful_pull_requests.to_string());
+        }
+
+
+        if let Some(ref total_number_of_branches) = self.total_number_of_branches {
+            params.push("totalNumberOfBranches".to_string());
+            params.push(total_number_of_branches.to_string());
+        }
+
+
+        if let Some(ref total_number_of_pull_requests) = self.total_number_of_pull_requests {
+            params.push("totalNumberOfPullRequests".to_string());
+            params.push(total_number_of_pull_requests.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a MultibranchPipeline value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for MultibranchPipeline {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub display_name: Vec<String>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub latest_run: Vec<String>,
+            pub name: Vec<String>,
+            pub organization: Vec<String>,
+            pub weather_score: Vec<isize>,
+            pub branch_names: Vec<Vec<String>>,
+            pub number_of_failing_branches: Vec<isize>,
+            pub number_of_failing_pull_requests: Vec<isize>,
+            pub number_of_successful_branches: Vec<isize>,
+            pub number_of_successful_pull_requests: Vec<isize>,
+            pub total_number_of_branches: Vec<isize>,
+            pub total_number_of_pull_requests: Vec<isize>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing MultibranchPipeline".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "latestRun" => intermediate_rep.latest_run.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "weatherScore" => intermediate_rep.weather_score.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "branchNames" => return std::result::Result::Err("Parsing a container in this style is not supported in MultibranchPipeline".to_string()),
+                    "numberOfFailingBranches" => intermediate_rep.number_of_failing_branches.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numberOfFailingPullRequests" => intermediate_rep.number_of_failing_pull_requests.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numberOfSuccessfulBranches" => intermediate_rep.number_of_successful_branches.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numberOfSuccessfulPullRequests" => intermediate_rep.number_of_successful_pull_requests.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "totalNumberOfBranches" => intermediate_rep.total_number_of_branches.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "totalNumberOfPullRequests" => intermediate_rep.total_number_of_pull_requests.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing MultibranchPipeline".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(MultibranchPipeline {
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            latest_run: intermediate_rep.latest_run.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            weather_score: intermediate_rep.weather_score.into_iter().next(),
+            branch_names: intermediate_rep.branch_names.into_iter().next(),
+            number_of_failing_branches: intermediate_rep.number_of_failing_branches.into_iter().next(),
+            number_of_failing_pull_requests: intermediate_rep.number_of_failing_pull_requests.into_iter().next(),
+            number_of_successful_branches: intermediate_rep.number_of_successful_branches.into_iter().next(),
+            number_of_successful_pull_requests: intermediate_rep.number_of_successful_pull_requests.into_iter().next(),
+            total_number_of_branches: intermediate_rep.total_number_of_branches.into_iter().next(),
+            total_number_of_pull_requests: intermediate_rep.total_number_of_pull_requests.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<MultibranchPipeline> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<MultibranchPipeline>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<MultibranchPipeline>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for MultibranchPipeline - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<MultibranchPipeline> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <MultibranchPipeline as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into MultibranchPipeline - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl MultibranchPipeline {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct NullScm {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1829,7 +8573,115 @@ impl NullScm {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the NullScm value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for NullScm {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a NullScm value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for NullScm {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing NullScm".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing NullScm".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(NullScm {
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<NullScm> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<NullScm>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<NullScm>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for NullScm - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<NullScm> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <NullScm as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into NullScm - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl NullScm {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Organisation {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1850,69 +8702,124 @@ impl Organisation {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct Organisations(Vec<Organisation>);
+/// Converts the Organisation value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for Organisation {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<Organisation>> for Organisations {
-    fn from(x: Vec<Organisation>) -> Self {
-        Organisations(x)
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<Organisations> for Vec<Organisation> {
-    fn from(x: Organisations) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a Organisation value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for Organisation {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub name: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing Organisation".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing Organisation".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(Organisation {
+            _class: intermediate_rep._class.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<Organisation> for Organisations {
-    fn from_iter<U: IntoIterator<Item=Organisation>>(u: U) -> Self {
-        Organisations(Vec::<Organisation>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<Organisation> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<Organisation>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<Organisation>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for Organisation - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for Organisations {
-    type Item = Organisation;
-    type IntoIter = ::std::vec::IntoIter<Organisation>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<Organisation> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a Organisations {
-    type Item = &'a Organisation;
-    type IntoIter = ::std::slice::Iter<'a, Organisation>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut Organisations {
-    type Item = &'a mut Organisation;
-    type IntoIter = ::std::slice::IterMut<'a, Organisation>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for Organisations {
-    type Target = Vec<Organisation>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for Organisations {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <Organisation as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into Organisation - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl Organisation {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Pipeline {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1936,11 +8843,11 @@ pub struct Pipeline {
 
     #[serde(rename = "weatherScore")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub weather_score: Option<i32>,
+    pub weather_score: Option<isize>,
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "latestRun")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -1963,69 +8870,174 @@ impl Pipeline {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineActivities(Vec<PipelineActivity>);
+/// Converts the Pipeline value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for Pipeline {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<PipelineActivity>> for PipelineActivities {
-    fn from(x: Vec<PipelineActivity>) -> Self {
-        PipelineActivities(x)
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+
+        if let Some(ref weather_score) = self.weather_score {
+            params.push("weatherScore".to_string());
+            params.push(weather_score.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+        // Skipping latestRun in query parameter serialization
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<PipelineActivities> for Vec<PipelineActivity> {
-    fn from(x: PipelineActivities) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a Pipeline value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for Pipeline {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub organization: Vec<String>,
+            pub name: Vec<String>,
+            pub display_name: Vec<String>,
+            pub full_name: Vec<String>,
+            pub weather_score: Vec<isize>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub latest_run: Vec<models::PipelinelatestRun>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing Pipeline".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "weatherScore" => intermediate_rep.weather_score.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "latestRun" => intermediate_rep.latest_run.push(<models::PipelinelatestRun as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing Pipeline".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(Pipeline {
+            _class: intermediate_rep._class.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+            weather_score: intermediate_rep.weather_score.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            latest_run: intermediate_rep.latest_run.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<PipelineActivity> for PipelineActivities {
-    fn from_iter<U: IntoIterator<Item=PipelineActivity>>(u: U) -> Self {
-        PipelineActivities(Vec::<PipelineActivity>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<Pipeline> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<Pipeline>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<Pipeline>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for Pipeline - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for PipelineActivities {
-    type Item = PipelineActivity;
-    type IntoIter = ::std::vec::IntoIter<PipelineActivity>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<Pipeline> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineActivities {
-    type Item = &'a PipelineActivity;
-    type IntoIter = ::std::slice::Iter<'a, PipelineActivity>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineActivities {
-    type Item = &'a mut PipelineActivity;
-    type IntoIter = ::std::slice::IterMut<'a, PipelineActivity>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineActivities {
-    type Target = Vec<PipelineActivity>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineActivities {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <Pipeline as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into Pipeline - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl Pipeline {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineActivity {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2037,11 +9049,11 @@ pub struct PipelineActivity {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "enQueueTime")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2081,7 +9093,7 @@ pub struct PipelineActivity {
 
     #[serde(rename = "type")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _type: Option<String>,
+    pub type_: Option<String>,
 
     #[serde(rename = "commitId")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2105,13 +9117,243 @@ impl PipelineActivity {
             run_summary: None,
             start_time: None,
             state: None,
-            _type: None,
+            type_: None,
             commit_id: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineActivity value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineActivity {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping artifacts in query parameter serialization
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref en_queue_time) = self.en_queue_time {
+            params.push("enQueueTime".to_string());
+            params.push(en_queue_time.to_string());
+        }
+
+
+        if let Some(ref end_time) = self.end_time {
+            params.push("endTime".to_string());
+            params.push(end_time.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref pipeline) = self.pipeline {
+            params.push("pipeline".to_string());
+            params.push(pipeline.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref run_summary) = self.run_summary {
+            params.push("runSummary".to_string());
+            params.push(run_summary.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+
+        if let Some(ref type_) = self.type_ {
+            params.push("type".to_string());
+            params.push(type_.to_string());
+        }
+
+
+        if let Some(ref commit_id) = self.commit_id {
+            params.push("commitId".to_string());
+            params.push(commit_id.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineActivity value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineActivity {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub artifacts: Vec<Vec<models::PipelineActivityartifacts>>,
+            pub duration_in_millis: Vec<isize>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub en_queue_time: Vec<String>,
+            pub end_time: Vec<String>,
+            pub id: Vec<String>,
+            pub organization: Vec<String>,
+            pub pipeline: Vec<String>,
+            pub result: Vec<String>,
+            pub run_summary: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+            pub type_: Vec<String>,
+            pub commit_id: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineActivity".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "artifacts" => return std::result::Result::Err("Parsing a container in this style is not supported in PipelineActivity".to_string()),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "enQueueTime" => intermediate_rep.en_queue_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "endTime" => intermediate_rep.end_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pipeline" => intermediate_rep.pipeline.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "runSummary" => intermediate_rep.run_summary.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "type" => intermediate_rep.type_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineActivity".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineActivity {
+            _class: intermediate_rep._class.into_iter().next(),
+            artifacts: intermediate_rep.artifacts.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            en_queue_time: intermediate_rep.en_queue_time.into_iter().next(),
+            end_time: intermediate_rep.end_time.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            pipeline: intermediate_rep.pipeline.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            run_summary: intermediate_rep.run_summary.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+            type_: intermediate_rep.type_.into_iter().next(),
+            commit_id: intermediate_rep.commit_id.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineActivity> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineActivity>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineActivity>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineActivity - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineActivity> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineActivity as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineActivity - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineActivity {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineActivityartifacts {
     #[serde(rename = "name")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2119,7 +9361,7 @@ pub struct PipelineActivityartifacts {
 
     #[serde(rename = "size")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub size: Option<i32>,
+    pub size: Option<isize>,
 
     #[serde(rename = "url")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2142,69 +9384,142 @@ impl PipelineActivityartifacts {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineBranches(Vec<PipelineBranchesitem>);
+/// Converts the PipelineActivityartifacts value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineActivityartifacts {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<PipelineBranchesitem>> for PipelineBranches {
-    fn from(x: Vec<PipelineBranchesitem>) -> Self {
-        PipelineBranches(x)
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref size) = self.size {
+            params.push("size".to_string());
+            params.push(size.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<PipelineBranches> for Vec<PipelineBranchesitem> {
-    fn from(x: PipelineBranches) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineActivityartifacts value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineActivityartifacts {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub name: Vec<String>,
+            pub size: Vec<isize>,
+            pub url: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineActivityartifacts".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "size" => intermediate_rep.size.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineActivityartifacts".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineActivityartifacts {
+            name: intermediate_rep.name.into_iter().next(),
+            size: intermediate_rep.size.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<PipelineBranchesitem> for PipelineBranches {
-    fn from_iter<U: IntoIterator<Item=PipelineBranchesitem>>(u: U) -> Self {
-        PipelineBranches(Vec::<PipelineBranchesitem>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<PipelineActivityartifacts> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineActivityartifacts>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineActivityartifacts>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineActivityartifacts - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for PipelineBranches {
-    type Item = PipelineBranchesitem;
-    type IntoIter = ::std::vec::IntoIter<PipelineBranchesitem>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineActivityartifacts> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineBranches {
-    type Item = &'a PipelineBranchesitem;
-    type IntoIter = ::std::slice::Iter<'a, PipelineBranchesitem>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineBranches {
-    type Item = &'a mut PipelineBranchesitem;
-    type IntoIter = ::std::slice::IterMut<'a, PipelineBranchesitem>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineBranches {
-    type Target = Vec<PipelineBranchesitem>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineBranches {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineActivityartifacts as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineActivityartifacts - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl PipelineActivityartifacts {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitem {
     #[serde(rename = "displayName")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2212,7 +9527,7 @@ pub struct PipelineBranchesitem {
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "name")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2220,7 +9535,7 @@ pub struct PipelineBranchesitem {
 
     #[serde(rename = "weatherScore")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub weather_score: Option<i32>,
+    pub weather_score: Option<isize>,
 
     #[serde(rename = "latestRun")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2236,7 +9551,7 @@ pub struct PipelineBranchesitem {
 
     #[serde(rename = "totalNumberOfPullRequests")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub total_number_of_pull_requests: Option<i32>,
+    pub total_number_of_pull_requests: Option<isize>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2260,15 +9575,187 @@ impl PipelineBranchesitem {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineBranchesitem value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineBranchesitem {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref weather_score) = self.weather_score {
+            params.push("weatherScore".to_string());
+            params.push(weather_score.to_string());
+        }
+
+        // Skipping latestRun in query parameter serialization
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+        // Skipping pullRequest in query parameter serialization
+
+
+        if let Some(ref total_number_of_pull_requests) = self.total_number_of_pull_requests {
+            params.push("totalNumberOfPullRequests".to_string());
+            params.push(total_number_of_pull_requests.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineBranchesitem value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineBranchesitem {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub display_name: Vec<String>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub name: Vec<String>,
+            pub weather_score: Vec<isize>,
+            pub latest_run: Vec<models::PipelineBranchesitemlatestRun>,
+            pub organization: Vec<String>,
+            pub pull_request: Vec<models::PipelineBranchesitempullRequest>,
+            pub total_number_of_pull_requests: Vec<isize>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineBranchesitem".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "weatherScore" => intermediate_rep.weather_score.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "latestRun" => intermediate_rep.latest_run.push(<models::PipelineBranchesitemlatestRun as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pullRequest" => intermediate_rep.pull_request.push(<models::PipelineBranchesitempullRequest as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "totalNumberOfPullRequests" => intermediate_rep.total_number_of_pull_requests.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineBranchesitem".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineBranchesitem {
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            weather_score: intermediate_rep.weather_score.into_iter().next(),
+            latest_run: intermediate_rep.latest_run.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            pull_request: intermediate_rep.pull_request.into_iter().next(),
+            total_number_of_pull_requests: intermediate_rep.total_number_of_pull_requests.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineBranchesitem> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitem>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineBranchesitem>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineBranchesitem - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineBranchesitem> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineBranchesitem as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineBranchesitem - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineBranchesitem {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitemlatestRun {
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "enQueueTime")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2308,7 +9795,7 @@ pub struct PipelineBranchesitemlatestRun {
 
     #[serde(rename = "type")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _type: Option<String>,
+    pub type_: Option<String>,
 
     #[serde(rename = "commitId")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2334,14 +9821,239 @@ impl PipelineBranchesitemlatestRun {
             run_summary: None,
             start_time: None,
             state: None,
-            _type: None,
+            type_: None,
             commit_id: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineBranchesitemlatestRun value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineBranchesitemlatestRun {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref en_queue_time) = self.en_queue_time {
+            params.push("enQueueTime".to_string());
+            params.push(en_queue_time.to_string());
+        }
+
+
+        if let Some(ref end_time) = self.end_time {
+            params.push("endTime".to_string());
+            params.push(end_time.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref pipeline) = self.pipeline {
+            params.push("pipeline".to_string());
+            params.push(pipeline.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref run_summary) = self.run_summary {
+            params.push("runSummary".to_string());
+            params.push(run_summary.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+
+        if let Some(ref type_) = self.type_ {
+            params.push("type".to_string());
+            params.push(type_.to_string());
+        }
+
+
+        if let Some(ref commit_id) = self.commit_id {
+            params.push("commitId".to_string());
+            params.push(commit_id.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineBranchesitemlatestRun value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineBranchesitemlatestRun {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub duration_in_millis: Vec<isize>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub en_queue_time: Vec<String>,
+            pub end_time: Vec<String>,
+            pub id: Vec<String>,
+            pub organization: Vec<String>,
+            pub pipeline: Vec<String>,
+            pub result: Vec<String>,
+            pub run_summary: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+            pub type_: Vec<String>,
+            pub commit_id: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineBranchesitemlatestRun".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "enQueueTime" => intermediate_rep.en_queue_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "endTime" => intermediate_rep.end_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pipeline" => intermediate_rep.pipeline.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "runSummary" => intermediate_rep.run_summary.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "type" => intermediate_rep.type_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineBranchesitemlatestRun".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineBranchesitemlatestRun {
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            en_queue_time: intermediate_rep.en_queue_time.into_iter().next(),
+            end_time: intermediate_rep.end_time.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            pipeline: intermediate_rep.pipeline.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            run_summary: intermediate_rep.run_summary.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+            type_: intermediate_rep.type_.into_iter().next(),
+            commit_id: intermediate_rep.commit_id.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineBranchesitemlatestRun> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitemlatestRun>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineBranchesitemlatestRun>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineBranchesitemlatestRun - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineBranchesitemlatestRun> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineBranchesitemlatestRun as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineBranchesitemlatestRun - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineBranchesitemlatestRun {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitempullRequest {
     #[serde(rename = "_links")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2382,11 +10094,160 @@ impl PipelineBranchesitempullRequest {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineBranchesitempullRequest value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineBranchesitempullRequest {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref author) = self.author {
+            params.push("author".to_string());
+            params.push(author.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref title) = self.title {
+            params.push("title".to_string());
+            params.push(title.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineBranchesitempullRequest value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineBranchesitempullRequest {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _links: Vec<models::PipelineBranchesitempullRequestlinks>,
+            pub author: Vec<String>,
+            pub id: Vec<String>,
+            pub title: Vec<String>,
+            pub url: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineBranchesitempullRequest".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_links" => intermediate_rep._links.push(<models::PipelineBranchesitempullRequestlinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "author" => intermediate_rep.author.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "title" => intermediate_rep.title.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineBranchesitempullRequest".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineBranchesitempullRequest {
+            _links: intermediate_rep._links.into_iter().next(),
+            author: intermediate_rep.author.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            title: intermediate_rep.title.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineBranchesitempullRequest> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitempullRequest>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineBranchesitempullRequest>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineBranchesitempullRequest - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineBranchesitempullRequest> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineBranchesitempullRequest as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineBranchesitempullRequest - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineBranchesitempullRequest {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitempullRequestlinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<String>,
+    pub self_: Option<String>,
 
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2397,13 +10258,130 @@ pub struct PipelineBranchesitempullRequestlinks {
 impl PipelineBranchesitempullRequestlinks {
     pub fn new() -> PipelineBranchesitempullRequestlinks {
         PipelineBranchesitempullRequestlinks {
-            _self: None,
+            self_: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineBranchesitempullRequestlinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineBranchesitempullRequestlinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref self_) = self.self_ {
+            params.push("self".to_string());
+            params.push(self_.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineBranchesitempullRequestlinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineBranchesitempullRequestlinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineBranchesitempullRequestlinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineBranchesitempullRequestlinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineBranchesitempullRequestlinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineBranchesitempullRequestlinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitempullRequestlinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineBranchesitempullRequestlinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineBranchesitempullRequestlinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineBranchesitempullRequestlinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineBranchesitempullRequestlinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineBranchesitempullRequestlinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineBranchesitempullRequestlinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineFolderImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2427,11 +10405,11 @@ pub struct PipelineFolderImpl {
 
     #[serde(rename = "numberOfFolders")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number_of_folders: Option<i32>,
+    pub number_of_folders: Option<isize>,
 
     #[serde(rename = "numberOfPipelines")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub number_of_pipelines: Option<i32>,
+    pub number_of_pipelines: Option<isize>,
 
 }
 
@@ -2449,7 +10427,169 @@ impl PipelineFolderImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineFolderImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineFolderImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref number_of_folders) = self.number_of_folders {
+            params.push("numberOfFolders".to_string());
+            params.push(number_of_folders.to_string());
+        }
+
+
+        if let Some(ref number_of_pipelines) = self.number_of_pipelines {
+            params.push("numberOfPipelines".to_string());
+            params.push(number_of_pipelines.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineFolderImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineFolderImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub display_name: Vec<String>,
+            pub full_name: Vec<String>,
+            pub name: Vec<String>,
+            pub organization: Vec<String>,
+            pub number_of_folders: Vec<isize>,
+            pub number_of_pipelines: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineFolderImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numberOfFolders" => intermediate_rep.number_of_folders.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "numberOfPipelines" => intermediate_rep.number_of_pipelines.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineFolderImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineFolderImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            number_of_folders: intermediate_rep.number_of_folders.into_iter().next(),
+            number_of_pipelines: intermediate_rep.number_of_pipelines.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineFolderImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineFolderImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineFolderImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineFolderImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineFolderImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineFolderImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineFolderImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineFolderImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2461,7 +10601,7 @@ pub struct PipelineImpl {
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "fullName")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2481,7 +10621,7 @@ pub struct PipelineImpl {
 
     #[serde(rename = "weatherScore")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub weather_score: Option<i32>,
+    pub weather_score: Option<isize>,
 
     #[serde(rename = "_links")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2505,7 +10645,183 @@ impl PipelineImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+
+        if let Some(ref latest_run) = self.latest_run {
+            params.push("latestRun".to_string());
+            params.push(latest_run.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref weather_score) = self.weather_score {
+            params.push("weatherScore".to_string());
+            params.push(weather_score.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub display_name: Vec<String>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub full_name: Vec<String>,
+            pub latest_run: Vec<String>,
+            pub name: Vec<String>,
+            pub organization: Vec<String>,
+            pub weather_score: Vec<isize>,
+            pub _links: Vec<models::PipelineImpllinks>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "latestRun" => intermediate_rep.latest_run.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "weatherScore" => intermediate_rep.weather_score.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::PipelineImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+            latest_run: intermediate_rep.latest_run.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            weather_score: intermediate_rep.weather_score.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineImpllinks {
     #[serde(rename = "runs")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2513,7 +10829,7 @@ pub struct PipelineImpllinks {
 
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "queue")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2533,7 +10849,7 @@ impl PipelineImpllinks {
     pub fn new() -> PipelineImpllinks {
         PipelineImpllinks {
             runs: None,
-            _self: None,
+            self_: None,
             queue: None,
             actions: None,
             _class: None,
@@ -2541,69 +10857,135 @@ impl PipelineImpllinks {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineQueue(Vec<QueueItemImpl>);
+/// Converts the PipelineImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping runs in query parameter serialization
 
-impl ::std::convert::From<Vec<QueueItemImpl>> for PipelineQueue {
-    fn from(x: Vec<QueueItemImpl>) -> Self {
-        PipelineQueue(x)
+        // Skipping self in query parameter serialization
+
+        // Skipping queue in query parameter serialization
+
+        // Skipping actions in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<PipelineQueue> for Vec<QueueItemImpl> {
-    fn from(x: PipelineQueue) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub runs: Vec<models::Link>,
+            pub self_: Vec<models::Link>,
+            pub queue: Vec<models::Link>,
+            pub actions: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "runs" => intermediate_rep.runs.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "queue" => intermediate_rep.queue.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => intermediate_rep.actions.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineImpllinks {
+            runs: intermediate_rep.runs.into_iter().next(),
+            self_: intermediate_rep.self_.into_iter().next(),
+            queue: intermediate_rep.queue.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<QueueItemImpl> for PipelineQueue {
-    fn from_iter<U: IntoIterator<Item=QueueItemImpl>>(u: U) -> Self {
-        PipelineQueue(Vec::<QueueItemImpl>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<PipelineImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for PipelineQueue {
-    type Item = QueueItemImpl;
-    type IntoIter = ::std::vec::IntoIter<QueueItemImpl>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineImpllinks> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineQueue {
-    type Item = &'a QueueItemImpl;
-    type IntoIter = ::std::slice::Iter<'a, QueueItemImpl>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineQueue {
-    type Item = &'a mut QueueItemImpl;
-    type IntoIter = ::std::slice::IterMut<'a, QueueItemImpl>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineQueue {
-    type Target = Vec<QueueItemImpl>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineQueue {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl PipelineImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRun {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2615,11 +10997,11 @@ pub struct PipelineRun {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "enQueueTime")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2659,7 +11041,7 @@ pub struct PipelineRun {
 
     #[serde(rename = "type")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _type: Option<String>,
+    pub type_: Option<String>,
 
     #[serde(rename = "commitId")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2683,13 +11065,243 @@ impl PipelineRun {
             run_summary: None,
             start_time: None,
             state: None,
-            _type: None,
+            type_: None,
             commit_id: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineRun value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineRun {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping artifacts in query parameter serialization
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref en_queue_time) = self.en_queue_time {
+            params.push("enQueueTime".to_string());
+            params.push(en_queue_time.to_string());
+        }
+
+
+        if let Some(ref end_time) = self.end_time {
+            params.push("endTime".to_string());
+            params.push(end_time.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref pipeline) = self.pipeline {
+            params.push("pipeline".to_string());
+            params.push(pipeline.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref run_summary) = self.run_summary {
+            params.push("runSummary".to_string());
+            params.push(run_summary.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+
+        if let Some(ref type_) = self.type_ {
+            params.push("type".to_string());
+            params.push(type_.to_string());
+        }
+
+
+        if let Some(ref commit_id) = self.commit_id {
+            params.push("commitId".to_string());
+            params.push(commit_id.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineRun value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineRun {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub artifacts: Vec<Vec<models::PipelineRunartifacts>>,
+            pub duration_in_millis: Vec<isize>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub en_queue_time: Vec<String>,
+            pub end_time: Vec<String>,
+            pub id: Vec<String>,
+            pub organization: Vec<String>,
+            pub pipeline: Vec<String>,
+            pub result: Vec<String>,
+            pub run_summary: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+            pub type_: Vec<String>,
+            pub commit_id: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineRun".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "artifacts" => return std::result::Result::Err("Parsing a container in this style is not supported in PipelineRun".to_string()),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "enQueueTime" => intermediate_rep.en_queue_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "endTime" => intermediate_rep.end_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pipeline" => intermediate_rep.pipeline.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "runSummary" => intermediate_rep.run_summary.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "type" => intermediate_rep.type_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineRun".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineRun {
+            _class: intermediate_rep._class.into_iter().next(),
+            artifacts: intermediate_rep.artifacts.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            en_queue_time: intermediate_rep.en_queue_time.into_iter().next(),
+            end_time: intermediate_rep.end_time.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            pipeline: intermediate_rep.pipeline.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            run_summary: intermediate_rep.run_summary.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+            type_: intermediate_rep.type_.into_iter().next(),
+            commit_id: intermediate_rep.commit_id.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineRun> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRun>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineRun>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineRun - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineRun> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineRun as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineRun - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineRun {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2701,7 +11313,7 @@ pub struct PipelineRunImpl {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "enQueueTime")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2713,7 +11325,7 @@ pub struct PipelineRunImpl {
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2745,7 +11357,7 @@ pub struct PipelineRunImpl {
 
     #[serde(rename = "type")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _type: Option<String>,
+    pub type_: Option<String>,
 
     #[serde(rename = "commitId")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2769,13 +11381,243 @@ impl PipelineRunImpl {
             run_summary: None,
             start_time: None,
             state: None,
-            _type: None,
+            type_: None,
             commit_id: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineRunImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineRunImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref en_queue_time) = self.en_queue_time {
+            params.push("enQueueTime".to_string());
+            params.push(en_queue_time.to_string());
+        }
+
+
+        if let Some(ref end_time) = self.end_time {
+            params.push("endTime".to_string());
+            params.push(end_time.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref pipeline) = self.pipeline {
+            params.push("pipeline".to_string());
+            params.push(pipeline.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref run_summary) = self.run_summary {
+            params.push("runSummary".to_string());
+            params.push(run_summary.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+
+        if let Some(ref type_) = self.type_ {
+            params.push("type".to_string());
+            params.push(type_.to_string());
+        }
+
+
+        if let Some(ref commit_id) = self.commit_id {
+            params.push("commitId".to_string());
+            params.push(commit_id.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineRunImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineRunImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::PipelineRunImpllinks>,
+            pub duration_in_millis: Vec<isize>,
+            pub en_queue_time: Vec<String>,
+            pub end_time: Vec<String>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub id: Vec<String>,
+            pub organization: Vec<String>,
+            pub pipeline: Vec<String>,
+            pub result: Vec<String>,
+            pub run_summary: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+            pub type_: Vec<String>,
+            pub commit_id: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineRunImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::PipelineRunImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "enQueueTime" => intermediate_rep.en_queue_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "endTime" => intermediate_rep.end_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pipeline" => intermediate_rep.pipeline.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "runSummary" => intermediate_rep.run_summary.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "type" => intermediate_rep.type_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineRunImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineRunImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            en_queue_time: intermediate_rep.en_queue_time.into_iter().next(),
+            end_time: intermediate_rep.end_time.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            pipeline: intermediate_rep.pipeline.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            run_summary: intermediate_rep.run_summary.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+            type_: intermediate_rep.type_.into_iter().next(),
+            commit_id: intermediate_rep.commit_id.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineRunImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineRunImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineRunImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineRunImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineRunImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineRunImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineRunImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunImpllinks {
     #[serde(rename = "nodes")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2787,7 +11629,7 @@ pub struct PipelineRunImpllinks {
 
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "actions")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2808,7 +11650,7 @@ impl PipelineRunImpllinks {
         PipelineRunImpllinks {
             nodes: None,
             log: None,
-            _self: None,
+            self_: None,
             actions: None,
             steps: None,
             _class: None,
@@ -2816,7 +11658,140 @@ impl PipelineRunImpllinks {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineRunImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineRunImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping nodes in query parameter serialization
+
+        // Skipping log in query parameter serialization
+
+        // Skipping self in query parameter serialization
+
+        // Skipping actions in query parameter serialization
+
+        // Skipping steps in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineRunImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineRunImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub nodes: Vec<models::Link>,
+            pub log: Vec<models::Link>,
+            pub self_: Vec<models::Link>,
+            pub actions: Vec<models::Link>,
+            pub steps: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineRunImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "nodes" => intermediate_rep.nodes.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "log" => intermediate_rep.log.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => intermediate_rep.actions.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "steps" => intermediate_rep.steps.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineRunImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineRunImpllinks {
+            nodes: intermediate_rep.nodes.into_iter().next(),
+            log: intermediate_rep.log.into_iter().next(),
+            self_: intermediate_rep.self_.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            steps: intermediate_rep.steps.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineRunImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineRunImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineRunImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineRunImpllinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineRunImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineRunImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineRunImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunNode {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2828,7 +11803,7 @@ pub struct PipelineRunNode {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "edges")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2867,69 +11842,174 @@ impl PipelineRunNode {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineRunNodeSteps(Vec<PipelineStepImpl>);
+/// Converts the PipelineRunNode value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineRunNode {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<PipelineStepImpl>> for PipelineRunNodeSteps {
-    fn from(x: Vec<PipelineStepImpl>) -> Self {
-        PipelineRunNodeSteps(x)
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+        // Skipping edges in query parameter serialization
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<PipelineRunNodeSteps> for Vec<PipelineStepImpl> {
-    fn from(x: PipelineRunNodeSteps) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineRunNode value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineRunNode {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub display_name: Vec<String>,
+            pub duration_in_millis: Vec<isize>,
+            pub edges: Vec<Vec<models::PipelineRunNodeedges>>,
+            pub id: Vec<String>,
+            pub result: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineRunNode".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "edges" => return std::result::Result::Err("Parsing a container in this style is not supported in PipelineRunNode".to_string()),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineRunNode".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineRunNode {
+            _class: intermediate_rep._class.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            edges: intermediate_rep.edges.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<PipelineStepImpl> for PipelineRunNodeSteps {
-    fn from_iter<U: IntoIterator<Item=PipelineStepImpl>>(u: U) -> Self {
-        PipelineRunNodeSteps(Vec::<PipelineStepImpl>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<PipelineRunNode> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunNode>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineRunNode>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineRunNode - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for PipelineRunNodeSteps {
-    type Item = PipelineStepImpl;
-    type IntoIter = ::std::vec::IntoIter<PipelineStepImpl>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineRunNode> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineRunNodeSteps {
-    type Item = &'a PipelineStepImpl;
-    type IntoIter = ::std::slice::Iter<'a, PipelineStepImpl>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineRunNodeSteps {
-    type Item = &'a mut PipelineStepImpl;
-    type IntoIter = ::std::slice::IterMut<'a, PipelineStepImpl>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineRunNodeSteps {
-    type Target = Vec<PipelineStepImpl>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineRunNodeSteps {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineRunNode as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineRunNode - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl PipelineRunNode {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunNodeedges {
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -2950,131 +12030,124 @@ impl PipelineRunNodeedges {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineRunNodes(Vec<PipelineRunNode>);
+/// Converts the PipelineRunNodeedges value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineRunNodeedges {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<PipelineRunNode>> for PipelineRunNodes {
-    fn from(x: Vec<PipelineRunNode>) -> Self {
-        PipelineRunNodes(x)
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<PipelineRunNodes> for Vec<PipelineRunNode> {
-    fn from(x: PipelineRunNodes) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineRunNodeedges value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineRunNodeedges {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub id: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineRunNodeedges".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineRunNodeedges".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineRunNodeedges {
+            id: intermediate_rep.id.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<PipelineRunNode> for PipelineRunNodes {
-    fn from_iter<U: IntoIterator<Item=PipelineRunNode>>(u: U) -> Self {
-        PipelineRunNodes(Vec::<PipelineRunNode>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<PipelineRunNodeedges> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunNodeedges>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineRunNodeedges>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineRunNodeedges - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for PipelineRunNodes {
-    type Item = PipelineRunNode;
-    type IntoIter = ::std::vec::IntoIter<PipelineRunNode>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineRunNodeedges> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineRunNodes {
-    type Item = &'a PipelineRunNode;
-    type IntoIter = ::std::slice::Iter<'a, PipelineRunNode>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineRunNodes {
-    type Item = &'a mut PipelineRunNode;
-    type IntoIter = ::std::slice::IterMut<'a, PipelineRunNode>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineRunNodes {
-    type Target = Vec<PipelineRunNode>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineRunNodes {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
-    }
-}
-
-
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineRunSteps(Vec<GenericResource>);
-
-impl ::std::convert::From<Vec<GenericResource>> for PipelineRunSteps {
-    fn from(x: Vec<GenericResource>) -> Self {
-        PipelineRunSteps(x)
-    }
-}
-
-impl ::std::convert::From<PipelineRunSteps> for Vec<GenericResource> {
-    fn from(x: PipelineRunSteps) -> Self {
-        x.0
-    }
-}
-
-impl ::std::iter::FromIterator<GenericResource> for PipelineRunSteps {
-    fn from_iter<U: IntoIterator<Item=GenericResource>>(u: U) -> Self {
-        PipelineRunSteps(Vec::<GenericResource>::from_iter(u))
-    }
-}
-
-impl ::std::iter::IntoIterator for PipelineRunSteps {
-    type Item = GenericResource;
-    type IntoIter = ::std::vec::IntoIter<GenericResource>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineRunSteps {
-    type Item = &'a GenericResource;
-    type IntoIter = ::std::slice::Iter<'a, GenericResource>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineRunSteps {
-    type Item = &'a mut GenericResource;
-    type IntoIter = ::std::slice::IterMut<'a, GenericResource>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineRunSteps {
-    type Target = Vec<GenericResource>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineRunSteps {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineRunNodeedges as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineRunNodeedges - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl PipelineRunNodeedges {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunartifacts {
     #[serde(rename = "name")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3082,7 +12155,7 @@ pub struct PipelineRunartifacts {
 
     #[serde(rename = "size")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub size: Option<i32>,
+    pub size: Option<isize>,
 
     #[serde(rename = "url")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3105,69 +12178,142 @@ impl PipelineRunartifacts {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct PipelineRuns(Vec<PipelineRun>);
+/// Converts the PipelineRunartifacts value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineRunartifacts {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<PipelineRun>> for PipelineRuns {
-    fn from(x: Vec<PipelineRun>) -> Self {
-        PipelineRuns(x)
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref size) = self.size {
+            params.push("size".to_string());
+            params.push(size.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<PipelineRuns> for Vec<PipelineRun> {
-    fn from(x: PipelineRuns) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineRunartifacts value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineRunartifacts {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub name: Vec<String>,
+            pub size: Vec<isize>,
+            pub url: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineRunartifacts".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "size" => intermediate_rep.size.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineRunartifacts".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineRunartifacts {
+            name: intermediate_rep.name.into_iter().next(),
+            size: intermediate_rep.size.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<PipelineRun> for PipelineRuns {
-    fn from_iter<U: IntoIterator<Item=PipelineRun>>(u: U) -> Self {
-        PipelineRuns(Vec::<PipelineRun>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<PipelineRunartifacts> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunartifacts>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineRunartifacts>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineRunartifacts - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for PipelineRuns {
-    type Item = PipelineRun;
-    type IntoIter = ::std::vec::IntoIter<PipelineRun>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineRunartifacts> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a PipelineRuns {
-    type Item = &'a PipelineRun;
-    type IntoIter = ::std::slice::Iter<'a, PipelineRun>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut PipelineRuns {
-    type Item = &'a mut PipelineRun;
-    type IntoIter = ::std::slice::IterMut<'a, PipelineRun>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for PipelineRuns {
-    type Target = Vec<PipelineRun>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for PipelineRuns {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineRunartifacts as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineRunartifacts - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl PipelineRunartifacts {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineStepImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3183,7 +12329,7 @@ pub struct PipelineStepImpl {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3223,11 +12369,183 @@ impl PipelineStepImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineStepImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineStepImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping _links in query parameter serialization
+
+
+        if let Some(ref display_name) = self.display_name {
+            params.push("displayName".to_string());
+            params.push(display_name.to_string());
+        }
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+        // Skipping input in query parameter serialization
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineStepImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineStepImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub _links: Vec<models::PipelineStepImpllinks>,
+            pub display_name: Vec<String>,
+            pub duration_in_millis: Vec<isize>,
+            pub id: Vec<String>,
+            pub input: Vec<models::InputStepImpl>,
+            pub result: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineStepImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_links" => intermediate_rep._links.push(<models::PipelineStepImpllinks as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "displayName" => intermediate_rep.display_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "input" => intermediate_rep.input.push(<models::InputStepImpl as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineStepImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineStepImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            _links: intermediate_rep._links.into_iter().next(),
+            display_name: intermediate_rep.display_name.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            input: intermediate_rep.input.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineStepImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineStepImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineStepImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineStepImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineStepImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineStepImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineStepImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineStepImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineStepImpllinks {
     #[serde(rename = "self")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _self: Option<models::Link>,
+    pub self_: Option<models::Link>,
 
     #[serde(rename = "actions")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3242,14 +12560,132 @@ pub struct PipelineStepImpllinks {
 impl PipelineStepImpllinks {
     pub fn new() -> PipelineStepImpllinks {
         PipelineStepImpllinks {
-            _self: None,
+            self_: None,
             actions: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelineStepImpllinks value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelineStepImpllinks {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping self in query parameter serialization
+
+        // Skipping actions in query parameter serialization
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelineStepImpllinks value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelineStepImpllinks {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub self_: Vec<models::Link>,
+            pub actions: Vec<models::Link>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelineStepImpllinks".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "self" => intermediate_rep.self_.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => intermediate_rep.actions.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelineStepImpllinks".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelineStepImpllinks {
+            self_: intermediate_rep.self_.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelineStepImpllinks> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelineStepImpllinks>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelineStepImpllinks>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelineStepImpllinks - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelineStepImpllinks> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelineStepImpllinks as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelineStepImpllinks - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelineStepImpllinks {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelinelatestRun {
     #[serde(rename = "artifacts")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3257,11 +12693,11 @@ pub struct PipelinelatestRun {
 
     #[serde(rename = "durationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub duration_in_millis: Option<i32>,
+    pub duration_in_millis: Option<isize>,
 
     #[serde(rename = "estimatedDurationInMillis")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub estimated_duration_in_millis: Option<i32>,
+    pub estimated_duration_in_millis: Option<isize>,
 
     #[serde(rename = "enQueueTime")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3301,7 +12737,7 @@ pub struct PipelinelatestRun {
 
     #[serde(rename = "type")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _type: Option<String>,
+    pub type_: Option<String>,
 
     #[serde(rename = "commitId")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3328,14 +12764,244 @@ impl PipelinelatestRun {
             run_summary: None,
             start_time: None,
             state: None,
-            _type: None,
+            type_: None,
             commit_id: None,
             _class: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the PipelinelatestRun value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelinelatestRun {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+        // Skipping artifacts in query parameter serialization
+
+
+        if let Some(ref duration_in_millis) = self.duration_in_millis {
+            params.push("durationInMillis".to_string());
+            params.push(duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref estimated_duration_in_millis) = self.estimated_duration_in_millis {
+            params.push("estimatedDurationInMillis".to_string());
+            params.push(estimated_duration_in_millis.to_string());
+        }
+
+
+        if let Some(ref en_queue_time) = self.en_queue_time {
+            params.push("enQueueTime".to_string());
+            params.push(en_queue_time.to_string());
+        }
+
+
+        if let Some(ref end_time) = self.end_time {
+            params.push("endTime".to_string());
+            params.push(end_time.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref organization) = self.organization {
+            params.push("organization".to_string());
+            params.push(organization.to_string());
+        }
+
+
+        if let Some(ref pipeline) = self.pipeline {
+            params.push("pipeline".to_string());
+            params.push(pipeline.to_string());
+        }
+
+
+        if let Some(ref result) = self.result {
+            params.push("result".to_string());
+            params.push(result.to_string());
+        }
+
+
+        if let Some(ref run_summary) = self.run_summary {
+            params.push("runSummary".to_string());
+            params.push(run_summary.to_string());
+        }
+
+
+        if let Some(ref start_time) = self.start_time {
+            params.push("startTime".to_string());
+            params.push(start_time.to_string());
+        }
+
+
+        if let Some(ref state) = self.state {
+            params.push("state".to_string());
+            params.push(state.to_string());
+        }
+
+
+        if let Some(ref type_) = self.type_ {
+            params.push("type".to_string());
+            params.push(type_.to_string());
+        }
+
+
+        if let Some(ref commit_id) = self.commit_id {
+            params.push("commitId".to_string());
+            params.push(commit_id.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelinelatestRun value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelinelatestRun {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub artifacts: Vec<Vec<models::PipelinelatestRunartifacts>>,
+            pub duration_in_millis: Vec<isize>,
+            pub estimated_duration_in_millis: Vec<isize>,
+            pub en_queue_time: Vec<String>,
+            pub end_time: Vec<String>,
+            pub id: Vec<String>,
+            pub organization: Vec<String>,
+            pub pipeline: Vec<String>,
+            pub result: Vec<String>,
+            pub run_summary: Vec<String>,
+            pub start_time: Vec<String>,
+            pub state: Vec<String>,
+            pub type_: Vec<String>,
+            pub commit_id: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelinelatestRun".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "artifacts" => return std::result::Result::Err("Parsing a container in this style is not supported in PipelinelatestRun".to_string()),
+                    "durationInMillis" => intermediate_rep.duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "estimatedDurationInMillis" => intermediate_rep.estimated_duration_in_millis.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "enQueueTime" => intermediate_rep.en_queue_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "endTime" => intermediate_rep.end_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "organization" => intermediate_rep.organization.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pipeline" => intermediate_rep.pipeline.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "result" => intermediate_rep.result.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "runSummary" => intermediate_rep.run_summary.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "startTime" => intermediate_rep.start_time.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "type" => intermediate_rep.type_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelinelatestRun".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelinelatestRun {
+            artifacts: intermediate_rep.artifacts.into_iter().next(),
+            duration_in_millis: intermediate_rep.duration_in_millis.into_iter().next(),
+            estimated_duration_in_millis: intermediate_rep.estimated_duration_in_millis.into_iter().next(),
+            en_queue_time: intermediate_rep.en_queue_time.into_iter().next(),
+            end_time: intermediate_rep.end_time.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            organization: intermediate_rep.organization.into_iter().next(),
+            pipeline: intermediate_rep.pipeline.into_iter().next(),
+            result: intermediate_rep.result.into_iter().next(),
+            run_summary: intermediate_rep.run_summary.into_iter().next(),
+            start_time: intermediate_rep.start_time.into_iter().next(),
+            state: intermediate_rep.state.into_iter().next(),
+            type_: intermediate_rep.type_.into_iter().next(),
+            commit_id: intermediate_rep.commit_id.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<PipelinelatestRun> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelinelatestRun>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelinelatestRun>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelinelatestRun - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelinelatestRun> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelinelatestRun as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelinelatestRun - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl PipelinelatestRun {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelinelatestRunartifacts {
     #[serde(rename = "name")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3343,7 +13009,7 @@ pub struct PipelinelatestRunartifacts {
 
     #[serde(rename = "size")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub size: Option<i32>,
+    pub size: Option<isize>,
 
     #[serde(rename = "url")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3366,69 +13032,142 @@ impl PipelinelatestRunartifacts {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct Pipelines(Vec<Pipeline>);
+/// Converts the PipelinelatestRunartifacts value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for PipelinelatestRunartifacts {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<Pipeline>> for Pipelines {
-    fn from(x: Vec<Pipeline>) -> Self {
-        Pipelines(x)
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref size) = self.size {
+            params.push("size".to_string());
+            params.push(size.to_string());
+        }
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<Pipelines> for Vec<Pipeline> {
-    fn from(x: Pipelines) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a PipelinelatestRunartifacts value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for PipelinelatestRunartifacts {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub name: Vec<String>,
+            pub size: Vec<isize>,
+            pub url: Vec<String>,
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing PipelinelatestRunartifacts".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "size" => intermediate_rep.size.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing PipelinelatestRunartifacts".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(PipelinelatestRunartifacts {
+            name: intermediate_rep.name.into_iter().next(),
+            size: intermediate_rep.size.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            _class: intermediate_rep._class.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<Pipeline> for Pipelines {
-    fn from_iter<U: IntoIterator<Item=Pipeline>>(u: U) -> Self {
-        Pipelines(Vec::<Pipeline>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<PipelinelatestRunartifacts> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<PipelinelatestRunartifacts>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<PipelinelatestRunartifacts>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for PipelinelatestRunartifacts - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for Pipelines {
-    type Item = Pipeline;
-    type IntoIter = ::std::vec::IntoIter<Pipeline>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<PipelinelatestRunartifacts> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a Pipelines {
-    type Item = &'a Pipeline;
-    type IntoIter = ::std::slice::Iter<'a, Pipeline>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut Pipelines {
-    type Item = &'a mut Pipeline;
-    type IntoIter = ::std::slice::IterMut<'a, Pipeline>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for Pipelines {
-    type Target = Vec<Pipeline>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for Pipelines {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <PipelinelatestRunartifacts as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into PipelinelatestRunartifacts - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl PipelinelatestRunartifacts {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Queue {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3449,7 +13188,120 @@ impl Queue {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the Queue value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for Queue {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping items in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a Queue value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for Queue {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub items: Vec<Vec<models::QueueBlockedItem>>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing Queue".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "items" => return std::result::Result::Err("Parsing a container in this style is not supported in Queue".to_string()),
+                    _ => return std::result::Result::Err("Unexpected key while parsing Queue".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(Queue {
+            _class: intermediate_rep._class.into_iter().next(),
+            items: intermediate_rep.items.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<Queue> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<Queue>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<Queue>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for Queue - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<Queue> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <Queue as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into Queue - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl Queue {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueBlockedItem {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3469,11 +13321,11 @@ pub struct QueueBlockedItem {
 
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub id: Option<i32>,
+    pub id: Option<isize>,
 
     #[serde(rename = "inQueueSince")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub in_queue_since: Option<i32>,
+    pub in_queue_since: Option<isize>,
 
     #[serde(rename = "params")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3497,7 +13349,7 @@ pub struct QueueBlockedItem {
 
     #[serde(rename = "buildableStartMilliseconds")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub buildable_start_milliseconds: Option<i32>,
+    pub buildable_start_milliseconds: Option<isize>,
 
 }
 
@@ -3520,7 +13372,206 @@ impl QueueBlockedItem {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the QueueBlockedItem value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for QueueBlockedItem {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping actions in query parameter serialization
+
+
+        if let Some(ref blocked) = self.blocked {
+            params.push("blocked".to_string());
+            params.push(blocked.to_string());
+        }
+
+
+        if let Some(ref buildable) = self.buildable {
+            params.push("buildable".to_string());
+            params.push(buildable.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref in_queue_since) = self.in_queue_since {
+            params.push("inQueueSince".to_string());
+            params.push(in_queue_since.to_string());
+        }
+
+
+        if let Some(ref params) = self.params {
+            params.push("params".to_string());
+            params.push(params.to_string());
+        }
+
+
+        if let Some(ref stuck) = self.stuck {
+            params.push("stuck".to_string());
+            params.push(stuck.to_string());
+        }
+
+        // Skipping task in query parameter serialization
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref why) = self.why {
+            params.push("why".to_string());
+            params.push(why.to_string());
+        }
+
+
+        if let Some(ref buildable_start_milliseconds) = self.buildable_start_milliseconds {
+            params.push("buildableStartMilliseconds".to_string());
+            params.push(buildable_start_milliseconds.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a QueueBlockedItem value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for QueueBlockedItem {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub actions: Vec<Vec<models::CauseAction>>,
+            pub blocked: Vec<bool>,
+            pub buildable: Vec<bool>,
+            pub id: Vec<isize>,
+            pub in_queue_since: Vec<isize>,
+            pub params: Vec<String>,
+            pub stuck: Vec<bool>,
+            pub task: Vec<models::FreeStyleProject>,
+            pub url: Vec<String>,
+            pub why: Vec<String>,
+            pub buildable_start_milliseconds: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing QueueBlockedItem".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => return std::result::Result::Err("Parsing a container in this style is not supported in QueueBlockedItem".to_string()),
+                    "blocked" => intermediate_rep.blocked.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "buildable" => intermediate_rep.buildable.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "inQueueSince" => intermediate_rep.in_queue_since.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "params" => intermediate_rep.params.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "stuck" => intermediate_rep.stuck.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "task" => intermediate_rep.task.push(<models::FreeStyleProject as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "why" => intermediate_rep.why.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "buildableStartMilliseconds" => intermediate_rep.buildable_start_milliseconds.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing QueueBlockedItem".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(QueueBlockedItem {
+            _class: intermediate_rep._class.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            blocked: intermediate_rep.blocked.into_iter().next(),
+            buildable: intermediate_rep.buildable.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            in_queue_since: intermediate_rep.in_queue_since.into_iter().next(),
+            params: intermediate_rep.params.into_iter().next(),
+            stuck: intermediate_rep.stuck.into_iter().next(),
+            task: intermediate_rep.task.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            why: intermediate_rep.why.into_iter().next(),
+            buildable_start_milliseconds: intermediate_rep.buildable_start_milliseconds.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<QueueBlockedItem> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<QueueBlockedItem>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<QueueBlockedItem>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for QueueBlockedItem - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<QueueBlockedItem> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <QueueBlockedItem as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into QueueBlockedItem - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl QueueBlockedItem {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueItemImpl {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3528,7 +13579,7 @@ pub struct QueueItemImpl {
 
     #[serde(rename = "expectedBuildNumber")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub expected_build_number: Option<i32>,
+    pub expected_build_number: Option<isize>,
 
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3540,7 +13591,7 @@ pub struct QueueItemImpl {
 
     #[serde(rename = "queuedTime")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub queued_time: Option<i32>,
+    pub queued_time: Option<isize>,
 
 }
 
@@ -3556,7 +13607,151 @@ impl QueueItemImpl {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the QueueItemImpl value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for QueueItemImpl {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref expected_build_number) = self.expected_build_number {
+            params.push("expectedBuildNumber".to_string());
+            params.push(expected_build_number.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref pipeline) = self.pipeline {
+            params.push("pipeline".to_string());
+            params.push(pipeline.to_string());
+        }
+
+
+        if let Some(ref queued_time) = self.queued_time {
+            params.push("queuedTime".to_string());
+            params.push(queued_time.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a QueueItemImpl value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for QueueItemImpl {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub expected_build_number: Vec<isize>,
+            pub id: Vec<String>,
+            pub pipeline: Vec<String>,
+            pub queued_time: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing QueueItemImpl".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "expectedBuildNumber" => intermediate_rep.expected_build_number.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "pipeline" => intermediate_rep.pipeline.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "queuedTime" => intermediate_rep.queued_time.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing QueueItemImpl".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(QueueItemImpl {
+            _class: intermediate_rep._class.into_iter().next(),
+            expected_build_number: intermediate_rep.expected_build_number.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            pipeline: intermediate_rep.pipeline.into_iter().next(),
+            queued_time: intermediate_rep.queued_time.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<QueueItemImpl> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<QueueItemImpl>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<QueueItemImpl>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for QueueItemImpl - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<QueueItemImpl> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <QueueItemImpl as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into QueueItemImpl - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl QueueItemImpl {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueLeftItem {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3576,11 +13771,11 @@ pub struct QueueLeftItem {
 
     #[serde(rename = "id")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub id: Option<i32>,
+    pub id: Option<isize>,
 
     #[serde(rename = "inQueueSince")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub in_queue_since: Option<i32>,
+    pub in_queue_since: Option<isize>,
 
     #[serde(rename = "params")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3632,7 +13827,211 @@ impl QueueLeftItem {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the QueueLeftItem value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for QueueLeftItem {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping actions in query parameter serialization
+
+
+        if let Some(ref blocked) = self.blocked {
+            params.push("blocked".to_string());
+            params.push(blocked.to_string());
+        }
+
+
+        if let Some(ref buildable) = self.buildable {
+            params.push("buildable".to_string());
+            params.push(buildable.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref in_queue_since) = self.in_queue_since {
+            params.push("inQueueSince".to_string());
+            params.push(in_queue_since.to_string());
+        }
+
+
+        if let Some(ref params) = self.params {
+            params.push("params".to_string());
+            params.push(params.to_string());
+        }
+
+
+        if let Some(ref stuck) = self.stuck {
+            params.push("stuck".to_string());
+            params.push(stuck.to_string());
+        }
+
+        // Skipping task in query parameter serialization
+
+
+        if let Some(ref url) = self.url {
+            params.push("url".to_string());
+            params.push(url.to_string());
+        }
+
+
+        if let Some(ref why) = self.why {
+            params.push("why".to_string());
+            params.push(why.to_string());
+        }
+
+
+        if let Some(ref cancelled) = self.cancelled {
+            params.push("cancelled".to_string());
+            params.push(cancelled.to_string());
+        }
+
+        // Skipping executable in query parameter serialization
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a QueueLeftItem value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for QueueLeftItem {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub actions: Vec<Vec<models::CauseAction>>,
+            pub blocked: Vec<bool>,
+            pub buildable: Vec<bool>,
+            pub id: Vec<isize>,
+            pub in_queue_since: Vec<isize>,
+            pub params: Vec<String>,
+            pub stuck: Vec<bool>,
+            pub task: Vec<models::FreeStyleProject>,
+            pub url: Vec<String>,
+            pub why: Vec<String>,
+            pub cancelled: Vec<bool>,
+            pub executable: Vec<models::FreeStyleBuild>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing QueueLeftItem".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "actions" => return std::result::Result::Err("Parsing a container in this style is not supported in QueueLeftItem".to_string()),
+                    "blocked" => intermediate_rep.blocked.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "buildable" => intermediate_rep.buildable.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "inQueueSince" => intermediate_rep.in_queue_since.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "params" => intermediate_rep.params.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "stuck" => intermediate_rep.stuck.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "task" => intermediate_rep.task.push(<models::FreeStyleProject as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "url" => intermediate_rep.url.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "why" => intermediate_rep.why.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "cancelled" => intermediate_rep.cancelled.push(<bool as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "executable" => intermediate_rep.executable.push(<models::FreeStyleBuild as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing QueueLeftItem".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(QueueLeftItem {
+            _class: intermediate_rep._class.into_iter().next(),
+            actions: intermediate_rep.actions.into_iter().next(),
+            blocked: intermediate_rep.blocked.into_iter().next(),
+            buildable: intermediate_rep.buildable.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            in_queue_since: intermediate_rep.in_queue_since.into_iter().next(),
+            params: intermediate_rep.params.into_iter().next(),
+            stuck: intermediate_rep.stuck.into_iter().next(),
+            task: intermediate_rep.task.into_iter().next(),
+            url: intermediate_rep.url.into_iter().next(),
+            why: intermediate_rep.why.into_iter().next(),
+            cancelled: intermediate_rep.cancelled.into_iter().next(),
+            executable: intermediate_rep.executable.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<QueueLeftItem> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<QueueLeftItem>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<QueueLeftItem>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for QueueLeftItem - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<QueueLeftItem> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <QueueLeftItem as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into QueueLeftItem - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl QueueLeftItem {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ResponseTimeMonitorData {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3640,11 +14039,11 @@ pub struct ResponseTimeMonitorData {
 
     #[serde(rename = "timestamp")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub timestamp: Option<i32>,
+    pub timestamp: Option<isize>,
 
     #[serde(rename = "average")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub average: Option<i32>,
+    pub average: Option<isize>,
 
 }
 
@@ -3658,69 +14057,133 @@ impl ResponseTimeMonitorData {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct ScmOrganisations(Vec<GithubOrganization>);
+/// Converts the ResponseTimeMonitorData value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for ResponseTimeMonitorData {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<GithubOrganization>> for ScmOrganisations {
-    fn from(x: Vec<GithubOrganization>) -> Self {
-        ScmOrganisations(x)
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref timestamp) = self.timestamp {
+            params.push("timestamp".to_string());
+            params.push(timestamp.to_string());
+        }
+
+
+        if let Some(ref average) = self.average {
+            params.push("average".to_string());
+            params.push(average.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<ScmOrganisations> for Vec<GithubOrganization> {
-    fn from(x: ScmOrganisations) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a ResponseTimeMonitorData value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for ResponseTimeMonitorData {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub timestamp: Vec<isize>,
+            pub average: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing ResponseTimeMonitorData".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "timestamp" => intermediate_rep.timestamp.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "average" => intermediate_rep.average.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing ResponseTimeMonitorData".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(ResponseTimeMonitorData {
+            _class: intermediate_rep._class.into_iter().next(),
+            timestamp: intermediate_rep.timestamp.into_iter().next(),
+            average: intermediate_rep.average.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<GithubOrganization> for ScmOrganisations {
-    fn from_iter<U: IntoIterator<Item=GithubOrganization>>(u: U) -> Self {
-        ScmOrganisations(Vec::<GithubOrganization>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<ResponseTimeMonitorData> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<ResponseTimeMonitorData>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<ResponseTimeMonitorData>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for ResponseTimeMonitorData - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for ScmOrganisations {
-    type Item = GithubOrganization;
-    type IntoIter = ::std::vec::IntoIter<GithubOrganization>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<ResponseTimeMonitorData> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a ScmOrganisations {
-    type Item = &'a GithubOrganization;
-    type IntoIter = ::std::slice::Iter<'a, GithubOrganization>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut ScmOrganisations {
-    type Item = &'a mut GithubOrganization;
-    type IntoIter = ::std::slice::IterMut<'a, GithubOrganization>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for ScmOrganisations {
-    type Target = Vec<GithubOrganization>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for ScmOrganisations {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <ResponseTimeMonitorData as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into ResponseTimeMonitorData - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+impl ResponseTimeMonitorData {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StringParameterDefinition {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3740,7 +14203,7 @@ pub struct StringParameterDefinition {
 
     #[serde(rename = "type")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub _type: Option<String>,
+    pub type_: Option<String>,
 
 }
 
@@ -3751,12 +14214,152 @@ impl StringParameterDefinition {
             default_parameter_value: None,
             description: None,
             name: None,
-            _type: None,
+            type_: None,
         }
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the StringParameterDefinition value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for StringParameterDefinition {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        // Skipping defaultParameterValue in query parameter serialization
+
+
+        if let Some(ref description) = self.description {
+            params.push("description".to_string());
+            params.push(description.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref type_) = self.type_ {
+            params.push("type".to_string());
+            params.push(type_.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a StringParameterDefinition value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for StringParameterDefinition {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub default_parameter_value: Vec<models::StringParameterValue>,
+            pub description: Vec<String>,
+            pub name: Vec<String>,
+            pub type_: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing StringParameterDefinition".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "defaultParameterValue" => intermediate_rep.default_parameter_value.push(<models::StringParameterValue as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "description" => intermediate_rep.description.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "type" => intermediate_rep.type_.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing StringParameterDefinition".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(StringParameterDefinition {
+            _class: intermediate_rep._class.into_iter().next(),
+            default_parameter_value: intermediate_rep.default_parameter_value.into_iter().next(),
+            description: intermediate_rep.description.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            type_: intermediate_rep.type_.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<StringParameterDefinition> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<StringParameterDefinition>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<StringParameterDefinition>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for StringParameterDefinition - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<StringParameterDefinition> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <StringParameterDefinition as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into StringParameterDefinition - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl StringParameterDefinition {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StringParameterValue {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3782,7 +14385,133 @@ impl StringParameterValue {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the StringParameterValue value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for StringParameterValue {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+
+        if let Some(ref value) = self.value {
+            params.push("value".to_string());
+            params.push(value.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a StringParameterValue value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for StringParameterValue {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub name: Vec<String>,
+            pub value: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing StringParameterValue".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "value" => intermediate_rep.value.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing StringParameterValue".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(StringParameterValue {
+            _class: intermediate_rep._class.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+            value: intermediate_rep.value.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<StringParameterValue> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<StringParameterValue>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<StringParameterValue>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for StringParameterValue - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<StringParameterValue> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <StringParameterValue as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into StringParameterValue - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl StringParameterValue {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct SwapSpaceMonitorMemoryUsage2 {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3790,19 +14519,19 @@ pub struct SwapSpaceMonitorMemoryUsage2 {
 
     #[serde(rename = "availablePhysicalMemory")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub available_physical_memory: Option<i32>,
+    pub available_physical_memory: Option<isize>,
 
     #[serde(rename = "availableSwapSpace")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub available_swap_space: Option<i32>,
+    pub available_swap_space: Option<isize>,
 
     #[serde(rename = "totalPhysicalMemory")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub total_physical_memory: Option<i32>,
+    pub total_physical_memory: Option<isize>,
 
     #[serde(rename = "totalSwapSpace")]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub total_swap_space: Option<i32>,
+    pub total_swap_space: Option<isize>,
 
 }
 
@@ -3818,7 +14547,151 @@ impl SwapSpaceMonitorMemoryUsage2 {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the SwapSpaceMonitorMemoryUsage2 value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for SwapSpaceMonitorMemoryUsage2 {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref available_physical_memory) = self.available_physical_memory {
+            params.push("availablePhysicalMemory".to_string());
+            params.push(available_physical_memory.to_string());
+        }
+
+
+        if let Some(ref available_swap_space) = self.available_swap_space {
+            params.push("availableSwapSpace".to_string());
+            params.push(available_swap_space.to_string());
+        }
+
+
+        if let Some(ref total_physical_memory) = self.total_physical_memory {
+            params.push("totalPhysicalMemory".to_string());
+            params.push(total_physical_memory.to_string());
+        }
+
+
+        if let Some(ref total_swap_space) = self.total_swap_space {
+            params.push("totalSwapSpace".to_string());
+            params.push(total_swap_space.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a SwapSpaceMonitorMemoryUsage2 value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for SwapSpaceMonitorMemoryUsage2 {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub available_physical_memory: Vec<isize>,
+            pub available_swap_space: Vec<isize>,
+            pub total_physical_memory: Vec<isize>,
+            pub total_swap_space: Vec<isize>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing SwapSpaceMonitorMemoryUsage2".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "availablePhysicalMemory" => intermediate_rep.available_physical_memory.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "availableSwapSpace" => intermediate_rep.available_swap_space.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "totalPhysicalMemory" => intermediate_rep.total_physical_memory.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "totalSwapSpace" => intermediate_rep.total_swap_space.push(<isize as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing SwapSpaceMonitorMemoryUsage2".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(SwapSpaceMonitorMemoryUsage2 {
+            _class: intermediate_rep._class.into_iter().next(),
+            available_physical_memory: intermediate_rep.available_physical_memory.into_iter().next(),
+            available_swap_space: intermediate_rep.available_swap_space.into_iter().next(),
+            total_physical_memory: intermediate_rep.total_physical_memory.into_iter().next(),
+            total_swap_space: intermediate_rep.total_swap_space.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<SwapSpaceMonitorMemoryUsage2> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<SwapSpaceMonitorMemoryUsage2>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<SwapSpaceMonitorMemoryUsage2>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for SwapSpaceMonitorMemoryUsage2 - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<SwapSpaceMonitorMemoryUsage2> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <SwapSpaceMonitorMemoryUsage2 as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into SwapSpaceMonitorMemoryUsage2 - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl SwapSpaceMonitorMemoryUsage2 {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct UnlabeledLoadStatistics {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3834,7 +14707,115 @@ impl UnlabeledLoadStatistics {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+/// Converts the UnlabeledLoadStatistics value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for UnlabeledLoadStatistics {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
+
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+        params.join(",").to_string()
+    }
+}
+
+/// Converts Query Parameters representation (style=form, explode=false) to a UnlabeledLoadStatistics value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for UnlabeledLoadStatistics {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing UnlabeledLoadStatistics".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing UnlabeledLoadStatistics".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(UnlabeledLoadStatistics {
+            _class: intermediate_rep._class.into_iter().next(),
+        })
+    }
+}
+
+// Methods for converting between header::IntoHeaderValue<UnlabeledLoadStatistics> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<UnlabeledLoadStatistics>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<UnlabeledLoadStatistics>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for UnlabeledLoadStatistics - value: {} is invalid {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<UnlabeledLoadStatistics> {
+    type Error = String;
+
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <UnlabeledLoadStatistics as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into UnlabeledLoadStatistics - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
+    }
+}
+
+
+impl UnlabeledLoadStatistics {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize)]
+#[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct User {
     #[serde(rename = "_class")]
     #[serde(skip_serializing_if="Option::is_none")]
@@ -3870,126 +14851,145 @@ impl User {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct UserFavorites(Vec<FavoriteImpl>);
+/// Converts the User value to the Query Parameters representation (style=form, explode=false)
+/// specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde serializer
+impl std::string::ToString for User {
+    fn to_string(&self) -> String {
+        let mut params: Vec<String> = vec![];
 
-impl ::std::convert::From<Vec<FavoriteImpl>> for UserFavorites {
-    fn from(x: Vec<FavoriteImpl>) -> Self {
-        UserFavorites(x)
+        if let Some(ref _class) = self._class {
+            params.push("_class".to_string());
+            params.push(_class.to_string());
+        }
+
+
+        if let Some(ref id) = self.id {
+            params.push("id".to_string());
+            params.push(id.to_string());
+        }
+
+
+        if let Some(ref full_name) = self.full_name {
+            params.push("fullName".to_string());
+            params.push(full_name.to_string());
+        }
+
+
+        if let Some(ref email) = self.email {
+            params.push("email".to_string());
+            params.push(email.to_string());
+        }
+
+
+        if let Some(ref name) = self.name {
+            params.push("name".to_string());
+            params.push(name.to_string());
+        }
+
+        params.join(",").to_string()
     }
 }
 
-impl ::std::convert::From<UserFavorites> for Vec<FavoriteImpl> {
-    fn from(x: UserFavorites) -> Self {
-        x.0
+/// Converts Query Parameters representation (style=form, explode=false) to a User value
+/// as specified in https://swagger.io/docs/specification/serialization/
+/// Should be implemented in a serde deserializer
+impl std::str::FromStr for User {
+    type Err = String;
+
+    fn from_str(s: &str) -> std::result::Result<Self, Self::Err> {
+        #[derive(Default)]
+        // An intermediate representation of the struct to use for parsing.
+        struct IntermediateRep {
+            pub _class: Vec<String>,
+            pub id: Vec<String>,
+            pub full_name: Vec<String>,
+            pub email: Vec<String>,
+            pub name: Vec<String>,
+        }
+
+        let mut intermediate_rep = IntermediateRep::default();
+
+        // Parse into intermediate representation
+        let mut string_iter = s.split(',').into_iter();
+        let mut key_result = string_iter.next();
+
+        while key_result.is_some() {
+            let val = match string_iter.next() {
+                Some(x) => x,
+                None => return std::result::Result::Err("Missing value while parsing User".to_string())
+            };
+
+            if let Some(key) = key_result {
+                match key {
+                    "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "id" => intermediate_rep.id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "fullName" => intermediate_rep.full_name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "email" => intermediate_rep.email.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| format!("{}", x))?),
+                    _ => return std::result::Result::Err("Unexpected key while parsing User".to_string())
+                }
+            }
+
+            // Get the next key
+            key_result = string_iter.next();
+        }
+
+        // Use the intermediate representation to return the struct
+        std::result::Result::Ok(User {
+            _class: intermediate_rep._class.into_iter().next(),
+            id: intermediate_rep.id.into_iter().next(),
+            full_name: intermediate_rep.full_name.into_iter().next(),
+            email: intermediate_rep.email.into_iter().next(),
+            name: intermediate_rep.name.into_iter().next(),
+        })
     }
 }
 
-impl ::std::iter::FromIterator<FavoriteImpl> for UserFavorites {
-    fn from_iter<U: IntoIterator<Item=FavoriteImpl>>(u: U) -> Self {
-        UserFavorites(Vec::<FavoriteImpl>::from_iter(u))
+// Methods for converting between header::IntoHeaderValue<User> and hyper::header::HeaderValue
+
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<header::IntoHeaderValue<User>> for hyper::header::HeaderValue {
+    type Error = String;
+
+    fn try_from(hdr_value: header::IntoHeaderValue<User>) -> std::result::Result<Self, Self::Error> {
+        let hdr_value = hdr_value.to_string();
+        match hyper::header::HeaderValue::from_str(&hdr_value) {
+             std::result::Result::Ok(value) => std::result::Result::Ok(value),
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Invalid header value for User - value: {} is invalid {}",
+                     hdr_value, e))
+        }
     }
 }
 
-impl ::std::iter::IntoIterator for UserFavorites {
-    type Item = FavoriteImpl;
-    type IntoIter = ::std::vec::IntoIter<FavoriteImpl>;
+#[cfg(any(feature = "client", feature = "server"))]
+impl std::convert::TryFrom<hyper::header::HeaderValue> for header::IntoHeaderValue<User> {
+    type Error = String;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a UserFavorites {
-    type Item = &'a FavoriteImpl;
-    type IntoIter = ::std::slice::Iter<'a, FavoriteImpl>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut UserFavorites {
-    type Item = &'a mut FavoriteImpl;
-    type IntoIter = ::std::slice::IterMut<'a, FavoriteImpl>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for UserFavorites {
-    type Target = Vec<FavoriteImpl>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for UserFavorites {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
+    fn try_from(hdr_value: hyper::header::HeaderValue) -> std::result::Result<Self, Self::Error> {
+        match hdr_value.to_str() {
+             std::result::Result::Ok(value) => {
+                    match <User as std::str::FromStr>::from_str(value) {
+                        std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
+                        std::result::Result::Err(err) => std::result::Result::Err(
+                            format!("Unable to convert header value '{}' into User - {}",
+                                value, err))
+                    }
+             },
+             std::result::Result::Err(e) => std::result::Result::Err(
+                 format!("Unable to convert header: {:?} to string: {}",
+                     hdr_value, e))
+        }
     }
 }
 
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
-pub struct Users(Vec<User>);
-
-impl ::std::convert::From<Vec<User>> for Users {
-    fn from(x: Vec<User>) -> Self {
-        Users(x)
+impl User {
+    /// Helper function to allow us to convert this model to an XML string.
+    /// Will panic if serialisation fails.
+    #[allow(dead_code)]
+    pub(crate) fn to_xml(&self) -> String {
+        serde_xml_rs::to_string(&self).expect("impossible to fail to serialize")
     }
 }
-
-impl ::std::convert::From<Users> for Vec<User> {
-    fn from(x: Users) -> Self {
-        x.0
-    }
-}
-
-impl ::std::iter::FromIterator<User> for Users {
-    fn from_iter<U: IntoIterator<Item=User>>(u: U) -> Self {
-        Users(Vec::<User>::from_iter(u))
-    }
-}
-
-impl ::std::iter::IntoIterator for Users {
-    type Item = User;
-    type IntoIter = ::std::vec::IntoIter<User>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        self.0.into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a Users {
-    type Item = &'a User;
-    type IntoIter = ::std::slice::Iter<'a, User>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&self.0).into_iter()
-    }
-}
-
-impl<'a> ::std::iter::IntoIterator for &'a mut Users {
-    type Item = &'a mut User;
-    type IntoIter = ::std::slice::IterMut<'a, User>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        (&mut self.0).into_iter()
-    }
-}
-
-impl ::std::ops::Deref for Users {
-    type Target = Vec<User>;
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl ::std::ops::DerefMut for Users {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
-    }
-}
-

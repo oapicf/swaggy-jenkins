@@ -28,11 +28,11 @@ type HudsonMasterComputer struct {
 
 	LaunchSupported bool `json:"launchSupported,omitempty"`
 
-	LoadStatistics *Label1 `json:"loadStatistics,omitempty"`
+	LoadStatistics Label1 `json:"loadStatistics,omitempty"`
 
 	ManualLaunchAllowed bool `json:"manualLaunchAllowed,omitempty"`
 
-	MonitorData *HudsonMasterComputermonitorData `json:"monitorData,omitempty"`
+	MonitorData HudsonMasterComputermonitorData `json:"monitorData,omitempty"`
 
 	NumExecutors int32 `json:"numExecutors,omitempty"`
 
@@ -43,4 +43,32 @@ type HudsonMasterComputer struct {
 	OfflineCauseReason string `json:"offlineCauseReason,omitempty"`
 
 	TemporarilyOffline bool `json:"temporarilyOffline,omitempty"`
+}
+
+// AssertHudsonMasterComputerRequired checks if the required fields are not zero-ed
+func AssertHudsonMasterComputerRequired(obj HudsonMasterComputer) error {
+	for _, el := range obj.Executors {
+		if err := AssertHudsonMasterComputerexecutorsRequired(el); err != nil {
+			return err
+		}
+	}
+	if err := AssertLabel1Required(obj.LoadStatistics); err != nil {
+		return err
+	}
+	if err := AssertHudsonMasterComputermonitorDataRequired(obj.MonitorData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseHudsonMasterComputerRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of HudsonMasterComputer (e.g. [][]HudsonMasterComputer), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseHudsonMasterComputerRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aHudsonMasterComputer, ok := obj.(HudsonMasterComputer)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertHudsonMasterComputerRequired(aHudsonMasterComputer)
+	})
 }

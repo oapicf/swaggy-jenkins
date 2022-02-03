@@ -9,13 +9,13 @@ namespace app\Models;
  */
 class DefaultCrumbIssuer {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
     /** @var string $crumb */
     private $crumb;
 
-    /** @var string $crumb_request_field */
-    private $crumb_request_field;
+    /** @var string $crumbRequestField */
+    private $crumbRequestField;
 
 }

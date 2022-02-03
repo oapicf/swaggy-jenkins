@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.GithubFile do
   ]
 
   @type t :: %__MODULE__{
-    :"content" => GithubContent,
-    :"_class" => String.t
+    :"content" => SwaggyJenkins.Model.GithubContent.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

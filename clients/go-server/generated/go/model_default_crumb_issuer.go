@@ -18,3 +18,20 @@ type DefaultCrumbIssuer struct {
 
 	CrumbRequestField string `json:"crumbRequestField,omitempty"`
 }
+
+// AssertDefaultCrumbIssuerRequired checks if the required fields are not zero-ed
+func AssertDefaultCrumbIssuerRequired(obj DefaultCrumbIssuer) error {
+	return nil
+}
+
+// AssertRecurseDefaultCrumbIssuerRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of DefaultCrumbIssuer (e.g. [][]DefaultCrumbIssuer), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseDefaultCrumbIssuerRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aDefaultCrumbIssuer, ok := obj.(DefaultCrumbIssuer)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertDefaultCrumbIssuerRequired(aDefaultCrumbIssuer)
+	})
+}

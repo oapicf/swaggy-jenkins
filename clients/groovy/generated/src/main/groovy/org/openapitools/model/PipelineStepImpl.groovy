@@ -8,22 +8,22 @@ import org.openapitools.model.PipelineStepImpllinks;
 
 @Canonical
 class PipelineStepImpl {
-    String propertyClass = null
-
-    PipelineStepImpllinks links = null
-
-    String displayName = null
-
-    Integer durationInMillis = null
-
-    String id = null
-
-    InputStepImpl input = null
-
-    String result = null
-
-    String startTime = null
-
-    String state = null
-
+    
+    String propertyClass
+    
+    PipelineStepImpllinks links
+    
+    String displayName
+    
+    Integer durationInMillis
+    
+    String id
+    
+    InputStepImpl input
+    
+    String result
+    
+    String startTime
+    
+    String state
 }

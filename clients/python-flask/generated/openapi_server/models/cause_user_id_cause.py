@@ -15,7 +15,7 @@ class CauseUserIdCause(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, short_description: str=None, user_id: str=None, user_name: str=None):  # noqa: E501
+    def __init__(self, _class=None, short_description=None, user_id=None, user_name=None):  # noqa: E501
         """CauseUserIdCause - a model defined in OpenAPI
 
         :param _class: The _class of this CauseUserIdCause.  # noqa: E501
@@ -58,7 +58,7 @@ class CauseUserIdCause(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this CauseUserIdCause.
 
 
@@ -68,7 +68,7 @@ class CauseUserIdCause(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this CauseUserIdCause.
 
 
@@ -79,7 +79,7 @@ class CauseUserIdCause(Model):
         self.__class = _class
 
     @property
-    def short_description(self) -> str:
+    def short_description(self):
         """Gets the short_description of this CauseUserIdCause.
 
 
@@ -89,7 +89,7 @@ class CauseUserIdCause(Model):
         return self._short_description
 
     @short_description.setter
-    def short_description(self, short_description: str):
+    def short_description(self, short_description):
         """Sets the short_description of this CauseUserIdCause.
 
 
@@ -100,7 +100,7 @@ class CauseUserIdCause(Model):
         self._short_description = short_description
 
     @property
-    def user_id(self) -> str:
+    def user_id(self):
         """Gets the user_id of this CauseUserIdCause.
 
 
@@ -110,7 +110,7 @@ class CauseUserIdCause(Model):
         return self._user_id
 
     @user_id.setter
-    def user_id(self, user_id: str):
+    def user_id(self, user_id):
         """Sets the user_id of this CauseUserIdCause.
 
 
@@ -121,7 +121,7 @@ class CauseUserIdCause(Model):
         self._user_id = user_id
 
     @property
-    def user_name(self) -> str:
+    def user_name(self):
         """Gets the user_name of this CauseUserIdCause.
 
 
@@ -131,7 +131,7 @@ class CauseUserIdCause(Model):
         return self._user_name
 
     @user_name.setter
-    def user_name(self, user_name: str):
+    def user_name(self, user_name):
         """Sets the user_name of this CauseUserIdCause.
 
 

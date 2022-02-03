@@ -1,39 +1,46 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * PipelineFolderImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class PipelineFolderImpl   {
+
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  private String fullName;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("numberOfFolders")
-  private Integer numberOfFolders = null;
+  private Integer numberOfFolders;
 
   @JsonProperty("numberOfPipelines")
-  private Integer numberOfPipelines = null;
+  private Integer numberOfPipelines;
 
   public PipelineFolderImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -43,10 +50,9 @@ public class PipelineFolderImpl   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -63,10 +69,9 @@ public class PipelineFolderImpl   {
   /**
    * Get displayName
    * @return displayName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "displayName", required = false)
   public String getDisplayName() {
     return displayName;
   }
@@ -83,10 +88,9 @@ public class PipelineFolderImpl   {
   /**
    * Get fullName
    * @return fullName
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "fullName", required = false)
   public String getFullName() {
     return fullName;
   }
@@ -103,10 +107,9 @@ public class PipelineFolderImpl   {
   /**
    * Get name
    * @return name
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "name", required = false)
   public String getName() {
     return name;
   }
@@ -123,10 +126,9 @@ public class PipelineFolderImpl   {
   /**
    * Get organization
    * @return organization
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "organization", required = false)
   public String getOrganization() {
     return organization;
   }
@@ -143,10 +145,9 @@ public class PipelineFolderImpl   {
   /**
    * Get numberOfFolders
    * @return numberOfFolders
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numberOfFolders", required = false)
   public Integer getNumberOfFolders() {
     return numberOfFolders;
   }
@@ -163,10 +164,9 @@ public class PipelineFolderImpl   {
   /**
    * Get numberOfPipelines
    * @return numberOfPipelines
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "numberOfPipelines", required = false)
   public Integer getNumberOfPipelines() {
     return numberOfPipelines;
   }
@@ -175,9 +175,8 @@ public class PipelineFolderImpl   {
     this.numberOfPipelines = numberOfPipelines;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -203,7 +202,6 @@ public class PipelineFolderImpl   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineFolderImpl {\n");
-    
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
@@ -219,7 +217,7 @@ public class PipelineFolderImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

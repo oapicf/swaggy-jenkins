@@ -1,28 +1,21 @@
 package org.openapitools.api;
 
-import org.openapitools.model.Body;
 import org.openapitools.model.BranchImpl;
 import org.openapitools.model.FavoriteImpl;
+import org.openapitools.model.GithubOrganization;
 import org.openapitools.model.GithubScm;
 import org.openapitools.model.MultibranchPipeline;
 import org.openapitools.model.Organisation;
-import org.openapitools.model.Organisations;
 import org.openapitools.model.Pipeline;
-import org.openapitools.model.PipelineActivities;
+import org.openapitools.model.PipelineActivity;
 import org.openapitools.model.PipelineFolderImpl;
 import org.openapitools.model.PipelineImpl;
-import org.openapitools.model.PipelineQueue;
 import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
-import org.openapitools.model.PipelineRunNodeSteps;
-import org.openapitools.model.PipelineRunNodes;
-import org.openapitools.model.PipelineRuns;
 import org.openapitools.model.PipelineStepImpl;
-import org.openapitools.model.Pipelines;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.ScmOrganisations;
+import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
-import org.openapitools.model.UserFavorites;
 import org.openapitools.api.BlueApiService;
 
 import javax.ws.rs.*;
@@ -35,19 +28,20 @@ import javax.inject.Inject;
 import io.swagger.annotations.*;
 import java.io.InputStream;
 
+import org.apache.cxf.jaxrs.ext.PATCH;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
 import java.util.Map;
 import java.util.List;
 import javax.validation.constraints.*;
-@Path("/blue")
+@Path("/blue/rest")
 @RequestScoped
 
 @Api(description = "the blue API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2019-04-10T13:31:43.820Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-02T10:45:17.573327Z[Etc/UTC]")
 
 public class BlueApi  {
 
@@ -57,12 +51,13 @@ public class BlueApi  {
 
 
     @DELETE
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")
     
     
     @ApiOperation(value = "", notes = "Delete queue item from an organization pipeline queue", response = Void.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully deleted queue item", response = Void.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -72,12 +67,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/user/")
+    @Path("/organizations/{organization}/user/")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve authenticated user details for an organization", response = User.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved authenticated user details", response = User.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -87,12 +83,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/classes/{class}")
+    @Path("/classes/{class}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Get a list of class names supported by a given class", response = String.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved class names", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -102,12 +99,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}")
+    @Path("/organizations/{organization}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve organization details", response = Organisation.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = Organisation.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -118,14 +116,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/")
+    @Path("/organizations/")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve all organizations details", response = Organisations.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve all organizations details", response = Organisation.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = Organisations.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = Organisation.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getOrganisations() {
@@ -133,12 +132,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}")
+    @Path("/organizations/{organization}/pipelines/{pipeline}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve pipeline details for an organization", response = Pipeline.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = Pipeline.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -149,14 +149,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/activities")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/activities")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve all activities details for an organization pipeline", response = PipelineActivities.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve all activities details for an organization pipeline", response = PipelineActivity.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved all activities details", response = PipelineActivities.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved all activities details", response = PipelineActivity.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getPipelineActivities(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline) {
@@ -164,12 +165,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve branch details for an organization pipeline", response = BranchImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved branch details", response = BranchImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -179,12 +181,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve branch run details for an organization pipeline", response = PipelineRun.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved run details", response = PipelineRun.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -194,12 +197,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/branches")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/branches")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve all branches details for an organization pipeline", response = MultibranchPipeline.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved all branches details", response = MultibranchPipeline.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -209,12 +213,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{folder}/")
+    @Path("/organizations/{organization}/pipelines/{folder}/")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve pipeline folder for an organization", response = PipelineFolderImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved folder details", response = PipelineFolderImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -224,12 +229,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}")
+    @Path("/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve pipeline details for an organization folder", response = PipelineImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved pipeline details", response = PipelineImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -239,14 +245,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/queue")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/queue")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve queue details for an organization pipeline", response = PipelineQueue.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve queue details for an organization pipeline", response = QueueItemImpl.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = PipelineQueue.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved queue details", response = QueueItemImpl.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getPipelineQueue(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline) {
@@ -254,12 +261,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve run details for an organization pipeline", response = PipelineRun.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved run details", response = PipelineRun.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -269,27 +277,29 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Get log for a pipeline run", response = String.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved pipeline run log", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getPipelineRunLog(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Name of the run",required=true) @PathParam("run") String run,  @ApiParam(value = "Start position of the log")  @QueryParam("start") Integer start,  @ApiParam(value = "Set to true in order to download the file, otherwise it's passed as a response body")  @QueryParam("download") Boolean download) {
+    public Response getPipelineRunLog(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Name of the run",required=true) @PathParam("run") String run, @ApiParam(value = "Start position of the log")  @QueryParam("start") Integer start, @ApiParam(value = "Set to true in order to download the file, otherwise it's passed as a response body")  @QueryParam("download") Boolean download) {
         return delegate.getPipelineRunLog(organization, pipeline, run, start, download, securityContext);
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve run node details for an organization pipeline", response = PipelineRunNode.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved run node details", response = PipelineRunNode.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -299,12 +309,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve run node details for an organization pipeline", response = PipelineStepImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved run node step details", response = PipelineStepImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -314,12 +325,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Get log for a pipeline run node step", response = String.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved pipeline run node step log", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -329,14 +341,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve run node steps details for an organization pipeline", response = PipelineRunNodeSteps.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve run node steps details for an organization pipeline", response = PipelineStepImpl.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved run node steps details", response = PipelineRunNodeSteps.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved run node steps details", response = PipelineStepImpl.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getPipelineRunNodeSteps(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Name of the run",required=true) @PathParam("run") String run, @ApiParam(value = "Name of the node",required=true) @PathParam("node") String node) {
@@ -344,14 +357,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve run nodes details for an organization pipeline", response = PipelineRunNodes.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve run nodes details for an organization pipeline", response = PipelineRunNode.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved run nodes details", response = PipelineRunNodes.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved run nodes details", response = PipelineRunNode.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getPipelineRunNodes(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Name of the run",required=true) @PathParam("run") String run) {
@@ -359,14 +373,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve all runs details for an organization pipeline", response = PipelineRuns.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve all runs details for an organization pipeline", response = PipelineRun.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved runs details", response = PipelineRuns.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved runs details", response = PipelineRun.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getPipelineRuns(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline) {
@@ -374,14 +389,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/pipelines/")
+    @Path("/organizations/{organization}/pipelines/")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve all pipelines details for an organization", response = Pipelines.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve all pipelines details for an organization", response = Pipeline.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = Pipelines.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved pipelines details", response = Pipeline.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getPipelines(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization) {
@@ -389,12 +405,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/scm/{scm}")
+    @Path("/organizations/{organization}/scm/{scm}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve SCM details for an organization", response = GithubScm.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved SCM details", response = GithubScm.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -404,57 +421,61 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories")
+    @Path("/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve SCM organization repositories details for an organization", response = ScmOrganisations.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve SCM organization repositories details for an organization", response = GithubOrganization.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved SCM organization repositories details", response = ScmOrganisations.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved SCM organization repositories details", response = GithubOrganization.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getSCMOrganisationRepositories(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm, @ApiParam(value = "Name of the SCM organization",required=true) @PathParam("scmOrganisation") String scmOrganisation,  @ApiParam(value = "Credential ID")  @QueryParam("credentialId") String credentialId,  @ApiParam(value = "Number of items in a page")  @QueryParam("pageSize") Integer pageSize,  @ApiParam(value = "Page number")  @QueryParam("pageNumber") Integer pageNumber) {
+    public Response getSCMOrganisationRepositories(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm, @ApiParam(value = "Name of the SCM organization",required=true) @PathParam("scmOrganisation") String scmOrganisation, @ApiParam(value = "Credential ID")  @QueryParam("credentialId") String credentialId, @ApiParam(value = "Number of items in a page")  @QueryParam("pageSize") Integer pageSize, @ApiParam(value = "Page number")  @QueryParam("pageNumber") Integer pageNumber) {
         return delegate.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber, securityContext);
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}")
+    @Path("/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve SCM organization repository details for an organization", response = ScmOrganisations.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve SCM organization repository details for an organization", response = GithubOrganization.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved SCM organizations details", response = ScmOrganisations.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved SCM organizations details", response = GithubOrganization.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getSCMOrganisationRepository(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm, @ApiParam(value = "Name of the SCM organization",required=true) @PathParam("scmOrganisation") String scmOrganisation, @ApiParam(value = "Name of the SCM repository",required=true) @PathParam("repository") String repository,  @ApiParam(value = "Credential ID")  @QueryParam("credentialId") String credentialId) {
+    public Response getSCMOrganisationRepository(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm, @ApiParam(value = "Name of the SCM organization",required=true) @PathParam("scmOrganisation") String scmOrganisation, @ApiParam(value = "Name of the SCM repository",required=true) @PathParam("repository") String repository, @ApiParam(value = "Credential ID")  @QueryParam("credentialId") String credentialId) {
         return delegate.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId, securityContext);
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/scm/{scm}/organizations")
+    @Path("/organizations/{organization}/scm/{scm}/organizations")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve SCM organizations details for an organization", response = ScmOrganisations.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve SCM organizations details for an organization", response = GithubOrganization.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved SCM organizations details", response = ScmOrganisations.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved SCM organizations details", response = GithubOrganization.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response getSCMOrganisations(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm,  @ApiParam(value = "Credential ID")  @QueryParam("credentialId") String credentialId) {
+    public Response getSCMOrganisations(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of SCM",required=true) @PathParam("scm") String scm, @ApiParam(value = "Credential ID")  @QueryParam("credentialId") String credentialId) {
         return delegate.getSCMOrganisations(organization, scm, credentialId, securityContext);
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/users/{user}")
+    @Path("/organizations/{organization}/users/{user}")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve user details for an organization", response = User.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved users details", response = User.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -464,14 +485,15 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/users/{user}/favorites")
+    @Path("/users/{user}/favorites")
     
     @Produces({ "application/json" })
-    @ApiOperation(value = "", notes = "Retrieve user favorites details for an organization", response = UserFavorites.class, authorizations = {
+    @ApiOperation(value = "", notes = "Retrieve user favorites details for an organization", response = FavoriteImpl.class, responseContainer = "List", authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Successfully retrieved users favorites details", response = UserFavorites.class),
+        @ApiResponse(code = 200, message = "Successfully retrieved users favorites details", response = FavoriteImpl.class, responseContainer = "List"),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
     public Response getUserFavorites(@ApiParam(value = "Name of the user",required=true) @PathParam("user") String user) {
@@ -479,12 +501,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/organizations/{organization}/users/")
+    @Path("/organizations/{organization}/users/")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Retrieve users details for an organization", response = User.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved users details", response = User.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -494,12 +517,13 @@ public class BlueApi  {
     }
 
     @POST
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Replay an organization pipeline run", response = QueueItemImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully replayed a pipeline run", response = QueueItemImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -509,12 +533,13 @@ public class BlueApi  {
     }
 
     @POST
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Start a build for an organization pipeline", response = QueueItemImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully started a build", response = QueueItemImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -524,42 +549,45 @@ public class BlueApi  {
     }
 
     @PUT
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/favorite")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/favorite")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Favorite/unfavorite a pipeline", response = FavoriteImpl.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully favorited/unfavorited a pipeline", response = FavoriteImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite" ,required=true) Body body) {
-        return delegate.putPipelineFavorite(organization, pipeline, body, securityContext);
+    public Response putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
+        return delegate.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, securityContext);
     }
 
     @PUT
-    @Path("/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")
+    @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Stop a build of an organization pipeline", response = PipelineRun.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully stopped a build", response = PipelineRun.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response putPipelineRun(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Name of the run",required=true) @PathParam("run") String run,  @ApiParam(value = "Set to true to make blocking stop, default: false")  @QueryParam("blocking") String blocking,  @ApiParam(value = "Timeout in seconds, default: 10 seconds")  @QueryParam("timeOutInSecs") Integer timeOutInSecs) {
+    public Response putPipelineRun(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Name of the run",required=true) @PathParam("run") String run, @ApiParam(value = "Set to true to make blocking stop, default: false")  @QueryParam("blocking") String blocking, @ApiParam(value = "Timeout in seconds, default: 10 seconds")  @QueryParam("timeOutInSecs") Integer timeOutInSecs) {
         return delegate.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs, securityContext);
     }
 
     @GET
-    @Path("/rest/search/")
+    @Path("/search/")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Search for any resource details", response = String.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean",  })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved search result", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
@@ -569,12 +597,13 @@ public class BlueApi  {
     }
 
     @GET
-    @Path("/rest/classes/")
+    @Path("/classes/")
     
     @Produces({ "application/json" })
     @ApiOperation(value = "", notes = "Get classes details", response = String.class, authorizations = {
+        
         @Authorization(value = "jenkins_auth")
-    }, tags={ "blueOcean" })
+         }, tags={ "blueOcean" })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Successfully retrieved search result", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),

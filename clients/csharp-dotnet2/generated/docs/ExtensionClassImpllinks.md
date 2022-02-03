@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.ExtensionClassImpllinks
+
 ## Properties
 
 Name | Type | Description | Notes

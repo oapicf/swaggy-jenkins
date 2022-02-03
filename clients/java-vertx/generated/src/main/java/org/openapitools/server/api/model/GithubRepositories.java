@@ -8,15 +8,15 @@ import java.util.List;
 import org.openapitools.server.api.model.GithubRepositorieslinks;
 import org.openapitools.server.api.model.GithubRepository;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubRepositories   {
   
-  private String propertyClass = null;
-  private GithubRepositorieslinks links = null;
+  private String propertyClass;
+  private GithubRepositorieslinks links;
   private List<GithubRepository> items = new ArrayList<>();
-  private Integer lastPage = null;
-  private Integer nextPage = null;
-  private Integer pageSize = null;
+  private Integer lastPage;
+  private Integer nextPage;
+  private Integer pageSize;
 
   public GithubRepositories () {
 

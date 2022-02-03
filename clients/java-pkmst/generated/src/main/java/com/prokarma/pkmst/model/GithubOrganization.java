@@ -15,20 +15,19 @@ import io.swagger.annotations.ApiModelProperty;
  * GithubOrganization
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class GithubOrganization   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("_links")
-  private GithubOrganizationlinks links = null;
+  private GithubOrganizationlinks links;
 
   @JsonProperty("jenkinsOrganizationPipeline")
-  private Boolean jenkinsOrganizationPipeline = null;
+  private Boolean jenkinsOrganizationPipeline;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   public GithubOrganization propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -104,7 +103,7 @@ public class GithubOrganization   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -140,7 +139,7 @@ public class GithubOrganization   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

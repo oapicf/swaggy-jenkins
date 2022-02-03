@@ -1,27 +1,33 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.InputStepImpl;
 import org.openapitools.model.PipelineStepImpllinks;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineStepImpl   {
+
+@JsonTypeName("PipelineStepImpl")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineStepImpl   {
   
-  private @Valid String propertyClass = null;
-  private @Valid PipelineStepImpllinks links = null;
-  private @Valid String displayName = null;
-  private @Valid Integer durationInMillis = null;
-  private @Valid String id = null;
-  private @Valid InputStepImpl input = null;
-  private @Valid String result = null;
-  private @Valid String startTime = null;
-  private @Valid String state = null;
+  private @Valid String propertyClass;
+  private @Valid PipelineStepImpllinks links;
+  private @Valid String displayName;
+  private @Valid Integer durationInMillis;
+  private @Valid String id;
+  private @Valid InputStepImpl input;
+  private @Valid String result;
+  private @Valid String startTime;
+  private @Valid String state;
 
   /**
    **/
@@ -31,16 +37,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl links(PipelineStepImpllinks links) {
     this.links = links;
@@ -48,16 +58,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public PipelineStepImpllinks getLinks() {
     return links;
   }
+
+  @JsonProperty("_links")
   public void setLinks(PipelineStepImpllinks links) {
     this.links = links;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -65,16 +79,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
+
+  @JsonProperty("displayName")
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -82,16 +100,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
+
+  @JsonProperty("durationInMillis")
   public void setDurationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl id(String id) {
     this.id = id;
@@ -99,16 +121,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl input(InputStepImpl input) {
     this.input = input;
@@ -116,16 +142,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("input")
   public InputStepImpl getInput() {
     return input;
   }
+
+  @JsonProperty("input")
   public void setInput(InputStepImpl input) {
     this.input = input;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl result(String result) {
     this.result = result;
@@ -133,16 +163,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("result")
   public String getResult() {
     return result;
   }
+
+  @JsonProperty("result")
   public void setResult(String result) {
     this.result = result;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl startTime(String startTime) {
     this.startTime = startTime;
@@ -150,16 +184,20 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }
+
+  @JsonProperty("startTime")
   public void setStartTime(String startTime) {
     this.startTime = startTime;
   }
 
-  /**
+/**
    **/
   public PipelineStepImpl state(String state) {
     this.state = state;
@@ -167,18 +205,22 @@ public class PipelineStepImpl   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("state")
   public String getState() {
     return state;
   }
+
+  @JsonProperty("state")
   public void setState(String state) {
     this.state = state;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -186,15 +228,15 @@ public class PipelineStepImpl   {
       return false;
     }
     PipelineStepImpl pipelineStepImpl = (PipelineStepImpl) o;
-    return Objects.equals(propertyClass, pipelineStepImpl.propertyClass) &&
-        Objects.equals(links, pipelineStepImpl.links) &&
-        Objects.equals(displayName, pipelineStepImpl.displayName) &&
-        Objects.equals(durationInMillis, pipelineStepImpl.durationInMillis) &&
-        Objects.equals(id, pipelineStepImpl.id) &&
-        Objects.equals(input, pipelineStepImpl.input) &&
-        Objects.equals(result, pipelineStepImpl.result) &&
-        Objects.equals(startTime, pipelineStepImpl.startTime) &&
-        Objects.equals(state, pipelineStepImpl.state);
+    return Objects.equals(this.propertyClass, pipelineStepImpl.propertyClass) &&
+        Objects.equals(this.links, pipelineStepImpl.links) &&
+        Objects.equals(this.displayName, pipelineStepImpl.displayName) &&
+        Objects.equals(this.durationInMillis, pipelineStepImpl.durationInMillis) &&
+        Objects.equals(this.id, pipelineStepImpl.id) &&
+        Objects.equals(this.input, pipelineStepImpl.input) &&
+        Objects.equals(this.result, pipelineStepImpl.result) &&
+        Objects.equals(this.startTime, pipelineStepImpl.startTime) &&
+        Objects.equals(this.state, pipelineStepImpl.state);
   }
 
   @Override
@@ -224,11 +266,13 @@ public class PipelineStepImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

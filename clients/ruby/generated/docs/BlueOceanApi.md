@@ -2,57 +2,59 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**delete_pipeline_queue_item**](BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-[**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ | 
-[**get_classes**](BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} | 
-[**get_json_web_key**](BlueOceanApi.md#get_json_web_key) | **GET** /jwt-auth/jwks/{key} | 
-[**get_json_web_token**](BlueOceanApi.md#get_json_web_token) | **GET** /jwt-auth/token | 
-[**get_organisation**](BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organization} | 
-[**get_organisations**](BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ | 
-[**get_pipeline**](BlueOceanApi.md#get_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-[**get_pipeline_activities**](BlueOceanApi.md#get_pipeline_activities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-[**get_pipeline_branch**](BlueOceanApi.md#get_pipeline_branch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-[**get_pipeline_branch_run**](BlueOceanApi.md#get_pipeline_branch_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-[**get_pipeline_branches**](BlueOceanApi.md#get_pipeline_branches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-[**get_pipeline_folder**](BlueOceanApi.md#get_pipeline_folder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-[**get_pipeline_folder_pipeline**](BlueOceanApi.md#get_pipeline_folder_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-[**get_pipeline_queue**](BlueOceanApi.md#get_pipeline_queue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-[**get_pipeline_run**](BlueOceanApi.md#get_pipeline_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-[**get_pipeline_run_log**](BlueOceanApi.md#get_pipeline_run_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-[**get_pipeline_run_node**](BlueOceanApi.md#get_pipeline_run_node) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-[**get_pipeline_run_node_step**](BlueOceanApi.md#get_pipeline_run_node_step) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-[**get_pipeline_run_node_step_log**](BlueOceanApi.md#get_pipeline_run_node_step_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-[**get_pipeline_run_node_steps**](BlueOceanApi.md#get_pipeline_run_node_steps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-[**get_pipeline_run_nodes**](BlueOceanApi.md#get_pipeline_run_nodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-[**get_pipeline_runs**](BlueOceanApi.md#get_pipeline_runs) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**get_pipelines**](BlueOceanApi.md#get_pipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
-[**get_scm**](BlueOceanApi.md#get_scm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
-[**get_scm_organisation_repositories**](BlueOceanApi.md#get_scm_organisation_repositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-[**get_scm_organisation_repository**](BlueOceanApi.md#get_scm_organisation_repository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-[**get_scm_organisations**](BlueOceanApi.md#get_scm_organisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-[**get_user**](BlueOceanApi.md#get_user) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
-[**get_user_favorites**](BlueOceanApi.md#get_user_favorites) | **GET** /blue/rest/users/{user}/favorites | 
-[**get_users**](BlueOceanApi.md#get_users) | **GET** /blue/rest/organizations/{organization}/users/ | 
-[**post_pipeline_run**](BlueOceanApi.md#post_pipeline_run) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-[**post_pipeline_runs**](BlueOceanApi.md#post_pipeline_runs) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**put_pipeline_favorite**](BlueOceanApi.md#put_pipeline_favorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-[**put_pipeline_run**](BlueOceanApi.md#put_pipeline_run) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-[**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
-[**search_classes**](BlueOceanApi.md#search_classes) | **GET** /blue/rest/classes/ | 
+| Method | HTTP request | Description |
+| ------ | ------------ | ----------- |
+| [**delete_pipeline_queue_item**](BlueOceanApi.md#delete_pipeline_queue_item) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} |  |
+| [**get_authenticated_user**](BlueOceanApi.md#get_authenticated_user) | **GET** /blue/rest/organizations/{organization}/user/ |  |
+| [**get_classes**](BlueOceanApi.md#get_classes) | **GET** /blue/rest/classes/{class} |  |
+| [**get_json_web_key**](BlueOceanApi.md#get_json_web_key) | **GET** /jwt-auth/jwks/{key} |  |
+| [**get_json_web_token**](BlueOceanApi.md#get_json_web_token) | **GET** /jwt-auth/token |  |
+| [**get_organisation**](BlueOceanApi.md#get_organisation) | **GET** /blue/rest/organizations/{organization} |  |
+| [**get_organisations**](BlueOceanApi.md#get_organisations) | **GET** /blue/rest/organizations/ |  |
+| [**get_pipeline**](BlueOceanApi.md#get_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} |  |
+| [**get_pipeline_activities**](BlueOceanApi.md#get_pipeline_activities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities |  |
+| [**get_pipeline_branch**](BlueOceanApi.md#get_pipeline_branch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ |  |
+| [**get_pipeline_branch_run**](BlueOceanApi.md#get_pipeline_branch_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} |  |
+| [**get_pipeline_branches**](BlueOceanApi.md#get_pipeline_branches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches |  |
+| [**get_pipeline_folder**](BlueOceanApi.md#get_pipeline_folder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ |  |
+| [**get_pipeline_folder_pipeline**](BlueOceanApi.md#get_pipeline_folder_pipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} |  |
+| [**get_pipeline_queue**](BlueOceanApi.md#get_pipeline_queue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue |  |
+| [**get_pipeline_run**](BlueOceanApi.md#get_pipeline_run) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} |  |
+| [**get_pipeline_run_log**](BlueOceanApi.md#get_pipeline_run_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log |  |
+| [**get_pipeline_run_node**](BlueOceanApi.md#get_pipeline_run_node) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} |  |
+| [**get_pipeline_run_node_step**](BlueOceanApi.md#get_pipeline_run_node_step) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} |  |
+| [**get_pipeline_run_node_step_log**](BlueOceanApi.md#get_pipeline_run_node_step_log) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log |  |
+| [**get_pipeline_run_node_steps**](BlueOceanApi.md#get_pipeline_run_node_steps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps |  |
+| [**get_pipeline_run_nodes**](BlueOceanApi.md#get_pipeline_run_nodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes |  |
+| [**get_pipeline_runs**](BlueOceanApi.md#get_pipeline_runs) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |  |
+| [**get_pipelines**](BlueOceanApi.md#get_pipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ |  |
+| [**get_scm**](BlueOceanApi.md#get_scm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} |  |
+| [**get_scm_organisation_repositories**](BlueOceanApi.md#get_scm_organisation_repositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories |  |
+| [**get_scm_organisation_repository**](BlueOceanApi.md#get_scm_organisation_repository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} |  |
+| [**get_scm_organisations**](BlueOceanApi.md#get_scm_organisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations |  |
+| [**get_user**](BlueOceanApi.md#get_user) | **GET** /blue/rest/organizations/{organization}/users/{user} |  |
+| [**get_user_favorites**](BlueOceanApi.md#get_user_favorites) | **GET** /blue/rest/users/{user}/favorites |  |
+| [**get_users**](BlueOceanApi.md#get_users) | **GET** /blue/rest/organizations/{organization}/users/ |  |
+| [**post_pipeline_run**](BlueOceanApi.md#post_pipeline_run) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay |  |
+| [**post_pipeline_runs**](BlueOceanApi.md#post_pipeline_runs) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |  |
+| [**put_pipeline_favorite**](BlueOceanApi.md#put_pipeline_favorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite |  |
+| [**put_pipeline_run**](BlueOceanApi.md#put_pipeline_run) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop |  |
+| [**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ |  |
+| [**search_classes**](BlueOceanApi.md#search_classes) | **GET** /blue/rest/classes/ |  |
 
 
-# **delete_pipeline_queue_item**
+## delete_pipeline_queue_item
+
 > delete_pipeline_queue_item(organization, pipeline, queue)
 
 
 
 Delete queue item from an organization pipeline queue
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -67,19 +69,38 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 queue = 'queue_example' # String | Name of the queue item
 
 begin
+  
   api_instance.delete_pipeline_queue_item(organization, pipeline, queue)
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->delete_pipeline_queue_item: #{e}"
+  puts "Error when calling BlueOceanApi->delete_pipeline_queue_item: #{e}"
+end
+```
+
+#### Using the delete_pipeline_queue_item_with_http_info variant
+
+This returns an Array which contains the response data (`nil` in this case), status code and headers.
+
+> <Array(nil, Integer, Hash)> delete_pipeline_queue_item_with_http_info(organization, pipeline, queue)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.delete_pipeline_queue_item_with_http_info(organization, pipeline, queue)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => nil
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->delete_pipeline_queue_item_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **queue** | **String**| Name of the queue item | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **queue** | **String** | Name of the queue item |  |
 
 ### Return type
 
@@ -91,21 +112,22 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## get_authenticated_user
 
-# **get_authenticated_user**
-> User get_authenticated_user(organization)
+> <User> get_authenticated_user(organization)
 
 
 
 Retrieve authenticated user details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -118,18 +140,37 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 organization = 'organization_example' # String | Name of the organization
 
 begin
+  
   result = api_instance.get_authenticated_user(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_authenticated_user: #{e}"
+  puts "Error when calling BlueOceanApi->get_authenticated_user: #{e}"
+end
+```
+
+#### Using the get_authenticated_user_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<User>, Integer, Hash)> get_authenticated_user_with_http_info(organization)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_authenticated_user_with_http_info(organization)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <User>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_authenticated_user_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
 
 ### Return type
 
@@ -141,21 +182,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_classes
 
-# **get_classes**
 > String get_classes(_class)
 
 
 
 Get a list of class names supported by a given class
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -168,18 +210,37 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 _class = '_class_example' # String | Name of the class
 
 begin
+  
   result = api_instance.get_classes(_class)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_classes: #{e}"
+  puts "Error when calling BlueOceanApi->get_classes: #{e}"
+end
+```
+
+#### Using the get_classes_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> get_classes_with_http_info(_class)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_classes_with_http_info(_class)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_classes_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_class** | **String**| Name of the class | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **_class** | **String** | Name of the class |  |
 
 ### Return type
 
@@ -191,39 +252,59 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_json_web_key
 
-# **get_json_web_key**
 > String get_json_web_key(key)
 
 
 
 Retrieve JSON Web Key
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 key = 56 # Integer | Key ID received as part of JWT header field kid
 
 begin
+  
   result = api_instance.get_json_web_key(key)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_json_web_key: #{e}"
+  puts "Error when calling BlueOceanApi->get_json_web_key: #{e}"
+end
+```
+
+#### Using the get_json_web_key_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> get_json_web_key_with_http_info(key)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_json_web_key_with_http_info(key)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_json_web_key_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **key** | **Integer**| Key ID received as part of JWT header field kid | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **key** | **Integer** | Key ID received as part of JWT header field kid |  |
 
 ### Return type
 
@@ -235,21 +316,22 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_json_web_token
 
-# **get_json_web_token**
 > String get_json_web_token(opts)
 
 
 
 Retrieve JSON Web Token
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
@@ -259,19 +341,38 @@ opts = {
 }
 
 begin
+  
   result = api_instance.get_json_web_token(opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_json_web_token: #{e}"
+  puts "Error when calling BlueOceanApi->get_json_web_token: #{e}"
+end
+```
+
+#### Using the get_json_web_token_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> get_json_web_token_with_http_info(opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_json_web_token_with_http_info(opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_json_web_token_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **expiry_time_in_mins** | **Integer**| Token expiry time in minutes, default: 30 minutes | [optional] 
- **max_expiry_time_in_mins** | **Integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **expiry_time_in_mins** | **Integer** | Token expiry time in minutes, default: 30 minutes | [optional] |
+| **max_expiry_time_in_mins** | **Integer** | Maximum token expiry time in minutes, default: 480 minutes | [optional] |
 
 ### Return type
 
@@ -283,21 +384,22 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_organisation
 
-# **get_organisation**
-> Organisation get_organisation(organization)
+> <Organisation> get_organisation(organization)
 
 
 
 Retrieve organization details
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -310,18 +412,37 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 organization = 'organization_example' # String | Name of the organization
 
 begin
+  
   result = api_instance.get_organisation(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_organisation: #{e}"
+  puts "Error when calling BlueOceanApi->get_organisation: #{e}"
+end
+```
+
+#### Using the get_organisation_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Organisation>, Integer, Hash)> get_organisation_with_http_info(organization)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_organisation_with_http_info(organization)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Organisation>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_organisation_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
 
 ### Return type
 
@@ -333,21 +454,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_organisations
 
-# **get_organisations**
-> Organisations get_organisations
+> <Array<Organisation>> get_organisations
 
 
 
 Retrieve all organizations details
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -359,19 +481,39 @@ end
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 
 begin
+  
   result = api_instance.get_organisations
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_organisations: #{e}"
+  puts "Error when calling BlueOceanApi->get_organisations: #{e}"
+end
+```
+
+#### Using the get_organisations_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<Organisation>>, Integer, Hash)> get_organisations_with_http_info
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_organisations_with_http_info
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<Organisation>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_organisations_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**Array&lt;Organisation&gt;**](Organisation.md)
 
 ### Authorization
 
@@ -379,21 +521,22 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline
 
-# **get_pipeline**
-> Pipeline get_pipeline(organization, pipeline)
+> <Pipeline> get_pipeline(organization, pipeline)
 
 
 
 Retrieve pipeline details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -407,19 +550,38 @@ organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
+  
   result = api_instance.get_pipeline(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline: #{e}"
+end
+```
+
+#### Using the get_pipeline_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Pipeline>, Integer, Hash)> get_pipeline_with_http_info(organization, pipeline)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_with_http_info(organization, pipeline)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Pipeline>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
 
 ### Return type
 
@@ -431,21 +593,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_activities
 
-# **get_pipeline_activities**
-> PipelineActivities get_pipeline_activities(organization, pipeline)
+> <Array<PipelineActivity>> get_pipeline_activities(organization, pipeline)
 
 
 
 Retrieve all activities details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -459,23 +622,42 @@ organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
+  
   result = api_instance.get_pipeline_activities(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_activities: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_activities: #{e}"
+end
+```
+
+#### Using the get_pipeline_activities_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<PipelineActivity>>, Integer, Hash)> get_pipeline_activities_with_http_info(organization, pipeline)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_activities_with_http_info(organization, pipeline)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<PipelineActivity>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_activities_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**Array&lt;PipelineActivity&gt;**](PipelineActivity.md)
 
 ### Authorization
 
@@ -483,21 +665,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_branch
 
-# **get_pipeline_branch**
-> BranchImpl get_pipeline_branch(organization, pipeline, branch)
+> <BranchImpl> get_pipeline_branch(organization, pipeline, branch)
 
 
 
 Retrieve branch details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -512,20 +695,39 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 branch = 'branch_example' # String | Name of the branch
 
 begin
+  
   result = api_instance.get_pipeline_branch(organization, pipeline, branch)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_branch: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_branch: #{e}"
+end
+```
+
+#### Using the get_pipeline_branch_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<BranchImpl>, Integer, Hash)> get_pipeline_branch_with_http_info(organization, pipeline, branch)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_branch_with_http_info(organization, pipeline, branch)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <BranchImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_branch_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **branch** | **String**| Name of the branch | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **branch** | **String** | Name of the branch |  |
 
 ### Return type
 
@@ -537,21 +739,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_branch_run
 
-# **get_pipeline_branch_run**
-> PipelineRun get_pipeline_branch_run(organization, pipeline, branch, run)
+> <PipelineRun> get_pipeline_branch_run(organization, pipeline, branch, run)
 
 
 
 Retrieve branch run details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -567,21 +770,40 @@ branch = 'branch_example' # String | Name of the branch
 run = 'run_example' # String | Name of the run
 
 begin
+  
   result = api_instance.get_pipeline_branch_run(organization, pipeline, branch, run)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_branch_run: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_branch_run: #{e}"
+end
+```
+
+#### Using the get_pipeline_branch_run_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineRun>, Integer, Hash)> get_pipeline_branch_run_with_http_info(organization, pipeline, branch, run)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_branch_run_with_http_info(organization, pipeline, branch, run)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineRun>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_branch_run_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **branch** | **String**| Name of the branch | 
- **run** | **String**| Name of the run | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **branch** | **String** | Name of the branch |  |
+| **run** | **String** | Name of the run |  |
 
 ### Return type
 
@@ -593,21 +815,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_branches
 
-# **get_pipeline_branches**
-> MultibranchPipeline get_pipeline_branches(organization, pipeline)
+> <MultibranchPipeline> get_pipeline_branches(organization, pipeline)
 
 
 
 Retrieve all branches details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -621,19 +844,38 @@ organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
+  
   result = api_instance.get_pipeline_branches(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_branches: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_branches: #{e}"
+end
+```
+
+#### Using the get_pipeline_branches_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<MultibranchPipeline>, Integer, Hash)> get_pipeline_branches_with_http_info(organization, pipeline)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_branches_with_http_info(organization, pipeline)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <MultibranchPipeline>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_branches_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
 
 ### Return type
 
@@ -645,21 +887,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_folder
 
-# **get_pipeline_folder**
-> PipelineFolderImpl get_pipeline_folder(organization, folder)
+> <PipelineFolderImpl> get_pipeline_folder(organization, folder)
 
 
 
 Retrieve pipeline folder for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -673,19 +916,38 @@ organization = 'organization_example' # String | Name of the organization
 folder = 'folder_example' # String | Name of the folder
 
 begin
+  
   result = api_instance.get_pipeline_folder(organization, folder)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_folder: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_folder: #{e}"
+end
+```
+
+#### Using the get_pipeline_folder_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineFolderImpl>, Integer, Hash)> get_pipeline_folder_with_http_info(organization, folder)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_folder_with_http_info(organization, folder)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineFolderImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_folder_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **folder** | **String**| Name of the folder | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **folder** | **String** | Name of the folder |  |
 
 ### Return type
 
@@ -697,21 +959,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_folder_pipeline
 
-# **get_pipeline_folder_pipeline**
-> PipelineImpl get_pipeline_folder_pipeline(organization, pipeline, folder)
+> <PipelineImpl> get_pipeline_folder_pipeline(organization, pipeline, folder)
 
 
 
 Retrieve pipeline details for an organization folder
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -726,20 +989,39 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 folder = 'folder_example' # String | Name of the folder
 
 begin
+  
   result = api_instance.get_pipeline_folder_pipeline(organization, pipeline, folder)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_folder_pipeline: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_folder_pipeline: #{e}"
+end
+```
+
+#### Using the get_pipeline_folder_pipeline_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineImpl>, Integer, Hash)> get_pipeline_folder_pipeline_with_http_info(organization, pipeline, folder)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_folder_pipeline_with_http_info(organization, pipeline, folder)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_folder_pipeline_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **folder** | **String**| Name of the folder | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **folder** | **String** | Name of the folder |  |
 
 ### Return type
 
@@ -751,21 +1033,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_queue
 
-# **get_pipeline_queue**
-> PipelineQueue get_pipeline_queue(organization, pipeline)
+> <Array<QueueItemImpl>> get_pipeline_queue(organization, pipeline)
 
 
 
 Retrieve queue details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -779,23 +1062,42 @@ organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
+  
   result = api_instance.get_pipeline_queue(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_queue: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_queue: #{e}"
+end
+```
+
+#### Using the get_pipeline_queue_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<QueueItemImpl>>, Integer, Hash)> get_pipeline_queue_with_http_info(organization, pipeline)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_queue_with_http_info(organization, pipeline)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<QueueItemImpl>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_queue_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**Array&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -803,21 +1105,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run
 
-# **get_pipeline_run**
-> PipelineRun get_pipeline_run(organization, pipeline, run)
+> <PipelineRun> get_pipeline_run(organization, pipeline, run)
 
 
 
 Retrieve run details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -832,20 +1135,39 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 run = 'run_example' # String | Name of the run
 
 begin
+  
   result = api_instance.get_pipeline_run(organization, pipeline, run)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineRun>, Integer, Hash)> get_pipeline_run_with_http_info(organization, pipeline, run)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_with_http_info(organization, pipeline, run)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineRun>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
 
 ### Return type
 
@@ -857,21 +1179,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run_log
 
-# **get_pipeline_run_log**
 > String get_pipeline_run_log(organization, pipeline, run, opts)
 
 
 
 Get log for a pipeline run
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -886,26 +1209,45 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 run = 'run_example' # String | Name of the run
 opts = {
   start: 56, # Integer | Start position of the log
-  download: true # BOOLEAN | Set to true in order to download the file, otherwise it's passed as a response body
+  download: true # Boolean | Set to true in order to download the file, otherwise it's passed as a response body
 }
 
 begin
+  
   result = api_instance.get_pipeline_run_log(organization, pipeline, run, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run_log: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run_log: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_log_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> get_pipeline_run_log_with_http_info(organization, pipeline, run, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_log_with_http_info(organization, pipeline, run, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_log_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **start** | **Integer**| Start position of the log | [optional] 
- **download** | **BOOLEAN**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
+| **start** | **Integer** | Start position of the log | [optional] |
+| **download** | **Boolean** | Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] |
 
 ### Return type
 
@@ -917,21 +1259,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run_node
 
-# **get_pipeline_run_node**
-> PipelineRunNode get_pipeline_run_node(organization, pipeline, run, node)
+> <PipelineRunNode> get_pipeline_run_node(organization, pipeline, run, node)
 
 
 
 Retrieve run node details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -947,21 +1290,40 @@ run = 'run_example' # String | Name of the run
 node = 'node_example' # String | Name of the node
 
 begin
+  
   result = api_instance.get_pipeline_run_node(organization, pipeline, run, node)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run_node: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_node_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineRunNode>, Integer, Hash)> get_pipeline_run_node_with_http_info(organization, pipeline, run, node)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_node_with_http_info(organization, pipeline, run, node)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineRunNode>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **node** | **String**| Name of the node | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
+| **node** | **String** | Name of the node |  |
 
 ### Return type
 
@@ -973,21 +1335,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run_node_step
 
-# **get_pipeline_run_node_step**
-> PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, run, node, step)
+> <PipelineStepImpl> get_pipeline_run_node_step(organization, pipeline, run, node, step)
 
 
 
 Retrieve run node details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1004,22 +1367,41 @@ node = 'node_example' # String | Name of the node
 step = 'step_example' # String | Name of the step
 
 begin
+  
   result = api_instance.get_pipeline_run_node_step(organization, pipeline, run, node, step)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run_node_step: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_step: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_node_step_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineStepImpl>, Integer, Hash)> get_pipeline_run_node_step_with_http_info(organization, pipeline, run, node, step)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_node_step_with_http_info(organization, pipeline, run, node, step)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineStepImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_step_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **node** | **String**| Name of the node | 
- **step** | **String**| Name of the step | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
+| **node** | **String** | Name of the node |  |
+| **step** | **String** | Name of the step |  |
 
 ### Return type
 
@@ -1031,21 +1413,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run_node_step_log
 
-# **get_pipeline_run_node_step_log**
 > String get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
 
 
 
 Get log for a pipeline run node step
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1062,22 +1445,41 @@ node = 'node_example' # String | Name of the node
 step = 'step_example' # String | Name of the step
 
 begin
+  
   result = api_instance.get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run_node_step_log: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_step_log: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_node_step_log_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> get_pipeline_run_node_step_log_with_http_info(organization, pipeline, run, node, step)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_node_step_log_with_http_info(organization, pipeline, run, node, step)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_step_log_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **node** | **String**| Name of the node | 
- **step** | **String**| Name of the step | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
+| **node** | **String** | Name of the node |  |
+| **step** | **String** | Name of the step |  |
 
 ### Return type
 
@@ -1089,21 +1491,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run_node_steps
 
-# **get_pipeline_run_node_steps**
-> PipelineRunNodeSteps get_pipeline_run_node_steps(organization, pipeline, run, node)
+> <Array<PipelineStepImpl>> get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 
 Retrieve run node steps details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1119,25 +1522,44 @@ run = 'run_example' # String | Name of the run
 node = 'node_example' # String | Name of the node
 
 begin
+  
   result = api_instance.get_pipeline_run_node_steps(organization, pipeline, run, node)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run_node_steps: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_steps: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_node_steps_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<PipelineStepImpl>>, Integer, Hash)> get_pipeline_run_node_steps_with_http_info(organization, pipeline, run, node)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_node_steps_with_http_info(organization, pipeline, run, node)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<PipelineStepImpl>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_node_steps_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **node** | **String**| Name of the node | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
+| **node** | **String** | Name of the node |  |
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**Array&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1145,21 +1567,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_run_nodes
 
-# **get_pipeline_run_nodes**
-> PipelineRunNodes get_pipeline_run_nodes(organization, pipeline, run)
+> <Array<PipelineRunNode>> get_pipeline_run_nodes(organization, pipeline, run)
 
 
 
 Retrieve run nodes details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1174,24 +1597,43 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 run = 'run_example' # String | Name of the run
 
 begin
+  
   result = api_instance.get_pipeline_run_nodes(organization, pipeline, run)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_run_nodes: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_run_nodes: #{e}"
+end
+```
+
+#### Using the get_pipeline_run_nodes_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<PipelineRunNode>>, Integer, Hash)> get_pipeline_run_nodes_with_http_info(organization, pipeline, run)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_run_nodes_with_http_info(organization, pipeline, run)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<PipelineRunNode>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_run_nodes_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**Array&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1199,21 +1641,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipeline_runs
 
-# **get_pipeline_runs**
-> PipelineRuns get_pipeline_runs(organization, pipeline)
+> <Array<PipelineRun>> get_pipeline_runs(organization, pipeline)
 
 
 
 Retrieve all runs details for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1227,23 +1670,42 @@ organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
+  
   result = api_instance.get_pipeline_runs(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipeline_runs: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipeline_runs: #{e}"
+end
+```
+
+#### Using the get_pipeline_runs_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<PipelineRun>>, Integer, Hash)> get_pipeline_runs_with_http_info(organization, pipeline)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipeline_runs_with_http_info(organization, pipeline)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<PipelineRun>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipeline_runs_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**Array&lt;PipelineRun&gt;**](PipelineRun.md)
 
 ### Authorization
 
@@ -1251,21 +1713,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_pipelines
 
-# **get_pipelines**
-> Pipelines get_pipelines(organization)
+> <Array<Pipeline>> get_pipelines(organization)
 
 
 
 Retrieve all pipelines details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1278,22 +1741,41 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 organization = 'organization_example' # String | Name of the organization
 
 begin
+  
   result = api_instance.get_pipelines(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_pipelines: #{e}"
+  puts "Error when calling BlueOceanApi->get_pipelines: #{e}"
+end
+```
+
+#### Using the get_pipelines_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<Pipeline>>, Integer, Hash)> get_pipelines_with_http_info(organization)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_pipelines_with_http_info(organization)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<Pipeline>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_pipelines_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**Array&lt;Pipeline&gt;**](Pipeline.md)
 
 ### Authorization
 
@@ -1301,21 +1783,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_scm
 
-# **get_scm**
-> GithubScm get_scm(organization, scm)
+> <GithubScm> get_scm(organization, scm)
 
 
 
 Retrieve SCM details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1329,19 +1812,38 @@ organization = 'organization_example' # String | Name of the organization
 scm = 'scm_example' # String | Name of SCM
 
 begin
+  
   result = api_instance.get_scm(organization, scm)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_scm: #{e}"
+  puts "Error when calling BlueOceanApi->get_scm: #{e}"
+end
+```
+
+#### Using the get_scm_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<GithubScm>, Integer, Hash)> get_scm_with_http_info(organization, scm)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_scm_with_http_info(organization, scm)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <GithubScm>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_scm_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **scm** | **String** | Name of SCM |  |
 
 ### Return type
 
@@ -1353,21 +1855,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_scm_organisation_repositories
 
-# **get_scm_organisation_repositories**
-> ScmOrganisations get_scm_organisation_repositories(organization, scm, scm_organisation, opts)
+> <Array<GithubOrganization>> get_scm_organisation_repositories(organization, scm, scm_organisation, opts)
 
 
 
 Retrieve SCM organization repositories details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1387,27 +1890,46 @@ opts = {
 }
 
 begin
+  
   result = api_instance.get_scm_organisation_repositories(organization, scm, scm_organisation, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_scm_organisation_repositories: #{e}"
+  puts "Error when calling BlueOceanApi->get_scm_organisation_repositories: #{e}"
+end
+```
+
+#### Using the get_scm_organisation_repositories_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<GithubOrganization>>, Integer, Hash)> get_scm_organisation_repositories_with_http_info(organization, scm, scm_organisation, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_scm_organisation_repositories_with_http_info(organization, scm, scm_organisation, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<GithubOrganization>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_scm_organisation_repositories_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
- **scm_organisation** | **String**| Name of the SCM organization | 
- **credential_id** | **String**| Credential ID | [optional] 
- **page_size** | **Integer**| Number of items in a page | [optional] 
- **page_number** | **Integer**| Page number | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **scm** | **String** | Name of SCM |  |
+| **scm_organisation** | **String** | Name of the SCM organization |  |
+| **credential_id** | **String** | Credential ID | [optional] |
+| **page_size** | **Integer** | Number of items in a page | [optional] |
+| **page_number** | **Integer** | Page number | [optional] |
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**Array&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1415,21 +1937,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_scm_organisation_repository
 
-# **get_scm_organisation_repository**
-> ScmOrganisations get_scm_organisation_repository(organization, scm, scm_organisation, repository, opts)
+> <Array<GithubOrganization>> get_scm_organisation_repository(organization, scm, scm_organisation, repository, opts)
 
 
 
 Retrieve SCM organization repository details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1448,26 +1971,45 @@ opts = {
 }
 
 begin
+  
   result = api_instance.get_scm_organisation_repository(organization, scm, scm_organisation, repository, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_scm_organisation_repository: #{e}"
+  puts "Error when calling BlueOceanApi->get_scm_organisation_repository: #{e}"
+end
+```
+
+#### Using the get_scm_organisation_repository_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<GithubOrganization>>, Integer, Hash)> get_scm_organisation_repository_with_http_info(organization, scm, scm_organisation, repository, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_scm_organisation_repository_with_http_info(organization, scm, scm_organisation, repository, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<GithubOrganization>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_scm_organisation_repository_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
- **scm_organisation** | **String**| Name of the SCM organization | 
- **repository** | **String**| Name of the SCM repository | 
- **credential_id** | **String**| Credential ID | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **scm** | **String** | Name of SCM |  |
+| **scm_organisation** | **String** | Name of the SCM organization |  |
+| **repository** | **String** | Name of the SCM repository |  |
+| **credential_id** | **String** | Credential ID | [optional] |
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**Array&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1475,21 +2017,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_scm_organisations
 
-# **get_scm_organisations**
-> ScmOrganisations get_scm_organisations(organization, scm, opts)
+> <Array<GithubOrganization>> get_scm_organisations(organization, scm, opts)
 
 
 
 Retrieve SCM organizations details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1506,24 +2049,43 @@ opts = {
 }
 
 begin
+  
   result = api_instance.get_scm_organisations(organization, scm, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_scm_organisations: #{e}"
+  puts "Error when calling BlueOceanApi->get_scm_organisations: #{e}"
+end
+```
+
+#### Using the get_scm_organisations_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<GithubOrganization>>, Integer, Hash)> get_scm_organisations_with_http_info(organization, scm, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_scm_organisations_with_http_info(organization, scm, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<GithubOrganization>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_scm_organisations_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **scm** | **String**| Name of SCM | 
- **credential_id** | **String**| Credential ID | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **scm** | **String** | Name of SCM |  |
+| **credential_id** | **String** | Credential ID | [optional] |
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**Array&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1531,21 +2093,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_user
 
-# **get_user**
-> User get_user(organization, user)
+> <User> get_user(organization, user)
 
 
 
 Retrieve user details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1559,19 +2122,38 @@ organization = 'organization_example' # String | Name of the organization
 user = 'user_example' # String | Name of the user
 
 begin
+  
   result = api_instance.get_user(organization, user)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_user: #{e}"
+  puts "Error when calling BlueOceanApi->get_user: #{e}"
+end
+```
+
+#### Using the get_user_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<User>, Integer, Hash)> get_user_with_http_info(organization, user)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_user_with_http_info(organization, user)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <User>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_user_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **user** | **String**| Name of the user | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **user** | **String** | Name of the user |  |
 
 ### Return type
 
@@ -1583,21 +2165,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_user_favorites
 
-# **get_user_favorites**
-> UserFavorites get_user_favorites(user)
+> <Array<FavoriteImpl>> get_user_favorites(user)
 
 
 
 Retrieve user favorites details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1610,22 +2193,41 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 user = 'user_example' # String | Name of the user
 
 begin
+  
   result = api_instance.get_user_favorites(user)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_user_favorites: #{e}"
+  puts "Error when calling BlueOceanApi->get_user_favorites: #{e}"
+end
+```
+
+#### Using the get_user_favorites_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<Array<FavoriteImpl>>, Integer, Hash)> get_user_favorites_with_http_info(user)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_user_favorites_with_http_info(user)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <Array<FavoriteImpl>>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_user_favorites_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user** | **String**| Name of the user | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **user** | **String** | Name of the user |  |
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**Array&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1633,21 +2235,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## get_users
 
-# **get_users**
-> User get_users(organization)
+> <User> get_users(organization)
 
 
 
 Retrieve users details for an organization
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1660,18 +2263,37 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 organization = 'organization_example' # String | Name of the organization
 
 begin
+  
   result = api_instance.get_users(organization)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->get_users: #{e}"
+  puts "Error when calling BlueOceanApi->get_users: #{e}"
+end
+```
+
+#### Using the get_users_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<User>, Integer, Hash)> get_users_with_http_info(organization)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.get_users_with_http_info(organization)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <User>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->get_users_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
 
 ### Return type
 
@@ -1683,21 +2305,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## post_pipeline_run
 
-# **post_pipeline_run**
-> QueueItemImpl post_pipeline_run(organization, pipeline, run)
+> <QueueItemImpl> post_pipeline_run(organization, pipeline, run)
 
 
 
 Replay an organization pipeline run
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1712,20 +2335,39 @@ pipeline = 'pipeline_example' # String | Name of the pipeline
 run = 'run_example' # String | Name of the run
 
 begin
+  
   result = api_instance.post_pipeline_run(organization, pipeline, run)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->post_pipeline_run: #{e}"
+  puts "Error when calling BlueOceanApi->post_pipeline_run: #{e}"
+end
+```
+
+#### Using the post_pipeline_run_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<QueueItemImpl>, Integer, Hash)> post_pipeline_run_with_http_info(organization, pipeline, run)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.post_pipeline_run_with_http_info(organization, pipeline, run)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <QueueItemImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->post_pipeline_run_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
 
 ### Return type
 
@@ -1737,21 +2379,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## post_pipeline_runs
 
-# **post_pipeline_runs**
-> QueueItemImpl post_pipeline_runs(organization, pipeline)
+> <QueueItemImpl> post_pipeline_runs(organization, pipeline)
 
 
 
 Start a build for an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1765,19 +2408,38 @@ organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
 
 begin
+  
   result = api_instance.post_pipeline_runs(organization, pipeline)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->post_pipeline_runs: #{e}"
+  puts "Error when calling BlueOceanApi->post_pipeline_runs: #{e}"
+end
+```
+
+#### Using the post_pipeline_runs_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<QueueItemImpl>, Integer, Hash)> post_pipeline_runs_with_http_info(organization, pipeline)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.post_pipeline_runs_with_http_info(organization, pipeline)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <QueueItemImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->post_pipeline_runs_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
 
 ### Return type
 
@@ -1789,21 +2451,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## put_pipeline_favorite
 
-# **put_pipeline_favorite**
-> FavoriteImpl put_pipeline_favorite(organization, pipeline, body)
+> <FavoriteImpl> put_pipeline_favorite(organization, pipeline, unknown_base_type)
 
 
 
 Favorite/unfavorite a pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1815,23 +2478,42 @@ end
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
-body = SwaggyJenkinsClient::Body.new # Body | Set JSON string body to {"favorite": true} to favorite, set value to false to unfavorite
+unknown_base_type = TODO # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 begin
-  result = api_instance.put_pipeline_favorite(organization, pipeline, body)
+  
+  result = api_instance.put_pipeline_favorite(organization, pipeline, unknown_base_type)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->put_pipeline_favorite: #{e}"
+  puts "Error when calling BlueOceanApi->put_pipeline_favorite: #{e}"
+end
+```
+
+#### Using the put_pipeline_favorite_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<FavoriteImpl>, Integer, Hash)> put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <FavoriteImpl>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->put_pipeline_favorite_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **body** | [**Body**](Body.md)| Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |  |
 
 ### Return type
 
@@ -1843,21 +2525,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## put_pipeline_run
 
-# **put_pipeline_run**
-> PipelineRun put_pipeline_run(organization, pipeline, run, opts)
+> <PipelineRun> put_pipeline_run(organization, pipeline, run, opts)
 
 
 
 Stop a build of an organization pipeline
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1876,22 +2559,41 @@ opts = {
 }
 
 begin
+  
   result = api_instance.put_pipeline_run(organization, pipeline, run, opts)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->put_pipeline_run: #{e}"
+  puts "Error when calling BlueOceanApi->put_pipeline_run: #{e}"
+end
+```
+
+#### Using the put_pipeline_run_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<PipelineRun>, Integer, Hash)> put_pipeline_run_with_http_info(organization, pipeline, run, opts)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.put_pipeline_run_with_http_info(organization, pipeline, run, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <PipelineRun>
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->put_pipeline_run_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **String**| Name of the organization | 
- **pipeline** | **String**| Name of the pipeline | 
- **run** | **String**| Name of the run | 
- **blocking** | **String**| Set to true to make blocking stop, default: false | [optional] 
- **time_out_in_secs** | **Integer**| Timeout in seconds, default: 10 seconds | [optional] 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **organization** | **String** | Name of the organization |  |
+| **pipeline** | **String** | Name of the pipeline |  |
+| **run** | **String** | Name of the run |  |
+| **blocking** | **String** | Set to true to make blocking stop, default: false | [optional] |
+| **time_out_in_secs** | **Integer** | Timeout in seconds, default: 10 seconds | [optional] |
 
 ### Return type
 
@@ -1903,21 +2605,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## search
 
-# **search**
 > String search(q)
 
 
 
 Search for any resource details
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1930,18 +2633,37 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 q = 'q_example' # String | Query string
 
 begin
+  
   result = api_instance.search(q)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->search: #{e}"
+  puts "Error when calling BlueOceanApi->search: #{e}"
+end
+```
+
+#### Using the search_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> search_with_http_info(q)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.search_with_http_info(q)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->search_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **String**| Query string | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **q** | **String** | Query string |  |
 
 ### Return type
 
@@ -1953,21 +2675,22 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## search_classes
 
-# **search_classes**
 > String search_classes(q)
 
 
 
 Get classes details
 
-### Example
+### Examples
+
 ```ruby
-# load the gem
+require 'time'
 require 'swaggy_jenkins'
 # setup authorization
 SwaggyJenkinsClient.configure do |config|
@@ -1980,18 +2703,37 @@ api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 q = 'q_example' # String | Query string containing an array of class names
 
 begin
+  
   result = api_instance.search_classes(q)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
-  puts "Exception when calling BlueOceanApi->search_classes: #{e}"
+  puts "Error when calling BlueOceanApi->search_classes: #{e}"
+end
+```
+
+#### Using the search_classes_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(String, Integer, Hash)> search_classes_with_http_info(q)
+
+```ruby
+begin
+  
+  data, status_code, headers = api_instance.search_classes_with_http_info(q)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => String
+rescue SwaggyJenkinsClient::ApiError => e
+  puts "Error when calling BlueOceanApi->search_classes_with_http_info: #{e}"
 end
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **String**| Query string containing an array of class names | 
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **q** | **String** | Query string containing an array of class names |  |
 
 ### Return type
 
@@ -2003,8 +2745,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

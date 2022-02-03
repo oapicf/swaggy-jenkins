@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class StringParameterValue {
-    String propertyClass = null
-
-    String name = null
-
-    String value = null
-
+    
+    String propertyClass
+    
+    String name
+    
+    String value
 }

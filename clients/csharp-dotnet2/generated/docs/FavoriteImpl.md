@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.FavoriteImpl
+
 ## Properties
 
 Name | Type | Description | Notes

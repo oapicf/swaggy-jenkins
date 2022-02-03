@@ -9,34 +9,34 @@ import org.openapitools.model.PipelinelatestRunartifacts;
 
 @Canonical
 class PipelinelatestRun {
+    
     List<PipelinelatestRunartifacts> artifacts = new ArrayList<PipelinelatestRunartifacts>()
-
-    Integer durationInMillis = null
-
-    Integer estimatedDurationInMillis = null
-
-    String enQueueTime = null
-
-    String endTime = null
-
-    String id = null
-
-    String organization = null
-
-    String pipeline = null
-
-    String result = null
-
-    String runSummary = null
-
-    String startTime = null
-
-    String state = null
-
-    String type = null
-
-    String commitId = null
-
-    String propertyClass = null
-
+    
+    Integer durationInMillis
+    
+    Integer estimatedDurationInMillis
+    
+    String enQueueTime
+    
+    String endTime
+    
+    String id
+    
+    String organization
+    
+    String pipeline
+    
+    String result
+    
+    String runSummary
+    
+    String startTime
+    
+    String state
+    
+    String type
+    
+    String commitId
+    
+    String propertyClass
 }

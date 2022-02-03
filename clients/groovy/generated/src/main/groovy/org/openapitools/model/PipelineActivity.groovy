@@ -9,34 +9,34 @@ import org.openapitools.model.PipelineActivityartifacts;
 
 @Canonical
 class PipelineActivity {
-    String propertyClass = null
-
+    
+    String propertyClass
+    
     List<PipelineActivityartifacts> artifacts = new ArrayList<PipelineActivityartifacts>()
-
-    Integer durationInMillis = null
-
-    Integer estimatedDurationInMillis = null
-
-    String enQueueTime = null
-
-    String endTime = null
-
-    String id = null
-
-    String organization = null
-
-    String pipeline = null
-
-    String result = null
-
-    String runSummary = null
-
-    String startTime = null
-
-    String state = null
-
-    String type = null
-
-    String commitId = null
-
+    
+    Integer durationInMillis
+    
+    Integer estimatedDurationInMillis
+    
+    String enQueueTime
+    
+    String endTime
+    
+    String id
+    
+    String organization
+    
+    String pipeline
+    
+    String result
+    
+    String runSummary
+    
+    String startTime
+    
+    String state
+    
+    String type
+    
+    String commitId
 }

@@ -1,7 +1,10 @@
 
+
 # PipelinelatestRun
 
+
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **artifacts** | [**List&lt;PipelinelatestRunartifacts&gt;**](PipelinelatestRunartifacts.md) |  |  [optional]

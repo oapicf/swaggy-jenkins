@@ -7,20 +7,20 @@ import org.openapitools.model.PipelinelatestRun;
 
 @Canonical
 class Pipeline {
-    String propertyClass = null
-
-    String organization = null
-
-    String name = null
-
-    String displayName = null
-
-    String fullName = null
-
-    Integer weatherScore = null
-
-    Integer estimatedDurationInMillis = null
-
-    PipelinelatestRun latestRun = null
-
+    
+    String propertyClass
+    
+    String organization
+    
+    String name
+    
+    String displayName
+    
+    String fullName
+    
+    Integer weatherScore
+    
+    Integer estimatedDurationInMillis
+    
+    PipelinelatestRun latestRun
 }

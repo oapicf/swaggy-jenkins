@@ -1,34 +1,40 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.PipelineActivityartifacts;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class PipelineActivity   {
+
+@JsonTypeName("PipelineActivity")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class PipelineActivity   {
   
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
   private @Valid List<PipelineActivityartifacts> artifacts = new ArrayList<PipelineActivityartifacts>();
-  private @Valid Integer durationInMillis = null;
-  private @Valid Integer estimatedDurationInMillis = null;
-  private @Valid String enQueueTime = null;
-  private @Valid String endTime = null;
-  private @Valid String id = null;
-  private @Valid String organization = null;
-  private @Valid String pipeline = null;
-  private @Valid String result = null;
-  private @Valid String runSummary = null;
-  private @Valid String startTime = null;
-  private @Valid String state = null;
-  private @Valid String type = null;
-  private @Valid String commitId = null;
+  private @Valid Integer durationInMillis;
+  private @Valid Integer estimatedDurationInMillis;
+  private @Valid String enQueueTime;
+  private @Valid String endTime;
+  private @Valid String id;
+  private @Valid String organization;
+  private @Valid String pipeline;
+  private @Valid String result;
+  private @Valid String runSummary;
+  private @Valid String startTime;
+  private @Valid String state;
+  private @Valid String type;
+  private @Valid String commitId;
 
   /**
    **/
@@ -38,16 +44,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public PipelineActivity artifacts(List<PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
@@ -55,16 +65,36 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("artifacts")
   public List<PipelineActivityartifacts> getArtifacts() {
     return artifacts;
   }
+
+  @JsonProperty("artifacts")
   public void setArtifacts(List<PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 
-  /**
+  public PipelineActivity addArtifactsItem(PipelineActivityartifacts artifactsItem) {
+    if (this.artifacts == null) {
+      this.artifacts = new ArrayList<PipelineActivityartifacts>();
+    }
+
+    this.artifacts.add(artifactsItem);
+    return this;
+  }
+
+  public PipelineActivity removeArtifactsItem(PipelineActivityartifacts artifactsItem) {
+    if (artifactsItem != null && this.artifacts != null) {
+      this.artifacts.remove(artifactsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public PipelineActivity durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -72,16 +102,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
+
+  @JsonProperty("durationInMillis")
   public void setDurationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
-  /**
+/**
    **/
   public PipelineActivity estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -89,16 +123,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
+
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  /**
+/**
    **/
   public PipelineActivity enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -106,16 +144,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("enQueueTime")
   public String getEnQueueTime() {
     return enQueueTime;
   }
+
+  @JsonProperty("enQueueTime")
   public void setEnQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
   }
 
-  /**
+/**
    **/
   public PipelineActivity endTime(String endTime) {
     this.endTime = endTime;
@@ -123,16 +165,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("endTime")
   public String getEndTime() {
     return endTime;
   }
+
+  @JsonProperty("endTime")
   public void setEndTime(String endTime) {
     this.endTime = endTime;
   }
 
-  /**
+/**
    **/
   public PipelineActivity id(String id) {
     this.id = id;
@@ -140,16 +186,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public PipelineActivity organization(String organization) {
     this.organization = organization;
@@ -157,16 +207,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
+
+  @JsonProperty("organization")
   public void setOrganization(String organization) {
     this.organization = organization;
   }
 
-  /**
+/**
    **/
   public PipelineActivity pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -174,16 +228,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("pipeline")
   public String getPipeline() {
     return pipeline;
   }
+
+  @JsonProperty("pipeline")
   public void setPipeline(String pipeline) {
     this.pipeline = pipeline;
   }
 
-  /**
+/**
    **/
   public PipelineActivity result(String result) {
     this.result = result;
@@ -191,16 +249,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("result")
   public String getResult() {
     return result;
   }
+
+  @JsonProperty("result")
   public void setResult(String result) {
     this.result = result;
   }
 
-  /**
+/**
    **/
   public PipelineActivity runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -208,16 +270,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("runSummary")
   public String getRunSummary() {
     return runSummary;
   }
+
+  @JsonProperty("runSummary")
   public void setRunSummary(String runSummary) {
     this.runSummary = runSummary;
   }
 
-  /**
+/**
    **/
   public PipelineActivity startTime(String startTime) {
     this.startTime = startTime;
@@ -225,16 +291,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }
+
+  @JsonProperty("startTime")
   public void setStartTime(String startTime) {
     this.startTime = startTime;
   }
 
-  /**
+/**
    **/
   public PipelineActivity state(String state) {
     this.state = state;
@@ -242,16 +312,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("state")
   public String getState() {
     return state;
   }
+
+  @JsonProperty("state")
   public void setState(String state) {
     this.state = state;
   }
 
-  /**
+/**
    **/
   public PipelineActivity type(String type) {
     this.type = type;
@@ -259,16 +333,20 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("type")
   public String getType() {
     return type;
   }
+
+  @JsonProperty("type")
   public void setType(String type) {
     this.type = type;
   }
 
-  /**
+/**
    **/
   public PipelineActivity commitId(String commitId) {
     this.commitId = commitId;
@@ -276,18 +354,22 @@ public class PipelineActivity   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("commitId")
   public String getCommitId() {
     return commitId;
   }
+
+  @JsonProperty("commitId")
   public void setCommitId(String commitId) {
     this.commitId = commitId;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -295,21 +377,21 @@ public class PipelineActivity   {
       return false;
     }
     PipelineActivity pipelineActivity = (PipelineActivity) o;
-    return Objects.equals(propertyClass, pipelineActivity.propertyClass) &&
-        Objects.equals(artifacts, pipelineActivity.artifacts) &&
-        Objects.equals(durationInMillis, pipelineActivity.durationInMillis) &&
-        Objects.equals(estimatedDurationInMillis, pipelineActivity.estimatedDurationInMillis) &&
-        Objects.equals(enQueueTime, pipelineActivity.enQueueTime) &&
-        Objects.equals(endTime, pipelineActivity.endTime) &&
-        Objects.equals(id, pipelineActivity.id) &&
-        Objects.equals(organization, pipelineActivity.organization) &&
-        Objects.equals(pipeline, pipelineActivity.pipeline) &&
-        Objects.equals(result, pipelineActivity.result) &&
-        Objects.equals(runSummary, pipelineActivity.runSummary) &&
-        Objects.equals(startTime, pipelineActivity.startTime) &&
-        Objects.equals(state, pipelineActivity.state) &&
-        Objects.equals(type, pipelineActivity.type) &&
-        Objects.equals(commitId, pipelineActivity.commitId);
+    return Objects.equals(this.propertyClass, pipelineActivity.propertyClass) &&
+        Objects.equals(this.artifacts, pipelineActivity.artifacts) &&
+        Objects.equals(this.durationInMillis, pipelineActivity.durationInMillis) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineActivity.estimatedDurationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelineActivity.enQueueTime) &&
+        Objects.equals(this.endTime, pipelineActivity.endTime) &&
+        Objects.equals(this.id, pipelineActivity.id) &&
+        Objects.equals(this.organization, pipelineActivity.organization) &&
+        Objects.equals(this.pipeline, pipelineActivity.pipeline) &&
+        Objects.equals(this.result, pipelineActivity.result) &&
+        Objects.equals(this.runSummary, pipelineActivity.runSummary) &&
+        Objects.equals(this.startTime, pipelineActivity.startTime) &&
+        Objects.equals(this.state, pipelineActivity.state) &&
+        Objects.equals(this.type, pipelineActivity.type) &&
+        Objects.equals(this.commitId, pipelineActivity.commitId);
   }
 
   @Override
@@ -345,11 +427,13 @@ public class PipelineActivity   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

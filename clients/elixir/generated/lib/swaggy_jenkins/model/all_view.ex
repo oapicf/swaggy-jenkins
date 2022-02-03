@@ -15,9 +15,9 @@ defmodule SwaggyJenkins.Model.AllView do
   ]
 
   @type t :: %__MODULE__{
-    :"_class" => String.t,
-    :"name" => String.t,
-    :"url" => String.t
+    :"_class" => String.t | nil,
+    :"name" => String.t | nil,
+    :"url" => String.t | nil
   }
 end
 

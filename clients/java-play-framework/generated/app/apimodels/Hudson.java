@@ -14,53 +14,72 @@ import javax.validation.constraints.*;
 /**
  * Hudson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Hudson   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("assignedLabels")
+  @Valid
+
   private List<HudsonassignedLabels> assignedLabels = null;
 
   @JsonProperty("mode")
-  private String mode = null;
+  
+  private String mode;
 
   @JsonProperty("nodeDescription")
-  private String nodeDescription = null;
+  
+  private String nodeDescription;
 
   @JsonProperty("nodeName")
-  private String nodeName = null;
+  
+  private String nodeName;
 
   @JsonProperty("numExecutors")
-  private Integer numExecutors = null;
+  
+  private Integer numExecutors;
 
   @JsonProperty("description")
-  private String description = null;
+  
+  private String description;
 
   @JsonProperty("jobs")
+  @Valid
+
   private List<FreeStyleProject> jobs = null;
 
   @JsonProperty("primaryView")
-  private AllView primaryView = null;
+  @Valid
+
+  private AllView primaryView;
 
   @JsonProperty("quietingDown")
-  private Boolean quietingDown = null;
+  
+  private Boolean quietingDown;
 
   @JsonProperty("slaveAgentPort")
-  private Integer slaveAgentPort = null;
+  
+  private Integer slaveAgentPort;
 
   @JsonProperty("unlabeledLoad")
-  private UnlabeledLoadStatistics unlabeledLoad = null;
+  @Valid
+
+  private UnlabeledLoadStatistics unlabeledLoad;
 
   @JsonProperty("useCrumbs")
-  private Boolean useCrumbs = null;
+  
+  private Boolean useCrumbs;
 
   @JsonProperty("useSecurity")
-  private Boolean useSecurity = null;
+  
+  private Boolean useSecurity;
 
   @JsonProperty("views")
+  @Valid
+
   private List<AllView> views = null;
 
   public Hudson propertyClass(String propertyClass) {
@@ -72,7 +91,7 @@ public class Hudson   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -97,7 +116,6 @@ public class Hudson   {
    * Get assignedLabels
    * @return assignedLabels
   **/
-  @Valid
   public List<HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
@@ -115,7 +133,7 @@ public class Hudson   {
    * Get mode
    * @return mode
   **/
-    public String getMode() {
+  public String getMode() {
     return mode;
   }
 
@@ -132,7 +150,7 @@ public class Hudson   {
    * Get nodeDescription
    * @return nodeDescription
   **/
-    public String getNodeDescription() {
+  public String getNodeDescription() {
     return nodeDescription;
   }
 
@@ -149,7 +167,7 @@ public class Hudson   {
    * Get nodeName
    * @return nodeName
   **/
-    public String getNodeName() {
+  public String getNodeName() {
     return nodeName;
   }
 
@@ -166,7 +184,7 @@ public class Hudson   {
    * Get numExecutors
    * @return numExecutors
   **/
-    public Integer getNumExecutors() {
+  public Integer getNumExecutors() {
     return numExecutors;
   }
 
@@ -183,7 +201,7 @@ public class Hudson   {
    * Get description
    * @return description
   **/
-    public String getDescription() {
+  public String getDescription() {
     return description;
   }
 
@@ -208,7 +226,6 @@ public class Hudson   {
    * Get jobs
    * @return jobs
   **/
-  @Valid
   public List<FreeStyleProject> getJobs() {
     return jobs;
   }
@@ -226,7 +243,6 @@ public class Hudson   {
    * Get primaryView
    * @return primaryView
   **/
-  @Valid
   public AllView getPrimaryView() {
     return primaryView;
   }
@@ -244,7 +260,7 @@ public class Hudson   {
    * Get quietingDown
    * @return quietingDown
   **/
-    public Boolean getQuietingDown() {
+  public Boolean getQuietingDown() {
     return quietingDown;
   }
 
@@ -261,7 +277,7 @@ public class Hudson   {
    * Get slaveAgentPort
    * @return slaveAgentPort
   **/
-    public Integer getSlaveAgentPort() {
+  public Integer getSlaveAgentPort() {
     return slaveAgentPort;
   }
 
@@ -278,7 +294,6 @@ public class Hudson   {
    * Get unlabeledLoad
    * @return unlabeledLoad
   **/
-  @Valid
   public UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
   }
@@ -296,7 +311,7 @@ public class Hudson   {
    * Get useCrumbs
    * @return useCrumbs
   **/
-    public Boolean getUseCrumbs() {
+  public Boolean getUseCrumbs() {
     return useCrumbs;
   }
 
@@ -313,7 +328,7 @@ public class Hudson   {
    * Get useSecurity
    * @return useSecurity
   **/
-    public Boolean getUseSecurity() {
+  public Boolean getUseSecurity() {
     return useSecurity;
   }
 
@@ -338,7 +353,6 @@ public class Hudson   {
    * Get views
    * @return views
   **/
-  @Valid
   public List<AllView> getViews() {
     return views;
   }
@@ -349,7 +363,7 @@ public class Hudson   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -408,7 +422,7 @@ public class Hudson   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -9,20 +9,20 @@ namespace app\Models;
  */
 class BranchImpl {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var string $display_name */
-    private $display_name;
+    /** @var string $displayName */
+    private $displayName;
 
-    /** @var int $estimated_duration_in_millis */
-    private $estimated_duration_in_millis;
+    /** @var int $estimatedDurationInMillis */
+    private $estimatedDurationInMillis;
 
-    /** @var string $full_display_name */
-    private $full_display_name;
+    /** @var string $fullDisplayName */
+    private $fullDisplayName;
 
-    /** @var string $full_name */
-    private $full_name;
+    /** @var string $fullName */
+    private $fullName;
 
     /** @var string $name */
     private $name;
@@ -36,16 +36,16 @@ class BranchImpl {
     /** @var \app\Models\BranchImplpermissions $permissions */
     private $permissions;
 
-    /** @var int $weather_score */
-    private $weather_score;
+    /** @var int $weatherScore */
+    private $weatherScore;
 
-    /** @var string $pull_request */
-    private $pull_request;
+    /** @var string $pullRequest */
+    private $pullRequest;
 
-    /** @var \app\Models\BranchImpllinks $_links */
-    private $_links;
+    /** @var \app\Models\BranchImpllinks $links */
+    private $links;
 
-    /** @var \app\Models\PipelineRunImpl $latest_run */
-    private $latest_run;
+    /** @var \app\Models\PipelineRunImpl $latestRun */
+    private $latestRun;
 
 }

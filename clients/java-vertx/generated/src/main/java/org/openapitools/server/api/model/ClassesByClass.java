@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClassesByClass   {
   
   private List<String> classes = new ArrayList<>();
-  private String propertyClass = null;
+  private String propertyClass;
 
   public ClassesByClass () {
 

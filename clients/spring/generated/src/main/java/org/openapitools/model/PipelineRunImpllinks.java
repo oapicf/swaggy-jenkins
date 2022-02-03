@@ -1,37 +1,44 @@
 package org.openapitools.model;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import java.util.*;
+import javax.annotation.Generated;
 
 /**
  * PipelineRunImpllinks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-04-10T13:34:37.094Z[GMT]")
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
 public class PipelineRunImpllinks   {
+
   @JsonProperty("nodes")
-  private Link nodes = null;
+  private Link nodes;
 
   @JsonProperty("log")
-  private Link log = null;
+  private Link log;
 
   @JsonProperty("self")
-  private Link self = null;
+  private Link self;
 
   @JsonProperty("actions")
-  private Link actions = null;
+  private Link actions;
 
   @JsonProperty("steps")
-  private Link steps = null;
+  private Link steps;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public PipelineRunImpllinks nodes(Link nodes) {
     this.nodes = nodes;
@@ -41,11 +48,9 @@ public class PipelineRunImpllinks   {
   /**
    * Get nodes
    * @return nodes
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "nodes", required = false)
   public Link getNodes() {
     return nodes;
   }
@@ -62,11 +67,9 @@ public class PipelineRunImpllinks   {
   /**
    * Get log
    * @return log
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "log", required = false)
   public Link getLog() {
     return log;
   }
@@ -83,11 +86,9 @@ public class PipelineRunImpllinks   {
   /**
    * Get self
    * @return self
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "self", required = false)
   public Link getSelf() {
     return self;
   }
@@ -104,11 +105,9 @@ public class PipelineRunImpllinks   {
   /**
    * Get actions
    * @return actions
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "actions", required = false)
   public Link getActions() {
     return actions;
   }
@@ -125,11 +124,9 @@ public class PipelineRunImpllinks   {
   /**
    * Get steps
    * @return steps
-  **/
-  @ApiModelProperty(value = "")
-
-  @Valid
-
+  */
+  @Valid 
+  @Schema(name = "steps", required = false)
   public Link getSteps() {
     return steps;
   }
@@ -146,10 +143,9 @@ public class PipelineRunImpllinks   {
   /**
    * Get propertyClass
    * @return propertyClass
-  **/
-  @ApiModelProperty(value = "")
-
-
+  */
+  
+  @Schema(name = "_class", required = false)
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -158,9 +154,8 @@ public class PipelineRunImpllinks   {
     this.propertyClass = propertyClass;
   }
 
-
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -185,7 +180,6 @@ public class PipelineRunImpllinks   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineRunImpllinks {\n");
-    
     sb.append("    nodes: ").append(toIndentedString(nodes)).append("\n");
     sb.append("    log: ").append(toIndentedString(log)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
@@ -200,7 +194,7 @@ public class PipelineRunImpllinks   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

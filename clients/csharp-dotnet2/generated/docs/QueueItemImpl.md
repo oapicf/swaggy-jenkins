@@ -1,4 +1,5 @@
 # Org.OpenAPITools.Model.QueueItemImpl
+
 ## Properties
 
 Name | Type | Description | Notes

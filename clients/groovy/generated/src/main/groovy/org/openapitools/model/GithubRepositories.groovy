@@ -10,16 +10,16 @@ import org.openapitools.model.GithubRepository;
 
 @Canonical
 class GithubRepositories {
-    String propertyClass = null
-
-    GithubRepositorieslinks links = null
-
+    
+    String propertyClass
+    
+    GithubRepositorieslinks links
+    
     List<GithubRepository> items = new ArrayList<GithubRepository>()
-
-    Integer lastPage = null
-
-    Integer nextPage = null
-
-    Integer pageSize = null
-
+    
+    Integer lastPage
+    
+    Integer nextPage
+    
+    Integer pageSize
 }

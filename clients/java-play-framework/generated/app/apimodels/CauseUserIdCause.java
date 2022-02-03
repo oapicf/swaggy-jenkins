@@ -8,21 +8,24 @@ import javax.validation.constraints.*;
 /**
  * CauseUserIdCause
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CauseUserIdCause   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("shortDescription")
-  private String shortDescription = null;
+  
+  private String shortDescription;
 
   @JsonProperty("userId")
-  private String userId = null;
+  
+  private String userId;
 
   @JsonProperty("userName")
-  private String userName = null;
+  
+  private String userName;
 
   public CauseUserIdCause propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -33,7 +36,7 @@ public class CauseUserIdCause   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -50,7 +53,7 @@ public class CauseUserIdCause   {
    * Get shortDescription
    * @return shortDescription
   **/
-    public String getShortDescription() {
+  public String getShortDescription() {
     return shortDescription;
   }
 
@@ -67,7 +70,7 @@ public class CauseUserIdCause   {
    * Get userId
    * @return userId
   **/
-    public String getUserId() {
+  public String getUserId() {
     return userId;
   }
 
@@ -84,7 +87,7 @@ public class CauseUserIdCause   {
    * Get userName
    * @return userName
   **/
-    public String getUserName() {
+  public String getUserName() {
     return userName;
   }
 
@@ -94,7 +97,7 @@ public class CauseUserIdCause   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -131,7 +134,7 @@ public class CauseUserIdCause   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

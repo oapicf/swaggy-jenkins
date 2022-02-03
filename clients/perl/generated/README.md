@@ -218,6 +218,15 @@ spec. If so, this is available via the `class_documentation()` and
 
 Each of these calls returns a hashref with various useful pieces of information.
 
+# Installation Prerequisites
+
+Use [cpanm](https://metacpan.org/pod/distribution/App-cpanminus/bin/cpanm) to install the module dependencies:
+
+```
+cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+cpanm --quiet --no-interactive Class::Accessor Test::Exception Test::More Log::Any LWP::UserAgent URI::Query Module::Runtime DateTime Module::Find Moose::Role JSON
+```
+
 # LOAD THE MODULES
 
 To load the API packages:
@@ -231,7 +240,6 @@ use WWW::OpenAPIClient::RemoteAccessApi;
 To load the models:
 ```perl
 use WWW::OpenAPIClient::Object::AllView;
-use WWW::OpenAPIClient::Object::Body;
 use WWW::OpenAPIClient::Object::BranchImpl;
 use WWW::OpenAPIClient::Object::BranchImpllinks;
 use WWW::OpenAPIClient::Object::BranchImplpermissions;
@@ -281,12 +289,9 @@ use WWW::OpenAPIClient::Object::ListView;
 use WWW::OpenAPIClient::Object::MultibranchPipeline;
 use WWW::OpenAPIClient::Object::NullSCM;
 use WWW::OpenAPIClient::Object::Organisation;
-use WWW::OpenAPIClient::Object::Organisations;
 use WWW::OpenAPIClient::Object::Pipeline;
-use WWW::OpenAPIClient::Object::PipelineActivities;
 use WWW::OpenAPIClient::Object::PipelineActivity;
 use WWW::OpenAPIClient::Object::PipelineActivityartifacts;
-use WWW::OpenAPIClient::Object::PipelineBranches;
 use WWW::OpenAPIClient::Object::PipelineBranchesitem;
 use WWW::OpenAPIClient::Object::PipelineBranchesitemlatestRun;
 use WWW::OpenAPIClient::Object::PipelineBranchesitempullRequest;
@@ -294,35 +299,26 @@ use WWW::OpenAPIClient::Object::PipelineBranchesitempullRequestlinks;
 use WWW::OpenAPIClient::Object::PipelineFolderImpl;
 use WWW::OpenAPIClient::Object::PipelineImpl;
 use WWW::OpenAPIClient::Object::PipelineImpllinks;
-use WWW::OpenAPIClient::Object::PipelineQueue;
 use WWW::OpenAPIClient::Object::PipelineRun;
 use WWW::OpenAPIClient::Object::PipelineRunImpl;
 use WWW::OpenAPIClient::Object::PipelineRunImpllinks;
 use WWW::OpenAPIClient::Object::PipelineRunNode;
-use WWW::OpenAPIClient::Object::PipelineRunNodeSteps;
 use WWW::OpenAPIClient::Object::PipelineRunNodeedges;
-use WWW::OpenAPIClient::Object::PipelineRunNodes;
-use WWW::OpenAPIClient::Object::PipelineRunSteps;
 use WWW::OpenAPIClient::Object::PipelineRunartifacts;
-use WWW::OpenAPIClient::Object::PipelineRuns;
 use WWW::OpenAPIClient::Object::PipelineStepImpl;
 use WWW::OpenAPIClient::Object::PipelineStepImpllinks;
 use WWW::OpenAPIClient::Object::PipelinelatestRun;
 use WWW::OpenAPIClient::Object::PipelinelatestRunartifacts;
-use WWW::OpenAPIClient::Object::Pipelines;
 use WWW::OpenAPIClient::Object::Queue;
 use WWW::OpenAPIClient::Object::QueueBlockedItem;
 use WWW::OpenAPIClient::Object::QueueItemImpl;
 use WWW::OpenAPIClient::Object::QueueLeftItem;
 use WWW::OpenAPIClient::Object::ResponseTimeMonitorData;
-use WWW::OpenAPIClient::Object::ScmOrganisations;
 use WWW::OpenAPIClient::Object::StringParameterDefinition;
 use WWW::OpenAPIClient::Object::StringParameterValue;
 use WWW::OpenAPIClient::Object::SwapSpaceMonitorMemoryUsage2;
 use WWW::OpenAPIClient::Object::UnlabeledLoadStatistics;
 use WWW::OpenAPIClient::Object::User;
-use WWW::OpenAPIClient::Object::UserFavorites;
-use WWW::OpenAPIClient::Object::Users;
 
 ````
 
@@ -340,7 +336,6 @@ use WWW::OpenAPIClient::RemoteAccessApi;
 
 # load the models
 use WWW::OpenAPIClient::Object::AllView;
-use WWW::OpenAPIClient::Object::Body;
 use WWW::OpenAPIClient::Object::BranchImpl;
 use WWW::OpenAPIClient::Object::BranchImpllinks;
 use WWW::OpenAPIClient::Object::BranchImplpermissions;
@@ -390,12 +385,9 @@ use WWW::OpenAPIClient::Object::ListView;
 use WWW::OpenAPIClient::Object::MultibranchPipeline;
 use WWW::OpenAPIClient::Object::NullSCM;
 use WWW::OpenAPIClient::Object::Organisation;
-use WWW::OpenAPIClient::Object::Organisations;
 use WWW::OpenAPIClient::Object::Pipeline;
-use WWW::OpenAPIClient::Object::PipelineActivities;
 use WWW::OpenAPIClient::Object::PipelineActivity;
 use WWW::OpenAPIClient::Object::PipelineActivityartifacts;
-use WWW::OpenAPIClient::Object::PipelineBranches;
 use WWW::OpenAPIClient::Object::PipelineBranchesitem;
 use WWW::OpenAPIClient::Object::PipelineBranchesitemlatestRun;
 use WWW::OpenAPIClient::Object::PipelineBranchesitempullRequest;
@@ -403,42 +395,32 @@ use WWW::OpenAPIClient::Object::PipelineBranchesitempullRequestlinks;
 use WWW::OpenAPIClient::Object::PipelineFolderImpl;
 use WWW::OpenAPIClient::Object::PipelineImpl;
 use WWW::OpenAPIClient::Object::PipelineImpllinks;
-use WWW::OpenAPIClient::Object::PipelineQueue;
 use WWW::OpenAPIClient::Object::PipelineRun;
 use WWW::OpenAPIClient::Object::PipelineRunImpl;
 use WWW::OpenAPIClient::Object::PipelineRunImpllinks;
 use WWW::OpenAPIClient::Object::PipelineRunNode;
-use WWW::OpenAPIClient::Object::PipelineRunNodeSteps;
 use WWW::OpenAPIClient::Object::PipelineRunNodeedges;
-use WWW::OpenAPIClient::Object::PipelineRunNodes;
-use WWW::OpenAPIClient::Object::PipelineRunSteps;
 use WWW::OpenAPIClient::Object::PipelineRunartifacts;
-use WWW::OpenAPIClient::Object::PipelineRuns;
 use WWW::OpenAPIClient::Object::PipelineStepImpl;
 use WWW::OpenAPIClient::Object::PipelineStepImpllinks;
 use WWW::OpenAPIClient::Object::PipelinelatestRun;
 use WWW::OpenAPIClient::Object::PipelinelatestRunartifacts;
-use WWW::OpenAPIClient::Object::Pipelines;
 use WWW::OpenAPIClient::Object::Queue;
 use WWW::OpenAPIClient::Object::QueueBlockedItem;
 use WWW::OpenAPIClient::Object::QueueItemImpl;
 use WWW::OpenAPIClient::Object::QueueLeftItem;
 use WWW::OpenAPIClient::Object::ResponseTimeMonitorData;
-use WWW::OpenAPIClient::Object::ScmOrganisations;
 use WWW::OpenAPIClient::Object::StringParameterDefinition;
 use WWW::OpenAPIClient::Object::StringParameterValue;
 use WWW::OpenAPIClient::Object::SwapSpaceMonitorMemoryUsage2;
 use WWW::OpenAPIClient::Object::UnlabeledLoadStatistics;
 use WWW::OpenAPIClient::Object::User;
-use WWW::OpenAPIClient::Object::UserFavorites;
-use WWW::OpenAPIClient::Object::Users;
 
 # for displaying the API response data
 use Data::Dumper;
-use WWW::OpenAPIClient::;
 
-my $api_instance = WWW::OpenAPIClient::->new(
 
+my $api_instance = WWW::OpenAPIClient::BaseApi->new(
     # Configure HTTP basic authorization: jenkins_auth
     username => 'YOUR_USERNAME',
     password => 'YOUR_PASSWORD',
@@ -523,7 +505,6 @@ Class | Method | HTTP request | Description
 
 # DOCUMENTATION FOR MODELS
  - [WWW::OpenAPIClient::Object::AllView](docs/AllView.md)
- - [WWW::OpenAPIClient::Object::Body](docs/Body.md)
  - [WWW::OpenAPIClient::Object::BranchImpl](docs/BranchImpl.md)
  - [WWW::OpenAPIClient::Object::BranchImpllinks](docs/BranchImpllinks.md)
  - [WWW::OpenAPIClient::Object::BranchImplpermissions](docs/BranchImplpermissions.md)
@@ -573,12 +554,9 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::MultibranchPipeline](docs/MultibranchPipeline.md)
  - [WWW::OpenAPIClient::Object::NullSCM](docs/NullSCM.md)
  - [WWW::OpenAPIClient::Object::Organisation](docs/Organisation.md)
- - [WWW::OpenAPIClient::Object::Organisations](docs/Organisations.md)
  - [WWW::OpenAPIClient::Object::Pipeline](docs/Pipeline.md)
- - [WWW::OpenAPIClient::Object::PipelineActivities](docs/PipelineActivities.md)
  - [WWW::OpenAPIClient::Object::PipelineActivity](docs/PipelineActivity.md)
  - [WWW::OpenAPIClient::Object::PipelineActivityartifacts](docs/PipelineActivityartifacts.md)
- - [WWW::OpenAPIClient::Object::PipelineBranches](docs/PipelineBranches.md)
  - [WWW::OpenAPIClient::Object::PipelineBranchesitem](docs/PipelineBranchesitem.md)
  - [WWW::OpenAPIClient::Object::PipelineBranchesitemlatestRun](docs/PipelineBranchesitemlatestRun.md)
  - [WWW::OpenAPIClient::Object::PipelineBranchesitempullRequest](docs/PipelineBranchesitempullRequest.md)
@@ -586,35 +564,26 @@ Class | Method | HTTP request | Description
  - [WWW::OpenAPIClient::Object::PipelineFolderImpl](docs/PipelineFolderImpl.md)
  - [WWW::OpenAPIClient::Object::PipelineImpl](docs/PipelineImpl.md)
  - [WWW::OpenAPIClient::Object::PipelineImpllinks](docs/PipelineImpllinks.md)
- - [WWW::OpenAPIClient::Object::PipelineQueue](docs/PipelineQueue.md)
  - [WWW::OpenAPIClient::Object::PipelineRun](docs/PipelineRun.md)
  - [WWW::OpenAPIClient::Object::PipelineRunImpl](docs/PipelineRunImpl.md)
  - [WWW::OpenAPIClient::Object::PipelineRunImpllinks](docs/PipelineRunImpllinks.md)
  - [WWW::OpenAPIClient::Object::PipelineRunNode](docs/PipelineRunNode.md)
- - [WWW::OpenAPIClient::Object::PipelineRunNodeSteps](docs/PipelineRunNodeSteps.md)
  - [WWW::OpenAPIClient::Object::PipelineRunNodeedges](docs/PipelineRunNodeedges.md)
- - [WWW::OpenAPIClient::Object::PipelineRunNodes](docs/PipelineRunNodes.md)
- - [WWW::OpenAPIClient::Object::PipelineRunSteps](docs/PipelineRunSteps.md)
  - [WWW::OpenAPIClient::Object::PipelineRunartifacts](docs/PipelineRunartifacts.md)
- - [WWW::OpenAPIClient::Object::PipelineRuns](docs/PipelineRuns.md)
  - [WWW::OpenAPIClient::Object::PipelineStepImpl](docs/PipelineStepImpl.md)
  - [WWW::OpenAPIClient::Object::PipelineStepImpllinks](docs/PipelineStepImpllinks.md)
  - [WWW::OpenAPIClient::Object::PipelinelatestRun](docs/PipelinelatestRun.md)
  - [WWW::OpenAPIClient::Object::PipelinelatestRunartifacts](docs/PipelinelatestRunartifacts.md)
- - [WWW::OpenAPIClient::Object::Pipelines](docs/Pipelines.md)
  - [WWW::OpenAPIClient::Object::Queue](docs/Queue.md)
  - [WWW::OpenAPIClient::Object::QueueBlockedItem](docs/QueueBlockedItem.md)
  - [WWW::OpenAPIClient::Object::QueueItemImpl](docs/QueueItemImpl.md)
  - [WWW::OpenAPIClient::Object::QueueLeftItem](docs/QueueLeftItem.md)
  - [WWW::OpenAPIClient::Object::ResponseTimeMonitorData](docs/ResponseTimeMonitorData.md)
- - [WWW::OpenAPIClient::Object::ScmOrganisations](docs/ScmOrganisations.md)
  - [WWW::OpenAPIClient::Object::StringParameterDefinition](docs/StringParameterDefinition.md)
  - [WWW::OpenAPIClient::Object::StringParameterValue](docs/StringParameterValue.md)
  - [WWW::OpenAPIClient::Object::SwapSpaceMonitorMemoryUsage2](docs/SwapSpaceMonitorMemoryUsage2.md)
  - [WWW::OpenAPIClient::Object::UnlabeledLoadStatistics](docs/UnlabeledLoadStatistics.md)
  - [WWW::OpenAPIClient::Object::User](docs/User.md)
- - [WWW::OpenAPIClient::Object::UserFavorites](docs/UserFavorites.md)
- - [WWW::OpenAPIClient::Object::Users](docs/Users.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

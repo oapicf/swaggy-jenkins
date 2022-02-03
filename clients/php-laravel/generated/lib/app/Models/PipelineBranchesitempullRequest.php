@@ -9,8 +9,8 @@ namespace app\Models;
  */
 class PipelineBranchesitempullRequest {
 
-    /** @var \app\Models\PipelineBranchesitempullRequestlinks $_links */
-    private $_links;
+    /** @var \app\Models\PipelineBranchesitempullRequestlinks $links */
+    private $links;
 
     /** @var string $author */
     private $author;
@@ -24,7 +24,7 @@ class PipelineBranchesitempullRequest {
     /** @var string $url */
     private $url;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

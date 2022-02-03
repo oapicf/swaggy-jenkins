@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.server.api.model.HudsonMasterComputer;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ComputerSet   {
   
-  private String propertyClass = null;
-  private Integer busyExecutors = null;
+  private String propertyClass;
+  private Integer busyExecutors;
   private List<HudsonMasterComputer> computer = new ArrayList<>();
-  private String displayName = null;
-  private Integer totalExecutors = null;
+  private String displayName;
+  private Integer totalExecutors;
 
   public ComputerSet () {
 

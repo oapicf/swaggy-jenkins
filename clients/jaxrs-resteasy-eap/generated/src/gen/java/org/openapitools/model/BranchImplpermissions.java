@@ -9,20 +9,19 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class BranchImplpermissions   {
   
 
-  private Boolean create = null;
+  private Boolean create;
 
-  private Boolean read = null;
+  private Boolean read;
 
-  private Boolean start = null;
+  private Boolean start;
 
-  private Boolean stop = null;
+  private Boolean stop;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
   /**
    **/

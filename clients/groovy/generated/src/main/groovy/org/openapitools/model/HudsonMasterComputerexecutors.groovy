@@ -7,16 +7,16 @@ import org.openapitools.model.FreeStyleBuild;
 
 @Canonical
 class HudsonMasterComputerexecutors {
-    FreeStyleBuild currentExecutable = null
-
-    Boolean idle = null
-
-    Boolean likelyStuck = null
-
-    Integer number = null
-
-    Integer progress = null
-
-    String propertyClass = null
-
+    
+    FreeStyleBuild currentExecutable
+    
+    Boolean idle
+    
+    Boolean likelyStuck
+    
+    Integer number
+    
+    Integer progress
+    
+    String propertyClass
 }

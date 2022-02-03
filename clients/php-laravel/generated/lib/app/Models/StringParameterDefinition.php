@@ -9,11 +9,11 @@ namespace app\Models;
  */
 class StringParameterDefinition {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var \app\Models\StringParameterValue $default_parameter_value */
-    private $default_parameter_value;
+    /** @var \app\Models\StringParameterValue $defaultParameterValue */
+    private $defaultParameterValue;
 
     /** @var string $description */
     private $description;

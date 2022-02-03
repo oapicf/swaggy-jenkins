@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.CauseAction;
@@ -8,27 +10,31 @@ import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class QueueLeftItem   {
+
+@JsonTypeName("QueueLeftItem")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class QueueLeftItem   {
   
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
   private @Valid List<CauseAction> actions = new ArrayList<CauseAction>();
-  private @Valid Boolean blocked = null;
-  private @Valid Boolean buildable = null;
-  private @Valid Integer id = null;
-  private @Valid Integer inQueueSince = null;
-  private @Valid String params = null;
-  private @Valid Boolean stuck = null;
-  private @Valid FreeStyleProject task = null;
-  private @Valid String url = null;
-  private @Valid String why = null;
-  private @Valid Boolean cancelled = null;
-  private @Valid FreeStyleBuild executable = null;
+  private @Valid Boolean blocked;
+  private @Valid Boolean buildable;
+  private @Valid Integer id;
+  private @Valid Integer inQueueSince;
+  private @Valid String params;
+  private @Valid Boolean stuck;
+  private @Valid FreeStyleProject task;
+  private @Valid String url;
+  private @Valid String why;
+  private @Valid Boolean cancelled;
+  private @Valid FreeStyleBuild executable;
 
   /**
    **/
@@ -38,16 +44,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem actions(List<CauseAction> actions) {
     this.actions = actions;
@@ -55,16 +65,36 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<CauseAction> getActions() {
     return actions;
   }
+
+  @JsonProperty("actions")
   public void setActions(List<CauseAction> actions) {
     this.actions = actions;
   }
 
-  /**
+  public QueueLeftItem addActionsItem(CauseAction actionsItem) {
+    if (this.actions == null) {
+      this.actions = new ArrayList<CauseAction>();
+    }
+
+    this.actions.add(actionsItem);
+    return this;
+  }
+
+  public QueueLeftItem removeActionsItem(CauseAction actionsItem) {
+    if (actionsItem != null && this.actions != null) {
+      this.actions.remove(actionsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public QueueLeftItem blocked(Boolean blocked) {
     this.blocked = blocked;
@@ -72,16 +102,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("blocked")
   public Boolean getBlocked() {
     return blocked;
   }
+
+  @JsonProperty("blocked")
   public void setBlocked(Boolean blocked) {
     this.blocked = blocked;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem buildable(Boolean buildable) {
     this.buildable = buildable;
@@ -89,16 +123,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("buildable")
   public Boolean getBuildable() {
     return buildable;
   }
+
+  @JsonProperty("buildable")
   public void setBuildable(Boolean buildable) {
     this.buildable = buildable;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem id(Integer id) {
     this.id = id;
@@ -106,16 +144,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public Integer getId() {
     return id;
   }
+
+  @JsonProperty("id")
   public void setId(Integer id) {
     this.id = id;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem inQueueSince(Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
@@ -123,16 +165,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("inQueueSince")
   public Integer getInQueueSince() {
     return inQueueSince;
   }
+
+  @JsonProperty("inQueueSince")
   public void setInQueueSince(Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem params(String params) {
     this.params = params;
@@ -140,16 +186,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("params")
   public String getParams() {
     return params;
   }
+
+  @JsonProperty("params")
   public void setParams(String params) {
     this.params = params;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem stuck(Boolean stuck) {
     this.stuck = stuck;
@@ -157,16 +207,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("stuck")
   public Boolean getStuck() {
     return stuck;
   }
+
+  @JsonProperty("stuck")
   public void setStuck(Boolean stuck) {
     this.stuck = stuck;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem task(FreeStyleProject task) {
     this.task = task;
@@ -174,16 +228,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("task")
   public FreeStyleProject getTask() {
     return task;
   }
+
+  @JsonProperty("task")
   public void setTask(FreeStyleProject task) {
     this.task = task;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem url(String url) {
     this.url = url;
@@ -191,16 +249,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
     return url;
   }
+
+  @JsonProperty("url")
   public void setUrl(String url) {
     this.url = url;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem why(String why) {
     this.why = why;
@@ -208,16 +270,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("why")
   public String getWhy() {
     return why;
   }
+
+  @JsonProperty("why")
   public void setWhy(String why) {
     this.why = why;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem cancelled(Boolean cancelled) {
     this.cancelled = cancelled;
@@ -225,16 +291,20 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("cancelled")
   public Boolean getCancelled() {
     return cancelled;
   }
+
+  @JsonProperty("cancelled")
   public void setCancelled(Boolean cancelled) {
     this.cancelled = cancelled;
   }
 
-  /**
+/**
    **/
   public QueueLeftItem executable(FreeStyleBuild executable) {
     this.executable = executable;
@@ -242,18 +312,22 @@ public class QueueLeftItem   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("executable")
   public FreeStyleBuild getExecutable() {
     return executable;
   }
+
+  @JsonProperty("executable")
   public void setExecutable(FreeStyleBuild executable) {
     this.executable = executable;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -261,19 +335,19 @@ public class QueueLeftItem   {
       return false;
     }
     QueueLeftItem queueLeftItem = (QueueLeftItem) o;
-    return Objects.equals(propertyClass, queueLeftItem.propertyClass) &&
-        Objects.equals(actions, queueLeftItem.actions) &&
-        Objects.equals(blocked, queueLeftItem.blocked) &&
-        Objects.equals(buildable, queueLeftItem.buildable) &&
-        Objects.equals(id, queueLeftItem.id) &&
-        Objects.equals(inQueueSince, queueLeftItem.inQueueSince) &&
-        Objects.equals(params, queueLeftItem.params) &&
-        Objects.equals(stuck, queueLeftItem.stuck) &&
-        Objects.equals(task, queueLeftItem.task) &&
-        Objects.equals(url, queueLeftItem.url) &&
-        Objects.equals(why, queueLeftItem.why) &&
-        Objects.equals(cancelled, queueLeftItem.cancelled) &&
-        Objects.equals(executable, queueLeftItem.executable);
+    return Objects.equals(this.propertyClass, queueLeftItem.propertyClass) &&
+        Objects.equals(this.actions, queueLeftItem.actions) &&
+        Objects.equals(this.blocked, queueLeftItem.blocked) &&
+        Objects.equals(this.buildable, queueLeftItem.buildable) &&
+        Objects.equals(this.id, queueLeftItem.id) &&
+        Objects.equals(this.inQueueSince, queueLeftItem.inQueueSince) &&
+        Objects.equals(this.params, queueLeftItem.params) &&
+        Objects.equals(this.stuck, queueLeftItem.stuck) &&
+        Objects.equals(this.task, queueLeftItem.task) &&
+        Objects.equals(this.url, queueLeftItem.url) &&
+        Objects.equals(this.why, queueLeftItem.why) &&
+        Objects.equals(this.cancelled, queueLeftItem.cancelled) &&
+        Objects.equals(this.executable, queueLeftItem.executable);
   }
 
   @Override
@@ -307,11 +381,13 @@ public class QueueLeftItem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

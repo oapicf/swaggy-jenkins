@@ -23,16 +23,16 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.*;
 
-@Path("/job")
+@Path("/job/{name}")
 
 
 @io.swagger.annotations.Api(description = "the job API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class JobApi  {
    private final JobApiService delegate = JobApiServiceFactory.getJobApi();
 
     @GET
-    @Path("/{name}/api/json")
+    @Path("/api/json")
     
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job details", response = FreeStyleProject.class, authorizations = {
@@ -52,7 +52,7 @@ public class JobApi  {
         return delegate.getJob(name);
     }
     @GET
-    @Path("/{name}/config.xml")
+    @Path("/config.xml")
     
     @Produces({ "text/xml" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job configuration", response = String.class, authorizations = {
@@ -72,7 +72,7 @@ public class JobApi  {
         return delegate.getJobConfig(name);
     }
     @GET
-    @Path("/{name}/lastBuild/api/json")
+    @Path("/lastBuild/api/json")
     
     @Produces({ "application/json" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job's last build details", response = FreeStyleBuild.class, authorizations = {
@@ -92,7 +92,7 @@ public class JobApi  {
         return delegate.getJobLastBuild(name);
     }
     @GET
-    @Path("/{name}/{number}/logText/progressiveText")
+    @Path("/{number}/logText/progressiveText")
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Retrieve job's build progressive text output", response = Void.class, authorizations = {
@@ -114,7 +114,7 @@ public class JobApi  {
         return delegate.getJobProgressiveText(name,number,start);
     }
     @POST
-    @Path("/{name}/build")
+    @Path("/build")
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Build a job", response = Void.class, authorizations = {
@@ -139,7 +139,7 @@ public class JobApi  {
         return delegate.postJobBuild(name,json,token,jenkinsCrumb);
     }
     @POST
-    @Path("/{name}/config.xml")
+    @Path("/config.xml")
     @Consumes({ "application/json" })
     @Produces({ "*/*" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Update job configuration", response = Void.class, authorizations = {
@@ -163,7 +163,7 @@ public class JobApi  {
         return delegate.postJobConfig(name,body,jenkinsCrumb);
     }
     @POST
-    @Path("/{name}/doDelete")
+    @Path("/doDelete")
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Delete a job", response = Void.class, authorizations = {
@@ -184,7 +184,7 @@ public class JobApi  {
         return delegate.postJobDelete(name,jenkinsCrumb);
     }
     @POST
-    @Path("/{name}/disable")
+    @Path("/disable")
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Disable a job", response = Void.class, authorizations = {
@@ -205,7 +205,7 @@ public class JobApi  {
         return delegate.postJobDisable(name,jenkinsCrumb);
     }
     @POST
-    @Path("/{name}/enable")
+    @Path("/enable")
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Enable a job", response = Void.class, authorizations = {
@@ -226,7 +226,7 @@ public class JobApi  {
         return delegate.postJobEnable(name,jenkinsCrumb);
     }
     @POST
-    @Path("/{name}/lastBuild/stop")
+    @Path("/lastBuild/stop")
     
     
     @io.swagger.annotations.ApiOperation(value = "", notes = "Stop a job", response = Void.class, authorizations = {

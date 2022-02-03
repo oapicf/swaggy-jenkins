@@ -2,6 +2,8 @@ package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
@@ -13,43 +15,41 @@ import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 import java.util.Objects;
 
-import javax.xml.bind.annotation.*;
-
 
 
 public class HudsonMasterComputer   {
   
-  private String propertyClass = null;
+  private String propertyClass;
 
-  private String displayName = null;
+  private String displayName;
 
   private List<HudsonMasterComputerexecutors> executors = null;
 
-  private String icon = null;
+  private String icon;
 
-  private String iconClassName = null;
+  private String iconClassName;
 
-  private Boolean idle = null;
+  private Boolean idle;
 
-  private Boolean jnlpAgent = null;
+  private Boolean jnlpAgent;
 
-  private Boolean launchSupported = null;
+  private Boolean launchSupported;
 
-  private Label1 loadStatistics = null;
+  private Label1 loadStatistics;
 
-  private Boolean manualLaunchAllowed = null;
+  private Boolean manualLaunchAllowed;
 
-  private HudsonMasterComputermonitorData monitorData = null;
+  private HudsonMasterComputermonitorData monitorData;
 
-  private Integer numExecutors = null;
+  private Integer numExecutors;
 
-  private Boolean offline = null;
+  private Boolean offline;
 
-  private String offlineCause = null;
+  private String offlineCause;
 
-  private String offlineCauseReason = null;
+  private String offlineCauseReason;
 
-  private Boolean temporarilyOffline = null;
+  private Boolean temporarilyOffline;
 
 
   /**
@@ -350,7 +350,7 @@ public class HudsonMasterComputer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -410,7 +410,7 @@ public class HudsonMasterComputer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

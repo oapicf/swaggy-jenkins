@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.GithubOrganizationlinks;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubOrganization   {
   
-  private String propertyClass = null;
-  private GithubOrganizationlinks links = null;
-  private Boolean jenkinsOrganizationPipeline = null;
-  private String name = null;
+  private String propertyClass;
+  private GithubOrganizationlinks links;
+  private Boolean jenkinsOrganizationPipeline;
+  private String name;
 
   public GithubOrganization () {
 

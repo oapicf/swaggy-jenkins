@@ -6,17 +6,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.GithubRepositorylinks;
 import org.openapitools.server.api.model.GithubRepositorypermissions;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GithubRepository   {
   
-  private String propertyClass = null;
-  private GithubRepositorylinks links = null;
-  private String defaultBranch = null;
-  private String description = null;
-  private String name = null;
-  private GithubRepositorypermissions permissions = null;
-  private Boolean _private = null;
-  private String fullName = null;
+  private String propertyClass;
+  private GithubRepositorylinks links;
+  private String defaultBranch;
+  private String description;
+  private String name;
+  private GithubRepositorypermissions permissions;
+  private Boolean _private;
+  private String fullName;
 
   public GithubRepository () {
 

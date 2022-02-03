@@ -1,21 +1,27 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class BranchImplpermissions   {
+
+@JsonTypeName("BranchImplpermissions")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class BranchImplpermissions   {
   
-  private @Valid Boolean create = null;
-  private @Valid Boolean read = null;
-  private @Valid Boolean start = null;
-  private @Valid Boolean stop = null;
-  private @Valid String propertyClass = null;
+  private @Valid Boolean create;
+  private @Valid Boolean read;
+  private @Valid Boolean start;
+  private @Valid Boolean stop;
+  private @Valid String propertyClass;
 
   /**
    **/
@@ -25,16 +31,20 @@ public class BranchImplpermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("create")
   public Boolean getCreate() {
     return create;
   }
+
+  @JsonProperty("create")
   public void setCreate(Boolean create) {
     this.create = create;
   }
 
-  /**
+/**
    **/
   public BranchImplpermissions read(Boolean read) {
     this.read = read;
@@ -42,16 +52,20 @@ public class BranchImplpermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("read")
   public Boolean getRead() {
     return read;
   }
+
+  @JsonProperty("read")
   public void setRead(Boolean read) {
     this.read = read;
   }
 
-  /**
+/**
    **/
   public BranchImplpermissions start(Boolean start) {
     this.start = start;
@@ -59,16 +73,20 @@ public class BranchImplpermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("start")
   public Boolean getStart() {
     return start;
   }
+
+  @JsonProperty("start")
   public void setStart(Boolean start) {
     this.start = start;
   }
 
-  /**
+/**
    **/
   public BranchImplpermissions stop(Boolean stop) {
     this.stop = stop;
@@ -76,16 +94,20 @@ public class BranchImplpermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("stop")
   public Boolean getStop() {
     return stop;
   }
+
+  @JsonProperty("stop")
   public void setStop(Boolean stop) {
     this.stop = stop;
   }
 
-  /**
+/**
    **/
   public BranchImplpermissions propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -93,18 +115,22 @@ public class BranchImplpermissions   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -112,11 +138,11 @@ public class BranchImplpermissions   {
       return false;
     }
     BranchImplpermissions branchImplpermissions = (BranchImplpermissions) o;
-    return Objects.equals(create, branchImplpermissions.create) &&
-        Objects.equals(read, branchImplpermissions.read) &&
-        Objects.equals(start, branchImplpermissions.start) &&
-        Objects.equals(stop, branchImplpermissions.stop) &&
-        Objects.equals(propertyClass, branchImplpermissions.propertyClass);
+    return Objects.equals(this.create, branchImplpermissions.create) &&
+        Objects.equals(this.read, branchImplpermissions.read) &&
+        Objects.equals(this.start, branchImplpermissions.start) &&
+        Objects.equals(this.stop, branchImplpermissions.stop) &&
+        Objects.equals(this.propertyClass, branchImplpermissions.propertyClass);
   }
 
   @Override
@@ -142,11 +168,13 @@ public class BranchImplpermissions   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

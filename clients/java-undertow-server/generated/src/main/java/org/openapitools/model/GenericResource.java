@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -10,18 +20,18 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class GenericResource   {
   
-  private String propertyClass = null;
-  private String displayName = null;
-  private Integer durationInMillis = null;
-  private String id = null;
-  private String result = null;
-  private String startTime = null;
+  private String propertyClass;
+  private String displayName;
+  private Integer durationInMillis;
+  private String id;
+  private String result;
+  private String startTime;
 
   /**
-   **/
+   */
   public GenericResource propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -38,7 +48,7 @@ public class GenericResource   {
   }
 
   /**
-   **/
+   */
   public GenericResource displayName(String displayName) {
     this.displayName = displayName;
     return this;
@@ -55,7 +65,7 @@ public class GenericResource   {
   }
 
   /**
-   **/
+   */
   public GenericResource durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
@@ -72,7 +82,7 @@ public class GenericResource   {
   }
 
   /**
-   **/
+   */
   public GenericResource id(String id) {
     this.id = id;
     return this;
@@ -89,7 +99,7 @@ public class GenericResource   {
   }
 
   /**
-   **/
+   */
   public GenericResource result(String result) {
     this.result = result;
     return this;
@@ -106,7 +116,7 @@ public class GenericResource   {
   }
 
   /**
-   **/
+   */
   public GenericResource startTime(String startTime) {
     this.startTime = startTime;
     return this;
@@ -124,7 +134,7 @@ public class GenericResource   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -164,7 +174,7 @@ public class GenericResource   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

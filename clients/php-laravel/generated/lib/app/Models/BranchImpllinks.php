@@ -21,7 +21,7 @@ class BranchImpllinks {
     /** @var \app\Models\Link $queue */
     private $queue;
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
 }

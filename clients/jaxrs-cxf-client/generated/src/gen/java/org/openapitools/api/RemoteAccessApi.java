@@ -28,7 +28,7 @@ import io.swagger.jaxrs.PATCH;
  * <p>Jenkins API clients generated from Swagger / Open API specification
  *
  */
-@Path("/")
+@Path("")
 @Api(value = "/", description = "")
 public interface RemoteAccessApi  {
 
@@ -40,7 +40,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 200, message = "Successfully retrieved computer details", response = ComputerSet.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public ComputerSet getComputer(@QueryParam("depth")Integer depth);
+    public ComputerSet getComputer(@QueryParam("depth") Integer depth);
 
     @GET
     @Path("/api/json")
@@ -93,7 +93,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void getJobProgressiveText(@PathParam("name") String name, @PathParam("number") String number, @QueryParam("start")String start);
+    public void getJobProgressiveText(@PathParam("name") String name, @PathParam("number") String number, @QueryParam("start") String start);
 
     @GET
     @Path("/queue/api/json")
@@ -156,7 +156,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 400, message = "An error has occurred - error message is embedded inside the HTML response", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public void postCreateItem(@QueryParam("name")String name, @QueryParam("from")String from, @QueryParam("mode")String mode, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb, @HeaderParam("Content-Type") String contentType, String body);
+    public void postCreateItem(@QueryParam("name") String name, @QueryParam("from") String from, @QueryParam("mode") String mode, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb, @HeaderParam("Content-Type")  String contentType, String body);
 
     @POST
     @Path("/createView")
@@ -168,7 +168,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 400, message = "An error has occurred - error message is embedded inside the HTML response", response = String.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public void postCreateView(@QueryParam("name")String name, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb, @HeaderParam("Content-Type") String contentType, String body);
+    public void postCreateView(@QueryParam("name") String name, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb, @HeaderParam("Content-Type")  String contentType, String body);
 
     @POST
     @Path("/job/{name}/build")
@@ -179,7 +179,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void postJobBuild(@PathParam("name") String name, @QueryParam("json")String json, @QueryParam("token")String token, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postJobBuild(@PathParam("name") String name, @QueryParam("json") String json, @QueryParam("token") String token, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 
     @POST
     @Path("/job/{name}/config.xml")
@@ -192,7 +192,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void postJobConfig(@PathParam("name") String name, String body, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postJobConfig(@PathParam("name") String name, String body, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 
     @POST
     @Path("/job/{name}/doDelete")
@@ -202,7 +202,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void postJobDelete(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postJobDelete(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 
     @POST
     @Path("/job/{name}/disable")
@@ -212,7 +212,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void postJobDisable(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postJobDisable(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 
     @POST
     @Path("/job/{name}/enable")
@@ -222,7 +222,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void postJobEnable(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postJobEnable(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 
     @POST
     @Path("/job/{name}/lastBuild/stop")
@@ -232,7 +232,7 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance") })
-    public void postJobLastBuildStop(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postJobLastBuildStop(@PathParam("name") String name, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 
     @POST
     @Path("/view/{name}/config.xml")
@@ -245,6 +245,5 @@ public interface RemoteAccessApi  {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password"),
         @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance") })
-    public void postViewConfig(@PathParam("name") String name, String body, @HeaderParam("Jenkins-Crumb") String jenkinsCrumb);
+    public void postViewConfig(@PathParam("name") String name, String body, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb);
 }
-

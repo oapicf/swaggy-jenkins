@@ -34,34 +34,52 @@ Method | HTTP request | Description
 Retrieve computer details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.computer_set import ComputerSet
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-depth = 56 # int | Recursion depth in response model
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    depth = 1 # int | Recursion depth in response model
 
-try:
-    api_response = api_instance.get_computer(depth)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_computer: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_computer(depth)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_computer: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **depth** | **int**| Recursion depth in response model | 
+ **depth** | **int**| Recursion depth in response model |
 
 ### Return type
 
@@ -76,6 +94,15 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved computer details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_jenkins**
@@ -86,27 +113,45 @@ Name | Type | Description  | Notes
 Retrieve Jenkins details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.hudson import Hudson
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
 
-try:
-    api_response = api_instance.get_jenkins()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_jenkins: %s\n" % e)
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_jenkins()
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_jenkins: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -124,6 +169,15 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved Jenkins details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job**
@@ -134,34 +188,52 @@ This endpoint does not need any parameter.
 Retrieve job details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.free_style_project import FreeStyleProject
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
 
-try:
-    api_response = api_instance.get_job(name)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_job: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_job(name)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_job: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
+ **name** | **str**| Name of the job |
 
 ### Return type
 
@@ -176,6 +248,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved job details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job_config**
@@ -186,34 +268,51 @@ Name | Type | Description  | Notes
 Retrieve job configuration
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
 
-try:
-    api_response = api_instance.get_job_config(name)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_job_config: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_job_config(name)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_job_config: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
+ **name** | **str**| Name of the job |
 
 ### Return type
 
@@ -228,6 +327,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: text/xml
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved job configuration in config.xml format |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job_last_build**
@@ -238,34 +347,52 @@ Name | Type | Description  | Notes
 Retrieve job's last build details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.free_style_build import FreeStyleBuild
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
 
-try:
-    api_response = api_instance.get_job_last_build(name)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_job_last_build: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_job_last_build(name)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_job_last_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
+ **name** | **str**| Name of the job |
 
 ### Return type
 
@@ -280,6 +407,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved job&#39;s last build details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_job_progressive_text**
@@ -290,37 +427,54 @@ Name | Type | Description  | Notes
 Retrieve job's build progressive text output
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-number = 'number_example' # str | Build number
-start = 'start_example' # str | Starting point of progressive text output
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    number = "number_example" # str | Build number
+    start = "start_example" # str | Starting point of progressive text output
 
-try:
-    api_instance.get_job_progressive_text(name, number, start)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_job_progressive_text: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.get_job_progressive_text(name, number, start)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_job_progressive_text: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **number** | **str**| Build number | 
- **start** | **str**| Starting point of progressive text output | 
+ **name** | **str**| Name of the job |
+ **number** | **str**| Build number |
+ **start** | **str**| Starting point of progressive text output |
 
 ### Return type
 
@@ -335,6 +489,16 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved job&#39;s build progressive text output |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_queue**
@@ -345,27 +509,45 @@ void (empty response body)
 Retrieve queue details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.queue import Queue
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
 
-try:
-    api_response = api_instance.get_queue()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_queue: %s\n" % e)
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_response = api_instance.get_queue()
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_queue: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -383,6 +565,15 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved queue details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_queue_item**
@@ -393,34 +584,52 @@ This endpoint does not need any parameter.
 Retrieve queued item details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.queue import Queue
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-number = 'number_example' # str | Queue number
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    number = "number_example" # str | Queue number
 
-try:
-    api_response = api_instance.get_queue_item(number)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_queue_item: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_queue_item(number)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_queue_item: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **number** | **str**| Queue number | 
+ **number** | **str**| Queue number |
 
 ### Return type
 
@@ -435,6 +644,15 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved queued item details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_view**
@@ -445,34 +663,52 @@ Name | Type | Description  | Notes
 Retrieve view details
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
+from swaggyjenkins.model.list_view import ListView
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the view
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the view
 
-try:
-    api_response = api_instance.get_view(name)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_view: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_view(name)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_view: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the view | 
+ **name** | **str**| Name of the view |
 
 ### Return type
 
@@ -487,6 +723,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved view details |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | View cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_view_config**
@@ -497,34 +743,51 @@ Name | Type | Description  | Notes
 Retrieve view configuration
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the view
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the view
 
-try:
-    api_response = api_instance.get_view_config(name)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->get_view_config: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_view_config(name)
+        pprint(api_response)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->get_view_config: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the view | 
+ **name** | **str**| Name of the view |
 
 ### Return type
 
@@ -539,6 +802,16 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: text/xml
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved view configuration in config.xml format |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | View cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **head_jenkins**
@@ -549,26 +822,43 @@ Name | Type | Description  | Notes
 Retrieve Jenkins headers
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
 
-try:
-    api_instance.head_jenkins()
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->head_jenkins: %s\n" % e)
+    # example, this endpoint has no required or optional parameters
+    try:
+        api_instance.head_jenkins()
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->head_jenkins: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -586,53 +876,86 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved Jenkins headers |  * x-jenkins - Jenkins version number <br>  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_item**
-> post_create_item(name, _from=_from, mode=mode, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
+> post_create_item(name)
 
 
 
 Create a new job using job configuration, or copied from an existing job
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the new job
-_from = '_from_example' # str | Existing job to copy from (optional)
-mode = 'mode_example' # str | Set to 'copy' for copying an existing job (optional)
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
-content_type = 'content_type_example' # str | Content type header application/xml (optional)
-body = 'body_example' # str | Job configuration in config.xml format (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the new job
+    _from = "from_example" # str | Existing job to copy from (optional)
+    mode = "mode_example" # str | Set to 'copy' for copying an existing job (optional)
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
+    content_type = "Content-Type_example" # str | Content type header application/xml (optional)
+    body = "body_example" # str | Job configuration in config.xml format (optional)
 
-try:
-    api_instance.post_create_item(name, _from=_from, mode=mode, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_create_item: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_create_item(name)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_create_item: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_create_item(name, _from=_from, mode=mode, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_create_item: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the new job | 
- **_from** | **str**| Existing job to copy from | [optional] 
- **mode** | **str**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
- **content_type** | **str**| Content type header application/xml | [optional] 
- **body** | **str**| Job configuration in config.xml format | [optional] 
+ **name** | **str**| Name of the new job |
+ **_from** | **str**| Existing job to copy from | [optional]
+ **mode** | **str**| Set to &#39;copy&#39; for copying an existing job | [optional]
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
+ **content_type** | **str**| Content type header application/xml | [optional]
+ **body** | **str**| Job configuration in config.xml format | [optional]
 
 ### Return type
 
@@ -647,49 +970,83 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: */*
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully created a new job |  -  |
+**400** | An error has occurred - error message is embedded inside the HTML response |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_create_view**
-> post_create_view(name, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
+> post_create_view(name)
 
 
 
 Create a new view using view configuration
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the new view
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
-content_type = 'content_type_example' # str | Content type header application/xml (optional)
-body = 'body_example' # str | View configuration in config.xml format (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the new view
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
+    content_type = "Content-Type_example" # str | Content type header application/xml (optional)
+    body = "body_example" # str | View configuration in config.xml format (optional)
 
-try:
-    api_instance.post_create_view(name, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_create_view: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_create_view(name)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_create_view: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_create_view(name, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_create_view: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the new view | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
- **content_type** | **str**| Content type header application/xml | [optional] 
- **body** | **str**| View configuration in config.xml format | [optional] 
+ **name** | **str**| Name of the new view |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
+ **content_type** | **str**| Content type header application/xml | [optional]
+ **body** | **str**| View configuration in config.xml format | [optional]
 
 ### Return type
 
@@ -704,49 +1061,83 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: */*
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully created the view |  -  |
+**400** | An error has occurred - error message is embedded inside the HTML response |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_job_build**
-> post_job_build(name, json, token=token, jenkins_crumb=jenkins_crumb)
+> post_job_build(name, json)
 
 
 
 Build a job
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-json = 'json_example' # str | 
-token = 'token_example' # str |  (optional)
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    json = "json_example" # str | 
+    token = "token_example" # str |  (optional)
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_job_build(name, json, token=token, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_job_build: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_job_build(name, json)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_build: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_job_build(name, json, token=token, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_build: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **json** | **str**|  | 
- **token** | **str**|  | [optional] 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the job |
+ **json** | **str**|  |
+ **token** | **str**|  | [optional]
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -761,47 +1152,82 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully built the job (backward compatibility for older versions of Jenkins) |  -  |
+**201** | Successfully built the job |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_job_config**
-> post_job_config(name, body, jenkins_crumb=jenkins_crumb)
+> post_job_config(name, body)
 
 
 
 Update job configuration
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-body = 'body_example' # str | Job configuration in config.xml format
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    body = "body_example" # str | Job configuration in config.xml format
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_job_config(name, body, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_job_config: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_job_config(name, body)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_config: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_job_config(name, body, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_config: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **body** | **str**| Job configuration in config.xml format | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the job |
+ **body** | **str**| Job configuration in config.xml format |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -816,45 +1242,80 @@ void (empty response body)
  - **Content-Type**: application/json
  - **Accept**: */*
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully retrieved job configuration in config.xml format |  -  |
+**400** | An error has occurred - error message is embedded inside the HTML response |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_job_delete**
-> post_job_delete(name, jenkins_crumb=jenkins_crumb)
+> post_job_delete(name)
 
 
 
 Delete a job
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_job_delete(name, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_job_delete: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_job_delete(name)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_delete: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_job_delete(name, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_delete: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the job |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -869,45 +1330,79 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully deleted the job |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_job_disable**
-> post_job_disable(name, jenkins_crumb=jenkins_crumb)
+> post_job_disable(name)
 
 
 
 Disable a job
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_job_disable(name, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_job_disable: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_job_disable(name)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_disable: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_job_disable(name, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_disable: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the job |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -922,45 +1417,79 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully disabled the job |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_job_enable**
-> post_job_enable(name, jenkins_crumb=jenkins_crumb)
+> post_job_enable(name)
 
 
 
 Enable a job
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_job_enable(name, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_job_enable: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_job_enable(name)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_enable: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_job_enable(name, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_enable: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the job |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -975,45 +1504,79 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully enabled the job |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_job_last_build_stop**
-> post_job_last_build_stop(name, jenkins_crumb=jenkins_crumb)
+> post_job_last_build_stop(name)
 
 
 
 Stop a job
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the job
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the job
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_job_last_build_stop(name, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_job_last_build_stop: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_job_last_build_stop(name)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_last_build_stop: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_job_last_build_stop(name, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_job_last_build_stop: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the job | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the job |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -1028,47 +1591,81 @@ void (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully stopped the job |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | Job cannot be found on Jenkins instance |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_view_config**
-> post_view_config(name, body, jenkins_crumb=jenkins_crumb)
+> post_view_config(name, body)
 
 
 
 Update view configuration
 
 ### Example
+
+* Basic Authentication (jenkins_auth):
+
 ```python
-from __future__ import print_function
 import time
 import swaggyjenkins
-from swaggyjenkins.rest import ApiException
+from swaggyjenkins.api import remote_access_api
 from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = swaggyjenkins.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
 # Configure HTTP basic authorization: jenkins_auth
-configuration = swaggyjenkins.Configuration()
-configuration.username = 'YOUR_USERNAME'
-configuration.password = 'YOUR_PASSWORD'
+configuration = swaggyjenkins.Configuration(
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
+)
 
-# create an instance of the API class
-api_instance = swaggyjenkins.RemoteAccessApi(swaggyjenkins.ApiClient(configuration))
-name = 'name_example' # str | Name of the view
-body = 'body_example' # str | View configuration in config.xml format
-jenkins_crumb = 'jenkins_crumb_example' # str | CSRF protection token (optional)
+# Enter a context with an instance of the API client
+with swaggyjenkins.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = remote_access_api.RemoteAccessApi(api_client)
+    name = "name_example" # str | Name of the view
+    body = "body_example" # str | View configuration in config.xml format
+    jenkins_crumb = "Jenkins-Crumb_example" # str | CSRF protection token (optional)
 
-try:
-    api_instance.post_view_config(name, body, jenkins_crumb=jenkins_crumb)
-except ApiException as e:
-    print("Exception when calling RemoteAccessApi->post_view_config: %s\n" % e)
+    # example passing only required values which don't have defaults set
+    try:
+        api_instance.post_view_config(name, body)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_view_config: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        api_instance.post_view_config(name, body, jenkins_crumb=jenkins_crumb)
+    except swaggyjenkins.ApiException as e:
+        print("Exception when calling RemoteAccessApi->post_view_config: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the view | 
- **body** | **str**| View configuration in config.xml format | 
- **jenkins_crumb** | **str**| CSRF protection token | [optional] 
+ **name** | **str**| Name of the view |
+ **body** | **str**| View configuration in config.xml format |
+ **jenkins_crumb** | **str**| CSRF protection token | [optional]
 
 ### Return type
 
@@ -1082,6 +1679,17 @@ void (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: */*
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully updated view configuration |  -  |
+**400** | An error has occurred - error message is embedded inside the HTML response |  -  |
+**401** | Authentication failed - incorrect username and/or password |  -  |
+**403** | Jenkins requires authentication - please set username and password |  -  |
+**404** | View cannot be found on Jenkins instance |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

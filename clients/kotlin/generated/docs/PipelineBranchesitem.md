@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **organization** | **kotlin.String** |  |  [optional]
 **pullRequest** | [**PipelineBranchesitempullRequest**](PipelineBranchesitempullRequest.md) |  |  [optional]
 **totalNumberOfPullRequests** | **kotlin.Int** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

@@ -6,12 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.FavoriteImpllinks;
 import org.openapitools.server.api.model.PipelineImpl;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class FavoriteImpl   {
   
-  private String propertyClass = null;
-  private FavoriteImpllinks links = null;
-  private PipelineImpl item = null;
+  private String propertyClass;
+  private FavoriteImpllinks links;
+  private PipelineImpl item;
 
   public FavoriteImpl () {
 

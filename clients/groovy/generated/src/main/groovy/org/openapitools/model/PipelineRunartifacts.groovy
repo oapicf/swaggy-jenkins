@@ -6,12 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class PipelineRunartifacts {
-    String name = null
-
-    Integer size = null
-
-    String url = null
-
-    String propertyClass = null
-
+    
+    String name
+    
+    Integer size
+    
+    String url
+    
+    String propertyClass
 }

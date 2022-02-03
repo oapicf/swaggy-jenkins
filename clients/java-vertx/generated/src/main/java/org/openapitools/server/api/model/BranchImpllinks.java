@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.openapitools.server.api.model.Link;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BranchImpllinks   {
   
-  private Link self = null;
-  private Link actions = null;
-  private Link runs = null;
-  private Link queue = null;
-  private String propertyClass = null;
+  private Link self;
+  private Link actions;
+  private Link runs;
+  private Link queue;
+  private String propertyClass;
 
   public BranchImpllinks () {
 

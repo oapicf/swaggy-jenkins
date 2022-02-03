@@ -8,32 +8,32 @@ import java.util.List;
 
 @Canonical
 class MultibranchPipeline {
-    String displayName = null
-
-    Integer estimatedDurationInMillis = null
-
-    String latestRun = null
-
-    String name = null
-
-    String organization = null
-
-    Integer weatherScore = null
-
+    
+    String displayName
+    
+    Integer estimatedDurationInMillis
+    
+    String latestRun
+    
+    String name
+    
+    String organization
+    
+    Integer weatherScore
+    
     List<String> branchNames = new ArrayList<String>()
-
-    Integer numberOfFailingBranches = null
-
-    Integer numberOfFailingPullRequests = null
-
-    Integer numberOfSuccessfulBranches = null
-
-    Integer numberOfSuccessfulPullRequests = null
-
-    Integer totalNumberOfBranches = null
-
-    Integer totalNumberOfPullRequests = null
-
-    String propertyClass = null
-
+    
+    Integer numberOfFailingBranches
+    
+    Integer numberOfFailingPullRequests
+    
+    Integer numberOfSuccessfulBranches
+    
+    Integer numberOfSuccessfulPullRequests
+    
+    Integer totalNumberOfBranches
+    
+    Integer totalNumberOfPullRequests
+    
+    String propertyClass
 }

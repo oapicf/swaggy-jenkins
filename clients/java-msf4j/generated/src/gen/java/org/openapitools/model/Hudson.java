@@ -15,49 +15,49 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 /**
  * Hudson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2019-04-10T13:31:17.047Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-02T10:44:31.227152Z[Etc/UTC]")
 public class Hudson   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   @JsonProperty("assignedLabels")
   private List<HudsonassignedLabels> assignedLabels = null;
 
   @JsonProperty("mode")
-  private String mode = null;
+  private String mode;
 
   @JsonProperty("nodeDescription")
-  private String nodeDescription = null;
+  private String nodeDescription;
 
   @JsonProperty("nodeName")
-  private String nodeName = null;
+  private String nodeName;
 
   @JsonProperty("numExecutors")
-  private Integer numExecutors = null;
+  private Integer numExecutors;
 
   @JsonProperty("description")
-  private String description = null;
+  private String description;
 
   @JsonProperty("jobs")
   private List<FreeStyleProject> jobs = null;
 
   @JsonProperty("primaryView")
-  private AllView primaryView = null;
+  private AllView primaryView;
 
   @JsonProperty("quietingDown")
-  private Boolean quietingDown = null;
+  private Boolean quietingDown;
 
   @JsonProperty("slaveAgentPort")
-  private Integer slaveAgentPort = null;
+  private Integer slaveAgentPort;
 
   @JsonProperty("unlabeledLoad")
-  private UnlabeledLoadStatistics unlabeledLoad = null;
+  private UnlabeledLoadStatistics unlabeledLoad;
 
   @JsonProperty("useCrumbs")
-  private Boolean useCrumbs = null;
+  private Boolean useCrumbs;
 
   @JsonProperty("useSecurity")
-  private Boolean useSecurity = null;
+  private Boolean useSecurity;
 
   @JsonProperty("views")
   private List<AllView> views = null;
@@ -358,7 +358,7 @@ public class Hudson   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -416,7 +416,7 @@ public class Hudson   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

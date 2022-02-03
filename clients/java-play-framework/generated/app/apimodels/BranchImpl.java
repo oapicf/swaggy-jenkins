@@ -14,48 +14,64 @@ import javax.validation.constraints.*;
 /**
  * BranchImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class BranchImpl   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("displayName")
-  private String displayName = null;
+  
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("fullDisplayName")
-  private String fullDisplayName = null;
+  
+  private String fullDisplayName;
 
   @JsonProperty("fullName")
-  private String fullName = null;
+  
+  private String fullName;
 
   @JsonProperty("name")
-  private String name = null;
+  
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  
+  private String organization;
 
   @JsonProperty("parameters")
+  @Valid
+
   private List<StringParameterDefinition> parameters = null;
 
   @JsonProperty("permissions")
-  private BranchImplpermissions permissions = null;
+  @Valid
+
+  private BranchImplpermissions permissions;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  
+  private Integer weatherScore;
 
   @JsonProperty("pullRequest")
-  private String pullRequest = null;
+  
+  private String pullRequest;
 
   @JsonProperty("_links")
-  private BranchImpllinks links = null;
+  @Valid
+
+  private BranchImpllinks links;
 
   @JsonProperty("latestRun")
-  private PipelineRunImpl latestRun = null;
+  @Valid
+
+  private PipelineRunImpl latestRun;
 
   public BranchImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -66,7 +82,7 @@ public class BranchImpl   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -83,7 +99,7 @@ public class BranchImpl   {
    * Get displayName
    * @return displayName
   **/
-    public String getDisplayName() {
+  public String getDisplayName() {
     return displayName;
   }
 
@@ -100,7 +116,7 @@ public class BranchImpl   {
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
   **/
-    public Integer getEstimatedDurationInMillis() {
+  public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
@@ -117,7 +133,7 @@ public class BranchImpl   {
    * Get fullDisplayName
    * @return fullDisplayName
   **/
-    public String getFullDisplayName() {
+  public String getFullDisplayName() {
     return fullDisplayName;
   }
 
@@ -134,7 +150,7 @@ public class BranchImpl   {
    * Get fullName
    * @return fullName
   **/
-    public String getFullName() {
+  public String getFullName() {
     return fullName;
   }
 
@@ -151,7 +167,7 @@ public class BranchImpl   {
    * Get name
    * @return name
   **/
-    public String getName() {
+  public String getName() {
     return name;
   }
 
@@ -168,7 +184,7 @@ public class BranchImpl   {
    * Get organization
    * @return organization
   **/
-    public String getOrganization() {
+  public String getOrganization() {
     return organization;
   }
 
@@ -193,7 +209,6 @@ public class BranchImpl   {
    * Get parameters
    * @return parameters
   **/
-  @Valid
   public List<StringParameterDefinition> getParameters() {
     return parameters;
   }
@@ -211,7 +226,6 @@ public class BranchImpl   {
    * Get permissions
    * @return permissions
   **/
-  @Valid
   public BranchImplpermissions getPermissions() {
     return permissions;
   }
@@ -229,7 +243,7 @@ public class BranchImpl   {
    * Get weatherScore
    * @return weatherScore
   **/
-    public Integer getWeatherScore() {
+  public Integer getWeatherScore() {
     return weatherScore;
   }
 
@@ -246,7 +260,7 @@ public class BranchImpl   {
    * Get pullRequest
    * @return pullRequest
   **/
-    public String getPullRequest() {
+  public String getPullRequest() {
     return pullRequest;
   }
 
@@ -263,7 +277,6 @@ public class BranchImpl   {
    * Get links
    * @return links
   **/
-  @Valid
   public BranchImpllinks getLinks() {
     return links;
   }
@@ -281,7 +294,6 @@ public class BranchImpl   {
    * Get latestRun
    * @return latestRun
   **/
-  @Valid
   public PipelineRunImpl getLatestRun() {
     return latestRun;
   }
@@ -292,7 +304,7 @@ public class BranchImpl   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -347,7 +359,7 @@ public class BranchImpl   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -14,8 +14,8 @@ defmodule SwaggyJenkins.Model.PipelineBranchesitempullRequestlinks do
   ]
 
   @type t :: %__MODULE__{
-    :"self" => String.t,
-    :"_class" => String.t
+    :"self" => String.t | nil,
+    :"_class" => String.t | nil
   }
 end
 

@@ -1,5 +1,7 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.AllView;
@@ -9,28 +11,32 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
-
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class Hudson   {
+
+@JsonTypeName("Hudson")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class Hudson   {
   
-  private @Valid String propertyClass = null;
+  private @Valid String propertyClass;
   private @Valid List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>();
-  private @Valid String mode = null;
-  private @Valid String nodeDescription = null;
-  private @Valid String nodeName = null;
-  private @Valid Integer numExecutors = null;
-  private @Valid String description = null;
+  private @Valid String mode;
+  private @Valid String nodeDescription;
+  private @Valid String nodeName;
+  private @Valid Integer numExecutors;
+  private @Valid String description;
   private @Valid List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
-  private @Valid AllView primaryView = null;
-  private @Valid Boolean quietingDown = null;
-  private @Valid Integer slaveAgentPort = null;
-  private @Valid UnlabeledLoadStatistics unlabeledLoad = null;
-  private @Valid Boolean useCrumbs = null;
-  private @Valid Boolean useSecurity = null;
+  private @Valid AllView primaryView;
+  private @Valid Boolean quietingDown;
+  private @Valid Integer slaveAgentPort;
+  private @Valid UnlabeledLoadStatistics unlabeledLoad;
+  private @Valid Boolean useCrumbs;
+  private @Valid Boolean useSecurity;
   private @Valid List<AllView> views = new ArrayList<AllView>();
 
   /**
@@ -41,16 +47,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
@@ -58,16 +68,36 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("assignedLabels")
   public List<HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
+
+  @JsonProperty("assignedLabels")
   public void setAssignedLabels(List<HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
 
-  /**
+  public Hudson addAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
+    if (this.assignedLabels == null) {
+      this.assignedLabels = new ArrayList<HudsonassignedLabels>();
+    }
+
+    this.assignedLabels.add(assignedLabelsItem);
+    return this;
+  }
+
+  public Hudson removeAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
+    if (assignedLabelsItem != null && this.assignedLabels != null) {
+      this.assignedLabels.remove(assignedLabelsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public Hudson mode(String mode) {
     this.mode = mode;
@@ -75,16 +105,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("mode")
   public String getMode() {
     return mode;
   }
+
+  @JsonProperty("mode")
   public void setMode(String mode) {
     this.mode = mode;
   }
 
-  /**
+/**
    **/
   public Hudson nodeDescription(String nodeDescription) {
     this.nodeDescription = nodeDescription;
@@ -92,16 +126,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("nodeDescription")
   public String getNodeDescription() {
     return nodeDescription;
   }
+
+  @JsonProperty("nodeDescription")
   public void setNodeDescription(String nodeDescription) {
     this.nodeDescription = nodeDescription;
   }
 
-  /**
+/**
    **/
   public Hudson nodeName(String nodeName) {
     this.nodeName = nodeName;
@@ -109,16 +147,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("nodeName")
   public String getNodeName() {
     return nodeName;
   }
+
+  @JsonProperty("nodeName")
   public void setNodeName(String nodeName) {
     this.nodeName = nodeName;
   }
 
-  /**
+/**
    **/
   public Hudson numExecutors(Integer numExecutors) {
     this.numExecutors = numExecutors;
@@ -126,16 +168,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("numExecutors")
   public Integer getNumExecutors() {
     return numExecutors;
   }
+
+  @JsonProperty("numExecutors")
   public void setNumExecutors(Integer numExecutors) {
     this.numExecutors = numExecutors;
   }
 
-  /**
+/**
    **/
   public Hudson description(String description) {
     this.description = description;
@@ -143,16 +189,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
     return description;
   }
+
+  @JsonProperty("description")
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /**
+/**
    **/
   public Hudson jobs(List<FreeStyleProject> jobs) {
     this.jobs = jobs;
@@ -160,16 +210,36 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
   public List<FreeStyleProject> getJobs() {
     return jobs;
   }
+
+  @JsonProperty("jobs")
   public void setJobs(List<FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
-  /**
+  public Hudson addJobsItem(FreeStyleProject jobsItem) {
+    if (this.jobs == null) {
+      this.jobs = new ArrayList<FreeStyleProject>();
+    }
+
+    this.jobs.add(jobsItem);
+    return this;
+  }
+
+  public Hudson removeJobsItem(FreeStyleProject jobsItem) {
+    if (jobsItem != null && this.jobs != null) {
+      this.jobs.remove(jobsItem);
+    }
+
+    return this;
+  }
+/**
    **/
   public Hudson primaryView(AllView primaryView) {
     this.primaryView = primaryView;
@@ -177,16 +247,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("primaryView")
   public AllView getPrimaryView() {
     return primaryView;
   }
+
+  @JsonProperty("primaryView")
   public void setPrimaryView(AllView primaryView) {
     this.primaryView = primaryView;
   }
 
-  /**
+/**
    **/
   public Hudson quietingDown(Boolean quietingDown) {
     this.quietingDown = quietingDown;
@@ -194,16 +268,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("quietingDown")
   public Boolean getQuietingDown() {
     return quietingDown;
   }
+
+  @JsonProperty("quietingDown")
   public void setQuietingDown(Boolean quietingDown) {
     this.quietingDown = quietingDown;
   }
 
-  /**
+/**
    **/
   public Hudson slaveAgentPort(Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
@@ -211,16 +289,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("slaveAgentPort")
   public Integer getSlaveAgentPort() {
     return slaveAgentPort;
   }
+
+  @JsonProperty("slaveAgentPort")
   public void setSlaveAgentPort(Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
   }
 
-  /**
+/**
    **/
   public Hudson unlabeledLoad(UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
@@ -228,16 +310,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("unlabeledLoad")
   public UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
   }
+
+  @JsonProperty("unlabeledLoad")
   public void setUnlabeledLoad(UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
   }
 
-  /**
+/**
    **/
   public Hudson useCrumbs(Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
@@ -245,16 +331,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("useCrumbs")
   public Boolean getUseCrumbs() {
     return useCrumbs;
   }
+
+  @JsonProperty("useCrumbs")
   public void setUseCrumbs(Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
   }
 
-  /**
+/**
    **/
   public Hudson useSecurity(Boolean useSecurity) {
     this.useSecurity = useSecurity;
@@ -262,16 +352,20 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("useSecurity")
   public Boolean getUseSecurity() {
     return useSecurity;
   }
+
+  @JsonProperty("useSecurity")
   public void setUseSecurity(Boolean useSecurity) {
     this.useSecurity = useSecurity;
   }
 
-  /**
+/**
    **/
   public Hudson views(List<AllView> views) {
     this.views = views;
@@ -279,18 +373,38 @@ public class Hudson   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("views")
   public List<AllView> getViews() {
     return views;
   }
+
+  @JsonProperty("views")
   public void setViews(List<AllView> views) {
     this.views = views;
   }
 
+  public Hudson addViewsItem(AllView viewsItem) {
+    if (this.views == null) {
+      this.views = new ArrayList<AllView>();
+    }
+
+    this.views.add(viewsItem);
+    return this;
+  }
+
+  public Hudson removeViewsItem(AllView viewsItem) {
+    if (viewsItem != null && this.views != null) {
+      this.views.remove(viewsItem);
+    }
+
+    return this;
+  }
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -298,21 +412,21 @@ public class Hudson   {
       return false;
     }
     Hudson hudson = (Hudson) o;
-    return Objects.equals(propertyClass, hudson.propertyClass) &&
-        Objects.equals(assignedLabels, hudson.assignedLabels) &&
-        Objects.equals(mode, hudson.mode) &&
-        Objects.equals(nodeDescription, hudson.nodeDescription) &&
-        Objects.equals(nodeName, hudson.nodeName) &&
-        Objects.equals(numExecutors, hudson.numExecutors) &&
-        Objects.equals(description, hudson.description) &&
-        Objects.equals(jobs, hudson.jobs) &&
-        Objects.equals(primaryView, hudson.primaryView) &&
-        Objects.equals(quietingDown, hudson.quietingDown) &&
-        Objects.equals(slaveAgentPort, hudson.slaveAgentPort) &&
-        Objects.equals(unlabeledLoad, hudson.unlabeledLoad) &&
-        Objects.equals(useCrumbs, hudson.useCrumbs) &&
-        Objects.equals(useSecurity, hudson.useSecurity) &&
-        Objects.equals(views, hudson.views);
+    return Objects.equals(this.propertyClass, hudson.propertyClass) &&
+        Objects.equals(this.assignedLabels, hudson.assignedLabels) &&
+        Objects.equals(this.mode, hudson.mode) &&
+        Objects.equals(this.nodeDescription, hudson.nodeDescription) &&
+        Objects.equals(this.nodeName, hudson.nodeName) &&
+        Objects.equals(this.numExecutors, hudson.numExecutors) &&
+        Objects.equals(this.description, hudson.description) &&
+        Objects.equals(this.jobs, hudson.jobs) &&
+        Objects.equals(this.primaryView, hudson.primaryView) &&
+        Objects.equals(this.quietingDown, hudson.quietingDown) &&
+        Objects.equals(this.slaveAgentPort, hudson.slaveAgentPort) &&
+        Objects.equals(this.unlabeledLoad, hudson.unlabeledLoad) &&
+        Objects.equals(this.useCrumbs, hudson.useCrumbs) &&
+        Objects.equals(this.useSecurity, hudson.useSecurity) &&
+        Objects.equals(this.views, hudson.views);
   }
 
   @Override
@@ -348,11 +462,13 @@ public class Hudson   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

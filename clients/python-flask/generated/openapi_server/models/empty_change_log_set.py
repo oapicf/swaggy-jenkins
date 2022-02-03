@@ -15,7 +15,7 @@ class EmptyChangeLogSet(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, _class: str=None, kind: str=None):  # noqa: E501
+    def __init__(self, _class=None, kind=None):  # noqa: E501
         """EmptyChangeLogSet - a model defined in OpenAPI
 
         :param _class: The _class of this EmptyChangeLogSet.  # noqa: E501
@@ -48,7 +48,7 @@ class EmptyChangeLogSet(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this EmptyChangeLogSet.
 
 
@@ -58,7 +58,7 @@ class EmptyChangeLogSet(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this EmptyChangeLogSet.
 
 
@@ -69,7 +69,7 @@ class EmptyChangeLogSet(Model):
         self.__class = _class
 
     @property
-    def kind(self) -> str:
+    def kind(self):
         """Gets the kind of this EmptyChangeLogSet.
 
 
@@ -79,7 +79,7 @@ class EmptyChangeLogSet(Model):
         return self._kind
 
     @kind.setter
-    def kind(self, kind: str):
+    def kind(self, kind):
         """Sets the kind of this EmptyChangeLogSet.
 
 

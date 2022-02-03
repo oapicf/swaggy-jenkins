@@ -4,6 +4,9 @@ import java.util.Objects;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
@@ -11,26 +14,25 @@ import org.openapitools.model.Label1;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2019-04-10T13:31:53.770Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
 public class HudsonMasterComputer   {
   
-  private String propertyClass = null;
-  private String displayName = null;
+  private String propertyClass;
+  private String displayName;
   private List<HudsonMasterComputerexecutors> executors = new ArrayList<HudsonMasterComputerexecutors>();
-  private String icon = null;
-  private String iconClassName = null;
-  private Boolean idle = null;
-  private Boolean jnlpAgent = null;
-  private Boolean launchSupported = null;
-  private Label1 loadStatistics = null;
-  private Boolean manualLaunchAllowed = null;
-  private HudsonMasterComputermonitorData monitorData = null;
-  private Integer numExecutors = null;
-  private Boolean offline = null;
-  private String offlineCause = null;
-  private String offlineCauseReason = null;
-  private Boolean temporarilyOffline = null;
+  private String icon;
+  private String iconClassName;
+  private Boolean idle;
+  private Boolean jnlpAgent;
+  private Boolean launchSupported;
+  private Label1 loadStatistics;
+  private Boolean manualLaunchAllowed;
+  private HudsonMasterComputermonitorData monitorData;
+  private Integer numExecutors;
+  private Boolean offline;
+  private String offlineCause;
+  private String offlineCauseReason;
+  private Boolean temporarilyOffline;
 
   /**
    **/
@@ -226,7 +228,7 @@ public class HudsonMasterComputer   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -286,7 +288,7 @@ public class HudsonMasterComputer   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -21,10 +21,10 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.ComputerSet{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.ComputerSet.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_computer(Tesla.Env.client, integer(), keyword()) :: {:ok, SwaggyJenkins.Model.ComputerSet.t} | {:error, Tesla.Env.t}
+  @spec get_computer(Tesla.Env.client, integer(), keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.ComputerSet.t} | {:error, Tesla.Env.t}
   def get_computer(connection, depth, _opts \\ []) do
     %{}
     |> method(:get)
@@ -32,7 +32,11 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> add_param(:query, :"depth", depth)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.ComputerSet{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.ComputerSet{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -44,17 +48,21 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Hudson{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.Hudson.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_jenkins(Tesla.Env.client, keyword()) :: {:ok, SwaggyJenkins.Model.Hudson.t} | {:error, Tesla.Env.t}
+  @spec get_jenkins(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.Hudson.t} | {:error, Tesla.Env.t}
   def get_jenkins(connection, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Hudson{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.Hudson{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -67,17 +75,22 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.FreeStyleProject{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.FreeStyleProject.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_job(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.FreeStyleProject.t} | {:error, Tesla.Env.t}
+  @spec get_job(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.FreeStyleProject.t} | {:error, Tesla.Env.t}
   def get_job(connection, name, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/job/#{name}/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.FreeStyleProject{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.FreeStyleProject{}},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -90,21 +103,26 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_job_config(Tesla.Env.client, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_job_config(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_job_config(connection, name, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/job/#{name}/config.xml")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
-  Retrieve job&#39;s last build details
+  Retrieve job's last build details
 
   ## Parameters
 
@@ -113,21 +131,26 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.FreeStyleBuild{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.FreeStyleBuild.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_job_last_build(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.FreeStyleBuild.t} | {:error, Tesla.Env.t}
+  @spec get_job_last_build(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.FreeStyleBuild.t} | {:error, Tesla.Env.t}
   def get_job_last_build(connection, name, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/job/#{name}/lastBuild/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.FreeStyleBuild{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.FreeStyleBuild{}},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
-  Retrieve job&#39;s build progressive text output
+  Retrieve job's build progressive text output
 
   ## Parameters
 
@@ -138,8 +161,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec get_job_progressive_text(Tesla.Env.client, String.t, String.t, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def get_job_progressive_text(connection, name, number, start, _opts \\ []) do
@@ -149,7 +172,12 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> add_param(:query, :"start", start)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -161,17 +189,21 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Queue{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.Queue.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_queue(Tesla.Env.client, keyword()) :: {:ok, SwaggyJenkins.Model.Queue.t} | {:error, Tesla.Env.t}
+  @spec get_queue(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.Queue.t} | {:error, Tesla.Env.t}
   def get_queue(connection, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/queue/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Queue{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.Queue{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -184,17 +216,21 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.Queue{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.Queue.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_queue_item(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.Queue.t} | {:error, Tesla.Env.t}
+  @spec get_queue_item(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.Queue.t} | {:error, Tesla.Env.t}
   def get_queue_item(connection, number, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/queue/item/#{number}/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.Queue{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.Queue{}},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -207,17 +243,22 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.ListView{}} on success
-  {:error, info} on failure
+  {:ok, SwaggyJenkins.Model.ListView.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_view(Tesla.Env.client, String.t, keyword()) :: {:ok, SwaggyJenkins.Model.ListView.t} | {:error, Tesla.Env.t}
+  @spec get_view(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.ListView.t} | {:error, Tesla.Env.t}
   def get_view(connection, name, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/view/#{name}/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(%SwaggyJenkins.Model.ListView{})
+    |> evaluate_response([
+      { 200, %SwaggyJenkins.Model.ListView{}},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -230,17 +271,22 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %SwaggyJenkins.Model.String.t{}} on success
-  {:error, info} on failure
+  {:ok, String.t} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec get_view_config(Tesla.Env.client, String.t, keyword()) :: {:ok, String.t} | {:error, Tesla.Env.t}
+  @spec get_view_config(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def get_view_config(connection, name, _opts \\ []) do
     %{}
     |> method(:get)
     |> url("/view/#{name}/config.xml")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -252,8 +298,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec head_jenkins(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def head_jenkins(connection, _opts \\ []) do
@@ -262,7 +308,11 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> url("/api/json")
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -274,32 +324,38 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
   - name (String.t): Name of the new job
   - opts (KeywordList): [optional] Optional parameters
     - :from (String.t): Existing job to copy from
-    - :mode (String.t): Set to &#39;copy&#39; for copying an existing job
+    - :mode (String.t): Set to 'copy' for copying an existing job
     - :jenkins_crumb (String.t): CSRF protection token
     - :content_type (String.t): Content type header application/xml
     - :body (String.t): Job configuration in config.xml format
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec post_create_item(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec post_create_item(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def post_create_item(connection, name, opts \\ []) do
     optional_params = %{
       :"from" => :query,
       :"mode" => :query,
       :"Jenkins-Crumb" => :headers,
       :"Content-Type" => :headers,
-      :"body" => :body
+      :body => :body
     }
     %{}
     |> method(:post)
     |> url("/createItem")
     |> add_param(:query, :"name", name)
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 400, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -315,24 +371,30 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :body (String.t): View configuration in config.xml format
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec post_create_view(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec post_create_view(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def post_create_view(connection, name, opts \\ []) do
     optional_params = %{
       :"Jenkins-Crumb" => :headers,
       :"Content-Type" => :headers,
-      :"body" => :body
+      :body => :body
     }
     %{}
     |> method(:post)
     |> url("/createView")
     |> add_param(:query, :"name", name)
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 400, false},
+      { 401, false},
+      { 403, false}
+    ])
   end
 
   @doc """
@@ -348,8 +410,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec post_job_build(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def post_job_build(connection, name, json, opts \\ []) do
@@ -362,9 +424,16 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> url("/job/#{name}/build")
     |> add_param(:query, :"json", json)
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 201, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -379,10 +448,10 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec post_job_config(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec post_job_config(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def post_job_config(connection, name, body, opts \\ []) do
     optional_params = %{
       :"Jenkins-Crumb" => :headers
@@ -390,11 +459,17 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     %{}
     |> method(:post)
     |> url("/job/#{name}/config.xml")
-    |> add_param(:body, :"body", body)
+    |> add_param(:body, :body, body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 400, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -408,8 +483,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec post_job_delete(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def post_job_delete(connection, name, opts \\ []) do
@@ -420,9 +495,15 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> method(:post)
     |> url("/job/#{name}/doDelete")
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -436,8 +517,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec post_job_disable(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def post_job_disable(connection, name, opts \\ []) do
@@ -448,9 +529,15 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> method(:post)
     |> url("/job/#{name}/disable")
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -464,8 +551,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec post_job_enable(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def post_job_enable(connection, name, opts \\ []) do
@@ -476,9 +563,15 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> method(:post)
     |> url("/job/#{name}/enable")
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -492,8 +585,8 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
   @spec post_job_last_build_stop(Tesla.Env.client, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
   def post_job_last_build_stop(connection, name, opts \\ []) do
@@ -504,9 +597,15 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     |> method(:post)
     |> url("/job/#{name}/lastBuild/stop")
     |> add_optional_params(optional_params, opts)
+    |> ensure_body()
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 
   @doc """
@@ -521,10 +620,10 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     - :jenkins_crumb (String.t): CSRF protection token
   ## Returns
 
-  {:ok, %{}} on success
-  {:error, info} on failure
+  {:ok, nil} on success
+  {:error, Tesla.Env.t} on failure
   """
-  @spec post_view_config(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec post_view_config(Tesla.Env.client, String.t, String.t, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def post_view_config(connection, name, body, opts \\ []) do
     optional_params = %{
       :"Jenkins-Crumb" => :headers
@@ -532,10 +631,16 @@ defmodule SwaggyJenkins.Api.RemoteAccess do
     %{}
     |> method(:post)
     |> url("/view/#{name}/config.xml")
-    |> add_param(:body, :"body", body)
+    |> add_param(:body, :body, body)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
-    |> decode(false)
+    |> evaluate_response([
+      { 200, false},
+      { 400, false},
+      { 401, false},
+      { 403, false},
+      { 404, false}
+    ])
   end
 end

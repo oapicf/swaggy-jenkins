@@ -9,16 +9,16 @@ namespace app\Models;
  */
 class CauseUserIdCause {
 
-    /** @var string $_class */
-    private $_class;
+    /** @var string $class */
+    private $class;
 
-    /** @var string $short_description */
-    private $short_description;
+    /** @var string $shortDescription */
+    private $shortDescription;
 
-    /** @var string $user_id */
-    private $user_id;
+    /** @var string $userId */
+    private $userId;
 
-    /** @var string $user_name */
-    private $user_name;
+    /** @var string $userName */
+    private $userName;
 
 }

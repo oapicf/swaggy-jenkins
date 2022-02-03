@@ -1,7 +1,9 @@
 
+
 # QueueItemImpl
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -9,6 +11,7 @@ Name | Type | Description | Notes
 **id** | **String** |  |  [optional]
 **pipeline** | **String** |  |  [optional]
 **queuedTime** | **Integer** |  |  [optional]
+
 
 
 

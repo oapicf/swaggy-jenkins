@@ -1,18 +1,24 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class EmptyChangeLogSet   {
+
+@JsonTypeName("EmptyChangeLogSet")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class EmptyChangeLogSet   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String kind = null;
+  private @Valid String propertyClass;
+  private @Valid String kind;
 
   /**
    **/
@@ -22,16 +28,20 @@ public class EmptyChangeLogSet   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public EmptyChangeLogSet kind(String kind) {
     this.kind = kind;
@@ -39,18 +49,22 @@ public class EmptyChangeLogSet   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("kind")
   public String getKind() {
     return kind;
   }
+
+  @JsonProperty("kind")
   public void setKind(String kind) {
     this.kind = kind;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -58,8 +72,8 @@ public class EmptyChangeLogSet   {
       return false;
     }
     EmptyChangeLogSet emptyChangeLogSet = (EmptyChangeLogSet) o;
-    return Objects.equals(propertyClass, emptyChangeLogSet.propertyClass) &&
-        Objects.equals(kind, emptyChangeLogSet.kind);
+    return Objects.equals(this.propertyClass, emptyChangeLogSet.propertyClass) &&
+        Objects.equals(this.kind, emptyChangeLogSet.kind);
   }
 
   @Override
@@ -82,11 +96,13 @@ public class EmptyChangeLogSet   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

@@ -4,7 +4,7 @@ import org.openapitools.api.ComputerApiService;
 import org.openapitools.api.impl.ComputerApiServiceImpl;
 
 public class ComputerApiServiceFactory {
-    private final static ComputerApiService service = new ComputerApiServiceImpl();
+    private static final ComputerApiService service = new ComputerApiServiceImpl();
 
     public static ComputerApiService getComputerApi() {
         return service;

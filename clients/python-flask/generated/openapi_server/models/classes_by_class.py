@@ -15,7 +15,7 @@ class ClassesByClass(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, classes: List[str]=None, _class: str=None):  # noqa: E501
+    def __init__(self, classes=None, _class=None):  # noqa: E501
         """ClassesByClass - a model defined in OpenAPI
 
         :param classes: The classes of this ClassesByClass.  # noqa: E501
@@ -48,7 +48,7 @@ class ClassesByClass(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def classes(self) -> List[str]:
+    def classes(self):
         """Gets the classes of this ClassesByClass.
 
 
@@ -58,7 +58,7 @@ class ClassesByClass(Model):
         return self._classes
 
     @classes.setter
-    def classes(self, classes: List[str]):
+    def classes(self, classes):
         """Sets the classes of this ClassesByClass.
 
 
@@ -69,7 +69,7 @@ class ClassesByClass(Model):
         self._classes = classes
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this ClassesByClass.
 
 
@@ -79,7 +79,7 @@ class ClassesByClass(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this ClassesByClass.
 
 

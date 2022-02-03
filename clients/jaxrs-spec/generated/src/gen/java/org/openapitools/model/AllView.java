@@ -1,19 +1,25 @@
 package org.openapitools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-
 
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
-public class AllView   {
+
+@JsonTypeName("AllView")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class AllView   {
   
-  private @Valid String propertyClass = null;
-  private @Valid String name = null;
-  private @Valid String url = null;
+  private @Valid String propertyClass;
+  private @Valid String name;
+  private @Valid String url;
 
   /**
    **/
@@ -23,16 +29,20 @@ public class AllView   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
+
+  @JsonProperty("_class")
   public void setPropertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  /**
+/**
    **/
   public AllView name(String name) {
     this.name = name;
@@ -40,16 +50,20 @@ public class AllView   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
     return name;
   }
+
+  @JsonProperty("name")
   public void setName(String name) {
     this.name = name;
   }
 
-  /**
+/**
    **/
   public AllView url(String url) {
     this.url = url;
@@ -57,18 +71,22 @@ public class AllView   {
   }
 
   
+
+  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
     return url;
   }
+
+  @JsonProperty("url")
   public void setUrl(String url) {
     this.url = url;
   }
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -76,9 +94,9 @@ public class AllView   {
       return false;
     }
     AllView allView = (AllView) o;
-    return Objects.equals(propertyClass, allView.propertyClass) &&
-        Objects.equals(name, allView.name) &&
-        Objects.equals(url, allView.url);
+    return Objects.equals(this.propertyClass, allView.propertyClass) &&
+        Objects.equals(this.name, allView.name) &&
+        Objects.equals(this.url, allView.url);
   }
 
   @Override
@@ -102,11 +120,13 @@ public class AllView   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
     return o.toString().replace("\n", "\n    ");
   }
+
+
 }
 

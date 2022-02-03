@@ -28,17 +28,55 @@ type Hudson struct {
 
 	Jobs []FreeStyleProject `json:"jobs,omitempty"`
 
-	PrimaryView *AllView `json:"primaryView,omitempty"`
+	PrimaryView AllView `json:"primaryView,omitempty"`
 
 	QuietingDown bool `json:"quietingDown,omitempty"`
 
 	SlaveAgentPort int32 `json:"slaveAgentPort,omitempty"`
 
-	UnlabeledLoad *UnlabeledLoadStatistics `json:"unlabeledLoad,omitempty"`
+	UnlabeledLoad UnlabeledLoadStatistics `json:"unlabeledLoad,omitempty"`
 
 	UseCrumbs bool `json:"useCrumbs,omitempty"`
 
 	UseSecurity bool `json:"useSecurity,omitempty"`
 
 	Views []AllView `json:"views,omitempty"`
+}
+
+// AssertHudsonRequired checks if the required fields are not zero-ed
+func AssertHudsonRequired(obj Hudson) error {
+	for _, el := range obj.AssignedLabels {
+		if err := AssertHudsonassignedLabelsRequired(el); err != nil {
+			return err
+		}
+	}
+	for _, el := range obj.Jobs {
+		if err := AssertFreeStyleProjectRequired(el); err != nil {
+			return err
+		}
+	}
+	if err := AssertAllViewRequired(obj.PrimaryView); err != nil {
+		return err
+	}
+	if err := AssertUnlabeledLoadStatisticsRequired(obj.UnlabeledLoad); err != nil {
+		return err
+	}
+	for _, el := range obj.Views {
+		if err := AssertAllViewRequired(el); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// AssertRecurseHudsonRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of Hudson (e.g. [][]Hudson), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseHudsonRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aHudson, ok := obj.(Hudson)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertHudsonRequired(aHudson)
+	})
 }

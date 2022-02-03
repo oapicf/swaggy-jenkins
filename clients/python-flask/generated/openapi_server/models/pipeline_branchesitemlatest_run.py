@@ -15,7 +15,7 @@ class PipelineBranchesitemlatestRun(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, duration_in_millis: int=None, estimated_duration_in_millis: int=None, en_queue_time: str=None, end_time: str=None, id: str=None, organization: str=None, pipeline: str=None, result: str=None, run_summary: str=None, start_time: str=None, state: str=None, type: str=None, commit_id: str=None, _class: str=None):  # noqa: E501
+    def __init__(self, duration_in_millis=None, estimated_duration_in_millis=None, en_queue_time=None, end_time=None, id=None, organization=None, pipeline=None, result=None, run_summary=None, start_time=None, state=None, type=None, commit_id=None, _class=None):  # noqa: E501
         """PipelineBranchesitemlatestRun - a model defined in OpenAPI
 
         :param duration_in_millis: The duration_in_millis of this PipelineBranchesitemlatestRun.  # noqa: E501
@@ -108,7 +108,7 @@ class PipelineBranchesitemlatestRun(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def duration_in_millis(self) -> int:
+    def duration_in_millis(self):
         """Gets the duration_in_millis of this PipelineBranchesitemlatestRun.
 
 
@@ -118,7 +118,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._duration_in_millis
 
     @duration_in_millis.setter
-    def duration_in_millis(self, duration_in_millis: int):
+    def duration_in_millis(self, duration_in_millis):
         """Sets the duration_in_millis of this PipelineBranchesitemlatestRun.
 
 
@@ -129,7 +129,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._duration_in_millis = duration_in_millis
 
     @property
-    def estimated_duration_in_millis(self) -> int:
+    def estimated_duration_in_millis(self):
         """Gets the estimated_duration_in_millis of this PipelineBranchesitemlatestRun.
 
 
@@ -139,7 +139,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._estimated_duration_in_millis
 
     @estimated_duration_in_millis.setter
-    def estimated_duration_in_millis(self, estimated_duration_in_millis: int):
+    def estimated_duration_in_millis(self, estimated_duration_in_millis):
         """Sets the estimated_duration_in_millis of this PipelineBranchesitemlatestRun.
 
 
@@ -150,7 +150,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._estimated_duration_in_millis = estimated_duration_in_millis
 
     @property
-    def en_queue_time(self) -> str:
+    def en_queue_time(self):
         """Gets the en_queue_time of this PipelineBranchesitemlatestRun.
 
 
@@ -160,7 +160,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._en_queue_time
 
     @en_queue_time.setter
-    def en_queue_time(self, en_queue_time: str):
+    def en_queue_time(self, en_queue_time):
         """Sets the en_queue_time of this PipelineBranchesitemlatestRun.
 
 
@@ -171,7 +171,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._en_queue_time = en_queue_time
 
     @property
-    def end_time(self) -> str:
+    def end_time(self):
         """Gets the end_time of this PipelineBranchesitemlatestRun.
 
 
@@ -181,7 +181,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._end_time
 
     @end_time.setter
-    def end_time(self, end_time: str):
+    def end_time(self, end_time):
         """Sets the end_time of this PipelineBranchesitemlatestRun.
 
 
@@ -192,7 +192,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._end_time = end_time
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this PipelineBranchesitemlatestRun.
 
 
@@ -202,7 +202,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this PipelineBranchesitemlatestRun.
 
 
@@ -213,7 +213,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._id = id
 
     @property
-    def organization(self) -> str:
+    def organization(self):
         """Gets the organization of this PipelineBranchesitemlatestRun.
 
 
@@ -223,7 +223,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization: str):
+    def organization(self, organization):
         """Sets the organization of this PipelineBranchesitemlatestRun.
 
 
@@ -234,7 +234,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._organization = organization
 
     @property
-    def pipeline(self) -> str:
+    def pipeline(self):
         """Gets the pipeline of this PipelineBranchesitemlatestRun.
 
 
@@ -244,7 +244,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._pipeline
 
     @pipeline.setter
-    def pipeline(self, pipeline: str):
+    def pipeline(self, pipeline):
         """Sets the pipeline of this PipelineBranchesitemlatestRun.
 
 
@@ -255,7 +255,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._pipeline = pipeline
 
     @property
-    def result(self) -> str:
+    def result(self):
         """Gets the result of this PipelineBranchesitemlatestRun.
 
 
@@ -265,7 +265,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._result
 
     @result.setter
-    def result(self, result: str):
+    def result(self, result):
         """Sets the result of this PipelineBranchesitemlatestRun.
 
 
@@ -276,7 +276,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._result = result
 
     @property
-    def run_summary(self) -> str:
+    def run_summary(self):
         """Gets the run_summary of this PipelineBranchesitemlatestRun.
 
 
@@ -286,7 +286,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._run_summary
 
     @run_summary.setter
-    def run_summary(self, run_summary: str):
+    def run_summary(self, run_summary):
         """Sets the run_summary of this PipelineBranchesitemlatestRun.
 
 
@@ -297,7 +297,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._run_summary = run_summary
 
     @property
-    def start_time(self) -> str:
+    def start_time(self):
         """Gets the start_time of this PipelineBranchesitemlatestRun.
 
 
@@ -307,7 +307,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._start_time
 
     @start_time.setter
-    def start_time(self, start_time: str):
+    def start_time(self, start_time):
         """Sets the start_time of this PipelineBranchesitemlatestRun.
 
 
@@ -318,7 +318,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._start_time = start_time
 
     @property
-    def state(self) -> str:
+    def state(self):
         """Gets the state of this PipelineBranchesitemlatestRun.
 
 
@@ -328,7 +328,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._state
 
     @state.setter
-    def state(self, state: str):
+    def state(self, state):
         """Sets the state of this PipelineBranchesitemlatestRun.
 
 
@@ -339,7 +339,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._state = state
 
     @property
-    def type(self) -> str:
+    def type(self):
         """Gets the type of this PipelineBranchesitemlatestRun.
 
 
@@ -349,7 +349,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._type
 
     @type.setter
-    def type(self, type: str):
+    def type(self, type):
         """Sets the type of this PipelineBranchesitemlatestRun.
 
 
@@ -360,7 +360,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._type = type
 
     @property
-    def commit_id(self) -> str:
+    def commit_id(self):
         """Gets the commit_id of this PipelineBranchesitemlatestRun.
 
 
@@ -370,7 +370,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self._commit_id
 
     @commit_id.setter
-    def commit_id(self, commit_id: str):
+    def commit_id(self, commit_id):
         """Sets the commit_id of this PipelineBranchesitemlatestRun.
 
 
@@ -381,7 +381,7 @@ class PipelineBranchesitemlatestRun(Model):
         self._commit_id = commit_id
 
     @property
-    def _class(self) -> str:
+    def _class(self):
         """Gets the _class of this PipelineBranchesitemlatestRun.
 
 
@@ -391,7 +391,7 @@ class PipelineBranchesitemlatestRun(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class: str):
+    def _class(self, _class):
         """Sets the _class of this PipelineBranchesitemlatestRun.
 
 

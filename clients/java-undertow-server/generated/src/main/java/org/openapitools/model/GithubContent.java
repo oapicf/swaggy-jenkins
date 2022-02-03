@@ -1,3 +1,13 @@
+/*
+ * Swaggy Jenkins
+ *
+ * Jenkins API clients generated from Swagger / Open API specification
+ *
+ * OpenAPI document version: 1.1.1
+ * Maintained by: blah@cliffano.com
+ *
+ * AUTO-GENERATED FILE, DO NOT MODIFY!
+ */
 package org.openapitools.model;
 
 import java.util.Objects;
@@ -10,20 +20,20 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2019-04-10T13:31:30.965Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-02T10:44:55.405154Z[Etc/UTC]")
 public class GithubContent   {
   
-  private String name = null;
-  private String sha = null;
-  private String propertyClass = null;
-  private String repo = null;
-  private Integer size = null;
-  private String owner = null;
-  private String path = null;
-  private String base64Data = null;
+  private String name;
+  private String sha;
+  private String propertyClass;
+  private String repo;
+  private Integer size;
+  private String owner;
+  private String path;
+  private String base64Data;
 
   /**
-   **/
+   */
   public GithubContent name(String name) {
     this.name = name;
     return this;
@@ -40,7 +50,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent sha(String sha) {
     this.sha = sha;
     return this;
@@ -57,7 +67,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
@@ -74,7 +84,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent repo(String repo) {
     this.repo = repo;
     return this;
@@ -91,7 +101,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent size(Integer size) {
     this.size = size;
     return this;
@@ -108,7 +118,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent owner(String owner) {
     this.owner = owner;
     return this;
@@ -125,7 +135,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent path(String path) {
     this.path = path;
     return this;
@@ -142,7 +152,7 @@ public class GithubContent   {
   }
 
   /**
-   **/
+   */
   public GithubContent base64Data(String base64Data) {
     this.base64Data = base64Data;
     return this;
@@ -160,7 +170,7 @@ public class GithubContent   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -204,7 +214,7 @@ public class GithubContent   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

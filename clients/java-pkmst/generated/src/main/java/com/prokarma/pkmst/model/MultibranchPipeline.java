@@ -16,51 +16,50 @@ import java.util.List;
  * MultibranchPipeline
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2019-04-10T13:31:21.733Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
-  private String displayName = null;
+  private String displayName;
 
   @JsonProperty("estimatedDurationInMillis")
-  private Integer estimatedDurationInMillis = null;
+  private Integer estimatedDurationInMillis;
 
   @JsonProperty("latestRun")
-  private String latestRun = null;
+  private String latestRun;
 
   @JsonProperty("name")
-  private String name = null;
+  private String name;
 
   @JsonProperty("organization")
-  private String organization = null;
+  private String organization;
 
   @JsonProperty("weatherScore")
-  private Integer weatherScore = null;
+  private Integer weatherScore;
 
   @JsonProperty("branchNames")
   
   private List<String> branchNames = null;
 
   @JsonProperty("numberOfFailingBranches")
-  private Integer numberOfFailingBranches = null;
+  private Integer numberOfFailingBranches;
 
   @JsonProperty("numberOfFailingPullRequests")
-  private Integer numberOfFailingPullRequests = null;
+  private Integer numberOfFailingPullRequests;
 
   @JsonProperty("numberOfSuccessfulBranches")
-  private Integer numberOfSuccessfulBranches = null;
+  private Integer numberOfSuccessfulBranches;
 
   @JsonProperty("numberOfSuccessfulPullRequests")
-  private Integer numberOfSuccessfulPullRequests = null;
+  private Integer numberOfSuccessfulPullRequests;
 
   @JsonProperty("totalNumberOfBranches")
-  private Integer totalNumberOfBranches = null;
+  private Integer totalNumberOfBranches;
 
   @JsonProperty("totalNumberOfPullRequests")
-  private Integer totalNumberOfPullRequests = null;
+  private Integer totalNumberOfPullRequests;
 
   @JsonProperty("_class")
-  private String propertyClass = null;
+  private String propertyClass;
 
   public MultibranchPipeline displayName(String displayName) {
     this.displayName = displayName;
@@ -324,7 +323,7 @@ public class MultibranchPipeline   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -380,7 +379,7 @@ public class MultibranchPipeline   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

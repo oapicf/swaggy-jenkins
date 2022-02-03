@@ -10,22 +10,21 @@ import org.openapitools.model.PipelineBranchesitempullRequestlinks;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2019-04-10T13:31:58.793Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-02T10:45:40.547559Z[Etc/UTC]")
 public class PipelineBranchesitempullRequest   {
   
 
-  private PipelineBranchesitempullRequestlinks links = null;
+  private PipelineBranchesitempullRequestlinks links;
 
-  private String author = null;
+  private String author;
 
-  private String id = null;
+  private String id;
 
-  private String title = null;
+  private String title;
 
-  private String url = null;
+  private String url;
 
-  private String propertyClass = null;
+  private String propertyClass;
 
   /**
    **/

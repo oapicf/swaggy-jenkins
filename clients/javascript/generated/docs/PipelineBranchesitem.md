@@ -1,6 +1,7 @@
 # SwaggyJenkins.PipelineBranchesitem
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **displayName** | **String** |  | [optional] 

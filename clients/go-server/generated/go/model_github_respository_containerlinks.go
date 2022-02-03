@@ -12,7 +12,27 @@ package openapi
 
 type GithubRespositoryContainerlinks struct {
 
-	Self *Link `json:"self,omitempty"`
+	Self Link `json:"self,omitempty"`
 
 	Class string `json:"_class,omitempty"`
+}
+
+// AssertGithubRespositoryContainerlinksRequired checks if the required fields are not zero-ed
+func AssertGithubRespositoryContainerlinksRequired(obj GithubRespositoryContainerlinks) error {
+	if err := AssertLinkRequired(obj.Self); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AssertRecurseGithubRespositoryContainerlinksRequired recursively checks if required fields are not zero-ed in a nested slice.
+// Accepts only nested slice of GithubRespositoryContainerlinks (e.g. [][]GithubRespositoryContainerlinks), otherwise ErrTypeAssertionError is thrown.
+func AssertRecurseGithubRespositoryContainerlinksRequired(objSlice interface{}) error {
+	return AssertRecurseInterfaceRequired(objSlice, func(obj interface{}) error {
+		aGithubRespositoryContainerlinks, ok := obj.(GithubRespositoryContainerlinks)
+		if !ok {
+			return ErrTypeAssertionError
+		}
+		return AssertGithubRespositoryContainerlinksRequired(aGithubRespositoryContainerlinks)
+	})
 }

@@ -6,16 +6,16 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Canonical
 class GenericResource {
-    String propertyClass = null
-
-    String displayName = null
-
-    Integer durationInMillis = null
-
-    String id = null
-
-    String result = null
-
-    String startTime = null
-
+    
+    String propertyClass
+    
+    String displayName
+    
+    Integer durationInMillis
+    
+    String id
+    
+    String result
+    
+    String startTime
 }

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **iconClassName** | **kotlin.String** |  |  [optional]
 **iconUrl** | **kotlin.String** |  |  [optional]
 **score** | **kotlin.Int** |  |  [optional]
-**Underscoreclass** | **kotlin.String** |  |  [optional]
+**propertyClass** | **kotlin.String** |  |  [optional]
 
 
 

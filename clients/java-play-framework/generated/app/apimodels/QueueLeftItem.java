@@ -13,48 +13,63 @@ import javax.validation.constraints.*;
 /**
  * QueueLeftItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2019-04-10T13:31:26.487Z[GMT]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-02T10:44:47.264211Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class QueueLeftItem   {
   @JsonProperty("_class")
-  private String propertyClass = null;
+  
+  private String propertyClass;
 
   @JsonProperty("actions")
+  @Valid
+
   private List<CauseAction> actions = null;
 
   @JsonProperty("blocked")
-  private Boolean blocked = null;
+  
+  private Boolean blocked;
 
   @JsonProperty("buildable")
-  private Boolean buildable = null;
+  
+  private Boolean buildable;
 
   @JsonProperty("id")
-  private Integer id = null;
+  
+  private Integer id;
 
   @JsonProperty("inQueueSince")
-  private Integer inQueueSince = null;
+  
+  private Integer inQueueSince;
 
   @JsonProperty("params")
-  private String params = null;
+  
+  private String params;
 
   @JsonProperty("stuck")
-  private Boolean stuck = null;
+  
+  private Boolean stuck;
 
   @JsonProperty("task")
-  private FreeStyleProject task = null;
+  @Valid
+
+  private FreeStyleProject task;
 
   @JsonProperty("url")
-  private String url = null;
+  
+  private String url;
 
   @JsonProperty("why")
-  private String why = null;
+  
+  private String why;
 
   @JsonProperty("cancelled")
-  private Boolean cancelled = null;
+  
+  private Boolean cancelled;
 
   @JsonProperty("executable")
-  private FreeStyleBuild executable = null;
+  @Valid
+
+  private FreeStyleBuild executable;
 
   public QueueLeftItem propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -65,7 +80,7 @@ public class QueueLeftItem   {
    * Get propertyClass
    * @return propertyClass
   **/
-    public String getPropertyClass() {
+  public String getPropertyClass() {
     return propertyClass;
   }
 
@@ -90,7 +105,6 @@ public class QueueLeftItem   {
    * Get actions
    * @return actions
   **/
-  @Valid
   public List<CauseAction> getActions() {
     return actions;
   }
@@ -108,7 +122,7 @@ public class QueueLeftItem   {
    * Get blocked
    * @return blocked
   **/
-    public Boolean getBlocked() {
+  public Boolean getBlocked() {
     return blocked;
   }
 
@@ -125,7 +139,7 @@ public class QueueLeftItem   {
    * Get buildable
    * @return buildable
   **/
-    public Boolean getBuildable() {
+  public Boolean getBuildable() {
     return buildable;
   }
 
@@ -142,7 +156,7 @@ public class QueueLeftItem   {
    * Get id
    * @return id
   **/
-    public Integer getId() {
+  public Integer getId() {
     return id;
   }
 
@@ -159,7 +173,7 @@ public class QueueLeftItem   {
    * Get inQueueSince
    * @return inQueueSince
   **/
-    public Integer getInQueueSince() {
+  public Integer getInQueueSince() {
     return inQueueSince;
   }
 
@@ -176,7 +190,7 @@ public class QueueLeftItem   {
    * Get params
    * @return params
   **/
-    public String getParams() {
+  public String getParams() {
     return params;
   }
 
@@ -193,7 +207,7 @@ public class QueueLeftItem   {
    * Get stuck
    * @return stuck
   **/
-    public Boolean getStuck() {
+  public Boolean getStuck() {
     return stuck;
   }
 
@@ -210,7 +224,6 @@ public class QueueLeftItem   {
    * Get task
    * @return task
   **/
-  @Valid
   public FreeStyleProject getTask() {
     return task;
   }
@@ -228,7 +241,7 @@ public class QueueLeftItem   {
    * Get url
    * @return url
   **/
-    public String getUrl() {
+  public String getUrl() {
     return url;
   }
 
@@ -245,7 +258,7 @@ public class QueueLeftItem   {
    * Get why
    * @return why
   **/
-    public String getWhy() {
+  public String getWhy() {
     return why;
   }
 
@@ -262,7 +275,7 @@ public class QueueLeftItem   {
    * Get cancelled
    * @return cancelled
   **/
-    public Boolean getCancelled() {
+  public Boolean getCancelled() {
     return cancelled;
   }
 
@@ -279,7 +292,6 @@ public class QueueLeftItem   {
    * Get executable
    * @return executable
   **/
-  @Valid
   public FreeStyleBuild getExecutable() {
     return executable;
   }
@@ -290,7 +302,7 @@ public class QueueLeftItem   {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -345,7 +357,7 @@ public class QueueLeftItem   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

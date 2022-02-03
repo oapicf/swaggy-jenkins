@@ -1,7 +1,9 @@
 
+
 # FreeStyleBuild
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | **String** |  |  [optional]
@@ -22,6 +24,7 @@ Name | Type | Description | Notes
 **timestamp** | **Integer** |  |  [optional]
 **builtOn** | **String** |  |  [optional]
 **changeSet** | [**EmptyChangeLogSet**](EmptyChangeLogSet.md) |  |  [optional]
+
 
 
 
