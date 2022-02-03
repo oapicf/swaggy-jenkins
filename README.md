@@ -21,7 +21,7 @@ Usage
 
 Generate API clients of the currently supported languages:
 
-    make build-docker
+    make generate
 
 Colophon
 --------
