@@ -1,5 +1,6 @@
 <img align="right" src="https://raw.github.com/cliffano/swaggy-jenkins/master/avatar.jpg" alt="Avatar"/>
 
+[![Build Status](https://github.com/cliffano/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/cliffano/swaggy-jenkins/actions/workflows/ci-workflow.yaml)
 <br/>
 
 Swaggy Jenkins
