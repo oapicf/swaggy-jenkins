@@ -10,12 +10,16 @@ deps:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
 generate:
-	echo ${GITHUB_WORKSPACE}
+	echo ${RUNNER_WORKSPACE}
+	echo ${GITHUB_ACTIONS}
+    @if [ "${GITHUB_ACTIONS}" = "true" ]; then \
+        BASE = ${RUNNER_WORKSPACE}; \
+    fi
 	for lang in ${LANGS} ; do \
 	  docker \
 		  run \
 		  --rm \
-		  -v ${PWD}:/local openapitools/openapi-generator-cli:v5.4.0 \
+		  -v ${BASE}:/local openapitools/openapi-generator-cli:v5.4.0 \
 		  generate \
 		  --input-spec /local/spec/jenkins-api.yml \
 		  --config /local/clients/$$lang/conf.json \
