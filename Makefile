@@ -10,7 +10,7 @@ deps:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
 generate:
-    pwd
+	echo $GITHUB_WORKSPACE
 	for lang in ${LANGS} ; do \
 	  docker \
 		  run \

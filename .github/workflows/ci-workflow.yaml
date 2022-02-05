@@ -6,5 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - run: pwd
     - uses: ./.github/actions/ci-action
