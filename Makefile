@@ -10,6 +10,7 @@ deps:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
 generate:
+    pwd
 	for lang in ${LANGS} ; do \
 	  docker \
 		  run \
