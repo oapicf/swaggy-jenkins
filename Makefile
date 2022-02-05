@@ -12,9 +12,9 @@ deps:
 generate:
 	echo ${RUNNER_WORKSPACE}
 	echo ${GITHUB_ACTIONS}
-    @if [ "${GITHUB_ACTIONS}" = "true" ]; then \
-        BASE = ${RUNNER_WORKSPACE}; \
-    fi
+	if [ "${GITHUB_ACTIONS}" = "true" ]; then \
+	  BASE = ${RUNNER_WORKSPACE}; \
+	fi
 	for lang in ${LANGS} ; do \
 	  docker \
 		  run \
