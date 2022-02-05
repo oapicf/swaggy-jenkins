@@ -8,6 +8,27 @@
         }
       },
       {
+        "path": "clients/javascript/conf.json",
+        "type": "json",
+        "params": {
+          "property": "projectVersion"
+        }
+      },
+      {
+        "path": "clients/python/conf.json",
+        "type": "json",
+        "params": {
+          "property": "packageVersion"
+        }
+      },
+      {
+        "path": "clients/ruby/conf.json",
+        "type": "json",
+        "params": {
+          "property": "gemVersion"
+        }
+      },
+      {
         "path": "CHANGELOG.md",
         "type": "keep-a-changelog"
       }
