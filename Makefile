@@ -12,7 +12,7 @@ deps:
 
 generate:
 	if [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  GEN_BASE_DIR=${RUNNER_WORKSPACE}; \
+	  GEN_BASE_DIR=${RUNNER_WORKSPACE}/swaggy-jenkins/; \
 	fi
 	for lang in ${LANGS} ; do \
 	  docker \
