@@ -9,6 +9,16 @@ deps:
 	docker pull openapitools/openapi-generator-cli:v5.4.0
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
+conf-placeholder:
+	for lang in ${LANGS} ; do \
+	  mkdir -p clients/$$lang/; \
+	  cp fixtures/conf-placeholder.json clients/$$lang/conf.json; \
+	done
+	git checkout clients/java/conf.json
+	git checkout clients/javascript/conf.json
+	git checkout clients/ruby/conf.json
+	git checkout clients/python/conf.json
+
 generate:
 	if [ "${LOCAL}" = "true" ]; then \
 	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
@@ -40,4 +50,4 @@ doc:
 doc-publish:
 	gh-pages --dist doc/
 
-.PHONY: clean deps generate test-javascript doc doc-publish
+.PHONY: clean conf-placeholder deps generate test-javascript doc doc-publish
