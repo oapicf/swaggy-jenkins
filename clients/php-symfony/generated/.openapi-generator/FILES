@@ -185,7 +185,6 @@ Service/StrictJsonDeserializationVisitor.php
 Service/SymfonyValidator.php
 Service/TypeMismatchException.php
 Service/ValidatorInterface.php
-Tests/Api/BaseApiInterfaceTest.php
 Tests/AppKernel.php
 Tests/Controller/ControllerTest.php
 Tests/test_config.yml

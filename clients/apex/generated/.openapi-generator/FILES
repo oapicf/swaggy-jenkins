@@ -6,8 +6,6 @@ force-app/main/default/classes/OASAllView.cls
 force-app/main/default/classes/OASAllView.cls-meta.xml
 force-app/main/default/classes/OASBaseApi.cls
 force-app/main/default/classes/OASBaseApi.cls-meta.xml
-force-app/main/default/classes/OASBaseApiTest.cls
-force-app/main/default/classes/OASBaseApiTest.cls-meta.xml
 force-app/main/default/classes/OASBlueOceanApi.cls
 force-app/main/default/classes/OASBlueOceanApi.cls-meta.xml
 force-app/main/default/classes/OASBranchImpl.cls

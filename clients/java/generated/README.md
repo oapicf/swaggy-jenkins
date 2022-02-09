@@ -1,8 +1,8 @@
 # swaggyjenkins
 
 Swaggy Jenkins
-- API version: 1.1.1
-  - Build date: 2022-02-02T10:43:57.983240Z[Etc/UTC]
+- API version: 1.1.2-pre.0
+  - Build date: 2022-02-09T13:00:41.367124Z[Etc/UTC]
 
 Jenkins API clients generated from Swagger / Open API specification
 

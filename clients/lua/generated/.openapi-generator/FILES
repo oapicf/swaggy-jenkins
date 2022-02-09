@@ -84,4 +84,3 @@ openapiclient/model/string_parameter_value.lua
 openapiclient/model/swap_space_monitor_memory_usage2.lua
 openapiclient/model/unlabeled_load_statistics.lua
 openapiclient/model/user.lua
-spec/base_api_spec.lua

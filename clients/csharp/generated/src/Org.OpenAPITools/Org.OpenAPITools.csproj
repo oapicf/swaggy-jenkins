@@ -4,7 +4,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-The version of the OpenAPI document: 1.1.1
+The version of the OpenAPI document: 1.1.2-pre.0
 Contact: blah@cliffano.com
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -12,7 +12,7 @@ Contact: blah@cliffano.com
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DA88B71B-8C8C-4FF0-BB01-4E2E3BEAD7E9}</ProjectGuid>
+    <ProjectGuid>{D59418EE-A206-4436-9B37-A199BBE03906}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Org.OpenAPITools</RootNamespace>

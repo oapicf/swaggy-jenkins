@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ExtensionClassContainerImpl1map")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class ExtensionClassContainerImpl1map   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-09T13:05:51.152086Z[Etc/UTC]")public class ExtensionClassContainerImpl1map   {
   
   private @Valid ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   private @Valid ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;

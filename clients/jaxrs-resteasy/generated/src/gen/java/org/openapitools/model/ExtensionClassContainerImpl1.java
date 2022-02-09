@@ -11,7 +11,7 @@ import org.openapitools.model.ExtensionClassContainerImpl1map;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-02T10:45:33.058943Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-09T13:05:36.867957Z[Etc/UTC]")
 public class ExtensionClassContainerImpl1   {
   
   private String propertyClass;

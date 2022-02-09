@@ -82,4 +82,3 @@ src/gen/java/org/openapitools/model/StringParameterValue.java
 src/gen/java/org/openapitools/model/SwapSpaceMonitorMemoryUsage2.java
 src/gen/java/org/openapitools/model/UnlabeledLoadStatistics.java
 src/gen/java/org/openapitools/model/User.java
-src/test/java/org/openapitools/api/BaseApiTest.java

@@ -11,7 +11,7 @@ import org.openapitools.model.PipelinelatestRun;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-02T10:44:21.668219Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-09T13:04:17.073349Z[Etc/UTC]")
 public class Pipeline   {
   @JsonProperty("_class")
   private String propertyClass;

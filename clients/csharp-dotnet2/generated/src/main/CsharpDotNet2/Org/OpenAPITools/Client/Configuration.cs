@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Client
                      .GetExecutingAssembly()
                      .GetReferencedAssemblies()
                      .Where(x => x.Name == "System.Core").First().Version.ToString()  + "\n";
-            report += "    Version of the API: 1.1.1\n";
+            report += "    Version of the API: 1.1.2-pre.0\n";
             report += "    SDK Package Version: 1.0.0\n";
 
             return report;

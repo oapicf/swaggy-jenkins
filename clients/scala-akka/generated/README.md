@@ -1,7 +1,7 @@
 # openapi-client
 
 Swaggy Jenkins
-- API version: 1.1.1
+- API version: 1.1.2-pre.0
 
 Jenkins API clients generated from Swagger / Open API specification
 

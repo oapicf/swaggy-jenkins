@@ -173,4 +173,3 @@ src/model/StringParameterValue.js
 src/model/SwapSpaceMonitorMemoryUsage2.js
 src/model/UnlabeledLoadStatistics.js
 src/model/User.js
-test/api/BaseApi.spec.js

@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * PipelineRunImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-02T12:55:55.340851Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-09T13:10:31.658770Z[Etc/UTC]")
 public class PipelineRunImpl   {
 
   @JsonProperty("_class")

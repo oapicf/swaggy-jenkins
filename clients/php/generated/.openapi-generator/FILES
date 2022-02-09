@@ -176,4 +176,3 @@ lib/Model/UnlabeledLoadStatistics.php
 lib/Model/User.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/BaseApiTest.php

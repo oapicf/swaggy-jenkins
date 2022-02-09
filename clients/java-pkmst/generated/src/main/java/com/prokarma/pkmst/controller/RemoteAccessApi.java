@@ -24,7 +24,7 @@ import java.util.List;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-02T10:44:39.394659Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-09T13:04:37.733416Z[Etc/UTC]")
 @Api(value = "RemoteAccess", description = "the RemoteAccess API")
 public interface RemoteAccessApi {
 

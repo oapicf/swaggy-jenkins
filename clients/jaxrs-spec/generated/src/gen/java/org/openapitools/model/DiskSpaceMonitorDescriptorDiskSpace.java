@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("DiskSpaceMonitorDescriptorDiskSpace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-02T10:45:47.905826Z[Etc/UTC]")public class DiskSpaceMonitorDescriptorDiskSpace   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-09T13:05:51.152086Z[Etc/UTC]")public class DiskSpaceMonitorDescriptorDiskSpace   {
   
   private @Valid String propertyClass;
   private @Valid Integer timestamp;

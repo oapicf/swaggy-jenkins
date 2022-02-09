@@ -208,5 +208,4 @@ swaggyjenkins/models/__init__.py
 swaggyjenkins/rest.py
 test-requirements.txt
 test/__init__.py
-test/test_base_api.py
 tox.ini

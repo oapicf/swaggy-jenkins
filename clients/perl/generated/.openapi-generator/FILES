@@ -174,4 +174,3 @@ lib/WWW/OpenAPIClient/Object/User.pm
 lib/WWW/OpenAPIClient/RemoteAccessApi.pm
 lib/WWW/OpenAPIClient/Role.pm
 lib/WWW/OpenAPIClient/Role/AutoDoc.pm
-t/BaseApiTest.t

@@ -177,7 +177,6 @@ lib/swaggy_jenkins/models/swap_space_monitor_memory_usage2.rb
 lib/swaggy_jenkins/models/unlabeled_load_statistics.rb
 lib/swaggy_jenkins/models/user.rb
 lib/swaggy_jenkins/version.rb
-spec/api/base_api_spec.rb
 spec/api_client_spec.rb
 spec/configuration_spec.rb
 spec/spec_helper.rb
