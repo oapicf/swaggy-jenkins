@@ -14,13 +14,22 @@ generate:
 	if [ "${GITHUB_ACTIONS}" = "true" ]; then \
 	  GEN_BASE_DIR="${RUNNER_WORKSPACE}/swaggy-jenkins/"; \
 	  $(eval GEN_BASE_DIR := ${RUNNER_WORKSPACE}/swaggy-jenkins/) \
-	  echo  ${GEN_BASE_DIR}; \
+	  echo  "Using GH Actions env base directory: ${GEN_BASE_DIR}"; \
 	elif [ "${LOCAL}" = "true" ]; then \
 	  $(eval GEN_BASE_DIR := /Users/cliffano/dev/workspace-studio/swaggy-jenkins) \
-	  echo  ${GEN_BASE_DIR}; \
+	  echo  "Using local env base directory: ${GEN_BASE_DIR}"; \
 	fi
-	echo  ${GEN_BASE_DIR}
-
+	for lang in ${LANGS} ; do \
+	  docker \
+		  run \
+		  --rm \
+		  -v ${GEN_BASE_DIR}:/local openapitools/openapi-generator-cli:v5.4.0 \
+		  generate \
+		  --input-spec /local/spec/jenkins-api.yml \
+		  --config /local/clients/$$lang/conf.json \
+		  --generator-name $$lang \
+		  --output /local/clients/$$lang/generated; \
+	done
 
 test-javascript:
 	cd clients/javascript/generated/ && npm link
