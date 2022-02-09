@@ -11,19 +11,19 @@ deps:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
 generate:
-	if [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  $(eval GEN_BASE_DIR := ${RUNNER_WORKSPACE}/) \
-	  echo  "Using GH Actions env base directory: ${GEN_BASE_DIR}"; \
-	elif [ "${LOCAL}" = "true" ]; then \
-	  $(eval GEN_BASE_DIR := /Users/cliffano/dev/workspace-studio/swaggy-jenkins) \
-	  echo  "Using local env base directory: ${GEN_BASE_DIR}"; \
+	if [ "${LOCAL}" = "true" ]; then \
+	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
+	elif [ "${GITHUB_ACTIONS}" = "true" ]; then \
+	  find ${RUNNER_WORKSPACE}
+	  make generate-langs GEN_BASE_DIR=${RUNNER_WORKSPACE}; \
 	fi
-	find ${GEN_BASE_DIR}
+
+generate-langs:
 	for lang in ${LANGS} ; do \
 	  docker \
 		  run \
 		  --rm \
-		  -v ${GEN_BASE_DIR}:/local openapitools/openapi-generator-cli:v5.4.0 \
+		  -v $(GEN_BASE_DIR):/local openapitools/openapi-generator-cli:v5.4.0 \
 		  generate \
 		  --input-spec /local/spec/jenkins-api.yml \
 		  --config /local/clients/$$lang/conf.json \
