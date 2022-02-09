@@ -11,10 +11,12 @@ deps:
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
 generate:
+    echo "============================"
+	find ${RUNNER_WORKSPACE}
+	echo "----------------------------"
 	if [ "${LOCAL}" = "true" ]; then \
 	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
 	elif [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  find ${RUNNER_WORKSPACE}; \
 	  make generate-langs GEN_BASE_DIR=${RUNNER_WORKSPACE}; \
 	fi
 
