@@ -12,8 +12,7 @@ deps:
 
 generate:
 	if [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  GEN_BASE_DIR="${RUNNER_WORKSPACE}/swaggy-jenkins/"; \
-	  $(eval GEN_BASE_DIR := ${RUNNER_WORKSPACE}/swaggy-jenkins/) \
+	  $(eval GEN_BASE_DIR := ${RUNNER_WORKSPACE}/) \
 	  echo  "Using GH Actions env base directory: ${GEN_BASE_DIR}"; \
 	elif [ "${LOCAL}" = "true" ]; then \
 	  $(eval GEN_BASE_DIR := /Users/cliffano/dev/workspace-studio/swaggy-jenkins) \
