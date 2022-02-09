@@ -18,6 +18,7 @@ generate:
 	  $(eval GEN_BASE_DIR := /Users/cliffano/dev/workspace-studio/swaggy-jenkins) \
 	  echo  "Using local env base directory: ${GEN_BASE_DIR}"; \
 	fi
+	find ${GEN_BASE_DIR}
 	for lang in ${LANGS} ; do \
 	  docker \
 		  run \
