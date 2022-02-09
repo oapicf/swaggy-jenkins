@@ -12,6 +12,7 @@ deps:
 
 generate:
     echo "============================"
+	pwd
 	find ${RUNNER_WORKSPACE}
 	echo "----------------------------"
 	if [ "${LOCAL}" = "true" ]; then \
