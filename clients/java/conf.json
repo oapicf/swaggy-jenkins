@@ -1,6 +1,6 @@
 {
   "artifactId": "swaggyjenkins",
-  "artifactVersion": "0.0.1",
+  "artifactVersion": "1.1.2-pre.0",
   "artifactUrl": "https://github.com/cliffano/swaggy-jenkins",
   "artifactDescription": "Jenkins API client generated from Swagger / Open API specification",
   "groupId": "com.cliffano",
