@@ -12,7 +12,7 @@ deps:
 
 generate:
 	pwd
-	find "${RUNNER_WORKSPACE}"
+	find `pwd`
 	if [ "${LOCAL}" = "true" ]; then \
 	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
 	elif [ "${GITHUB_ACTIONS}" = "true" ]; then \
