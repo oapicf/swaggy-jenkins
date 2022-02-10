@@ -40,6 +40,7 @@ generate-langs:
 	done
 
 test-javascript:
+	npm install -g babel
 	cd clients/javascript/generated/ && npm link
 	cd test/javascript/ && npm link swaggy-jenkins
 	mocha --timeout 5000 test/javascript/
