@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ClassesByClass"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ClassesByClass"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ClassesByClass {
+    title = ClassesByClass
+    description = ClassesByClass
+    derivedFrom = Root
+    properties {
+        classes {
+          type = array
+          items.type =  string
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ClassesByClass {
+    title = ClassesByClass
+    description = ClassesByClass
+    implements = openapi_server.resourceTypes.ClassesByClass
+
+  }
+}

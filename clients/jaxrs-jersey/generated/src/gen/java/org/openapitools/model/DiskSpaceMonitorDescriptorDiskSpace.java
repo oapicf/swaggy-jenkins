@@ -31,7 +31,7 @@ import javax.validation.Valid;
   DiskSpaceMonitorDescriptorDiskSpace.JSON_PROPERTY_PATH,
   DiskSpaceMonitorDescriptorDiskSpace.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-09T13:05:29.098198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-10T09:47:07.448540Z[Etc/UTC]")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

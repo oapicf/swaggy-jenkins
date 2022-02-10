@@ -1,0 +1,34 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "number" },
+      {"model": "url" },
+      {"model": "actions" },
+      {"model": "building" },
+      {"model": "description" },
+      {"model": "display_name" },
+      {"model": "duration" },
+      {"model": "estimated_duration" },
+      {"model": "executor" },
+      {"model": "full_display_name" },
+      {"model": "id" },
+      {"model": "keep_log" },
+      {"model": "queue_id" },
+      {"model": "result" },
+      {"model": "timestamp" },
+      {"model": "built_on" },
+      {"model": "change_set" },
+    ]
+  }]
+}

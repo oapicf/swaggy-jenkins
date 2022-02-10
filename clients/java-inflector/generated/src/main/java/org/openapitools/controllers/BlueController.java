@@ -27,7 +27,7 @@ import org.openapitools.model.QueueItemImpl;
 import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-09T13:04:17.073349Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-10T09:45:28.256910Z[Etc/UTC]")
 public class BlueController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map

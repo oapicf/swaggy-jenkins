@@ -1,0 +1,289 @@
+package org.openapitools.model;
+
+import org.openapitools.model.InputStepImpl;
+import org.openapitools.model.PipelineStepImpllinks;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+public class PipelineStepImpl  {
+  
+  @ApiModelProperty(value = "")
+  private String propertyClass;
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private PipelineStepImpllinks links;
+
+  @ApiModelProperty(value = "")
+  private String displayName;
+
+  @ApiModelProperty(value = "")
+  private Integer durationInMillis;
+
+  @ApiModelProperty(value = "")
+  private String id;
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private InputStepImpl input;
+
+  @ApiModelProperty(value = "")
+  private String result;
+
+  @ApiModelProperty(value = "")
+  private String startTime;
+
+  @ApiModelProperty(value = "")
+  private String state;
+ /**
+  * Get propertyClass
+  * @return propertyClass
+  */
+  @JsonProperty("_class")
+  public String getPropertyClass() {
+    return propertyClass;
+  }
+
+  /**
+   * Sets the <code>propertyClass</code> property.
+   */
+ public void setPropertyClass(String propertyClass) {
+    this.propertyClass = propertyClass;
+  }
+
+  /**
+   * Sets the <code>propertyClass</code> property.
+   */
+  public PipelineStepImpl propertyClass(String propertyClass) {
+    this.propertyClass = propertyClass;
+    return this;
+  }
+
+ /**
+  * Get links
+  * @return links
+  */
+  @JsonProperty("_links")
+  public PipelineStepImpllinks getLinks() {
+    return links;
+  }
+
+  /**
+   * Sets the <code>links</code> property.
+   */
+ public void setLinks(PipelineStepImpllinks links) {
+    this.links = links;
+  }
+
+  /**
+   * Sets the <code>links</code> property.
+   */
+  public PipelineStepImpl links(PipelineStepImpllinks links) {
+    this.links = links;
+    return this;
+  }
+
+ /**
+  * Get displayName
+  * @return displayName
+  */
+  @JsonProperty("displayName")
+  public String getDisplayName() {
+    return displayName;
+  }
+
+  /**
+   * Sets the <code>displayName</code> property.
+   */
+ public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+  /**
+   * Sets the <code>displayName</code> property.
+   */
+  public PipelineStepImpl displayName(String displayName) {
+    this.displayName = displayName;
+    return this;
+  }
+
+ /**
+  * Get durationInMillis
+  * @return durationInMillis
+  */
+  @JsonProperty("durationInMillis")
+  public Integer getDurationInMillis() {
+    return durationInMillis;
+  }
+
+  /**
+   * Sets the <code>durationInMillis</code> property.
+   */
+ public void setDurationInMillis(Integer durationInMillis) {
+    this.durationInMillis = durationInMillis;
+  }
+
+  /**
+   * Sets the <code>durationInMillis</code> property.
+   */
+  public PipelineStepImpl durationInMillis(Integer durationInMillis) {
+    this.durationInMillis = durationInMillis;
+    return this;
+  }
+
+ /**
+  * Get id
+  * @return id
+  */
+  @JsonProperty("id")
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * Sets the <code>id</code> property.
+   */
+ public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
+   * Sets the <code>id</code> property.
+   */
+  public PipelineStepImpl id(String id) {
+    this.id = id;
+    return this;
+  }
+
+ /**
+  * Get input
+  * @return input
+  */
+  @JsonProperty("input")
+  public InputStepImpl getInput() {
+    return input;
+  }
+
+  /**
+   * Sets the <code>input</code> property.
+   */
+ public void setInput(InputStepImpl input) {
+    this.input = input;
+  }
+
+  /**
+   * Sets the <code>input</code> property.
+   */
+  public PipelineStepImpl input(InputStepImpl input) {
+    this.input = input;
+    return this;
+  }
+
+ /**
+  * Get result
+  * @return result
+  */
+  @JsonProperty("result")
+  public String getResult() {
+    return result;
+  }
+
+  /**
+   * Sets the <code>result</code> property.
+   */
+ public void setResult(String result) {
+    this.result = result;
+  }
+
+  /**
+   * Sets the <code>result</code> property.
+   */
+  public PipelineStepImpl result(String result) {
+    this.result = result;
+    return this;
+  }
+
+ /**
+  * Get startTime
+  * @return startTime
+  */
+  @JsonProperty("startTime")
+  public String getStartTime() {
+    return startTime;
+  }
+
+  /**
+   * Sets the <code>startTime</code> property.
+   */
+ public void setStartTime(String startTime) {
+    this.startTime = startTime;
+  }
+
+  /**
+   * Sets the <code>startTime</code> property.
+   */
+  public PipelineStepImpl startTime(String startTime) {
+    this.startTime = startTime;
+    return this;
+  }
+
+ /**
+  * Get state
+  * @return state
+  */
+  @JsonProperty("state")
+  public String getState() {
+    return state;
+  }
+
+  /**
+   * Sets the <code>state</code> property.
+   */
+ public void setState(String state) {
+    this.state = state;
+  }
+
+  /**
+   * Sets the <code>state</code> property.
+   */
+  public PipelineStepImpl state(String state) {
+    this.state = state;
+    return this;
+  }
+
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PipelineStepImpl {\n");
+    
+    sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
+    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    durationInMillis: ").append(toIndentedString(durationInMillis)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    input: ").append(toIndentedString(input)).append("\n");
+    sb.append("    result: ").append(toIndentedString(result)).append("\n");
+    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}
+

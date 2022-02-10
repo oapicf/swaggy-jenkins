@@ -16,7 +16,7 @@ import java.util.List;
  * MultibranchPipeline
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-09T13:04:37.733416Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-10T09:46:03.315402Z[Etc/UTC]")
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
   private String displayName;

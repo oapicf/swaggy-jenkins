@@ -1,0 +1,25 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "display_name" },
+      {"model": "estimated_duration_in_millis" },
+      {"model": "name" },
+      {"model": "weather_score" },
+      {"model": "latest_run" },
+      {"model": "organization" },
+      {"model": "pull_request" },
+      {"model": "total_number_of_pull_requests" },
+      {"model": "_class" },
+    ]
+  }]
+}

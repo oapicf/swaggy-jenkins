@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server AllView"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a AllView"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  AllView {
+    title = AllView
+    description = AllView
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        url {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  AllView {
+    title = AllView
+    description = AllView
+    implements = openapi_server.resourceTypes.AllView
+
+  }
+}

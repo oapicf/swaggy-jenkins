@@ -1,0 +1,810 @@
+@startuml
+
+title Swaggy Jenkins Schemas Diagram
+
+entity AllView {
+    _class: String
+    name: String
+    url: String
+}
+
+entity BranchImpl {
+    _class: String
+    displayName: String
+    estimatedDurationInMillis: Integer
+    fullDisplayName: String
+    fullName: String
+    name: String
+    organization: String
+    parameters: List<StringParameterDefinition>
+    permissions: BranchImplpermissions
+    weatherScore: Integer
+    pullRequest: String
+    _links: BranchImpllinks
+    latestRun: PipelineRunImpl
+}
+
+entity BranchImpllinks {
+    self: Link
+    actions: Link
+    runs: Link
+    queue: Link
+    _class: String
+}
+
+entity BranchImplpermissions {
+    create: Boolean
+    read: Boolean
+    start: Boolean
+    stop: Boolean
+    _class: String
+}
+
+entity CauseAction {
+    _class: String
+    causes: List<CauseUserIdCause>
+}
+
+entity CauseUserIdCause {
+    _class: String
+    shortDescription: String
+    userId: String
+    userName: String
+}
+
+entity ClassesByClass {
+    classes: List<String>
+    _class: String
+}
+
+entity ClockDifference {
+    _class: String
+    diff: Integer
+}
+
+entity ComputerSet {
+    _class: String
+    busyExecutors: Integer
+    computer: List<HudsonMasterComputer>
+    displayName: String
+    totalExecutors: Integer
+}
+
+entity DefaultCrumbIssuer {
+    _class: String
+    crumb: String
+    crumbRequestField: String
+}
+
+entity DiskSpaceMonitorDescriptorDiskSpace {
+    _class: String
+    timestamp: Integer
+    path: String
+    size: Integer
+}
+
+entity EmptyChangeLogSet {
+    _class: String
+    kind: String
+}
+
+entity ExtensionClassContainerImpl1 {
+    _class: String
+    _links: ExtensionClassContainerImpl1links
+    map: ExtensionClassContainerImpl1map
+}
+
+entity ExtensionClassContainerImpl1links {
+    self: Link
+    _class: String
+}
+
+entity ExtensionClassContainerImpl1map {
+    io.jenkins.blueocean.service.embedded.rest.PipelineImpl: ExtensionClassImpl
+    io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl: ExtensionClassImpl
+    _class: String
+}
+
+entity ExtensionClassImpl {
+    _class: String
+    _links: ExtensionClassImpllinks
+    classes: List<String>
+}
+
+entity ExtensionClassImpllinks {
+    self: Link
+    _class: String
+}
+
+entity FavoriteImpl {
+    _class: String
+    _links: FavoriteImpllinks
+    item: PipelineImpl
+}
+
+entity FavoriteImpllinks {
+    self: Link
+    _class: String
+}
+
+entity FreeStyleBuild {
+    _class: String
+    number: Integer
+    url: String
+    actions: List<CauseAction>
+    building: Boolean
+    description: String
+    displayName: String
+    duration: Integer
+    estimatedDuration: Integer
+    executor: String
+    fullDisplayName: String
+    id: String
+    keepLog: Boolean
+    queueId: Integer
+    result: String
+    timestamp: Integer
+    builtOn: String
+    changeSet: EmptyChangeLogSet
+}
+
+entity FreeStyleProject {
+    _class: String
+    name: String
+    url: String
+    color: String
+    actions: List<FreeStyleProjectactions>
+    description: String
+    displayName: String
+    displayNameOrNull: String
+    fullDisplayName: String
+    fullName: String
+    buildable: Boolean
+    builds: List<FreeStyleBuild>
+    firstBuild: FreeStyleBuild
+    healthReport: List<FreeStyleProjecthealthReport>
+    inQueue: Boolean
+    keepDependencies: Boolean
+    lastBuild: FreeStyleBuild
+    lastCompletedBuild: FreeStyleBuild
+    lastFailedBuild: String
+    lastStableBuild: FreeStyleBuild
+    lastSuccessfulBuild: FreeStyleBuild
+    lastUnstableBuild: String
+    lastUnsuccessfulBuild: String
+    nextBuildNumber: Integer
+    queueItem: String
+    concurrentBuild: Boolean
+    scm: NullSCM
+}
+
+entity FreeStyleProjectactions {
+    _class: String
+}
+
+entity FreeStyleProjecthealthReport {
+    description: String
+    iconClassName: String
+    iconUrl: String
+    score: Integer
+    _class: String
+}
+
+entity GenericResource {
+    _class: String
+    displayName: String
+    durationInMillis: Integer
+    id: String
+    result: String
+    startTime: String
+}
+
+entity GithubContent {
+    name: String
+    sha: String
+    _class: String
+    repo: String
+    size: Integer
+    owner: String
+    path: String
+    base64Data: String
+}
+
+entity GithubFile {
+    content: GithubContent
+    _class: String
+}
+
+entity GithubOrganization {
+    _class: String
+    _links: GithubOrganizationlinks
+    jenkinsOrganizationPipeline: Boolean
+    name: String
+}
+
+entity GithubOrganizationlinks {
+    repositories: Link
+    self: Link
+    _class: String
+}
+
+entity GithubRepositories {
+    _class: String
+    _links: GithubRepositorieslinks
+    items: List<GithubRepository>
+    lastPage: Integer
+    nextPage: Integer
+    pageSize: Integer
+}
+
+entity GithubRepositorieslinks {
+    self: Link
+    _class: String
+}
+
+entity GithubRepository {
+    _class: String
+    _links: GithubRepositorylinks
+    defaultBranch: String
+    description: String
+    name: String
+    permissions: GithubRepositorypermissions
+    private: Boolean
+    fullName: String
+}
+
+entity GithubRepositorylinks {
+    self: Link
+    _class: String
+}
+
+entity GithubRepositorypermissions {
+    admin: Boolean
+    push: Boolean
+    pull: Boolean
+    _class: String
+}
+
+entity GithubRespositoryContainer {
+    _class: String
+    _links: GithubRespositoryContainerlinks
+    repositories: GithubRepositories
+}
+
+entity GithubRespositoryContainerlinks {
+    self: Link
+    _class: String
+}
+
+entity GithubScm {
+    _class: String
+    _links: GithubScmlinks
+    credentialId: String
+    id: String
+    uri: String
+}
+
+entity GithubScmlinks {
+    self: Link
+    _class: String
+}
+
+entity Hudson {
+    _class: String
+    assignedLabels: List<HudsonassignedLabels>
+    mode: String
+    nodeDescription: String
+    nodeName: String
+    numExecutors: Integer
+    description: String
+    jobs: List<FreeStyleProject>
+    primaryView: AllView
+    quietingDown: Boolean
+    slaveAgentPort: Integer
+    unlabeledLoad: UnlabeledLoadStatistics
+    useCrumbs: Boolean
+    useSecurity: Boolean
+    views: List<AllView>
+}
+
+entity HudsonMasterComputer {
+    _class: String
+    displayName: String
+    executors: List<HudsonMasterComputerexecutors>
+    icon: String
+    iconClassName: String
+    idle: Boolean
+    jnlpAgent: Boolean
+    launchSupported: Boolean
+    loadStatistics: Label1
+    manualLaunchAllowed: Boolean
+    monitorData: HudsonMasterComputermonitorData
+    numExecutors: Integer
+    offline: Boolean
+    offlineCause: String
+    offlineCauseReason: String
+    temporarilyOffline: Boolean
+}
+
+entity HudsonMasterComputerexecutors {
+    currentExecutable: FreeStyleBuild
+    idle: Boolean
+    likelyStuck: Boolean
+    number: Integer
+    progress: Integer
+    _class: String
+}
+
+entity HudsonMasterComputermonitorData {
+    hudson.node_monitors.SwapSpaceMonitor: SwapSpaceMonitorMemoryUsage2
+    hudson.node_monitors.TemporarySpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace
+    hudson.node_monitors.DiskSpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace
+    hudson.node_monitors.ArchitectureMonitor: String
+    hudson.node_monitors.ResponseTimeMonitor: ResponseTimeMonitorData
+    hudson.node_monitors.ClockMonitor: ClockDifference
+    _class: String
+}
+
+entity HudsonassignedLabels {
+    _class: String
+}
+
+entity InputStepImpl {
+    _class: String
+    _links: InputStepImpllinks
+    id: String
+    message: String
+    ok: String
+    parameters: List<StringParameterDefinition>
+    submitter: String
+}
+
+entity InputStepImpllinks {
+    self: Link
+    _class: String
+}
+
+entity Label1 {
+    _class: String
+}
+
+entity Link {
+    _class: String
+    href: String
+}
+
+entity ListView {
+    _class: String
+    description: String
+    jobs: List<FreeStyleProject>
+    name: String
+    url: String
+}
+
+entity MultibranchPipeline {
+    displayName: String
+    estimatedDurationInMillis: Integer
+    latestRun: String
+    name: String
+    organization: String
+    weatherScore: Integer
+    branchNames: List<String>
+    numberOfFailingBranches: Integer
+    numberOfFailingPullRequests: Integer
+    numberOfSuccessfulBranches: Integer
+    numberOfSuccessfulPullRequests: Integer
+    totalNumberOfBranches: Integer
+    totalNumberOfPullRequests: Integer
+    _class: String
+}
+
+entity NullSCM {
+    _class: String
+}
+
+entity Organisation {
+    _class: String
+    name: String
+}
+
+entity Pipeline {
+    _class: String
+    organization: String
+    name: String
+    displayName: String
+    fullName: String
+    weatherScore: Integer
+    estimatedDurationInMillis: Integer
+    latestRun: PipelinelatestRun
+}
+
+entity PipelineActivity {
+    _class: String
+    artifacts: List<PipelineActivityartifacts>
+    durationInMillis: Integer
+    estimatedDurationInMillis: Integer
+    enQueueTime: String
+    endTime: String
+    id: String
+    organization: String
+    pipeline: String
+    result: String
+    runSummary: String
+    startTime: String
+    state: String
+    type: String
+    commitId: String
+}
+
+entity PipelineActivityartifacts {
+    name: String
+    size: Integer
+    url: String
+    _class: String
+}
+
+entity PipelineBranchesitem {
+    displayName: String
+    estimatedDurationInMillis: Integer
+    name: String
+    weatherScore: Integer
+    latestRun: PipelineBranchesitemlatestRun
+    organization: String
+    pullRequest: PipelineBranchesitempullRequest
+    totalNumberOfPullRequests: Integer
+    _class: String
+}
+
+entity PipelineBranchesitemlatestRun {
+    durationInMillis: Integer
+    estimatedDurationInMillis: Integer
+    enQueueTime: String
+    endTime: String
+    id: String
+    organization: String
+    pipeline: String
+    result: String
+    runSummary: String
+    startTime: String
+    state: String
+    type: String
+    commitId: String
+    _class: String
+}
+
+entity PipelineBranchesitempullRequest {
+    _links: PipelineBranchesitempullRequestlinks
+    author: String
+    id: String
+    title: String
+    url: String
+    _class: String
+}
+
+entity PipelineBranchesitempullRequestlinks {
+    self: String
+    _class: String
+}
+
+entity PipelineFolderImpl {
+    _class: String
+    displayName: String
+    fullName: String
+    name: String
+    organization: String
+    numberOfFolders: Integer
+    numberOfPipelines: Integer
+}
+
+entity PipelineImpl {
+    _class: String
+    displayName: String
+    estimatedDurationInMillis: Integer
+    fullName: String
+    latestRun: String
+    name: String
+    organization: String
+    weatherScore: Integer
+    _links: PipelineImpllinks
+}
+
+entity PipelineImpllinks {
+    runs: Link
+    self: Link
+    queue: Link
+    actions: Link
+    _class: String
+}
+
+entity PipelineRun {
+    _class: String
+    artifacts: List<PipelineRunartifacts>
+    durationInMillis: Integer
+    estimatedDurationInMillis: Integer
+    enQueueTime: String
+    endTime: String
+    id: String
+    organization: String
+    pipeline: String
+    result: String
+    runSummary: String
+    startTime: String
+    state: String
+    type: String
+    commitId: String
+}
+
+entity PipelineRunImpl {
+    _class: String
+    _links: PipelineRunImpllinks
+    durationInMillis: Integer
+    enQueueTime: String
+    endTime: String
+    estimatedDurationInMillis: Integer
+    id: String
+    organization: String
+    pipeline: String
+    result: String
+    runSummary: String
+    startTime: String
+    state: String
+    type: String
+    commitId: String
+}
+
+entity PipelineRunImpllinks {
+    nodes: Link
+    log: Link
+    self: Link
+    actions: Link
+    steps: Link
+    _class: String
+}
+
+entity PipelineRunNode {
+    _class: String
+    displayName: String
+    durationInMillis: Integer
+    edges: List<PipelineRunNodeedges>
+    id: String
+    result: String
+    startTime: String
+    state: String
+}
+
+entity PipelineRunNodeedges {
+    id: String
+    _class: String
+}
+
+entity PipelineRunartifacts {
+    name: String
+    size: Integer
+    url: String
+    _class: String
+}
+
+entity PipelineStepImpl {
+    _class: String
+    _links: PipelineStepImpllinks
+    displayName: String
+    durationInMillis: Integer
+    id: String
+    input: InputStepImpl
+    result: String
+    startTime: String
+    state: String
+}
+
+entity PipelineStepImpllinks {
+    self: Link
+    actions: Link
+    _class: String
+}
+
+entity PipelinelatestRun {
+    artifacts: List<PipelinelatestRunartifacts>
+    durationInMillis: Integer
+    estimatedDurationInMillis: Integer
+    enQueueTime: String
+    endTime: String
+    id: String
+    organization: String
+    pipeline: String
+    result: String
+    runSummary: String
+    startTime: String
+    state: String
+    type: String
+    commitId: String
+    _class: String
+}
+
+entity PipelinelatestRunartifacts {
+    name: String
+    size: Integer
+    url: String
+    _class: String
+}
+
+entity Queue {
+    _class: String
+    items: List<QueueBlockedItem>
+}
+
+entity QueueBlockedItem {
+    _class: String
+    actions: List<CauseAction>
+    blocked: Boolean
+    buildable: Boolean
+    id: Integer
+    inQueueSince: Integer
+    params: String
+    stuck: Boolean
+    task: FreeStyleProject
+    url: String
+    why: String
+    buildableStartMilliseconds: Integer
+}
+
+entity QueueItemImpl {
+    _class: String
+    expectedBuildNumber: Integer
+    id: String
+    pipeline: String
+    queuedTime: Integer
+}
+
+entity QueueLeftItem {
+    _class: String
+    actions: List<CauseAction>
+    blocked: Boolean
+    buildable: Boolean
+    id: Integer
+    inQueueSince: Integer
+    params: String
+    stuck: Boolean
+    task: FreeStyleProject
+    url: String
+    why: String
+    cancelled: Boolean
+    executable: FreeStyleBuild
+}
+
+entity ResponseTimeMonitorData {
+    _class: String
+    timestamp: Integer
+    average: Integer
+}
+
+entity StringParameterDefinition {
+    _class: String
+    defaultParameterValue: StringParameterValue
+    description: String
+    name: String
+    type: String
+}
+
+entity StringParameterValue {
+    _class: String
+    name: String
+    value: String
+}
+
+entity SwapSpaceMonitorMemoryUsage2 {
+    _class: String
+    availablePhysicalMemory: Integer
+    availableSwapSpace: Integer
+    totalPhysicalMemory: Integer
+    totalSwapSpace: Integer
+}
+
+entity UnlabeledLoadStatistics {
+    _class: String
+}
+
+entity User {
+    _class: String
+    id: String
+    fullName: String
+    email: String
+    name: String
+}
+
+
+PipelineRun -- "0..*" PipelineRunartifacts : artifacts
+HudsonMasterComputerexecutors -- FreeStyleBuild : currentExecutable
+FreeStyleBuild -- "0..*" CauseAction : actions
+FreeStyleBuild -- EmptyChangeLogSet : changeSet
+ExtensionClassContainerImpl1map -- ExtensionClassImpl : io.jenkins.blueocean.service.embedded.rest.PipelineImpl
+ExtensionClassContainerImpl1map -- ExtensionClassImpl : io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl
+ExtensionClassImpllinks -- Link : self
+ListView -- "0..*" FreeStyleProject : jobs
+InputStepImpl -- InputStepImpllinks : _links
+InputStepImpl -- "0..*" StringParameterDefinition : parameters
+GithubRespositoryContainer -- GithubRespositoryContainerlinks : _links
+GithubRespositoryContainer -- GithubRepositories : repositories
+GithubRepositories -- GithubRepositorieslinks : _links
+GithubRepositories -- "0..*" GithubRepository : items
+PipelineImpllinks -- Link : runs
+PipelineImpllinks -- Link : self
+PipelineImpllinks -- Link : queue
+PipelineImpllinks -- Link : actions
+ExtensionClassContainerImpl1 -- ExtensionClassContainerImpl1links : _links
+ExtensionClassContainerImpl1 -- ExtensionClassContainerImpl1map : map
+GithubOrganization -- GithubOrganizationlinks : _links
+GithubScm -- GithubScmlinks : _links
+Hudson -- "0..*" HudsonassignedLabels : assignedLabels
+Hudson -- "0..*" FreeStyleProject : jobs
+Hudson -- AllView : primaryView
+Hudson -- UnlabeledLoadStatistics : unlabeledLoad
+Hudson -- "0..*" AllView : views
+GithubRepositorylinks -- Link : self
+ExtensionClassContainerImpl1links -- Link : self
+GithubRepository -- GithubRepositorylinks : _links
+GithubRepository -- GithubRepositorypermissions : permissions
+PipelineActivity -- "0..*" PipelineActivityartifacts : artifacts
+PipelinelatestRun -- "0..*" PipelinelatestRunartifacts : artifacts
+GithubFile -- GithubContent : content
+InputStepImpllinks -- Link : self
+PipelineBranchesitempullRequest -- PipelineBranchesitempullRequestlinks : _links
+GithubOrganizationlinks -- Link : repositories
+GithubOrganizationlinks -- Link : self
+GithubRepositorieslinks -- Link : self
+QueueBlockedItem -- "0..*" CauseAction : actions
+QueueBlockedItem -- FreeStyleProject : task
+StringParameterDefinition -- StringParameterValue : defaultParameterValue
+PipelineImpl -- PipelineImpllinks : _links
+GithubScmlinks -- Link : self
+GithubRespositoryContainerlinks -- Link : self
+PipelineRunImpl -- PipelineRunImpllinks : _links
+HudsonMasterComputer -- "0..*" HudsonMasterComputerexecutors : executors
+HudsonMasterComputer -- Label1 : loadStatistics
+HudsonMasterComputer -- HudsonMasterComputermonitorData : monitorData
+HudsonMasterComputermonitorData -- SwapSpaceMonitorMemoryUsage2 : hudson.node_monitors.SwapSpaceMonitor
+HudsonMasterComputermonitorData -- DiskSpaceMonitorDescriptorDiskSpace : hudson.node_monitors.TemporarySpaceMonitor
+HudsonMasterComputermonitorData -- DiskSpaceMonitorDescriptorDiskSpace : hudson.node_monitors.DiskSpaceMonitor
+HudsonMasterComputermonitorData -- ResponseTimeMonitorData : hudson.node_monitors.ResponseTimeMonitor
+HudsonMasterComputermonitorData -- ClockDifference : hudson.node_monitors.ClockMonitor
+BranchImpllinks -- Link : self
+BranchImpllinks -- Link : actions
+BranchImpllinks -- Link : runs
+BranchImpllinks -- Link : queue
+CauseAction -- "0..*" CauseUserIdCause : causes
+FavoriteImpllinks -- Link : self
+Queue -- "0..*" QueueBlockedItem : items
+FavoriteImpl -- FavoriteImpllinks : _links
+FavoriteImpl -- PipelineImpl : item
+PipelineStepImpllinks -- Link : self
+PipelineStepImpllinks -- Link : actions
+PipelineRunImpllinks -- Link : nodes
+PipelineRunImpllinks -- Link : log
+PipelineRunImpllinks -- Link : self
+PipelineRunImpllinks -- Link : actions
+PipelineRunImpllinks -- Link : steps
+ExtensionClassImpl -- ExtensionClassImpllinks : _links
+PipelineBranchesitem -- PipelineBranchesitemlatestRun : latestRun
+PipelineBranchesitem -- PipelineBranchesitempullRequest : pullRequest
+FreeStyleProject -- "0..*" FreeStyleProjectactions : actions
+FreeStyleProject -- "0..*" FreeStyleBuild : builds
+FreeStyleProject -- FreeStyleBuild : firstBuild
+FreeStyleProject -- "0..*" FreeStyleProjecthealthReport : healthReport
+FreeStyleProject -- FreeStyleBuild : lastBuild
+FreeStyleProject -- FreeStyleBuild : lastCompletedBuild
+FreeStyleProject -- FreeStyleBuild : lastStableBuild
+FreeStyleProject -- FreeStyleBuild : lastSuccessfulBuild
+FreeStyleProject -- NullSCM : scm
+ComputerSet -- "0..*" HudsonMasterComputer : computer
+Pipeline -- PipelinelatestRun : latestRun
+PipelineRunNode -- "0..*" PipelineRunNodeedges : edges
+BranchImpl -- "0..*" StringParameterDefinition : parameters
+BranchImpl -- BranchImplpermissions : permissions
+BranchImpl -- BranchImpllinks : _links
+BranchImpl -- PipelineRunImpl : latestRun
+PipelineStepImpl -- PipelineStepImpllinks : _links
+PipelineStepImpl -- InputStepImpl : input
+QueueLeftItem -- "0..*" CauseAction : actions
+QueueLeftItem -- FreeStyleProject : task
+QueueLeftItem -- FreeStyleBuild : executable
+
+@enduml

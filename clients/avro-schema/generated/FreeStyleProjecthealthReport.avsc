@@ -1,0 +1,39 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "FreeStyleProjecthealthReport",
+  "fields": [
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "iconClassName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "iconUrl",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "score",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server DefaultCrumbIssuer"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a DefaultCrumbIssuer"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  DefaultCrumbIssuer {
+    title = DefaultCrumbIssuer
+    description = DefaultCrumbIssuer
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        crumb {
+          type =  string
+          description = ""
+          optional = false
+        }
+        crumb_request_field {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  DefaultCrumbIssuer {
+    title = DefaultCrumbIssuer
+    description = DefaultCrumbIssuer
+    implements = openapi_server.resourceTypes.DefaultCrumbIssuer
+
+  }
+}

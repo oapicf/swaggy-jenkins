@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "HudsonMasterComputerexecutors",
+  "fields": [
+    {
+      "name": "currentExecutable",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "idle",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "likelyStuck",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "number",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "progress",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

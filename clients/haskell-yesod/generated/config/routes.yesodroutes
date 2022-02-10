@@ -1,0 +1,58 @@
+-- By default this file is used by `parseRoutesFile` in Foundation.hs
+-- Syntax for this file here: https://www.yesodweb.com/book/routing-and-handlers
+
+-- /static StaticR Static appStatic
+
+/api/json ApiJsonR GET HEAD
+/computer/api/json ComputerApiJsonR GET
+/createItem CreateItemR POST
+/createView CreateViewR POST
+/crumbIssuer/api/json CrumbIssuerApiJsonR GET
+/job/#Text/api/json JobByTextApiJsonR GET
+/job/#Text/build JobByTextBuildR POST
+/job/#Text/config.xml JobByTextConfigXmlR GET POST
+/job/#Text/doDelete JobByTextDoDeleteR POST
+/job/#Text/disable JobByTextDisableR POST
+/job/#Text/enable JobByTextEnableR POST
+/job/#Text/lastBuild/api/json JobByTextLastBuildApiJsonR GET
+/job/#Text/lastBuild/stop JobByTextLastBuildStopR POST
+/job/#Text/#Text/logText/progressiveText JobByTextByTextLogTextProgressiveTextR GET
+/queue/api/json QueueApiJsonR GET
+/queue/item/#Text/api/json QueueItemByTextApiJsonR GET
+/view/#Text/api/json ViewByTextApiJsonR GET
+/view/#Text/config.xml ViewByTextConfigXmlR GET POST
+/jwt-auth/token JwtAuthTokenR GET
+/jwt-auth/jwks/#Int JwtAuthJwksByIntR GET
+/blue/rest/classes BlueRestClassesR GET
+/blue/rest/classes/#Text BlueRestClassesByTextR GET
+/blue/rest/search BlueRestSearchR GET
+/blue/rest/organizations BlueRestOrganizationsR GET
+/blue/rest/organizations/#Text BlueRestOrganizationsByTextR GET
+/blue/rest/organizations/#Text/pipelines BlueRestOrganizationsByTextPipelinesR GET
+/blue/rest/organizations/#Text/pipelines/#Text BlueRestOrganizationsByTextPipelinesByTextR GET GET
+/blue/rest/organizations/#Text/pipelines/#Text/activities BlueRestOrganizationsByTextPipelinesByTextActivitiesR GET
+/blue/rest/organizations/#Text/pipelines/#Text/branches BlueRestOrganizationsByTextPipelinesByTextBranchesR GET
+/blue/rest/organizations/#Text/pipelines/#Text/branches/#Text BlueRestOrganizationsByTextPipelinesByTextBranchesByTextR GET
+/blue/rest/organizations/#Text/pipelines/#Text/branches/#Text/runs/#Text BlueRestOrganizationsByTextPipelinesByTextBranchesByTextRunsByTextR GET
+/blue/rest/organizations/#Text/pipelines/#Text/pipelines/#Text BlueRestOrganizationsByTextPipelinesByTextPipelinesByTextR GET
+/blue/rest/organizations/#Text/pipelines/#Text/favorite BlueRestOrganizationsByTextPipelinesByTextFavoriteR PUT
+/blue/rest/organizations/#Text/pipelines/#Text/queue BlueRestOrganizationsByTextPipelinesByTextQueueR GET
+/blue/rest/organizations/#Text/pipelines/#Text/queue/#Text BlueRestOrganizationsByTextPipelinesByTextQueueByTextR DELETE
+/blue/rest/organizations/#Text/pipelines/#Text/runs BlueRestOrganizationsByTextPipelinesByTextRunsR GET POST
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text BlueRestOrganizationsByTextPipelinesByTextRunsByTextR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/nodes BlueRestOrganizationsByTextPipelinesByTextRunsByTextNodesR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/nodes/#Text BlueRestOrganizationsByTextPipelinesByTextRunsByTextNodesByTextR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/nodes/#Text/steps BlueRestOrganizationsByTextPipelinesByTextRunsByTextNodesByTextStepsR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/nodes/#Text/steps/#Text BlueRestOrganizationsByTextPipelinesByTextRunsByTextNodesByTextStepsByTextR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/nodes/#Text/steps/#Text/log BlueRestOrganizationsByTextPipelinesByTextRunsByTextNodesByTextStepsByTextLogR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/log BlueRestOrganizationsByTextPipelinesByTextRunsByTextLogR GET
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/replay BlueRestOrganizationsByTextPipelinesByTextRunsByTextReplayR POST
+/blue/rest/organizations/#Text/pipelines/#Text/runs/#Text/stop BlueRestOrganizationsByTextPipelinesByTextRunsByTextStopR PUT
+/blue/rest/organizations/#Text/scm/#Text BlueRestOrganizationsByTextScmByTextR GET
+/blue/rest/organizations/#Text/scm/#Text/organizations BlueRestOrganizationsByTextScmByTextOrganizationsR GET
+/blue/rest/organizations/#Text/scm/#Text/organizations/#Text/repositories BlueRestOrganizationsByTextScmByTextOrganizationsByTextRepositoriesR GET
+/blue/rest/organizations/#Text/scm/#Text/organizations/#Text/repositories/#Text BlueRestOrganizationsByTextScmByTextOrganizationsByTextRepositoriesByTextR GET
+/blue/rest/organizations/#Text/user BlueRestOrganizationsByTextUserR GET
+/blue/rest/organizations/#Text/users BlueRestOrganizationsByTextUsersR GET
+/blue/rest/organizations/#Text/users/#Text BlueRestOrganizationsByTextUsersByTextR GET
+/blue/rest/users/#Text/favorites BlueRestUsersByTextFavoritesR GET

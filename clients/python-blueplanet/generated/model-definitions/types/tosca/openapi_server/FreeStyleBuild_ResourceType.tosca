@@ -1,0 +1,123 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FreeStyleBuild"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FreeStyleBuild"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CauseAction = openapi_server.resourceTypes.CauseAction
+  EmptyChangeLogSet = openapi_server.resourceTypes.EmptyChangeLogSet
+}
+resourceTypes {
+
+  FreeStyleBuild {
+    title = FreeStyleBuild
+    description = FreeStyleBuild
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        number {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        url {
+          type =  string
+          description = ""
+          optional = false
+        }
+        actions {
+          type = array
+          items.type = CauseAction
+          description = ""
+          optional = false
+        }
+        building {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        description {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        duration {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        estimated_duration {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        executor {
+          type =  string
+          description = ""
+          optional = false
+        }
+        full_display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        keep_log {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        queue_id {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        result {
+          type =  string
+          description = ""
+          optional = false
+        }
+        timestamp {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        built_on {
+          type =  string
+          description = ""
+          optional = false
+        }
+        change_set {
+          type = EmptyChangeLogSet
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FreeStyleBuild {
+    title = FreeStyleBuild
+    description = FreeStyleBuild
+    implements = openapi_server.resourceTypes.FreeStyleBuild
+
+  }
+}

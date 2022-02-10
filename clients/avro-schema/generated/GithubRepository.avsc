@@ -1,0 +1,57 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "GithubRepository",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.GithubRepositorylinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "defaultBranch",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "permissions",
+      "type": ["null", "model.GithubRepositorypermissions"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "private",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "fullName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

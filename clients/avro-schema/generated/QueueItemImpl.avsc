@@ -1,0 +1,39 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "QueueItemImpl",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "expectedBuildNumber",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "pipeline",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "queuedTime",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

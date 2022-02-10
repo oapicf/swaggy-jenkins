@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ResponseTimeMonitorData"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ResponseTimeMonitorData"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ResponseTimeMonitorData {
+    title = ResponseTimeMonitorData
+    description = ResponseTimeMonitorData
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        timestamp {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        average {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ResponseTimeMonitorData {
+    title = ResponseTimeMonitorData
+    description = ResponseTimeMonitorData
+    implements = openapi_server.resourceTypes.ResponseTimeMonitorData
+
+  }
+}

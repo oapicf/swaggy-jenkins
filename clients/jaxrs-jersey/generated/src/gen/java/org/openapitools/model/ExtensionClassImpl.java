@@ -33,7 +33,7 @@ import javax.validation.Valid;
   ExtensionClassImpl.JSON_PROPERTY_LINKS,
   ExtensionClassImpl.JSON_PROPERTY_CLASSES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-09T13:05:29.098198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-10T09:47:07.448540Z[Etc/UTC]")
 public class ExtensionClassImpl   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

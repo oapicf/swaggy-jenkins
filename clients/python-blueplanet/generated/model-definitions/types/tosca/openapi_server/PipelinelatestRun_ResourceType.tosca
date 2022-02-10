@@ -1,0 +1,107 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelinelatestRun"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelinelatestRun"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  PipelinelatestRunartifacts = openapi_server.resourceTypes.PipelinelatestRunartifacts
+}
+resourceTypes {
+
+  PipelinelatestRun {
+    title = PipelinelatestRun
+    description = PipelinelatestRun
+    derivedFrom = Root
+    properties {
+        artifacts {
+          type = array
+          items.type = PipelinelatestRunartifacts
+          description = ""
+          optional = false
+        }
+        duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        estimated_duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        en_queue_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        end_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        pipeline {
+          type =  string
+          description = ""
+          optional = false
+        }
+        result {
+          type =  string
+          description = ""
+          optional = false
+        }
+        run_summary {
+          type =  string
+          description = ""
+          optional = false
+        }
+        start_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        state {
+          type =  string
+          description = ""
+          optional = false
+        }
+        type {
+          type =  string
+          description = ""
+          optional = false
+        }
+        commit_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelinelatestRun {
+    title = PipelinelatestRun
+    description = PipelinelatestRun
+    implements = openapi_server.resourceTypes.PipelinelatestRun
+
+  }
+}

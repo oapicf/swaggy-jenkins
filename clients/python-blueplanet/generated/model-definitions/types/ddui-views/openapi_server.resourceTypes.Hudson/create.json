@@ -1,0 +1,31 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "assigned_labels" },
+      {"model": "mode" },
+      {"model": "node_description" },
+      {"model": "node_name" },
+      {"model": "num_executors" },
+      {"model": "description" },
+      {"model": "jobs" },
+      {"model": "primary_view" },
+      {"model": "quieting_down" },
+      {"model": "slave_agent_port" },
+      {"model": "unlabeled_load" },
+      {"model": "use_crumbs" },
+      {"model": "use_security" },
+      {"model": "views" },
+    ]
+  }]
+}

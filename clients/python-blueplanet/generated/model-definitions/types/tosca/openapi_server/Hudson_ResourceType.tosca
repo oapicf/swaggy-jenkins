@@ -1,0 +1,112 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Hudson"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Hudson"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  AllView = openapi_server.resourceTypes.AllView
+  FreeStyleProject = openapi_server.resourceTypes.FreeStyleProject
+  HudsonassignedLabels = openapi_server.resourceTypes.HudsonassignedLabels
+  UnlabeledLoadStatistics = openapi_server.resourceTypes.UnlabeledLoadStatistics
+}
+resourceTypes {
+
+  Hudson {
+    title = Hudson
+    description = Hudson
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        assigned_labels {
+          type = array
+          items.type = HudsonassignedLabels
+          description = ""
+          optional = false
+        }
+        mode {
+          type =  string
+          description = ""
+          optional = false
+        }
+        node_description {
+          type =  string
+          description = ""
+          optional = false
+        }
+        node_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        num_executors {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        description {
+          type =  string
+          description = ""
+          optional = false
+        }
+        jobs {
+          type = array
+          items.type = FreeStyleProject
+          description = ""
+          optional = false
+        }
+        primary_view {
+          type = AllView
+          description = ""
+          optional = false
+        }
+        quieting_down {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        slave_agent_port {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        unlabeled_load {
+          type = UnlabeledLoadStatistics
+          description = ""
+          optional = false
+        }
+        use_crumbs {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        use_security {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        views {
+          type = array
+          items.type = AllView
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Hudson {
+    title = Hudson
+    description = Hudson
+    implements = openapi_server.resourceTypes.Hudson
+
+  }
+}

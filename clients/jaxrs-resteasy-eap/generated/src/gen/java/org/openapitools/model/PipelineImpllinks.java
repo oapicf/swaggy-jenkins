@@ -10,7 +10,7 @@ import org.openapitools.model.Link;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-09T13:05:44.154354Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-10T09:47:23.475622Z[Etc/UTC]")
 public class PipelineImpllinks   {
   
 

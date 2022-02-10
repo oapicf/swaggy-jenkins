@@ -36,7 +36,7 @@ import javax.validation.Valid;
   Pipeline.JSON_PROPERTY_ESTIMATED_DURATION_IN_MILLIS,
   Pipeline.JSON_PROPERTY_LATEST_RUN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-09T13:05:29.098198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-10T09:47:07.448540Z[Etc/UTC]")
 public class Pipeline   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

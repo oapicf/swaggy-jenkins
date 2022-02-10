@@ -1,0 +1,31 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "artifacts" },
+      {"model": "duration_in_millis" },
+      {"model": "estimated_duration_in_millis" },
+      {"model": "en_queue_time" },
+      {"model": "end_time" },
+      {"model": "id" },
+      {"model": "organization" },
+      {"model": "pipeline" },
+      {"model": "result" },
+      {"model": "run_summary" },
+      {"model": "start_time" },
+      {"model": "state" },
+      {"model": "type" },
+      {"model": "commit_id" },
+      {"model": "_class" },
+    ]
+  }]
+}

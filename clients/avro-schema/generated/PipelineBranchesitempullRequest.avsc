@@ -1,0 +1,45 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "PipelineBranchesitempullRequest",
+  "fields": [
+    {
+      "name": "_links",
+      "type": ["null", "model.PipelineBranchesitempullRequestlinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "author",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "title",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "url",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

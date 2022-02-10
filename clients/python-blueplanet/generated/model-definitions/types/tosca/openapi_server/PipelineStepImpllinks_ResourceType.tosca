@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineStepImpllinks"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineStepImpllinks"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  Link = openapi_server.resourceTypes.Link
+}
+resourceTypes {
+
+  PipelineStepImpllinks {
+    title = PipelineStepImpllinks
+    description = PipelineStepImpllinks
+    derivedFrom = Root
+    properties {
+        _self {
+          type = Link
+          description = ""
+          optional = false
+        }
+        actions {
+          type = Link
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineStepImpllinks {
+    title = PipelineStepImpllinks
+    description = PipelineStepImpllinks
+    implements = openapi_server.resourceTypes.PipelineStepImpllinks
+
+  }
+}

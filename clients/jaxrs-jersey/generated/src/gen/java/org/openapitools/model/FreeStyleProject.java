@@ -60,7 +60,7 @@ import javax.validation.Valid;
   FreeStyleProject.JSON_PROPERTY_CONCURRENT_BUILD,
   FreeStyleProject.JSON_PROPERTY_SCM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-09T13:05:29.098198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-10T09:47:07.448540Z[Etc/UTC]")
 public class FreeStyleProject   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

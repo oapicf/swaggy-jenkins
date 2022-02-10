@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ExtensionClassImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ExtensionClassImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ExtensionClassImpllinks = openapi_server.resourceTypes.ExtensionClassImpllinks
+}
+resourceTypes {
+
+  ExtensionClassImpl {
+    title = ExtensionClassImpl
+    description = ExtensionClassImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        links {
+          type = ExtensionClassImpllinks
+          description = ""
+          optional = false
+        }
+        classes {
+          type = array
+          items.type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ExtensionClassImpl {
+    title = ExtensionClassImpl
+    description = ExtensionClassImpl
+    implements = openapi_server.resourceTypes.ExtensionClassImpl
+
+  }
+}

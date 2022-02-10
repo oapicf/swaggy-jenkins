@@ -1,0 +1,15 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "Label1",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

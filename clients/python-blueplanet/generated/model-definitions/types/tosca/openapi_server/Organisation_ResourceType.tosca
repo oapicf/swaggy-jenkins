@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server Organisation"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a Organisation"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  Organisation {
+    title = Organisation
+    description = Organisation
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  Organisation {
+    title = Organisation
+    description = Organisation
+    implements = openapi_server.resourceTypes.Organisation
+
+  }
+}

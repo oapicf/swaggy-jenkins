@@ -1,0 +1,39 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "BranchImplpermissions",
+  "fields": [
+    {
+      "name": "create",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "read",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "start",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "stop",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

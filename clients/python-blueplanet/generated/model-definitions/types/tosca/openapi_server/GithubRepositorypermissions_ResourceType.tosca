@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server GithubRepositorypermissions"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a GithubRepositorypermissions"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  GithubRepositorypermissions {
+    title = GithubRepositorypermissions
+    description = GithubRepositorypermissions
+    derivedFrom = Root
+    properties {
+        admin {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        push {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        pull {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  GithubRepositorypermissions {
+    title = GithubRepositorypermissions
+    description = GithubRepositorypermissions
+    implements = openapi_server.resourceTypes.GithubRepositorypermissions
+
+  }
+}

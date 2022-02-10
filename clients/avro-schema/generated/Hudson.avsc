@@ -1,0 +1,108 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "Hudson",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "assignedLabels",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.HudsonassignedLabels"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "mode",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "nodeDescription",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "nodeName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "numExecutors",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "jobs",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FreeStyleProject"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "primaryView",
+      "type": ["null", "model.AllView"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "quietingDown",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "slaveAgentPort",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "unlabeledLoad",
+      "type": ["null", "model.UnlabeledLoadStatistics"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "useCrumbs",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "useSecurity",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "views",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.AllView"
+      }],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

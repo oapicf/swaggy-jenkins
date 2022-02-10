@@ -1,0 +1,39 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "GithubScm",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.GithubScmlinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "credentialId",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "uri",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

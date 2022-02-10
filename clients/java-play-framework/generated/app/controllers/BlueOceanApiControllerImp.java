@@ -25,7 +25,7 @@ import java.util.LinkedHashSet;
 import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-09T13:04:45.190637Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-10T09:46:10.750851Z[Etc/UTC]")
 public class BlueOceanApiControllerImp extends BlueOceanApiControllerImpInterface {
     @Override
     public void deletePipelineQueueItem(Http.Request request, String organization, String pipeline, String queue) throws Exception {

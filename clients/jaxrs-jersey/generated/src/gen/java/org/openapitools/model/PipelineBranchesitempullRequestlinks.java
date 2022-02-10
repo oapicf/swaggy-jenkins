@@ -29,7 +29,7 @@ import javax.validation.Valid;
   PipelineBranchesitempullRequestlinks.JSON_PROPERTY_SELF,
   PipelineBranchesitempullRequestlinks.JSON_PROPERTY_PROPERTY_CLASS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-09T13:05:29.098198Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-10T09:47:07.448540Z[Etc/UTC]")
 public class PipelineBranchesitempullRequestlinks   {
   public static final String JSON_PROPERTY_SELF = "self";
   @JsonProperty(JSON_PROPERTY_SELF)

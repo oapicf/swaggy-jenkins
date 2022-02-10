@@ -1,0 +1,99 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server QueueLeftItem"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a QueueLeftItem"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CauseAction = openapi_server.resourceTypes.CauseAction
+  FreeStyleBuild = openapi_server.resourceTypes.FreeStyleBuild
+  FreeStyleProject = openapi_server.resourceTypes.FreeStyleProject
+}
+resourceTypes {
+
+  QueueLeftItem {
+    title = QueueLeftItem
+    description = QueueLeftItem
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        actions {
+          type = array
+          items.type = CauseAction
+          description = ""
+          optional = false
+        }
+        blocked {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        buildable {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        id {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        in_queue_since {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        params {
+          type =  string
+          description = ""
+          optional = false
+        }
+        stuck {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        task {
+          type = FreeStyleProject
+          description = ""
+          optional = false
+        }
+        url {
+          type =  string
+          description = ""
+          optional = false
+        }
+        why {
+          type =  string
+          description = ""
+          optional = false
+        }
+        cancelled {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        executable {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  QueueLeftItem {
+    title = QueueLeftItem
+    description = QueueLeftItem
+    implements = openapi_server.resourceTypes.QueueLeftItem
+
+  }
+}

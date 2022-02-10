@@ -1,0 +1,21 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "GithubFile",
+  "fields": [
+    {
+      "name": "content",
+      "type": ["null", "model.GithubContent"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

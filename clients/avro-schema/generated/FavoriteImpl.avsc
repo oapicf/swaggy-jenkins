@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "FavoriteImpl",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.FavoriteImpllinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "item",
+      "type": ["null", "model.PipelineImpl"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

@@ -1,0 +1,100 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineBranchesitemlatestRun"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineBranchesitemlatestRun"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  PipelineBranchesitemlatestRun {
+    title = PipelineBranchesitemlatestRun
+    description = PipelineBranchesitemlatestRun
+    derivedFrom = Root
+    properties {
+        duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        estimated_duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        en_queue_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        end_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        pipeline {
+          type =  string
+          description = ""
+          optional = false
+        }
+        result {
+          type =  string
+          description = ""
+          optional = false
+        }
+        run_summary {
+          type =  string
+          description = ""
+          optional = false
+        }
+        start_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        state {
+          type =  string
+          description = ""
+          optional = false
+        }
+        type {
+          type =  string
+          description = ""
+          optional = false
+        }
+        commit_id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineBranchesitemlatestRun {
+    title = PipelineBranchesitemlatestRun
+    description = PipelineBranchesitemlatestRun
+    implements = openapi_server.resourceTypes.PipelineBranchesitemlatestRun
+
+  }
+}

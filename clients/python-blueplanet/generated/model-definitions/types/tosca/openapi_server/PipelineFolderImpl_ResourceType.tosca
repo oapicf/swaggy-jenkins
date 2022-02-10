@@ -1,0 +1,65 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineFolderImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineFolderImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  PipelineFolderImpl {
+    title = PipelineFolderImpl
+    description = PipelineFolderImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        full_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        number_of_folders {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        number_of_pipelines {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineFolderImpl {
+    title = PipelineFolderImpl
+    description = PipelineFolderImpl
+    implements = openapi_server.resourceTypes.PipelineFolderImpl
+
+  }
+}

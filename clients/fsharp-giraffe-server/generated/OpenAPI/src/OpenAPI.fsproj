@@ -1,0 +1,121 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Description>OpenAPI</Description>
+    <Copyright>OpenAPI</Copyright>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <DebugType>portable</DebugType>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
+    <AssemblyName>OpenAPI</AssemblyName>
+    <PackageId>OpenAPI</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" />
+    <PackageReference Include="Giraffe" Version="3.4.*" />
+    <PackageReference Include="TaskBuilder.fs" Version="2.1.*" />
+    <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="2.0.1" />
+    <PackageReference Include="AspNet.Security.ApiKey.Providers" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="openapi.yaml"/>
+    <Compile Include="helpers/Helpers.fs" />
+    <Compile Include="model/User.fs" />
+    <Compile Include="model/UnlabeledLoadStatistics.fs" />
+    <Compile Include="model/SwapSpaceMonitorMemoryUsage2.fs" />
+    <Compile Include="model/StringParameterValue.fs" />
+    <Compile Include="model/StringParameterDefinition.fs" />
+    <Compile Include="model/ResponseTimeMonitorData.fs" />
+    <Compile Include="model/FreeStyleProjecthealthReport.fs" />
+    <Compile Include="model/QueueItemImpl.fs" />
+    <Compile Include="model/CauseUserIdCause.fs" />
+    <Compile Include="model/FreeStyleProjectactions.fs" />
+    <Compile Include="model/PipelinelatestRunartifacts.fs" />
+    <Compile Include="model/PipelinelatestRun.fs" />
+    <Compile Include="model/Link.fs" />
+    <Compile Include="model/PipelineStepImpllinks.fs" />
+    <Compile Include="model/PipelineRunartifacts.fs" />
+    <Compile Include="model/PipelineRunNodeedges.fs" />
+    <Compile Include="model/PipelineRunNode.fs" />
+    <Compile Include="model/InputStepImpllinks.fs" />
+    <Compile Include="model/PipelineRunImpllinks.fs" />
+    <Compile Include="model/PipelineRun.fs" />
+    <Compile Include="model/PipelineRunImpl.fs" />
+    <Compile Include="model/PipelineImpllinks.fs" />
+    <Compile Include="model/PipelineFolderImpl.fs" />
+    <Compile Include="model/PipelineBranchesitempullRequestlinks.fs" />
+    <Compile Include="model/PipelineBranchesitempullRequest.fs" />
+    <Compile Include="model/PipelineBranchesitemlatestRun.fs" />
+    <Compile Include="model/PipelineBranchesitem.fs" />
+    <Compile Include="model/PipelineActivityartifacts.fs" />
+    <Compile Include="model/PipelineActivity.fs" />
+    <Compile Include="model/Pipeline.fs" />
+    <Compile Include="model/Organisation.fs" />
+    <Compile Include="model/NullSCM.fs" />
+    <Compile Include="model/MultibranchPipeline.fs" />
+    <Compile Include="model/CauseAction.fs" />
+    <Compile Include="model/PipelineImpl.fs" />
+    <Compile Include="model/Label1.fs" />
+    <Compile Include="model/InputStepImpl.fs" />
+    <Compile Include="model/PipelineStepImpl.fs" />
+    <Compile Include="model/HudsonassignedLabels.fs" />
+    <Compile Include="model/ClockDifference.fs" />
+    <Compile Include="model/EmptyChangeLogSet.fs" />
+    <Compile Include="model/FreeStyleBuild.fs" />
+    <Compile Include="model/AllView.fs" />
+    <Compile Include="model/GithubScmlinks.fs" />
+    <Compile Include="model/GithubScm.fs" />
+    <Compile Include="model/GithubRespositoryContainerlinks.fs" />
+    <Compile Include="model/GithubRepositorieslinks.fs" />
+    <Compile Include="model/GithubRepositorypermissions.fs" />
+    <Compile Include="model/GithubRepositorylinks.fs" />
+    <Compile Include="model/GithubRepository.fs" />
+    <Compile Include="model/GithubRepositories.fs" />
+    <Compile Include="model/GithubRespositoryContainer.fs" />
+    <Compile Include="model/GithubOrganizationlinks.fs" />
+    <Compile Include="model/GithubOrganization.fs" />
+    <Compile Include="model/GithubContent.fs" />
+    <Compile Include="model/GithubFile.fs" />
+    <Compile Include="model/GenericResource.fs" />
+    <Compile Include="model/FreeStyleProject.fs" />
+    <Compile Include="model/QueueLeftItem.fs" />
+    <Compile Include="model/QueueBlockedItem.fs" />
+    <Compile Include="model/Queue.fs" />
+    <Compile Include="model/FavoriteImpllinks.fs" />
+    <Compile Include="model/FavoriteImpl.fs" />
+    <Compile Include="model/ExtensionClassImpllinks.fs" />
+    <Compile Include="model/ExtensionClassImpl.fs" />
+    <Compile Include="model/ExtensionClassContainerImpl1map.fs" />
+    <Compile Include="model/ExtensionClassContainerImpl1links.fs" />
+    <Compile Include="model/ExtensionClassContainerImpl1.fs" />
+    <Compile Include="model/HudsonMasterComputerexecutors.fs" />
+    <Compile Include="model/DiskSpaceMonitorDescriptorDiskSpace.fs" />
+    <Compile Include="model/DefaultCrumbIssuer.fs" />
+    <Compile Include="model/HudsonMasterComputermonitorData.fs" />
+    <Compile Include="model/HudsonMasterComputer.fs" />
+    <Compile Include="model/ClassesByClass.fs" />
+    <Compile Include="model/ComputerSet.fs" />
+    <Compile Include="model/ListView.fs" />
+    <Compile Include="model/BranchImplpermissions.fs" />
+    <Compile Include="model/BranchImpllinks.fs" />
+    <Compile Include="model/BranchImpl.fs" />
+    <Compile Include="model/Hudson.fs" />
+    <Compile Include="api/BaseApiHandlerParams.fs" />
+    <Compile Include="api/BaseApiServiceInterface.fs" />
+    <Compile Include="impl/BaseApiService.fs" />
+    <Compile Include="api/BaseApiHandler.fs" />
+    <Compile Include="api/BlueOceanApiHandlerParams.fs" />
+    <Compile Include="api/BlueOceanApiServiceInterface.fs" />
+    <Compile Include="impl/BlueOceanApiService.fs" />
+    <Compile Include="api/BlueOceanApiHandler.fs" />
+    <Compile Include="api/RemoteAccessApiHandlerParams.fs" />
+    <Compile Include="api/RemoteAccessApiServiceInterface.fs" />
+    <Compile Include="impl/RemoteAccessApiService.fs" />
+    <Compile Include="api/RemoteAccessApiHandler.fs" />
+    <Compile Include="impl/CustomHandlers.fs" />
+    <Compile Include="auth/AuthSchemes.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>

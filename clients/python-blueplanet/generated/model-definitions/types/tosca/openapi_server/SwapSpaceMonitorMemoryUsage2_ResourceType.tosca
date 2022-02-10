@@ -1,0 +1,55 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server SwapSpaceMonitorMemoryUsage2"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a SwapSpaceMonitorMemoryUsage2"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  SwapSpaceMonitorMemoryUsage2 {
+    title = SwapSpaceMonitorMemoryUsage2
+    description = SwapSpaceMonitorMemoryUsage2
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        available_physical_memory {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        available_swap_space {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        total_physical_memory {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        total_swap_space {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  SwapSpaceMonitorMemoryUsage2 {
+    title = SwapSpaceMonitorMemoryUsage2
+    description = SwapSpaceMonitorMemoryUsage2
+    implements = openapi_server.resourceTypes.SwapSpaceMonitorMemoryUsage2
+
+  }
+}

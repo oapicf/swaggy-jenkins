@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "GithubRespositoryContainer",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.GithubRespositoryContainerlinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "repositories",
+      "type": ["null", "model.GithubRepositories"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

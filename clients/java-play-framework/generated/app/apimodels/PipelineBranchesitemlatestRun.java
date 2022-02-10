@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 /**
  * PipelineBranchesitemlatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-09T13:04:45.190637Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-10T09:46:10.750851Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineBranchesitemlatestRun   {
   @JsonProperty("durationInMillis")

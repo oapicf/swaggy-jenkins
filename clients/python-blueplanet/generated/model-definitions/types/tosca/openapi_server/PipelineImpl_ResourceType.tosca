@@ -1,0 +1,76 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  PipelineImpllinks = openapi_server.resourceTypes.PipelineImpllinks
+}
+resourceTypes {
+
+  PipelineImpl {
+    title = PipelineImpl
+    description = PipelineImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        estimated_duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        full_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        latest_run {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        weather_score {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        links {
+          type = PipelineImpllinks
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineImpl {
+    title = PipelineImpl
+    description = PipelineImpl
+    implements = openapi_server.resourceTypes.PipelineImpl
+
+  }
+}

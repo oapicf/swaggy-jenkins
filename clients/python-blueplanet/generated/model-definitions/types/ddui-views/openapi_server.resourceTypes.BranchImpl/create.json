@@ -1,0 +1,29 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "display_name" },
+      {"model": "estimated_duration_in_millis" },
+      {"model": "full_display_name" },
+      {"model": "full_name" },
+      {"model": "name" },
+      {"model": "organization" },
+      {"model": "parameters" },
+      {"model": "permissions" },
+      {"model": "weather_score" },
+      {"model": "pull_request" },
+      {"model": "links" },
+      {"model": "latest_run" },
+    ]
+  }]
+}

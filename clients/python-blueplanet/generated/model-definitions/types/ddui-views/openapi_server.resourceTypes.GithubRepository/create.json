@@ -1,0 +1,24 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "links" },
+      {"model": "default_branch" },
+      {"model": "description" },
+      {"model": "name" },
+      {"model": "permissions" },
+      {"model": "private" },
+      {"model": "full_name" },
+    ]
+  }]
+}

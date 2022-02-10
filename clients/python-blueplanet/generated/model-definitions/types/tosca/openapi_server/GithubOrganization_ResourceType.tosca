@@ -1,0 +1,51 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server GithubOrganization"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a GithubOrganization"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  GithubOrganizationlinks = openapi_server.resourceTypes.GithubOrganizationlinks
+}
+resourceTypes {
+
+  GithubOrganization {
+    title = GithubOrganization
+    description = GithubOrganization
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        links {
+          type = GithubOrganizationlinks
+          description = ""
+          optional = false
+        }
+        jenkins_organization_pipeline {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  GithubOrganization {
+    title = GithubOrganization
+    description = GithubOrganization
+    implements = openapi_server.resourceTypes.GithubOrganization
+
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "BranchImpl",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "displayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "estimatedDurationInMillis",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "fullDisplayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "fullName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "organization",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "parameters",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.StringParameterDefinition"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "permissions",
+      "type": ["null", "model.BranchImplpermissions"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "weatherScore",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "pullRequest",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.BranchImpllinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "latestRun",
+      "type": ["null", "model.PipelineRunImpl"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

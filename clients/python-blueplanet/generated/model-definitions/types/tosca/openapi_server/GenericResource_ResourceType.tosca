@@ -1,0 +1,60 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server GenericResource"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a GenericResource"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  GenericResource {
+    title = GenericResource
+    description = GenericResource
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        result {
+          type =  string
+          description = ""
+          optional = false
+        }
+        start_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  GenericResource {
+    title = GenericResource
+    description = GenericResource
+    implements = openapi_server.resourceTypes.GenericResource
+
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "PipelineImpllinks",
+  "fields": [
+    {
+      "name": "runs",
+      "type": ["null", "model.Link"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "self",
+      "type": ["null", "model.Link"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "queue",
+      "type": ["null", "model.Link"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "actions",
+      "type": ["null", "model.Link"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

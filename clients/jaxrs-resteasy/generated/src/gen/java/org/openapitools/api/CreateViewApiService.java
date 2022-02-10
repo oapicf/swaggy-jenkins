@@ -13,7 +13,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-09T13:05:36.867957Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-10T09:47:16.018972Z[Etc/UTC]")
 public interface CreateViewApiService {
       Response postCreateView(String name,String jenkinsCrumb,String contentType,String body,SecurityContext securityContext)
       throws NotFoundException;

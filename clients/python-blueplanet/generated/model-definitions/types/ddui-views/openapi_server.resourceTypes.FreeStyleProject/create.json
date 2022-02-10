@@ -1,0 +1,43 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "name" },
+      {"model": "url" },
+      {"model": "color" },
+      {"model": "actions" },
+      {"model": "description" },
+      {"model": "display_name" },
+      {"model": "display_name_or_null" },
+      {"model": "full_display_name" },
+      {"model": "full_name" },
+      {"model": "buildable" },
+      {"model": "builds" },
+      {"model": "first_build" },
+      {"model": "health_report" },
+      {"model": "in_queue" },
+      {"model": "keep_dependencies" },
+      {"model": "last_build" },
+      {"model": "last_completed_build" },
+      {"model": "last_failed_build" },
+      {"model": "last_stable_build" },
+      {"model": "last_successful_build" },
+      {"model": "last_unstable_build" },
+      {"model": "last_unsuccessful_build" },
+      {"model": "next_build_number" },
+      {"model": "queue_item" },
+      {"model": "concurrent_build" },
+      {"model": "scm" },
+    ]
+  }]
+}

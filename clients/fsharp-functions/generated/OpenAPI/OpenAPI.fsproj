@@ -1,0 +1,118 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Description>OpenAPI</Description>
+    <Copyright>OpenAPI</Copyright>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AzureFunctionsVersion>v2</AzureFunctionsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="src/model/User.fs" />
+    <Compile Include="src/model/UnlabeledLoadStatistics.fs" />
+    <Compile Include="src/model/SwapSpaceMonitorMemoryUsage2.fs" />
+    <Compile Include="src/model/StringParameterValue.fs" />
+    <Compile Include="src/model/StringParameterDefinition.fs" />
+    <Compile Include="src/model/ResponseTimeMonitorData.fs" />
+    <Compile Include="src/model/FreeStyleProjecthealthReport.fs" />
+    <Compile Include="src/model/QueueItemImpl.fs" />
+    <Compile Include="src/model/CauseUserIdCause.fs" />
+    <Compile Include="src/model/FreeStyleProjectactions.fs" />
+    <Compile Include="src/model/PipelinelatestRunartifacts.fs" />
+    <Compile Include="src/model/PipelinelatestRun.fs" />
+    <Compile Include="src/model/Link.fs" />
+    <Compile Include="src/model/PipelineStepImpllinks.fs" />
+    <Compile Include="src/model/PipelineRunartifacts.fs" />
+    <Compile Include="src/model/PipelineRunNodeedges.fs" />
+    <Compile Include="src/model/PipelineRunNode.fs" />
+    <Compile Include="src/model/InputStepImpllinks.fs" />
+    <Compile Include="src/model/PipelineRunImpllinks.fs" />
+    <Compile Include="src/model/PipelineRun.fs" />
+    <Compile Include="src/model/PipelineRunImpl.fs" />
+    <Compile Include="src/model/PipelineImpllinks.fs" />
+    <Compile Include="src/model/PipelineFolderImpl.fs" />
+    <Compile Include="src/model/PipelineBranchesitempullRequestlinks.fs" />
+    <Compile Include="src/model/PipelineBranchesitempullRequest.fs" />
+    <Compile Include="src/model/PipelineBranchesitemlatestRun.fs" />
+    <Compile Include="src/model/PipelineBranchesitem.fs" />
+    <Compile Include="src/model/PipelineActivityartifacts.fs" />
+    <Compile Include="src/model/PipelineActivity.fs" />
+    <Compile Include="src/model/Pipeline.fs" />
+    <Compile Include="src/model/Organisation.fs" />
+    <Compile Include="src/model/NullSCM.fs" />
+    <Compile Include="src/model/MultibranchPipeline.fs" />
+    <Compile Include="src/model/CauseAction.fs" />
+    <Compile Include="src/model/PipelineImpl.fs" />
+    <Compile Include="src/model/Label1.fs" />
+    <Compile Include="src/model/InputStepImpl.fs" />
+    <Compile Include="src/model/PipelineStepImpl.fs" />
+    <Compile Include="src/model/HudsonassignedLabels.fs" />
+    <Compile Include="src/model/ClockDifference.fs" />
+    <Compile Include="src/model/EmptyChangeLogSet.fs" />
+    <Compile Include="src/model/FreeStyleBuild.fs" />
+    <Compile Include="src/model/AllView.fs" />
+    <Compile Include="src/model/GithubScmlinks.fs" />
+    <Compile Include="src/model/GithubScm.fs" />
+    <Compile Include="src/model/GithubRespositoryContainerlinks.fs" />
+    <Compile Include="src/model/GithubRepositorieslinks.fs" />
+    <Compile Include="src/model/GithubRepositorypermissions.fs" />
+    <Compile Include="src/model/GithubRepositorylinks.fs" />
+    <Compile Include="src/model/GithubRepository.fs" />
+    <Compile Include="src/model/GithubRepositories.fs" />
+    <Compile Include="src/model/GithubRespositoryContainer.fs" />
+    <Compile Include="src/model/GithubOrganizationlinks.fs" />
+    <Compile Include="src/model/GithubOrganization.fs" />
+    <Compile Include="src/model/GithubContent.fs" />
+    <Compile Include="src/model/GithubFile.fs" />
+    <Compile Include="src/model/GenericResource.fs" />
+    <Compile Include="src/model/FreeStyleProject.fs" />
+    <Compile Include="src/model/QueueLeftItem.fs" />
+    <Compile Include="src/model/QueueBlockedItem.fs" />
+    <Compile Include="src/model/Queue.fs" />
+    <Compile Include="src/model/FavoriteImpllinks.fs" />
+    <Compile Include="src/model/FavoriteImpl.fs" />
+    <Compile Include="src/model/ExtensionClassImpllinks.fs" />
+    <Compile Include="src/model/ExtensionClassImpl.fs" />
+    <Compile Include="src/model/ExtensionClassContainerImpl1map.fs" />
+    <Compile Include="src/model/ExtensionClassContainerImpl1links.fs" />
+    <Compile Include="src/model/ExtensionClassContainerImpl1.fs" />
+    <Compile Include="src/model/HudsonMasterComputerexecutors.fs" />
+    <Compile Include="src/model/DiskSpaceMonitorDescriptorDiskSpace.fs" />
+    <Compile Include="src/model/DefaultCrumbIssuer.fs" />
+    <Compile Include="src/model/HudsonMasterComputermonitorData.fs" />
+    <Compile Include="src/model/HudsonMasterComputer.fs" />
+    <Compile Include="src/model/ClassesByClass.fs" />
+    <Compile Include="src/model/ComputerSet.fs" />
+    <Compile Include="src/model/ListView.fs" />
+    <Compile Include="src/model/BranchImplpermissions.fs" />
+    <Compile Include="src/model/BranchImpllinks.fs" />
+    <Compile Include="src/model/BranchImpl.fs" />
+    <Compile Include="src/model/Hudson.fs" />
+    <Compile Include="src/api/BaseApiHandlerParams.fs" />
+    <Compile Include="src/api/BaseApiServiceInterface.fs" />
+    <Compile Include="src/impl/BaseApiService.fs" />
+    <Compile Include="src/api/BaseApiHandler.fs" />
+    <Compile Include="src/api/BlueOceanApiHandlerParams.fs" />
+    <Compile Include="src/api/BlueOceanApiServiceInterface.fs" />
+    <Compile Include="src/impl/BlueOceanApiService.fs" />
+    <Compile Include="src/api/BlueOceanApiHandler.fs" />
+    <Compile Include="src/api/RemoteAccessApiHandlerParams.fs" />
+    <Compile Include="src/api/RemoteAccessApiServiceInterface.fs" />
+    <Compile Include="src/impl/RemoteAccessApiService.fs" />
+    <Compile Include="src/api/RemoteAccessApiHandler.fs" />
+  </ItemGroup>
+
+</Project>

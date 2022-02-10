@@ -1,0 +1,114 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server HudsonMasterComputer"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a HudsonMasterComputer"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  HudsonMasterComputerexecutors = openapi_server.resourceTypes.HudsonMasterComputerexecutors
+  HudsonMasterComputermonitorData = openapi_server.resourceTypes.HudsonMasterComputermonitorData
+  Label1 = openapi_server.resourceTypes.Label1
+}
+resourceTypes {
+
+  HudsonMasterComputer {
+    title = HudsonMasterComputer
+    description = HudsonMasterComputer
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        executors {
+          type = array
+          items.type = HudsonMasterComputerexecutors
+          description = ""
+          optional = false
+        }
+        icon {
+          type =  string
+          description = ""
+          optional = false
+        }
+        icon_class_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        idle {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        jnlp_agent {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        launch_supported {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        load_statistics {
+          type = Label1
+          description = ""
+          optional = false
+        }
+        manual_launch_allowed {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        monitor_data {
+          type = HudsonMasterComputermonitorData
+          description = ""
+          optional = false
+        }
+        num_executors {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        offline {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        offline_cause {
+          type =  string
+          description = ""
+          optional = false
+        }
+        offline_cause_reason {
+          type =  string
+          description = ""
+          optional = false
+        }
+        temporarily_offline {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  HudsonMasterComputer {
+    title = HudsonMasterComputer
+    description = HudsonMasterComputer
+    implements = openapi_server.resourceTypes.HudsonMasterComputer
+
+  }
+}

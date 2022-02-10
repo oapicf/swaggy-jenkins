@@ -1,0 +1,21 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "available_physical_memory" },
+      {"model": "available_swap_space" },
+      {"model": "total_physical_memory" },
+      {"model": "total_swap_space" },
+    ]
+  }]
+}

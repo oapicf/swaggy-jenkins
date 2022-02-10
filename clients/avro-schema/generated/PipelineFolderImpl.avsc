@@ -1,0 +1,51 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "PipelineFolderImpl",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "displayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "fullName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "organization",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "numberOfFolders",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "numberOfPipelines",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

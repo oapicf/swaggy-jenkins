@@ -1,0 +1,105 @@
+# coding: utf-8
+
+# flake8: noqa
+
+# import all models into this package
+# if you have many models here with many references from one model to another this may
+# raise a RecursionError
+# to avoid this, import only the models that you directly need like:
+# from from openapi_client.model.pet import Pet
+# or import this package, but before doing it, use:
+# import sys
+# sys.setrecursionlimit(n)
+
+from openapi_client.model.all_view import AllView
+from openapi_client.model.branch_impl import BranchImpl
+from openapi_client.model.branch_impllinks import BranchImpllinks
+from openapi_client.model.branch_implpermissions import BranchImplpermissions
+from openapi_client.model.cause_action import CauseAction
+from openapi_client.model.cause_user_id_cause import CauseUserIdCause
+from openapi_client.model.classes_by_class import ClassesByClass
+from openapi_client.model.clock_difference import ClockDifference
+from openapi_client.model.computer_set import ComputerSet
+from openapi_client.model.default_crumb_issuer import DefaultCrumbIssuer
+from openapi_client.model.disk_space_monitor_descriptor_disk_space import DiskSpaceMonitorDescriptorDiskSpace
+from openapi_client.model.empty_change_log_set import EmptyChangeLogSet
+from openapi_client.model.extension_class_container_impl1 import ExtensionClassContainerImpl1
+from openapi_client.model.extension_class_container_impl1links import ExtensionClassContainerImpl1links
+from openapi_client.model.extension_class_container_impl1map import ExtensionClassContainerImpl1map
+from openapi_client.model.extension_class_impl import ExtensionClassImpl
+from openapi_client.model.extension_class_impllinks import ExtensionClassImpllinks
+from openapi_client.model.favorite_impl import FavoriteImpl
+from openapi_client.model.favorite_impllinks import FavoriteImpllinks
+from openapi_client.model.free_style_build import FreeStyleBuild
+from openapi_client.model.free_style_project import FreeStyleProject
+from openapi_client.model.free_style_projectactions import FreeStyleProjectactions
+from openapi_client.model.free_style_projecthealth_report import FreeStyleProjecthealthReport
+from openapi_client.model.generic_resource import GenericResource
+from openapi_client.model.github_content import GithubContent
+from openapi_client.model.github_file import GithubFile
+from openapi_client.model.github_organization import GithubOrganization
+from openapi_client.model.github_organizationlinks import GithubOrganizationlinks
+from openapi_client.model.github_repositories import GithubRepositories
+from openapi_client.model.github_repositorieslinks import GithubRepositorieslinks
+from openapi_client.model.github_repository import GithubRepository
+from openapi_client.model.github_repositorylinks import GithubRepositorylinks
+from openapi_client.model.github_repositorypermissions import GithubRepositorypermissions
+from openapi_client.model.github_respository_container import GithubRespositoryContainer
+from openapi_client.model.github_respository_containerlinks import GithubRespositoryContainerlinks
+from openapi_client.model.github_scm import GithubScm
+from openapi_client.model.github_scmlinks import GithubScmlinks
+from openapi_client.model.hudson import Hudson
+from openapi_client.model.hudson_master_computer import HudsonMasterComputer
+from openapi_client.model.hudson_master_computerexecutors import HudsonMasterComputerexecutors
+from openapi_client.model.hudson_master_computermonitor_data import HudsonMasterComputermonitorData
+from openapi_client.model.hudsonassigned_labels import HudsonassignedLabels
+from openapi_client.model.input_step_impl import InputStepImpl
+from openapi_client.model.input_step_impllinks import InputStepImpllinks
+from openapi_client.model.label1 import Label1
+from openapi_client.model.link import Link
+from openapi_client.model.list_view import ListView
+from openapi_client.model.multibranch_pipeline import MultibranchPipeline
+from openapi_client.model.null_scm import NullSCM
+from openapi_client.model.organisation import Organisation
+from openapi_client.model.organisations import Organisations
+from openapi_client.model.pipeline import Pipeline
+from openapi_client.model.pipeline_activities import PipelineActivities
+from openapi_client.model.pipeline_activity import PipelineActivity
+from openapi_client.model.pipeline_activityartifacts import PipelineActivityartifacts
+from openapi_client.model.pipeline_branches import PipelineBranches
+from openapi_client.model.pipeline_branchesitem import PipelineBranchesitem
+from openapi_client.model.pipeline_branchesitemlatest_run import PipelineBranchesitemlatestRun
+from openapi_client.model.pipeline_branchesitempull_request import PipelineBranchesitempullRequest
+from openapi_client.model.pipeline_branchesitempull_requestlinks import PipelineBranchesitempullRequestlinks
+from openapi_client.model.pipeline_folder_impl import PipelineFolderImpl
+from openapi_client.model.pipeline_impl import PipelineImpl
+from openapi_client.model.pipeline_impllinks import PipelineImpllinks
+from openapi_client.model.pipeline_queue import PipelineQueue
+from openapi_client.model.pipeline_run import PipelineRun
+from openapi_client.model.pipeline_run_impl import PipelineRunImpl
+from openapi_client.model.pipeline_run_impllinks import PipelineRunImpllinks
+from openapi_client.model.pipeline_run_node import PipelineRunNode
+from openapi_client.model.pipeline_run_node_steps import PipelineRunNodeSteps
+from openapi_client.model.pipeline_run_nodeedges import PipelineRunNodeedges
+from openapi_client.model.pipeline_run_nodes import PipelineRunNodes
+from openapi_client.model.pipeline_run_steps import PipelineRunSteps
+from openapi_client.model.pipeline_runartifacts import PipelineRunartifacts
+from openapi_client.model.pipeline_runs import PipelineRuns
+from openapi_client.model.pipeline_step_impl import PipelineStepImpl
+from openapi_client.model.pipeline_step_impllinks import PipelineStepImpllinks
+from openapi_client.model.pipelinelatest_run import PipelinelatestRun
+from openapi_client.model.pipelinelatest_runartifacts import PipelinelatestRunartifacts
+from openapi_client.model.pipelines import Pipelines
+from openapi_client.model.queue import Queue
+from openapi_client.model.queue_blocked_item import QueueBlockedItem
+from openapi_client.model.queue_item_impl import QueueItemImpl
+from openapi_client.model.queue_left_item import QueueLeftItem
+from openapi_client.model.response_time_monitor_data import ResponseTimeMonitorData
+from openapi_client.model.scm_organisations import ScmOrganisations
+from openapi_client.model.string_parameter_definition import StringParameterDefinition
+from openapi_client.model.string_parameter_value import StringParameterValue
+from openapi_client.model.swap_space_monitor_memory_usage2 import SwapSpaceMonitorMemoryUsage2
+from openapi_client.model.unlabeled_load_statistics import UnlabeledLoadStatistics
+from openapi_client.model.user import User
+from openapi_client.model.user_favorites import UserFavorites
+from openapi_client.model.users import Users

@@ -1,0 +1,72 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineRunNode"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineRunNode"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  PipelineRunNodeedges = openapi_server.resourceTypes.PipelineRunNodeedges
+}
+resourceTypes {
+
+  PipelineRunNode {
+    title = PipelineRunNode
+    description = PipelineRunNode
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        edges {
+          type = array
+          items.type = PipelineRunNodeedges
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        result {
+          type =  string
+          description = ""
+          optional = false
+        }
+        start_time {
+          type =  string
+          description = ""
+          optional = false
+        }
+        state {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineRunNode {
+    title = PipelineRunNode
+    description = PipelineRunNode
+    implements = openapi_server.resourceTypes.PipelineRunNode
+
+  }
+}

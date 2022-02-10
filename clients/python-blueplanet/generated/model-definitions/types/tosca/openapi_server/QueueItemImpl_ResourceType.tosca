@@ -1,0 +1,55 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server QueueItemImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a QueueItemImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  QueueItemImpl {
+    title = QueueItemImpl
+    description = QueueItemImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        expected_build_number {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        pipeline {
+          type =  string
+          description = ""
+          optional = false
+        }
+        queued_time {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  QueueItemImpl {
+    title = QueueItemImpl
+    description = QueueItemImpl
+    implements = openapi_server.resourceTypes.QueueItemImpl
+
+  }
+}

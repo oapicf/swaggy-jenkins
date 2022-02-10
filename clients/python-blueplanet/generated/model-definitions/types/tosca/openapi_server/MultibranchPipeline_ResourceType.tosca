@@ -1,0 +1,101 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server MultibranchPipeline"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a MultibranchPipeline"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MultibranchPipeline {
+    title = MultibranchPipeline
+    description = MultibranchPipeline
+    derivedFrom = Root
+    properties {
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        estimated_duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        latest_run {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        weather_score {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        branch_names {
+          type = array
+          items.type =  string
+          description = ""
+          optional = false
+        }
+        number_of_failing_branches {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        number_of_failing_pull_requests {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        number_of_successful_branches {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        number_of_successful_pull_requests {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        total_number_of_branches {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        total_number_of_pull_requests {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MultibranchPipeline {
+    title = MultibranchPipeline
+    description = MultibranchPipeline
+    implements = openapi_server.resourceTypes.MultibranchPipeline
+
+  }
+}

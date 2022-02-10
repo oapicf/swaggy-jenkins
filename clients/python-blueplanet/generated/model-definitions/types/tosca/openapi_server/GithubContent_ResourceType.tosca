@@ -1,0 +1,70 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server GithubContent"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a GithubContent"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  GithubContent {
+    title = GithubContent
+    description = GithubContent
+    derivedFrom = Root
+    properties {
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        sha {
+          type =  string
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        repo {
+          type =  string
+          description = ""
+          optional = false
+        }
+        size {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        owner {
+          type =  string
+          description = ""
+          optional = false
+        }
+        path {
+          type =  string
+          description = ""
+          optional = false
+        }
+        base64_data {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  GithubContent {
+    title = GithubContent
+    description = GithubContent
+    implements = openapi_server.resourceTypes.GithubContent
+
+  }
+}

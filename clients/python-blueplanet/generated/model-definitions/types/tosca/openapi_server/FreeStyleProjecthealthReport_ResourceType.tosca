@@ -1,0 +1,55 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FreeStyleProjecthealthReport"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FreeStyleProjecthealthReport"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  FreeStyleProjecthealthReport {
+    title = FreeStyleProjecthealthReport
+    description = FreeStyleProjecthealthReport
+    derivedFrom = Root
+    properties {
+        description {
+          type =  string
+          description = ""
+          optional = false
+        }
+        icon_class_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        icon_url {
+          type =  string
+          description = ""
+          optional = false
+        }
+        score {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FreeStyleProjecthealthReport {
+    title = FreeStyleProjecthealthReport
+    description = FreeStyleProjecthealthReport
+    implements = openapi_server.resourceTypes.FreeStyleProjecthealthReport
+
+  }
+}

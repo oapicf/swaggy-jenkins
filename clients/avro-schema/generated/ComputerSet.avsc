@@ -1,0 +1,42 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ComputerSet",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "busyExecutors",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "computer",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.HudsonMasterComputer"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "displayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "totalExecutors",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

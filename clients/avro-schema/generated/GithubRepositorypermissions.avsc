@@ -1,0 +1,33 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "GithubRepositorypermissions",
+  "fields": [
+    {
+      "name": "admin",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "push",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "pull",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

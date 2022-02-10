@@ -1,0 +1,77 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineBranchesitem"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineBranchesitem"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  PipelineBranchesitemlatestRun = openapi_server.resourceTypes.PipelineBranchesitemlatestRun
+  PipelineBranchesitempullRequest = openapi_server.resourceTypes.PipelineBranchesitempullRequest
+}
+resourceTypes {
+
+  PipelineBranchesitem {
+    title = PipelineBranchesitem
+    description = PipelineBranchesitem
+    derivedFrom = Root
+    properties {
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        estimated_duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        weather_score {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        latest_run {
+          type = PipelineBranchesitemlatestRun
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        pull_request {
+          type = PipelineBranchesitempullRequest
+          description = ""
+          optional = false
+        }
+        total_number_of_pull_requests {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineBranchesitem {
+    title = PipelineBranchesitem
+    description = PipelineBranchesitem
+    implements = openapi_server.resourceTypes.PipelineBranchesitem
+
+  }
+}

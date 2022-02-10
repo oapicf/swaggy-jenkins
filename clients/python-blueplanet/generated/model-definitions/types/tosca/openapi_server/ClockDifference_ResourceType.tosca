@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ClockDifference"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ClockDifference"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ClockDifference {
+    title = ClockDifference
+    description = ClockDifference
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        diff {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ClockDifference {
+    title = ClockDifference
+    description = ClockDifference
+    implements = openapi_server.resourceTypes.ClockDifference
+
+  }
+}

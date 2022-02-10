@@ -1,0 +1,90 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "QueueLeftItem",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "actions",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.CauseAction"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "blocked",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "buildable",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "inQueueSince",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "params",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "stuck",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "task",
+      "type": ["null", "model.FreeStyleProject"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "url",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "why",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "cancelled",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "executable",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

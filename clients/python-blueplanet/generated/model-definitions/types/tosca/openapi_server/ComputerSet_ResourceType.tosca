@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server ComputerSet"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a ComputerSet"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  HudsonMasterComputer = openapi_server.resourceTypes.HudsonMasterComputer
+}
+resourceTypes {
+
+  ComputerSet {
+    title = ComputerSet
+    description = ComputerSet
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        busy_executors {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        computer {
+          type = array
+          items.type = HudsonMasterComputer
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        total_executors {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ComputerSet {
+    title = ComputerSet
+    description = ComputerSet
+    implements = openapi_server.resourceTypes.ComputerSet
+
+  }
+}

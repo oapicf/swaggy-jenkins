@@ -1,0 +1,172 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FreeStyleProject"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FreeStyleProject"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FreeStyleBuild = openapi_server.resourceTypes.FreeStyleBuild
+  FreeStyleProjectactions = openapi_server.resourceTypes.FreeStyleProjectactions
+  FreeStyleProjecthealthReport = openapi_server.resourceTypes.FreeStyleProjecthealthReport
+  NullSCM = openapi_server.resourceTypes.NullSCM
+}
+resourceTypes {
+
+  FreeStyleProject {
+    title = FreeStyleProject
+    description = FreeStyleProject
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        url {
+          type =  string
+          description = ""
+          optional = false
+        }
+        color {
+          type =  string
+          description = ""
+          optional = false
+        }
+        actions {
+          type = array
+          items.type = FreeStyleProjectactions
+          description = ""
+          optional = false
+        }
+        description {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name_or_null {
+          type =  string
+          description = ""
+          optional = false
+        }
+        full_display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        full_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        buildable {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        builds {
+          type = array
+          items.type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        first_build {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        health_report {
+          type = array
+          items.type = FreeStyleProjecthealthReport
+          description = ""
+          optional = false
+        }
+        in_queue {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        keep_dependencies {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        last_build {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        last_completed_build {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        last_failed_build {
+          type =  string
+          description = ""
+          optional = false
+        }
+        last_stable_build {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        last_successful_build {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        last_unstable_build {
+          type =  string
+          description = ""
+          optional = false
+        }
+        last_unsuccessful_build {
+          type =  string
+          description = ""
+          optional = false
+        }
+        next_build_number {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        queue_item {
+          type =  string
+          description = ""
+          optional = false
+        }
+        concurrent_build {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        scm {
+          type = NullSCM
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FreeStyleProject {
+    title = FreeStyleProject
+    description = FreeStyleProject
+    implements = openapi_server.resourceTypes.FreeStyleProject
+
+  }
+}

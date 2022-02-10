@@ -1,0 +1,69 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server HudsonMasterComputermonitorData"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a HudsonMasterComputermonitorData"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  ClockDifference = openapi_server.resourceTypes.ClockDifference
+  DiskSpaceMonitorDescriptorDiskSpace = openapi_server.resourceTypes.DiskSpaceMonitorDescriptorDiskSpace
+  ResponseTimeMonitorData = openapi_server.resourceTypes.ResponseTimeMonitorData
+  SwapSpaceMonitorMemoryUsage2 = openapi_server.resourceTypes.SwapSpaceMonitorMemoryUsage2
+}
+resourceTypes {
+
+  HudsonMasterComputermonitorData {
+    title = HudsonMasterComputermonitorData
+    description = HudsonMasterComputermonitorData
+    derivedFrom = Root
+    properties {
+        hudson_node_monitors_swap_space_monitor {
+          type = SwapSpaceMonitorMemoryUsage2
+          description = ""
+          optional = false
+        }
+        hudson_node_monitors_temporary_space_monitor {
+          type = DiskSpaceMonitorDescriptorDiskSpace
+          description = ""
+          optional = false
+        }
+        hudson_node_monitors_disk_space_monitor {
+          type = DiskSpaceMonitorDescriptorDiskSpace
+          description = ""
+          optional = false
+        }
+        hudson_node_monitors_architecture_monitor {
+          type =  string
+          description = ""
+          optional = false
+        }
+        hudson_node_monitors_response_time_monitor {
+          type = ResponseTimeMonitorData
+          description = ""
+          optional = false
+        }
+        hudson_node_monitors_clock_monitor {
+          type = ClockDifference
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  HudsonMasterComputermonitorData {
+    title = HudsonMasterComputermonitorData
+    description = HudsonMasterComputermonitorData
+    implements = openapi_server.resourceTypes.HudsonMasterComputermonitorData
+
+  }
+}

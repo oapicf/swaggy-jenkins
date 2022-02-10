@@ -1,0 +1,180 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "FreeStyleProject",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "url",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "color",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "actions",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FreeStyleProjectactions"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "description",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "displayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "displayNameOrNull",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "fullDisplayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "fullName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "buildable",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "builds",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FreeStyleBuild"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "firstBuild",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "healthReport",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.FreeStyleProjecthealthReport"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "inQueue",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "keepDependencies",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastBuild",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastCompletedBuild",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastFailedBuild",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastStableBuild",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastSuccessfulBuild",
+      "type": ["null", "model.FreeStyleBuild"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastUnstableBuild",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastUnsuccessfulBuild",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "nextBuildNumber",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "queueItem",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "concurrentBuild",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "scm",
+      "type": ["null", "model.NullSCM"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

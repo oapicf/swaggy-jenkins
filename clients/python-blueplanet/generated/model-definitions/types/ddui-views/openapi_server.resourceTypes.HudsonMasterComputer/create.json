@@ -1,0 +1,32 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "_class" },
+      {"model": "display_name" },
+      {"model": "executors" },
+      {"model": "icon" },
+      {"model": "icon_class_name" },
+      {"model": "idle" },
+      {"model": "jnlp_agent" },
+      {"model": "launch_supported" },
+      {"model": "load_statistics" },
+      {"model": "manual_launch_allowed" },
+      {"model": "monitor_data" },
+      {"model": "num_executors" },
+      {"model": "offline" },
+      {"model": "offline_cause" },
+      {"model": "offline_cause_reason" },
+      {"model": "temporarily_offline" },
+    ]
+  }]
+}

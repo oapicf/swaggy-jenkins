@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputerexecutors")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-09T13:05:51.152086Z[Etc/UTC]")public class HudsonMasterComputerexecutors   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-10T09:47:30.188253Z[Etc/UTC]")public class HudsonMasterComputerexecutors   {
   
   private @Valid FreeStyleBuild currentExecutable;
   private @Valid Boolean idle;

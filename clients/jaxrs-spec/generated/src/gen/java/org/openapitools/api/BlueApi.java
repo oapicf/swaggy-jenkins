@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 @Path("/blue/rest")
 @Api(description = "the blue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-09T13:05:51.152086Z[Etc/UTC]")public class BlueApi {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-10T09:47:30.188253Z[Etc/UTC]")public class BlueApi {
 
     @DELETE
     @Path("/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")

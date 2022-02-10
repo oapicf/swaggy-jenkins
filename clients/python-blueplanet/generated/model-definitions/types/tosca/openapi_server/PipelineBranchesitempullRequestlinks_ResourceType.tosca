@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server PipelineBranchesitempullRequestlinks"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a PipelineBranchesitempullRequestlinks"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  PipelineBranchesitempullRequestlinks {
+    title = PipelineBranchesitempullRequestlinks
+    description = PipelineBranchesitempullRequestlinks
+    derivedFrom = Root
+    properties {
+        _self {
+          type =  string
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  PipelineBranchesitempullRequestlinks {
+    title = PipelineBranchesitempullRequestlinks
+    description = PipelineBranchesitempullRequestlinks
+    implements = openapi_server.resourceTypes.PipelineBranchesitempullRequestlinks
+
+  }
+}

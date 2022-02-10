@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * FreeStyleProjecthealthReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-09T13:00:41.367124Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-10T09:45:11.812644Z[Etc/UTC]")
 public class FreeStyleProjecthealthReport {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)

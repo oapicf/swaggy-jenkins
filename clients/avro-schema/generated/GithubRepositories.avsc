@@ -1,0 +1,48 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "GithubRepositories",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.GithubRepositorieslinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "items",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.GithubRepository"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "lastPage",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "nextPage",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "pageSize",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

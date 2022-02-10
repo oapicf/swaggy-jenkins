@@ -1,0 +1,50 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server DiskSpaceMonitorDescriptorDiskSpace"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a DiskSpaceMonitorDescriptorDiskSpace"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  DiskSpaceMonitorDescriptorDiskSpace {
+    title = DiskSpaceMonitorDescriptorDiskSpace
+    description = DiskSpaceMonitorDescriptorDiskSpace
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        timestamp {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        path {
+          type =  string
+          description = ""
+          optional = false
+        }
+        size {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  DiskSpaceMonitorDescriptorDiskSpace {
+    title = DiskSpaceMonitorDescriptorDiskSpace
+    description = DiskSpaceMonitorDescriptorDiskSpace
+    implements = openapi_server.resourceTypes.DiskSpaceMonitorDescriptorDiskSpace
+
+  }
+}

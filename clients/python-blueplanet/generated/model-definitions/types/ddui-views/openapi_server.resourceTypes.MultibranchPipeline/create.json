@@ -1,0 +1,30 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "display_name" },
+      {"model": "estimated_duration_in_millis" },
+      {"model": "latest_run" },
+      {"model": "name" },
+      {"model": "organization" },
+      {"model": "weather_score" },
+      {"model": "branch_names" },
+      {"model": "number_of_failing_branches" },
+      {"model": "number_of_failing_pull_requests" },
+      {"model": "number_of_successful_branches" },
+      {"model": "number_of_successful_pull_requests" },
+      {"model": "total_number_of_branches" },
+      {"model": "total_number_of_pull_requests" },
+      {"model": "_class" },
+    ]
+  }]
+}

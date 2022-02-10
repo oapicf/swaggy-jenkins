@@ -1,0 +1,46 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server GithubOrganizationlinks"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a GithubOrganizationlinks"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  Link = openapi_server.resourceTypes.Link
+}
+resourceTypes {
+
+  GithubOrganizationlinks {
+    title = GithubOrganizationlinks
+    description = GithubOrganizationlinks
+    derivedFrom = Root
+    properties {
+        repositories {
+          type = Link
+          description = ""
+          optional = false
+        }
+        _self {
+          type = Link
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  GithubOrganizationlinks {
+    title = GithubOrganizationlinks
+    description = GithubOrganizationlinks
+    implements = openapi_server.resourceTypes.GithubOrganizationlinks
+
+  }
+}

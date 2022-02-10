@@ -21,7 +21,7 @@ import org.openapitools.model.Link;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-09T13:04:53.529229Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-10T09:46:18.079271Z[Etc/UTC]")
 public class BranchImpllinks   {
   
   private Link self;

@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server HudsonassignedLabels"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a HudsonassignedLabels"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  HudsonassignedLabels {
+    title = HudsonassignedLabels
+    description = HudsonassignedLabels
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  HudsonassignedLabels {
+    title = HudsonassignedLabels
+    description = HudsonassignedLabels
+    implements = openapi_server.resourceTypes.HudsonassignedLabels
+
+  }
+}

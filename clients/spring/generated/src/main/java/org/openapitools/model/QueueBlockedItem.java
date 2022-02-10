@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * QueueBlockedItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-09T13:10:31.658770Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-10T09:53:34.462656Z[Etc/UTC]")
 public class QueueBlockedItem   {
 
   @JsonProperty("_class")

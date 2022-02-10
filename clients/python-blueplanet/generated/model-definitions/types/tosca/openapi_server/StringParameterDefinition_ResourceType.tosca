@@ -1,0 +1,56 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server StringParameterDefinition"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a StringParameterDefinition"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  StringParameterValue = openapi_server.resourceTypes.StringParameterValue
+}
+resourceTypes {
+
+  StringParameterDefinition {
+    title = StringParameterDefinition
+    description = StringParameterDefinition
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        default_parameter_value {
+          type = StringParameterValue
+          description = ""
+          optional = false
+        }
+        description {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        type {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  StringParameterDefinition {
+    title = StringParameterDefinition
+    description = StringParameterDefinition
+    implements = openapi_server.resourceTypes.StringParameterDefinition
+
+  }
+}

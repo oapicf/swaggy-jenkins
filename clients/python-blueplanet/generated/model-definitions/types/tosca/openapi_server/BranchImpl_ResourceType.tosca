@@ -1,0 +1,100 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server BranchImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a BranchImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  BranchImpllinks = openapi_server.resourceTypes.BranchImpllinks
+  BranchImplpermissions = openapi_server.resourceTypes.BranchImplpermissions
+  PipelineRunImpl = openapi_server.resourceTypes.PipelineRunImpl
+  StringParameterDefinition = openapi_server.resourceTypes.StringParameterDefinition
+}
+resourceTypes {
+
+  BranchImpl {
+    title = BranchImpl
+    description = BranchImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        estimated_duration_in_millis {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        full_display_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        full_name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        name {
+          type =  string
+          description = ""
+          optional = false
+        }
+        organization {
+          type =  string
+          description = ""
+          optional = false
+        }
+        parameters {
+          type = array
+          items.type = StringParameterDefinition
+          description = ""
+          optional = false
+        }
+        permissions {
+          type = BranchImplpermissions
+          description = ""
+          optional = false
+        }
+        weather_score {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        pull_request {
+          type =  string
+          description = ""
+          optional = false
+        }
+        links {
+          type = BranchImpllinks
+          description = ""
+          optional = false
+        }
+        latest_run {
+          type = PipelineRunImpl
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  BranchImpl {
+    title = BranchImpl
+    description = BranchImpl
+    implements = openapi_server.resourceTypes.BranchImpl
+
+  }
+}

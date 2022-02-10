@@ -1,0 +1,68 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server InputStepImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a InputStepImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  InputStepImpllinks = openapi_server.resourceTypes.InputStepImpllinks
+  StringParameterDefinition = openapi_server.resourceTypes.StringParameterDefinition
+}
+resourceTypes {
+
+  InputStepImpl {
+    title = InputStepImpl
+    description = InputStepImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        links {
+          type = InputStepImpllinks
+          description = ""
+          optional = false
+        }
+        id {
+          type =  string
+          description = ""
+          optional = false
+        }
+        message {
+          type =  string
+          description = ""
+          optional = false
+        }
+        ok {
+          type =  string
+          description = ""
+          optional = false
+        }
+        parameters {
+          type = array
+          items.type = StringParameterDefinition
+          description = ""
+          optional = false
+        }
+        submitter {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  InputStepImpl {
+    title = InputStepImpl
+    description = InputStepImpl
+    implements = openapi_server.resourceTypes.InputStepImpl
+
+  }
+}

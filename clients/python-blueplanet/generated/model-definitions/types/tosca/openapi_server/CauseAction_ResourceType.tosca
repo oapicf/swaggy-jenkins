@@ -1,0 +1,42 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server CauseAction"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a CauseAction"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CauseUserIdCause = openapi_server.resourceTypes.CauseUserIdCause
+}
+resourceTypes {
+
+  CauseAction {
+    title = CauseAction
+    description = CauseAction
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        causes {
+          type = array
+          items.type = CauseUserIdCause
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  CauseAction {
+    title = CauseAction
+    description = CauseAction
+    implements = openapi_server.resourceTypes.CauseAction
+
+  }
+}

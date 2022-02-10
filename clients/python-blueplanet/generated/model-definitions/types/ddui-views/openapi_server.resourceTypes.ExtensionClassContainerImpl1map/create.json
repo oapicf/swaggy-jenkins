@@ -1,0 +1,19 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "io_jenkins_blueocean_service_embedded_rest_pipeline_impl" },
+      {"model": "io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl" },
+      {"model": "_class" },
+    ]
+  }]
+}

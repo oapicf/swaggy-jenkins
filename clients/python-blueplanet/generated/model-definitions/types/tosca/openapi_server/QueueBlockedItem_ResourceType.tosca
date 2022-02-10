@@ -1,0 +1,93 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server QueueBlockedItem"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a QueueBlockedItem"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  CauseAction = openapi_server.resourceTypes.CauseAction
+  FreeStyleProject = openapi_server.resourceTypes.FreeStyleProject
+}
+resourceTypes {
+
+  QueueBlockedItem {
+    title = QueueBlockedItem
+    description = QueueBlockedItem
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        actions {
+          type = array
+          items.type = CauseAction
+          description = ""
+          optional = false
+        }
+        blocked {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        buildable {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        id {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        in_queue_since {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        params {
+          type =  string
+          description = ""
+          optional = false
+        }
+        stuck {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        task {
+          type = FreeStyleProject
+          description = ""
+          optional = false
+        }
+        url {
+          type =  string
+          description = ""
+          optional = false
+        }
+        why {
+          type =  string
+          description = ""
+          optional = false
+        }
+        buildable_start_milliseconds {
+          type =  integer
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  QueueBlockedItem {
+    title = QueueBlockedItem
+    description = QueueBlockedItem
+    implements = openapi_server.resourceTypes.QueueBlockedItem
+
+  }
+}

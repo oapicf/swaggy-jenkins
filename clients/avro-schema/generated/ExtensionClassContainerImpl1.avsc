@@ -1,0 +1,27 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "ExtensionClassContainerImpl1",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.ExtensionClassContainerImpl1links"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "map",
+      "type": ["null", "model.ExtensionClassContainerImpl1map"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

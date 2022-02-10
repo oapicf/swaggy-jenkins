@@ -1,0 +1,22 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "nodes" },
+      {"model": "log" },
+      {"model": "_self" },
+      {"model": "actions" },
+      {"model": "steps" },
+      {"model": "_class" },
+    ]
+  }]
+}

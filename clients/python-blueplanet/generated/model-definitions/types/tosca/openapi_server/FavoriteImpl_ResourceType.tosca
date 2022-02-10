@@ -1,0 +1,47 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server FavoriteImpl"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a FavoriteImpl"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FavoriteImpllinks = openapi_server.resourceTypes.FavoriteImpllinks
+  PipelineImpl = openapi_server.resourceTypes.PipelineImpl
+}
+resourceTypes {
+
+  FavoriteImpl {
+    title = FavoriteImpl
+    description = FavoriteImpl
+    derivedFrom = Root
+    properties {
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+        links {
+          type = FavoriteImpllinks
+          description = ""
+          optional = false
+        }
+        item {
+          type = PipelineImpl
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  FavoriteImpl {
+    title = FavoriteImpl
+    description = FavoriteImpl
+    implements = openapi_server.resourceTypes.FavoriteImpl
+
+  }
+}

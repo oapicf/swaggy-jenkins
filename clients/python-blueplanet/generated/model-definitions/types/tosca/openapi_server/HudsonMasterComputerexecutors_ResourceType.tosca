@@ -1,0 +1,61 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "openapi_server HudsonMasterComputerexecutors"
+package     = openapi_server
+version     = "1.0"
+description = "Defines a HudsonMasterComputerexecutors"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  FreeStyleBuild = openapi_server.resourceTypes.FreeStyleBuild
+}
+resourceTypes {
+
+  HudsonMasterComputerexecutors {
+    title = HudsonMasterComputerexecutors
+    description = HudsonMasterComputerexecutors
+    derivedFrom = Root
+    properties {
+        current_executable {
+          type = FreeStyleBuild
+          description = ""
+          optional = false
+        }
+        idle {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        likely_stuck {
+          type =  boolean
+          description = ""
+          optional = false
+        }
+        number {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        progress {
+          type =  integer
+          description = ""
+          optional = false
+        }
+        _class {
+          type =  string
+          description = ""
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  HudsonMasterComputerexecutors {
+    title = HudsonMasterComputerexecutors
+    description = HudsonMasterComputerexecutors
+    implements = openapi_server.resourceTypes.HudsonMasterComputerexecutors
+
+  }
+}

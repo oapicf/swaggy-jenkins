@@ -1,0 +1,24 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "CauseAction",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "causes",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.CauseUserIdCause"
+      }],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

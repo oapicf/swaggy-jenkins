@@ -1,0 +1,78 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Routes for Base API
+
+GET /crumbIssuer/api/json                                                                                      api.BaseApiController.getCrumb()
+
+# Routes for BlueOcean API
+
+GET /jwt-auth/token                                                                                            api.BlueOceanApiController.getJsonWebToken()
+GET /blue/rest/organizations/                                                                                  api.BlueOceanApiController.getOrganisations()
+GET /blue/rest/search/                                                                                         api.BlueOceanApiController.search()
+GET /blue/rest/classes/                                                                                        api.BlueOceanApiController.searchClasses()
+DELETE /blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue                                 api.BlueOceanApiController.deletePipelineQueueItem(organization: String, pipeline: String, queue: String)
+GET /blue/rest/organizations/:organization/user/                                                               api.BlueOceanApiController.getAuthenticatedUser(organization: String)
+GET /blue/rest/classes/:class                                                                                  api.BlueOceanApiController.getClasses(`class`: String)
+GET /jwt-auth/jwks/:key                                                                                        api.BlueOceanApiController.getJsonWebKey(key: Int)
+GET /blue/rest/organizations/:organization                                                                     api.BlueOceanApiController.getOrganisation(organization: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline                                                 api.BlueOceanApiController.getPipeline(organization: String, pipeline: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/activities                                      api.BlueOceanApiController.getPipelineActivities(organization: String, pipeline: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/                               api.BlueOceanApiController.getPipelineBranch(organization: String, pipeline: String, branch: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/runs/:run                      api.BlueOceanApiController.getPipelineBranchRun(organization: String, pipeline: String, branch: String, run: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/branches                                        api.BlueOceanApiController.getPipelineBranches(organization: String, pipeline: String)
+GET /blue/rest/organizations/:organization/pipelines/:folder/                                                  api.BlueOceanApiController.getPipelineFolder(organization: String, folder: String)
+GET /blue/rest/organizations/:organization/pipelines/:folder/pipelines/:pipeline                               api.BlueOceanApiController.getPipelineFolderPipeline(organization: String, pipeline: String, folder: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/queue                                           api.BlueOceanApiController.getPipelineQueue(organization: String, pipeline: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run                                       api.BlueOceanApiController.getPipelineRun(organization: String, pipeline: String, run: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/log                                   api.BlueOceanApiController.getPipelineRunLog(organization: String, pipeline: String, run: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node                           api.BlueOceanApiController.getPipelineRunNode(organization: String, pipeline: String, run: String, node: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step               api.BlueOceanApiController.getPipelineRunNodeStep(organization: String, pipeline: String, run: String, node: String, step: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step/log           api.BlueOceanApiController.getPipelineRunNodeStepLog(organization: String, pipeline: String, run: String, node: String, step: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps                     api.BlueOceanApiController.getPipelineRunNodeSteps(organization: String, pipeline: String, run: String, node: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes                                 api.BlueOceanApiController.getPipelineRunNodes(organization: String, pipeline: String, run: String)
+GET /blue/rest/organizations/:organization/pipelines/:pipeline/runs                                            api.BlueOceanApiController.getPipelineRuns(organization: String, pipeline: String)
+GET /blue/rest/organizations/:organization/pipelines/                                                          api.BlueOceanApiController.getPipelines(organization: String)
+GET /blue/rest/organizations/:organization/scm/:scm                                                            api.BlueOceanApiController.getSCM(organization: String, scm: String)
+GET /blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories                api.BlueOceanApiController.getSCMOrganisationRepositories(organization: String, scm: String, scmOrganisation: String)
+GET /blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories/:repository    api.BlueOceanApiController.getSCMOrganisationRepository(organization: String, scm: String, scmOrganisation: String, repository: String)
+GET /blue/rest/organizations/:organization/scm/:scm/organizations                                              api.BlueOceanApiController.getSCMOrganisations(organization: String, scm: String)
+GET /blue/rest/organizations/:organization/users/:user                                                         api.BlueOceanApiController.getUser(organization: String, user: String)
+GET /blue/rest/users/:user/favorites                                                                           api.BlueOceanApiController.getUserFavorites(user: String)
+GET /blue/rest/organizations/:organization/users/                                                              api.BlueOceanApiController.getUsers(organization: String)
+POST /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/replay                               api.BlueOceanApiController.postPipelineRun(organization: String, pipeline: String, run: String)
+POST /blue/rest/organizations/:organization/pipelines/:pipeline/runs                                           api.BlueOceanApiController.postPipelineRuns(organization: String, pipeline: String)
+PUT /blue/rest/organizations/:organization/pipelines/:pipeline/favorite                                        api.BlueOceanApiController.putPipelineFavorite(organization: String, pipeline: String)
+PUT /blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/stop                                  api.BlueOceanApiController.putPipelineRun(organization: String, pipeline: String, run: String)
+
+# Routes for RemoteAccess API
+
+GET /computer/api/json                                                                                         api.RemoteAccessApiController.getComputer()
+GET /api/json                                                                                                  api.RemoteAccessApiController.getJenkins()
+GET /queue/api/json                                                                                            api.RemoteAccessApiController.getQueue()
+HEAD /api/json                                                                                                 api.RemoteAccessApiController.headJenkins()
+POST /createItem                                                                                               api.RemoteAccessApiController.postCreateItem()
+POST /createView                                                                                               api.RemoteAccessApiController.postCreateView()
+GET /job/:name/api/json                                                                                        api.RemoteAccessApiController.getJob(name: String)
+GET /job/:name/config.xml                                                                                      api.RemoteAccessApiController.getJobConfig(name: String)
+GET /job/:name/lastBuild/api/json                                                                              api.RemoteAccessApiController.getJobLastBuild(name: String)
+GET /job/:name/:number/logText/progressiveText                                                                 api.RemoteAccessApiController.getJobProgressiveText(name: String, number: String)
+GET /queue/item/:number/api/json                                                                               api.RemoteAccessApiController.getQueueItem(number: String)
+GET /view/:name/api/json                                                                                       api.RemoteAccessApiController.getView(name: String)
+GET /view/:name/config.xml                                                                                     api.RemoteAccessApiController.getViewConfig(name: String)
+POST /job/:name/build                                                                                          api.RemoteAccessApiController.postJobBuild(name: String)
+POST /job/:name/config.xml                                                                                     api.RemoteAccessApiController.postJobConfig(name: String)
+POST /job/:name/doDelete                                                                                       api.RemoteAccessApiController.postJobDelete(name: String)
+POST /job/:name/disable                                                                                        api.RemoteAccessApiController.postJobDisable(name: String)
+POST /job/:name/enable                                                                                         api.RemoteAccessApiController.postJobEnable(name: String)
+POST /job/:name/lastBuild/stop                                                                                 api.RemoteAccessApiController.postJobLastBuildStop(name: String)
+POST /view/:name/config.xml                                                                                    api.RemoteAccessApiController.postViewConfig(name: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET /assets/*file           controllers.Assets.at(file)
+GET /versionedAssets/*file  controllers.Assets.versioned(file)
+
+# Swagger UI
+GET /api                    api.ApiDocController.api

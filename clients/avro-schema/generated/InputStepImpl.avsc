@@ -1,0 +1,54 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "InputStepImpl",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_links",
+      "type": ["null", "model.InputStepImpllinks"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "id",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "message",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "ok",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "parameters",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.StringParameterDefinition"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "submitter",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

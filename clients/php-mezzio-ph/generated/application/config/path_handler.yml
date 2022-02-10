@@ -1,0 +1,138 @@
+dependencies:
+  factories:
+    Mezzio\Router\RouterInterface: Articus\PathHandler\RouteInjectionFactory
+    Articus\PathHandler\MetadataProviderInterface: Articus\PathHandler\MetadataProvider\Factory\Annotation
+    Articus\PathHandler\Handler\PluginManager: Articus\PathHandler\Handler\Factory\PluginManager
+    Articus\PathHandler\Consumer\PluginManager: Articus\PathHandler\Consumer\Factory\PluginManager
+    Articus\PathHandler\Attribute\PluginManager: Articus\PathHandler\Attribute\Factory\PluginManager
+    Articus\PathHandler\Producer\PluginManager: Articus\PathHandler\Producer\Factory\PluginManager
+
+Articus\PathHandler\RouteInjectionFactory:
+  paths:
+    '':
+    - App\Handler\ApiJson
+    - App\Handler\BlueRestClasses
+    - App\Handler\BlueRestClassesClass
+    - App\Handler\BlueRestOrganizations
+    - App\Handler\BlueRestOrganizationsOrganization
+    - App\Handler\BlueRestOrganizationsOrganizationPipelines
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesFolder
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesFolderPipelinesPipeline
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipeline
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineActivities
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineBranches
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineBranchesBranch
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineBranchesBranchRunsRun
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineFavorite
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineQueue
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineQueueQueue
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRuns
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRun
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunLog
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodes
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNode
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNodeSteps
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNodeStepsStep
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNodeStepsStepLog
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunReplay
+    - App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunStop
+    - App\Handler\BlueRestOrganizationsOrganizationScmScm
+    - App\Handler\BlueRestOrganizationsOrganizationScmScmOrganizations
+    - App\Handler\BlueRestOrganizationsOrganizationScmScmOrganizationsScmOrganisationRepositories
+    - App\Handler\BlueRestOrganizationsOrganizationScmScmOrganizationsScmOrganisationRepositoriesRepository
+    - App\Handler\BlueRestOrganizationsOrganizationUser
+    - App\Handler\BlueRestOrganizationsOrganizationUsers
+    - App\Handler\BlueRestOrganizationsOrganizationUsersUser
+    - App\Handler\BlueRestSearch
+    - App\Handler\BlueRestUsersUserFavorites
+    - App\Handler\ComputerApiJson
+    - App\Handler\CreateItem
+    - App\Handler\CreateView
+    - App\Handler\CrumbIssuerApiJson
+    - App\Handler\JobNameApiJson
+    - App\Handler\JobNameBuild
+    - App\Handler\JobNameConfigXml
+    - App\Handler\JobNameDisable
+    - App\Handler\JobNameDoDelete
+    - App\Handler\JobNameEnable
+    - App\Handler\JobNameLastBuildApiJson
+    - App\Handler\JobNameLastBuildStop
+    - App\Handler\JobNameNumberLogTextProgressiveText
+    - App\Handler\JwtAuthJwksKey
+    - App\Handler\JwtAuthToken
+    - App\Handler\QueueApiJson
+    - App\Handler\QueueItemNumberApiJson
+    - App\Handler\ViewNameApiJson
+    - App\Handler\ViewNameConfigXml
+
+Articus\PathHandler\Handler\PluginManager:
+  abstract_factories:
+  - Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory
+
+#Articus\PathHandler\Consumer\PluginManager:
+#  factories:
+#  invokables:
+
+#Articus\PathHandler\Attribute\PluginManager:
+#  factories:
+#  invokables:
+
+#Articus\PathHandler\Producer\PluginManager:
+#  factories:
+#  invokables:
+
+Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory:
+  App\Handler\ApiJson: []
+  App\Handler\BlueRestClasses: []
+  App\Handler\BlueRestClassesClass: []
+  App\Handler\BlueRestOrganizations: []
+  App\Handler\BlueRestOrganizationsOrganization: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelines: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesFolder: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesFolderPipelinesPipeline: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipeline: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineActivities: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineBranches: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineBranchesBranch: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineBranchesBranchRunsRun: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineFavorite: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineQueue: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineQueueQueue: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRuns: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRun: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunLog: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodes: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNode: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNodeSteps: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNodeStepsStep: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunNodesNodeStepsStepLog: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunReplay: []
+  App\Handler\BlueRestOrganizationsOrganizationPipelinesPipelineRunsRunStop: []
+  App\Handler\BlueRestOrganizationsOrganizationScmScm: []
+  App\Handler\BlueRestOrganizationsOrganizationScmScmOrganizations: []
+  App\Handler\BlueRestOrganizationsOrganizationScmScmOrganizationsScmOrganisationRepositories: []
+  App\Handler\BlueRestOrganizationsOrganizationScmScmOrganizationsScmOrganisationRepositoriesRepository: []
+  App\Handler\BlueRestOrganizationsOrganizationUser: []
+  App\Handler\BlueRestOrganizationsOrganizationUsers: []
+  App\Handler\BlueRestOrganizationsOrganizationUsersUser: []
+  App\Handler\BlueRestSearch: []
+  App\Handler\BlueRestUsersUserFavorites: []
+  App\Handler\ComputerApiJson: []
+  App\Handler\CreateItem: []
+  App\Handler\CreateView: []
+  App\Handler\CrumbIssuerApiJson: []
+  App\Handler\JobNameApiJson: []
+  App\Handler\JobNameBuild: []
+  App\Handler\JobNameConfigXml: []
+  App\Handler\JobNameDisable: []
+  App\Handler\JobNameDoDelete: []
+  App\Handler\JobNameEnable: []
+  App\Handler\JobNameLastBuildApiJson: []
+  App\Handler\JobNameLastBuildStop: []
+  App\Handler\JobNameNumberLogTextProgressiveText: []
+  App\Handler\JwtAuthJwksKey: []
+  App\Handler\JwtAuthToken: []
+  App\Handler\QueueApiJson: []
+  App\Handler\QueueItemNumberApiJson: []
+  App\Handler\ViewNameApiJson: []
+  App\Handler\ViewNameConfigXml: []

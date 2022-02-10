@@ -2,7 +2,7 @@
 
 Swaggy Jenkins
 - API version: 1.1.2-pre.0
-  - Build date: 2022-02-09T13:00:41.367124Z[Etc/UTC]
+  - Build date: 2022-02-10T09:45:11.812644Z[Etc/UTC]
 
 Jenkins API clients generated from Swagger / Open API specification
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.cliffano</groupId>
   <artifactId>swaggyjenkins</artifactId>
-  <version>0.0.1</version>
+  <version>1.1.2-pre.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.cliffano:swaggyjenkins:0.0.1"
+     implementation "com.cliffano:swaggyjenkins:1.1.2-pre.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/swaggyjenkins-0.0.1.jar`
+* `target/swaggyjenkins-1.1.2-pre.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

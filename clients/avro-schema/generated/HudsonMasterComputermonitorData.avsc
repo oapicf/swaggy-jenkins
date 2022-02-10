@@ -1,0 +1,51 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "HudsonMasterComputermonitorData",
+  "fields": [
+    {
+      "name": "hudson.node_monitors.SwapSpaceMonitor",
+      "type": ["null", "model.SwapSpaceMonitorMemoryUsage2"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "hudson.node_monitors.TemporarySpaceMonitor",
+      "type": ["null", "model.DiskSpaceMonitorDescriptorDiskSpace"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "hudson.node_monitors.DiskSpaceMonitor",
+      "type": ["null", "model.DiskSpaceMonitorDescriptorDiskSpace"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "hudson.node_monitors.ArchitectureMonitor",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "hudson.node_monitors.ResponseTimeMonitor",
+      "type": ["null", "model.ResponseTimeMonitorData"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "hudson.node_monitors.ClockMonitor",
+      "type": ["null", "model.ClockDifference"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

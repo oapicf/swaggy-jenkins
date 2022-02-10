@@ -1,0 +1,108 @@
+{
+  "namespace": "model",
+  "type": "record",
+  "doc": "",
+  "name": "HudsonMasterComputer",
+  "fields": [
+    {
+      "name": "_class",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "displayName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "executors",
+      "type": ["null", {
+        "type": "array",
+        "items": "model.HudsonMasterComputerexecutors"
+      }],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "icon",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "iconClassName",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "idle",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "jnlpAgent",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "launchSupported",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "loadStatistics",
+      "type": ["null", "model.Label1"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "manualLaunchAllowed",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "monitorData",
+      "type": ["null", "model.HudsonMasterComputermonitorData"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "numExecutors",
+      "type": ["null", "int"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "offline",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "offlineCause",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "offlineCauseReason",
+      "type": ["null", "string"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "temporarilyOffline",
+      "type": ["null", "boolean"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}
