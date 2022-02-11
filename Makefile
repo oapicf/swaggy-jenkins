@@ -19,6 +19,9 @@ conf-placeholder:
 	git checkout clients/ruby/conf.json
 	git checkout clients/python/conf.json
 
+local-generate:
+	LOCAL=true make generate
+
 generate:
 	if [ "${LOCAL}" = "true" ]; then \
 	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
@@ -41,8 +44,8 @@ generate-langs:
 
 test-javascript:
 	npm install -g babel-cli
-	cd clients/javascript/generated/ && npm link
-	cd test/javascript/ && npm link swaggy-jenkins
+	cd clients/javascript/generated/ && npm install && npm link && npm run build
+	cd test/javascript/ && npm link ../../clients/javascript/generated/
 	mocha --timeout 5000 test/javascript/
 
 doc:
