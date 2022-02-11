@@ -1664,7 +1664,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
 
 
 
@@ -1680,10 +1680,10 @@ import 'package:openapi/api.dart';
 final api = Openapi().getBlueOceanApi();
 final String organization = organization_example; // String | Name of the organization
 final String pipeline = pipeline_example; // String | Name of the pipeline
-final UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = ; // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+final bool body = true; // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 try {
-    final response = api.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+    final response = api.putPipelineFavorite(organization, pipeline, body);
     print(response);
 } catch on DioError (e) {
     print('Exception when calling BlueOceanApi->putPipelineFavorite: $e\n');
@@ -1696,7 +1696,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization | 
  **pipeline** | **String**| Name of the pipeline | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | 
+ **body** | **bool**| Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

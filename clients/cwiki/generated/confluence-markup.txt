@@ -2124,7 +2124,7 @@ h5. Path Parameters
 
 h5. Body Parameter
         ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |UNKNOWN_BASE_TYPE |Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | UNKNOWN_BASE_TYPE | (/) | |  |  |
+        |body |Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | Boolean | (/) | |  |  |
 
 
 ----

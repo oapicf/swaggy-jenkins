@@ -4820,7 +4820,7 @@ export const BlueOceanApiFetchParamCreator = function (configuration?: Configura
          * Favorite/unfavorite a pipeline
          * @throws {RequiredError}
          */
-        putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options: RequestOptions): FetchArgs {
+        putPipelineFavorite(organization: string, pipeline: string, body: boolean, options: RequestOptions): FetchArgs {
             // verify required parameter 'organization' is not null or undefined
             if (organization === null || organization === undefined) {
                 throw new RequiredError('organization','Required parameter organization was null or undefined when calling putPipelineFavorite.');
@@ -4829,9 +4829,9 @@ export const BlueOceanApiFetchParamCreator = function (configuration?: Configura
             if (pipeline === null || pipeline === undefined) {
                 throw new RequiredError('pipeline','Required parameter pipeline was null or undefined when calling putPipelineFavorite.');
             }
-            // verify required parameter 'uNKNOWNBASETYPE' is not null or undefined
-            if (uNKNOWNBASETYPE === null || uNKNOWNBASETYPE === undefined) {
-                throw new RequiredError('uNKNOWNBASETYPE','Required parameter uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling putPipelineFavorite.');
             }
             const localVarPath = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite`
                 .replace(`{${"organization"}}`, encodeURIComponent(String(organization)))
@@ -4853,8 +4853,8 @@ export const BlueOceanApiFetchParamCreator = function (configuration?: Configura
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (typeof uNKNOWNBASETYPE !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(uNKNOWNBASETYPE != null ? uNKNOWNBASETYPE : {}) : (((uNKNOWNBASETYPE:any):string) || "");
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body != null ? body : {}) : (((body:any):string) || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -5051,7 +5051,7 @@ export type BlueOceanApiType = {
 
     postPipelineRuns(organization: string, pipeline: string, options?: RequestOptions): Promise<QueueItemImpl>,
 
-    putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options?: RequestOptions): Promise<FavoriteImpl>,
+    putPipelineFavorite(organization: string, pipeline: string, body: boolean, options?: RequestOptions): Promise<FavoriteImpl>,
 
     putPipelineRun(organization: string, pipeline: string, run: string, blocking?: string, timeOutInSecs?: number, options?: RequestOptions): Promise<PipelineRun>,
 
@@ -5533,8 +5533,8 @@ export const BlueOceanApi = function(configuration?: Configuration, fetch: Fetch
          * Favorite/unfavorite a pipeline
          * @throws {RequiredError}
          */
-        putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options?: RequestOptions = {}): Promise<FavoriteImpl> {
-            const localVarFetchArgs = BlueOceanApiFetchParamCreator(configuration).putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE, options);
+        putPipelineFavorite(organization: string, pipeline: string, body: boolean, options?: RequestOptions = {}): Promise<FavoriteImpl> {
+            const localVarFetchArgs = BlueOceanApiFetchParamCreator(configuration).putPipelineFavorite(organization, pipeline, body, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

@@ -3340,7 +3340,7 @@ end:
 // Favorite/unfavorite a pipeline
 //
 favorite_impl_t*
-BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , char * pipeline ,  UNKNOWN_BASE_TYPE )
+BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , char * pipeline , int body )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3378,12 +3378,12 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , c
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_UNKNOWN_BASE_TYPE = NULL;
-    if (UNKNOWN_BASE_TYPE != NULL)
+    cJSON *localVarSingleItemJSON_body = NULL;
+    if (body != NULL)
     {
         //string
-        localVarSingleItemJSON_UNKNOWN_BASE_TYPE = UNKNOWN_BASE_TYPE_convertToJSON(UNKNOWN_BASE_TYPE);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_UNKNOWN_BASE_TYPE);
+        localVarSingleItemJSON_body = int_convertToJSON(body);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -3428,9 +3428,9 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , c
     free(localVarPath);
     free(localVarToReplace_organization);
     free(localVarToReplace_pipeline);
-    if (localVarSingleItemJSON_UNKNOWN_BASE_TYPE) {
-        cJSON_Delete(localVarSingleItemJSON_UNKNOWN_BASE_TYPE);
-        localVarSingleItemJSON_UNKNOWN_BASE_TYPE = NULL;
+    if (localVarSingleItemJSON_body) {
+        cJSON_Delete(localVarSingleItemJSON_body);
+        localVarSingleItemJSON_body = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

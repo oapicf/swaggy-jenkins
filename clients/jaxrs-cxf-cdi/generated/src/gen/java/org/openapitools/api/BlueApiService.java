@@ -20,7 +20,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.util.List;
@@ -30,7 +29,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-10T09:47:00.017276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-11T12:43:06.166399Z[Etc/UTC]")
 public interface BlueApiService {
       public Response deletePipelineQueueItem(String organization, String pipeline, String queue, SecurityContext securityContext);
       public Response getAuthenticatedUser(String organization, SecurityContext securityContext);
@@ -63,7 +62,7 @@ public interface BlueApiService {
       public Response getUsers(String organization, SecurityContext securityContext);
       public Response postPipelineRun(String organization, String pipeline, String run, SecurityContext securityContext);
       public Response postPipelineRuns(String organization, String pipeline, SecurityContext securityContext);
-      public Response putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, SecurityContext securityContext);
+      public Response putPipelineFavorite(String organization, String pipeline, Boolean body, SecurityContext securityContext);
       public Response putPipelineRun(String organization, String pipeline, String run, String blocking, Integer timeOutInSecs, SecurityContext securityContext);
       public Response search(String q, SecurityContext securityContext);
       public Response searchClasses(String q, SecurityContext securityContext);

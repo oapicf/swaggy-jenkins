@@ -1396,7 +1396,7 @@ pub async fn post_pipeline_runs(configuration: &configuration::Configuration, or
 }
 
 /// Favorite/unfavorite a pipeline
-pub async fn put_pipeline_favorite(configuration: &configuration::Configuration, organization: &str, pipeline: &str, UNKNOWN_BASE_TYPE: Option<crate::models::UNKNOWN_BASE_TYPE>) -> Result<crate::models::FavoriteImpl, Error<PutPipelineFavoriteError>> {
+pub async fn put_pipeline_favorite(configuration: &configuration::Configuration, organization: &str, pipeline: &str, body: bool) -> Result<crate::models::FavoriteImpl, Error<PutPipelineFavoriteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1410,7 +1410,7 @@ pub async fn put_pipeline_favorite(configuration: &configuration::Configuration,
     if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
         local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
     };
-    local_var_req_builder = local_var_req_builder.json(&UNKNOWN_BASE_TYPE);
+    local_var_req_builder = local_var_req_builder.json(&body);
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;

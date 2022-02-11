@@ -772,16 +772,16 @@ const postPipelineRuns = ({ organization, pipeline }) => new Promise(
 *
 * organization String Name of the organization
 * pipeline String Name of the pipeline
-* uNKNOWNUnderscoreBASEUnderscoreTYPE UNKNOWN_BASE_TYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+* body Boolean Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 * returns FavoriteImpl
 * */
-const putPipelineFavorite = ({ organization, pipeline, uNKNOWNUnderscoreBASEUnderscoreTYPE }) => new Promise(
+const putPipelineFavorite = ({ organization, pipeline, body }) => new Promise(
   async (resolve, reject) => {
     try {
       resolve(Service.successResponse({
         organization,
         pipeline,
-        uNKNOWNUnderscoreBASEUnderscoreTYPE,
+        body,
       }));
     } catch (e) {
       reject(Service.rejectResponse(

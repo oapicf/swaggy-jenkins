@@ -1792,7 +1792,7 @@ Configure jenkins_auth:
 
 <a name="putPipelineFavorite"></a>
 # **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
 
 
 
@@ -1807,9 +1807,9 @@ Favorite/unfavorite a pipeline
 val apiInstance = BlueOceanApi()
 val organization : kotlin.String = organization_example // kotlin.String | Name of the organization
 val pipeline : kotlin.String = pipeline_example // kotlin.String | Name of the pipeline
-val UNKNOWN_BASE_TYPE : UNKNOWN_BASE_TYPE =  // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+val body : kotlin.Boolean = true // kotlin.Boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 try {
-    val result : FavoriteImpl = apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+    val result : FavoriteImpl = apiInstance.putPipelineFavorite(organization, pipeline, body)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling BlueOceanApi#putPipelineFavorite")
@@ -1826,7 +1826,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **kotlin.String**| Name of the organization |
  **pipeline** | **kotlin.String**| Name of the pipeline |
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | **kotlin.Boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

@@ -18724,10 +18724,10 @@ public class BlueOceanApiExample {
         BlueOceanApi apiInstance = new BlueOceanApi();
         String organization = organization_example; // String | Name of the organization
         String pipeline = pipeline_example; // String | Name of the pipeline
-        UNKNOWN_BASE_TYPE uNKNOWNBASETYPE = ; // UNKNOWN_BASE_TYPE | 
+        Boolean body = true; // Boolean | 
 
         try {
-            FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE);
+            FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlueOceanApi#putPipelineFavorite");
@@ -18746,10 +18746,10 @@ public class BlueOceanApiExample {
         BlueOceanApi apiInstance = new BlueOceanApi();
         String organization = organization_example; // String | Name of the organization
         String pipeline = pipeline_example; // String | Name of the pipeline
-        UNKNOWN_BASE_TYPE uNKNOWNBASETYPE = ; // UNKNOWN_BASE_TYPE | 
+        Boolean body = true; // Boolean | 
 
         try {
-            FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE);
+            FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlueOceanApi#putPipelineFavorite");
@@ -18773,11 +18773,11 @@ public class BlueOceanApiExample {
 BlueOceanApi *apiInstance = [[BlueOceanApi alloc] init];
 String *organization = organization_example; // Name of the organization (default to null)
 String *pipeline = pipeline_example; // Name of the pipeline (default to null)
-UNKNOWN_BASE_TYPE *uNKNOWNBASETYPE = ; // 
+Boolean *body = true; // 
 
 [apiInstance putPipelineFavoriteWith:organization
     pipeline:pipeline
-    uNKNOWNBASETYPE:uNKNOWNBASETYPE
+    body:body
               completionHandler: ^(FavoriteImpl output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -18802,7 +18802,7 @@ jenkins_auth.password = 'YOUR PASSWORD';
 var api = new SwaggyJenkins.BlueOceanApi()
 var organization = organization_example; // {String} Name of the organization
 var pipeline = pipeline_example; // {String} Name of the pipeline
-var uNKNOWNBASETYPE = ; // {UNKNOWN_BASE_TYPE} 
+var body = true; // {Boolean} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -18811,7 +18811,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE, callback);
+api.putPipelineFavorite(organization, pipeline, body, callback);
 </code></pre>
                             </div>
 
@@ -18839,10 +18839,10 @@ namespace Example
             var apiInstance = new BlueOceanApi();
             var organization = organization_example;  // String | Name of the organization (default to null)
             var pipeline = pipeline_example;  // String | Name of the pipeline (default to null)
-            var uNKNOWNBASETYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | 
+            var body = true;  // Boolean | 
 
             try {
-                FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE);
+                FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling BlueOceanApi.putPipelineFavorite: " + e.Message );
@@ -18865,10 +18865,10 @@ OpenAPITools\Client\Configuration::getDefaultConfiguration()->setPassword('YOUR_
 $api_instance = new OpenAPITools\Client\Api\BlueOceanApi();
 $organization = organization_example; // String | Name of the organization
 $pipeline = pipeline_example; // String | Name of the pipeline
-$uNKNOWNBASETYPE = ; // UNKNOWN_BASE_TYPE | 
+$body = true; // Boolean | 
 
 try {
-    $result = $api_instance->putPipelineFavorite($organization, $pipeline, $uNKNOWNBASETYPE);
+    $result = $api_instance->putPipelineFavorite($organization, $pipeline, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->putPipelineFavorite: ', $e->getMessage(), PHP_EOL;
@@ -18889,10 +18889,10 @@ $WWW::OPenAPIClient::Configuration::password = 'YOUR_PASSWORD';
 my $api_instance = WWW::OPenAPIClient::BlueOceanApi->new();
 my $organization = organization_example; # String | Name of the organization
 my $pipeline = pipeline_example; # String | Name of the pipeline
-my $uNKNOWNBASETYPE = WWW::OPenAPIClient::Object::UNKNOWN_BASE_TYPE->new(); # UNKNOWN_BASE_TYPE | 
+my $body = WWW::OPenAPIClient::Object::Boolean->new(); # Boolean | 
 
 eval {
-    my $result = $api_instance->putPipelineFavorite(organization => $organization, pipeline => $pipeline, uNKNOWNBASETYPE => $uNKNOWNBASETYPE);
+    my $result = $api_instance->putPipelineFavorite(organization => $organization, pipeline => $pipeline, body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -18915,10 +18915,10 @@ openapi_client.configuration.password = 'YOUR_PASSWORD'
 api_instance = openapi_client.BlueOceanApi()
 organization = organization_example # String | Name of the organization (default to null)
 pipeline = pipeline_example # String | Name of the pipeline (default to null)
-uNKNOWNBASETYPE =  # UNKNOWN_BASE_TYPE | 
+body = true # Boolean | 
 
 try:
-    api_response = api_instance.put_pipeline_favorite(organization, pipeline, uNKNOWNBASETYPE)
+    api_response = api_instance.put_pipeline_favorite(organization, pipeline, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BlueOceanApi->putPipelineFavorite: %s\n" % e)</code></pre>
@@ -18930,10 +18930,10 @@ except ApiException as e:
 pub fn main() {
     let organization = organization_example; // String
     let pipeline = pipeline_example; // String
-    let uNKNOWNBASETYPE = ; // UNKNOWN_BASE_TYPE
+    let body = true; // Boolean
 
     let mut context = BlueOceanApi::Context::default();
-    let result = client.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE, &context).wait();
+    let result = client.putPipelineFavorite(organization, pipeline, body, &context).wait();
 
     println!("{:?}", result);
 }
@@ -19009,7 +19009,7 @@ Name of the pipeline
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">uNKNOWNBASETYPE <span style="color:red;">*</span></td>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
 <td>
 <p class="marked">Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite</p>
 <script>
@@ -19019,12 +19019,7 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "required" : [ "favorite" ],
-        "properties" : {
-          "favorite" : {
-            "type" : "boolean"
-          }
-        }
+        "type" : "boolean"
       }
     }
   },
@@ -19045,12 +19040,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_putPipelineFavorite_uNKNOWNBASETYPE');
+  var result = $('#d2e199_putPipelineFavorite_body');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_putPipelineFavorite_uNKNOWNBASETYPE"></div>
+<div id="d2e199_putPipelineFavorite_body"></div>
 </td>
 </tr>
 

@@ -835,9 +835,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <returns>FavoriteImpl</returns>
-        FavoriteImpl PutPipelineFavorite(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+        FavoriteImpl PutPipelineFavorite(string organization, string pipeline, bool body);
 
         /// <summary>
         /// 
@@ -848,9 +848,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <returns>ApiResponse of FavoriteImpl</returns>
-        ApiResponse<FavoriteImpl> PutPipelineFavoriteWithHttpInfo(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+        ApiResponse<FavoriteImpl> PutPipelineFavoriteWithHttpInfo(string organization, string pipeline, bool body);
         /// <summary>
         /// 
         /// </summary>
@@ -1805,10 +1805,10 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FavoriteImpl</returns>
-        System.Threading.Tasks.Task<FavoriteImpl> PutPipelineFavoriteAsync(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FavoriteImpl> PutPipelineFavoriteAsync(string organization, string pipeline, bool body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// 
@@ -1819,10 +1819,10 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FavoriteImpl)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FavoriteImpl>> PutPipelineFavoriteWithHttpInfoAsync(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FavoriteImpl>> PutPipelineFavoriteWithHttpInfoAsync(string organization, string pipeline, bool body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -7704,11 +7704,11 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <returns>FavoriteImpl</returns>
-        public FavoriteImpl PutPipelineFavorite(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+        public FavoriteImpl PutPipelineFavorite(string organization, string pipeline, bool body)
         {
-            Org.OpenAPITools.Client.ApiResponse<FavoriteImpl> localVarResponse = PutPipelineFavoriteWithHttpInfo(organization, pipeline, UNKNOWN_BASE_TYPE);
+            Org.OpenAPITools.Client.ApiResponse<FavoriteImpl> localVarResponse = PutPipelineFavoriteWithHttpInfo(organization, pipeline, body);
             return localVarResponse.Data;
         }
 
@@ -7718,9 +7718,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <returns>ApiResponse of FavoriteImpl</returns>
-        public Org.OpenAPITools.Client.ApiResponse<FavoriteImpl> PutPipelineFavoriteWithHttpInfo(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+        public Org.OpenAPITools.Client.ApiResponse<FavoriteImpl> PutPipelineFavoriteWithHttpInfo(string organization, string pipeline, bool body)
         {
             // verify the required parameter 'organization' is set
             if (organization == null)
@@ -7732,12 +7732,6 @@ namespace Org.OpenAPITools.Api
             if (pipeline == null)
             {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PutPipelineFavorite");
-            }
-
-            // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-            if (UNKNOWN_BASE_TYPE == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'UNKNOWN_BASE_TYPE' when calling BlueOceanApi->PutPipelineFavorite");
             }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -7765,7 +7759,7 @@ namespace Org.OpenAPITools.Api
 
             localVarRequestOptions.PathParameters.Add("organization", Org.OpenAPITools.Client.ClientUtils.ParameterToString(organization)); // path parameter
             localVarRequestOptions.PathParameters.Add("pipeline", Org.OpenAPITools.Client.ClientUtils.ParameterToString(pipeline)); // path parameter
-            localVarRequestOptions.Data = UNKNOWN_BASE_TYPE;
+            localVarRequestOptions.Data = body;
 
             // authentication (jenkins_auth) required
             // http basic authentication required
@@ -7794,12 +7788,12 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FavoriteImpl</returns>
-        public async System.Threading.Tasks.Task<FavoriteImpl> PutPipelineFavoriteAsync(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FavoriteImpl> PutPipelineFavoriteAsync(string organization, string pipeline, bool body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<FavoriteImpl> localVarResponse = await PutPipelineFavoriteWithHttpInfoAsync(organization, pipeline, UNKNOWN_BASE_TYPE, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<FavoriteImpl> localVarResponse = await PutPipelineFavoriteWithHttpInfoAsync(organization, pipeline, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -7809,10 +7803,10 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FavoriteImpl)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FavoriteImpl>> PutPipelineFavoriteWithHttpInfoAsync(string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FavoriteImpl>> PutPipelineFavoriteWithHttpInfoAsync(string organization, string pipeline, bool body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'organization' is set
             if (organization == null)
@@ -7824,12 +7818,6 @@ namespace Org.OpenAPITools.Api
             if (pipeline == null)
             {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'pipeline' when calling BlueOceanApi->PutPipelineFavorite");
-            }
-
-            // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-            if (UNKNOWN_BASE_TYPE == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'UNKNOWN_BASE_TYPE' when calling BlueOceanApi->PutPipelineFavorite");
             }
 
 
@@ -7858,7 +7846,7 @@ namespace Org.OpenAPITools.Api
 
             localVarRequestOptions.PathParameters.Add("organization", Org.OpenAPITools.Client.ClientUtils.ParameterToString(organization)); // path parameter
             localVarRequestOptions.PathParameters.Add("pipeline", Org.OpenAPITools.Client.ClientUtils.ParameterToString(pipeline)); // path parameter
-            localVarRequestOptions.Data = UNKNOWN_BASE_TYPE;
+            localVarRequestOptions.Data = body;
 
             // authentication (jenkins_auth) required
             // http basic authentication required

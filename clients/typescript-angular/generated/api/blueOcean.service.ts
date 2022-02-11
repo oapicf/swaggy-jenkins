@@ -47,8 +47,6 @@ import { PipelineStepImpl } from '../model/pipelineStepImpl';
 // @ts-ignore
 import { QueueItemImpl } from '../model/queueItemImpl';
 // @ts-ignore
-import { UNKNOWN_BASE_TYPE } from '../model/uNKNOWNBASETYPE';
-// @ts-ignore
 import { User } from '../model/user';
 
 // @ts-ignore
@@ -2457,22 +2455,22 @@ export class BlueOceanService {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<FavoriteImpl>;
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<FavoriteImpl>>;
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<FavoriteImpl>>;
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<FavoriteImpl>;
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpResponse<FavoriteImpl>>;
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<HttpEvent<FavoriteImpl>>;
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext}): Observable<any> {
         if (organization === null || organization === undefined) {
             throw new Error('Required parameter organization was null or undefined when calling putPipelineFavorite.');
         }
         if (pipeline === null || pipeline === undefined) {
             throw new Error('Required parameter pipeline was null or undefined when calling putPipelineFavorite.');
         }
-        if (uNKNOWNBASETYPE === null || uNKNOWNBASETYPE === undefined) {
-            throw new Error('Required parameter uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putPipelineFavorite.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -2523,7 +2521,7 @@ export class BlueOceanService {
         }
 
         return this.httpClient.put<FavoriteImpl>(`${this.configuration.basePath}/blue/rest/organizations/${encodeURIComponent(String(organization))}/pipelines/${encodeURIComponent(String(pipeline))}/favorite`,
-            uNKNOWNBASETYPE,
+            body,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,

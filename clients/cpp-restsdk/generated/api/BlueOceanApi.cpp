@@ -4307,14 +4307,8 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FavoriteImpl>> BlueOceanApi::putPipelineFavorite(utility::string_t organization, utility::string_t pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE) const
+pplx::task<std::shared_ptr<FavoriteImpl>> BlueOceanApi::putPipelineFavorite(utility::string_t organization, utility::string_t pipeline, bool body) const
 {
-
-    // verify the required parameter 'uNKNOWNBASETYPE' is set
-    if (uNKNOWNBASETYPE == nullptr)
-    {
-        throw ApiException(400, utility::conversions::to_string_t("Missing required parameter 'uNKNOWNBASETYPE' when calling BlueOceanApi->putPipelineFavorite"));
-    }
 
 
     std::shared_ptr<const ApiConfiguration> localVarApiConfiguration( m_ApiClient->getConfiguration() );
@@ -4367,8 +4361,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
         localVarRequestHttpContentType = utility::conversions::to_string_t("application/json");
         web::json::value localVarJson;
 
-        localVarJson = ModelBase::toJson(uNKNOWNBASETYPE);
-        
+        localVarJson = ModelBase::toJson(body);
 
         localVarHttpBody = std::shared_ptr<IHttpBody>( new JsonBody( localVarJson ) );
     }
@@ -4377,11 +4370,7 @@ boost::replace_all(localVarPath, utility::conversions::to_string_t("{") + utilit
     {
         localVarRequestHttpContentType = utility::conversions::to_string_t("multipart/form-data");
         std::shared_ptr<MultipartFormData> localVarMultipart(new MultipartFormData);
-
-        if(uNKNOWNBASETYPE.get())
-        {
-            uNKNOWNBASETYPE->toMultipart(localVarMultipart, utility::conversions::to_string_t("uNKNOWNBASETYPE"));
-        }
+        localVarMultipart->add(ModelBase::toHttpContent(utility::conversions::to_string_t("body"), body));
         
 
         localVarHttpBody = localVarMultipart;

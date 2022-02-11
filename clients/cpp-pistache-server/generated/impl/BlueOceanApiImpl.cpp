@@ -123,7 +123,7 @@ void BlueOceanApiImpl::post_pipeline_run(const std::string &organization, const 
 void BlueOceanApiImpl::post_pipeline_runs(const std::string &organization, const std::string &pipeline, Pistache::Http::ResponseWriter &response) {
     response.send(Pistache::Http::Code::Ok, "Do some magic\n");
 }
-void BlueOceanApiImpl::put_pipeline_favorite(const std::string &organization, const std::string &pipeline, const UNKNOWN_BASE_TYPE &uNKNOWNBASETYPE, Pistache::Http::ResponseWriter &response) {
+void BlueOceanApiImpl::put_pipeline_favorite(const std::string &organization, const std::string &pipeline, const bool &body, Pistache::Http::ResponseWriter &response) {
     response.send(Pistache::Http::Code::Ok, "Do some magic\n");
 }
 void BlueOceanApiImpl::put_pipeline_run(const std::string &organization, const std::string &pipeline, const std::string &run, const std::optional<std::string> &blocking, const std::optional<int32_t> &timeOutInSecs, Pistache::Http::ResponseWriter &response) {

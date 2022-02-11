@@ -157,7 +157,7 @@ type SwaggyJenkinsAPI
     :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "users" :> Verb 'GET 200 '[JSON] User -- 'getUsers' route
     :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "replay" :> Verb 'POST 200 '[JSON] QueueItemImpl -- 'postPipelineRun' route
     :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Verb 'POST 200 '[JSON] QueueItemImpl -- 'postPipelineRuns' route
-    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "favorite" :> ReqBody '[JSON] UNKNOWN_BASE_TYPE :> Verb 'PUT 200 '[JSON] FavoriteImpl -- 'putPipelineFavorite' route
+    :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "favorite" :> ReqBody '[JSON] Bool :> Verb 'PUT 200 '[JSON] FavoriteImpl -- 'putPipelineFavorite' route
     :<|> "blue" :> "rest" :> "organizations" :> Capture "organization" Text :> "pipelines" :> Capture "pipeline" Text :> "runs" :> Capture "run" Text :> "stop" :> QueryParam "blocking" Text :> QueryParam "timeOutInSecs" Int :> Verb 'PUT 200 '[JSON] PipelineRun -- 'putPipelineRun' route
     :<|> "blue" :> "rest" :> "search" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'search' route
     :<|> "blue" :> "rest" :> "classes" :> QueryParam "q" Text :> Verb 'GET 200 '[JSON] Text -- 'searchClasses' route
@@ -235,7 +235,7 @@ data SwaggyJenkinsBackend m = SwaggyJenkinsBackend
   , getUsers :: Text -> m User{- ^ Retrieve users details for an organization -}
   , postPipelineRun :: Text -> Text -> Text -> m QueueItemImpl{- ^ Replay an organization pipeline run -}
   , postPipelineRuns :: Text -> Text -> m QueueItemImpl{- ^ Start a build for an organization pipeline -}
-  , putPipelineFavorite :: Text -> Text -> UNKNOWN_BASE_TYPE -> m FavoriteImpl{- ^ Favorite/unfavorite a pipeline -}
+  , putPipelineFavorite :: Text -> Text -> Bool -> m FavoriteImpl{- ^ Favorite/unfavorite a pipeline -}
   , putPipelineRun :: Text -> Text -> Text -> Maybe Text -> Maybe Int -> m PipelineRun{- ^ Stop a build of an organization pipeline -}
   , search :: Maybe Text -> m Text{- ^ Search for any resource details -}
   , searchClasses :: Maybe Text -> m Text{- ^ Get classes details -}

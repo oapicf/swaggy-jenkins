@@ -1731,12 +1731,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "properties" : {
-                  "favorite" : {
-                    "type" : "boolean"
-                  }
-                },
-                "required" : [ "favorite" ]
+                "type" : "boolean"
               }
             }
           },

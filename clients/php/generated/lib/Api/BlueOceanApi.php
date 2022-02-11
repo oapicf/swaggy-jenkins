@@ -9859,15 +9859,15 @@ class BlueOceanApi
      *
      * @param  string $organization Name of the organization (required)
      * @param  string $pipeline Name of the pipeline (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param  bool $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\FavoriteImpl
      */
-    public function putPipelineFavorite($organization, $pipeline, $unknown_base_type)
+    public function putPipelineFavorite($organization, $pipeline, $body)
     {
-        list($response) = $this->putPipelineFavoriteWithHttpInfo($organization, $pipeline, $unknown_base_type);
+        list($response) = $this->putPipelineFavoriteWithHttpInfo($organization, $pipeline, $body);
         return $response;
     }
 
@@ -9876,15 +9876,15 @@ class BlueOceanApi
      *
      * @param  string $organization Name of the organization (required)
      * @param  string $pipeline Name of the pipeline (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param  bool $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\FavoriteImpl, HTTP status code, HTTP response headers (array of strings)
      */
-    public function putPipelineFavoriteWithHttpInfo($organization, $pipeline, $unknown_base_type)
+    public function putPipelineFavoriteWithHttpInfo($organization, $pipeline, $body)
     {
-        $request = $this->putPipelineFavoriteRequest($organization, $pipeline, $unknown_base_type);
+        $request = $this->putPipelineFavoriteRequest($organization, $pipeline, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9969,14 +9969,14 @@ class BlueOceanApi
      *
      * @param  string $organization Name of the organization (required)
      * @param  string $pipeline Name of the pipeline (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param  bool $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putPipelineFavoriteAsync($organization, $pipeline, $unknown_base_type)
+    public function putPipelineFavoriteAsync($organization, $pipeline, $body)
     {
-        return $this->putPipelineFavoriteAsyncWithHttpInfo($organization, $pipeline, $unknown_base_type)
+        return $this->putPipelineFavoriteAsyncWithHttpInfo($organization, $pipeline, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9989,15 +9989,15 @@ class BlueOceanApi
      *
      * @param  string $organization Name of the organization (required)
      * @param  string $pipeline Name of the pipeline (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param  bool $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putPipelineFavoriteAsyncWithHttpInfo($organization, $pipeline, $unknown_base_type)
+    public function putPipelineFavoriteAsyncWithHttpInfo($organization, $pipeline, $body)
     {
         $returnType = '\OpenAPI\Client\Model\FavoriteImpl';
-        $request = $this->putPipelineFavoriteRequest($organization, $pipeline, $unknown_base_type);
+        $request = $this->putPipelineFavoriteRequest($organization, $pipeline, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -10037,12 +10037,12 @@ class BlueOceanApi
      *
      * @param  string $organization Name of the organization (required)
      * @param  string $pipeline Name of the pipeline (required)
-     * @param  \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE $unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param  bool $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function putPipelineFavoriteRequest($organization, $pipeline, $unknown_base_type)
+    public function putPipelineFavoriteRequest($organization, $pipeline, $body)
     {
         // verify the required parameter 'organization' is set
         if ($organization === null || (is_array($organization) && count($organization) === 0)) {
@@ -10056,10 +10056,10 @@ class BlueOceanApi
                 'Missing the required parameter $pipeline when calling putPipelineFavorite'
             );
         }
-        // verify the required parameter 'unknown_base_type' is set
-        if ($unknown_base_type === null || (is_array($unknown_base_type) && count($unknown_base_type) === 0)) {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $unknown_base_type when calling putPipelineFavorite'
+                'Missing the required parameter $body when calling putPipelineFavorite'
             );
         }
 
@@ -10102,11 +10102,11 @@ class BlueOceanApi
         }
 
         // for model (json/xml)
-        if (isset($unknown_base_type)) {
+        if (isset($body)) {
             if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($unknown_base_type));
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
             } else {
-                $httpBody = $unknown_base_type;
+                $httpBody = $body;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -1889,7 +1889,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 ## **putPipelineFavorite**
-> OpenAPI\Server\Model\FavoriteImpl putPipelineFavorite($organization, $pipeline, $uNKNOWNBASETYPE)
+> OpenAPI\Server\Model\FavoriteImpl putPipelineFavorite($organization, $pipeline, $body)
 
 
 
@@ -1912,7 +1912,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#putPipelineFavorite
      */
-    public function putPipelineFavorite($organization, $pipeline, UNKNOWN_BASE_TYPE $uNKNOWNBASETYPE)
+    public function putPipelineFavorite($organization, $pipeline, $body)
     {
         // Implement the operation ...
     }
@@ -1927,7 +1927,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
- **uNKNOWNBASETYPE** | [**OpenAPI\Server\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

@@ -25,7 +25,6 @@ import org.openapitools.client.model.PipelineRun
 import org.openapitools.client.model.PipelineRunNode
 import org.openapitools.client.model.PipelineStepImpl
 import org.openapitools.client.model.QueueItemImpl
-import org.openapitools.client.model.UNKNOWN_BASE_TYPE
 import org.openapitools.client.model.User
 import org.openapitools.client.core._
 import org.openapitools.client.core.CollectionFormats._
@@ -847,11 +846,11 @@ class BlueOceanApi(baseUrl: String) {
    * 
    * @param organization Name of the organization
    * @param pipeline Name of the pipeline
-   * @param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+   * @param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
    */
-  def putPipelineFavorite(organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE)(implicit basicAuth: BasicCredentials): ApiRequest[FavoriteImpl] =
+  def putPipelineFavorite(organization: String, pipeline: String, body: Boolean)(implicit basicAuth: BasicCredentials): ApiRequest[FavoriteImpl] =
     ApiRequest[FavoriteImpl](ApiMethods.PUT, baseUrl, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite", "application/json")
-      .withCredentials(basicAuth).withBody(uNKNOWNBASETYPE)
+      .withCredentials(basicAuth).withBody(body)
       .withPathParam("organization", organization)
       .withPathParam("pipeline", pipeline)
       .withSuccessResponse[FavoriteImpl](200)

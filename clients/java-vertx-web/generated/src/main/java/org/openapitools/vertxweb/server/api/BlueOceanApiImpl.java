@@ -14,7 +14,6 @@ import org.openapitools.vertxweb.server.model.PipelineRun;
 import org.openapitools.vertxweb.server.model.PipelineRunNode;
 import org.openapitools.vertxweb.server.model.PipelineStepImpl;
 import org.openapitools.vertxweb.server.model.QueueItemImpl;
-import org.openapitools.vertxweb.server.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.vertxweb.server.model.User;
 
 import org.openapitools.vertxweb.server.ApiResponse;
@@ -161,7 +160,7 @@ public class BlueOceanApiImpl implements BlueOceanApi {
         return Future.failedFuture(new HttpStatusException(501));
     }
 
-    public Future<ApiResponse<FavoriteImpl>> putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
+    public Future<ApiResponse<FavoriteImpl>> putPipelineFavorite(String organization, String pipeline, Boolean body) {
         return Future.failedFuture(new HttpStatusException(501));
     }
 

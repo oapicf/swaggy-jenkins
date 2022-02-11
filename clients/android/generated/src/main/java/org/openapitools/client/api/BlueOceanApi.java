@@ -37,7 +37,6 @@ import org.openapitools.client.model.PipelineRun;
 import org.openapitools.client.model.PipelineRunNode;
 import org.openapitools.client.model.PipelineStepImpl;
 import org.openapitools.client.model.QueueItemImpl;
-import org.openapitools.client.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.client.model.User;
 
 import org.apache.http.HttpEntity;
@@ -4773,11 +4772,11 @@ public class BlueOceanApi {
   * Favorite/unfavorite a pipeline
    * @param organization Name of the organization
    * @param pipeline Name of the pipeline
-   * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
    * @return FavoriteImpl
   */
-  public FavoriteImpl putPipelineFavorite (String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
-    Object postBody = UNKNOWN_BASE_TYPE;
+  public FavoriteImpl putPipelineFavorite (String organization, String pipeline, Boolean body) throws TimeoutException, ExecutionException, InterruptedException, ApiException {
+    Object postBody = body;
     // verify the required parameter 'organization' is set
     if (organization == null) {
       VolleyError error = new VolleyError("Missing the required parameter 'organization' when calling putPipelineFavorite",
@@ -4788,10 +4787,10 @@ public class BlueOceanApi {
       VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling putPipelineFavorite",
         new ApiException(400, "Missing the required parameter 'pipeline' when calling putPipelineFavorite"));
     }
-    // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-    if (UNKNOWN_BASE_TYPE == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling putPipelineFavorite",
-        new ApiException(400, "Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling putPipelineFavorite"));
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'body' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'body' when calling putPipelineFavorite"));
     }
 
     // create path and map variables
@@ -4846,10 +4845,10 @@ public class BlueOceanApi {
       /**
    * 
    * Favorite/unfavorite a pipeline
-   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+   * @param organization Name of the organization   * @param pipeline Name of the pipeline   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
   */
-  public void putPipelineFavorite (String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final Response.Listener<FavoriteImpl> responseListener, final Response.ErrorListener errorListener) {
-    Object postBody = UNKNOWN_BASE_TYPE;
+  public void putPipelineFavorite (String organization, String pipeline, Boolean body, final Response.Listener<FavoriteImpl> responseListener, final Response.ErrorListener errorListener) {
+    Object postBody = body;
 
     // verify the required parameter 'organization' is set
     if (organization == null) {
@@ -4861,10 +4860,10 @@ public class BlueOceanApi {
       VolleyError error = new VolleyError("Missing the required parameter 'pipeline' when calling putPipelineFavorite",
         new ApiException(400, "Missing the required parameter 'pipeline' when calling putPipelineFavorite"));
     }
-    // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-    if (UNKNOWN_BASE_TYPE == null) {
-      VolleyError error = new VolleyError("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling putPipelineFavorite",
-        new ApiException(400, "Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling putPipelineFavorite"));
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      VolleyError error = new VolleyError("Missing the required parameter 'body' when calling putPipelineFavorite",
+        new ApiException(400, "Missing the required parameter 'body' when calling putPipelineFavorite"));
     }
 
     // create path and map variables

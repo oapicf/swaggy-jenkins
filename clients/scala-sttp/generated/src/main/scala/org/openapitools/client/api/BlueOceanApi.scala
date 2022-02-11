@@ -25,7 +25,6 @@ import org.openapitools.client.model.PipelineRun
 import org.openapitools.client.model.PipelineRunNode
 import org.openapitools.client.model.PipelineStepImpl
 import org.openapitools.client.model.QueueItemImpl
-import org.openapitools.client.model.UNKNOWN_BASE_TYPE
 import org.openapitools.client.model.User
 import org.openapitools.client.core.JsonSupport._
 import sttp.client._
@@ -790,15 +789,15 @@ class BlueOceanApi(baseUrl: String) {
    * 
    * @param organization Name of the organization
    * @param pipeline Name of the pipeline
-   * @param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+   * @param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
    */
-  def putPipelineFavorite(username: String, password: String)(organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE
+  def putPipelineFavorite(username: String, password: String)(organization: String, pipeline: String, body: Boolean
 ): Request[Either[ResponseError[Exception], FavoriteImpl], Nothing] =
     basicRequest
       .method(Method.PUT, uri"$baseUrl/blue/rest/organizations/${organization}/pipelines/${pipeline}/favorite")
       .contentType("application/json")
       .auth.basic(username, password)
-      .body(uNKNOWNBASETYPE)
+      .body(body)
       .response(asJson[FavoriteImpl])
 
   /**

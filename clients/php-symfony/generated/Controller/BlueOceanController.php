@@ -50,7 +50,6 @@ use OpenAPI\Server\Model\PipelineRun;
 use OpenAPI\Server\Model\PipelineRunNode;
 use OpenAPI\Server\Model\PipelineStepImpl;
 use OpenAPI\Server\Model\QueueItemImpl;
-use OpenAPI\Server\Model\UNKNOWN_BASE_TYPE;
 use OpenAPI\Server\Model\User;
 
 /**
@@ -3336,7 +3335,7 @@ class BlueOceanController extends Controller
         $securityjenkins_auth = $request->headers->get('authorization');
 
         // Read out all input parameter values into variables
-        $uNKNOWNBASETYPE = $request->getContent();
+        $body = $request->getContent();
 
         // Use the default value if no value was provided
 
@@ -3345,7 +3344,7 @@ class BlueOceanController extends Controller
             $organization = $this->deserialize($organization, 'string', 'string');
             $pipeline = $this->deserialize($pipeline, 'string', 'string');
             $inputFormat = $request->getMimeType($request->getContentType());
-            $uNKNOWNBASETYPE = $this->deserialize($uNKNOWNBASETYPE, 'OpenAPI\Server\Model\UNKNOWN_BASE_TYPE', $inputFormat);
+            $body = $this->deserialize($body, 'bool', $inputFormat);
         } catch (SerializerRuntimeException $exception) {
             return $this->createBadRequestResponse($exception->getMessage());
         }
@@ -3367,9 +3366,8 @@ class BlueOceanController extends Controller
         }
         $asserts = [];
         $asserts[] = new Assert\NotNull();
-        $asserts[] = new Assert\Type("OpenAPI\Server\Model\UNKNOWN_BASE_TYPE");
-        $asserts[] = new Assert\Valid();
-        $response = $this->validate($uNKNOWNBASETYPE, $asserts);
+        $asserts[] = new Assert\Type("bool");
+        $response = $this->validate($body, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
@@ -3384,7 +3382,7 @@ class BlueOceanController extends Controller
             // Make the call to the business logic
             $responseCode = 200;
             $responseHeaders = [];
-            $result = $handler->putPipelineFavorite($organization, $pipeline, $uNKNOWNBASETYPE, $responseCode, $responseHeaders);
+            $result = $handler->putPipelineFavorite($organization, $pipeline, $body, $responseCode, $responseHeaders);
 
             // Find default response message
             $message = '';

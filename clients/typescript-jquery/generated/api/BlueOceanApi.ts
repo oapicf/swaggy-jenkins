@@ -2548,9 +2548,9 @@ export class BlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      */
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: models.UNKNOWN_BASE_TYPE, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.FavoriteImpl;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -2568,9 +2568,9 @@ export class BlueOceanApi {
             throw new Error('Required parameter pipeline was null or undefined when calling putPipelineFavorite.');
         }
 
-        // verify required parameter 'uNKNOWNBASETYPE' is not null or undefined
-        if (uNKNOWNBASETYPE === null || uNKNOWNBASETYPE === undefined) {
-            throw new Error('Required parameter uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putPipelineFavorite.');
         }
 
 
@@ -2601,7 +2601,7 @@ export class BlueOceanApi {
             processData: false
         };
 
-        requestOptions.data = JSON.stringify(uNKNOWNBASETYPE);
+        requestOptions.data = JSON.stringify(body);
         if (headerParams['Content-Type']) {
             requestOptions.contentType = headerParams['Content-Type'];
         }

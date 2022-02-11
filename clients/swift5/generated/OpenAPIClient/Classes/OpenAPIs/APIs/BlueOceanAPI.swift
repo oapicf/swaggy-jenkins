@@ -1851,13 +1851,13 @@ open class BlueOceanAPI {
 
      - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
-     - parameter UNKNOWN_BASE_TYPE: (body) Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+     - parameter body: (body) Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func putPipelineFavorite(organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: FavoriteImpl?, _ error: Error?) -> Void)) -> RequestTask {
-        return putPipelineFavoriteWithRequestBuilder(organization: organization, pipeline: pipeline, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE).execute(apiResponseQueue) { result in
+    open class func putPipelineFavorite(organization: String, pipeline: String, body: Bool, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: FavoriteImpl?, _ error: Error?) -> Void)) -> RequestTask {
+        return putPipelineFavoriteWithRequestBuilder(organization: organization, pipeline: pipeline, body: body).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -1875,10 +1875,10 @@ open class BlueOceanAPI {
        - name: jenkins_auth
      - parameter organization: (path) Name of the organization 
      - parameter pipeline: (path) Name of the pipeline 
-     - parameter UNKNOWN_BASE_TYPE: (body) Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+     - parameter body: (body) Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
      - returns: RequestBuilder<FavoriteImpl> 
      */
-    open class func putPipelineFavoriteWithRequestBuilder(organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) -> RequestBuilder<FavoriteImpl> {
+    open class func putPipelineFavoriteWithRequestBuilder(organization: String, pipeline: String, body: Bool) -> RequestBuilder<FavoriteImpl> {
         var localVariablePath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
         let organizationPreEscape = "\(APIHelper.mapValueToPathItem(organization))"
         let organizationPostEscape = organizationPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1887,7 +1887,7 @@ open class BlueOceanAPI {
         let pipelinePostEscape = pipelinePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{pipeline}", with: pipelinePostEscape, options: .literal, range: nil)
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: UNKNOWN_BASE_TYPE)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

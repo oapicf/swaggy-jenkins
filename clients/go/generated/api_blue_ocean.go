@@ -3711,12 +3711,12 @@ type ApiPutPipelineFavoriteRequest struct {
 	ApiService *BlueOceanApiService
 	organization string
 	pipeline string
-	uNKNOWNBASETYPE *UNKNOWN_BASE_TYPE
+	body *bool
 }
 
 // Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
-func (r ApiPutPipelineFavoriteRequest) UNKNOWNBASETYPE(uNKNOWNBASETYPE UNKNOWN_BASE_TYPE) ApiPutPipelineFavoriteRequest {
-	r.uNKNOWNBASETYPE = &uNKNOWNBASETYPE
+func (r ApiPutPipelineFavoriteRequest) Body(body bool) ApiPutPipelineFavoriteRequest {
+	r.body = &body
 	return r
 }
 
@@ -3765,8 +3765,8 @@ func (a *BlueOceanApiService) PutPipelineFavoriteExecute(r ApiPutPipelineFavorit
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.uNKNOWNBASETYPE == nil {
-		return localVarReturnValue, nil, reportError("uNKNOWNBASETYPE is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3787,7 +3787,7 @@ func (a *BlueOceanApiService) PutPipelineFavoriteExecute(r ApiPutPipelineFavorit
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.uNKNOWNBASETYPE
+	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

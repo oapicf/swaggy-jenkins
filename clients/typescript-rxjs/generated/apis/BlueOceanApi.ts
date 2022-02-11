@@ -28,7 +28,6 @@ import {
     PipelineRunNode,
     PipelineStepImpl,
     QueueItemImpl,
-    UNKNOWN_BASE_TYPE,
     User,
 } from '../models';
 
@@ -217,7 +216,7 @@ export interface PostPipelineRunsRequest {
 export interface PutPipelineFavoriteRequest {
     organization: string;
     pipeline: string;
-    uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE | null;
+    body: boolean;
 }
 
 export interface PutPipelineRunRequest {
@@ -933,12 +932,12 @@ export class BlueOceanApi extends BaseAPI {
     /**
      * Favorite/unfavorite a pipeline
      */
-    putPipelineFavorite({ organization, pipeline, uNKNOWNBASETYPE }: PutPipelineFavoriteRequest): Observable<FavoriteImpl>
-    putPipelineFavorite({ organization, pipeline, uNKNOWNBASETYPE }: PutPipelineFavoriteRequest, opts?: OperationOpts): Observable<RawAjaxResponse<FavoriteImpl>>
-    putPipelineFavorite({ organization, pipeline, uNKNOWNBASETYPE }: PutPipelineFavoriteRequest, opts?: OperationOpts): Observable<FavoriteImpl | RawAjaxResponse<FavoriteImpl>> {
+    putPipelineFavorite({ organization, pipeline, body }: PutPipelineFavoriteRequest): Observable<FavoriteImpl>
+    putPipelineFavorite({ organization, pipeline, body }: PutPipelineFavoriteRequest, opts?: OperationOpts): Observable<RawAjaxResponse<FavoriteImpl>>
+    putPipelineFavorite({ organization, pipeline, body }: PutPipelineFavoriteRequest, opts?: OperationOpts): Observable<FavoriteImpl | RawAjaxResponse<FavoriteImpl>> {
         throwIfNullOrUndefined(organization, 'organization', 'putPipelineFavorite');
         throwIfNullOrUndefined(pipeline, 'pipeline', 'putPipelineFavorite');
-        throwIfNullOrUndefined(uNKNOWNBASETYPE, 'uNKNOWNBASETYPE', 'putPipelineFavorite');
+        throwIfNullOrUndefined(body, 'body', 'putPipelineFavorite');
 
         const headers: HttpHeaders = {
             'Content-Type': 'application/json',
@@ -949,7 +948,7 @@ export class BlueOceanApi extends BaseAPI {
             url: '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'.replace('{organization}', encodeURI(organization)).replace('{pipeline}', encodeURI(pipeline)),
             method: 'PUT',
             headers,
-            body: uNKNOWNBASETYPE,
+            body: body as any,
         }, opts?.responseOpts);
     };
 

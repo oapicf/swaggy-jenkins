@@ -14,7 +14,6 @@ open OpenAPI.Model.PipelineRun
 open OpenAPI.Model.PipelineRunNode
 open OpenAPI.Model.PipelineStepImpl
 open OpenAPI.Model.QueueItemImpl
-open OpenAPI.Model.UNKNOWN_BASE_TYPE
 open OpenAPI.Model.User
 open System.Collections.Generic
 open System
@@ -1066,7 +1065,7 @@ module BlueOceanApiHandlerParams =
 
     //#region Body parameters
     [<CLIMutable>]
-    type PutPipelineFavoriteBodyParams = UNKNOWN_BASE_TYPE
+    type PutPipelineFavoriteBodyParams = bool
     //#endregion
 
 

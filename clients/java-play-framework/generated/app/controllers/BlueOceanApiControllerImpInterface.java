@@ -14,7 +14,6 @@ import apimodels.PipelineRun;
 import apimodels.PipelineRunNode;
 import apimodels.PipelineStepImpl;
 import apimodels.QueueItemImpl;
-import apimodels.UNKNOWN_BASE_TYPE;
 import apimodels.User;
 
 import com.google.inject.Inject;
@@ -526,8 +525,8 @@ public abstract class BlueOceanApiControllerImpInterface {
 
     public abstract QueueItemImpl postPipelineRuns(Http.Request request, String organization, String pipeline) throws Exception;
 
-    public Result putPipelineFavoriteHttp(Http.Request request, String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws Exception {
-        FavoriteImpl obj = putPipelineFavorite(request, organization, pipeline, UNKNOWN_BASE_TYPE);
+    public Result putPipelineFavoriteHttp(Http.Request request, String organization, String pipeline, Boolean body) throws Exception {
+        FavoriteImpl obj = putPipelineFavorite(request, organization, pipeline, body);
 
         if (configuration.getBoolean("useOutputBeanValidation")) {
             OpenAPIUtils.validate(obj);
@@ -539,7 +538,7 @@ public abstract class BlueOceanApiControllerImpInterface {
 
     }
 
-    public abstract FavoriteImpl putPipelineFavorite(Http.Request request, String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws Exception;
+    public abstract FavoriteImpl putPipelineFavorite(Http.Request request, String organization, String pipeline, Boolean body) throws Exception;
 
     public Result putPipelineRunHttp(Http.Request request, String organization, String pipeline, String run, String blocking, Integer timeOutInSecs) throws Exception {
         PipelineRun obj = putPipelineRun(request, organization, pipeline, run, blocking, timeOutInSecs);

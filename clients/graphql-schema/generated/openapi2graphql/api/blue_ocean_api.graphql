@@ -33,9 +33,9 @@ type mutation {
   # Favorite/unfavorite a pipeline
   # @param String! organization Name of the organization
   # @param String! pipeline Name of the pipeline
-  # @param UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+  # @param Boolean! body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
   # @return [FavoriteImpl]
-  PutPipelineFavorite(organization: String!, pipeline: String!, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE): FavoriteImpl
+  PutPipelineFavorite(organization: String!, pipeline: String!, body: Boolean!): FavoriteImpl
 
   # Stop a build of an organization pipeline
   # @param String! organization Name of the organization

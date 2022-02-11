@@ -15,7 +15,6 @@ from app.openapi_server.models.pipeline_run import PipelineRun  # noqa: E501
 from app.openapi_server.models.pipeline_run_node import PipelineRunNode  # noqa: E501
 from app.openapi_server.models.pipeline_step_impl import PipelineStepImpl  # noqa: E501
 from app.openapi_server.models.queue_item_impl import QueueItemImpl  # noqa: E501
-from app.openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE  # noqa: E501
 from app.openapi_server.models.user import User  # noqa: E501
 from openapi_server import util
 
@@ -565,12 +564,10 @@ def put_pipeline_favorite(organization, pipeline, body):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
     :param body: Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
-    :type body: dict | bytes
+    :type body: bool
 
     :rtype: FavoriteImpl
     """
-    if connexion.request.is_json:
-        body = UNKNOWN_BASE_TYPE.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

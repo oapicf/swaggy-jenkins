@@ -241,10 +241,8 @@ export default function() {
         // Request No. 1
         {
             let url = BASE_URL + `/blue/rest/organizations/${organization}/pipelines/${pipeline}/favorite`;
-            // TODO: edit the parameters of the request body.
-            let body = {"favorite": "boolean"};
             let params = {headers: {"Content-Type": "application/json", "Accept": "application/json"}};
-            let request = http.put(url, JSON.stringify(body), params);
+            let request = http.put(url, params);
 
             check(request, {
                 "Successfully favorited/unfavorited a pipeline": (r) => r.status === 200

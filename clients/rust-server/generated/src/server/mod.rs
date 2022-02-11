@@ -4006,33 +4006,33 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 match result {
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
-                                let param_unknown_base_type: Option<UNKNOWN_BASE_TYPE> = if !body.is_empty() {
+                                let param_body: Option<bool> = if !body.is_empty() {
                                     let deserializer = &mut serde_json::Deserializer::from_slice(&*body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {}", path);
                                             unused_elements.push(path.to_string());
                                     }) {
-                                        Ok(param_unknown_base_type) => param_unknown_base_type,
+                                        Ok(param_body) => param_body,
                                         Err(e) => return Ok(Response::builder()
                                                         .status(StatusCode::BAD_REQUEST)
-                                                        .body(Body::from(format!("Couldn't parse body parameter UNKNOWN_BASE_TYPE - doesn't match schema: {}", e)))
-                                                        .expect("Unable to create Bad Request response for invalid body parameter UNKNOWN_BASE_TYPE due to schema")),
+                                                        .body(Body::from(format!("Couldn't parse body parameter body - doesn't match schema: {}", e)))
+                                                        .expect("Unable to create Bad Request response for invalid body parameter body due to schema")),
                                     }
                                 } else {
                                     None
                                 };
-                                let param_unknown_base_type = match param_unknown_base_type {
-                                    Some(param_unknown_base_type) => param_unknown_base_type,
+                                let param_body = match param_body {
+                                    Some(param_body) => param_body,
                                     None => return Ok(Response::builder()
                                                         .status(StatusCode::BAD_REQUEST)
-                                                        .body(Body::from("Missing required body parameter UNKNOWN_BASE_TYPE"))
-                                                        .expect("Unable to create Bad Request response for missing body parameter UNKNOWN_BASE_TYPE")),
+                                                        .body(Body::from("Missing required body parameter body"))
+                                                        .expect("Unable to create Bad Request response for missing body parameter body")),
                                 };
 
                                 let result = api_impl.put_pipeline_favorite(
                                             param_organization,
                                             param_pipeline,
-                                            param_unknown_base_type,
+                                            param_body,
                                         &context
                                     ).await;
                                 let mut response = Response::new(Body::empty());
@@ -4082,8 +4082,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                             },
                             Err(e) => Ok(Response::builder()
                                                 .status(StatusCode::BAD_REQUEST)
-                                                .body(Body::from(format!("Couldn't read body parameter UNKNOWN_BASE_TYPE: {}", e)))
-                                                .expect("Unable to create Bad Request response due to unable to read body parameter UNKNOWN_BASE_TYPE")),
+                                                .body(Body::from(format!("Couldn't read body parameter body: {}", e)))
+                                                .expect("Unable to create Bad Request response due to unable to read body parameter body")),
                         }
             },
 

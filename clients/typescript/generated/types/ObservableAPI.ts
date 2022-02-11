@@ -956,10 +956,10 @@ export class ObservableBlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      */
-    public putPipelineFavorite(organization: string, pipeline: string, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, _options?: Configuration): Observable<FavoriteImpl> {
-        const requestContextPromise = this.requestFactory.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, _options);
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, _options?: Configuration): Observable<FavoriteImpl> {
+        const requestContextPromise = this.requestFactory.putPipelineFavorite(organization, pipeline, body, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

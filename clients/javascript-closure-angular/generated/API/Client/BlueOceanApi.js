@@ -23,7 +23,6 @@ goog.require('API.Client.PipelineRun');
 goog.require('API.Client.PipelineRunNode');
 goog.require('API.Client.PipelineStepImpl');
 goog.require('API.Client.QueueItemImpl');
-goog.require('API.Client.UNKNOWN_BASE_TYPE');
 goog.require('API.Client.User');
 
 /**
@@ -1588,11 +1587,11 @@ API.Client.BlueOceanApi.prototype.postPipelineRuns = function(organization, pipe
  * Favorite/unfavorite a pipeline
  * @param {!string} organization Name of the organization
  * @param {!string} pipeline Name of the pipeline
- * @param {!UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+ * @param {!boolean} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.FavoriteImpl>}
  */
-API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, pipeline, UNKNOWN_BASE_TYPE, opt_extraHttpRequestParams) {
+API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, pipeline, body, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
       .replace('{' + 'organization' + '}', String(organization))
@@ -1611,16 +1610,16 @@ API.Client.BlueOceanApi.prototype.putPipelineFavorite = function(organization, p
   if (!pipeline) {
     throw new Error('Missing required parameter pipeline when calling putPipelineFavorite');
   }
-  // verify required parameter 'UNKNOWN_BASE_TYPE' is set
-  if (!UNKNOWN_BASE_TYPE) {
-    throw new Error('Missing required parameter UNKNOWN_BASE_TYPE when calling putPipelineFavorite');
+  // verify required parameter 'body' is set
+  if (!body) {
+    throw new Error('Missing required parameter body when calling putPipelineFavorite');
   }
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'PUT',
     url: path,
     json: true,
-    data: UNKNOWN_BASE_TYPE,
+    data: body,
         params: queryParameters,
     headers: headerParams
   };

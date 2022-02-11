@@ -14,7 +14,6 @@ import org.openapitools.server.api.model.PipelineRun
 import org.openapitools.server.api.model.PipelineRunNode
 import org.openapitools.server.api.model.PipelineStepImpl
 import org.openapitools.server.api.model.QueueItemImpl
-import org.openapitools.server.api.model.UNKNOWN_BASE_TYPE
 import org.openapitools.server.api.model.User
 import io.vertx.core.Vertx
 import io.vertx.core.json.JsonObject
@@ -133,7 +132,7 @@ interface BlueOceanApi  {
     suspend fun postPipelineRuns(organization:kotlin.String?,pipeline:kotlin.String?,context:OperationRequest):Response<QueueItemImpl>
     /* putPipelineFavorite
      *  */
-    suspend fun putPipelineFavorite(organization:kotlin.String?,pipeline:kotlin.String?,UNKNOWN_BASE_TYPE:UNKNOWN_BASE_TYPE?,context:OperationRequest):Response<FavoriteImpl>
+    suspend fun putPipelineFavorite(organization:kotlin.String?,pipeline:kotlin.String?,body:kotlin.Boolean?,context:OperationRequest):Response<FavoriteImpl>
     /* putPipelineRun
      *  */
     suspend fun putPipelineRun(organization:kotlin.String?,pipeline:kotlin.String?,run:kotlin.String?,blocking:kotlin.String?,timeOutInSecs:kotlin.Int?,context:OperationRequest):Response<PipelineRun>

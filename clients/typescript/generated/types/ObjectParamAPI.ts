@@ -739,10 +739,10 @@ export interface BlueOceanApiPutPipelineFavoriteRequest {
     pipeline: string
     /**
      * Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
-     * @type UNKNOWN_BASE_TYPE
+     * @type boolean
      * @memberof BlueOceanApiputPipelineFavorite
      */
-    UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE
+    body: boolean
 }
 
 export interface BlueOceanApiPutPipelineRunRequest {
@@ -1072,7 +1072,7 @@ export class ObjectBlueOceanApi {
      * @param param the request object
      */
     public putPipelineFavorite(param: BlueOceanApiPutPipelineFavoriteRequest, options?: Configuration): Promise<FavoriteImpl> {
-        return this.api.putPipelineFavorite(param.organization, param.pipeline, param.UNKNOWN_BASE_TYPE,  options).toPromise();
+        return this.api.putPipelineFavorite(param.organization, param.pipeline, param.body,  options).toPromise();
     }
 
     /**

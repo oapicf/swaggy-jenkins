@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 import org.openapitools.api.BlueApiService;
 
@@ -41,7 +40,7 @@ import javax.validation.constraints.*;
 @Api(description = "the blue API")
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-10T09:47:00.017276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-11T12:43:06.166399Z[Etc/UTC]")
 
 public class BlueApi  {
 
@@ -560,8 +559,8 @@ public class BlueApi  {
         @ApiResponse(code = 200, message = "Successfully favorited/unfavorited a pipeline", response = FavoriteImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
-        return delegate.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, securityContext);
+    public Response putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization, @ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline, @ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) Boolean body) {
+        return delegate.putPipelineFavorite(organization, pipeline, body, securityContext);
     }
 
     @PUT

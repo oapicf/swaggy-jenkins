@@ -41,7 +41,6 @@ import com.cliffano.swaggyjenkins.model.PipelineRun;
 import com.cliffano.swaggyjenkins.model.PipelineRunNode;
 import com.cliffano.swaggyjenkins.model.PipelineStepImpl;
 import com.cliffano.swaggyjenkins.model.QueueItemImpl;
-import com.cliffano.swaggyjenkins.model.UNKNOWN_BASE_TYPE;
 import com.cliffano.swaggyjenkins.model.User;
 
 import java.lang.reflect.Type;
@@ -5095,7 +5094,7 @@ public class BlueOceanApi {
      * Build call for putPipelineFavorite
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -5107,7 +5106,7 @@ public class BlueOceanApi {
         <tr><td> 403 </td><td> Jenkins requires authentication - please set username and password </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putPipelineFavoriteCall(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call putPipelineFavoriteCall(String organization, String pipeline, Boolean body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
 
         // Operation Servers
@@ -5122,7 +5121,7 @@ public class BlueOceanApi {
             basePath = null;
         }
 
-        Object localVarPostBody = UNKNOWN_BASE_TYPE;
+        Object localVarPostBody = body;
 
         // create path and map variables
         String localVarPath = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
@@ -5156,7 +5155,7 @@ public class BlueOceanApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putPipelineFavoriteValidateBeforeCall(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call putPipelineFavoriteValidateBeforeCall(String organization, String pipeline, Boolean body, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'organization' is set
         if (organization == null) {
@@ -5168,13 +5167,13 @@ public class BlueOceanApi {
             throw new ApiException("Missing the required parameter 'pipeline' when calling putPipelineFavorite(Async)");
         }
         
-        // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-        if (UNKNOWN_BASE_TYPE == null) {
-            throw new ApiException("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling putPipelineFavorite(Async)");
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling putPipelineFavorite(Async)");
         }
         
 
-        okhttp3.Call localVarCall = putPipelineFavoriteCall(organization, pipeline, UNKNOWN_BASE_TYPE, _callback);
+        okhttp3.Call localVarCall = putPipelineFavoriteCall(organization, pipeline, body, _callback);
         return localVarCall;
 
     }
@@ -5184,7 +5183,7 @@ public class BlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @return FavoriteImpl
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -5195,8 +5194,8 @@ public class BlueOceanApi {
         <tr><td> 403 </td><td> Jenkins requires authentication - please set username and password </td><td>  -  </td></tr>
      </table>
      */
-    public FavoriteImpl putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws ApiException {
-        ApiResponse<FavoriteImpl> localVarResp = putPipelineFavoriteWithHttpInfo(organization, pipeline, UNKNOWN_BASE_TYPE);
+    public FavoriteImpl putPipelineFavorite(String organization, String pipeline, Boolean body) throws ApiException {
+        ApiResponse<FavoriteImpl> localVarResp = putPipelineFavoriteWithHttpInfo(organization, pipeline, body);
         return localVarResp.getData();
     }
 
@@ -5205,7 +5204,7 @@ public class BlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @return ApiResponse&lt;FavoriteImpl&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -5216,8 +5215,8 @@ public class BlueOceanApi {
         <tr><td> 403 </td><td> Jenkins requires authentication - please set username and password </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FavoriteImpl> putPipelineFavoriteWithHttpInfo(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws ApiException {
-        okhttp3.Call localVarCall = putPipelineFavoriteValidateBeforeCall(organization, pipeline, UNKNOWN_BASE_TYPE, null);
+    public ApiResponse<FavoriteImpl> putPipelineFavoriteWithHttpInfo(String organization, String pipeline, Boolean body) throws ApiException {
+        okhttp3.Call localVarCall = putPipelineFavoriteValidateBeforeCall(organization, pipeline, body, null);
         Type localVarReturnType = new TypeToken<FavoriteImpl>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -5227,7 +5226,7 @@ public class BlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -5239,9 +5238,9 @@ public class BlueOceanApi {
         <tr><td> 403 </td><td> Jenkins requires authentication - please set username and password </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call putPipelineFavoriteAsync(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, final ApiCallback<FavoriteImpl> _callback) throws ApiException {
+    public okhttp3.Call putPipelineFavoriteAsync(String organization, String pipeline, Boolean body, final ApiCallback<FavoriteImpl> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = putPipelineFavoriteValidateBeforeCall(organization, pipeline, UNKNOWN_BASE_TYPE, _callback);
+        okhttp3.Call localVarCall = putPipelineFavoriteValidateBeforeCall(organization, pipeline, body, _callback);
         Type localVarReturnType = new TypeToken<FavoriteImpl>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

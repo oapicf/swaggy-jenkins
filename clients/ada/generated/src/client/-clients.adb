@@ -698,7 +698,7 @@ package body .Clients is
       (Client : in out Client_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       U_NKNOWNBASETYPE : in .Models.UNKNOWN_BASE_TYPE;
+       P_Body : in Boolean;
        Result : out .Models.FavoriteImpl_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
@@ -706,7 +706,7 @@ package body .Clients is
    begin
       Client.Set_Accept ((1 => Swagger.Clients.APPLICATION_JSON));
       Client.Initialize (Req, (1 => Swagger.Clients.APPLICATION_JSON));
-      .Models.Serialize (Req.Stream, "", U_NKNOWNBASETYPE);
+      .Models.Serialize (Req.Stream, "", P_Body);
 
       URI.Set_Path ("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite");
       URI.Set_Path_Param ("organization", Organization);

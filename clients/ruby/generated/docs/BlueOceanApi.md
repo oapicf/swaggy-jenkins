@@ -2457,7 +2457,7 @@ end
 
 ## put_pipeline_favorite
 
-> <FavoriteImpl> put_pipeline_favorite(organization, pipeline, unknown_base_type)
+> <FavoriteImpl> put_pipeline_favorite(organization, pipeline, body)
 
 
 
@@ -2478,11 +2478,11 @@ end
 api_instance = SwaggyJenkinsClient::BlueOceanApi.new
 organization = 'organization_example' # String | Name of the organization
 pipeline = 'pipeline_example' # String | Name of the pipeline
-unknown_base_type = TODO # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+body = true # Boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 begin
   
-  result = api_instance.put_pipeline_favorite(organization, pipeline, unknown_base_type)
+  result = api_instance.put_pipeline_favorite(organization, pipeline, body)
   p result
 rescue SwaggyJenkinsClient::ApiError => e
   puts "Error when calling BlueOceanApi->put_pipeline_favorite: #{e}"
@@ -2493,12 +2493,12 @@ end
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<FavoriteImpl>, Integer, Hash)> put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type)
+> <Array(<FavoriteImpl>, Integer, Hash)> put_pipeline_favorite_with_http_info(organization, pipeline, body)
 
 ```ruby
 begin
   
-  data, status_code, headers = api_instance.put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type)
+  data, status_code, headers = api_instance.put_pipeline_favorite_with_http_info(organization, pipeline, body)
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <FavoriteImpl>
@@ -2513,7 +2513,7 @@ end
 | ---- | ---- | ----------- | ----- |
 | **organization** | **String** | Name of the organization |  |
 | **pipeline** | **String** | Name of the pipeline |  |
-| **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |  |
+| **body** | **Boolean** | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |  |
 
 ### Return type
 

@@ -6,7 +6,7 @@ import play.api.libs.json._
   * Represents the Swagger definition for PipelineRunImpl.
   * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-10T09:53:15.007563Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-11T12:54:41.523230Z[Etc/UTC]")
 case class PipelineRunImpl(
   `class`: Option[String],
   links: Option[PipelineRunImpllinks],

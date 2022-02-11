@@ -2650,7 +2650,7 @@ Name | Type | Description  | Notes
 
 <a name="putpipelinefavorite"></a>
 # **PutPipelineFavorite**
-> FavoriteImpl PutPipelineFavorite (string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+> FavoriteImpl PutPipelineFavorite (string organization, string pipeline, bool body)
 
 
 
@@ -2679,11 +2679,11 @@ namespace Example
             var apiInstance = new BlueOceanApi(config);
             var organization = "organization_example";  // string | Name of the organization
             var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+            var body = true;  // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
             try
             {
-                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, body);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2703,7 +2703,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
  **pipeline** | **string**| Name of the pipeline | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

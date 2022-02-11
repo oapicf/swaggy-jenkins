@@ -1003,7 +1003,6 @@ public class BlueOceanApi extends RouteBuilder {
                 .produces("application/json")
                 .outType(FavoriteImpl.class)
                 .consumes("application/json")
-                .type(UNKNOWN_BASE_TYPE.class)
                 
                 .param()
                     .name("organization")
@@ -1018,7 +1017,7 @@ public class BlueOceanApi extends RouteBuilder {
                     .description("Name of the pipeline")
                 .endParam()
                 .param()
-                    .name("UNKNOWN_BASE_TYPE")
+                    .name("body")
                     .type(RestParamType.body)
                     .required(true)
                     .description("Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite")

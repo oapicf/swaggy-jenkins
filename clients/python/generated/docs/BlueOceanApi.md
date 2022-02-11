@@ -2761,7 +2761,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_favorite**
-> FavoriteImpl put_pipeline_favorite(organization, pipeline, unknown_base_type)
+> FavoriteImpl put_pipeline_favorite(organization, pipeline, body)
 
 
 
@@ -2775,7 +2775,6 @@ Favorite/unfavorite a pipeline
 import time
 import swaggyjenkins
 from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.unknownbasetype import UNKNOWNBASETYPE
 from swaggyjenkins.model.favorite_impl import FavoriteImpl
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -2801,11 +2800,11 @@ with swaggyjenkins.ApiClient(configuration) as api_client:
     api_instance = blue_ocean_api.BlueOceanApi(api_client)
     organization = "organization_example" # str | Name of the organization
     pipeline = "pipeline_example" # str | Name of the pipeline
-    unknown_base_type = None # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+    body = True # bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.put_pipeline_favorite(organization, pipeline, unknown_base_type)
+        api_response = api_instance.put_pipeline_favorite(organization, pipeline, body)
         pprint(api_response)
     except swaggyjenkins.ApiException as e:
         print("Exception when calling BlueOceanApi->put_pipeline_favorite: %s\n" % e)
@@ -2818,7 +2817,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **str**| Name of the organization |
  **pipeline** | **str**| Name of the pipeline |
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

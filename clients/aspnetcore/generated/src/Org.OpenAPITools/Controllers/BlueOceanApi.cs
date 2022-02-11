@@ -1137,7 +1137,7 @@ namespace Org.OpenAPITools.Controllers
         /// <remarks>Favorite/unfavorite a pipeline</remarks>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <response code="200">Successfully favorited/unfavorited a pipeline</response>
         /// <response code="401">Authentication failed - incorrect username and/or password</response>
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
@@ -1147,7 +1147,7 @@ namespace Org.OpenAPITools.Controllers
         [ValidateModelState]
         [SwaggerOperation("PutPipelineFavorite")]
         [SwaggerResponse(statusCode: 200, type: typeof(FavoriteImpl), description: "Successfully favorited/unfavorited a pipeline")]
-        public virtual IActionResult PutPipelineFavorite([FromRoute (Name = "organization")][Required]string organization, [FromRoute (Name = "pipeline")][Required]string pipeline, [FromBody]UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+        public virtual IActionResult PutPipelineFavorite([FromRoute (Name = "organization")][Required]string organization, [FromRoute (Name = "pipeline")][Required]string pipeline, [FromBody]bool body)
         {
 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...

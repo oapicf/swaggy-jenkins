@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * GithubRespositoryContainerlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-10T09:53:34.462656Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-11T12:55:01.064874Z[Etc/UTC]")
 public class GithubRespositoryContainerlinks   {
 
   @JsonProperty("self")

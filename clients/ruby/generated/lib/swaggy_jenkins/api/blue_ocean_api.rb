@@ -2324,21 +2324,21 @@ module SwaggyJenkinsClient
     # Favorite/unfavorite a pipeline
     # @param organization [String] Name of the organization
     # @param pipeline [String] Name of the pipeline
-    # @param unknown_base_type [UNKNOWN_BASE_TYPE] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+    # @param body [Boolean] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
     # @param [Hash] opts the optional parameters
     # @return [FavoriteImpl]
-    def put_pipeline_favorite(organization, pipeline, unknown_base_type, opts = {})
-      data, _status_code, _headers = put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type, opts)
+    def put_pipeline_favorite(organization, pipeline, body, opts = {})
+      data, _status_code, _headers = put_pipeline_favorite_with_http_info(organization, pipeline, body, opts)
       data
     end
 
     # Favorite/unfavorite a pipeline
     # @param organization [String] Name of the organization
     # @param pipeline [String] Name of the pipeline
-    # @param unknown_base_type [UNKNOWN_BASE_TYPE] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+    # @param body [Boolean] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
     # @param [Hash] opts the optional parameters
     # @return [Array<(FavoriteImpl, Integer, Hash)>] FavoriteImpl data, response status code and response headers
-    def put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type, opts = {})
+    def put_pipeline_favorite_with_http_info(organization, pipeline, body, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: BlueOceanApi.put_pipeline_favorite ...'
       end
@@ -2349,6 +2349,10 @@ module SwaggyJenkinsClient
       # verify the required parameter 'pipeline' is set
       if @api_client.config.client_side_validation && pipeline.nil?
         fail ArgumentError, "Missing the required parameter 'pipeline' when calling BlueOceanApi.put_pipeline_favorite"
+      end
+      # verify the required parameter 'body' is set
+      if @api_client.config.client_side_validation && body.nil?
+        fail ArgumentError, "Missing the required parameter 'body' when calling BlueOceanApi.put_pipeline_favorite"
       end
       # resource path
       local_var_path = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'.sub('{' + 'organization' + '}', CGI.escape(organization.to_s)).sub('{' + 'pipeline' + '}', CGI.escape(pipeline.to_s))
@@ -2370,7 +2374,7 @@ module SwaggyJenkinsClient
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(unknown_base_type)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(body)
 
       # return_type
       return_type = opts[:debug_return_type] || 'FavoriteImpl'

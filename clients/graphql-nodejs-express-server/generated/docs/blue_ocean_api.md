@@ -276,7 +276,7 @@ Replay an organization pipeline run
 Start a build for an organization pipeline
 <a name="PutPipelineFavorite"></a>
 # **PutPipelineFavorite**
-> FavoriteImpl PutPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> FavoriteImpl PutPipelineFavorite(organization, pipeline, body)
 
 
 

@@ -43,7 +43,6 @@ use OpenAPI\Server\Model\PipelineRun;
 use OpenAPI\Server\Model\PipelineRunNode;
 use OpenAPI\Server\Model\PipelineStepImpl;
 use OpenAPI\Server\Model\QueueItemImpl;
-use OpenAPI\Server\Model\UNKNOWN_BASE_TYPE;
 use OpenAPI\Server\Model\User;
 
 /**
@@ -487,13 +486,13 @@ interface BlueOceanApiInterface
      *
      * @param  \string $organization  Name of the organization (required)
      * @param  \string $pipeline  Name of the pipeline (required)
-     * @param  \OpenAPI\Server\Model\UNKNOWN_BASE_TYPE $uNKNOWNBASETYPE  Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param  \bool $body  Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @param  \int $responseCode     The HTTP response code to return
      * @param  \array   $responseHeaders  Additional HTTP headers to return with the response ()
      *
      * @return \OpenAPI\Server\Model\FavoriteImpl
      */
-    public function putPipelineFavorite($organization, $pipeline, UNKNOWN_BASE_TYPE $uNKNOWNBASETYPE, &$responseCode, array &$responseHeaders);
+    public function putPipelineFavorite($organization, $pipeline, $body, &$responseCode, array &$responseHeaders);
 
     /**
      * Operation putPipelineRun

@@ -30,7 +30,6 @@
 #include "OpenAPIPipelineStepImpl.h"
 #include "OpenAPIQueueItemImpl.h"
 #include "OpenAPIUser.h"
-#include "UNKNOWN_BASE_TYPE.h"
 
 namespace OpenAPI
 {
@@ -982,7 +981,7 @@ public:
 	/* Name of the pipeline */
 	FString Pipeline;
 	/* Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite */
-	UNKNOWN_BASE_TYPE UnknownBaseType;
+	bool Body;
 };
 
 class OPENAPI_API OpenAPIBlueOceanApi::PutPipelineFavoriteResponse : public Response

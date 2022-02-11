@@ -4,7 +4,6 @@ import model.BranchImpl
 import model.FavoriteImpl
 import model.GithubOrganization
 import model.GithubScm
-import model.JsObject
 import model.MultibranchPipeline
 import model.Organisation
 import model.Pipeline
@@ -15,13 +14,12 @@ import model.PipelineRun
 import model.PipelineRunNode
 import model.PipelineStepImpl
 import model.QueueItemImpl
-import model.UNKNOWN_BASE_TYPE
 import model.User
 
 /**
   * Provides a default implementation for [[BlueOceanApi]].
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-10T09:53:15.007563Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-11T12:54:41.523230Z[Etc/UTC]")
 class BlueOceanApiImpl extends BlueOceanApi {
   /**
     * @inheritdoc
@@ -323,7 +321,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   /**
     * @inheritdoc
     */
-  override def putPipelineFavorite(organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE): FavoriteImpl = {
+  override def putPipelineFavorite(organization: String, pipeline: String, body: Boolean): FavoriteImpl = {
     // TODO: Implement better logic
 
     FavoriteImpl(None, None, None, Map.empty)

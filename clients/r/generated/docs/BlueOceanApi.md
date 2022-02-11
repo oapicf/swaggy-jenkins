@@ -1694,7 +1694,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PutPipelineFavorite**
-> FavoriteImpl PutPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> FavoriteImpl PutPipelineFavorite(organization, pipeline, body)
 
 
 
@@ -1706,13 +1706,13 @@ library(openapi)
 
 var.organization <- 'organization_example' # character | Name of the organization
 var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.UNKNOWN_BASE_TYPE <- TODO # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+var.body <- 'body_example' # character | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 api.instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$PutPipelineFavorite(var.organization, var.pipeline, var.UNKNOWN_BASE_TYPE)
+result <- api.instance$PutPipelineFavorite(var.organization, var.pipeline, var.body)
 dput(result)
 ```
 
@@ -1722,7 +1722,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **character**| Name of the organization | 
  **pipeline** | **character**| Name of the pipeline | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **character**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

@@ -2028,7 +2028,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) putPipelineFavoriteWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    uNKNOWNBASETYPE: (UNKNOWN_BASE_TYPE*) uNKNOWNBASETYPE
+    body: (NSNumber*) body
         completionHandler: (void (^)(OAIFavoriteImpl* output, NSError* error)) handler;
 ```
 
@@ -2046,13 +2046,13 @@ OAIDefaultConfiguration *apiConfig = [OAIDefaultConfiguration sharedConfig];
 
 NSString* organization = @"organization_example"; // Name of the organization
 NSString* pipeline = @"pipeline_example"; // Name of the pipeline
-UNKNOWN_BASE_TYPE* uNKNOWNBASETYPE = [[UNKNOWN_BASE_TYPE alloc] init]; // Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+NSNumber* body = @56; // Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 OAIBlueOceanApi*apiInstance = [[OAIBlueOceanApi alloc] init];
 
 [apiInstance putPipelineFavoriteWithOrganization:organization
               pipeline:pipeline
-              uNKNOWNBASETYPE:uNKNOWNBASETYPE
+              body:body
           completionHandler: ^(OAIFavoriteImpl* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -2069,7 +2069,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **NSString***| Name of the organization | 
  **pipeline** | **NSString***| Name of the pipeline | 
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE***](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **NSNumber***| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

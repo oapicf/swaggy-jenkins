@@ -4148,7 +4148,7 @@ impl<S, C> Api<C> for Client<S, C> where
         &self,
         param_organization: String,
         param_pipeline: String,
-        param_unknown_base_type: UNKNOWN_BASE_TYPE,
+        param_body: bool,
         context: &C) -> Result<PutPipelineFavoriteResponse, ApiError>
     {
         let mut client_service = self.client_service.clone();
@@ -4182,7 +4182,7 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let body = serde_json::to_string(&param_unknown_base_type).expect("impossible to fail to serialize");
+        let body = serde_json::to_string(&param_body).expect("impossible to fail to serialize");
                 *request.body_mut() = Body::from(body);
 
         let header = "application/json";

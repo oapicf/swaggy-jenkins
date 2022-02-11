@@ -560,15 +560,15 @@ postPipelineRuns organization_path pipeline_path =
 
 {-| Favorite/unfavorite a pipeline
 -}
-putPipelineFavorite : String -> String -> UNKNOWN_BASE_TYPE -> Api.Request Api.Data.FavoriteImpl
-putPipelineFavorite organization_path pipeline_path uNKNOWNBASETYPE_body =
+putPipelineFavorite : String -> String -> Bool -> Api.Request Api.Data.FavoriteImpl
+putPipelineFavorite organization_path pipeline_path body_body =
     Api.request
         "PUT"
         "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
         [ ( "organization", identity organization_path ), ( "pipeline", identity pipeline_path ) ]
         []
         []
-        (Just (encodeUNKNOWNBASETYPE uNKNOWNBASETYPE_body))
+        (Just (Json.Encode.bool body_body))
         Api.Data.favoriteImplDecoder
 
 

@@ -1825,7 +1825,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_favorite**
-> FavoriteImpl put_pipeline_favorite(organization => $organization, pipeline => $pipeline, unknown_base_type => $unknown_base_type)
+> FavoriteImpl put_pipeline_favorite(organization => $organization, pipeline => $pipeline, body => $body)
 
 
 
@@ -1845,10 +1845,10 @@ my $api_instance = WWW::OpenAPIClient::BlueOceanApi->new(
 
 my $organization = "organization_example"; # string | Name of the organization
 my $pipeline = "pipeline_example"; # string | Name of the pipeline
-my $unknown_base_type = WWW::OpenAPIClient::Object::UNKNOWN_BASE_TYPE->new(); # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+my $body = WWW::OpenAPIClient::Object::boolean->new(); # boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 eval {
-    my $result = $api_instance->put_pipeline_favorite(organization => $organization, pipeline => $pipeline, unknown_base_type => $unknown_base_type);
+    my $result = $api_instance->put_pipeline_favorite(organization => $organization, pipeline => $pipeline, body => $body);
     print Dumper($result);
 };
 if ($@) {
@@ -1862,7 +1862,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization | 
  **pipeline** | **string**| Name of the pipeline | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

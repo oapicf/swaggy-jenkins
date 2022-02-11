@@ -48,7 +48,6 @@ import org.openapitools.server.models.PipelineRun
 import org.openapitools.server.models.PipelineRunNode
 import org.openapitools.server.models.PipelineStepImpl
 import org.openapitools.server.models.QueueItemImpl
-import org.openapitools.server.models.UNKNOWN_BASE_TYPE
 import org.openapitools.server.models.User
 
 @KtorExperimentalLocationsAPI

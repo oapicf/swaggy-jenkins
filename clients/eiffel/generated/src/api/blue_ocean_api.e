@@ -1075,7 +1075,7 @@ feature -- API Access
 			end
 		end
 
-	put_pipeline_favorite (organization: STRING_32; pipeline: STRING_32; unknown_base_type: UNKNOWN_BASE_TYPE): detachable FAVORITE_IMPL
+	put_pipeline_favorite (organization: STRING_32; pipeline: STRING_32; body: BOOLEAN): detachable FAVORITE_IMPL
 			-- 
 			-- Favorite/unfavorite a pipeline
 			-- 
@@ -1083,7 +1083,7 @@ feature -- API Access
 			-- 
 			-- argument: pipeline Name of the pipeline (required)
 			-- 
-			-- argument: unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+			-- argument: body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
 			-- 
 			-- 
 			-- Result FAVORITE_IMPL
@@ -1095,7 +1095,7 @@ feature -- API Access
 		do
 			reset_error
 			create l_request
-			l_request.set_body(unknown_base_type)
+			l_request.set_body(body)
 			l_path := "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
 			l_path.replace_substring_all ("{"+"organization"+"}", api_client.url_encode (organization.out))
 			l_path.replace_substring_all ("{"+"pipeline"+"}", api_client.url_encode (pipeline.out))

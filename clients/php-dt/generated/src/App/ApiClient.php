@@ -4070,7 +4070,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region putPipelineFavorite
     /**
      * @param \App\DTO\PutPipelineFavoriteParameterData $parameters
-     * @param \App\DTO\UNKNOWN_BASE_TYPE $requestContent
+     * @param bool $requestContent
      * @param iterable|string[][] $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -4080,7 +4080,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      */
     public function putPipelineFavoriteRaw(
         \App\DTO\PutPipelineFavoriteParameterData $parameters,
-        \App\DTO\UNKNOWN_BASE_TYPE $requestContent,
+        bool $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -4095,7 +4095,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PutPipelineFavoriteParameterData $parameters
-     * @param \App\DTO\UNKNOWN_BASE_TYPE $requestContent
+     * @param bool $requestContent
      * @param iterable|string[][] $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -4106,7 +4106,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      */
     public function putPipelineFavorite(
         \App\DTO\PutPipelineFavoriteParameterData $parameters,
-        \App\DTO\UNKNOWN_BASE_TYPE $requestContent,
+        bool $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -4133,7 +4133,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PutPipelineFavoriteParameterData $parameters
-     * @param \App\DTO\UNKNOWN_BASE_TYPE $requestContent
+     * @param bool $requestContent
      * @param iterable|string[][] $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -4145,7 +4145,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      */
     public function putPipelineFavoriteResult(
         \App\DTO\PutPipelineFavoriteParameterData $parameters,
-        \App\DTO\UNKNOWN_BASE_TYPE $requestContent,
+        bool $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'

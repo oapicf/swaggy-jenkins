@@ -29,8 +29,6 @@ import public "models/pipeline_run.proto";
 import public "models/pipeline_run_node.proto";
 import public "models/pipeline_step_impl.proto";
 import public "models/queue_item_impl.proto";
-import public "models/todo_object_mapping.proto";
-import public "models/unknown_base_type.proto";
 import public "models/user.proto";
 
 service BlueOceanService {
@@ -480,7 +478,7 @@ message PutPipelineFavoriteRequest {
   // Name of the pipeline
   string pipeline = 2;
   // Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-  UNKNOWN_BASE_TYPE uNKNOWNBASETYPE = 3;
+  bool body = 3;
 
 }
 

@@ -14,7 +14,7 @@ import org.openapitools.model.Label1;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-10T09:47:23.475622Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-11T12:43:44.828365Z[Etc/UTC]")
 public class HudsonMasterComputer   {
   
 

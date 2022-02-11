@@ -18,7 +18,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.util.List;
@@ -29,7 +28,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-10T09:47:16.018972Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-11T12:43:32.526248Z[Etc/UTC]")
 public interface BlueApiService {
       Response deletePipelineQueueItem(String organization,String pipeline,String queue,SecurityContext securityContext)
       throws NotFoundException;
@@ -93,7 +92,7 @@ public interface BlueApiService {
       throws NotFoundException;
       Response postPipelineRuns(String organization,String pipeline,SecurityContext securityContext)
       throws NotFoundException;
-      Response putPipelineFavorite(String organization,String pipeline,UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,SecurityContext securityContext)
+      Response putPipelineFavorite(String organization,String pipeline,Boolean body,SecurityContext securityContext)
       throws NotFoundException;
       Response putPipelineRun(String organization,String pipeline,String run,String blocking,Integer timeOutInSecs,SecurityContext securityContext)
       throws NotFoundException;

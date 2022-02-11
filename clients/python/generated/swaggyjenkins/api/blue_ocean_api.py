@@ -42,7 +42,6 @@ from swaggyjenkins.model.pipeline_step_impl import PipelineStepImpl
 from swaggyjenkins.model.pipelines import Pipelines
 from swaggyjenkins.model.queue_item_impl import QueueItemImpl
 from swaggyjenkins.model.scm_organisations import ScmOrganisations
-from swaggyjenkins.model.unknownbasetype import UNKNOWNBASETYPE
 from swaggyjenkins.model.user import User
 from swaggyjenkins.model.user_favorites import UserFavorites
 
@@ -2057,15 +2056,14 @@ class BlueOceanApi(object):
                 'all': [
                     'organization',
                     'pipeline',
-                    'unknown_base_type',
+                    'body',
                 ],
                 'required': [
                     'organization',
                     'pipeline',
-                    'unknown_base_type',
+                    'body',
                 ],
                 'nullable': [
-                    'unknown_base_type',
                 ],
                 'enum': [
                 ],
@@ -2082,8 +2080,8 @@ class BlueOceanApi(object):
                         (str,),
                     'pipeline':
                         (str,),
-                    'unknown_base_type':
-                        (UNKNOWN_BASE_TYPE,),
+                    'body':
+                        (bool,),
                 },
                 'attribute_map': {
                     'organization': 'organization',
@@ -2092,7 +2090,7 @@ class BlueOceanApi(object):
                 'location_map': {
                     'organization': 'path',
                     'pipeline': 'path',
-                    'unknown_base_type': 'body',
+                    'body': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -5044,7 +5042,7 @@ class BlueOceanApi(object):
         self,
         organization,
         pipeline,
-        unknown_base_type,
+        body,
         **kwargs
     ):
         """put_pipeline_favorite  # noqa: E501
@@ -5053,13 +5051,13 @@ class BlueOceanApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.put_pipeline_favorite(organization, pipeline, unknown_base_type, async_req=True)
+        >>> thread = api.put_pipeline_favorite(organization, pipeline, body, async_req=True)
         >>> result = thread.get()
 
         Args:
             organization (str): Name of the organization
             pipeline (str): Name of the pipeline
-            unknown_base_type (UNKNOWN_BASE_TYPE): Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+            body (bool): Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -5122,8 +5120,8 @@ class BlueOceanApi(object):
             organization
         kwargs['pipeline'] = \
             pipeline
-        kwargs['unknown_base_type'] = \
-            unknown_base_type
+        kwargs['body'] = \
+            body
         return self.put_pipeline_favorite_endpoint.call_with_http_info(**kwargs)
 
     def put_pipeline_run(

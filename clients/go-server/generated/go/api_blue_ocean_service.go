@@ -595,7 +595,7 @@ func (s *BlueOceanApiService) PostPipelineRuns(ctx context.Context, organization
 }
 
 // PutPipelineFavorite - 
-func (s *BlueOceanApiService) PutPipelineFavorite(ctx context.Context, organization string, pipeline string, uNKNOWNBASETYPE UNKNOWN_BASE_TYPE) (ImplResponse, error) {
+func (s *BlueOceanApiService) PutPipelineFavorite(ctx context.Context, organization string, pipeline string, body bool) (ImplResponse, error) {
 	// TODO - update PutPipelineFavorite with the required logic for this service method.
 	// Add api_blue_ocean_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

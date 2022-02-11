@@ -1077,7 +1077,7 @@ MyApp.add_route('PUT', '/blue/rest/organizations/{organization}/pipelines/{pipel
     {
       "name" => "body",
       "description" => "Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite",
-      "dataType" => "UNKNOWN_BASE_TYPE",
+      "dataType" => "Boolean",
       "paramType" => "body",
     }
     ]}) do

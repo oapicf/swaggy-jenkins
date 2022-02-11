@@ -14,7 +14,6 @@ import com.prokarma.pkmst.model.PipelineRun;
 import com.prokarma.pkmst.model.PipelineRunNode;
 import com.prokarma.pkmst.model.PipelineStepImpl;
 import com.prokarma.pkmst.model.QueueItemImpl;
-import com.prokarma.pkmst.model.UNKNOWN_BASE_TYPE;
 import com.prokarma.pkmst.model.User;
 
 import io.swagger.annotations.*;
@@ -38,7 +37,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-10T09:46:03.315402Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-11T12:41:57.902127Z[Etc/UTC]")
 @Controller
 public class BlueOceanApiController implements BlueOceanApi {
     private final ObjectMapper objectMapper;
@@ -435,7 +434,7 @@ public class BlueOceanApiController implements BlueOceanApi {
 
     public ResponseEntity<FavoriteImpl> putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true ) @PathVariable("organization") String organization,
         @ApiParam(value = "Name of the pipeline",required=true ) @PathVariable("pipeline") String pipeline,
-        @ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true )   @RequestBody UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,
+        @ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true )   @RequestBody Boolean body,
         @RequestHeader(value = "Accept", required = false) String accept) throws Exception {
         // do some magic!
 

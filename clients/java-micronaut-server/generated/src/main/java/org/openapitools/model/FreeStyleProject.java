@@ -62,7 +62,7 @@ import javax.annotation.Generated;
   FreeStyleProject.JSON_PROPERTY_SCM
 })
 @JsonTypeName("FreeStyleProject")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-10T09:45:45.459643Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
 @Introspected
 public class FreeStyleProject {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

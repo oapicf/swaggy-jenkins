@@ -35,7 +35,6 @@ import org.openapitools.client.api.PipelineRun
 import org.openapitools.client.api.PipelineRunNode
 import org.openapitools.client.api.PipelineStepImpl
 import org.openapitools.client.api.QueueItemImpl
-import org.openapitools.client.api.UNKNOWN_BASE_TYPE
 import org.openapitools.client.api.User
 
 object BlueOceanApi {
@@ -735,7 +734,7 @@ object BlueOceanApi {
     } yield resp
   }
 
-  def putPipelineFavorite(host: String, organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE): Task[FavoriteImpl] = {
+  def putPipelineFavorite(host: String, organization: String, pipeline: String, body: Boolean): Task[FavoriteImpl] = {
     implicit val returnTypeDecoder: EntityDecoder[FavoriteImpl] = jsonOf[FavoriteImpl]
 
     val path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".replaceAll("\\{" + "organization" + "\\}",escape(organization.toString)).replaceAll("\\{" + "pipeline" + "\\}",escape(pipeline.toString))
@@ -750,7 +749,7 @@ object BlueOceanApi {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(UNKNOWN_BASE_TYPE)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(body)
       resp          <- client.expect[FavoriteImpl](req)
 
     } yield resp
@@ -1517,7 +1516,7 @@ class HttpServiceBlueOceanApi(service: HttpService) {
     } yield resp
   }
 
-  def putPipelineFavorite(organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE): Task[FavoriteImpl] = {
+  def putPipelineFavorite(organization: String, pipeline: String, body: Boolean): Task[FavoriteImpl] = {
     implicit val returnTypeDecoder: EntityDecoder[FavoriteImpl] = jsonOf[FavoriteImpl]
 
     val path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".replaceAll("\\{" + "organization" + "\\}",escape(organization.toString)).replaceAll("\\{" + "pipeline" + "\\}",escape(pipeline.toString))
@@ -1532,7 +1531,7 @@ class HttpServiceBlueOceanApi(service: HttpService) {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(UNKNOWN_BASE_TYPE)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(body)
       resp          <- client.expect[FavoriteImpl](req)
 
     } yield resp

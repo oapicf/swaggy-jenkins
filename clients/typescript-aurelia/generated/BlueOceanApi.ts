@@ -29,7 +29,6 @@ import {
   QueueItemImpl,
   BranchImpl,
   PipelineStepImpl,
-  UNKNOWN_BASE_TYPE,
   MultibranchPipeline,
 } from './models';
 
@@ -323,7 +322,7 @@ export interface IPostPipelineRunsParams {
 export interface IPutPipelineFavoriteParams {
   organization: string;
   pipeline: string;
-  uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE;
+  body: boolean;
 }
 
 /**
@@ -1458,13 +1457,13 @@ export class BlueOceanApi extends Api {
    * Favorite/unfavorite a pipeline
    * @param params.organization Name of the organization
    * @param params.pipeline Name of the pipeline
-   * @param params.uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+   * @param params.body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
    */
   async putPipelineFavorite(params: IPutPipelineFavoriteParams): Promise<FavoriteImpl> {
     // Verify required parameters are set
     this.ensureParamIsSet('putPipelineFavorite', params, 'organization');
     this.ensureParamIsSet('putPipelineFavorite', params, 'pipeline');
-    this.ensureParamIsSet('putPipelineFavorite', params, 'uNKNOWNBASETYPE');
+    this.ensureParamIsSet('putPipelineFavorite', params, 'body');
 
     // Create URL to call
     const url = `${this.basePath}/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite`
@@ -1476,7 +1475,7 @@ export class BlueOceanApi extends Api {
       .asPut()
       // Encode body parameter
       .withHeader('content-type', 'application/json')
-      .withContent(JSON.stringify(params['uNKNOWNBASETYPE'] || {}))
+      .withContent(JSON.stringify(params['body'] || {}))
 
       // Authentication 'jenkins_auth' required
       // Send the request

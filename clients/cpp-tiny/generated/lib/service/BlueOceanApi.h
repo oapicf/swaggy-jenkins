@@ -13,7 +13,6 @@
 #include "GithubOrganization.h"
 #include "GithubScm.h"
 #include "MultibranchPipeline.h"
-#include "Object.h"
 #include "Organisation.h"
 #include "Pipeline.h"
 #include "PipelineActivity.h"
@@ -23,7 +22,6 @@
 #include "PipelineRunNode.h"
 #include "PipelineStepImpl.h"
 #include "QueueItemImpl.h"
-#include "UNKNOWN_BASE_TYPE.h"
 #include "User.h"
 
 namespace Tiny {
@@ -719,7 +717,7 @@ public:
     * Favorite/unfavorite a pipeline
     * \param organization Name of the organization *Required*
     * \param pipeline Name of the pipeline *Required*
-    * \param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
+    * \param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
     */
     Response<
                 FavoriteImpl
@@ -732,7 +730,7 @@ public:
             std::string pipeline
             , 
             
-            UNKNOWN_BASE_TYPE uNKNOWNBASETYPE
+            bool body
             
     );
     /**

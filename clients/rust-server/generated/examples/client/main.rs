@@ -118,6 +118,7 @@ fn main() {
                 "GetUsers",
                 "PostPipelineRun",
                 "PostPipelineRuns",
+                "PutPipelineFavorite",
                 "PutPipelineRun",
                 "Search",
                 "SearchClasses",
@@ -440,16 +441,14 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        /* Disabled because there's no example.
         Some("PutPipelineFavorite") => {
             let result = rt.block_on(client.put_pipeline_favorite(
                   "organization_example".to_string(),
                   "pipeline_example".to_string(),
-                  ???
+                  true
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        */
         Some("PutPipelineRun") => {
             let result = rt.block_on(client.put_pipeline_run(
                   "organization_example".to_string(),

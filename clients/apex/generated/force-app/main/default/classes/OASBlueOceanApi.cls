@@ -1017,20 +1017,20 @@ public class OASBlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param body Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite (required)
      * @return OASFavoriteImpl
      * @throws OAS.ApiException if fails to make API call
      */
     public OASFavoriteImpl putPipelineFavorite(Map<String, Object> params) {
         client.assertNotNull(params.get('organization'), 'organization');
         client.assertNotNull(params.get('pipeline'), 'pipeline');
-        client.assertNotNull(params.get('UNKNOWN_BASE_TYPE'), 'UNKNOWN_BASE_TYPE');
+        client.assertNotNull(params.get('body'), 'body');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (OASFavoriteImpl) client.invoke(
             'PUT', '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite',
-            (UNKNOWN_BASE_TYPE) params.get('UNKNOWN_BASE_TYPE'),
+            (Boolean) params.get('body'),
             query, form,
             new Map<String, Object>{
                 'organization' => (String) params.get('organization'),

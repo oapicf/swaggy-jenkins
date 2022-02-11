@@ -23,7 +23,6 @@
 #include "OAIGithubOrganization.h"
 #include "OAIGithubScm.h"
 #include "OAIMultibranchPipeline.h"
-#include "OAIObject.h"
 #include "OAIOrganisation.h"
 #include "OAIPipeline.h"
 #include "OAIPipelineActivity.h"
@@ -35,7 +34,6 @@
 #include "OAIQueueItemImpl.h"
 #include "OAIUser.h"
 #include <QString>
-#include "UNKNOWN_BASE_TYPE.h"
 
 #include <QObject>
 #include <QByteArray>
@@ -293,9 +291,9 @@ public:
     /**
     * @param[in]  organization QString [required]
     * @param[in]  pipeline QString [required]
-    * @param[in]  unknown_base_type UNKNOWN_BASE_TYPE [required]
+    * @param[in]  body bool [required]
     */
-    void putPipelineFavorite(const QString &organization, const QString &pipeline, const UNKNOWN_BASE_TYPE &unknown_base_type);
+    void putPipelineFavorite(const QString &organization, const QString &pipeline, const bool &body);
 
     /**
     * @param[in]  organization QString [required]

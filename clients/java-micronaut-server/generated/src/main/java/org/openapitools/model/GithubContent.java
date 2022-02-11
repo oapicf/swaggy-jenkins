@@ -37,7 +37,7 @@ import javax.annotation.Generated;
   GithubContent.JSON_PROPERTY_BASE64_DATA
 })
 @JsonTypeName("GithubContent")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-10T09:45:45.459643Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
 @Introspected
 public class GithubContent {
     public static final String JSON_PROPERTY_NAME = "name";

@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   QueueItemImpl.JSON_PROPERTY_QUEUED_TIME
 })
 @JsonTypeName("QueueItemImpl")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-10T09:45:45.459643Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
 @Introspected
 public class QueueItemImpl {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

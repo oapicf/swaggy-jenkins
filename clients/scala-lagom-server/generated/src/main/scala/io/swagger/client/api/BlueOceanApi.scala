@@ -32,7 +32,6 @@ import io.swagger.client.model.PipelineRun
 import io.swagger.client.model.PipelineRunNode
 import io.swagger.client.model.PipelineStepImpl
 import io.swagger.client.model.QueueItemImpl
-import io.swagger.client.model.UNKNOWN_BASE_TYPE
 import io.swagger.client.model.User
 
 trait BlueOceanApi extends Service {
@@ -440,7 +439,7 @@ trait BlueOceanApi extends Service {
     * @param pipeline Name of the pipeline  
     * @return FavoriteImpl Body Parameter  Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
     */
-  def putPipelineFavorite(organization: String, pipeline: String): ServiceCall[UNKNOWN_BASE_TYPE ,FavoriteImpl]
+  def putPipelineFavorite(organization: String, pipeline: String): ServiceCall[Boolean ,FavoriteImpl]
         
   /**
     * 

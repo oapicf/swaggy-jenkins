@@ -73,6 +73,9 @@ newtype Blocking = Blocking { unBlocking :: Text } deriving (P.Eq, P.Show)
 -- ** Body
 newtype Body = Body { unBody :: Text } deriving (P.Eq, P.Show, A.ToJSON)
 
+-- ** BodyBool
+newtype BodyBool = BodyBool { unBodyBool :: Bool } deriving (P.Eq, P.Show, A.ToJSON)
+
 -- ** Branch
 newtype Branch = Branch { unBranch :: Text } deriving (P.Eq, P.Show)
 

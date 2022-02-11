@@ -352,7 +352,7 @@ package .Skeletons is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       U_NKNOWNBASETYPE : in UNKNOWN_BASE_TYPE;
+       P_Body : in Boolean;
        Result  : out .Models.FavoriteImpl_Type;
        Context : in out Swagger.Servers.Context_Type) is abstract;
 
@@ -1761,7 +1761,7 @@ package .Skeletons is
          procedure Put_Pipeline_Favorite
             (Organization : in Swagger.UString;
              Pipeline : in Swagger.UString;
-             U_NKNOWNBASETYPE : in UNKNOWN_BASE_TYPE;
+             P_Body : in Boolean;
              Result  : out .Models.FavoriteImpl_Type;
              Context : in out Swagger.Servers.Context_Type);
 

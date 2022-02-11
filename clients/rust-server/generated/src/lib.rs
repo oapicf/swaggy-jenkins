@@ -1115,7 +1115,7 @@ pub trait Api<C: Send + Sync> {
         &self,
         organization: String,
         pipeline: String,
-        unknown_base_type: UNKNOWN_BASE_TYPE,
+        body: bool,
         context: &C) -> Result<PutPipelineFavoriteResponse, ApiError>;
 
     async fn put_pipeline_run(
@@ -1491,7 +1491,7 @@ pub trait ApiNoContext<C: Send + Sync> {
         &self,
         organization: String,
         pipeline: String,
-        unknown_base_type: UNKNOWN_BASE_TYPE,
+        body: bool,
         ) -> Result<PutPipelineFavoriteResponse, ApiError>;
 
     async fn put_pipeline_run(
@@ -2018,11 +2018,11 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         &self,
         organization: String,
         pipeline: String,
-        unknown_base_type: UNKNOWN_BASE_TYPE,
+        body: bool,
         ) -> Result<PutPipelineFavoriteResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().put_pipeline_favorite(organization, pipeline, unknown_base_type, &context).await
+        self.api().put_pipeline_favorite(organization, pipeline, body, &context).await
     }
 
     async fn put_pipeline_run(

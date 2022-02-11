@@ -1766,7 +1766,7 @@ Name | Type | Description  | Notes
 
 # **putPipelineFavorite**
 ```swift
-    open class func putPipelineFavorite(organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, completion: @escaping (_ data: FavoriteImpl?, _ error: Error?) -> Void)
+    open class func putPipelineFavorite(organization: String, pipeline: String, body: Bool, completion: @escaping (_ data: FavoriteImpl?, _ error: Error?) -> Void)
 ```
 
 
@@ -1780,9 +1780,9 @@ import OpenAPIClient
 
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
-let UNKNOWN_BASE_TYPE = TODO // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+let body = true // Bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
-BlueOceanAPI.putPipelineFavorite(organization: organization, pipeline: pipeline, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) { (response, error) in
+BlueOceanAPI.putPipelineFavorite(organization: organization, pipeline: pipeline, body: body) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1800,7 +1800,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String** | Name of the organization | 
  **pipeline** | **String** | Name of the pipeline | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **Bool** | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

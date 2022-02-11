@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineBranchesitem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-10T09:46:38.783005Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-11T12:42:40.812684Z[Etc/UTC]")
 public class PipelineBranchesitem   {
 
   @JsonProperty("displayName")

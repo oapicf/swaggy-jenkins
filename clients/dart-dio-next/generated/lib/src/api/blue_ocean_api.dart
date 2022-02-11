@@ -8,7 +8,6 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/branch_impl.dart';
 import 'package:openapi/src/model/favorite_impl.dart';
@@ -24,7 +23,6 @@ import 'package:openapi/src/model/pipeline_run.dart';
 import 'package:openapi/src/model/pipeline_run_node.dart';
 import 'package:openapi/src/model/pipeline_step_impl.dart';
 import 'package:openapi/src/model/queue_item_impl.dart';
-import 'package:openapi/src/model/unknown_base_type.dart';
 import 'package:openapi/src/model/user.dart';
 
 class BlueOceanApi {
@@ -2757,7 +2755,7 @@ class BlueOceanApi {
   /// Parameters:
   /// * [organization] - Name of the organization
   /// * [pipeline] - Name of the pipeline
-  /// * [UNKNOWN_BASE_TYPE] - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+  /// * [body] - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -2770,7 +2768,7 @@ class BlueOceanApi {
   Future<Response<FavoriteImpl>> putPipelineFavorite({ 
     required String organization,
     required String pipeline,
-    UNKNOWN_BASE_TYPE? UNKNOWN_BASE_TYPE,
+    required bool body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -2801,8 +2799,7 @@ class BlueOceanApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(UNKNOWN_BASE_TYPE);
-      _bodyData = _serializers.serialize(UNKNOWN_BASE_TYPE, specifiedType: _type);
+      _bodyData = body;
 
     } catch(error, stackTrace) {
       throw DioError(

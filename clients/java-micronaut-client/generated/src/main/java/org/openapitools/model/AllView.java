@@ -32,7 +32,7 @@ import javax.annotation.Generated;
   AllView.JSON_PROPERTY_URL
 })
 @JsonTypeName("AllView")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-10T09:45:35.132923Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-11T12:41:29.860693Z[Etc/UTC]")
 @Introspected
 public class AllView {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

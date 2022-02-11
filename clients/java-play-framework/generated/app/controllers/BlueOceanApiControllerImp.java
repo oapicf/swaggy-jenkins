@@ -14,7 +14,6 @@ import apimodels.PipelineRun;
 import apimodels.PipelineRunNode;
 import apimodels.PipelineStepImpl;
 import apimodels.QueueItemImpl;
-import apimodels.UNKNOWN_BASE_TYPE;
 import apimodels.User;
 
 import play.mvc.Http;
@@ -25,7 +24,7 @@ import java.util.LinkedHashSet;
 import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-10T09:46:10.750851Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-11T12:42:06.724843Z[Etc/UTC]")
 public class BlueOceanApiControllerImp extends BlueOceanApiControllerImpInterface {
     @Override
     public void deletePipelineQueueItem(Http.Request request, String organization, String pipeline, String queue) throws Exception {
@@ -225,7 +224,7 @@ public class BlueOceanApiControllerImp extends BlueOceanApiControllerImpInterfac
     }
 
     @Override
-    public FavoriteImpl putPipelineFavorite(Http.Request request, String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) throws Exception {
+    public FavoriteImpl putPipelineFavorite(Http.Request request, String organization, String pipeline, Boolean body) throws Exception {
         //Do your magic!!!
         return new FavoriteImpl();
     }

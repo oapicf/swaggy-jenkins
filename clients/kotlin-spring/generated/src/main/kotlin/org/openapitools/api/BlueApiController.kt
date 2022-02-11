@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun
 import org.openapitools.model.PipelineRunNode
 import org.openapitools.model.PipelineStepImpl
 import org.openapitools.model.QueueItemImpl
-import org.openapitools.model.UNKNOWN_BASE_TYPE
 import org.openapitools.model.User
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -443,7 +442,7 @@ class BlueApiController() {
     )
     fun putPipelineFavorite( @PathVariable("organization") organization: kotlin.String
 , @PathVariable("pipeline") pipeline: kotlin.String
-, @Valid @RequestBody UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE
+, @Valid @RequestBody body: kotlin.Boolean
 ): ResponseEntity<FavoriteImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }

@@ -2619,9 +2619,9 @@ class BlueOceanApi {
   /// * [String] pipeline (required):
   ///   Name of the pipeline
   ///
-  /// * [UNKNOWN_BASE_TYPE] UNKNOWN_BASE_TYPE (required):
+  /// * [bool] body (required):
   ///   Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-  Future<Response> putPipelineFavoriteWithHttpInfo(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,) async {
+  Future<Response> putPipelineFavoriteWithHttpInfo(String organization, String pipeline, bool body,) async {
     // Verify required params are set.
     if (organization == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: organization');
@@ -2629,8 +2629,8 @@ class BlueOceanApi {
     if (pipeline == null) {
      throw ApiException(HttpStatus.badRequest, 'Missing required param: pipeline');
     }
-    if (UNKNOWN_BASE_TYPE == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: UNKNOWN_BASE_TYPE');
+    if (body == null) {
+     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
     }
 
     // ignore: prefer_const_declarations
@@ -2639,7 +2639,7 @@ class BlueOceanApi {
       .replaceAll('{pipeline}', pipeline);
 
     // ignore: prefer_final_locals
-    Object postBody = UNKNOWN_BASE_TYPE;
+    Object postBody = body;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -2671,10 +2671,10 @@ class BlueOceanApi {
   /// * [String] pipeline (required):
   ///   Name of the pipeline
   ///
-  /// * [UNKNOWN_BASE_TYPE] UNKNOWN_BASE_TYPE (required):
+  /// * [bool] body (required):
   ///   Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-  Future<FavoriteImpl> putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,) async {
-    final response = await putPipelineFavoriteWithHttpInfo(organization, pipeline, UNKNOWN_BASE_TYPE,);
+  Future<FavoriteImpl> putPipelineFavorite(String organization, String pipeline, bool body,) async {
+    final response = await putPipelineFavoriteWithHttpInfo(organization, pipeline, body,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

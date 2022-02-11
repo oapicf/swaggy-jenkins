@@ -809,20 +809,20 @@ instance Produces PostPipelineRuns MimeJSON
 -- AuthMethod: 'AuthBasicJenkinsAuth'
 -- 
 putPipelineFavorite
-  :: (Consumes PutPipelineFavorite MimeJSON, MimeRender MimeJSON UNKNOWN_BASE_TYPE)
-  => UNKNOWN_BASE_TYPE -- ^ "unknownBaseType" -  Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+  :: (Consumes PutPipelineFavorite MimeJSON, MimeRender MimeJSON BodyBool)
+  => BodyBool -- ^ "body" -  Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   -> Organization -- ^ "organization" -  Name of the organization
   -> Pipeline2 -- ^ "pipeline" -  Name of the pipeline
   -> SwaggyJenkinsRequest PutPipelineFavorite MimeJSON FavoriteImpl MimeJSON
-putPipelineFavorite unknownBaseType (Organization organization) (Pipeline2 pipeline) =
+putPipelineFavorite body (Organization organization) (Pipeline2 pipeline) =
   _mkRequest "PUT" ["/blue/rest/organizations/",toPath organization,"/pipelines/",toPath pipeline,"/favorite"]
     `_hasAuthType` (P.Proxy :: P.Proxy AuthBasicJenkinsAuth)
-    `setBodyParam` unknownBaseType
+    `setBodyParam` body
 
 data PutPipelineFavorite 
 
--- | /Body Param/ "UNKNOWN_BASE_TYPE" - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-instance HasBodyParam PutPipelineFavorite UNKNOWN_BASE_TYPE 
+-- | /Body Param/ "body" - Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+instance HasBodyParam PutPipelineFavorite BodyBool 
 
 -- | @application/json@
 instance Consumes PutPipelineFavorite MimeJSON

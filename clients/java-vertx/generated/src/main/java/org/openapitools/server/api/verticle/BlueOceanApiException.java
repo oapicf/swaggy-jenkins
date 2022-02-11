@@ -15,7 +15,6 @@ import org.openapitools.server.api.model.PipelineRun;
 import org.openapitools.server.api.model.PipelineRunNode;
 import org.openapitools.server.api.model.PipelineStepImpl;
 import org.openapitools.server.api.model.QueueItemImpl;
-import org.openapitools.server.api.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.server.api.model.User;
 
 public final class BlueOceanApiException extends MainApiException {

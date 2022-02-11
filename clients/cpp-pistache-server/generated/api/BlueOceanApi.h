@@ -31,7 +31,6 @@
 #include "GithubOrganization.h"
 #include "GithubScm.h"
 #include "MultibranchPipeline.h"
-#include "Object.h"
 #include "Organisation.h"
 #include "Pipeline.h"
 #include "PipelineActivity.h"
@@ -41,7 +40,6 @@
 #include "PipelineRunNode.h"
 #include "PipelineStepImpl.h"
 #include "QueueItemImpl.h"
-#include "UNKNOWN_BASE_TYPE.h"
 #include "User.h"
 #include <string>
 
@@ -439,8 +437,8 @@ private:
     /// </remarks>
     /// <param name="organization">Name of the organization</param>
     /// <param name="pipeline">Name of the pipeline</param>
-    /// <param name="uNKNOWNBASETYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
-    virtual void put_pipeline_favorite(const std::string &organization, const std::string &pipeline, const UNKNOWN_BASE_TYPE &uNKNOWNBASETYPE, Pistache::Http::ResponseWriter &response) = 0;
+    /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+    virtual void put_pipeline_favorite(const std::string &organization, const std::string &pipeline, const bool &body, Pistache::Http::ResponseWriter &response) = 0;
     /// <summary>
     /// 
     /// </summary>

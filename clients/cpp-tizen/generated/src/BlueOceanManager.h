@@ -19,7 +19,6 @@
 #include "PipelineRunNode.h"
 #include "PipelineStepImpl.h"
 #include "QueueItemImpl.h"
-#include "UNKNOWN_BASE_TYPE.h"
 #include "User.h"
 #include "Error.h"
 
@@ -1041,13 +1040,13 @@ bool postPipelineRunsAsync(char * accessToken,
  * Favorite/unfavorite a pipeline
  * \param organization Name of the organization *Required*
  * \param pipeline Name of the pipeline *Required*
- * \param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
+ * \param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool putPipelineFavoriteSync(char * accessToken,
-	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
+	std::string organization, std::string pipeline, bool body, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData);
 
@@ -1056,13 +1055,13 @@ bool putPipelineFavoriteSync(char * accessToken,
  * Favorite/unfavorite a pipeline
  * \param organization Name of the organization *Required*
  * \param pipeline Name of the pipeline *Required*
- * \param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
+ * \param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite *Required*
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool putPipelineFavoriteAsync(char * accessToken,
-	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
+	std::string organization, std::string pipeline, bool body, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData);
 

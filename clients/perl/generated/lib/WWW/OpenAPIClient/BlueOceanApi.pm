@@ -3153,7 +3153,7 @@ sub post_pipeline_runs {
 #
 # @param string $organization Name of the organization (required)
 # @param string $pipeline Name of the pipeline (required)
-# @param UNKNOWN_BASE_TYPE $unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+# @param boolean $body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
 {
     my $params = {
     'organization' => {
@@ -3166,8 +3166,8 @@ sub post_pipeline_runs {
         description => 'Name of the pipeline',
         required => '1',
     },
-    'unknown_base_type' => {
-        data_type => 'UNKNOWN_BASE_TYPE',
+    'body' => {
+        data_type => 'boolean',
         description => 'Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite',
         required => '1',
     },
@@ -3191,6 +3191,11 @@ sub put_pipeline_favorite {
     # verify the required parameter 'pipeline' is set
     unless (exists $args{'pipeline'}) {
       croak("Missing the required parameter 'pipeline' when calling put_pipeline_favorite");
+    }
+
+    # verify the required parameter 'body' is set
+    unless (exists $args{'body'}) {
+      croak("Missing the required parameter 'body' when calling put_pipeline_favorite");
     }
 
     # parse inputs
@@ -3224,8 +3229,8 @@ sub put_pipeline_favorite {
 
     my $_body_data;
     # body params
-    if ( exists $args{'unknown_base_type'}) {
-        $_body_data = $args{'unknown_base_type'};
+    if ( exists $args{'body'}) {
+        $_body_data = $args{'body'};
     }
 
     # authentication setting, if any

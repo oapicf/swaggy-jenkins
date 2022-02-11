@@ -2050,7 +2050,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **putPipelineFavorite**
-> FavoriteImpl putPipelineFavorite(UNKNOWN_BASE_TYPE)
+> FavoriteImpl putPipelineFavorite(body)
 
 Favorite/unfavorite a pipeline
 
@@ -2069,8 +2069,8 @@ let body:.BlueOceanApiPutPipelineFavoriteRequest = {
   organization: "organization_example",
   // string | Name of the pipeline
   pipeline: "pipeline_example",
-  // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-  UNKNOWN_BASE_TYPE: null,
+  // boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+  body: true,
 };
 
 apiInstance.putPipelineFavorite(body).then((data:any) => {
@@ -2083,7 +2083,7 @@ apiInstance.putPipelineFavorite(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **UNKNOWN_BASE_TYPE** | **UNKNOWN_BASE_TYPE**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | **boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
  **organization** | [**string**] | Name of the organization | defaults to undefined
  **pipeline** | [**string**] | Name of the pipeline | defaults to undefined
 

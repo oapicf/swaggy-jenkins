@@ -15,7 +15,6 @@ import org.openapitools.server.api.model.PipelineRun;
 import org.openapitools.server.api.model.PipelineRunNode;
 import org.openapitools.server.api.model.PipelineStepImpl;
 import org.openapitools.server.api.model.QueueItemImpl;
-import org.openapitools.server.api.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.server.api.model.User;
 
 import io.vertx.core.AsyncResult;
@@ -125,7 +124,7 @@ public interface BlueOceanApi  {
     void postPipelineRuns(String organization, String pipeline, Handler<AsyncResult<QueueItemImpl>> handler);
 
     //putPipelineFavorite
-    void putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, Handler<AsyncResult<FavoriteImpl>> handler);
+    void putPipelineFavorite(String organization, String pipeline, Boolean body, Handler<AsyncResult<FavoriteImpl>> handler);
 
     //putPipelineRun
     void putPipelineRun(String organization, String pipeline, String run, String blocking, Integer timeOutInSecs, Handler<AsyncResult<PipelineRun>> handler);

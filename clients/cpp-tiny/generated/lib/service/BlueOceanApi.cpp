@@ -2444,7 +2444,7 @@ using namespace Tiny;
             std::string pipeline
             , 
             
-            UNKNOWN_BASE_TYPE uNKNOWNBASETYPE
+            bool body
             
         )
         {
@@ -2481,11 +2481,11 @@ using namespace Tiny;
             std::string payload = "";
             // Send Request
             // METHOD | PUT
-            // Body     | uNKNOWNBASETYPE
+            // Body     | body
 
 
+            payload = stringify(body);
 
-            payload = uNKNOWNBASETYPE.toJson().dump();
 
             int httpCode = sendRequest(url, "PUT", reinterpret_cast<uint8_t*>(&payload[0]), payload.length());
 

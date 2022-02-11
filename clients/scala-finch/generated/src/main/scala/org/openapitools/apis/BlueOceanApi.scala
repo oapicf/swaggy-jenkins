@@ -17,7 +17,6 @@ import org.openapitools.models.PipelineRun
 import org.openapitools.models.PipelineRunNode
 import org.openapitools.models.PipelineStepImpl
 import org.openapitools.models.QueueItemImpl
-import org.openapitools.models.UNKNOWN_BASE_TYPE
 import org.openapitools.models.User
 import io.finch.circe._
 import io.circe.generic.semiauto._
@@ -565,8 +564,8 @@ object BlueOceanApi {
         * @return An endpoint representing a FavoriteImpl
         */
         private def putPipelineFavorite(da: DataAccessor): Endpoint[FavoriteImpl] =
-        put("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "favorite" :: jsonBody[UNKNOWN_BASE_TYPE]) { (organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE) =>
-          da.BlueOcean_putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE) match {
+        put("blue" :: "rest" :: "organizations" :: string :: "pipelines" :: string :: "favorite" :: jsonBody[Boolean]) { (organization: String, pipeline: String, body: Boolean) =>
+          da.BlueOcean_putPipelineFavorite(organization, pipeline, body) match {
             case Left(error) => checkError(error)
             case Right(data) => Ok(data)
           }

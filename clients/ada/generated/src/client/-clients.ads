@@ -310,7 +310,7 @@ package .Clients is
       (Client : in out Client_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       U_NKNOWNBASETYPE : in .Models.UNKNOWN_BASE_TYPE;
+       P_Body : in Boolean;
        Result : out .Models.FavoriteImpl_Type);
 
    --  

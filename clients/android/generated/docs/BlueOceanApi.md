@@ -1667,7 +1667,7 @@ Name | Type | Description  | Notes
 
 ## putPipelineFavorite
 
-> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
 
 
 
@@ -1682,9 +1682,9 @@ Favorite/unfavorite a pipeline
 BlueOceanApi apiInstance = new BlueOceanApi();
 String organization = null; // String | Name of the organization
 String pipeline = null; // String | Name of the pipeline
-UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = new UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+Boolean body = true; // Boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 try {
-    FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+    FavoriteImpl result = apiInstance.putPipelineFavorite(organization, pipeline, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling BlueOceanApi#putPipelineFavorite");
@@ -1699,7 +1699,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization | [default to null]
  **pipeline** | **String**| Name of the pipeline | [default to null]
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | **Boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

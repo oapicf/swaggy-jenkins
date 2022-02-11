@@ -939,14 +939,14 @@ func (c *BlueOceanApiController) PutPipelineFavorite(w http.ResponseWriter, r *h
 	
 	pipelineParam := params["pipeline"]
 	
-	uNKNOWNBASETYPEParam := UNKNOWN_BASE_TYPE{}
+	bodyParam := bool{}
 	d := json.NewDecoder(r.Body)
 	d.DisallowUnknownFields()
-	if err := d.Decode(&uNKNOWNBASETYPEParam); err != nil {
+	if err := d.Decode(&bodyParam); err != nil {
 		c.errorHandler(w, r, &ParsingError{Err: err}, nil)
 		return
 	}
-	result, err := c.service.PutPipelineFavorite(r.Context(), organizationParam, pipelineParam, uNKNOWNBASETYPEParam)
+	result, err := c.service.PutPipelineFavorite(r.Context(), organizationParam, pipelineParam, bodyParam)
 	// If an error occurred, encode the error with the status code
 	if err != nil {
 		c.errorHandler(w, r, err, &result)

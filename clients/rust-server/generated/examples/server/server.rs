@@ -558,11 +558,11 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         &self,
         organization: String,
         pipeline: String,
-        unknown_base_type: UNKNOWN_BASE_TYPE,
+        body: bool,
         context: &C) -> Result<PutPipelineFavoriteResponse, ApiError>
     {
         let context = context.clone();
-        info!("put_pipeline_favorite(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", organization, pipeline, unknown_base_type, context.get().0.clone());
+        info!("put_pipeline_favorite(\"{}\", \"{}\", {}) - X-Span-ID: {:?}", organization, pipeline, body, context.get().0.clone());
         Err("Generic failure".into())
     }
 

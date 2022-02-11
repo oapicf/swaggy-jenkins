@@ -979,7 +979,7 @@ Name | Type | Description  | Notes
 <a name="putPipelineFavorite"></a>
 # **putPipelineFavorite**
 ```java
-Mono<FavoriteImpl> BlueOceanApi.putPipelineFavorite(organizationpipelineUNKNOWN_BASE_TYPE)
+Mono<FavoriteImpl> BlueOceanApi.putPipelineFavorite(organizationpipeline_body)
 ```
 
 
@@ -991,7 +991,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | `String`| Name of the organization |
  **pipeline** | `String`| Name of the pipeline |
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **_body** | `Boolean`| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 
 ### Return type

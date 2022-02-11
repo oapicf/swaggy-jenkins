@@ -2184,7 +2184,7 @@ Name | Type | Description  | Notes
 ## `putPipelineFavorite()`
 
 ```php
-putPipelineFavorite($organization, $pipeline, $unknown_base_type): \OpenAPI\Client\Model\FavoriteImpl
+putPipelineFavorite($organization, $pipeline, $body): \OpenAPI\Client\Model\FavoriteImpl
 ```
 
 
@@ -2212,10 +2212,10 @@ $apiInstance = new OpenAPI\Client\Api\BlueOceanApi(
 );
 $organization = 'organization_example'; // string | Name of the organization
 $pipeline = 'pipeline_example'; // string | Name of the pipeline
-$unknown_base_type = new \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE(); // \OpenAPI\Client\Model\UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+$body = True; // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 try {
-    $result = $apiInstance->putPipelineFavorite($organization, $pipeline, $unknown_base_type);
+    $result = $apiInstance->putPipelineFavorite($organization, $pipeline, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlueOceanApi->putPipelineFavorite: ', $e->getMessage(), PHP_EOL;
@@ -2228,7 +2228,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string**| Name of the organization |
  **pipeline** | **string**| Name of the pipeline |
- **unknown_base_type** | [**\OpenAPI\Client\Model\UNKNOWN_BASE_TYPE**](../Model/UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

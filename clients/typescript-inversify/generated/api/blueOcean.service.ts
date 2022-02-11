@@ -34,7 +34,6 @@ import { PipelineRun } from '../model/pipelineRun';
 import { PipelineRunNode } from '../model/pipelineRunNode';
 import { PipelineStepImpl } from '../model/pipelineStepImpl';
 import { QueueItemImpl } from '../model/queueItemImpl';
-import { UNKNOWNBASETYPE } from '../model/uNKNOWNBASETYPE';
 import { User } from '../model/user';
 
 import { COLLECTION_FORMATS }  from '../variables';
@@ -1271,12 +1270,12 @@ export class BlueOceanService {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      
      */
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe?: 'body', headers?: Headers): Observable<FavoriteImpl>;
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe?: 'response', headers?: Headers): Observable<HttpResponse<FavoriteImpl>>;
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'body', headers?: Headers): Observable<FavoriteImpl>;
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'response', headers?: Headers): Observable<HttpResponse<FavoriteImpl>>;
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe: any = 'body', headers: Headers = {}): Observable<any> {
         if (organization === null || organization === undefined){
             throw new Error('Required parameter organization was null or undefined when calling putPipelineFavorite.');
         }
@@ -1285,8 +1284,8 @@ export class BlueOceanService {
             throw new Error('Required parameter pipeline was null or undefined when calling putPipelineFavorite.');
         }
 
-        if (uNKNOWNBASETYPE === null || uNKNOWNBASETYPE === undefined){
-            throw new Error('Required parameter uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+        if (body === null || body === undefined){
+            throw new Error('Required parameter body was null or undefined when calling putPipelineFavorite.');
         }
 
         // authentication (jenkins_auth) required
@@ -1296,7 +1295,7 @@ export class BlueOceanService {
         headers['Accept'] = 'application/json';
         headers['Content-Type'] = 'application/json';
 
-        const response: Observable<HttpResponse<FavoriteImpl>> = this.httpClient.put(`${this.basePath}/blue/rest/organizations/${encodeURIComponent(String(organization))}/pipelines/${encodeURIComponent(String(pipeline))}/favorite`, uNKNOWNBASETYPE , headers);
+        const response: Observable<HttpResponse<FavoriteImpl>> = this.httpClient.put(`${this.basePath}/blue/rest/organizations/${encodeURIComponent(String(organization))}/pipelines/${encodeURIComponent(String(pipeline))}/favorite`, body , headers);
         if (observe === 'body') {
                return response.pipe(
                    map((httpResponse: HttpResponse) => <FavoriteImpl>(httpResponse.response))

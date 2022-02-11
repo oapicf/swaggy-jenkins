@@ -3812,7 +3812,7 @@ void BlueOceanApiBlueRestOrganizationsOrganizationPipelinesPipelineFavoriteResou
 
     try {
         std::tie(status_code, resultObject) =
-             handler_PUT(organization, pipeline, uNKNOWNBASETYPE);
+             handler_PUT(organization, pipeline, body);
     }
     catch(const BlueOceanApiException& e) {
         std::tie(status_code, result) = handleBlueOceanApiException(e);
@@ -3848,7 +3848,7 @@ void BlueOceanApiBlueRestOrganizationsOrganizationPipelinesPipelineFavoriteResou
 
 
 std::pair<int, std::shared_ptr<FavoriteImpl>> BlueOceanApiBlueRestOrganizationsOrganizationPipelinesPipelineFavoriteResource::handler_PUT(
-        std::string const & organization, std::string const & pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> const & uNKNOWNBASETYPE)
+        std::string const & organization, std::string const & pipeline, bool const & body)
 {
     throw BlueOceanApiException(501, "Not implemented");
 }

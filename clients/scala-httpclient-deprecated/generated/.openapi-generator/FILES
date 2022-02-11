@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 build.gradle
 build.sbt
 git_push.sh

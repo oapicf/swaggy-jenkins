@@ -862,7 +862,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_favorite**
-> put_pipeline_favorite (organization: STRING_32 ; pipeline: STRING_32 ; unknown_base_type: UNKNOWN_BASE_TYPE ): detachable FAVORITE_IMPL
+> put_pipeline_favorite (organization: STRING_32 ; pipeline: STRING_32 ; body: BOOLEAN ): detachable FAVORITE_IMPL
 
 
 
@@ -876,7 +876,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **STRING_32**| Name of the organization | [default to null]
  **pipeline** | **STRING_32**| Name of the pipeline | [default to null]
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **BOOLEAN**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

@@ -29,7 +29,6 @@ import { PipelineRun } from '../model/pipelineRun';
 import { PipelineRunNode } from '../model/pipelineRunNode';
 import { PipelineStepImpl } from '../model/pipelineStepImpl';
 import { QueueItemImpl } from '../model/queueItemImpl';
-import { UNKNOWN_BASE_TYPE } from '../model/uNKNOWNBASETYPE';
 import { User } from '../model/user';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
@@ -2802,9 +2801,9 @@ export class BlueOceanApi {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      */
-    public async putPipelineFavorite (organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FavoriteImpl;  }> {
+    public async putPipelineFavorite (organization: string, pipeline: string, body: boolean, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: FavoriteImpl;  }> {
         const localVarPath = this.basePath + '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
             .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
             .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
@@ -2829,9 +2828,9 @@ export class BlueOceanApi {
             throw new Error('Required parameter pipeline was null or undefined when calling putPipelineFavorite.');
         }
 
-        // verify required parameter 'uNKNOWNBASETYPE' is not null or undefined
-        if (uNKNOWNBASETYPE === null || uNKNOWNBASETYPE === undefined) {
-            throw new Error('Required parameter uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new Error('Required parameter body was null or undefined when calling putPipelineFavorite.');
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -2845,7 +2844,7 @@ export class BlueOceanApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
-            body: ObjectSerializer.serialize(uNKNOWNBASETYPE, "UNKNOWN_BASE_TYPE")
+            body: ObjectSerializer.serialize(body, "boolean")
         };
 
         let authenticationPromise = Promise.resolve();

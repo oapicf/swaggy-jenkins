@@ -30,7 +30,6 @@ import org.openapitools.server.api.model.PipelineRun
 import org.openapitools.server.api.model.PipelineRunNode
 import org.openapitools.server.api.model.PipelineStepImpl
 import org.openapitools.server.api.model.QueueItemImpl
-import org.openapitools.server.api.model.UNKNOWN_BASE_TYPE
 import org.openapitools.server.api.model.User
 
 class BlueOceanApiVertxProxyHandler(private val vertx: Vertx, private val service: BlueOceanApi, topLevel: Boolean, private val timeoutSeconds: Long) : ProxyHandler() {
@@ -793,13 +792,12 @@ class BlueOceanApiVertxProxyHandler(private val vertx: Vertx, private val servic
                     if(pipeline == null){
                         throw IllegalArgumentException("pipeline is required")
                     }
-                    val UNKNOWN_BASE_TYPEParam = ApiHandlerUtils.searchJsonObjectInJson(params,"body")
-                    if (UNKNOWN_BASE_TYPEParam == null) {
-                        throw IllegalArgumentException("UNKNOWN_BASE_TYPE is required")
+                    val body = ApiHandlerUtils.searchStringInJson(params,"body")?.toBoolean()
+                    if(body == null){
+                        throw IllegalArgumentException("body is required")
                     }
-                    val UNKNOWN_BASE_TYPE = Gson().fromJson(UNKNOWN_BASE_TYPEParam.encode(), UNKNOWN_BASE_TYPE::class.java)
                     GlobalScope.launch(vertx.dispatcher()){
-                        val result = service.putPipelineFavorite(organization,pipeline,UNKNOWN_BASE_TYPE,context)
+                        val result = service.putPipelineFavorite(organization,pipeline,body,context)
                         val payload = JsonObject(Json.encode(result.payload)).toBuffer()
                         val res = OperationResponse(result.statusCode,result.statusMessage,payload,result.headers)
                         msg.reply(res.toJson())

@@ -4938,17 +4938,17 @@ export const BlueOceanApiAxiosParamCreator = function (configuration?: Configura
          * Favorite/unfavorite a pipeline
          * @param {string} organization Name of the organization
          * @param {string} pipeline Name of the pipeline
-         * @param {UNKNOWN_BASE_TYPE} uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+         * @param {boolean} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putPipelineFavorite: async (organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        putPipelineFavorite: async (organization: string, pipeline: string, body: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'organization' is not null or undefined
             assertParamExists('putPipelineFavorite', 'organization', organization)
             // verify required parameter 'pipeline' is not null or undefined
             assertParamExists('putPipelineFavorite', 'pipeline', pipeline)
-            // verify required parameter 'uNKNOWNBASETYPE' is not null or undefined
-            assertParamExists('putPipelineFavorite', 'uNKNOWNBASETYPE', uNKNOWNBASETYPE)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('putPipelineFavorite', 'body', body)
             const localVarPath = `/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite`
                 .replace(`{${"organization"}}`, encodeURIComponent(String(organization)))
                 .replace(`{${"pipeline"}}`, encodeURIComponent(String(pipeline)));
@@ -4974,7 +4974,7 @@ export const BlueOceanApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(uNKNOWNBASETYPE, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5513,12 +5513,12 @@ export const BlueOceanApiFp = function(configuration?: Configuration) {
          * Favorite/unfavorite a pipeline
          * @param {string} organization Name of the organization
          * @param {string} pipeline Name of the pipeline
-         * @param {UNKNOWN_BASE_TYPE} uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+         * @param {boolean} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FavoriteImpl>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE, options);
+        async putPipelineFavorite(organization: string, pipeline: string, body: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FavoriteImpl>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putPipelineFavorite(organization, pipeline, body, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5919,12 +5919,12 @@ export const BlueOceanApiFactory = function (configuration?: Configuration, base
          * Favorite/unfavorite a pipeline
          * @param {string} organization Name of the organization
          * @param {string} pipeline Name of the pipeline
-         * @param {UNKNOWN_BASE_TYPE} uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+         * @param {boolean} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options?: any): AxiosPromise<FavoriteImpl> {
-            return localVarFp.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE, options).then((request) => request(axios, basePath));
+        putPipelineFavorite(organization: string, pipeline: string, body: boolean, options?: any): AxiosPromise<FavoriteImpl> {
+            return localVarFp.putPipelineFavorite(organization, pipeline, body, options).then((request) => request(axios, basePath));
         },
         /**
          * Stop a build of an organization pipeline
@@ -6387,13 +6387,13 @@ export class BlueOceanApi extends BaseAPI {
      * Favorite/unfavorite a pipeline
      * @param {string} organization Name of the organization
      * @param {string} pipeline Name of the pipeline
-     * @param {UNKNOWN_BASE_TYPE} uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param {boolean} body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof BlueOceanApi
      */
-    public putPipelineFavorite(organization: string, pipeline: string, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE, options?: AxiosRequestConfig) {
-        return BlueOceanApiFp(this.configuration).putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE, options).then((request) => request(this.axios, this.basePath));
+    public putPipelineFavorite(organization: string, pipeline: string, body: boolean, options?: AxiosRequestConfig) {
+        return BlueOceanApiFp(this.configuration).putPipelineFavorite(organization, pipeline, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -28,7 +28,6 @@
 #include "model/GithubOrganization.h"
 #include "model/GithubScm.h"
 #include "model/MultibranchPipeline.h"
-#include "Object.h"
 #include "model/Organisation.h"
 #include "model/Pipeline.h"
 #include "model/PipelineActivity.h"
@@ -38,7 +37,6 @@
 #include "model/PipelineRunNode.h"
 #include "model/PipelineStepImpl.h"
 #include "model/QueueItemImpl.h"
-#include "model/UNKNOWN_BASE_TYPE.h"
 #include "model/User.h"
 #include <cpprest/details/basic_types.h>
 #include <boost/optional.hpp>
@@ -504,11 +502,11 @@ public:
     /// </remarks>
     /// <param name="organization">Name of the organization</param>
     /// <param name="pipeline">Name of the pipeline</param>
-    /// <param name="uNKNOWNBASETYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+    /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
     pplx::task<std::shared_ptr<FavoriteImpl>> putPipelineFavorite(
         utility::string_t organization,
         utility::string_t pipeline,
-        std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE
+        bool body
     ) const;
     /// <summary>
     /// 

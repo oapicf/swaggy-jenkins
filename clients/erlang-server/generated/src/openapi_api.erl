@@ -242,7 +242,7 @@ request_params('PutPipelineFavorite') ->
     [
         'organization',
         'pipeline',
-        'UNKNOWN_BASE_TYPE'
+        'boolean'
     ];
 
 request_params('PutPipelineRun') ->
@@ -1206,10 +1206,11 @@ request_param_info('PutPipelineFavorite', 'pipeline') ->
         ]
     };
 
-request_param_info('PutPipelineFavorite', 'UNKNOWN_BASE_TYPE') ->
+request_param_info('PutPipelineFavorite', 'boolean') ->
     #{
         source =>   body,
         rules => [
+            {type, 'boolean'},
             schema,
             required
         ]

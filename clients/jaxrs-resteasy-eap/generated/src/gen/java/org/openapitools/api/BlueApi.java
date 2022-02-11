@@ -19,7 +19,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.util.List;
@@ -38,7 +37,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the blue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-10T09:47:23.475622Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-11T12:43:44.828365Z[Etc/UTC]")
 public interface BlueApi  {
 
     @DELETE
@@ -492,7 +491,7 @@ public interface BlueApi  {
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class) })
-    public Response putPipelineFavorite( @PathParam("organization") String organization, @PathParam("pipeline") String pipeline,@ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) @NotNull @Valid UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,@Context SecurityContext securityContext);
+    public Response putPipelineFavorite( @PathParam("organization") String organization, @PathParam("pipeline") String pipeline,@ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) @NotNull @Valid Boolean body,@Context SecurityContext securityContext);
     @PUT
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")
     

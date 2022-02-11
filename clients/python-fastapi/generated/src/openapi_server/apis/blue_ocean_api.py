@@ -31,7 +31,6 @@ from openapi_server.models.pipeline_run import PipelineRun
 from openapi_server.models.pipeline_run_node import PipelineRunNode
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl
 from openapi_server.models.queue_item_impl import QueueItemImpl
-from openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE
 from openapi_server.models.user import User
 from openapi_server.security_api import get_token_jenkins_auth
 
@@ -726,7 +725,7 @@ async def post_pipeline_runs(
 async def put_pipeline_favorite(
     organization: str = Path(None, description="Name of the organization"),
     pipeline: str = Path(None, description="Name of the pipeline"),
-    unknown_base_type:  = Body(None, description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
+    body: bool = Body(None, description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),

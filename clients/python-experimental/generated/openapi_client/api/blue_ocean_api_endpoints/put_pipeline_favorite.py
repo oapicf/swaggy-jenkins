@@ -57,7 +57,6 @@ from openapi_client.schemas import (  # noqa: F401
     _SchemaEnumMaker
 )
 
-from openapi_client.model.unknownbasetype import UNKNOWNBASETYPE
 from openapi_client.model.favorite_impl import FavoriteImpl
 
 # path params
@@ -95,10 +94,10 @@ request_path_pipeline = api_client.PathParameter(
     required=True,
 )
 # body param
-SchemaForRequestBodyApplicationJson = AnyTypeSchema
+SchemaForRequestBodyApplicationJson = BoolSchema
 
 
-request_body_unknown_base_type = api_client.RequestBody(
+request_body_body = api_client.RequestBody(
     content={
         'application/json': api_client.MediaType(
             schema=SchemaForRequestBodyApplicationJson),
@@ -207,7 +206,7 @@ class PutPipelineFavorite(api_client.Api):
                 'The required body parameter has an invalid value of: unset. Set a valid value instead')
         _fields = None
         _body = None
-        serialized_data = request_body_unknown_base_type.serialize(body, content_type)
+        serialized_data = request_body_body.serialize(body, content_type)
         _headers.add('Content-Type', content_type)
         if 'fields' in serialized_data:
             _fields = serialized_data['fields']

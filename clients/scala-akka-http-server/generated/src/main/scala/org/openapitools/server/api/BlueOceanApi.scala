@@ -21,7 +21,6 @@ import org.openapitools.server.model.PipelineRun
 import org.openapitools.server.model.PipelineRunNode
 import org.openapitools.server.model.PipelineStepImpl
 import org.openapitools.server.model.QueueItemImpl
-import org.openapitools.server.model.UNKNOWN_BASE_TYPE
 import org.openapitools.server.model.User
 
 
@@ -211,9 +210,7 @@ class BlueOceanApi(
     } ~
     path("blue" / "rest" / "organizations" / Segment / "pipelines" / Segment / "favorite") { (organization, pipeline) => 
       put {  
-            entity(as[UNKNOWN_BASE_TYPE]){ uNKNOWNBASETYPE =>
-              blueOceanService.putPipelineFavorite(organization = organization, pipeline = pipeline, uNKNOWNBASETYPE = uNKNOWNBASETYPE)
-            }
+            blueOceanService.putPipelineFavorite(organization = organization, pipeline = pipeline, body = body)
       }
     } ~
     path("blue" / "rest" / "organizations" / Segment / "pipelines" / Segment / "runs" / Segment / "stop") { (organization, pipeline, run) => 
@@ -715,7 +712,7 @@ trait BlueOceanApiService {
    * Code: 401, Message: Authentication failed - incorrect username and/or password
    * Code: 403, Message: Jenkins requires authentication - please set username and password
    */
-  def putPipelineFavorite(organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE)
+  def putPipelineFavorite(organization: String, pipeline: String, body: Boolean)
       (implicit toEntityMarshallerFavoriteImpl: ToEntityMarshaller[FavoriteImpl]): Route
 
   def putPipelineRun200(responsePipelineRun: PipelineRun)(implicit toEntityMarshallerPipelineRun: ToEntityMarshaller[PipelineRun]): Route =
@@ -761,8 +758,6 @@ trait BlueOceanApiService {
 }
 
 trait BlueOceanApiMarshaller {
-  implicit def fromEntityUnmarshallerUNKNOWN_BASE_TYPE: FromEntityUnmarshaller[UNKNOWN_BASE_TYPE]
-
 
 
   implicit def toEntityMarshallerPipeline: ToEntityMarshaller[Pipeline]

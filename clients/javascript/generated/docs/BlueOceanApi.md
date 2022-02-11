@@ -1800,7 +1800,7 @@ Name | Type | Description  | Notes
 
 ## putPipelineFavorite
 
-> FavoriteImpl putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
 
 
 
@@ -1819,8 +1819,8 @@ jenkins_auth.password = 'YOUR PASSWORD';
 let apiInstance = new SwaggyJenkins.BlueOceanApi();
 let organization = "organization_example"; // String | Name of the organization
 let pipeline = "pipeline_example"; // String | Name of the pipeline
-let UNKNOWN_BASE_TYPE = new SwaggyJenkins.UNKNOWN_BASE_TYPE(); // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-apiInstance.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, (error, data, response) => {
+let body = true; // Boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+apiInstance.putPipelineFavorite(organization, pipeline, body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -1836,7 +1836,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **String**| Name of the organization | 
  **pipeline** | **String**| Name of the pipeline | 
- **UNKNOWN_BASE_TYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **Boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

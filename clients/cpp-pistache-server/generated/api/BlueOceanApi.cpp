@@ -952,11 +952,10 @@ void BlueOceanApi::put_pipeline_favorite_handler(const Pistache::Rest::Request &
     
     // Getting the body param
     
-    UNKNOWN_BASE_TYPE uNKNOWNBASETYPE;
+    bool body;
     
     try {
-        nlohmann::json::parse(request.body()).get_to(uNKNOWNBASETYPE);
-        uNKNOWNBASETYPE.validate();
+        body = request.body();
     } catch (std::exception &e) {
         const std::pair<Pistache::Http::Code, std::string> errorInfo = this->handleParsingException(e);
         response.send(errorInfo.first, errorInfo.second);
@@ -964,7 +963,7 @@ void BlueOceanApi::put_pipeline_favorite_handler(const Pistache::Rest::Request &
     }
 
     try {
-        this->put_pipeline_favorite(organization, pipeline, uNKNOWNBASETYPE, response);
+        this->put_pipeline_favorite(organization, pipeline, body, response);
     } catch (Pistache::Http::HttpError &e) {
         response.send(static_cast<Pistache::Http::Code>(e.code()), e.what());
         return;

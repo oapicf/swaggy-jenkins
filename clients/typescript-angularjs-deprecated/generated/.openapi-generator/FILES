@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 api.module.ts
 api/BaseApi.ts
 api/BlueOceanApi.ts

@@ -15,7 +15,6 @@ from openapi_server.models.pipeline_run import PipelineRun
 from openapi_server.models.pipeline_run_node import PipelineRunNode
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl
 from openapi_server.models.queue_item_impl import QueueItemImpl
-from openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE
 from openapi_server.models.user import User
 from openapi_server import util
 
@@ -532,10 +531,9 @@ async def put_pipeline_favorite(request: web.Request, organization, pipeline, bo
     :param pipeline: Name of the pipeline
     :type pipeline: str
     :param body: Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
-    :type body: dict | bytes
+    :type body: bool
 
     """
-    body = UNKNOWN_BASE_TYPE.from_dict(body)
     return web.Response(status=200)
 
 

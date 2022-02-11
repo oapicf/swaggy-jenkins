@@ -1269,7 +1269,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **string** | Name of the organization | [default to null]
  **pipeline** | **string** | Name of the pipeline | [default to null]
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite |
+ **body** | **boolean** | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite |
 
 ### Return type
 

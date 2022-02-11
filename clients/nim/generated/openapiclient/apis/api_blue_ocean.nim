@@ -32,9 +32,7 @@ import ../models/model_pipeline_run
 import ../models/model_pipeline_run_node
 import ../models/model_pipeline_step_impl
 import ../models/model_queue_item_impl
-import ../models/model_unknown_base_type
 import ../models/model_user
-import ../models/model_object
 
 const basepath = "http://localhost"
 
@@ -302,11 +300,11 @@ proc postPipelineRuns*(httpClient: HttpClient, organization: string, pipeline: s
   constructResult[QueueItemImpl](response)
 
 
-proc putPipelineFavorite*(httpClient: HttpClient, organization: string, pipeline: string, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE): (Option[FavoriteImpl], Response) =
+proc putPipelineFavorite*(httpClient: HttpClient, organization: string, pipeline: string, body: bool): (Option[FavoriteImpl], Response) =
   ## 
   httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.put(basepath & fmt"/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite", $(%UNKNOWN_BASE_TYPE))
+  let response = httpClient.put(basepath & fmt"/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite", $(%body))
   constructResult[FavoriteImpl](response)
 
 

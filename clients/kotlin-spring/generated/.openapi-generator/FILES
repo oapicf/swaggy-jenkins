@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 build.gradle.kts
 pom.xml
@@ -97,13 +96,3 @@ src/main/kotlin/org/openapitools/model/SwapSpaceMonitorMemoryUsage2.kt
 src/main/kotlin/org/openapitools/model/UnlabeledLoadStatistics.kt
 src/main/kotlin/org/openapitools/model/User.kt
 src/main/resources/application.yaml
-src/test/kotlin/org/openapitools/api/ApiApiTest.kt
-src/test/kotlin/org/openapitools/api/BlueApiTest.kt
-src/test/kotlin/org/openapitools/api/ComputerApiTest.kt
-src/test/kotlin/org/openapitools/api/CreateItemApiTest.kt
-src/test/kotlin/org/openapitools/api/CreateViewApiTest.kt
-src/test/kotlin/org/openapitools/api/CrumbIssuerApiTest.kt
-src/test/kotlin/org/openapitools/api/JobApiTest.kt
-src/test/kotlin/org/openapitools/api/JwtAuthApiTest.kt
-src/test/kotlin/org/openapitools/api/QueueApiTest.kt
-src/test/kotlin/org/openapitools/api/ViewApiTest.kt

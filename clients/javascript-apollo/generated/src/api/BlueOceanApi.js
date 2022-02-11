@@ -28,7 +28,6 @@ import PipelineRun from '../model/PipelineRun';
 import PipelineRunNode from '../model/PipelineRunNode';
 import PipelineStepImpl from '../model/PipelineStepImpl';
 import QueueItemImpl from '../model/QueueItemImpl';
-import UNKNOWN_BASE_TYPE from '../model/UNKNOWN_BASE_TYPE';
 import User from '../model/User';
 
 /**
@@ -1500,11 +1499,11 @@ export default class BlueOceanApi extends ApiClient {
      * Favorite/unfavorite a pipeline
      * @param {String} organization Name of the organization
      * @param {String} pipeline Name of the pipeline
-     * @param {UNKNOWN_BASE_TYPE} UNKNOWN_BASE_TYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+     * @param {Boolean} body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
      * @return {Promise<FavoriteImpl>}
      */
-    async putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE) {
-      let postBody = UNKNOWN_BASE_TYPE;
+    async putPipelineFavorite(organization, pipeline, body) {
+      let postBody = body;
       // verify the required parameter 'organization' is set
       if (organization === undefined || organization === null) {
         throw new Error("Missing the required parameter 'organization' when calling putPipelineFavorite");
@@ -1513,9 +1512,9 @@ export default class BlueOceanApi extends ApiClient {
       if (pipeline === undefined || pipeline === null) {
         throw new Error("Missing the required parameter 'pipeline' when calling putPipelineFavorite");
       }
-      // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-      if (UNKNOWN_BASE_TYPE === undefined || UNKNOWN_BASE_TYPE === null) {
-        throw new Error("Missing the required parameter 'UNKNOWN_BASE_TYPE' when calling putPipelineFavorite");
+      // verify the required parameter 'body' is set
+      if (body === undefined || body === null) {
+        throw new Error("Missing the required parameter 'body' when calling putPipelineFavorite");
       }
 
       let pathParams = {

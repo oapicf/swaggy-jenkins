@@ -2495,7 +2495,7 @@ Name | Type | Description  | Notes
 
 ## PutPipelineFavorite
 
-> FavoriteImpl PutPipelineFavorite(ctx, organization, pipeline).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+> FavoriteImpl PutPipelineFavorite(ctx, organization, pipeline).Body(body).Execute()
 
 
 
@@ -2516,11 +2516,11 @@ import (
 func main() {
     organization := "organization_example" // string | Name of the organization
     pipeline := "pipeline_example" // string | Name of the pipeline
-    uNKNOWNBASETYPE := TODO // UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+    body := true // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.PutPipelineFavorite(context.Background(), organization, pipeline).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+    resp, r, err := apiClient.BlueOceanApi.PutPipelineFavorite(context.Background(), organization, pipeline).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.PutPipelineFavorite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2548,7 +2548,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+ **body** | **bool** | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

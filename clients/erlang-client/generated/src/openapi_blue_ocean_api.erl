@@ -735,12 +735,12 @@ post_pipeline_runs(Ctx, Organization, Pipeline, Optional) ->
 
 %% @doc 
 %% Favorite/unfavorite a pipeline
--spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), UNKNOWN_BASE_TYPE:UNKNOWN_BASE_TYPE()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE) ->
-    put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE, #{}).
+-spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), boolean()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+put_pipeline_favorite(Ctx, Organization, Pipeline, Body) ->
+    put_pipeline_favorite(Ctx, Organization, Pipeline, Body, #{}).
 
--spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), UNKNOWN_BASE_TYPE:UNKNOWN_BASE_TYPE(), maps:map()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE, Optional) ->
+-spec put_pipeline_favorite(ctx:ctx(), binary(), binary(), boolean(), maps:map()) -> {ok, openapi_favorite_impl:openapi_favorite_impl(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+put_pipeline_favorite(Ctx, Organization, Pipeline, Body, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
 
@@ -748,7 +748,7 @@ put_pipeline_favorite(Ctx, Organization, Pipeline, UNKNOWNBASETYPE, Optional) ->
     Path = [<<"/blue/rest/organizations/", Organization, "/pipelines/", Pipeline, "/favorite">>],
     QS = [],
     Headers = [],
-    Body1 = UNKNOWNBASETYPE,
+    Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 

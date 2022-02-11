@@ -1063,7 +1063,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **putPipelineFavorite**
-> models::FavoriteImpl putPipelineFavorite(ctx, organization, pipeline, unknown_base_type)
+> models::FavoriteImpl putPipelineFavorite(ctx, organization, pipeline, body)
 
 
 Favorite/unfavorite a pipeline
@@ -1075,7 +1075,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context containing the authentication | nil if no authentication
   **organization** | **String**| Name of the organization | 
   **pipeline** | **String**| Name of the pipeline | 
-  **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | 
+  **body** | **bool**| Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

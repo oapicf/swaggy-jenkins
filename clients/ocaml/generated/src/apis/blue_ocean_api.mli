@@ -38,7 +38,7 @@ val get_user_favorites : user:string -> Favorite_impl.t list Lwt.t
 val get_users : organization:string -> User.t Lwt.t
 val post_pipeline_run : organization:string -> pipeline:string -> run:string -> Queue_item_impl.t Lwt.t
 val post_pipeline_runs : organization:string -> pipeline:string -> Queue_item_impl.t Lwt.t
-val put_pipeline_favorite : organization:string -> pipeline:string -> unknown_base_type:UNKNOWN_BASE_TYPE -> Favorite_impl.t Lwt.t
+val put_pipeline_favorite : organization:string -> pipeline:string -> body:bool -> Favorite_impl.t Lwt.t
 val put_pipeline_run : organization:string -> pipeline:string -> run:string -> ?blocking:string -> ?time_out_in_secs:int32 -> unit -> Pipeline_run.t Lwt.t
 val search : q:string -> string Lwt.t
 val search_classes : q:string -> string Lwt.t

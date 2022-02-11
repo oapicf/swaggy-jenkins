@@ -19,7 +19,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -44,7 +43,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-10T09:53:34.462656Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-11T12:55:01.064874Z[Etc/UTC]")
 @Validated
 @Tag(name = "blue", description = "the blue API")
 public interface BlueApi {
@@ -1464,7 +1463,7 @@ public interface BlueApi {
      *
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @return Successfully favorited/unfavorited a pipeline (status code 200)
      *         or Authentication failed - incorrect username and/or password (status code 401)
      *         or Jenkins requires authentication - please set username and password (status code 403)
@@ -1490,7 +1489,7 @@ public interface BlueApi {
     default ResponseEntity<FavoriteImpl> putPipelineFavorite(
         @Parameter(name = "organization", description = "Name of the organization", required = true, schema = @Schema(description = "")) @PathVariable("organization") String organization,
         @Parameter(name = "pipeline", description = "Name of the pipeline", required = true, schema = @Schema(description = "")) @PathVariable("pipeline") String pipeline,
-        @Parameter(name = "UNKNOWN_BASE_TYPE", description = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite", required = true, schema = @Schema(description = "")) @Valid @RequestBody UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE
+        @Parameter(name = "body", description = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite", required = true, schema = @Schema(description = "")) @Valid @RequestBody Boolean body
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {

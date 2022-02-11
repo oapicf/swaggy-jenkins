@@ -15,7 +15,6 @@ import org.openapitools.model.PipelineRun
 import org.openapitools.model.PipelineRunNode
 import org.openapitools.model.PipelineStepImpl
 import org.openapitools.model.QueueItemImpl
-import org.openapitools.model.UNKNOWN_BASE_TYPE
 import org.openapitools.model.User
 
 class BlueOceanApi {
@@ -1018,7 +1017,7 @@ class BlueOceanApi {
 
     }
 
-    def putPipelineFavorite ( String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, Closure onSuccess, Closure onFailure)  {
+    def putPipelineFavorite ( String organization, String pipeline, Boolean body, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/blue/rest/organizations/${organization}/pipelines/${pipeline}/favorite"
 
         // params
@@ -1036,14 +1035,14 @@ class BlueOceanApi {
             throw new RuntimeException("missing required params pipeline")
         }
         // verify required params are set
-        if (UNKNOWN_BASE_TYPE == null) {
-            throw new RuntimeException("missing required params UNKNOWN_BASE_TYPE")
+        if (body == null) {
+            throw new RuntimeException("missing required params body")
         }
 
 
 
         contentType = 'application/json';
-        bodyParams = UNKNOWN_BASE_TYPE
+        bodyParams = body
 
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,

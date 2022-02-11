@@ -57,9 +57,6 @@ import {
     QueueItemImpl,
     QueueItemImplFromJSON,
     QueueItemImplToJSON,
-    UNKNOWN_BASE_TYPE,
-    UNKNOWN_BASE_TYPEFromJSON,
-    UNKNOWN_BASE_TYPEToJSON,
     User,
     UserFromJSON,
     UserToJSON,
@@ -250,7 +247,7 @@ export interface PostPipelineRunsRequest {
 export interface PutPipelineFavoriteRequest {
     organization: string;
     pipeline: string;
-    uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE;
+    body: boolean;
 }
 
 export interface PutPipelineRunRequest {
@@ -2056,8 +2053,8 @@ function putPipelineFavoriteRaw<T>(requestParameters: PutPipelineFavoriteRequest
         throw new runtime.RequiredError('pipeline','Required parameter requestParameters.pipeline was null or undefined when calling putPipelineFavorite.');
     }
 
-    if (requestParameters.uNKNOWNBASETYPE === null || requestParameters.uNKNOWNBASETYPE === undefined) {
-        throw new runtime.RequiredError('uNKNOWNBASETYPE','Required parameter requestParameters.uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+    if (requestParameters.body === null || requestParameters.body === undefined) {
+        throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling putPipelineFavorite.');
     }
 
     let queryParameters = null;
@@ -2083,7 +2080,7 @@ function putPipelineFavoriteRaw<T>(requestParameters: PutPipelineFavoriteRequest
             method: 'PUT',
             headers: headerParameters,
         },
-        body: queryParameters || UNKNOWN_BASE_TYPEToJSON(requestParameters.uNKNOWNBASETYPE),
+        body: queryParameters || requestParameters.body as any,
     };
 
     const { transform: requestTransform } = requestConfig;

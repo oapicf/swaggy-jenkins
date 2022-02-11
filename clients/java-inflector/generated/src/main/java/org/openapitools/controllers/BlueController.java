@@ -24,10 +24,9 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-10T09:45:28.256910Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-11T12:41:21.213756Z[Etc/UTC]")
 public class BlueController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map
@@ -222,7 +221,7 @@ public class BlueController  {
   */
 
   /*
-    public ResponseContext putPipelineFavorite(RequestContext request , String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
+    public ResponseContext putPipelineFavorite(RequestContext request , String organization, String pipeline, Boolean body) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */

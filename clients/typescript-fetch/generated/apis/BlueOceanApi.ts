@@ -57,9 +57,6 @@ import {
     QueueItemImpl,
     QueueItemImplFromJSON,
     QueueItemImplToJSON,
-    UNKNOWN_BASE_TYPE,
-    UNKNOWN_BASE_TYPEFromJSON,
-    UNKNOWN_BASE_TYPEToJSON,
     User,
     UserFromJSON,
     UserToJSON,
@@ -250,7 +247,7 @@ export interface PostPipelineRunsRequest {
 export interface PutPipelineFavoriteRequest {
     organization: string;
     pipeline: string;
-    uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE | null;
+    body: boolean;
 }
 
 export interface PutPipelineRunRequest {
@@ -1580,8 +1577,8 @@ export class BlueOceanApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('pipeline','Required parameter requestParameters.pipeline was null or undefined when calling putPipelineFavorite.');
         }
 
-        if (requestParameters.uNKNOWNBASETYPE === null || requestParameters.uNKNOWNBASETYPE === undefined) {
-            throw new runtime.RequiredError('uNKNOWNBASETYPE','Required parameter requestParameters.uNKNOWNBASETYPE was null or undefined when calling putPipelineFavorite.');
+        if (requestParameters.body === null || requestParameters.body === undefined) {
+            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling putPipelineFavorite.');
         }
 
         const queryParameters: any = {};
@@ -1598,7 +1595,7 @@ export class BlueOceanApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UNKNOWN_BASE_TYPEToJSON(requestParameters.uNKNOWNBASETYPE),
+            body: requestParameters.body as any,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => FavoriteImplFromJSON(jsonValue));

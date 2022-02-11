@@ -25,7 +25,6 @@
 #include "OAIGithubOrganization.h"
 #include "OAIGithubScm.h"
 #include "OAIMultibranchPipeline.h"
-#include "OAIObject.h"
 #include "OAIOrganisation.h"
 #include "OAIPipeline.h"
 #include "OAIPipelineActivity.h"
@@ -37,7 +36,6 @@
 #include "OAIQueueItemImpl.h"
 #include "OAIUser.h"
 #include <QString>
-#include "UNKNOWN_BASE_TYPE.h"
 #include "OAIBlueOceanApiHandler.h"
 
 namespace OpenAPI {
@@ -211,7 +209,7 @@ signals:
     void getUsers(QString organization);
     void postPipelineRun(QString organization, QString pipeline, QString run);
     void postPipelineRuns(QString organization, QString pipeline);
-    void putPipelineFavorite(QString organization, QString pipeline, UNKNOWN_BASE_TYPE unknown_base_type);
+    void putPipelineFavorite(QString organization, QString pipeline, bool body);
     void putPipelineRun(QString organization, QString pipeline, QString run, QString blocking, qint32 time_out_in_secs);
     void search(QString q);
     void searchClasses(QString q);

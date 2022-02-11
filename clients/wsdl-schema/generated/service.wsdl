@@ -2460,7 +2460,7 @@
               <xs:documentation>Name of the pipeline</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element minOccurs="1" name="body" type="schemas:UNKNOWN_BASE_TYPE">
+          <xs:element minOccurs="1" name="body" type="schemas:boolean">
             <xs:annotation>
               <xs:documentation>Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</xs:documentation>
             </xs:annotation>

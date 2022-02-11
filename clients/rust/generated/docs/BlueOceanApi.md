@@ -1087,7 +1087,7 @@ Name | Type | Description  | Required | Notes
 
 ## put_pipeline_favorite
 
-> crate::models::FavoriteImpl put_pipeline_favorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+> crate::models::FavoriteImpl put_pipeline_favorite(organization, pipeline, body)
 
 
 Favorite/unfavorite a pipeline
@@ -1099,7 +1099,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **organization** | **String** | Name of the organization | [required] |
 **pipeline** | **String** | Name of the pipeline | [required] |
-**UNKNOWN_BASE_TYPE** | Option<[**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)> | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | [required] |
+**body** | **bool** | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite | [required] |
 
 ### Return type
 

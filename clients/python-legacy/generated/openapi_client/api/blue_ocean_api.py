@@ -5198,22 +5198,22 @@ class BlueOceanApi(object):
             collection_formats=collection_formats,
             _request_auth=local_var_params.get('_request_auth'))
 
-    def put_pipeline_favorite(self, organization, pipeline, unknown_base_type, **kwargs):  # noqa: E501
+    def put_pipeline_favorite(self, organization, pipeline, body, **kwargs):  # noqa: E501
         """put_pipeline_favorite  # noqa: E501
 
         Favorite/unfavorite a pipeline  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.put_pipeline_favorite(organization, pipeline, unknown_base_type, async_req=True)
+        >>> thread = api.put_pipeline_favorite(organization, pipeline, body, async_req=True)
         >>> result = thread.get()
 
         :param organization: Name of the organization (required)
         :type organization: str
         :param pipeline: Name of the pipeline (required)
         :type pipeline: str
-        :param unknown_base_type: Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite (required)
-        :type unknown_base_type: UNKNOWN_BASE_TYPE
+        :param body: Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite (required)
+        :type body: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -5230,24 +5230,24 @@ class BlueOceanApi(object):
         :rtype: FavoriteImpl
         """
         kwargs['_return_http_data_only'] = True
-        return self.put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type, **kwargs)  # noqa: E501
+        return self.put_pipeline_favorite_with_http_info(organization, pipeline, body, **kwargs)  # noqa: E501
 
-    def put_pipeline_favorite_with_http_info(self, organization, pipeline, unknown_base_type, **kwargs):  # noqa: E501
+    def put_pipeline_favorite_with_http_info(self, organization, pipeline, body, **kwargs):  # noqa: E501
         """put_pipeline_favorite  # noqa: E501
 
         Favorite/unfavorite a pipeline  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type, async_req=True)
+        >>> thread = api.put_pipeline_favorite_with_http_info(organization, pipeline, body, async_req=True)
         >>> result = thread.get()
 
         :param organization: Name of the organization (required)
         :type organization: str
         :param pipeline: Name of the pipeline (required)
         :type pipeline: str
-        :param unknown_base_type: Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite (required)
-        :type unknown_base_type: UNKNOWN_BASE_TYPE
+        :param body: Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite (required)
+        :type body: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -5277,7 +5277,7 @@ class BlueOceanApi(object):
         all_params = [
             'organization',
             'pipeline',
-            'unknown_base_type'
+            'body'
         ]
         all_params.extend(
             [
@@ -5307,6 +5307,10 @@ class BlueOceanApi(object):
         if self.api_client.client_side_validation and ('pipeline' not in local_var_params or  # noqa: E501
                                                         local_var_params['pipeline'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `pipeline` when calling `put_pipeline_favorite`")  # noqa: E501
+        # verify the required parameter 'body' is set
+        if self.api_client.client_side_validation and ('body' not in local_var_params or  # noqa: E501
+                                                        local_var_params['body'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `body` when calling `put_pipeline_favorite`")  # noqa: E501
 
         collection_formats = {}
 
@@ -5324,8 +5328,8 @@ class BlueOceanApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'unknown_base_type' in local_var_params:
-            body_params = local_var_params['unknown_base_type']
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

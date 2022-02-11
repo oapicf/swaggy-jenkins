@@ -21,7 +21,7 @@ import org.openapitools.model.GithubScmlinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-10T09:46:18.079271Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-11T12:42:15.452564Z[Etc/UTC]")
 public class GithubScm   {
   
   private String propertyClass;

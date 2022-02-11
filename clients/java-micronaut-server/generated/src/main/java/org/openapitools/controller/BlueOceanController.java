@@ -32,7 +32,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 import javax.annotation.Generated;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-10T09:45:45.459643Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
 @Controller("${context-path}")
 public class BlueOceanController {
     /**
@@ -1153,7 +1152,7 @@ public class BlueOceanController {
      *
      * @param organization Name of the organization (required)
      * @param pipeline Name of the pipeline (required)
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
+     * @param _body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite (required)
      * @return FavoriteImpl
      */
     @ApiOperation(
@@ -1176,7 +1175,7 @@ public class BlueOceanController {
     public Mono<FavoriteImpl> putPipelineFavorite(
         @PathVariable(value="organization") @NotNull String organization, 
         @PathVariable(value="pipeline") @NotNull String pipeline, 
-        @Body @Nullable UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE
+        @Body @NotNull Boolean _body
     ) {
         // TODO implement putPipelineFavorite() body;
         Mono<FavoriteImpl> result = Mono.empty();

@@ -3174,7 +3174,7 @@ Name of the organization
 .PARAMETER Pipeline
 Name of the pipeline
 
-.PARAMETER UNKNOWNBASETYPE
+.PARAMETER Body
 Set JSON string body to {""favorite"": true} to favorite, set value to false to unfavorite
 
 .PARAMETER WithHttpInfo
@@ -3195,8 +3195,8 @@ function Send-PipelineFavorite {
         [String]
         ${Pipeline},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
-        ${UNKNOWNBASETYPE},
+        [Boolean]
+        ${Body},
         [Switch]
         $WithHttpInfo
     )
@@ -3231,7 +3231,11 @@ function Send-PipelineFavorite {
         }
         $LocalVarUri = $LocalVarUri.replace('{pipeline}', [System.Web.HTTPUtility]::UrlEncode($Pipeline))
 
-        $LocalVarBodyParameter = $UNKNOWNBASETYPE | ConvertTo-Json -Depth 100
+        if (!$Body) {
+            throw "Error! The required parameter `Body` missing when calling putPipelineFavorite."
+        }
+
+        $LocalVarBodyParameter = $Body | ConvertTo-Json -Depth 100
 
         if ($Configuration["Username"] -and $Configuration["Password"]) {
             $LocalVarBytes = [System.Text.Encoding]::UTF8.GetBytes($Configuration["Username"] + ":" + $Configuration["Password"])
@@ -3250,7 +3254,7 @@ function Send-PipelineFavorite {
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
                                 -ReturnType "FavoriteImpl" `
-                                -IsBodyNullable $true
+                                -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
             return $LocalVarResult

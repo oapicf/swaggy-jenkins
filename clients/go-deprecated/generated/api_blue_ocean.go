@@ -2900,10 +2900,10 @@ func (a *BlueOceanApiService) PostPipelineRuns(ctx _context.Context, organizatio
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param organization Name of the organization
  * @param pipeline Name of the pipeline
- * @param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+ * @param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
  * @return FavoriteImpl
  */
-func (a *BlueOceanApiService) PutPipelineFavorite(ctx _context.Context, organization string, pipeline string, uNKNOWNBASETYPE UNKNOWN_BASE_TYPE) (FavoriteImpl, *_nethttp.Response, error) {
+func (a *BlueOceanApiService) PutPipelineFavorite(ctx _context.Context, organization string, pipeline string, body bool) (FavoriteImpl, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -2941,7 +2941,7 @@ func (a *BlueOceanApiService) PutPipelineFavorite(ctx _context.Context, organiza
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = &uNKNOWNBASETYPE
+	localVarPostBody = &body
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

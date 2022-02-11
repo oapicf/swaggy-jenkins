@@ -4371,7 +4371,7 @@ headers | Unset | headers were not defined |
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_favorite**
-> FavoriteImpl put_pipeline_favorite(organizationpipelineunknown_base_type)
+> FavoriteImpl put_pipeline_favorite(organizationpipelinebody)
 
 
 
@@ -4383,7 +4383,6 @@ Favorite/unfavorite a pipeline
 ```python
 import openapi_client
 from openapi_client.api import blue_ocean_api
-from openapi_client.model.unknownbasetype import UNKNOWNBASETYPE
 from openapi_client.model.favorite_impl import FavoriteImpl
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost
@@ -4412,9 +4411,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         'organization': "organization_example",
         'pipeline': "pipeline_example",
     }
-    body = dict(
-        favorite=True,
-    )
+    body = True
     try:
         api_response = api_instance.put_pipeline_favorite(
             path_params=path_params,
@@ -4440,10 +4437,9 @@ skip_deserialization | bool | default is False | when True, headers and body wil
 
 #### SchemaForRequestBodyApplicationJson
 
-#### Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
 
 ### path_params
 #### RequestPathParams

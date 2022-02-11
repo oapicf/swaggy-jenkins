@@ -991,19 +991,19 @@ defmodule SwaggyJenkins.Api.BlueOcean do
   - connection (SwaggyJenkins.Connection): Connection to server
   - organization (String.t): Name of the organization
   - pipeline (String.t): Name of the pipeline
-  - u_nknownbasetype (UNKNOWN_BASE_TYPE): Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+  - body (boolean()): Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
   {:ok, SwaggyJenkins.Model.FavoriteImpl.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec put_pipeline_favorite(Tesla.Env.client, String.t, String.t, SwaggyJenkins.Model.UNKNOWN_BASE_TYPE.t, keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.FavoriteImpl.t} | {:error, Tesla.Env.t}
-  def put_pipeline_favorite(connection, organization, pipeline, u_nknownbasetype, _opts \\ []) do
+  @spec put_pipeline_favorite(Tesla.Env.client, String.t, String.t, boolean(), keyword()) :: {:ok, nil} | {:ok, SwaggyJenkins.Model.FavoriteImpl.t} | {:error, Tesla.Env.t}
+  def put_pipeline_favorite(connection, organization, pipeline, body, _opts \\ []) do
     %{}
     |> method(:put)
     |> url("/blue/rest/organizations/#{organization}/pipelines/#{pipeline}/favorite")
-    |> add_param(:body, :body, u_nknownbasetype)
+    |> add_param(:body, :body, body)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([

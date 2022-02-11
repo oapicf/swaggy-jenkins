@@ -5312,7 +5312,7 @@ static bool putPipelineFavoriteProcessor(MemoryStruct_s p_chunk, long code, char
 }
 
 static bool putPipelineFavoriteHelper(char * accessToken,
-	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
+	std::string organization, std::string pipeline, bool body, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -5333,13 +5333,9 @@ static bool putPipelineFavoriteHelper(char * accessToken,
 	JsonNode* node;
 	JsonArray* json_array;
 
-	if (isprimitive("UNKNOWN_BASE_TYPE")) {
-		node = converttoJson(&uNKNOWNBASETYPE, "UNKNOWN_BASE_TYPE", "");
+	if (isprimitive("bool")) {
+		node = converttoJson(&body, "bool", "");
 	}
-	
-	char *jsonStr =  uNKNOWNBASETYPE.toJson();
-	node = json_from_string(jsonStr, NULL);
-	g_free(static_cast<gpointer>(jsonStr));
 	
 
 	char *jsonStr1 =  json_to_string(node, false);
@@ -5408,22 +5404,22 @@ static bool putPipelineFavoriteHelper(char * accessToken,
 
 
 bool BlueOceanManager::putPipelineFavoriteAsync(char * accessToken,
-	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
+	std::string organization, std::string pipeline, bool body, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData)
 {
 	return putPipelineFavoriteHelper(accessToken,
-	organization, pipeline, uNKNOWNBASETYPE, 
+	organization, pipeline, body, 
 	handler, userData, true);
 }
 
 bool BlueOceanManager::putPipelineFavoriteSync(char * accessToken,
-	std::string organization, std::string pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> uNKNOWNBASETYPE, 
+	std::string organization, std::string pipeline, bool body, 
 	void(* handler)(FavoriteImpl, Error, void* )
 	, void* userData)
 {
 	return putPipelineFavoriteHelper(accessToken,
-	organization, pipeline, uNKNOWNBASETYPE, 
+	organization, pipeline, body, 
 	handler, userData, false);
 }
 

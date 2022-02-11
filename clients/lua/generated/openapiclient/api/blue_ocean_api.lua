@@ -30,8 +30,6 @@ local openapiclient_pipeline_run = require "openapiclient.model.pipeline_run"
 local openapiclient_pipeline_run_node = require "openapiclient.model.pipeline_run_node"
 local openapiclient_pipeline_step_impl = require "openapiclient.model.pipeline_step_impl"
 local openapiclient_queue_item_impl = require "openapiclient.model.queue_item_impl"
-local openapiclient_todo_object_mapping = require "openapiclient.model.todo_object_mapping"
-local openapiclient_unknown_base_type = require "openapiclient.model.unknown_base_type"
 local openapiclient_user = require "openapiclient.model.user"
 
 local blue_ocean_api = {}
@@ -1658,7 +1656,7 @@ function blue_ocean_api:post_pipeline_runs(organization, pipeline)
 	end
 end
 
-function blue_ocean_api:put_pipeline_favorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+function blue_ocean_api:put_pipeline_favorite(organization, pipeline, body)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -1677,7 +1675,7 @@ function blue_ocean_api:put_pipeline_favorite(organization, pipeline, UNKNOWN_BA
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
-	req:set_body(dkjson.encode(UNKNOWN_BASE_TYPE))
+	req:set_body(dkjson.encode(body))
 
 	-- HTTP basic auth
 	req.readers:upsert("authorization", "Basic " .. basexx.to_base64(self.http_username .. " " .. self.http_password))

@@ -23,7 +23,6 @@ import org.openapitools.server.api.model.PipelineRun;
 import org.openapitools.server.api.model.PipelineRunNode;
 import org.openapitools.server.api.model.PipelineStepImpl;
 import org.openapitools.server.api.model.QueueItemImpl;
-import org.openapitools.server.api.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.server.api.model.User;
 
 import java.util.List;
@@ -1209,13 +1208,13 @@ public class BlueOceanApiVerticle extends AbstractVerticle {
                     return;
                 }
                 String pipeline = pipelineParam;
-                JsonObject UNKNOWN_BASE_TYPEParam = message.body().getJsonObject("UNKNOWN_BASE_TYPE");
-                if (UNKNOWN_BASE_TYPEParam == null) {
-                    manageError(message, new MainApiException(400, "UNKNOWN_BASE_TYPE is required"), serviceId);
+                String bodyParam = message.body().getString("body");
+                if(bodyParam == null) {
+                    manageError(message, new MainApiException(400, "body is required"), serviceId);
                     return;
                 }
-                UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = Json.mapper.readValue(UNKNOWN_BASE_TYPEParam.encode(), UNKNOWN_BASE_TYPE.class);
-                service.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE, result -> {
+                Boolean body = Json.mapper.readValue(bodyParam, Boolean.class);
+                service.putPipelineFavorite(organization, pipeline, body, result -> {
                     if (result.succeeded())
                         message.reply(new JsonObject(Json.encode(result.result())).encodePrettily());
                     else {

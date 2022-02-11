@@ -222,7 +222,7 @@ trait DataAccessor {
         * 
         * @return A FavoriteImpl
         */
-        def BlueOcean_putPipelineFavorite(organization: String, pipeline: String, uNKNOWNBASETYPE: UNKNOWN_BASE_TYPE): Either[CommonError,FavoriteImpl] = Left(TODO)
+        def BlueOcean_putPipelineFavorite(organization: String, pipeline: String, body: Boolean): Either[CommonError,FavoriteImpl] = Left(TODO)
 
         /**
         * 

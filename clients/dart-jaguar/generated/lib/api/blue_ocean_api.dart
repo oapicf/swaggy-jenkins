@@ -5,7 +5,6 @@ import 'package:jaguar_mimetype/jaguar_mimetype.dart';
 import 'dart:async';
 
 import 'package:openapi/model/branch_impl.dart';
-import 'package:openapi/model/unknown_base_type.dart';
 import 'package:openapi/model/github_scm.dart';
 import 'package:openapi/model/organisation.dart';
 import 'package:openapi/model/pipeline_run.dart';
@@ -592,14 +591,14 @@ class BlueOceanApi extends ApiClient with _$BlueOceanApiClient {
             @PathParam("organization") String organization, 
             @PathParam("pipeline") String pipeline
             ,
-             @AsJson() UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE
+             @AsJson() bool body
         ) {
         return super.putPipelineFavorite(
         organization, 
         pipeline
 
         ,
-        UNKNOWN_BASE_TYPE
+        body
         ).timeout(timeout);
     }
 

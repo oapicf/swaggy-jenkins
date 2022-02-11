@@ -35,7 +35,6 @@
 #include "GithubOrganization.h"
 #include "GithubScm.h"
 #include "MultibranchPipeline.h"
-#include "Object.h"
 #include "Organisation.h"
 #include "Pipeline.h"
 #include "PipelineActivity.h"
@@ -45,7 +44,6 @@
 #include "PipelineRunNode.h"
 #include "PipelineStepImpl.h"
 #include "QueueItemImpl.h"
-#include "UNKNOWN_BASE_TYPE.h"
 #include "User.h"
 #include <string>
 
@@ -2057,7 +2055,7 @@ protected:
     //////////////////////////////////////////////////////////
 
     virtual std::pair<int, std::shared_ptr<FavoriteImpl>> handler_PUT(
-        std::string const & organization, std::string const & pipeline, std::shared_ptr<UNKNOWN_BASE_TYPE> const & uNKNOWNBASETYPE);
+        std::string const & organization, std::string const & pipeline, bool const & body);
 
 
 protected:

@@ -1777,7 +1777,7 @@ Name | Type | Description  | Notes
 > FavoriteImpl Send-PipelineFavorite<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Pipeline] <String><br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-UNKNOWNBASETYPE] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <Boolean><br>
 
 
 
@@ -1793,10 +1793,10 @@ $Configuration.Password = "YOUR_PASSWORD"
 
 $Organization = "MyOrganization" # String | Name of the organization
 $Pipeline = "MyPipeline" # String | Name of the pipeline
-$UNKNOWNBASETYPE =  # UNKNOWN_BASE_TYPE | Set JSON string body to {""favorite"": true} to favorite, set value to false to unfavorite
+$Body = $true # Boolean | Set JSON string body to {""favorite"": true} to favorite, set value to false to unfavorite
 
 try {
-    $Result = Send-PipelineFavorite -Organization $Organization -Pipeline $Pipeline -UNKNOWNBASETYPE $UNKNOWNBASETYPE
+    $Result = Send-PipelineFavorite -Organization $Organization -Pipeline $Pipeline -Body $Body
 } catch {
     Write-Host ("Exception occurred when calling Send-PipelineFavorite: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -1809,7 +1809,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **Organization** | **String**| Name of the organization | 
  **Pipeline** | **String**| Name of the pipeline | 
- **UNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {&quot;&quot;favorite&quot;&quot;: true} to favorite, set value to false to unfavorite | 
+ **Body** | **Boolean**| Set JSON string body to {&quot;&quot;favorite&quot;&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

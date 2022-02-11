@@ -890,14 +890,14 @@
 (defn-spec put-pipeline-favorite-with-http-info any?
   "
   Favorite/unfavorite a pipeline"
-  [organization string?, pipeline string?, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE]
-  (check-required-params organization pipeline UNKNOWN_BASE_TYPE)
+  [organization string?, pipeline string?, body boolean?]
+  (check-required-params organization pipeline body)
   (call-api "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" :put
             {:path-params   {"organization" organization "pipeline" pipeline }
              :header-params {}
              :query-params  {}
              :form-params   {}
-             :body-param    UNKNOWN_BASE_TYPE
+             :body-param    body
              :content-types ["application/json"]
              :accepts       ["application/json"]
              :auth-names    ["jenkins_auth"]}))
@@ -905,8 +905,8 @@
 (defn-spec put-pipeline-favorite favorite-impl-spec
   "
   Favorite/unfavorite a pipeline"
-  [organization string?, pipeline string?, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE]
-  (let [res (:data (put-pipeline-favorite-with-http-info organization pipeline UNKNOWN_BASE_TYPE))]
+  [organization string?, pipeline string?, body boolean?]
+  (let [res (:data (put-pipeline-favorite-with-http-info organization pipeline body))]
     (if (:decode-models *api-context*)
        (st/decode favorite-impl-spec res st/string-transformer)
        res)))

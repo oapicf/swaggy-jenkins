@@ -21,7 +21,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.util.List;
@@ -41,7 +40,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the blue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-10T09:45:55.793963Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-11T12:41:49.999623Z[Etc/UTC]")
 public class BlueApi  {
    private final BlueApiService delegate = BlueApiServiceFactory.getBlueApi();
 
@@ -674,10 +673,10 @@ public class BlueApi  {
         @io.swagger.annotations.ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = FavoriteImpl.class) })
     public Response putPipelineFavorite(@ApiParam(value = "Name of the organization",required=true) @PathParam("organization") String organization
 ,@ApiParam(value = "Name of the pipeline",required=true) @PathParam("pipeline") String pipeline
-,@ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE
+,@ApiParam(value = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite" ,required=true) Boolean body
 )
     throws NotFoundException {
-        return delegate.putPipelineFavorite(organization,pipeline,UNKNOWN_BASE_TYPE);
+        return delegate.putPipelineFavorite(organization,pipeline,body);
     }
     @PUT
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")

@@ -623,14 +623,12 @@ void OAIBlueOceanApiRequest::putPipelineFavoriteRequest(const QString& organizat
     fromStringValue(pipelinestr, pipeline);
      
     
-    QJsonDocument doc;
-    socket->readJson(doc);
-    QJsonObject obj = doc.object();
-    UNKNOWN_BASE_TYPE unknown_base_type;
-    ::OpenAPI::fromJsonValue(unknown_base_type, obj);
+    bool body;
+    ::OpenAPI::fromStringValue(QString(socket->readAll()), body);
+    
     
 
-    emit putPipelineFavorite(organization, pipeline, unknown_base_type);
+    emit putPipelineFavorite(organization, pipeline, body);
 }
 
 

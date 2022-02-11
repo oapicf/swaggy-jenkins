@@ -22,7 +22,6 @@ import { PipelineRun } from '../models/PipelineRun';
 import { PipelineRunNode } from '../models/PipelineRunNode';
 import { PipelineStepImpl } from '../models/PipelineStepImpl';
 import { QueueItemImpl } from '../models/QueueItemImpl';
-import { UNKNOWNBASETYPE } from '../models/UNKNOWN_BASE_TYPE';
 import { User } from '../models/User';
 
 /**
@@ -1658,9 +1657,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      */
-    public async putPipelineFavorite(organization: string, pipeline: string, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE, _options?: Configuration): Promise<RequestContext> {
+    public async putPipelineFavorite(organization: string, pipeline: string, body: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'organization' is not null or undefined
@@ -1675,9 +1674,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'UNKNOWN_BASE_TYPE' is not null or undefined
-        if (UNKNOWN_BASE_TYPE === null || UNKNOWN_BASE_TYPE === undefined) {
-            throw new RequiredError("BlueOceanApi", "putPipelineFavorite", "UNKNOWN_BASE_TYPE");
+        // verify required parameter 'body' is not null or undefined
+        if (body === null || body === undefined) {
+            throw new RequiredError("BlueOceanApi", "putPipelineFavorite", "body");
         }
 
 
@@ -1697,7 +1696,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(UNKNOWN_BASE_TYPE, "UNKNOWN_BASE_TYPE", ""),
+            ObjectSerializer.serialize(body, "boolean", ""),
             contentType
         );
         requestContext.setBody(serializedBody);

@@ -321,11 +321,11 @@ export default {
         },
 
         // @return FavoriteImpl
-        PutPipelineFavorite: ($organization, $pipeline, $UNKNOWN_BASE_TYPE) => {
+        PutPipelineFavorite: ($organization, $pipeline, $body) => {
             return {
                 "organization": "organization_example",
                 "pipeline": "pipeline_example",
-                "UNKNOWN_BASE_TYPE": ""
+                "body": "true"
             };
         },
 

@@ -276,9 +276,9 @@ object Paths {
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization 
      * @param pipeline Name of the pipeline 
-     * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
      */
-    @Location("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite") class putPipelineFavorite(val organization: kotlin.String, val pipeline: kotlin.String, val UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE?)
+    @Location("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite") class putPipelineFavorite(val organization: kotlin.String, val pipeline: kotlin.String, val body: kotlin.Boolean)
 
     /**
      * Stop a build of an organization pipeline

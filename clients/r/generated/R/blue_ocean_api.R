@@ -1104,7 +1104,7 @@
 #' \itemize{
 #' \item \emph{ @param } organization character
 #' \item \emph{ @param } pipeline character
-#' \item \emph{ @param } UNKNOWN_BASE_TYPE \link{UNKNOWN_BASE_TYPE}
+#' \item \emph{ @param } body character
 #' \item \emph{ @returnType } \link{FavoriteImpl} \cr
 #'
 #'
@@ -1805,7 +1805,7 @@
 #' library(openapi)
 #' var.organization <- 'organization_example' # character | Name of the organization
 #' var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-#' var.UNKNOWN_BASE_TYPE <- UNKNOWN_BASE_TYPE$new() # UNKNOWN_BASE_TYPE | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+#' var.body <- 'body_example' # character | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 #'
 #' api.instance <- BlueOceanApi$new()
 #'
@@ -1815,7 +1815,7 @@
 #' # provide your api key generated using the developer portal
 #' api.instance$apiClient$password <- '<api_key>';
 #'
-#' result <- api.instance$PutPipelineFavorite(var.organization, var.pipeline, var.UNKNOWN_BASE_TYPE)
+#' result <- api.instance$PutPipelineFavorite(var.organization, var.pipeline, var.body)
 #'
 #'
 #' ####################  PutPipelineRun  ####################
@@ -4061,8 +4061,8 @@ BlueOceanApi <- R6::R6Class(
         ApiResponse$new("API server error", resp)
       }
     },
-    PutPipelineFavorite = function(organization, pipeline, UNKNOWN_BASE_TYPE, ...){
-      apiResponse <- self$PutPipelineFavoriteWithHttpInfo(organization, pipeline, UNKNOWN_BASE_TYPE, ...)
+    PutPipelineFavorite = function(organization, pipeline, body, ...){
+      apiResponse <- self$PutPipelineFavoriteWithHttpInfo(organization, pipeline, body, ...)
       resp <- apiResponse$response
       if (httr::status_code(resp) >= 200 && httr::status_code(resp) <= 299) {
         apiResponse$content
@@ -4075,7 +4075,7 @@ BlueOceanApi <- R6::R6Class(
       }
     },
 
-    PutPipelineFavoriteWithHttpInfo = function(organization, pipeline, UNKNOWN_BASE_TYPE, ...){
+    PutPipelineFavoriteWithHttpInfo = function(organization, pipeline, body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- c()
@@ -4088,12 +4088,12 @@ BlueOceanApi <- R6::R6Class(
         stop("Missing required parameter `pipeline`.")
       }
 
-      if (missing(`UNKNOWN_BASE_TYPE`)) {
-        stop("Missing required parameter `UNKNOWN_BASE_TYPE`.")
+      if (missing(`body`)) {
+        stop("Missing required parameter `body`.")
       }
 
-      if (!missing(`UNKNOWN_BASE_TYPE`)) {
-        body <- `UNKNOWN_BASE_TYPE`$toJSONString()
+      if (!missing(`body`)) {
+        body <- `body`$toJSONString()
       } else {
         body <- NULL
       }

@@ -2172,19 +2172,19 @@ module
     # Favorite/unfavorite a pipeline
     # @param organization [String] Name of the organization
     # @param pipeline [String] Name of the pipeline
-    # @param unknown_base_type [UNKNOWN_BASE_TYPE] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+    # @param body [Bool] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
     # @return [FavoriteImpl]
-    def put_pipeline_favorite(organization : String, pipeline : String, unknown_base_type : UNKNOWN_BASE_TYPE)
-      data, _status_code, _headers = put_pipeline_favorite_with_http_info(organization, pipeline, unknown_base_type)
+    def put_pipeline_favorite(organization : String, pipeline : String, body : Bool)
+      data, _status_code, _headers = put_pipeline_favorite_with_http_info(organization, pipeline, body)
       data
     end
 
     # Favorite/unfavorite a pipeline
     # @param organization [String] Name of the organization
     # @param pipeline [String] Name of the pipeline
-    # @param unknown_base_type [UNKNOWN_BASE_TYPE] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+    # @param body [Bool] Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
     # @return [Array<(FavoriteImpl, Integer, Hash)>] FavoriteImpl data, response status code and response headers
-    def put_pipeline_favorite_with_http_info(organization : String, pipeline : String, unknown_base_type : UNKNOWN_BASE_TYPE)
+    def put_pipeline_favorite_with_http_info(organization : String, pipeline : String, body : Bool)
       if @api_client.config.debugging
         Log.debug {"Calling API: BlueOceanApi.put_pipeline_favorite ..."}
       end
@@ -2195,6 +2195,10 @@ module
       # verify the required parameter "pipeline" is set
       if @api_client.config.client_side_validation && pipeline.nil?
         raise ArgumentError.new("Missing the required parameter 'pipeline' when calling BlueOceanApi.put_pipeline_favorite")
+      end
+      # verify the required parameter "body" is set
+      if @api_client.config.client_side_validation && body.nil?
+        raise ArgumentError.new("Missing the required parameter 'body' when calling BlueOceanApi.put_pipeline_favorite")
       end
       # resource path
       local_var_path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".sub("{" + "organization" + "}", URI.encode_path(organization.to_s)).sub("{" + "pipeline" + "}", URI.encode_path(pipeline.to_s))
@@ -2213,7 +2217,7 @@ module
       form_params = Hash(Symbol, (String | ::File)).new
 
       # http body (model)
-      post_body = unknown_base_type.to_json
+      post_body = body.to_json
 
       # return_type
       return_type = "FavoriteImpl"

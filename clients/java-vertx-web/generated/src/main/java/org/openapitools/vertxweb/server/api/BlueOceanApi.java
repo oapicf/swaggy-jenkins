@@ -14,7 +14,6 @@ import org.openapitools.vertxweb.server.model.PipelineRun;
 import org.openapitools.vertxweb.server.model.PipelineRunNode;
 import org.openapitools.vertxweb.server.model.PipelineStepImpl;
 import org.openapitools.vertxweb.server.model.QueueItemImpl;
-import org.openapitools.vertxweb.server.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.vertxweb.server.model.User;
 
 import org.openapitools.vertxweb.server.ApiResponse;
@@ -59,7 +58,7 @@ public interface BlueOceanApi  {
     Future<ApiResponse<User>> getUsers(String organization);
     Future<ApiResponse<QueueItemImpl>> postPipelineRun(String organization, String pipeline, String run);
     Future<ApiResponse<QueueItemImpl>> postPipelineRuns(String organization, String pipeline);
-    Future<ApiResponse<FavoriteImpl>> putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+    Future<ApiResponse<FavoriteImpl>> putPipelineFavorite(String organization, String pipeline, Boolean body);
     Future<ApiResponse<PipelineRun>> putPipelineRun(String organization, String pipeline, String run, String blocking, Integer timeOutInSecs);
     Future<ApiResponse<String>> search(String q);
     Future<ApiResponse<String>> searchClasses(String q);

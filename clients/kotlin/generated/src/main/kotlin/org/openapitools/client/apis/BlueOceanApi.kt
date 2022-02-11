@@ -36,7 +36,6 @@ import org.openapitools.client.models.PipelineRun
 import org.openapitools.client.models.PipelineRunNode
 import org.openapitools.client.models.PipelineStepImpl
 import org.openapitools.client.models.QueueItemImpl
-import org.openapitools.client.models.UNKNOWN_BASE_TYPE
 import org.openapitools.client.models.User
 
 import com.squareup.moshi.Json
@@ -2570,7 +2569,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     * Favorite/unfavorite a pipeline
     * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
-    * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
     * @return FavoriteImpl
     * @throws IllegalStateException If the request is not correctly configured
     * @throws IOException Rethrows the OkHttp execute method exception
@@ -2580,8 +2579,8 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun putPipelineFavorite(organization: kotlin.String, pipeline: kotlin.String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) : FavoriteImpl {
-        val localVarResponse = putPipelineFavoriteWithHttpInfo(organization = organization, pipeline = pipeline, UNKNOWN_BASE_TYPE = UNKNOWN_BASE_TYPE)
+    fun putPipelineFavorite(organization: kotlin.String, pipeline: kotlin.String, body: kotlin.Boolean) : FavoriteImpl {
+        val localVarResponse = putPipelineFavoriteWithHttpInfo(organization = organization, pipeline = pipeline, body = body)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as FavoriteImpl
@@ -2603,17 +2602,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     * Favorite/unfavorite a pipeline
     * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
-    * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
     * @return ApiResponse<FavoriteImpl?>
     * @throws IllegalStateException If the request is not correctly configured
     * @throws IOException Rethrows the OkHttp execute method exception
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun putPipelineFavoriteWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) : ApiResponse<FavoriteImpl?> {
-        val localVariableConfig = putPipelineFavoriteRequestConfig(organization = organization, pipeline = pipeline, UNKNOWN_BASE_TYPE = UNKNOWN_BASE_TYPE)
+    fun putPipelineFavoriteWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, body: kotlin.Boolean) : ApiResponse<FavoriteImpl?> {
+        val localVariableConfig = putPipelineFavoriteRequestConfig(organization = organization, pipeline = pipeline, body = body)
 
-        return request<UNKNOWN_BASE_TYPE, FavoriteImpl>(
+        return request<kotlin.Boolean, FavoriteImpl>(
             localVariableConfig
         )
     }
@@ -2623,11 +2622,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     *
     * @param organization Name of the organization 
     * @param pipeline Name of the pipeline 
-    * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
     * @return RequestConfig
     */
-    fun putPipelineFavoriteRequestConfig(organization: kotlin.String, pipeline: kotlin.String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE) : RequestConfig<UNKNOWN_BASE_TYPE> {
-        val localVariableBody = UNKNOWN_BASE_TYPE
+    fun putPipelineFavoriteRequestConfig(organization: kotlin.String, pipeline: kotlin.String, body: kotlin.Boolean) : RequestConfig<kotlin.Boolean> {
+        val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"

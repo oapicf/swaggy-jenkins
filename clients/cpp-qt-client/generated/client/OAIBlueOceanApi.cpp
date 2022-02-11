@@ -3378,7 +3378,7 @@ void OAIBlueOceanApi::postPipelineRunsCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIBlueOceanApi::putPipelineFavorite(const QString &organization, const QString &pipeline, const UNKNOWN_BASE_TYPE &unknown_base_type) {
+void OAIBlueOceanApi::putPipelineFavorite(const QString &organization, const QString &pipeline, const bool &body) {
     QString fullPath = QString(_serverConfigs["putPipelineFavorite"][_serverIndices.value("putPipelineFavorite")].URL()+"/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -3421,7 +3421,7 @@ void OAIBlueOceanApi::putPipelineFavorite(const QString &organization, const QSt
 
     {
 
-        QByteArray output = unknown_base_type.asJson().toUtf8();
+        QByteArray output = body.asJson().toUtf8();
         input.request_body.append(output);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)

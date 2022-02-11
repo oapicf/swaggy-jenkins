@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:built_value/json_object.dart';
 import 'package:openapi/model/branch_impl.dart';
 import 'package:openapi/model/favorite_impl.dart';
 import 'package:openapi/model/github_organization.dart';
@@ -25,7 +24,6 @@ import 'package:openapi/model/pipeline_run.dart';
 import 'package:openapi/model/pipeline_run_node.dart';
 import 'package:openapi/model/pipeline_step_impl.dart';
 import 'package:openapi/model/queue_item_impl.dart';
-import 'package:openapi/model/unknown_base_type.dart';
 import 'package:openapi/model/user.dart';
 
 class BlueOceanApi {
@@ -2049,7 +2047,7 @@ class BlueOceanApi {
   Future<Response<FavoriteImpl>> putPipelineFavorite(
     String organization,
     String pipeline,
-    UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE, { 
+    bool body, { 
     CancelToken cancelToken,
     Map<String, dynamic> headers,
     Map<String, dynamic> extra,
@@ -2081,8 +2079,7 @@ class BlueOceanApi {
 
     dynamic _bodyData;
 
-    const _type = FullType(UNKNOWN_BASE_TYPE);
-    _bodyData = _serializers.serialize(UNKNOWN_BASE_TYPE, specifiedType: _type);
+    _bodyData = body;
 
     final _response = await _dio.request<dynamic>(
       _request.path,

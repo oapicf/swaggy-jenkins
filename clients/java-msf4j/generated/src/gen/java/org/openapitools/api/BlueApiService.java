@@ -20,7 +20,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.util.List;
@@ -31,7 +30,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-10T09:45:55.793963Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-11T12:41:49.999623Z[Etc/UTC]")
 public abstract class BlueApiService {
     public abstract Response deletePipelineQueueItem(String organization
  ,String pipeline
@@ -149,7 +148,7 @@ public abstract class BlueApiService {
  ) throws NotFoundException;
     public abstract Response putPipelineFavorite(String organization
  ,String pipeline
- ,UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE
+ ,Boolean body
  ) throws NotFoundException;
     public abstract Response putPipelineRun(String organization
  ,String pipeline

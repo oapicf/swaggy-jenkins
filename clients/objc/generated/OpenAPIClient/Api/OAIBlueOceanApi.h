@@ -14,7 +14,6 @@
 #import "OAIPipelineStepImpl.h"
 #import "OAIQueueItemImpl.h"
 #import "OAIUser.h"
-#import "UNKNOWN_BASE_TYPE.h"
 #import "OAIApi.h"
 
 /**
@@ -614,7 +613,7 @@ extern NSInteger kOAIBlueOceanApiMissingParamErrorCode;
 ///
 /// @param organization Name of the organization
 /// @param pipeline Name of the pipeline
-/// @param uNKNOWNBASETYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+/// @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
 /// 
 ///  code:200 message:"Successfully favorited/unfavorited a pipeline",
 ///  code:401 message:"Authentication failed - incorrect username and/or password",
@@ -623,7 +622,7 @@ extern NSInteger kOAIBlueOceanApiMissingParamErrorCode;
 /// @return OAIFavoriteImpl*
 -(NSURLSessionTask*) putPipelineFavoriteWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    uNKNOWNBASETYPE: (UNKNOWN_BASE_TYPE*) uNKNOWNBASETYPE
+    body: (NSNumber*) body
     completionHandler: (void (^)(OAIFavoriteImpl* output, NSError* error)) handler;
 
 

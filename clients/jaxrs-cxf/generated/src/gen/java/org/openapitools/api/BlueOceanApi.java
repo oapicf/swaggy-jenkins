@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.io.InputStream;
@@ -384,7 +383,7 @@ public interface BlueOceanApi  {
         @ApiResponse(code = 200, message = "Successfully favorited/unfavorited a pipeline", response = FavoriteImpl.class),
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password"),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password") })
-    public FavoriteImpl putPipelineFavorite(@PathParam("organization") String organization, @PathParam("pipeline") String pipeline, @Valid UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+    public FavoriteImpl putPipelineFavorite(@PathParam("organization") String organization, @PathParam("pipeline") String pipeline, @Valid @NotNull Boolean body);
 
     @PUT
     @Path("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")

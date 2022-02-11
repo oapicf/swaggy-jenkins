@@ -1560,7 +1560,7 @@ public interface PathHandlerInterface {
      * </ul>
      *
      * <p><b>Consumes</b>: [{mediaType=application/json}]</p>
-     * <p><b>Payload</b>: {@link UNKNOWN_BASE_TYPE} (<i>required: true</i>)</p>
+     * <p><b>Payload</b>: {@link Boolean} (<i>required: true</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link FavoriteImpl}</p>

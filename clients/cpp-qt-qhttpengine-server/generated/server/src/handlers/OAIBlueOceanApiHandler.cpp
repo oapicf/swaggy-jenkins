@@ -379,10 +379,10 @@ void OAIBlueOceanApiHandler::postPipelineRuns(QString organization, QString pipe
         reqObj->postPipelineRunsResponse(res);
     }
 }
-void OAIBlueOceanApiHandler::putPipelineFavorite(QString organization, QString pipeline, UNKNOWN_BASE_TYPE unknown_base_type) {
+void OAIBlueOceanApiHandler::putPipelineFavorite(QString organization, QString pipeline, bool body) {
     Q_UNUSED(organization);
     Q_UNUSED(pipeline);
-    Q_UNUSED(unknown_base_type);
+    Q_UNUSED(body);
     auto reqObj = qobject_cast<OAIBlueOceanApiRequest*>(sender());
     if( reqObj != nullptr )
     {

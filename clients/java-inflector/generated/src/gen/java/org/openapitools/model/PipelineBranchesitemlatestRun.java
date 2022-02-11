@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-10T09:45:28.256910Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-11T12:41:21.213756Z[Etc/UTC]")
 public class PipelineBranchesitemlatestRun   {
   @JsonProperty("durationInMillis")
   private Integer durationInMillis;

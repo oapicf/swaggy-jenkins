@@ -322,13 +322,13 @@ let post_pipeline_runs ~organization ~pipeline =
     Cohttp_lwt_unix.Client.call `POST uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
-let put_pipeline_favorite ~organization ~pipeline ~unknown_base_type =
+let put_pipeline_favorite ~organization ~pipeline ~body =
     let open Lwt in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
     let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let body = Request.write_as_json_body  unknown_base_type in
+    let body = Request.write_as_json_body JsonSupport.of_bool body in
     Cohttp_lwt_unix.Client.call `PUT uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Favorite_impl.of_yojson) resp body
 

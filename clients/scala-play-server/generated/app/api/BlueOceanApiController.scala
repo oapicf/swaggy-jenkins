@@ -8,7 +8,6 @@ import model.BranchImpl
 import model.FavoriteImpl
 import model.GithubOrganization
 import model.GithubScm
-import model.JsObject
 import model.MultibranchPipeline
 import model.Organisation
 import model.Pipeline
@@ -19,10 +18,9 @@ import model.PipelineRun
 import model.PipelineRunNode
 import model.PipelineStepImpl
 import model.QueueItemImpl
-import model.UNKNOWN_BASE_TYPE
 import model.User
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-10T09:53:15.007563Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-11T12:54:41.523230Z[Etc/UTC]")
 @Singleton
 class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanApi) extends AbstractController(cc) {
   /**
@@ -555,10 +553,10 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
     */
   def putPipelineFavorite(organization: String, pipeline: String): Action[AnyContent] = Action { request =>
     def executeApi(): FavoriteImpl = {
-      val uNKNOWNBASETYPE = request.body.asJson.map(_.as[UNKNOWN_BASE_TYPE]).getOrElse {
-        throw new OpenApiExceptions.MissingRequiredParameterException("body", "uNKNOWNBASETYPE")
+      val body = request.body.asJson.map(_.as[Boolean]).getOrElse {
+        throw new OpenApiExceptions.MissingRequiredParameterException("body", "body")
       }
-      api.putPipelineFavorite(organization, pipeline, uNKNOWNBASETYPE)
+      api.putPipelineFavorite(organization, pipeline, body)
     }
 
     val result = executeApi()

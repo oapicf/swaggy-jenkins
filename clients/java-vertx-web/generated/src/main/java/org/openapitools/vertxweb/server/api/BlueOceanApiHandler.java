@@ -14,7 +14,6 @@ import org.openapitools.vertxweb.server.model.PipelineRun;
 import org.openapitools.vertxweb.server.model.PipelineRunNode;
 import org.openapitools.vertxweb.server.model.PipelineStepImpl;
 import org.openapitools.vertxweb.server.model.QueueItemImpl;
-import org.openapitools.vertxweb.server.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.vertxweb.server.model.User;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -927,13 +926,13 @@ public class BlueOceanApiHandler {
         String organization = requestParameters.pathParameter("organization") != null ? requestParameters.pathParameter("organization").getString() : null;
         String pipeline = requestParameters.pathParameter("pipeline") != null ? requestParameters.pathParameter("pipeline").getString() : null;
         RequestParameter body = requestParameters.body();
-        UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<UNKNOWN_BASE_TYPE>(){}) : null;
+        Boolean body = body != null ? DatabindCodec.mapper().convertValue(body.get(), new TypeReference<Boolean>(){}) : null;
 
         logger.debug("Parameter organization is {}", organization);
         logger.debug("Parameter pipeline is {}", pipeline);
-        logger.debug("Parameter UNKNOWN_BASE_TYPE is {}", UNKNOWN_BASE_TYPE);
+        logger.debug("Parameter body is {}", body);
 
-        api.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+        api.putPipelineFavorite(organization, pipeline, body)
             .onSuccess(apiResponse -> {
                 routingContext.response().setStatusCode(apiResponse.getStatusCode());
                 if (apiResponse.hasData()) {

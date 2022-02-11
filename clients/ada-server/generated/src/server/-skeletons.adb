@@ -1164,7 +1164,7 @@ package body .Skeletons is
          Impl : Implementation_Type;
          Organization : Swagger.UString;
          Pipeline : Swagger.UString;
-         U_NKNOWNBASETYPE : UNKNOWN_BASE_TYPE;
+         P_Body : Boolean;
          Result : .Models.FavoriteImpl_Type;
       begin
          if not Context.Is_Authenticated then
@@ -1175,11 +1175,11 @@ package body .Skeletons is
          Swagger.Servers.Get_Path_Parameter (Req, 2, Pipeline);
          Swagger.Servers.Read (Req, Input);
 
-         .Models.Deserialize (Input, "UNKNOWN_BASE_TYPE", U_NKNOWNBASETYPE);
+         .Models.Deserialize (Input, "body", P_Body);
          Impl.Put_Pipeline_Favorite
             (Organization,
              Pipeline,
-             U_NKNOWNBASETYPE, Result, Context);
+             P_Body, Result, Context);
          if Context.Get_Status = 200 then
             Stream.Start_Document;
             .Models.Serialize (Stream, "", Result);
@@ -3037,7 +3037,7 @@ package body .Skeletons is
          Input   : Swagger.Value_Type;
          Organization : Swagger.UString;
          Pipeline : Swagger.UString;
-         U_NKNOWNBASETYPE : UNKNOWN_BASE_TYPE;
+         P_Body : Boolean;
          Result : .Models.FavoriteImpl_Type;
       begin
          if not Context.Is_Authenticated then
@@ -3048,11 +3048,11 @@ package body .Skeletons is
          Swagger.Servers.Get_Path_Parameter (Req, 2, Pipeline);
          Swagger.Servers.Read (Req, Input);
          
-         .Models.Deserialize (Input, "UNKNOWN_BASE_TYPE", U_NKNOWNBASETYPE);
+         .Models.Deserialize (Input, "body", P_Body);
          Server.Put_Pipeline_Favorite
             (Organization,
              Pipeline,
-             U_NKNOWNBASETYPE, Result, Context);
+             P_Body, Result, Context);
          if Context.Get_Status = 200 then
             Stream.Start_Document;
             .Models.Serialize (Stream, "", Result);
@@ -4292,14 +4292,14 @@ package body .Skeletons is
          procedure Put_Pipeline_Favorite
             (Organization : in Swagger.UString;
              Pipeline : in Swagger.UString;
-             U_NKNOWNBASETYPE : in UNKNOWN_BASE_TYPE;
+             P_Body : in Boolean;
              Result : out .Models.FavoriteImpl_Type;
              Context : in out Swagger.Servers.Context_Type) is
          begin
             Impl.Put_Pipeline_Favorite
                (Organization,
                 Pipeline,
-                U_NKNOWNBASETYPE,
+                P_Body,
                 Result,
                 Context);
          end Put_Pipeline_Favorite;

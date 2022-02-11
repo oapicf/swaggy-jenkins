@@ -10,7 +10,7 @@ import model.Queue
 /**
   * Provides a default implementation for [[RemoteAccessApi]].
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-10T09:53:15.007563Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-11T12:54:41.523230Z[Etc/UTC]")
 class RemoteAccessApiImpl extends RemoteAccessApi {
   /**
     * @inheritdoc

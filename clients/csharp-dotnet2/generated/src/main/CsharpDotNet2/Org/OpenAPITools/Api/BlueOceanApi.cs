@@ -267,9 +267,9 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <returns>FavoriteImpl</returns>
-        FavoriteImpl PutPipelineFavorite (string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE);
+        FavoriteImpl PutPipelineFavorite (string organization, string pipeline, bool? body);
         /// <summary>
         ///  Stop a build of an organization pipeline
         /// </summary>
@@ -1811,9 +1811,9 @@ path = path.Replace("{" + "pipeline" + "}", ApiClient.ParameterToString(pipeline
         /// </summary>
         /// <param name="organization">Name of the organization</param>
         /// <param name="pipeline">Name of the pipeline</param>
-        /// <param name="UNKNOWN_BASE_TYPE">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
+        /// <param name="body">Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite</param>
         /// <returns>FavoriteImpl</returns>
-        public FavoriteImpl PutPipelineFavorite (string organization, string pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE)
+        public FavoriteImpl PutPipelineFavorite (string organization, string pipeline, bool? body)
         {
             
             // verify the required parameter 'organization' is set
@@ -1822,8 +1822,8 @@ path = path.Replace("{" + "pipeline" + "}", ApiClient.ParameterToString(pipeline
             // verify the required parameter 'pipeline' is set
             if (pipeline == null) throw new ApiException(400, "Missing required parameter 'pipeline' when calling PutPipelineFavorite");
             
-            // verify the required parameter 'UNKNOWN_BASE_TYPE' is set
-            if (UNKNOWN_BASE_TYPE == null) throw new ApiException(400, "Missing required parameter 'UNKNOWN_BASE_TYPE' when calling PutPipelineFavorite");
+            // verify the required parameter 'body' is set
+            if (body == null) throw new ApiException(400, "Missing required parameter 'body' when calling PutPipelineFavorite");
             
 
             var path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite";
@@ -1837,7 +1837,7 @@ path = path.Replace("{" + "pipeline" + "}", ApiClient.ParameterToString(pipeline
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
 
-                                                postBody = ApiClient.Serialize(UNKNOWN_BASE_TYPE); // http body (model) parameter
+                                                postBody = ApiClient.Serialize(body); // http body (model) parameter
 
             // authentication setting, if any
             String[] authSettings = new String[] { "jenkins_auth" };

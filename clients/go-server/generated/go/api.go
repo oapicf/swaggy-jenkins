@@ -139,7 +139,7 @@ type BlueOceanApiServicer interface {
 	GetUsers(context.Context, string) (ImplResponse, error)
 	PostPipelineRun(context.Context, string, string, string) (ImplResponse, error)
 	PostPipelineRuns(context.Context, string, string) (ImplResponse, error)
-	PutPipelineFavorite(context.Context, string, string, UNKNOWN_BASE_TYPE) (ImplResponse, error)
+	PutPipelineFavorite(context.Context, string, string, bool) (ImplResponse, error)
 	PutPipelineRun(context.Context, string, string, string, string, int32) (ImplResponse, error)
 	Search(context.Context, string) (ImplResponse, error)
 	SearchClasses(context.Context, string) (ImplResponse, error)

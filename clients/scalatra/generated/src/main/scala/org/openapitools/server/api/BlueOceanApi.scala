@@ -26,7 +26,6 @@ import org.openapitools.server.model.PipelineRun
 import org.openapitools.server.model.PipelineRunNode
 import org.openapitools.server.model.PipelineStepImpl
 import org.openapitools.server.model.QueueItemImpl
-import org.openapitools.server.model.UNKNOWN_BASE_TYPE
 import org.openapitools.server.model.User
 
 import java.io.File
@@ -567,7 +566,7 @@ class BlueOceanApi(implicit val swagger: Swagger) extends ScalatraServlet
 
   val putPipelineFavoriteOperation = (apiOperation[FavoriteImpl]("putPipelineFavorite")
     summary ""
-    parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), bodyParam[UNKNOWN_BASE_TYPE]("uNKNOWNBASETYPE").description(""))
+    parameters(pathParam[String]("organization").description(""), pathParam[String]("pipeline").description(""), bodyParam[Boolean]("body").description(""))
   )
 
   put("/blue/rest/organizations/:organization/pipelines/:pipeline/favorite", operation(putPipelineFavoriteOperation)) {
@@ -575,7 +574,7 @@ class BlueOceanApi(implicit val swagger: Swagger) extends ScalatraServlet
     //println("organization: " + organization)
     val pipeline = params.getOrElse("pipeline", halt(400))
     //println("pipeline: " + pipeline)
-    //println("uNKNOWNBASETYPE: " + uNKNOWNBASETYPE)
+    //println("body: " + body)
   }
 
   

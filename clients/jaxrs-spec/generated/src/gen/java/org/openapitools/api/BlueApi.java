@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import javax.ws.rs.*;
@@ -30,7 +29,7 @@ import javax.validation.Valid;
 
 @Path("/blue/rest")
 @Api(description = "the blue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-10T09:47:30.188253Z[Etc/UTC]")public class BlueApi {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-11T12:43:55.722012Z[Etc/UTC]")public class BlueApi {
 
     @DELETE
     @Path("/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")
@@ -542,7 +541,7 @@ import javax.validation.Valid;
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response putPipelineFavorite(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@Valid UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
+    public Response putPipelineFavorite(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@Valid @NotNull Boolean body) {
         return Response.ok().entity("magic!").build();
     }
 

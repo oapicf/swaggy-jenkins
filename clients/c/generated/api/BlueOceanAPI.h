@@ -5,13 +5,11 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/UNKNOWN_BASE_TYPE.h"
 #include "../model/branch_impl.h"
 #include "../model/favorite_impl.h"
 #include "../model/github_organization.h"
 #include "../model/github_scm.h"
 #include "../model/multibranch_pipeline.h"
-#include "../model/object.h"
 #include "../model/organisation.h"
 #include "../model/pipeline.h"
 #include "../model/pipeline_activity.h"
@@ -225,7 +223,7 @@ BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char * organization , char
 // Favorite/unfavorite a pipeline
 //
 favorite_impl_t*
-BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , char * pipeline ,  UNKNOWN_BASE_TYPE );
+BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , char * pipeline , int body );
 
 
 // Stop a build of an organization pipeline

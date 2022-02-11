@@ -16,7 +16,6 @@
 #import "OAIPipelineStepImpl.h"
 #import "OAIQueueItemImpl.h"
 #import "OAIUser.h"
-#import "UNKNOWN_BASE_TYPE.h"
 
 
 @interface OAIBlueOceanApi ()
@@ -3118,13 +3117,13 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
 ///
 ///  @param pipeline Name of the pipeline 
 ///
-///  @param uNKNOWNBASETYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite 
+///  @param body Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite 
 ///
 ///  @returns OAIFavoriteImpl*
 ///
 -(NSURLSessionTask*) putPipelineFavoriteWithOrganization: (NSString*) organization
     pipeline: (NSString*) pipeline
-    uNKNOWNBASETYPE: (UNKNOWN_BASE_TYPE*) uNKNOWNBASETYPE
+    body: (NSNumber*) body
     completionHandler: (void (^)(OAIFavoriteImpl* output, NSError* error)) handler {
     // verify the required parameter 'organization' is set
     if (organization == nil) {
@@ -3148,11 +3147,11 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
         return nil;
     }
 
-    // verify the required parameter 'uNKNOWNBASETYPE' is set
-    if (uNKNOWNBASETYPE == nil) {
-        NSParameterAssert(uNKNOWNBASETYPE);
+    // verify the required parameter 'body' is set
+    if (body == nil) {
+        NSParameterAssert(body);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"uNKNOWNBASETYPE"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"body"] };
             NSError* error = [NSError errorWithDomain:kOAIBlueOceanApiErrorDomain code:kOAIBlueOceanApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
@@ -3190,7 +3189,7 @@ NSInteger kOAIBlueOceanApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    bodyParam = uNKNOWNBASETYPE;
+    bodyParam = body;
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"PUT"

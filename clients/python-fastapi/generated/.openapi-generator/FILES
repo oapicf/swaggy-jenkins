@@ -1,6 +1,5 @@
 .flake8
 .gitignore
-.openapi-generator-ignore
 Dockerfile
 README.md
 docker-compose.yaml
@@ -97,6 +96,3 @@ src/openapi_server/models/unlabeled_load_statistics.py
 src/openapi_server/models/user.py
 src/openapi_server/security_api.py
 tests/conftest.py
-tests/test_base_api.py
-tests/test_blue_ocean_api.py
-tests/test_remote_access_api.py

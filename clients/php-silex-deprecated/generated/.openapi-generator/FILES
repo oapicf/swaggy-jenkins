@@ -1,6 +1,5 @@
 .gitignore
 .htaccess
-.openapi-generator-ignore
 README.md
 composer.json
 index.php

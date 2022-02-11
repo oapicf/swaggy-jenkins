@@ -1275,7 +1275,7 @@ Name | Type | Description  | Notes
 
 ## PutPipelineFavorite
 
-> FavoriteImpl PutPipelineFavorite(ctx, organization, pipeline, uNKNOWNBASETYPE)
+> FavoriteImpl PutPipelineFavorite(ctx, organization, pipeline, body)
 
 
 
@@ -1289,7 +1289,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **organization** | **string**| Name of the organization | 
 **pipeline** | **string**| Name of the pipeline | 
-**uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+**body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

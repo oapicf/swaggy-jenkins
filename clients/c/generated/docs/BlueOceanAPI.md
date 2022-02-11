@@ -1061,7 +1061,7 @@ Name | Type | Description  | Notes
 ```c
 // Favorite/unfavorite a pipeline
 //
-favorite_impl_t* BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization, char * pipeline,  UNKNOWN_BASE_TYPE);
+favorite_impl_t* BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization, char * pipeline, int body);
 ```
 
 ### Parameters
@@ -1070,7 +1070,7 @@ Name | Type | Description  | Notes
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **organization** | **char \*** | Name of the organization | 
 **pipeline** | **char \*** | Name of the pipeline | 
-**UNKNOWN_BASE_TYPE** |  | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+**body** | **int** | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 

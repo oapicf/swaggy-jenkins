@@ -18,7 +18,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.util.List;
@@ -28,7 +27,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-10T09:47:23.475622Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-11T12:43:44.828365Z[Etc/UTC]")
 public class BlueApiServiceImpl implements BlueApi {
       public Response deletePipelineQueueItem(String organization,String pipeline,String queue,SecurityContext securityContext) {
       // do some magic!
@@ -154,7 +153,7 @@ public class BlueApiServiceImpl implements BlueApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response putPipelineFavorite(String organization,String pipeline,UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE,SecurityContext securityContext) {
+      public Response putPipelineFavorite(String organization,String pipeline,Boolean body,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

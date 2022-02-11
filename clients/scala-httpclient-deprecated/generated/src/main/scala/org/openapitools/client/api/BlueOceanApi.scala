@@ -28,7 +28,6 @@ import org.openapitools.client.model.PipelineRun
 import org.openapitools.client.model.PipelineRunNode
 import org.openapitools.client.model.PipelineStepImpl
 import org.openapitools.client.model.QueueItemImpl
-import org.openapitools.client.model.UNKNOWN_BASE_TYPE
 import org.openapitools.client.model.User
 import org.openapitools.client.{ApiInvoker, ApiException}
 
@@ -1059,11 +1058,11 @@ class BlueOceanApi(
    *
    * @param organization Name of the organization 
    * @param pipeline Name of the pipeline 
-   * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
    * @return FavoriteImpl
    */
-  def putPipelineFavorite(organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE): Option[FavoriteImpl] = {
-    val await = Try(Await.result(putPipelineFavoriteAsync(organization, pipeline, UNKNOWN_BASE_TYPE), Duration.Inf))
+  def putPipelineFavorite(organization: String, pipeline: String, body: Boolean): Option[FavoriteImpl] = {
+    val await = Try(Await.result(putPipelineFavoriteAsync(organization, pipeline, body), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -1076,11 +1075,11 @@ class BlueOceanApi(
    *
    * @param organization Name of the organization 
    * @param pipeline Name of the pipeline 
-   * @param UNKNOWN_BASE_TYPE Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
+   * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
    * @return Future(FavoriteImpl)
    */
-  def putPipelineFavoriteAsync(organization: String, pipeline: String, UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE): Future[FavoriteImpl] = {
-      helper.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+  def putPipelineFavoriteAsync(organization: String, pipeline: String, body: Boolean): Future[FavoriteImpl] = {
+      helper.putPipelineFavorite(organization, pipeline, body)
   }
 
   /**
@@ -2126,7 +2125,7 @@ class BlueOceanApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
 
   def putPipelineFavorite(organization: String,
     pipeline: String,
-    UNKNOWN_BASE_TYPE: UNKNOWN_BASE_TYPE)(implicit reader: ClientResponseReader[FavoriteImpl], writer: RequestWriter[UNKNOWN_BASE_TYPE]): Future[FavoriteImpl] = {
+    body: Boolean)(implicit reader: ClientResponseReader[FavoriteImpl], writer: RequestWriter[Boolean]): Future[FavoriteImpl] = {
     // create path and map variables
     val path = (addFmt("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite")
       replaceAll("\\{" + "organization" + "\\}", organization.toString)
@@ -2140,9 +2139,8 @@ class BlueOceanApiAsyncHelper(client: TransportClient, config: SwaggerConfig) ex
 
     if (pipeline == null) throw new Exception("Missing required parameter 'pipeline' when calling BlueOceanApi->putPipelineFavorite")
 
-    if (UNKNOWN_BASE_TYPE == null) throw new Exception("Missing required parameter 'UNKNOWN_BASE_TYPE' when calling BlueOceanApi->putPipelineFavorite")
 
-    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(UNKNOWN_BASE_TYPE))
+    val resFuture = client.submit("PUT", path, queryParams.toMap, headerParams.toMap, writer.write(body))
     resFuture flatMap { resp =>
       val status = Response.Status.fromStatusCode(resp.statusCode)
       status.getFamily match {
