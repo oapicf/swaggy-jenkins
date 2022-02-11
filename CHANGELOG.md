@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Upgrade OpenAPI Generator to v5.4.0
 
+### Fixed
+- Fix putPipelineFavorite favorite param's schema type
+
 ### Removed
 - Remove Travic CI config
 

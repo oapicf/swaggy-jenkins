@@ -922,11 +922,7 @@ paths:
         content:
           application/json:
             schema:
-              required:
-                - favorite
-              properties:
-                favorite:
-                  type: boolean
+              type: boolean
         description: >-
           Set JSON string body to {"favorite": true} to favorite, set value to
           false to unfavorite
