@@ -71,7 +71,7 @@ publish-javascript:
 publish-ruby:
 
 doc:
-	bootprint openapi spec/jenkins-api.yaml doc/api/latest/
+	bootprint openapi spec/jenkins-api.yml doc/api/latest/
 
 doc-publish:
 	gh-pages --dist doc/
