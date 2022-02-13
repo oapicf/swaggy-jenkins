@@ -1,5 +1,6 @@
 .DS_Store
 clients/*/log/*
+doc
 clients/javascript/generated/node_modules
 test/javascript/node_modules
 clients/ruby/generated/bin
