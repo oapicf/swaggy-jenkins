@@ -54,7 +54,7 @@ test-javascript:
 	mocha --timeout 5000 test/javascript/
 
 test-python:
-	sudo apt-get install python-setuptools
+	sudo apt-get install -y python-setuptools
 	cd clients/python/generated/ && \
 	  pip install -r requirements.txt && \
 	  python setup.py install
