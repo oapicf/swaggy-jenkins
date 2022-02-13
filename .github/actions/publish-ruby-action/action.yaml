@@ -1,0 +1,4 @@
+name: 'Publish Ruby'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
