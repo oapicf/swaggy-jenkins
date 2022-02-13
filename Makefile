@@ -42,33 +42,44 @@ generate-langs:
 		  --output /local/clients/$$lang/generated; \
 	done
 
-test-javascript:
+build-javascript:
 	npm install -g babel-cli
 	cd clients/javascript/generated/ && \
 	  npm install && \
 	  npm link && \
-	  npm run build && \
-	  npm run test
+	  npm run build
 	cd test/javascript/ && \
 	  npm link ../../clients/javascript/generated/
-	mocha --timeout 5000 test/javascript/
 
-test-python:
+build-python:
 	sudo apt-get install -y python-setuptools
 	cd clients/python/generated/ && \
 	  pip install -r requirements.txt && \
 	  python setup.py install
 
-test-ruby:
+build-ruby:
 	cd clients/ruby/generated/ && \
 	  gem install bundler --version=1.17.3 && \
 	  bundle install --binstubs && \
 	  gem build swaggy_jenkins.gemspec && \
 	  gem install ./swaggy_jenkins-*.gem
 
-publish-javascript:
+test-javascript: build-javascript
+	cd clients/javascript/generated/ && \
+	  npm run test
+	mocha --timeout 5000 test/javascript/
 
-publish-ruby:
+test-python: build-python
+
+test-ruby: build-ruby
+
+publish-javascript: build-javascript
+	cd clients/javascript/generated/ && \
+	  npm publish
+
+publish-ruby: build-ruby
+	cd clients/ruby/generated/ && \
+	  gem publish
 
 doc:
 	bootprint openapi spec/jenkins-api.yml doc/api/latest/
@@ -76,4 +87,4 @@ doc:
 doc-publish:
 	gh-pages --dist doc/
 
-.PHONY: clean conf-placeholder deps generate test-javascript test-python test-ruby publish-javascript publish-ruby doc doc-publish
+.PHONY: clean conf-placeholder deps generate build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-ruby doc doc-publish

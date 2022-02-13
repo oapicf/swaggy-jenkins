@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add RTK to manage versioning
 - Add conf-placeholder, local-generate Makefile targets
-- Add test-python, test-ruby Makefile targets
+- Add build-lang, test-lang, publish-lang Makefile targets
+- Add release-* GH Actions
 
 ### Changed
 - Upgrade OpenAPI Generator to v5.4.0
