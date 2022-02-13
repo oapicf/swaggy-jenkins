@@ -44,7 +44,7 @@ generate-langs:
 
 test-javascript:
 	npm install -g babel-cli
-	cd clients/javascript/generated/ && npm install && npm link && npm run build
+	cd clients/javascript/generated/ && npm install && npm link && npm run build && npm run test
 	cd test/javascript/ && npm link ../../clients/javascript/generated/
 	mocha --timeout 5000 test/javascript/
 
