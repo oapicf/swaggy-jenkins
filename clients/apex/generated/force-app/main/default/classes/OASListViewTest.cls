@@ -72,8 +72,8 @@ private class OASListViewTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASListView listView = new OASListView();
-        Map<String, String> propertyMappings = listView.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = listView.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

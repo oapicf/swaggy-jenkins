@@ -34,7 +34,7 @@ import javax.validation.Valid;
   HudsonMasterComputerexecutors.JSON_PROPERTY_PROGRESS,
   HudsonMasterComputerexecutors.JSON_PROPERTY_PROPERTY_CLASS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-11T12:43:14.884276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
 public class HudsonMasterComputerexecutors   {
   public static final String JSON_PROPERTY_CURRENT_EXECUTABLE = "currentExecutable";
   @JsonProperty(JSON_PROPERTY_CURRENT_EXECUTABLE)

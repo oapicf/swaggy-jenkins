@@ -72,8 +72,7 @@ private class OASStringParameterDefinitionTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASStringParameterDefinition stringParameterDefinition = new OASStringParameterDefinition();
-        Map<String, String> propertyMappings = stringParameterDefinition.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('r_type', propertyMappings.get('type'));
+        Map<String, String> x-property-mappings = stringParameterDefinition.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

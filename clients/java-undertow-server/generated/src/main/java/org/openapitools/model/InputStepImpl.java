@@ -24,7 +24,7 @@ import org.openapitools.model.StringParameterDefinition;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-11T12:42:15.452564Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-13T02:18:20.173053Z[Etc/UTC]")
 public class InputStepImpl   {
   
   private String propertyClass;

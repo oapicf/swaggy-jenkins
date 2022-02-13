@@ -17,7 +17,6 @@ from openapi_server.models.pipeline_run import PipelineRun  # noqa: F401
 from openapi_server.models.pipeline_run_node import PipelineRunNode  # noqa: F401
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl  # noqa: F401
 from openapi_server.models.queue_item_impl import QueueItemImpl  # noqa: F401
-from openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE  # noqa: F401
 from openapi_server.models.user import User  # noqa: F401
 
 
@@ -656,7 +655,7 @@ def test_put_pipeline_favorite(client: TestClient):
 
     
     """
-    unknown_base_type = openapi_server.UNKNOWN_BASE_TYPE()
+    body = True
 
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
@@ -665,7 +664,7 @@ def test_put_pipeline_favorite(client: TestClient):
         "PUT",
         "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".format(organization='organization_example', pipeline='pipeline_example'),
         headers=headers,
-        json=unknown_base_type,
+        json=body,
     )
 
     # uncomment below to assert the status code of the HTTP response

@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  * ExtensionClassContainerImpl1
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-11T12:41:57.902127Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-13T02:17:32.113478Z[Etc/UTC]")
 public class ExtensionClassContainerImpl1   {
   @JsonProperty("_class")
   private String propertyClass;

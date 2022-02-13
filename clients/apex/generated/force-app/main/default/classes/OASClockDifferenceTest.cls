@@ -72,7 +72,7 @@ private class OASClockDifferenceTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASClockDifference clockDifference = new OASClockDifference();
-        Map<String, String> propertyMappings = clockDifference.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = clockDifference.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

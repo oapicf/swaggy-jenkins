@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * PipelineBranchesitemlatestRun
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-11T12:55:01.064874Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-13T02:39:21.029908Z[Etc/UTC]")
 public class PipelineBranchesitemlatestRun   {
 
   @JsonProperty("durationInMillis")

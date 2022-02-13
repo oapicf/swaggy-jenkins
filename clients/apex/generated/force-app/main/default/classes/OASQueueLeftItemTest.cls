@@ -72,8 +72,8 @@ private class OASQueueLeftItemTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASQueueLeftItem queueLeftItem = new OASQueueLeftItem();
-        Map<String, String> propertyMappings = queueLeftItem.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = queueLeftItem.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

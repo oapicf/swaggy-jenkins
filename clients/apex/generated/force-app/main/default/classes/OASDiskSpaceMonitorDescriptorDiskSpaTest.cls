@@ -72,7 +72,7 @@ private class OASDiskSpaceMonitorDescriptorDiskSpaTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASDiskSpaceMonitorDescriptorDiskSpa diskSpaceMonitorDescriptorDiskSpace = new OASDiskSpaceMonitorDescriptorDiskSpa();
-        Map<String, String> propertyMappings = diskSpaceMonitorDescriptorDiskSpace.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = diskSpaceMonitorDescriptorDiskSpace.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

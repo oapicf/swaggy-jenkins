@@ -1,33 +1,26 @@
 # coding: utf-8
 
 from __future__ import absolute_import
+import unittest
 
 from flask import json
 from six import BytesIO
 
-from openapi_server.models.body import Body  # noqa: E501
 from openapi_server.models.branch_impl import BranchImpl  # noqa: E501
 from openapi_server.models.favorite_impl import FavoriteImpl  # noqa: E501
+from openapi_server.models.github_organization import GithubOrganization  # noqa: E501
 from openapi_server.models.github_scm import GithubScm  # noqa: E501
 from openapi_server.models.multibranch_pipeline import MultibranchPipeline  # noqa: E501
 from openapi_server.models.organisation import Organisation  # noqa: E501
-from openapi_server.models.organisations import Organisations  # noqa: E501
 from openapi_server.models.pipeline import Pipeline  # noqa: E501
-from openapi_server.models.pipeline_activities import PipelineActivities  # noqa: E501
+from openapi_server.models.pipeline_activity import PipelineActivity  # noqa: E501
 from openapi_server.models.pipeline_folder_impl import PipelineFolderImpl  # noqa: E501
 from openapi_server.models.pipeline_impl import PipelineImpl  # noqa: E501
-from openapi_server.models.pipeline_queue import PipelineQueue  # noqa: E501
 from openapi_server.models.pipeline_run import PipelineRun  # noqa: E501
 from openapi_server.models.pipeline_run_node import PipelineRunNode  # noqa: E501
-from openapi_server.models.pipeline_run_node_steps import PipelineRunNodeSteps  # noqa: E501
-from openapi_server.models.pipeline_run_nodes import PipelineRunNodes  # noqa: E501
-from openapi_server.models.pipeline_runs import PipelineRuns  # noqa: E501
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl  # noqa: E501
-from openapi_server.models.pipelines import Pipelines  # noqa: E501
 from openapi_server.models.queue_item_impl import QueueItemImpl  # noqa: E501
-from openapi_server.models.scm_organisations import ScmOrganisations  # noqa: E501
 from openapi_server.models.user import User  # noqa: E501
-from openapi_server.models.user_favorites import UserFavorites  # noqa: E501
 from openapi_server.test import BaseTestCase
 
 
@@ -39,9 +32,13 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}'.format(organization='organization_example', pipeline='pipeline_example', queue='queue_example'),
-            method='DELETE')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}'.format(organization='organization_example', pipeline='pipeline_example', queue='queue_example'),
+            method='DELETE',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -50,9 +47,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/user/'.format(organization='organization_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/user'.format(organization='organization_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -61,9 +63,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/classes/{class}'.format(_class='_class_example'),
-            method='GET')
+            '/blue/rest/classes/{_class}'.format(_class='_class_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -72,9 +79,13 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+        }
         response = self.client.open(
-            '//jwt-auth/jwks/{key}'.format(key=56),
-            method='GET')
+            '/jwt-auth/jwks/{key}'.format(key=56),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -83,11 +94,15 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
-        query_string = [('expiry_time_in_mins', 56),
-                        ('max_expiry_time_in_mins', 56)]
+        query_string = [('expiryTimeInMins', 56),
+                        ('maxExpiryTimeInMins', 56)]
+        headers = { 
+            'Accept': 'application/json',
+        }
         response = self.client.open(
-            '//jwt-auth/token',
+            '/jwt-auth/token',
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -97,9 +112,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}'.format(organization='organization_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}'.format(organization='organization_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -108,9 +128,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/',
-            method='GET')
+            '/blue/rest/organizations/',
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -119,9 +144,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}'.format(organization='organization_example', pipeline='pipeline_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}'.format(organization='organization_example', pipeline='pipeline_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -130,9 +160,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/activities'.format(organization='organization_example', pipeline='pipeline_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities'.format(organization='organization_example', pipeline='pipeline_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -141,9 +176,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/'.format(organization='organization_example', pipeline='pipeline_example', branch='branch_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}'.format(organization='organization_example', pipeline='pipeline_example', branch='branch_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -152,9 +192,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}'.format(organization='organization_example', pipeline='pipeline_example', branch='branch_example', run='run_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}'.format(organization='organization_example', pipeline='pipeline_example', branch='branch_example', run='run_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -163,9 +208,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/branches'.format(organization='organization_example', pipeline='pipeline_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches'.format(organization='organization_example', pipeline='pipeline_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -174,9 +224,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{folder}/'.format(organization='organization_example', folder='folder_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{folder}'.format(organization='organization_example', folder='folder_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -185,9 +240,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}'.format(organization='organization_example', pipeline='pipeline_example', folder='folder_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}'.format(organization='organization_example', pipeline='pipeline_example', folder='folder_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -196,9 +256,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/queue'.format(organization='organization_example', pipeline='pipeline_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue'.format(organization='organization_example', pipeline='pipeline_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -207,9 +272,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -220,9 +290,14 @@ class TestBlueOceanController(BaseTestCase):
         """
         query_string = [('start', 56),
                         ('download', True)]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -232,9 +307,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -243,9 +323,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example', step='step_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example', step='step_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -254,9 +339,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example', step='step_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example', step='step_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -265,9 +355,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps'.format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -276,9 +371,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -287,9 +387,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'.format(organization='organization_example', pipeline='pipeline_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'.format(organization='organization_example', pipeline='pipeline_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -298,9 +403,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/'.format(organization='organization_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/pipelines'.format(organization='organization_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -309,9 +419,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/scm/{scm}'.format(organization='organization_example', scm='scm_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/scm/{scm}'.format(organization='organization_example', scm='scm_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -320,12 +435,17 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
-        query_string = [('credential_id', 'credential_id_example'),
-                        ('page_size', 56),
-                        ('page_number', 56)]
+        query_string = [('credentialId', 'credential_id_example'),
+                        ('pageSize', 56),
+                        ('pageNumber', 56)]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories'.format(organization='organization_example', scm='scm_example', scm_organisation='scm_organisation_example'),
+            '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scm_organisation}/repositories'.format(organization='organization_example', scm='scm_example', scm_organisation='scm_organisation_example'),
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -335,10 +455,15 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
-        query_string = [('credential_id', 'credential_id_example')]
+        query_string = [('credentialId', 'credential_id_example')]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}'.format(organization='organization_example', scm='scm_example', scm_organisation='scm_organisation_example', repository='repository_example'),
+            '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scm_organisation}/repositories/{repository}'.format(organization='organization_example', scm='scm_example', scm_organisation='scm_organisation_example', repository='repository_example'),
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -348,10 +473,15 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
-        query_string = [('credential_id', 'credential_id_example')]
+        query_string = [('credentialId', 'credential_id_example')]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/scm/{scm}/organizations'.format(organization='organization_example', scm='scm_example'),
+            '/blue/rest/organizations/{organization}/scm/{scm}/organizations'.format(organization='organization_example', scm='scm_example'),
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -361,9 +491,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/users/{user}'.format(organization='organization_example', user='user_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/users/{user}'.format(organization='organization_example', user='user_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -372,9 +507,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/users/{user}/favorites'.format(user='user_example'),
-            method='GET')
+            '/blue/rest/users/{user}/favorites'.format(user='user_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -383,9 +523,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/users/'.format(organization='organization_example'),
-            method='GET')
+            '/blue/rest/organizations/{organization}/users'.format(organization='organization_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -394,9 +539,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
-            method='POST')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+            method='POST',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -405,9 +555,14 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'.format(organization='organization_example', pipeline='pipeline_example'),
-            method='POST')
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'.format(organization='organization_example', pipeline='pipeline_example'),
+            method='POST',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -416,10 +571,16 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
-        body = Body()
+        body = True
+        headers = { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'.format(organization='organization_example', pipeline='pipeline_example'),
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'.format(organization='organization_example', pipeline='pipeline_example'),
             method='PUT',
+            headers=headers,
             data=json.dumps(body),
             content_type='application/json')
         self.assert200(response,
@@ -431,10 +592,15 @@ class TestBlueOceanController(BaseTestCase):
         
         """
         query_string = [('blocking', 'blocking_example'),
-                        ('time_out_in_secs', 56)]
+                        ('timeOutInSecs', 56)]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+            '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop'.format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
             method='PUT',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -445,9 +611,14 @@ class TestBlueOceanController(BaseTestCase):
         
         """
         query_string = [('q', 'q_example')]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/search/',
+            '/blue/rest/search/',
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -458,14 +629,18 @@ class TestBlueOceanController(BaseTestCase):
         
         """
         query_string = [('q', 'q_example')]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//blue/rest/classes/',
+            '/blue/rest/classes/',
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
 
 if __name__ == '__main__':
-    import unittest
     unittest.main()

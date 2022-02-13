@@ -72,8 +72,8 @@ private class OASPipelineBranchesitempullRequestTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineBranchesitempullRequest pipelineBranchesitempullRequest = new OASPipelineBranchesitempullRequest();
-        Map<String, String> propertyMappings = pipelineBranchesitempullRequest.getPropertyMappings();
-        System.assertEquals('links', propertyMappings.get('_links'));
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = pipelineBranchesitempullRequest.getx-property-mappings();
+        System.assertEquals('links', x-property-mappings.get('_links'));
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

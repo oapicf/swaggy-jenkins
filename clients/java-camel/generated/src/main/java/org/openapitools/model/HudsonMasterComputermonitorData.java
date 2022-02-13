@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * HudsonMasterComputermonitorData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-11T12:42:40.812684Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
 public class HudsonMasterComputermonitorData   {
 
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")

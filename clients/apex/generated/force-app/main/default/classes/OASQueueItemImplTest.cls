@@ -72,7 +72,7 @@ private class OASQueueItemImplTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASQueueItemImpl queueItemImpl = new OASQueueItemImpl();
-        Map<String, String> propertyMappings = queueItemImpl.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = queueItemImpl.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

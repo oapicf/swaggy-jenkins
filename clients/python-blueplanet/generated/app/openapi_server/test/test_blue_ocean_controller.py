@@ -19,7 +19,6 @@ from app.openapi_server.models.pipeline_run import PipelineRun  # noqa: E501
 from app.openapi_server.models.pipeline_run_node import PipelineRunNode  # noqa: E501
 from app.openapi_server.models.pipeline_step_impl import PipelineStepImpl  # noqa: E501
 from app.openapi_server.models.queue_item_impl import QueueItemImpl  # noqa: E501
-from app.openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE  # noqa: E501
 from app.openapi_server.models.user import User  # noqa: E501
 from openapi_server.test import BaseTestCase
 
@@ -409,7 +408,7 @@ class TestBlueOceanController(BaseTestCase):
 
         
         """
-        body = openapi_server.UNKNOWN_BASE_TYPE()
+        body = True
         response = self.client.open(
             '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'.format(organization='organization_example', pipeline='pipeline_example'),
             method='PUT',

@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-11T12:43:06.166399Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-02-13T02:20:37.065080Z[Etc/UTC]")
 public class ComputerApiServiceImpl implements ComputerApiService {
       @Override
       public Response getComputer(Integer depth, SecurityContext securityContext) {

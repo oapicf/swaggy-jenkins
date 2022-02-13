@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-11T12:43:55.722012Z[Etc/UTC]")public class PipelineBranchesitem   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineBranchesitem   {
   
   private @Valid String displayName;
   private @Valid Integer estimatedDurationInMillis;

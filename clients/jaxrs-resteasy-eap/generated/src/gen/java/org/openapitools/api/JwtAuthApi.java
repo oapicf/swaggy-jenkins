@@ -22,7 +22,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-11T12:43:44.828365Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
 public interface JwtAuthApi  {
 
     @GET

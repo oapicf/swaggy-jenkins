@@ -72,8 +72,8 @@ private class OASFavoriteImplTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASFavoriteImpl favoriteImpl = new OASFavoriteImpl();
-        Map<String, String> propertyMappings = favoriteImpl.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('links', propertyMappings.get('_links'));
+        Map<String, String> x-property-mappings = favoriteImpl.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
+        System.assertEquals('links', x-property-mappings.get('_links'));
     }
 }

@@ -72,7 +72,7 @@ private class OASSwapSpaceMonitorMemoryUsage2Test {
     @isTest
     private static void maintainRenamedProperties() {
         OASSwapSpaceMonitorMemoryUsage2 swapSpaceMonitorMemoryUsage2 = new OASSwapSpaceMonitorMemoryUsage2();
-        Map<String, String> propertyMappings = swapSpaceMonitorMemoryUsage2.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = swapSpaceMonitorMemoryUsage2.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

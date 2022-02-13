@@ -72,8 +72,8 @@ private class OASCauseActionTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASCauseAction causeAction = new OASCauseAction();
-        Map<String, String> propertyMappings = causeAction.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = causeAction.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

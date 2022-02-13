@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun
 import org.openapitools.model.PipelineRunNode
 import org.openapitools.model.PipelineStepImpl
 import org.openapitools.model.QueueItemImpl
-import org.openapitools.model.UNKNOWN_BASE_TYPE
 import org.openapitools.model.User
 import org.junit.jupiter.api.Test
 import org.springframework.http.ResponseEntity
@@ -519,8 +518,8 @@ class BlueApiTest {
     fun putPipelineFavoriteTest() {
         val organization:kotlin.String = TODO()
         val pipeline:kotlin.String = TODO()
-        val UNKNOWN_BASE_TYPE:UNKNOWN_BASE_TYPE = TODO()
-        val response: ResponseEntity<FavoriteImpl> = api.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE)
+        val body:kotlin.Boolean = TODO()
+        val response: ResponseEntity<FavoriteImpl> = api.putPipelineFavorite(organization, pipeline, body)
 
         // TODO: test validations
     }

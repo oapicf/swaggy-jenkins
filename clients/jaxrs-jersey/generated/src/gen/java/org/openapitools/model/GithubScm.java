@@ -33,7 +33,7 @@ import javax.validation.Valid;
   GithubScm.JSON_PROPERTY_ID,
   GithubScm.JSON_PROPERTY_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-11T12:43:14.884276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
 public class GithubScm   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

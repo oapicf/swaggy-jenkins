@@ -72,7 +72,7 @@ private class OASPipelineRunartifactsTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineRunartifacts pipelineRunartifacts = new OASPipelineRunartifacts();
-        Map<String, String> propertyMappings = pipelineRunartifacts.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = pipelineRunartifacts.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

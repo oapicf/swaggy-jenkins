@@ -427,7 +427,7 @@ test_that("PutPipelineFavorite", {
   # Favorite/unfavorite a pipeline
   # @param organization character Name of the organization
   # @param pipeline character Name of the pipeline
-  # @param UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+  # @param body character Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   # @return [FavoriteImpl]
 
   # uncomment below to test the operation

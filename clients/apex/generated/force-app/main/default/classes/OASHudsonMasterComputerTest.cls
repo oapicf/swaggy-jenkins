@@ -72,8 +72,8 @@ private class OASHudsonMasterComputerTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASHudsonMasterComputer hudsonMasterComputer = new OASHudsonMasterComputer();
-        Map<String, String> propertyMappings = hudsonMasterComputer.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = hudsonMasterComputer.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

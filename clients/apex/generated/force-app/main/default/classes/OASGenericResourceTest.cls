@@ -72,7 +72,7 @@ private class OASGenericResourceTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASGenericResource genericResource = new OASGenericResource();
-        Map<String, String> propertyMappings = genericResource.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = genericResource.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

@@ -30,7 +30,7 @@ import javax.validation.Valid;
   DefaultCrumbIssuer.JSON_PROPERTY_CRUMB,
   DefaultCrumbIssuer.JSON_PROPERTY_CRUMB_REQUEST_FIELD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-11T12:43:14.884276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
 public class DefaultCrumbIssuer   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

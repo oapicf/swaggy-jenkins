@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * PipelineActivity
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-11T12:42:06.724843Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-02-13T02:17:56.963279Z[Etc/UTC]")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineActivity   {
   @JsonProperty("_class")

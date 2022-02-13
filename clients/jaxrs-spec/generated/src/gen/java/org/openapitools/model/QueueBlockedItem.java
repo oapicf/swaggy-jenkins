@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("QueueBlockedItem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-11T12:43:55.722012Z[Etc/UTC]")public class QueueBlockedItem   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class QueueBlockedItem   {
   
   private @Valid String propertyClass;
   private @Valid List<CauseAction> actions = new ArrayList<CauseAction>();

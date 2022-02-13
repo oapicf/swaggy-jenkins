@@ -13,7 +13,7 @@ private class OASRemoteAccessApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'depth' => Integer.getExample()
+            'depth' => ''
         };
 
         OASClient client;
@@ -30,35 +30,6 @@ private class OASRemoteAccessApiTest {
         res.setBody(js);
         expectedResponse = OASComputerSet.getExample();
         response = (OASComputerSet) api.getComputer(params);
-        System.assertEquals(expectedResponse, response);
-    }
-
-    /**
-     * 
-     *
-     * Retrieve CSRF protection token
-     */
-    @isTest
-    private static void getCrumbTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        OASClient client;
-        OASRemoteAccessApi api;
-        OASDefaultCrumbIssuer response;
-        OASDefaultCrumbIssuer expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASRemoteAccessApi(client);
-
-        js = JSON.serialize(OASDefaultCrumbIssuer.getExample());
-        res.setHeader('Content-Type', 'application/json');
-        res.setBody(js);
-        expectedResponse = OASDefaultCrumbIssuer.getExample();
-        response = (OASDefaultCrumbIssuer) api.getCrumb();
         System.assertEquals(expectedResponse, response);
     }
 

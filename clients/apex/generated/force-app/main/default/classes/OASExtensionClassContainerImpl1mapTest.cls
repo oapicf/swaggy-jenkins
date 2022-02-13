@@ -72,9 +72,9 @@ private class OASExtensionClassContainerImpl1mapTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASExtensionClassContainerImpl1map extensionClassContainerImpl1map = new OASExtensionClassContainerImpl1map();
-        Map<String, String> propertyMappings = extensionClassContainerImpl1map.getPropertyMappings();
-        System.assertEquals('ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl', propertyMappings.get('io.jenkins.blueocean.service.embedded.rest.PipelineImpl'));
-        System.assertEquals('ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl', propertyMappings.get('io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl'));
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = extensionClassContainerImpl1map.getx-property-mappings();
+        System.assertEquals('ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl', x-property-mappings.get('io.jenkins.blueocean.service.embedded.rest.PipelineImpl'));
+        System.assertEquals('ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl', x-property-mappings.get('io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl'));
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

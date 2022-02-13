@@ -16,7 +16,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-11T12:41:49.999623Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
 public abstract class ApiApiService {
     public abstract Response getJenkins() throws NotFoundException;
     public abstract Response headJenkins() throws NotFoundException;

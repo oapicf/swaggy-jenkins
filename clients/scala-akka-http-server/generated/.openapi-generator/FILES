@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 build.sbt
 src/main/scala/org/openapitools/server/AkkaHttpHelper.scala

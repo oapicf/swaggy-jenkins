@@ -72,7 +72,7 @@ private class OASInputStepImpllinksTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASInputStepImpllinks inputStepImpllinks = new OASInputStepImpllinks();
-        Map<String, String> propertyMappings = inputStepImpllinks.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = inputStepImpllinks.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

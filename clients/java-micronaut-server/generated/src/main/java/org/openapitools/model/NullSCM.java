@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   NullSCM.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("NullSCM")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-13T02:16:43.247289Z[Etc/UTC]")
 @Introspected
 public class NullSCM {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

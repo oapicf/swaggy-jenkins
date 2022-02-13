@@ -72,7 +72,7 @@ private class OASFavoriteImpllinksTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASFavoriteImpllinks favoriteImpllinks = new OASFavoriteImpllinks();
-        Map<String, String> propertyMappings = favoriteImpllinks.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = favoriteImpllinks.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

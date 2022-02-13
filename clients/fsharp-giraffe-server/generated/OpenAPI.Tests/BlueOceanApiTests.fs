@@ -30,7 +30,6 @@ open OpenAPI.Model.PipelineRun
 open OpenAPI.Model.PipelineRunNode
 open OpenAPI.Model.PipelineStepImpl
 open OpenAPI.Model.QueueItemImpl
-open OpenAPI.Model.UNKNOWN_BASE_TYPE
 open OpenAPI.Model.User
 
 module BlueOceanApiHandlerTests =
@@ -1768,8 +1767,8 @@ module BlueOceanApiHandlerTests =
 
       // use an example requestBody provided by the spec
       let examples = Map.empty.Add("application/json", getPutPipelineFavoriteExample "application/json")
-      // or pass a body of type UNKNOWN_BASE_TYPE
-      let body = obj() :?> UNKNOWN_BASE_TYPE |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
+      // or pass a body of type bool
+      let body = obj() :?> bool |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
       body
         |> HttpPut client path
@@ -1790,8 +1789,8 @@ module BlueOceanApiHandlerTests =
 
       // use an example requestBody provided by the spec
       let examples = Map.empty.Add("application/json", getPutPipelineFavoriteExample "application/json")
-      // or pass a body of type UNKNOWN_BASE_TYPE
-      let body = obj() :?> UNKNOWN_BASE_TYPE |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
+      // or pass a body of type bool
+      let body = obj() :?> bool |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
       body
         |> HttpPut client path
@@ -1812,8 +1811,8 @@ module BlueOceanApiHandlerTests =
 
       // use an example requestBody provided by the spec
       let examples = Map.empty.Add("application/json", getPutPipelineFavoriteExample "application/json")
-      // or pass a body of type UNKNOWN_BASE_TYPE
-      let body = obj() :?> UNKNOWN_BASE_TYPE |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
+      // or pass a body of type bool
+      let body = obj() :?> bool |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
       body
         |> HttpPut client path

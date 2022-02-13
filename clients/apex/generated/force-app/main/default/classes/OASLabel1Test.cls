@@ -72,7 +72,7 @@ private class OASLabel1Test {
     @isTest
     private static void maintainRenamedProperties() {
         OASLabel1 label1 = new OASLabel1();
-        Map<String, String> propertyMappings = label1.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = label1.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

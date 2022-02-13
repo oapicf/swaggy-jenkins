@@ -72,8 +72,8 @@ private class OASGithubScmTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASGithubScm githubScm = new OASGithubScm();
-        Map<String, String> propertyMappings = githubScm.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('links', propertyMappings.get('_links'));
+        Map<String, String> x-property-mappings = githubScm.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
+        System.assertEquals('links', x-property-mappings.get('_links'));
     }
 }

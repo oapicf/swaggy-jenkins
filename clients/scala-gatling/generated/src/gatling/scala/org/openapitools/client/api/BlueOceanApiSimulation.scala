@@ -372,8 +372,8 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(getPipelineRunLogPATHFeeder)
         .exec(http("getPipelineRunLog")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/log")
-        .queryParam("start","${start}")
         .queryParam("download","${download}")
+        .queryParam("start","${start}")
 )
 
     // Run scngetPipelineRunLog with warm up and reach a constant rate for entire duration
@@ -501,9 +501,9 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(getSCMOrganisationRepositoriesPATHFeeder)
         .exec(http("getSCMOrganisationRepositories")
         .httpRequest("GET","/blue/rest/organizations/${organization}/scm/${scm}/organizations/${scmOrganisation}/repositories")
-        .queryParam("credentialId","${credentialId}")
         .queryParam("pageSize","${pageSize}")
         .queryParam("pageNumber","${pageNumber}")
+        .queryParam("credentialId","${credentialId}")
 )
 
     // Run scngetSCMOrganisationRepositories with warm up and reach a constant rate for entire duration

@@ -13,7 +13,7 @@ import org.openapitools.model.StringParameterDefinition;
 /**
  * InputStepImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-11T12:41:49.999623Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
 public class InputStepImpl   {
   @JsonProperty("_class")
   private String propertyClass;

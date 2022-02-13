@@ -72,9 +72,9 @@ private class OASExtensionClassContainerImpl1Test {
     @isTest
     private static void maintainRenamedProperties() {
         OASExtensionClassContainerImpl1 extensionClassContainerImpl1 = new OASExtensionClassContainerImpl1();
-        Map<String, String> propertyMappings = extensionClassContainerImpl1.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('links', propertyMappings.get('_links'));
-        System.assertEquals('r_map', propertyMappings.get('map'));
+        Map<String, String> x-property-mappings = extensionClassContainerImpl1.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
+        System.assertEquals('links', x-property-mappings.get('_links'));
+        System.assertEquals('r_map', x-property-mappings.get('map'));
     }
 }

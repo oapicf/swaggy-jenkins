@@ -72,7 +72,7 @@ private class OASHudsonassignedLabelsTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASHudsonassignedLabels hudsonassignedLabels = new OASHudsonassignedLabels();
-        Map<String, String> propertyMappings = hudsonassignedLabels.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = hudsonassignedLabels.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

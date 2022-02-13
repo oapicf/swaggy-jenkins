@@ -72,7 +72,7 @@ private class OASGithubFileTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASGithubFile githubFile = new OASGithubFile();
-        Map<String, String> propertyMappings = githubFile.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = githubFile.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

@@ -72,8 +72,7 @@ private class OASPipelineBranchesitemlatestRunTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineBranchesitemlatestRun pipelineBranchesitemlatestRun = new OASPipelineBranchesitemlatestRun();
-        Map<String, String> propertyMappings = pipelineBranchesitemlatestRun.getPropertyMappings();
-        System.assertEquals('r_type', propertyMappings.get('type'));
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = pipelineBranchesitemlatestRun.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

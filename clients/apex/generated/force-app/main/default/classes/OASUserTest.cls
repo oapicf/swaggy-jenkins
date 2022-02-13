@@ -72,7 +72,7 @@ private class OASUserTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASUser user = new OASUser();
-        Map<String, String> propertyMappings = user.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = user.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

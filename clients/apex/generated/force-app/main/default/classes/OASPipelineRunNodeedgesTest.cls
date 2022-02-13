@@ -72,7 +72,7 @@ private class OASPipelineRunNodeedgesTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineRunNodeedges pipelineRunNodeedges = new OASPipelineRunNodeedges();
-        Map<String, String> propertyMappings = pipelineRunNodeedges.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = pipelineRunNodeedges.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

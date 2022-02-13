@@ -72,7 +72,7 @@ private class OASGithubRepositorypermissionsTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASGithubRepositorypermissions githubRepositorypermissions = new OASGithubRepositorypermissions();
-        Map<String, String> propertyMappings = githubRepositorypermissions.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = githubRepositorypermissions.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

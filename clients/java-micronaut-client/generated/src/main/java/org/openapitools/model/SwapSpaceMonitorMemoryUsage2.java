@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   SwapSpaceMonitorMemoryUsage2.JSON_PROPERTY_TOTAL_SWAP_SPACE
 })
 @JsonTypeName("SwapSpaceMonitorMemoryUsage2")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-11T12:41:29.860693Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-13T02:16:15.805366Z[Etc/UTC]")
 @Introspected
 public class SwapSpaceMonitorMemoryUsage2 {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

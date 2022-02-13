@@ -72,7 +72,7 @@ private class OASFreeStyleProjectactionsTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASFreeStyleProjectactions freeStyleProjectactions = new OASFreeStyleProjectactions();
-        Map<String, String> propertyMappings = freeStyleProjectactions.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = freeStyleProjectactions.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

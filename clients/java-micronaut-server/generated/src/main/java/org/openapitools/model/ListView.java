@@ -37,7 +37,7 @@ import javax.annotation.Generated;
   ListView.JSON_PROPERTY_URL
 })
 @JsonTypeName("ListView")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-13T02:16:43.247289Z[Etc/UTC]")
 @Introspected
 public class ListView {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

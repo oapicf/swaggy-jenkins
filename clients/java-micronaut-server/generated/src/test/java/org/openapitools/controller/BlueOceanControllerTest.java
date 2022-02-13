@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import io.micronaut.http.client.HttpClient;
@@ -1701,10 +1700,10 @@ public class BlueOceanControllerTest {
         // given
         String organization = "example";
         String pipeline = "example";
-        UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = null;
+        Boolean _body = false;
 
         // when
-        FavoriteImpl result = controller.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE).block();
+        FavoriteImpl result = controller.putPipelineFavorite(organization, pipeline, _body).block();
 
         // then
         Assertions.assertTrue(true);
@@ -1720,7 +1719,7 @@ public class BlueOceanControllerTest {
     @Disabled("Not Implemented")
     void putPipelineFavoriteClientApiTest() throws IOException {
         // given
-        UNKNOWN_BASE_TYPE body = null;
+        Boolean body = false;
         String uri = UriTemplate.of("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite").expand(new HashMap<String, Object>(){{
             // Fill in the path variables
             put("organization", "example");

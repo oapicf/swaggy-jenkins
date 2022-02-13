@@ -72,7 +72,7 @@ private class OASUnlabeledLoadStatisticsTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASUnlabeledLoadStatistics unlabeledLoadStatistics = new OASUnlabeledLoadStatistics();
-        Map<String, String> propertyMappings = unlabeledLoadStatistics.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = unlabeledLoadStatistics.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

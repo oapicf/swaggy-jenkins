@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   Label1.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("Label1")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-13T02:16:43.247289Z[Etc/UTC]")
 @Introspected
 public class Label1 {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

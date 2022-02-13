@@ -72,7 +72,7 @@ private class OASPipelineFolderImplTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineFolderImpl pipelineFolderImpl = new OASPipelineFolderImpl();
-        Map<String, String> propertyMappings = pipelineFolderImpl.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = pipelineFolderImpl.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

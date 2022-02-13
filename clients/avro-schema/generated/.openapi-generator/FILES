@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 AllView.avsc
 BranchImpl.avsc
 BranchImpllinks.avsc

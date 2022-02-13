@@ -72,9 +72,8 @@ private class OASPipelineRunTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineRun pipelineRun = new OASPipelineRun();
-        Map<String, String> propertyMappings = pipelineRun.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('r_type', propertyMappings.get('type'));
+        Map<String, String> x-property-mappings = pipelineRun.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest
@@ -93,7 +92,7 @@ private class OASPipelineRunTest {
         System.assertEquals(null, pipelineRun.runSummary);
         System.assertEquals(null, pipelineRun.startTime);
         System.assertEquals(null, pipelineRun.state);
-        System.assertEquals(null, pipelineRun.r_type);
+        System.assertEquals(null, pipelineRun.type);
         System.assertEquals(null, pipelineRun.commitId);
     }
 }

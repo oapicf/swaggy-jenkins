@@ -72,9 +72,9 @@ private class OASGithubRepositoriesTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASGithubRepositories githubRepositories = new OASGithubRepositories();
-        Map<String, String> propertyMappings = githubRepositories.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('links', propertyMappings.get('_links'));
+        Map<String, String> x-property-mappings = githubRepositories.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
+        System.assertEquals('links', x-property-mappings.get('_links'));
     }
 
     @isTest

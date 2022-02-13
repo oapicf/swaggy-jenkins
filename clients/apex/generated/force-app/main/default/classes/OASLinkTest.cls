@@ -72,7 +72,7 @@ private class OASLinkTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASLink link = new OASLink();
-        Map<String, String> propertyMappings = link.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = link.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

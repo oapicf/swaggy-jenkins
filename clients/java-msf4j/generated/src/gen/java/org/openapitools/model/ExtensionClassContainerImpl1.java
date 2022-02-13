@@ -11,7 +11,7 @@ import org.openapitools.model.ExtensionClassContainerImpl1map;
 /**
  * ExtensionClassContainerImpl1
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-11T12:41:49.999623Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
 public class ExtensionClassContainerImpl1   {
   @JsonProperty("_class")
   private String propertyClass;

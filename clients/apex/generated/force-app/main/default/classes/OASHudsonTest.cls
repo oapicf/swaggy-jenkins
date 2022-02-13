@@ -72,8 +72,8 @@ private class OASHudsonTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASHudson hudson = new OASHudson();
-        Map<String, String> propertyMappings = hudson.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = hudson.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

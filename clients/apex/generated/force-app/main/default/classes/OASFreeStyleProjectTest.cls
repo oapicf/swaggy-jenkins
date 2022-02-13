@@ -72,8 +72,8 @@ private class OASFreeStyleProjectTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASFreeStyleProject freeStyleProject = new OASFreeStyleProject();
-        Map<String, String> propertyMappings = freeStyleProject.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = freeStyleProject.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

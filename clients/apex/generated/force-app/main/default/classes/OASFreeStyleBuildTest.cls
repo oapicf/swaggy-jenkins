@@ -72,9 +72,9 @@ private class OASFreeStyleBuildTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASFreeStyleBuild freeStyleBuild = new OASFreeStyleBuild();
-        Map<String, String> propertyMappings = freeStyleBuild.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('r_number', propertyMappings.get('number'));
+        Map<String, String> x-property-mappings = freeStyleBuild.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
+        System.assertEquals('r_number', x-property-mappings.get('number'));
     }
 
     @isTest

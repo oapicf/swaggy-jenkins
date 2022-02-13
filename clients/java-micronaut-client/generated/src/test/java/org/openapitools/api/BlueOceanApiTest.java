@@ -14,7 +14,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
@@ -562,9 +561,9 @@ public class BlueOceanApiTest {
     public void putPipelineFavoriteTest() {
         String organization = null;
         String pipeline = null;
-        UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = null;
-        // FavoriteImpl response = api.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE).block();
-        // Mono<FavoriteImpl> asyncResponse = api.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+        Boolean _body = null;
+        // FavoriteImpl response = api.putPipelineFavorite(organization, pipeline, _body).block();
+        // Mono<FavoriteImpl> asyncResponse = api.putPipelineFavorite(organization, pipeline, _body);
         // TODO: test validations
     }
 

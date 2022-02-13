@@ -72,8 +72,8 @@ private class OASQueueBlockedItemTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASQueueBlockedItem queueBlockedItem = new OASQueueBlockedItem();
-        Map<String, String> propertyMappings = queueBlockedItem.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = queueBlockedItem.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

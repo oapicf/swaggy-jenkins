@@ -38,7 +38,7 @@ import javax.validation.Valid;
   HudsonMasterComputermonitorData.JSON_PROPERTY_HUDSON_NODE_MONITORS_CLOCK_MONITOR,
   HudsonMasterComputermonitorData.JSON_PROPERTY_PROPERTY_CLASS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-11T12:43:14.884276Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
 public class HudsonMasterComputermonitorData   {
   public static final String JSON_PROPERTY_HUDSON_NODE_MONITORS_SWAP_SPACE_MONITOR = "hudson.node_monitors.SwapSpaceMonitor";
   @JsonProperty(JSON_PROPERTY_HUDSON_NODE_MONITORS_SWAP_SPACE_MONITOR)

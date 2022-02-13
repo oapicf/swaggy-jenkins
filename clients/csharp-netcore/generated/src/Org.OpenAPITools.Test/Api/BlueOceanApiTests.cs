@@ -512,8 +512,8 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string organization = null;
             //string pipeline = null;
-            //UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = null;
-            //var response = instance.PutPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+            //bool body = null;
+            //var response = instance.PutPipelineFavorite(organization, pipeline, body);
             //Assert.IsType<FavoriteImpl>(response);
         }
 

@@ -3,33 +3,6 @@ private class OASBlueOceanApiTest {
     /**
      * 
      *
-     * Search for any resource details
-     */
-    @isTest
-    private static void callSearchTest() {
-        HttpResponse res = new HttpResponse();
-        res.setStatusCode(200);
-        res.setStatus('OK');
-        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
-
-        Map<String, Object> params = new Map<String, Object>{
-            'q' => 'null'
-        };
-
-        OASClient client;
-        OASBlueOceanApi api;
-        String response;
-        String expectedResponse;
-        String js = '';
-
-        client = new OASClient();
-        api = new OASBlueOceanApi(client);
-        api.callSearch(params);
-    }
-
-    /**
-     * 
-     *
      * Delete queue item from an organization pipeline queue
      */
     @isTest
@@ -127,7 +100,7 @@ private class OASBlueOceanApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'key' => Integer.getExample()
+            'key' => ''
         };
 
         OASClient client;
@@ -154,8 +127,8 @@ private class OASBlueOceanApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'expiryTimeInMins' => Integer.getExample(),
-            'maxExpiryTimeInMins' => Integer.getExample()
+            'expiryTimeInMins' => '',
+            'maxExpiryTimeInMins' => ''
         };
 
         OASClient client;
@@ -216,18 +189,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASOrganisations response;
-        OASOrganisations expectedResponse;
+        List<OASOrganisation> response;
+        List<OASOrganisation> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASOrganisations.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASOrganisations.getExample();
-        response = (OASOrganisations) api.getOrganisations();
+        expectedResponse = List.getExample();
+        response = (List<OASOrganisation>) api.getOrganisations();
         System.assertEquals(expectedResponse, response);
     }
 
@@ -284,18 +257,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASPipelineActivities response;
-        OASPipelineActivities expectedResponse;
+        List<OASPipelineActivity> response;
+        List<OASPipelineActivity> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASPipelineActivities.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASPipelineActivities.getExample();
-        response = (OASPipelineActivities) api.getPipelineActivities(params);
+        expectedResponse = List.getExample();
+        response = (List<OASPipelineActivity>) api.getPipelineActivities(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -492,18 +465,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASPipelineQueue response;
-        OASPipelineQueue expectedResponse;
+        List<OASQueueItemImpl> response;
+        List<OASQueueItemImpl> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASPipelineQueue.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASPipelineQueue.getExample();
-        response = (OASPipelineQueue) api.getPipelineQueue(params);
+        expectedResponse = List.getExample();
+        response = (List<OASQueueItemImpl>) api.getPipelineQueue(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -558,8 +531,8 @@ private class OASBlueOceanApiTest {
             'organization' => 'null',
             'pipeline' => 'null',
             'run' => 'null',
-            'start' => Integer.getExample(),
-            'download' => Boolean.getExample()
+            'start' => '',
+            'download' => ''
         };
 
         OASClient client;
@@ -698,18 +671,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASPipelineRunNodeSteps response;
-        OASPipelineRunNodeSteps expectedResponse;
+        List<OASPipelineStepImpl> response;
+        List<OASPipelineStepImpl> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASPipelineRunNodeSteps.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASPipelineRunNodeSteps.getExample();
-        response = (OASPipelineRunNodeSteps) api.getPipelineRunNodeSteps(params);
+        expectedResponse = List.getExample();
+        response = (List<OASPipelineStepImpl>) api.getPipelineRunNodeSteps(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -733,18 +706,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASPipelineRunNodes response;
-        OASPipelineRunNodes expectedResponse;
+        List<OASPipelineRunNode> response;
+        List<OASPipelineRunNode> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASPipelineRunNodes.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASPipelineRunNodes.getExample();
-        response = (OASPipelineRunNodes) api.getPipelineRunNodes(params);
+        expectedResponse = List.getExample();
+        response = (List<OASPipelineRunNode>) api.getPipelineRunNodes(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -767,18 +740,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASPipelineRuns response;
-        OASPipelineRuns expectedResponse;
+        List<OASPipelineRun> response;
+        List<OASPipelineRun> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASPipelineRuns.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASPipelineRuns.getExample();
-        response = (OASPipelineRuns) api.getPipelineRuns(params);
+        expectedResponse = List.getExample();
+        response = (List<OASPipelineRun>) api.getPipelineRuns(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -800,18 +773,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASPipelines response;
-        OASPipelines expectedResponse;
+        List<OASPipeline> response;
+        List<OASPipeline> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASPipelines.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASPipelines.getExample();
-        response = (OASPipelines) api.getPipelines(params);
+        expectedResponse = List.getExample();
+        response = (List<OASPipeline>) api.getPipelines(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -866,24 +839,24 @@ private class OASBlueOceanApiTest {
             'scm' => 'null',
             'scmOrganisation' => 'null',
             'credentialId' => 'null',
-            'pageSize' => Integer.getExample(),
-            'pageNumber' => Integer.getExample()
+            'pageSize' => '',
+            'pageNumber' => ''
         };
 
         OASClient client;
         OASBlueOceanApi api;
-        OASScmOrganisations response;
-        OASScmOrganisations expectedResponse;
+        List<OASGithubOrganization> response;
+        List<OASGithubOrganization> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASScmOrganisations.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASScmOrganisations.getExample();
-        response = (OASScmOrganisations) api.getSCMOrganisationRepositories(params);
+        expectedResponse = List.getExample();
+        response = (List<OASGithubOrganization>) api.getSCMOrganisationRepositories(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -909,18 +882,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASScmOrganisations response;
-        OASScmOrganisations expectedResponse;
+        List<OASGithubOrganization> response;
+        List<OASGithubOrganization> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASScmOrganisations.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASScmOrganisations.getExample();
-        response = (OASScmOrganisations) api.getSCMOrganisationRepository(params);
+        expectedResponse = List.getExample();
+        response = (List<OASGithubOrganization>) api.getSCMOrganisationRepository(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -944,18 +917,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASScmOrganisations response;
-        OASScmOrganisations expectedResponse;
+        List<OASGithubOrganization> response;
+        List<OASGithubOrganization> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASScmOrganisations.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASScmOrganisations.getExample();
-        response = (OASScmOrganisations) api.getSCMOrganisations(params);
+        expectedResponse = List.getExample();
+        response = (List<OASGithubOrganization>) api.getSCMOrganisations(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -1011,18 +984,18 @@ private class OASBlueOceanApiTest {
 
         OASClient client;
         OASBlueOceanApi api;
-        OASUserFavorites response;
-        OASUserFavorites expectedResponse;
+        List<OASFavoriteImpl> response;
+        List<OASFavoriteImpl> expectedResponse;
         String js = '';
 
         client = new OASClient();
         api = new OASBlueOceanApi(client);
 
-        js = JSON.serialize(OASUserFavorites.getExample());
+        js = JSON.serialize(List.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = OASUserFavorites.getExample();
-        response = (OASUserFavorites) api.getUserFavorites(params);
+        expectedResponse = List.getExample();
+        response = (List<OASFavoriteImpl>) api.getUserFavorites(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -1143,7 +1116,7 @@ private class OASBlueOceanApiTest {
         Map<String, Object> params = new Map<String, Object>{
             'organization' => 'null',
             'pipeline' => 'null',
-            'oaSBody' => OASBody.getExample()
+            'body' => ''
         };
 
         OASClient client;
@@ -1180,7 +1153,7 @@ private class OASBlueOceanApiTest {
             'pipeline' => 'null',
             'run' => 'null',
             'blocking' => 'null',
-            'timeOutInSecs' => Integer.getExample()
+            'timeOutInSecs' => ''
         };
 
         OASClient client;
@@ -1198,6 +1171,33 @@ private class OASBlueOceanApiTest {
         expectedResponse = OASPipelineRun.getExample();
         response = (OASPipelineRun) api.putPipelineRun(params);
         System.assertEquals(expectedResponse, response);
+    }
+
+    /**
+     * 
+     *
+     * Search for any resource details
+     */
+    @isTest
+    private static void searchTest() {
+        HttpResponse res = new HttpResponse();
+        res.setStatusCode(200);
+        res.setStatus('OK');
+        Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
+
+        Map<String, Object> params = new Map<String, Object>{
+            'q' => 'null'
+        };
+
+        OASClient client;
+        OASBlueOceanApi api;
+        String response;
+        String expectedResponse;
+        String js = '';
+
+        client = new OASClient();
+        api = new OASBlueOceanApi(client);
+        api.search(params);
     }
 
     /**

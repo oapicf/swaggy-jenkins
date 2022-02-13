@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 Setup.hs
 lib/SwaggyJenkins/API.hs

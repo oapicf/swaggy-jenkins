@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * HudsonMasterComputermonitorData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-11T12:41:01.332558Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-13T02:15:08.056011Z[Etc/UTC]")
 public class HudsonMasterComputermonitorData {
   public static final String SERIALIZED_NAME_HUDSON_NODE_MONITORS_SWAP_SPACE_MONITOR = "hudson.node_monitors.SwapSpaceMonitor";
   @SerializedName(SERIALIZED_NAME_HUDSON_NODE_MONITORS_SWAP_SPACE_MONITOR)

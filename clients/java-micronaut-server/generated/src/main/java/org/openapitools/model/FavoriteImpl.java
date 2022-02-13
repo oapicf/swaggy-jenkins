@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   FavoriteImpl.JSON_PROPERTY_ITEM
 })
 @JsonTypeName("FavoriteImpl")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-11T12:41:40.232851Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2022-02-13T02:16:43.247289Z[Etc/UTC]")
 @Introspected
 public class FavoriteImpl {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

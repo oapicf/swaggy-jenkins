@@ -72,7 +72,7 @@ private class OASResponseTimeMonitorDataTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASResponseTimeMonitorData responseTimeMonitorData = new OASResponseTimeMonitorData();
-        Map<String, String> propertyMappings = responseTimeMonitorData.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = responseTimeMonitorData.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

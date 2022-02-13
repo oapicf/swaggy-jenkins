@@ -72,7 +72,7 @@ private class OASOrganisationTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASOrganisation organisation = new OASOrganisation();
-        Map<String, String> propertyMappings = organisation.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = organisation.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

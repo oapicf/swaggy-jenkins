@@ -12,7 +12,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-11T12:43:44.828365Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
 public class JwtAuthApiServiceImpl implements JwtAuthApi {
       public Response getJsonWebKey(Integer key,SecurityContext securityContext) {
       // do some magic!

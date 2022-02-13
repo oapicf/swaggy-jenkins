@@ -72,8 +72,8 @@ private class OASComputerSetTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASComputerSet computerSet = new OASComputerSet();
-        Map<String, String> propertyMappings = computerSet.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = computerSet.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

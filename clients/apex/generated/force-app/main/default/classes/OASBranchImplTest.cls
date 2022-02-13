@@ -72,9 +72,9 @@ private class OASBranchImplTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASBranchImpl branchImpl = new OASBranchImpl();
-        Map<String, String> propertyMappings = branchImpl.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
-        System.assertEquals('links', propertyMappings.get('_links'));
+        Map<String, String> x-property-mappings = branchImpl.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
+        System.assertEquals('links', x-property-mappings.get('_links'));
     }
 
     @isTest

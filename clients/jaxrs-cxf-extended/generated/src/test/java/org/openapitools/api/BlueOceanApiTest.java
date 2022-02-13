@@ -27,7 +27,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 import org.junit.Test;
 import org.junit.Before;
@@ -562,10 +561,10 @@ public class BlueOceanApiTest {
         // TODO: assign appropriate parameter values
         String organization = null;
         String pipeline = null;
-        UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE = null;
+        Boolean body = null;
 
         // TODO: delete this line and uncomment the next
-        // FavoriteImpl response = api.putPipelineFavorite(organization, pipeline, UNKNOWN_BASE_TYPE);
+        // FavoriteImpl response = api.putPipelineFavorite(organization, pipeline, body);
         // TODO: complete test assertions
     }
     

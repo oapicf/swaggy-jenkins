@@ -443,7 +443,7 @@ describe "BlueOceanApi" do
   # Favorite/unfavorite a pipeline
   # @param organization Name of the organization
   # @param pipeline Name of the pipeline
-  # @param unknown_base_type Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+  # @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
   # @param [Hash] opts the optional parameters
   # @return [FavoriteImpl]
   describe "put_pipeline_favorite test" do

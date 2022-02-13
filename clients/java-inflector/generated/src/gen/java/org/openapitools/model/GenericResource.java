@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-11T12:41:21.213756Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-13T02:15:54.605692Z[Etc/UTC]")
 public class GenericResource   {
   @JsonProperty("_class")
   private String propertyClass;

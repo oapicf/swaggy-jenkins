@@ -72,13 +72,13 @@ private class OASHudsonMasterComputermonitorDataTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASHudsonMasterComputermonitorData hudsonMasterComputermonitorData = new OASHudsonMasterComputermonitorData();
-        Map<String, String> propertyMappings = hudsonMasterComputermonitorData.getPropertyMappings();
-        System.assertEquals('hudsonNodeMonitorsSwapSpaceMonitor', propertyMappings.get('hudson.node_monitors.SwapSpaceMonitor'));
-        System.assertEquals('hudsonNodeMonitorsTemporarySpaceMonitor', propertyMappings.get('hudson.node_monitors.TemporarySpaceMonitor'));
-        System.assertEquals('hudsonNodeMonitorsDiskSpaceMonitor', propertyMappings.get('hudson.node_monitors.DiskSpaceMonitor'));
-        System.assertEquals('hudsonNodeMonitorsArchitectureMonitor', propertyMappings.get('hudson.node_monitors.ArchitectureMonitor'));
-        System.assertEquals('hudsonNodeMonitorsResponseTimeMonitor', propertyMappings.get('hudson.node_monitors.ResponseTimeMonitor'));
-        System.assertEquals('hudsonNodeMonitorsClockMonitor', propertyMappings.get('hudson.node_monitors.ClockMonitor'));
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = hudsonMasterComputermonitorData.getx-property-mappings();
+        System.assertEquals('hudsonNodeMonitorsSwapSpaceMonitor', x-property-mappings.get('hudson.node_monitors.SwapSpaceMonitor'));
+        System.assertEquals('hudsonNodeMonitorsTemporarySpaceMonitor', x-property-mappings.get('hudson.node_monitors.TemporarySpaceMonitor'));
+        System.assertEquals('hudsonNodeMonitorsDiskSpaceMonitor', x-property-mappings.get('hudson.node_monitors.DiskSpaceMonitor'));
+        System.assertEquals('hudsonNodeMonitorsArchitectureMonitor', x-property-mappings.get('hudson.node_monitors.ArchitectureMonitor'));
+        System.assertEquals('hudsonNodeMonitorsResponseTimeMonitor', x-property-mappings.get('hudson.node_monitors.ResponseTimeMonitor'));
+        System.assertEquals('hudsonNodeMonitorsClockMonitor', x-property-mappings.get('hudson.node_monitors.ClockMonitor'));
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

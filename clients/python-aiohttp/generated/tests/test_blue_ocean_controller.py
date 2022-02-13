@@ -18,7 +18,6 @@ from openapi_server.models.pipeline_run import PipelineRun
 from openapi_server.models.pipeline_run_node import PipelineRunNode
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl
 from openapi_server.models.queue_item_impl import QueueItemImpl
-from openapi_server.models.unknownbasetype import UNKNOWN_BASE_TYPE
 from openapi_server.models.user import User
 
 
@@ -599,7 +598,7 @@ async def test_put_pipeline_favorite(client):
 
     
     """
-    body = openapi_server.UNKNOWN_BASE_TYPE()
+    body = True
     headers = { 
         'Accept': 'application/json',
         'Content-Type': 'application/json',

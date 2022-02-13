@@ -72,7 +72,7 @@ private class OASExtensionClassImpllinksTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASExtensionClassImpllinks extensionClassImpllinks = new OASExtensionClassImpllinks();
-        Map<String, String> propertyMappings = extensionClassImpllinks.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = extensionClassImpllinks.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

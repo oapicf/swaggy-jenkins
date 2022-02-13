@@ -1,12 +1,12 @@
 # coding: utf-8
 
 from __future__ import absolute_import
+import unittest
 
 from flask import json
 from six import BytesIO
 
 from openapi_server.models.computer_set import ComputerSet  # noqa: E501
-from openapi_server.models.default_crumb_issuer import DefaultCrumbIssuer  # noqa: E501
 from openapi_server.models.free_style_build import FreeStyleBuild  # noqa: E501
 from openapi_server.models.free_style_project import FreeStyleProject  # noqa: E501
 from openapi_server.models.hudson import Hudson  # noqa: E501
@@ -24,21 +24,15 @@ class TestRemoteAccessController(BaseTestCase):
         
         """
         query_string = [('depth', 56)]
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//computer/api/json',
+            '/computer/api/json',
             method='GET',
+            headers=headers,
             query_string=query_string)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
-
-    def test_get_crumb(self):
-        """Test case for get_crumb
-
-        
-        """
-        response = self.client.open(
-            '//crumbIssuer/api/json',
-            method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -47,9 +41,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//api/json',
-            method='GET')
+            '/api/json',
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -58,9 +57,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/api/json'.format(name='name_example'),
-            method='GET')
+            '/job/{name}/api/json'.format(name='name_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -69,9 +73,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'text/xml',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/config.xml'.format(name='name_example'),
-            method='GET')
+            '/job/{name}/config.xml'.format(name='name_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -80,9 +89,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/lastBuild/api/json'.format(name='name_example'),
-            method='GET')
+            '/job/{name}/lastBuild/api/json'.format(name='name_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -92,9 +106,13 @@ class TestRemoteAccessController(BaseTestCase):
         
         """
         query_string = [('start', 'start_example')]
+        headers = { 
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/{number}/logText/progressiveText'.format(name='name_example', number='number_example'),
+            '/job/{name}/{number}/logText/progressiveText'.format(name='name_example', number='number_example'),
             method='GET',
+            headers=headers,
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -104,9 +122,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//queue/api/json',
-            method='GET')
+            '/queue/api/json',
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -115,9 +138,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//queue/item/{number}/api/json'.format(number='number_example'),
-            method='GET')
+            '/queue/item/{number}/api/json'.format(number='number_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -126,9 +154,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'application/json',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//view/{name}/api/json'.format(name='name_example'),
-            method='GET')
+            '/view/{name}/api/json'.format(name='name_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -137,9 +170,14 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Accept': 'text/xml',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//view/{name}/config.xml'.format(name='name_example'),
-            method='GET')
+            '/view/{name}/config.xml'.format(name='name_example'),
+            method='GET',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -148,9 +186,13 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
+        headers = { 
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//api/json',
-            method='HEAD')
+            '/api/json',
+            method='HEAD',
+            headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -161,15 +203,20 @@ class TestRemoteAccessController(BaseTestCase):
         """
         body = 'body_example'
         query_string = [('name', 'name_example'),
-                        ('_from', '_from_example'),
+                        ('from', '_from_example'),
                         ('mode', 'mode_example')]
-        headers = [('jenkins_crumb', 'jenkins_crumb_example'),
-                   ('content_type', 'content_type_example')]
+        headers = { 
+            'Accept': '*/*',
+            'Content-Type': 'application/json',
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'content_type': 'content_type_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//createItem',
+            '/createItem',
             method='POST',
-            data=json.dumps(body),
             headers=headers,
+            data=json.dumps(body),
             content_type='application/json',
             query_string=query_string)
         self.assert200(response,
@@ -182,13 +229,18 @@ class TestRemoteAccessController(BaseTestCase):
         """
         body = 'body_example'
         query_string = [('name', 'name_example')]
-        headers = [('jenkins_crumb', 'jenkins_crumb_example'),
-                   ('content_type', 'content_type_example')]
+        headers = { 
+            'Accept': '*/*',
+            'Content-Type': 'application/json',
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'content_type': 'content_type_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//createView',
+            '/createView',
             method='POST',
-            data=json.dumps(body),
             headers=headers,
+            data=json.dumps(body),
             content_type='application/json',
             query_string=query_string)
         self.assert200(response,
@@ -201,9 +253,12 @@ class TestRemoteAccessController(BaseTestCase):
         """
         query_string = [('json', 'json_example'),
                         ('token', 'token_example')]
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/build'.format(name='name_example'),
+            '/job/{name}/build'.format(name='name_example'),
             method='POST',
             headers=headers,
             query_string=query_string)
@@ -216,12 +271,17 @@ class TestRemoteAccessController(BaseTestCase):
         
         """
         body = 'body_example'
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'Accept': '*/*',
+            'Content-Type': 'application/json',
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/config.xml'.format(name='name_example'),
+            '/job/{name}/config.xml'.format(name='name_example'),
             method='POST',
-            data=json.dumps(body),
             headers=headers,
+            data=json.dumps(body),
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -231,9 +291,12 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/doDelete'.format(name='name_example'),
+            '/job/{name}/doDelete'.format(name='name_example'),
             method='POST',
             headers=headers)
         self.assert200(response,
@@ -244,9 +307,12 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/disable'.format(name='name_example'),
+            '/job/{name}/disable'.format(name='name_example'),
             method='POST',
             headers=headers)
         self.assert200(response,
@@ -257,9 +323,12 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/enable'.format(name='name_example'),
+            '/job/{name}/enable'.format(name='name_example'),
             method='POST',
             headers=headers)
         self.assert200(response,
@@ -270,9 +339,12 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//job/{name}/lastBuild/stop'.format(name='name_example'),
+            '/job/{name}/lastBuild/stop'.format(name='name_example'),
             method='POST',
             headers=headers)
         self.assert200(response,
@@ -284,17 +356,21 @@ class TestRemoteAccessController(BaseTestCase):
         
         """
         body = 'body_example'
-        headers = [('jenkins_crumb', 'jenkins_crumb_example')]
+        headers = { 
+            'Accept': '*/*',
+            'Content-Type': 'application/json',
+            'jenkins_crumb': 'jenkins_crumb_example',
+            'Authorization': 'Basic Zm9vOmJhcg==',
+        }
         response = self.client.open(
-            '//view/{name}/config.xml'.format(name='name_example'),
+            '/view/{name}/config.xml'.format(name='name_example'),
             method='POST',
-            data=json.dumps(body),
             headers=headers,
+            data=json.dumps(body),
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
 
 if __name__ == '__main__':
-    import unittest
     unittest.main()

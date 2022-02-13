@@ -39,7 +39,7 @@ import javax.annotation.Generated;
   GithubRepositories.JSON_PROPERTY_PAGE_SIZE
 })
 @JsonTypeName("GithubRepositories")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-11T12:41:29.860693Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-13T02:16:15.805366Z[Etc/UTC]")
 @Introspected
 public class GithubRepositories {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

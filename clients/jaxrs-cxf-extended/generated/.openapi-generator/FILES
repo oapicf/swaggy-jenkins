@@ -83,3 +83,9 @@ src/gen/java/org/openapitools/model/StringParameterValue.java
 src/gen/java/org/openapitools/model/SwapSpaceMonitorMemoryUsage2.java
 src/gen/java/org/openapitools/model/UnlabeledLoadStatistics.java
 src/gen/java/org/openapitools/model/User.java
+src/main/java/org/openapitools/api/impl/BaseApiServiceImpl.java
+src/main/java/org/openapitools/api/impl/BlueOceanApiServiceImpl.java
+src/main/java/org/openapitools/api/impl/RemoteAccessApiServiceImpl.java
+src/test/java/org/openapitools/api/BaseApiTest.java
+src/test/java/org/openapitools/api/BlueOceanApiTest.java
+src/test/java/org/openapitools/api/RemoteAccessApiTest.java

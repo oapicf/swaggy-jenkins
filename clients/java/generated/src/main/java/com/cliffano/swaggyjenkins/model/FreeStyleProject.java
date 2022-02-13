@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * FreeStyleProject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-11T12:41:01.332558Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-13T02:15:08.056011Z[Etc/UTC]")
 public class FreeStyleProject {
   public static final String SERIALIZED_NAME_PROPERTY_CLASS = "_class";
   @SerializedName(SERIALIZED_NAME_PROPERTY_CLASS)

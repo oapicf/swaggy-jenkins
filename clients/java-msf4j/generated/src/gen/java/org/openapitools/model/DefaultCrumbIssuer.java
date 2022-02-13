@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * DefaultCrumbIssuer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-11T12:41:49.999623Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
 public class DefaultCrumbIssuer   {
   @JsonProperty("_class")
   private String propertyClass;

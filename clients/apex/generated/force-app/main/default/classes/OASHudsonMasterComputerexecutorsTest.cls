@@ -72,8 +72,8 @@ private class OASHudsonMasterComputerexecutorsTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASHudsonMasterComputerexecutors hudsonMasterComputerexecutors = new OASHudsonMasterComputerexecutors();
-        Map<String, String> propertyMappings = hudsonMasterComputerexecutors.getPropertyMappings();
-        System.assertEquals('r_number', propertyMappings.get('number'));
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = hudsonMasterComputerexecutors.getx-property-mappings();
+        System.assertEquals('r_number', x-property-mappings.get('number'));
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

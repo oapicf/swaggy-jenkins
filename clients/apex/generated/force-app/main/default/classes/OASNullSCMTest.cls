@@ -72,7 +72,7 @@ private class OASNullSCMTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASNullSCM nullSCM = new OASNullSCM();
-        Map<String, String> propertyMappings = nullSCM.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = nullSCM.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

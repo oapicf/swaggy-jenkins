@@ -72,8 +72,8 @@ private class OASClassesByClassTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASClassesByClass classesByClass = new OASClassesByClass();
-        Map<String, String> propertyMappings = classesByClass.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = classesByClass.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

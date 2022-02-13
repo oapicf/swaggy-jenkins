@@ -72,8 +72,8 @@ private class OASQueueTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASQueue queue = new OASQueue();
-        Map<String, String> propertyMappings = queue.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = queue.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

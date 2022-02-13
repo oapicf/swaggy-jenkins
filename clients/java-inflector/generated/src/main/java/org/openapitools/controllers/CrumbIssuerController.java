@@ -12,7 +12,7 @@ import org.openapitools.model.*;
 
 import org.openapitools.model.DefaultCrumbIssuer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-11T12:41:21.213756Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2022-02-13T02:15:54.605692Z[Etc/UTC]")
 public class CrumbIssuerController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map

@@ -248,7 +248,7 @@ void main() {
 
     // Favorite/unfavorite a pipeline
     //
-    //Future<FavoriteImpl> putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) async
+    //Future<FavoriteImpl> putPipelineFavorite(String organization, String pipeline, bool body) async
     test('test putPipelineFavorite', () async {
       // TODO
     });

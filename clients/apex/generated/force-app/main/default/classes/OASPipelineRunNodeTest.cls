@@ -72,8 +72,8 @@ private class OASPipelineRunNodeTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASPipelineRunNode pipelineRunNode = new OASPipelineRunNode();
-        Map<String, String> propertyMappings = pipelineRunNode.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = pipelineRunNode.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 
     @isTest

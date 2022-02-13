@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * PipelineBranchesitempullRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-11T12:41:01.332558Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-02-13T02:15:08.056011Z[Etc/UTC]")
 public class PipelineBranchesitempullRequest {
   public static final String SERIALIZED_NAME_LINKS = "_links";
   @SerializedName(SERIALIZED_NAME_LINKS)

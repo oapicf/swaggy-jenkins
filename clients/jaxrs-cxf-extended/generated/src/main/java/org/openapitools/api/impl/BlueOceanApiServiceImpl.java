@@ -15,7 +15,6 @@ import org.openapitools.model.PipelineRun;
 import org.openapitools.model.PipelineRunNode;
 import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
-import org.openapitools.model.UNKNOWN_BASE_TYPE;
 import org.openapitools.model.User;
 
 import java.io.InputStream;
@@ -237,7 +236,7 @@ public class BlueOceanApiServiceImpl implements BlueOceanApi {
     }
 
     @Override
-    public FavoriteImpl putPipelineFavorite(String organization, String pipeline, UNKNOWN_BASE_TYPE UNKNOWN_BASE_TYPE) {
+    public FavoriteImpl putPipelineFavorite(String organization, String pipeline, Boolean body) {
         // TODO: Implement...
         return null;
     }

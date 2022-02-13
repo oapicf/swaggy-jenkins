@@ -72,7 +72,7 @@ private class OASBranchImpllinksTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASBranchImpllinks branchImpllinks = new OASBranchImpllinks();
-        Map<String, String> propertyMappings = branchImpllinks.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = branchImpllinks.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

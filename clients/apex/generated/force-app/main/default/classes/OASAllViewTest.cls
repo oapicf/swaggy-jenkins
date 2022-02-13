@@ -72,7 +72,7 @@ private class OASAllViewTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASAllView allView = new OASAllView();
-        Map<String, String> propertyMappings = allView.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = allView.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }

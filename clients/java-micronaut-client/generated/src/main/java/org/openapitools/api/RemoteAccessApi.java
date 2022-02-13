@@ -32,7 +32,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-11T12:41:29.860693Z[Etc/UTC]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2022-02-13T02:16:15.805366Z[Etc/UTC]")
 @Client("${base-path}")
 public interface RemoteAccessApi {
     /**

@@ -72,7 +72,7 @@ private class OASFreeStyleProjecthealthReportTest {
     @isTest
     private static void maintainRenamedProperties() {
         OASFreeStyleProjecthealthReport freeStyleProjecthealthReport = new OASFreeStyleProjecthealthReport();
-        Map<String, String> propertyMappings = freeStyleProjecthealthReport.getPropertyMappings();
-        System.assertEquals('propertyClass', propertyMappings.get('_class'));
+        Map<String, String> x-property-mappings = freeStyleProjecthealthReport.getx-property-mappings();
+        System.assertEquals('propertyClass', x-property-mappings.get('_class'));
     }
 }
