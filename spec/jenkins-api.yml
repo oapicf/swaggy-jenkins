@@ -2,17 +2,14 @@ openapi: 3.0.0
 info:
   title: Swaggy Jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
-  version: 1.1.2-pre.0
+  version: 1.2.0
   contact:
     name: Cliffano Subagio
-    url: 'http://github.com/cliffano/swaggy-jenkins'
+    url: http://github.com/cliffano/swaggy-jenkins
     email: blah@cliffano.com
 servers:
   - url: /
 paths:
-  ########################################
-  # Remote Access API paths
-  ########################################
   /api/json:
     head:
       description: Retrieve Jenkins headers
@@ -79,7 +76,7 @@ paths:
         - remoteAccess
   /createItem:
     post:
-      description: 'Create a new job using job configuration, or copied from an existing job'
+      description: Create a new job using job configuration, or copied from an existing job
       operationId: postCreateItem
       parameters:
         - name: name
@@ -182,7 +179,7 @@ paths:
         - jenkins_auth: []
       tags:
         - base
-  '/job/{name}/api/json':
+  /job/{name}/api/json:
     get:
       description: Retrieve job details
       operationId: getJob
@@ -205,7 +202,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/build':
+  /job/{name}/build:
     post:
       description: Build a job
       operationId: postJobBuild
@@ -239,7 +236,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/config.xml':
+  /job/{name}/config.xml:
     get:
       description: Retrieve job configuration
       operationId: getJobConfig
@@ -290,7 +287,7 @@ paths:
               type: string
         description: Job configuration in config.xml format
         required: true
-  '/job/{name}/doDelete':
+  /job/{name}/doDelete:
     post:
       description: Delete a job
       operationId: postJobDelete
@@ -310,7 +307,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/disable':
+  /job/{name}/disable:
     post:
       description: Disable a job
       operationId: postJobDisable
@@ -330,7 +327,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/enable':
+  /job/{name}/enable:
     post:
       description: Enable a job
       operationId: postJobEnable
@@ -350,7 +347,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/lastBuild/api/json':
+  /job/{name}/lastBuild/api/json:
     get:
       description: Retrieve job's last build details
       operationId: getJobLastBuild
@@ -373,7 +370,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/lastBuild/stop':
+  /job/{name}/lastBuild/stop:
     post:
       description: Stop a job
       operationId: postJobLastBuildStop
@@ -393,7 +390,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/job/{name}/{number}/logText/progressiveText':
+  /job/{name}/{number}/logText/progressiveText:
     get:
       description: Retrieve job's build progressive text output
       operationId: getJobProgressiveText
@@ -443,7 +440,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/queue/item/{number}/api/json':
+  /queue/item/{number}/api/json:
     get:
       description: Retrieve queued item details
       operationId: getQueueItem
@@ -469,7 +466,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/view/{name}/api/json':
+  /view/{name}/api/json:
     get:
       description: Retrieve view details
       operationId: getView
@@ -492,7 +489,7 @@ paths:
         - jenkins_auth: []
       tags:
         - remoteAccess
-  '/view/{name}/config.xml':
+  /view/{name}/config.xml:
     get:
       description: Retrieve view configuration
       operationId: getViewConfig
@@ -543,9 +540,6 @@ paths:
               type: string
         description: View configuration in config.xml format
         required: true
-  ########################################
-  # Blue Ocean API paths
-  ########################################
   /jwt-auth/token:
     get:
       description: Retrieve JSON Web Token
@@ -576,7 +570,7 @@ paths:
           $ref: '#/components/responses/forbidden'
       tags:
         - blueOcean
-  '/jwt-auth/jwks/{key}':
+  /jwt-auth/jwks/{key}:
     get:
       description: Retrieve JSON Web Key
       operationId: getJsonWebKey
@@ -626,7 +620,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/classes/{class}':
+  /blue/rest/classes/{class}:
     get:
       description: Get a list of class names supported by a given class
       operationId: getClasses
@@ -692,7 +686,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}':
+  /blue/rest/organizations/{organization}:
     get:
       description: Retrieve organization details
       operationId: getOrganisation
@@ -715,7 +709,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/':
+  /blue/rest/organizations/{organization}/pipelines/:
     get:
       description: Retrieve all pipelines details for an organization
       operationId: getPipelines
@@ -736,7 +730,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization
       operationId: getPipeline
@@ -760,7 +754,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
     get:
       description: Retrieve all activities details for an organization pipeline
       operationId: getPipelineActivities
@@ -782,7 +776,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
     get:
       description: Retrieve all branches details for an organization pipeline
       operationId: getPipelineBranches
@@ -804,7 +798,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
     get:
       description: Retrieve branch details for an organization pipeline
       operationId: getPipelineBranch
@@ -827,7 +821,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
     get:
       description: Retrieve branch run details for an organization pipeline
       operationId: getPipelineBranchRun
@@ -851,7 +845,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{folder}/':
+  /blue/rest/organizations/{organization}/pipelines/{folder}/:
     get:
       description: Retrieve pipeline folder for an organization
       operationId: getPipelineFolder
@@ -873,7 +867,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}':
+  /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization folder
       operationId: getPipelineFolderPipeline
@@ -896,7 +890,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
     put:
       description: Favorite/unfavorite a pipeline
       operationId: putPipelineFavorite
@@ -927,7 +921,7 @@ paths:
           Set JSON string body to {"favorite": true} to favorite, set value to
           false to unfavorite
         required: true
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
     get:
       description: Retrieve queue details for an organization pipeline
       operationId: getPipelineQueue
@@ -949,7 +943,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
     delete:
       description: Delete queue item from an organization pipeline queue
       operationId: deletePipelineQueueItem
@@ -968,7 +962,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
     get:
       description: Retrieve all runs details for an organization pipeline
       operationId: getPipelineRuns
@@ -1011,7 +1005,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
     get:
       description: Retrieve run details for an organization pipeline
       operationId: getPipelineRun
@@ -1034,7 +1028,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
     get:
       description: Retrieve run nodes details for an organization pipeline
       operationId: getPipelineRunNodes
@@ -1057,7 +1051,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
     get:
       description: Retrieve run node details for an organization pipeline
       operationId: getPipelineRunNode
@@ -1081,7 +1075,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
     get:
       description: Retrieve run node steps details for an organization pipeline
       operationId: getPipelineRunNodeSteps
@@ -1105,7 +1099,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
     get:
       description: Retrieve run node details for an organization pipeline
       operationId: getPipelineRunNodeStep
@@ -1130,7 +1124,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
     get:
       description: Get log for a pipeline run node step
       operationId: getPipelineRunNodeStepLog
@@ -1155,7 +1149,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
     get:
       description: Get log for a pipeline run
       operationId: getPipelineRunLog
@@ -1192,7 +1186,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
     post:
       description: Replay an organization pipeline run
       operationId: postPipelineRun
@@ -1215,7 +1209,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop':
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
     put:
       description: Stop a build of an organization pipeline
       operationId: putPipelineRun
@@ -1250,7 +1244,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/scm/{scm}':
+  /blue/rest/organizations/{organization}/scm/{scm}:
     get:
       description: Retrieve SCM details for an organization
       operationId: getSCM
@@ -1272,7 +1266,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/scm/{scm}/organizations':
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations:
     get:
       description: Retrieve SCM organizations details for an organization
       operationId: getSCMOrganisations
@@ -1300,7 +1294,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories':
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories:
     get:
       description: Retrieve SCM organization repositories details for an organization
       operationId: getSCMOrganisationRepositories
@@ -1341,7 +1335,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}':
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
     get:
       description: Retrieve SCM organization repository details for an organization
       operationId: getSCMOrganisationRepository
@@ -1371,7 +1365,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/user/':
+  /blue/rest/organizations/{organization}/user/:
     get:
       description: Retrieve authenticated user details for an organization
       operationId: getAuthenticatedUser
@@ -1392,7 +1386,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/users/':
+  /blue/rest/organizations/{organization}/users/:
     get:
       description: Retrieve users details for an organization
       operationId: getUsers
@@ -1413,7 +1407,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/organizations/{organization}/users/{user}':
+  /blue/rest/organizations/{organization}/users/{user}:
     get:
       description: Retrieve user details for an organization
       operationId: getUser
@@ -1435,7 +1429,7 @@ paths:
         - jenkins_auth: []
       tags:
         - blueOcean
-  '/blue/rest/users/{user}/favorites':
+  /blue/rest/users/{user}/favorites:
     get:
       description: Retrieve user favorites details for an organization
       operationId: getUserFavorites
@@ -1461,8 +1455,6 @@ components:
     jenkins_auth:
       type: http
       scheme: basic
-    # This was a temporary workaround of using JWT in OpenAPI 2.0, value has to be prefixed with 'Bearer'
-    # Need to switch to proper JWT support after upgrading to OpenAPI 3.0
     jwt_auth:
       type: apiKey
       in: header
@@ -1599,10 +1591,6 @@ components:
         '*/*':
           schema:
             type: string
-  ########################################
-  # Remote Access API  definitions
-  # Generated using swaggy-jenkins-cli
-  ########################################
   schemas:
     FreeStyleBuild:
       type: object
@@ -2038,10 +2026,6 @@ components:
           type: string
         url:
           type: string
-  ########################################
-  # Blue Ocean API definitions
-  # Generated using swaggy-jenkins-cli
-  ########################################
     Link:
       type: object
       properties:
