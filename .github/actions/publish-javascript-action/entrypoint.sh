@@ -1,2 +1,2 @@
 #!/bin/bash
-NODE_AUTH_TOKEN=${NPMJS_TOKEN} make deps publish-javascript
+make NODE_AUTH_TOKEN=${NPMJS_TOKEN} deps publish-javascript
