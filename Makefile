@@ -79,7 +79,7 @@ publish-javascript: build-javascript
 
 publish-ruby: build-ruby
 	cd clients/ruby/generated/ && \
-	  gem publish
+	  gem push `ls swaggy_jenkins-*.gem`
 
 doc:
 	bootprint openapi spec/jenkins-api.yml doc/api/latest/
