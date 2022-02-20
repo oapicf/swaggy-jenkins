@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix artifact versions for publishing via RTK config
+
 ## 1.2.1 - 2022-02-20
 ### Fixed
 - Fix Ruby gem publish command
