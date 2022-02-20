@@ -1,2 +1,4 @@
 #!/bin/bash
-make NODE_AUTH_TOKEN=${NPMJS_TOKEN} deps publish-javascript
+make deps generate-langs
+export NODE_AUTH_TOKEN="${NPMJS_TOKEN}"
+make --environments-override publish-javascript

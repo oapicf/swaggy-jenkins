@@ -1,5 +1,5 @@
 #!/bin/bash
-make deps
+make deps generate-langs
 mkdir -p ~/.gem/
 touch ~/.gem/credentials
 echo "---" >> ~/.gem/credentials

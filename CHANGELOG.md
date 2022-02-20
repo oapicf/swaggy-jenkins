@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Ensure published artifact should contain tagged version
+
 ## 1.2.2 - 2022-02-20
 ### Fixed
 - Fix artifact versions for publishing via RTK config
