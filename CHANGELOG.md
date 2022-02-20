@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix Ruby gem publish command
+- Fix missing NODE_AUTH_TOKEN for JavaScript publishing
+
 ## 1.2.0 - 2022-02-17
 ### Added
 - Add RTK to manage versioning
