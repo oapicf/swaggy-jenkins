@@ -44,9 +44,9 @@ generate-langs:
 
 generate-primary:
 	if [ "${LOCAL}" = "true" ]; then \
-	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
+	  make  generate-langs-primary GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
 	elif [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  make generate-langs GEN_BASE_DIR=/home/runner/work/swaggy-jenkins/swaggy-jenkins; \
+	  make generate-langs-primary GEN_BASE_DIR=/home/runner/work/swaggy-jenkins/swaggy-jenkins; \
 	fi
 
 generate-langs-primary:
