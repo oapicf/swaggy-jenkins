@@ -13,7 +13,7 @@ Published packages
 
 | Language | Package | Status |
 |-|-|-|
-| JavaScript | [swaggy_jenkins]((http://www.npmjs.com/package/swaggy_jenkins)) | [![Published Version](https://img.shields.io/npm/v/swaggy_jenkins.svg)](http://www.npmjs.com/package/swaggy_jenkins) |
+| JavaScript | [swaggy-jenkins]((http://www.npmjs.com/package/swaggy-jenkins)) | [![Published Version](https://img.shields.io/npm/v/swaggy-jenkins.svg)](http://www.npmjs.com/package/swaggy-jenkins) |
 | Python | [swaggyjenkins]((https://pypi.python.org/pypi/swaggyjenkins)) | [![Published Version](https://img.shields.io/pypi/v/swaggyjenkins.svg)](https://pypi.python.org/pypi/swaggyjenkins) |
 | Ruby | [swaggy_jenkins]((https://rubygems.org/gems/swaggy_jenkins)) | [![Published Version](https://img.shields.io/gem/v/swaggy_jenkins.svg)](https://rubygems.org/gems/swaggy_jenkins) |
 
