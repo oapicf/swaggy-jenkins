@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix missing npmrc provisioning on JavaScript publishing
+- Fix generate-primary sub-call to generate-langs-primary
+
 ## 1.3.1 - 2022-02-21
 ### Fixed
 - Fix --environment-overrides typo on JavaScript publishing
