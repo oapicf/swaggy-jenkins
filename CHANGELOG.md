@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add generate-primary Makefile target
+
+### Fixed
+- Fix and speed up publishing to only publish primary languages
+
 ## 1.2.3 - 2022-02-20
 ### Fixed
 - Ensure published artifact should contain tagged version
