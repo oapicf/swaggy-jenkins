@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add Python publishing automation
+
 ## 1.3.4 - 2022-02-21
 ### Fixed
 - Reset npm config to overwrite the one provisioned by Puppet as part of container environment

@@ -1,0 +1,15 @@
+name: Publish Python
+'on':
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: main
+      - uses: ./.github/actions/publish-python-action
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}

@@ -73,8 +73,10 @@ build-javascript:
 
 build-python:
 	sudo apt-get install -y python-setuptools
+	pip install twine
 	cd clients/python/generated/ && \
 	  pip install -r requirements.txt && \
+	  python setup.py sdist bdist_wheel && \
 	  python setup.py install
 
 build-ruby:
@@ -90,12 +92,18 @@ test-javascript: build-javascript
 	mocha --timeout 5000 test/javascript/
 
 test-python: build-python
+	cd clients/python/generated/ && \
+	  twine check dist/*
 
 test-ruby: build-ruby
 
 publish-javascript: build-javascript
 	cd clients/javascript/generated/ && \
 	  npm publish
+
+publish-python: build-python
+	cd clients/python/generated/ && \
+	  twine upload dist/*
 
 publish-ruby: build-ruby
 	cd clients/ruby/generated/ && \
@@ -107,4 +115,4 @@ doc:
 doc-publish:
 	gh-pages --dist doc/
 
-.PHONY: clean conf-placeholder deps generate build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-ruby doc doc-publish
+.PHONY: clean conf-placeholder deps generate build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-python publish-ruby doc doc-publish
