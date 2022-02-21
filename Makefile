@@ -73,7 +73,7 @@ build-javascript:
 
 build-python:
 	sudo apt-get install -y python-setuptools
-	pip install twine
+	pip install twine wheel
 	cd clients/python/generated/ && \
 	  pip install -r requirements.txt && \
 	  python setup.py sdist bdist_wheel && \
