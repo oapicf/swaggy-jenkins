@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix --environment-overrides typo on JavaScript publishing
+
 ## 1.3.0 - 2022-02-21
 ### Added
 - Add generate-primary Makefile target
