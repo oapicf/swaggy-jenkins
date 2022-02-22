@@ -22,7 +22,22 @@ Usage
 
 Generate API clients of the currently supported languages:
 
-    make generate
+    make generate GEN_BASE_DIR=<path/to/swaggy-jenkins>
+
+Installation
+------------
+
+Install JavaScript client:
+
+    npm install swaggy-jenkins
+
+Install Python client:
+
+    pip install swaggyjenkins
+
+Install Ruby client:
+
+    gem install swaggy_jenkins
 
 Colophon
 --------
