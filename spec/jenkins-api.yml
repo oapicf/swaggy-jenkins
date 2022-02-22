@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Swaggy Jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
-  version: 1.4.1
+  version: 1.4.2-pre.0
   contact:
     name: Cliffano Subagio
     url: http://github.com/cliffano/swaggy-jenkins
