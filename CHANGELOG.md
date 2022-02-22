@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix Python publish versioning to use version ref
+
 ## 1.4.0 - 2022-02-22
 ### Added
 - Add Python publishing automation
