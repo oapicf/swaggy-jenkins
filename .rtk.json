@@ -1,7 +1,7 @@
 {
   "resources": [
     {
-      "path": "spec/jenkins-api.yml",
+      "path": "specification/jenkins.yml",
       "type": "yaml",
       "params": {
         "property": "info.version"

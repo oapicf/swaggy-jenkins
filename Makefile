@@ -36,7 +36,7 @@ generate-langs:
 		  --rm \
 		  -v $(GEN_BASE_DIR):/local openapitools/openapi-generator-cli:v5.4.0 \
 		  generate \
-		  --input-spec /local/spec/jenkins-api.yml \
+		  --input-spec /local/specification/jenkins.yml \
 		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \
 		  --output /local/clients/$$lang/generated; \
@@ -56,7 +56,7 @@ generate-langs-primary:
 		  --rm \
 		  -v $(GEN_BASE_DIR):/local openapitools/openapi-generator-cli:v5.4.0 \
 		  generate \
-		  --input-spec /local/spec/jenkins-api.yml \
+		  --input-spec /local/specification/jenkins.yml \
 		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \
 		  --output /local/clients/$$lang/generated; \
@@ -110,7 +110,7 @@ publish-ruby: build-ruby
 	  gem push `ls swaggy_jenkins-*.gem`
 
 doc:
-	bootprint openapi spec/jenkins-api.yml doc/api/latest/
+	bootprint openapi specification/jenkins.yml doc/api/latest/
 
 doc-publish:
 	gh-pages --dist doc/
