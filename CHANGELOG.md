@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add doc publishing as part of CI GH Actions workflow
+
 ## 1.4.1 - 2022-02-22
 ### Fixed
 - Fix Python publish versioning to use version ref

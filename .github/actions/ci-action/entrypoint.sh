@@ -1,2 +1,2 @@
 #!/bin/bash
-make ci
+make ci doc-publish
