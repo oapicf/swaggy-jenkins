@@ -76,8 +76,8 @@ build-python:
 	pip install twine wheel
 	cd clients/python/generated/ && \
 	  pip install -r requirements.txt && \
-	  python setup.py sdist bdist_wheel && \
-	  python setup.py install
+	  python3 setup.py sdist bdist_wheel && \
+	  python3 setup.py install
 
 build-ruby:
 	cd clients/ruby/generated/ && \
