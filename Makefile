@@ -113,6 +113,6 @@ doc:
 	bootprint openapi specification/jenkins.yml doc/api/latest/
 
 doc-publish:
-	gh-pages --dist doc/
+	CACHE_DIR=/tmp gh-pages --dist doc/
 
 .PHONY: clean conf-placeholder deps generate build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-python publish-ruby doc doc-publish
