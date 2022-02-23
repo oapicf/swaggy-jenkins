@@ -12,7 +12,5 @@ jobs:
         with:
           node-version: '16'
       - uses: ./.github/actions/ci-action
-      - run: git config --global user.email "pakkun@cliffano.com"
-      - run: git config --global user.name "pakkunbot"
       - run: npm install -g gh-pages
-      - run: make doc-publish
+      - run: CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot <pakkun@cliffano.com>"
