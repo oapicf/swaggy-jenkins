@@ -5,6 +5,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./.github/actions/ci-action
-    - run: make doc-publish
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - run: git config --global user.email "pakkun@cliffano.com"
+      - run: git config --global user.name "pakkunbot"
+      - uses: ./.github/actions/ci-action
+      - run: npm install -g gh-pages
+      - run: make doc-publish
