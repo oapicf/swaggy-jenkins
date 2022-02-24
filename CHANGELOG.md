@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Move doc publishing to a dedicated GH Actions workflow
+
 ## 1.5.0 - 2022-02-24
 ### Added
 - Add doc publishing as part of CI GH Actions workflow
