@@ -22,7 +22,7 @@ Version Matrix
 
 | Swaggy Jenkins Version | OpenAPI Version | OpenAPI Generator Version |
 |------------------------|-----------------|---------------------------|
-| 1.4.2 | 3.0.0 | 5.4.0 |
+| 1.5.0 | 3.0.0 | 5.4.0 |
 
 Usage
 -----
@@ -48,6 +48,8 @@ Install Ruby client:
 
 Colophon
 --------
+
+* [API Documentation](http://cliffano.github.io/openapi-ipify/api/latest/)
 
 Videos:
 
