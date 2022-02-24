@@ -49,7 +49,7 @@ Install Ruby client:
 Colophon
 --------
 
-* [API Documentation](http://cliffano.github.io/openapi-ipify/api/latest/)
+* [API Documentation](http://cliffano.github.io/swaggy-jenkins/api/latest/)
 
 Videos:
 
