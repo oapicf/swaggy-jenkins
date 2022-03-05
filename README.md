@@ -34,6 +34,10 @@ Generate API clients of the currently supported languages:
 Installation
 ------------
 
+You can either use the generated clients from `clients/<lang>/generated/` directory.
+
+Or you can use the published packages like below:
+
 Install JavaScript client:
 
     npm install swaggy-jenkins
