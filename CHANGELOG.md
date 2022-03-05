@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add Java client config artifactVersion to RTK
+
 ### Changed
 - Move doc publishing to a dedicated GH Actions workflow
 
