@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-          ref: 2.0.0
+          ref: main
       - uses: ./.github/actions/publish-javascript-action
         env:
           NPMJS_TOKEN: ${{ secrets.NPMJS_TOKEN }}
