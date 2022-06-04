@@ -172,7 +172,7 @@ public class MultibranchPipeline   {
 
   public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
     if (this.branchNames == null) {
-      this.branchNames = new ArrayList<String>();
+      this.branchNames = new ArrayList<>();
     }
     this.branchNames.add(branchNamesItem);
     return this;

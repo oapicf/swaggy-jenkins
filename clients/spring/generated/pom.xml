@@ -4,17 +4,20 @@
     <artifactId>openapi-spring</artifactId>
     <packaging>jar</packaging>
     <name>openapi-spring</name>
-    <version>1.1.2-pre.0</version>
+    <version>1.5.1-pre.0</version>
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <springdoc.version>1.6.4</springdoc.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <springdoc.version>1.6.8</springdoc.version>
+        <swagger-ui.version>4.10.3</swagger-ui.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.2</version>
+        <version>2.7.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -67,6 +70,11 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

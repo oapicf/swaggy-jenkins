@@ -60,51 +60,51 @@ cJSON *generic_resource_convertToJSON(generic_resource_t *generic_resource) {
     cJSON *item = cJSON_CreateObject();
 
     // generic_resource->_class
-    if(generic_resource->_class) { 
+    if(generic_resource->_class) {
     if(cJSON_AddStringToObject(item, "_class", generic_resource->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // generic_resource->display_name
-    if(generic_resource->display_name) { 
+    if(generic_resource->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", generic_resource->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // generic_resource->duration_in_millis
-    if(generic_resource->duration_in_millis) { 
+    if(generic_resource->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", generic_resource->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // generic_resource->id
-    if(generic_resource->id) { 
+    if(generic_resource->id) {
     if(cJSON_AddStringToObject(item, "id", generic_resource->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // generic_resource->result
-    if(generic_resource->result) { 
+    if(generic_resource->result) {
     if(cJSON_AddStringToObject(item, "result", generic_resource->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // generic_resource->start_time
-    if(generic_resource->start_time) { 
+    if(generic_resource->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", generic_resource->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

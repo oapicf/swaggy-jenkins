@@ -6,6 +6,7 @@ import org.openapitools.model.PipelineImpl;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class FavoriteImpl  {
   
   @ApiModelProperty(value = "")

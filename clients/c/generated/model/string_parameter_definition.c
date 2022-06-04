@@ -58,15 +58,15 @@ cJSON *string_parameter_definition_convertToJSON(string_parameter_definition_t *
     cJSON *item = cJSON_CreateObject();
 
     // string_parameter_definition->_class
-    if(string_parameter_definition->_class) { 
+    if(string_parameter_definition->_class) {
     if(cJSON_AddStringToObject(item, "_class", string_parameter_definition->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // string_parameter_definition->default_parameter_value
-    if(string_parameter_definition->default_parameter_value) { 
+    if(string_parameter_definition->default_parameter_value) {
     cJSON *default_parameter_value_local_JSON = string_parameter_value_convertToJSON(string_parameter_definition->default_parameter_value);
     if(default_parameter_value_local_JSON == NULL) {
     goto fail; //model
@@ -75,31 +75,31 @@ cJSON *string_parameter_definition_convertToJSON(string_parameter_definition_t *
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // string_parameter_definition->description
-    if(string_parameter_definition->description) { 
+    if(string_parameter_definition->description) {
     if(cJSON_AddStringToObject(item, "description", string_parameter_definition->description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // string_parameter_definition->name
-    if(string_parameter_definition->name) { 
+    if(string_parameter_definition->name) {
     if(cJSON_AddStringToObject(item, "name", string_parameter_definition->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // string_parameter_definition->type
-    if(string_parameter_definition->type) { 
+    if(string_parameter_definition->type) {
     if(cJSON_AddStringToObject(item, "type", string_parameter_definition->type) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

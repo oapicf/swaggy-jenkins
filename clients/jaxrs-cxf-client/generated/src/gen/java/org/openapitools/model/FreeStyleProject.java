@@ -10,6 +10,7 @@ import org.openapitools.model.NullSCM;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class FreeStyleProject  {
   
   @ApiModelProperty(value = "")

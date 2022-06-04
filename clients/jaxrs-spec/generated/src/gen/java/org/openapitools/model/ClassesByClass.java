@@ -17,9 +17,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ClassesByClass")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class ClassesByClass   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class ClassesByClass   {
   
-  private @Valid List<String> classes = new ArrayList<String>();
+  private @Valid List<String> classes = new ArrayList<>();
   private @Valid String propertyClass;
 
   /**
@@ -28,8 +29,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.classes = classes;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -45,7 +44,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public ClassesByClass addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<String>();
+      this.classes = new ArrayList<>();
     }
 
     this.classes.add(classesItem);
@@ -65,8 +64,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

@@ -3,7 +3,7 @@
 
 context("Test BlueOceanApi")
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 
 test_that("DeletePipelineQueueItem", {
   # tests for DeletePipelineQueueItem
@@ -55,8 +55,8 @@ test_that("GetJsonWebToken", {
   # tests for GetJsonWebToken
   # base path: http://localhost
   # Retrieve JSON Web Token
-  # @param expiry.time.in.mins integer Token expiry time in minutes, default: 30 minutes (optional)
-  # @param max.expiry.time.in.mins integer Maximum token expiry time in minutes, default: 480 minutes (optional)
+  # @param expiry_time_in_mins integer Token expiry time in minutes, default: 30 minutes (optional)
+  # @param max_expiry_time_in_mins integer Maximum token expiry time in minutes, default: 480 minutes (optional)
   # @return [character]
 
   # uncomment below to test the operation
@@ -324,10 +324,10 @@ test_that("GetSCMOrganisationRepositories", {
   # Retrieve SCM organization repositories details for an organization
   # @param organization character Name of the organization
   # @param scm character Name of SCM
-  # @param scm.organisation character Name of the SCM organization
-  # @param credential.id character Credential ID (optional)
-  # @param page.size integer Number of items in a page (optional)
-  # @param page.number integer Page number (optional)
+  # @param scm_organisation character Name of the SCM organization
+  # @param credential_id character Credential ID (optional)
+  # @param page_size integer Number of items in a page (optional)
+  # @param page_number integer Page number (optional)
   # @return [array[GithubOrganization]]
 
   # uncomment below to test the operation
@@ -340,9 +340,9 @@ test_that("GetSCMOrganisationRepository", {
   # Retrieve SCM organization repository details for an organization
   # @param organization character Name of the organization
   # @param scm character Name of SCM
-  # @param scm.organisation character Name of the SCM organization
+  # @param scm_organisation character Name of the SCM organization
   # @param repository character Name of the SCM repository
-  # @param credential.id character Credential ID (optional)
+  # @param credential_id character Credential ID (optional)
   # @return [array[GithubOrganization]]
 
   # uncomment below to test the operation
@@ -355,7 +355,7 @@ test_that("GetSCMOrganisations", {
   # Retrieve SCM organizations details for an organization
   # @param organization character Name of the organization
   # @param scm character Name of SCM
-  # @param credential.id character Credential ID (optional)
+  # @param credential_id character Credential ID (optional)
   # @return [array[GithubOrganization]]
 
   # uncomment below to test the operation
@@ -442,7 +442,7 @@ test_that("PutPipelineRun", {
   # @param pipeline character Name of the pipeline
   # @param run character Name of the run
   # @param blocking character Set to true to make blocking stop, default: false (optional)
-  # @param time.out.in.secs integer Timeout in seconds, default: 10 seconds (optional)
+  # @param time_out_in_secs integer Timeout in seconds, default: 10 seconds (optional)
   # @return [PipelineRun]
 
   # uncomment below to test the operation
@@ -470,4 +470,3 @@ test_that("SearchClasses", {
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
 })
-

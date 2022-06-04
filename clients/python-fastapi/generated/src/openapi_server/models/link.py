@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class Link(BaseModel):
@@ -20,7 +20,7 @@ class Link(BaseModel):
         href: The href of this Link [Optional].
     """
 
-    _class: Optional[str] = None
-    href: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    href: Optional[str] = Field(alias="href", default=None)
 
 Link.update_forward_refs()

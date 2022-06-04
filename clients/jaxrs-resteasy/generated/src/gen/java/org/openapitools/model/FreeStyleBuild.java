@@ -13,13 +13,13 @@ import org.openapitools.model.EmptyChangeLogSet;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-13T02:21:30.640855Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
 public class FreeStyleBuild   {
   
   private String propertyClass;
   private Integer number;
   private String url;
-  private List<CauseAction> actions = new ArrayList<CauseAction>();
+  private List<CauseAction> actions = new ArrayList<>();
   private Boolean building;
   private String description;
   private String displayName;

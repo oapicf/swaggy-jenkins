@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.pipeline_branchesitempull_requestlinks import PipelineBranchesitempullRequestlinks
 
 
@@ -25,11 +25,11 @@ class PipelineBranchesitempullRequest(BaseModel):
         _class: The _class of this PipelineBranchesitempullRequest [Optional].
     """
 
-    links: Optional[PipelineBranchesitempullRequestlinks] = None
-    author: Optional[str] = None
-    id: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
-    _class: Optional[str] = None
+    links: Optional[PipelineBranchesitempullRequestlinks] = Field(alias="_links", default=None)
+    author: Optional[str] = Field(alias="author", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    title: Optional[str] = Field(alias="title", default=None)
+    url: Optional[str] = Field(alias="url", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 PipelineBranchesitempullRequest.update_forward_refs()

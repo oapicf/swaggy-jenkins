@@ -58,7 +58,7 @@ cJSON *branch_impllinks_convertToJSON(branch_impllinks_t *branch_impllinks) {
     cJSON *item = cJSON_CreateObject();
 
     // branch_impllinks->self
-    if(branch_impllinks->self) { 
+    if(branch_impllinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(branch_impllinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -67,11 +67,11 @@ cJSON *branch_impllinks_convertToJSON(branch_impllinks_t *branch_impllinks) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // branch_impllinks->actions
-    if(branch_impllinks->actions) { 
+    if(branch_impllinks->actions) {
     cJSON *actions_local_JSON = link_convertToJSON(branch_impllinks->actions);
     if(actions_local_JSON == NULL) {
     goto fail; //model
@@ -80,11 +80,11 @@ cJSON *branch_impllinks_convertToJSON(branch_impllinks_t *branch_impllinks) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // branch_impllinks->runs
-    if(branch_impllinks->runs) { 
+    if(branch_impllinks->runs) {
     cJSON *runs_local_JSON = link_convertToJSON(branch_impllinks->runs);
     if(runs_local_JSON == NULL) {
     goto fail; //model
@@ -93,11 +93,11 @@ cJSON *branch_impllinks_convertToJSON(branch_impllinks_t *branch_impllinks) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // branch_impllinks->queue
-    if(branch_impllinks->queue) { 
+    if(branch_impllinks->queue) {
     cJSON *queue_local_JSON = link_convertToJSON(branch_impllinks->queue);
     if(queue_local_JSON == NULL) {
     goto fail; //model
@@ -106,15 +106,15 @@ cJSON *branch_impllinks_convertToJSON(branch_impllinks_t *branch_impllinks) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // branch_impllinks->_class
-    if(branch_impllinks->_class) { 
+    if(branch_impllinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", branch_impllinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

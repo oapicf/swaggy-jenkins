@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("StringParameterDefinition")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class StringParameterDefinition   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class StringParameterDefinition   {
   
   private @Valid String propertyClass;
   private @Valid StringParameterValue defaultParameterValue;
@@ -30,8 +31,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -53,8 +52,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("defaultParameterValue")
   public StringParameterValue getDefaultParameterValue() {
@@ -72,8 +69,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.description = description;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -95,8 +90,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
@@ -114,8 +107,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.type = type;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

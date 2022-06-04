@@ -52,35 +52,35 @@ cJSON *cause_user_id_cause_convertToJSON(cause_user_id_cause_t *cause_user_id_ca
     cJSON *item = cJSON_CreateObject();
 
     // cause_user_id_cause->_class
-    if(cause_user_id_cause->_class) { 
+    if(cause_user_id_cause->_class) {
     if(cJSON_AddStringToObject(item, "_class", cause_user_id_cause->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // cause_user_id_cause->short_description
-    if(cause_user_id_cause->short_description) { 
+    if(cause_user_id_cause->short_description) {
     if(cJSON_AddStringToObject(item, "shortDescription", cause_user_id_cause->short_description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // cause_user_id_cause->user_id
-    if(cause_user_id_cause->user_id) { 
+    if(cause_user_id_cause->user_id) {
     if(cJSON_AddStringToObject(item, "userId", cause_user_id_cause->user_id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // cause_user_id_cause->user_name
-    if(cause_user_id_cause->user_name) { 
+    if(cause_user_id_cause->user_name) {
     if(cJSON_AddStringToObject(item, "userName", cause_user_id_cause->user_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

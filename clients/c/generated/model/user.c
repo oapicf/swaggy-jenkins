@@ -58,43 +58,43 @@ cJSON *user_convertToJSON(user_t *user) {
     cJSON *item = cJSON_CreateObject();
 
     // user->_class
-    if(user->_class) { 
+    if(user->_class) {
     if(cJSON_AddStringToObject(item, "_class", user->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // user->id
-    if(user->id) { 
+    if(user->id) {
     if(cJSON_AddStringToObject(item, "id", user->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // user->full_name
-    if(user->full_name) { 
+    if(user->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", user->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // user->email
-    if(user->email) { 
+    if(user->email) {
     if(cJSON_AddStringToObject(item, "email", user->email) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // user->name
-    if(user->name) { 
+    if(user->name) {
     if(cJSON_AddStringToObject(item, "name", user->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

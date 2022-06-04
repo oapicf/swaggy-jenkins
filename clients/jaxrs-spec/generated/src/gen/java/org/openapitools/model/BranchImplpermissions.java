@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImplpermissions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class BranchImplpermissions   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class BranchImplpermissions   {
   
   private @Valid Boolean create;
   private @Valid Boolean read;
@@ -29,8 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.create = create;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -52,8 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("read")
   public Boolean getRead() {
@@ -71,8 +68,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.start = start;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -94,8 +89,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("stop")
   public Boolean getStop() {
@@ -113,8 +106,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

@@ -5,6 +5,7 @@ import org.openapitools.model.StringParameterValue;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class StringParameterDefinition  {
   
   @ApiModelProperty(value = "")

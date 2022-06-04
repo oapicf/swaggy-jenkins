@@ -3,7 +3,7 @@
 
 context("Test GithubScm")
 
-model.instance <- GithubScm$new()
+model_instance <- GithubScm$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -39,4 +39,3 @@ test_that("uri", {
   # uncomment below to test the property
   #expect_equal(model.instance$`uri`, "EXPECTED_RESULT")
 })
-

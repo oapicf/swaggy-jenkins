@@ -6,6 +6,7 @@ import org.openapitools.model.GithubRepositorypermissions;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class GithubRepository  {
   
   @ApiModelProperty(value = "")

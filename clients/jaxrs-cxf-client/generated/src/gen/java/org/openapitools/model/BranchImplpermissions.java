@@ -4,6 +4,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class BranchImplpermissions  {
   
   @ApiModelProperty(value = "")

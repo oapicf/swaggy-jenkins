@@ -102,9 +102,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved computer details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved computer details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -193,9 +193,9 @@ This endpoint does not need any parameter.
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved Jenkins details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved Jenkins details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -309,10 +309,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved job details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved job details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -432,10 +432,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved job configuration in config.xml format 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved job configuration in config.xml format
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -556,10 +556,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved job&#x27;s last build details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved job&#x27;s last build details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -704,10 +704,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved job&#x27;s build progressive text output 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved job&#x27;s build progressive text output
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -797,9 +797,9 @@ This endpoint does not need any parameter.
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved queue details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved queue details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -913,9 +913,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved queued item details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved queued item details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1029,10 +1029,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved view details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | View cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved view details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | View cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1152,10 +1152,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved view configuration in config.xml format 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | View cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved view configuration in config.xml format
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | View cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1249,9 +1249,9 @@ This endpoint does not need any parameter.
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved Jenkins headers 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved Jenkins headers
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1440,10 +1440,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully created a new job 
-400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully created a new job
+400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1615,10 +1615,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully created the view 
-400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully created the view
+400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1799,11 +1799,11 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully built the job (backward compatibility for older versions of Jenkins) 
-201 | ApiResponseFor201 | Successfully built the job 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully built the job (backward compatibility for older versions of Jenkins)
+201 | ApiResponseFor201 | Successfully built the job
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1969,11 +1969,11 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved job configuration in config.xml format 
-400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved job configuration in config.xml format
+400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2130,10 +2130,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully deleted the job 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully deleted the job
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2277,10 +2277,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully disabled the job 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully disabled the job
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2424,10 +2424,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully enabled the job 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully enabled the job
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2571,10 +2571,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully stopped the job 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Job cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully stopped the job
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Job cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2733,11 +2733,11 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully updated view configuration 
-400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | View cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully updated view configuration
+400 | ApiResponseFor400 | An error has occurred - error message is embedded inside the HTML response
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | View cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes

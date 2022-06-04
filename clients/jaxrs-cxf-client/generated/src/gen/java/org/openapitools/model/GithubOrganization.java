@@ -5,6 +5,7 @@ import org.openapitools.model.GithubOrganizationlinks;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class GithubOrganization  {
   
   @ApiModelProperty(value = "")

@@ -8,7 +8,7 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**artifacts** | [**BuiltList<PipelinelatestRunartifacts>**](PipelinelatestRunartifacts.md) |  | [optional] 
+**artifacts** | [**BuiltList&lt;PipelinelatestRunartifacts&gt;**](PipelinelatestRunartifacts.md) |  | [optional] 
 **durationInMillis** | **int** |  | [optional] 
 **estimatedDurationInMillis** | **int** |  | [optional] 
 **enQueueTime** | **String** |  | [optional] 

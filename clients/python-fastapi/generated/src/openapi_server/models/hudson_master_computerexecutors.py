@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.free_style_build import FreeStyleBuild
 
 
@@ -25,11 +25,11 @@ class HudsonMasterComputerexecutors(BaseModel):
         _class: The _class of this HudsonMasterComputerexecutors [Optional].
     """
 
-    current_executable: Optional[FreeStyleBuild] = None
-    idle: Optional[bool] = None
-    likely_stuck: Optional[bool] = None
-    number: Optional[int] = None
-    progress: Optional[int] = None
-    _class: Optional[str] = None
+    current_executable: Optional[FreeStyleBuild] = Field(alias="currentExecutable", default=None)
+    idle: Optional[bool] = Field(alias="idle", default=None)
+    likely_stuck: Optional[bool] = Field(alias="likelyStuck", default=None)
+    number: Optional[int] = Field(alias="number", default=None)
+    progress: Optional[int] = Field(alias="progress", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 HudsonMasterComputerexecutors.update_forward_refs()

@@ -80,7 +80,7 @@ public class QueueBlockedItem   {
 
   public QueueBlockedItem addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<CauseAction>();
+      this.actions = new ArrayList<>();
     }
     this.actions.add(actionsItem);
     return this;

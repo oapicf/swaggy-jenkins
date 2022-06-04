@@ -12,13 +12,13 @@ package org.openapitools.server.model
  * @param latestRun  for example: ''null''
 */
 final case class Pipeline (
-  `class`: Option[String],
-  organization: Option[String],
-  name: Option[String],
-  displayName: Option[String],
-  fullName: Option[String],
-  weatherScore: Option[Int],
-  estimatedDurationInMillis: Option[Int],
-  latestRun: Option[PipelinelatestRun]
+  `class`: Option[String] = None,
+  organization: Option[String] = None,
+  name: Option[String] = None,
+  displayName: Option[String] = None,
+  fullName: Option[String] = None,
+  weatherScore: Option[Int] = None,
+  estimatedDurationInMillis: Option[Int] = None,
+  latestRun: Option[PipelinelatestRun] = None
 )
 

@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server.models.free_style_projectactions import FreeStyleProjectactions
 from openapi_server.models.free_style_projecthealth_report import FreeStyleProjecthealthReport
@@ -49,32 +49,32 @@ class FreeStyleProject(BaseModel):
         scm: The scm of this FreeStyleProject [Optional].
     """
 
-    _class: Optional[str] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
-    color: Optional[str] = None
-    actions: Optional[List[FreeStyleProjectactions]] = None
-    description: Optional[str] = None
-    display_name: Optional[str] = None
-    display_name_or_null: Optional[str] = None
-    full_display_name: Optional[str] = None
-    full_name: Optional[str] = None
-    buildable: Optional[bool] = None
-    builds: Optional[List[FreeStyleBuild]] = None
-    first_build: Optional[FreeStyleBuild] = None
-    health_report: Optional[List[FreeStyleProjecthealthReport]] = None
-    in_queue: Optional[bool] = None
-    keep_dependencies: Optional[bool] = None
-    last_build: Optional[FreeStyleBuild] = None
-    last_completed_build: Optional[FreeStyleBuild] = None
-    last_failed_build: Optional[str] = None
-    last_stable_build: Optional[FreeStyleBuild] = None
-    last_successful_build: Optional[FreeStyleBuild] = None
-    last_unstable_build: Optional[str] = None
-    last_unsuccessful_build: Optional[str] = None
-    next_build_number: Optional[int] = None
-    queue_item: Optional[str] = None
-    concurrent_build: Optional[bool] = None
-    scm: Optional[NullSCM] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    url: Optional[str] = Field(alias="url", default=None)
+    color: Optional[str] = Field(alias="color", default=None)
+    actions: Optional[List[FreeStyleProjectactions]] = Field(alias="actions", default=None)
+    description: Optional[str] = Field(alias="description", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    display_name_or_null: Optional[str] = Field(alias="displayNameOrNull", default=None)
+    full_display_name: Optional[str] = Field(alias="fullDisplayName", default=None)
+    full_name: Optional[str] = Field(alias="fullName", default=None)
+    buildable: Optional[bool] = Field(alias="buildable", default=None)
+    builds: Optional[List[FreeStyleBuild]] = Field(alias="builds", default=None)
+    first_build: Optional[FreeStyleBuild] = Field(alias="firstBuild", default=None)
+    health_report: Optional[List[FreeStyleProjecthealthReport]] = Field(alias="healthReport", default=None)
+    in_queue: Optional[bool] = Field(alias="inQueue", default=None)
+    keep_dependencies: Optional[bool] = Field(alias="keepDependencies", default=None)
+    last_build: Optional[FreeStyleBuild] = Field(alias="lastBuild", default=None)
+    last_completed_build: Optional[FreeStyleBuild] = Field(alias="lastCompletedBuild", default=None)
+    last_failed_build: Optional[str] = Field(alias="lastFailedBuild", default=None)
+    last_stable_build: Optional[FreeStyleBuild] = Field(alias="lastStableBuild", default=None)
+    last_successful_build: Optional[FreeStyleBuild] = Field(alias="lastSuccessfulBuild", default=None)
+    last_unstable_build: Optional[str] = Field(alias="lastUnstableBuild", default=None)
+    last_unsuccessful_build: Optional[str] = Field(alias="lastUnsuccessfulBuild", default=None)
+    next_build_number: Optional[int] = Field(alias="nextBuildNumber", default=None)
+    queue_item: Optional[str] = Field(alias="queueItem", default=None)
+    concurrent_build: Optional[bool] = Field(alias="concurrentBuild", default=None)
+    scm: Optional[NullSCM] = Field(alias="scm", default=None)
 
 FreeStyleProject.update_forward_refs()

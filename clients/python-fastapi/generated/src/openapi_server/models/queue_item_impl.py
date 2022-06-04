@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class QueueItemImpl(BaseModel):
@@ -23,10 +23,10 @@ class QueueItemImpl(BaseModel):
         queued_time: The queued_time of this QueueItemImpl [Optional].
     """
 
-    _class: Optional[str] = None
-    expected_build_number: Optional[int] = None
-    id: Optional[str] = None
-    pipeline: Optional[str] = None
-    queued_time: Optional[int] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    expected_build_number: Optional[int] = Field(alias="expectedBuildNumber", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    pipeline: Optional[str] = Field(alias="pipeline", default=None)
+    queued_time: Optional[int] = Field(alias="queuedTime", default=None)
 
 QueueItemImpl.update_forward_refs()

@@ -3,7 +3,7 @@
 
 context("Test SwapSpaceMonitorMemoryUsage2")
 
-model.instance <- SwapSpaceMonitorMemoryUsage2$new()
+model_instance <- SwapSpaceMonitorMemoryUsage2$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -39,4 +39,3 @@ test_that("totalSwapSpace", {
   # uncomment below to test the property
   #expect_equal(model.instance$`totalSwapSpace`, "EXPECTED_RESULT")
 })
-

@@ -107,15 +107,15 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
     cJSON *item = cJSON_CreateObject();
 
     // hudson->_class
-    if(hudson->_class) { 
+    if(hudson->_class) {
     if(cJSON_AddStringToObject(item, "_class", hudson->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson->assigned_labels
-    if(hudson->assigned_labels) { 
+    if(hudson->assigned_labels) {
     cJSON *assigned_labels = cJSON_AddArrayToObject(item, "assignedLabels");
     if(assigned_labels == NULL) {
     goto fail; //nonprimitive container
@@ -131,51 +131,51 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
     cJSON_AddItemToArray(assigned_labels, itemLocal);
     }
     }
-     } 
+    }
 
 
     // hudson->mode
-    if(hudson->mode) { 
+    if(hudson->mode) {
     if(cJSON_AddStringToObject(item, "mode", hudson->mode) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson->node_description
-    if(hudson->node_description) { 
+    if(hudson->node_description) {
     if(cJSON_AddStringToObject(item, "nodeDescription", hudson->node_description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson->node_name
-    if(hudson->node_name) { 
+    if(hudson->node_name) {
     if(cJSON_AddStringToObject(item, "nodeName", hudson->node_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson->num_executors
-    if(hudson->num_executors) { 
+    if(hudson->num_executors) {
     if(cJSON_AddNumberToObject(item, "numExecutors", hudson->num_executors) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // hudson->description
-    if(hudson->description) { 
+    if(hudson->description) {
     if(cJSON_AddStringToObject(item, "description", hudson->description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson->jobs
-    if(hudson->jobs) { 
+    if(hudson->jobs) {
     cJSON *jobs = cJSON_AddArrayToObject(item, "jobs");
     if(jobs == NULL) {
     goto fail; //nonprimitive container
@@ -191,11 +191,11 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
     cJSON_AddItemToArray(jobs, itemLocal);
     }
     }
-     } 
+    }
 
 
     // hudson->primary_view
-    if(hudson->primary_view) { 
+    if(hudson->primary_view) {
     cJSON *primary_view_local_JSON = all_view_convertToJSON(hudson->primary_view);
     if(primary_view_local_JSON == NULL) {
     goto fail; //model
@@ -204,27 +204,27 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson->quieting_down
-    if(hudson->quieting_down) { 
+    if(hudson->quieting_down) {
     if(cJSON_AddBoolToObject(item, "quietingDown", hudson->quieting_down) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson->slave_agent_port
-    if(hudson->slave_agent_port) { 
+    if(hudson->slave_agent_port) {
     if(cJSON_AddNumberToObject(item, "slaveAgentPort", hudson->slave_agent_port) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // hudson->unlabeled_load
-    if(hudson->unlabeled_load) { 
+    if(hudson->unlabeled_load) {
     cJSON *unlabeled_load_local_JSON = unlabeled_load_statistics_convertToJSON(hudson->unlabeled_load);
     if(unlabeled_load_local_JSON == NULL) {
     goto fail; //model
@@ -233,27 +233,27 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson->use_crumbs
-    if(hudson->use_crumbs) { 
+    if(hudson->use_crumbs) {
     if(cJSON_AddBoolToObject(item, "useCrumbs", hudson->use_crumbs) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson->use_security
-    if(hudson->use_security) { 
+    if(hudson->use_security) {
     if(cJSON_AddBoolToObject(item, "useSecurity", hudson->use_security) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson->views
-    if(hudson->views) { 
+    if(hudson->views) {
     cJSON *views = cJSON_AddArrayToObject(item, "views");
     if(views == NULL) {
     goto fail; //nonprimitive container
@@ -269,7 +269,7 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
     cJSON_AddItemToArray(views, itemLocal);
     }
     }
-     } 
+    }
 
     return item;
 fail:
@@ -283,11 +283,20 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     hudson_t *hudson_local_var = NULL;
 
+    // define the local list for hudson->assigned_labels
+    list_t *assigned_labelsList = NULL;
+
+    // define the local list for hudson->jobs
+    list_t *jobsList = NULL;
+
     // define the local variable for hudson->primary_view
     all_view_t *primary_view_local_nonprim = NULL;
 
     // define the local variable for hudson->unlabeled_load
     unlabeled_load_statistics_t *unlabeled_load_local_nonprim = NULL;
+
+    // define the local list for hudson->views
+    list_t *viewsList = NULL;
 
     // hudson->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "_class");
@@ -300,9 +309,8 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->assigned_labels
     cJSON *assigned_labels = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "assignedLabels");
-    list_t *assigned_labelsList;
     if (assigned_labels) { 
-    cJSON *assigned_labels_local_nonprimitive;
+    cJSON *assigned_labels_local_nonprimitive = NULL;
     if(!cJSON_IsArray(assigned_labels)){
         goto end; //nonprimitive container
     }
@@ -367,9 +375,8 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->jobs
     cJSON *jobs = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "jobs");
-    list_t *jobsList;
     if (jobs) { 
-    cJSON *jobs_local_nonprimitive;
+    cJSON *jobs_local_nonprimitive = NULL;
     if(!cJSON_IsArray(jobs)){
         goto end; //nonprimitive container
     }
@@ -437,9 +444,8 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->views
     cJSON *views = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "views");
-    list_t *viewsList;
     if (views) { 
-    cJSON *views_local_nonprimitive;
+    cJSON *views_local_nonprimitive = NULL;
     if(!cJSON_IsArray(views)){
         goto end; //nonprimitive container
     }
@@ -478,6 +484,24 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     return hudson_local_var;
 end:
+    if (assigned_labelsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, assigned_labelsList) {
+            hudsonassigned_labels_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(assigned_labelsList);
+        assigned_labelsList = NULL;
+    }
+    if (jobsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, jobsList) {
+            free_style_project_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(jobsList);
+        jobsList = NULL;
+    }
     if (primary_view_local_nonprim) {
         all_view_free(primary_view_local_nonprim);
         primary_view_local_nonprim = NULL;
@@ -485,6 +509,15 @@ end:
     if (unlabeled_load_local_nonprim) {
         unlabeled_load_statistics_free(unlabeled_load_local_nonprim);
         unlabeled_load_local_nonprim = NULL;
+    }
+    if (viewsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, viewsList) {
+            all_view_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(viewsList);
+        viewsList = NULL;
     }
     return NULL;
 

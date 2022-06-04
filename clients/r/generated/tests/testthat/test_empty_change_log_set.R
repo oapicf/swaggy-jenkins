@@ -3,7 +3,7 @@
 
 context("Test EmptyChangeLogSet")
 
-model.instance <- EmptyChangeLogSet$new()
+model_instance <- EmptyChangeLogSet$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -18,4 +18,3 @@ test_that("kind", {
   # uncomment below to test the property
   #expect_equal(model.instance$`kind`, "EXPECTED_RESULT")
 })
-

@@ -7,14 +7,14 @@ open_api_server_base_getcrumb:
     path:     /crumbIssuer/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.base:getCrumbAction
+        _controller: open_api_server.controller.base::getCrumbAction
 
 # blueOcean
 open_api_server_blueOcean_deletepipelinequeueitem:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
     methods:  [DELETE]
     defaults:
-        _controller: open_api_server.controller.blueOcean:deletePipelineQueueItemAction
+        _controller: open_api_server.controller.blueOcean::deletePipelineQueueItemAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -24,7 +24,7 @@ open_api_server_blueOcean_getauthenticateduser:
     path:     /blue/rest/organizations/{organization}/user/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getAuthenticatedUserAction
+        _controller: open_api_server.controller.blueOcean::getAuthenticatedUserAction
     requirements:
         organization: '[a-z0-9]+'
 
@@ -32,7 +32,7 @@ open_api_server_blueOcean_getclasses:
     path:     /blue/rest/classes/{class}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getClassesAction
+        _controller: open_api_server.controller.blueOcean::getClassesAction
     requirements:
         class: '[a-z0-9]+'
 
@@ -40,7 +40,7 @@ open_api_server_blueOcean_getjsonwebkey:
     path:     /jwt-auth/jwks/{key}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getJsonWebKeyAction
+        _controller: open_api_server.controller.blueOcean::getJsonWebKeyAction
     requirements:
         key: '\d+'
 
@@ -48,13 +48,13 @@ open_api_server_blueOcean_getjsonwebtoken:
     path:     /jwt-auth/token
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getJsonWebTokenAction
+        _controller: open_api_server.controller.blueOcean::getJsonWebTokenAction
 
 open_api_server_blueOcean_getorganisation:
     path:     /blue/rest/organizations/{organization}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getOrganisationAction
+        _controller: open_api_server.controller.blueOcean::getOrganisationAction
     requirements:
         organization: '[a-z0-9]+'
 
@@ -62,13 +62,13 @@ open_api_server_blueOcean_getorganisations:
     path:     /blue/rest/organizations/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getOrganisationsAction
+        _controller: open_api_server.controller.blueOcean::getOrganisationsAction
 
 open_api_server_blueOcean_getpipeline:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineAction
+        _controller: open_api_server.controller.blueOcean::getPipelineAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -77,7 +77,7 @@ open_api_server_blueOcean_getpipelineactivities:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineActivitiesAction
+        _controller: open_api_server.controller.blueOcean::getPipelineActivitiesAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -86,7 +86,7 @@ open_api_server_blueOcean_getpipelinebranch:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineBranchAction
+        _controller: open_api_server.controller.blueOcean::getPipelineBranchAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -96,7 +96,7 @@ open_api_server_blueOcean_getpipelinebranchrun:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineBranchRunAction
+        _controller: open_api_server.controller.blueOcean::getPipelineBranchRunAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -107,7 +107,7 @@ open_api_server_blueOcean_getpipelinebranches:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineBranchesAction
+        _controller: open_api_server.controller.blueOcean::getPipelineBranchesAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -116,7 +116,7 @@ open_api_server_blueOcean_getpipelinefolder:
     path:     /blue/rest/organizations/{organization}/pipelines/{folder}/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineFolderAction
+        _controller: open_api_server.controller.blueOcean::getPipelineFolderAction
     requirements:
         organization: '[a-z0-9]+'
         folder: '[a-z0-9]+'
@@ -125,7 +125,7 @@ open_api_server_blueOcean_getpipelinefolderpipeline:
     path:     /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineFolderPipelineAction
+        _controller: open_api_server.controller.blueOcean::getPipelineFolderPipelineAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -135,7 +135,7 @@ open_api_server_blueOcean_getpipelinequeue:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineQueueAction
+        _controller: open_api_server.controller.blueOcean::getPipelineQueueAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -144,7 +144,7 @@ open_api_server_blueOcean_getpipelinerun:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -154,7 +154,7 @@ open_api_server_blueOcean_getpipelinerunlog:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunLogAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunLogAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -164,7 +164,7 @@ open_api_server_blueOcean_getpipelinerunnode:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunNodeAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunNodeAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -175,7 +175,7 @@ open_api_server_blueOcean_getpipelinerunnodestep:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunNodeStepAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunNodeStepAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -187,7 +187,7 @@ open_api_server_blueOcean_getpipelinerunnodesteplog:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunNodeStepLogAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunNodeStepLogAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -199,7 +199,7 @@ open_api_server_blueOcean_getpipelinerunnodesteps:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunNodeStepsAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunNodeStepsAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -210,7 +210,7 @@ open_api_server_blueOcean_getpipelinerunnodes:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunNodesAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunNodesAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -220,7 +220,7 @@ open_api_server_blueOcean_getpipelineruns:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelineRunsAction
+        _controller: open_api_server.controller.blueOcean::getPipelineRunsAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -229,7 +229,7 @@ open_api_server_blueOcean_getpipelines:
     path:     /blue/rest/organizations/{organization}/pipelines/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getPipelinesAction
+        _controller: open_api_server.controller.blueOcean::getPipelinesAction
     requirements:
         organization: '[a-z0-9]+'
 
@@ -237,7 +237,7 @@ open_api_server_blueOcean_getscm:
     path:     /blue/rest/organizations/{organization}/scm/{scm}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getSCMAction
+        _controller: open_api_server.controller.blueOcean::getSCMAction
     requirements:
         organization: '[a-z0-9]+'
         scm: '[a-z0-9]+'
@@ -246,7 +246,7 @@ open_api_server_blueOcean_getscmorganisationrepositories:
     path:     /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getSCMOrganisationRepositoriesAction
+        _controller: open_api_server.controller.blueOcean::getSCMOrganisationRepositoriesAction
     requirements:
         organization: '[a-z0-9]+'
         scm: '[a-z0-9]+'
@@ -256,7 +256,7 @@ open_api_server_blueOcean_getscmorganisationrepository:
     path:     /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getSCMOrganisationRepositoryAction
+        _controller: open_api_server.controller.blueOcean::getSCMOrganisationRepositoryAction
     requirements:
         organization: '[a-z0-9]+'
         scm: '[a-z0-9]+'
@@ -267,7 +267,7 @@ open_api_server_blueOcean_getscmorganisations:
     path:     /blue/rest/organizations/{organization}/scm/{scm}/organizations
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getSCMOrganisationsAction
+        _controller: open_api_server.controller.blueOcean::getSCMOrganisationsAction
     requirements:
         organization: '[a-z0-9]+'
         scm: '[a-z0-9]+'
@@ -276,7 +276,7 @@ open_api_server_blueOcean_getuser:
     path:     /blue/rest/organizations/{organization}/users/{user}
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getUserAction
+        _controller: open_api_server.controller.blueOcean::getUserAction
     requirements:
         organization: '[a-z0-9]+'
         user: '[a-z0-9]+'
@@ -285,7 +285,7 @@ open_api_server_blueOcean_getuserfavorites:
     path:     /blue/rest/users/{user}/favorites
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getUserFavoritesAction
+        _controller: open_api_server.controller.blueOcean::getUserFavoritesAction
     requirements:
         user: '[a-z0-9]+'
 
@@ -293,7 +293,7 @@ open_api_server_blueOcean_getusers:
     path:     /blue/rest/organizations/{organization}/users/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:getUsersAction
+        _controller: open_api_server.controller.blueOcean::getUsersAction
     requirements:
         organization: '[a-z0-9]+'
 
@@ -301,7 +301,7 @@ open_api_server_blueOcean_postpipelinerun:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.blueOcean:postPipelineRunAction
+        _controller: open_api_server.controller.blueOcean::postPipelineRunAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -311,7 +311,7 @@ open_api_server_blueOcean_postpipelineruns:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.blueOcean:postPipelineRunsAction
+        _controller: open_api_server.controller.blueOcean::postPipelineRunsAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -320,7 +320,7 @@ open_api_server_blueOcean_putpipelinefavorite:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
     methods:  [PUT]
     defaults:
-        _controller: open_api_server.controller.blueOcean:putPipelineFavoriteAction
+        _controller: open_api_server.controller.blueOcean::putPipelineFavoriteAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -329,7 +329,7 @@ open_api_server_blueOcean_putpipelinerun:
     path:     /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
     methods:  [PUT]
     defaults:
-        _controller: open_api_server.controller.blueOcean:putPipelineRunAction
+        _controller: open_api_server.controller.blueOcean::putPipelineRunAction
     requirements:
         organization: '[a-z0-9]+'
         pipeline: '[a-z0-9]+'
@@ -339,32 +339,32 @@ open_api_server_blueOcean_search:
     path:     /blue/rest/search/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:searchAction
+        _controller: open_api_server.controller.blueOcean::searchAction
 
 open_api_server_blueOcean_searchclasses:
     path:     /blue/rest/classes/
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.blueOcean:searchClassesAction
+        _controller: open_api_server.controller.blueOcean::searchClassesAction
 
 # remoteAccess
 open_api_server_remoteAccess_getcomputer:
     path:     /computer/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getComputerAction
+        _controller: open_api_server.controller.remoteAccess::getComputerAction
 
 open_api_server_remoteAccess_getjenkins:
     path:     /api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getJenkinsAction
+        _controller: open_api_server.controller.remoteAccess::getJenkinsAction
 
 open_api_server_remoteAccess_getjob:
     path:     /job/{name}/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getJobAction
+        _controller: open_api_server.controller.remoteAccess::getJobAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -372,7 +372,7 @@ open_api_server_remoteAccess_getjobconfig:
     path:     /job/{name}/config.xml
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getJobConfigAction
+        _controller: open_api_server.controller.remoteAccess::getJobConfigAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -380,7 +380,7 @@ open_api_server_remoteAccess_getjoblastbuild:
     path:     /job/{name}/lastBuild/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getJobLastBuildAction
+        _controller: open_api_server.controller.remoteAccess::getJobLastBuildAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -388,7 +388,7 @@ open_api_server_remoteAccess_getjobprogressivetext:
     path:     /job/{name}/{number}/logText/progressiveText
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getJobProgressiveTextAction
+        _controller: open_api_server.controller.remoteAccess::getJobProgressiveTextAction
     requirements:
         name: '[a-z0-9]+'
         number: '[a-z0-9]+'
@@ -397,13 +397,13 @@ open_api_server_remoteAccess_getqueue:
     path:     /queue/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getQueueAction
+        _controller: open_api_server.controller.remoteAccess::getQueueAction
 
 open_api_server_remoteAccess_getqueueitem:
     path:     /queue/item/{number}/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getQueueItemAction
+        _controller: open_api_server.controller.remoteAccess::getQueueItemAction
     requirements:
         number: '[a-z0-9]+'
 
@@ -411,7 +411,7 @@ open_api_server_remoteAccess_getview:
     path:     /view/{name}/api/json
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getViewAction
+        _controller: open_api_server.controller.remoteAccess::getViewAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -419,7 +419,7 @@ open_api_server_remoteAccess_getviewconfig:
     path:     /view/{name}/config.xml
     methods:  [GET]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:getViewConfigAction
+        _controller: open_api_server.controller.remoteAccess::getViewConfigAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -427,25 +427,25 @@ open_api_server_remoteAccess_headjenkins:
     path:     /api/json
     methods:  [HEAD]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:headJenkinsAction
+        _controller: open_api_server.controller.remoteAccess::headJenkinsAction
 
 open_api_server_remoteAccess_postcreateitem:
     path:     /createItem
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postCreateItemAction
+        _controller: open_api_server.controller.remoteAccess::postCreateItemAction
 
 open_api_server_remoteAccess_postcreateview:
     path:     /createView
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postCreateViewAction
+        _controller: open_api_server.controller.remoteAccess::postCreateViewAction
 
 open_api_server_remoteAccess_postjobbuild:
     path:     /job/{name}/build
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postJobBuildAction
+        _controller: open_api_server.controller.remoteAccess::postJobBuildAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -453,7 +453,7 @@ open_api_server_remoteAccess_postjobconfig:
     path:     /job/{name}/config.xml
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postJobConfigAction
+        _controller: open_api_server.controller.remoteAccess::postJobConfigAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -461,7 +461,7 @@ open_api_server_remoteAccess_postjobdelete:
     path:     /job/{name}/doDelete
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postJobDeleteAction
+        _controller: open_api_server.controller.remoteAccess::postJobDeleteAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -469,7 +469,7 @@ open_api_server_remoteAccess_postjobdisable:
     path:     /job/{name}/disable
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postJobDisableAction
+        _controller: open_api_server.controller.remoteAccess::postJobDisableAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -477,7 +477,7 @@ open_api_server_remoteAccess_postjobenable:
     path:     /job/{name}/enable
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postJobEnableAction
+        _controller: open_api_server.controller.remoteAccess::postJobEnableAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -485,7 +485,7 @@ open_api_server_remoteAccess_postjoblastbuildstop:
     path:     /job/{name}/lastBuild/stop
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postJobLastBuildStopAction
+        _controller: open_api_server.controller.remoteAccess::postJobLastBuildStopAction
     requirements:
         name: '[a-z0-9]+'
 
@@ -493,7 +493,7 @@ open_api_server_remoteAccess_postviewconfig:
     path:     /view/{name}/config.xml
     methods:  [POST]
     defaults:
-        _controller: open_api_server.controller.remoteAccess:postViewConfigAction
+        _controller: open_api_server.controller.remoteAccess::postViewConfigAction
     requirements:
         name: '[a-z0-9]+'
 

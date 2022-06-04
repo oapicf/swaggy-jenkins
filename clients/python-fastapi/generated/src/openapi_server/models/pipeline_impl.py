@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.pipeline_impllinks import PipelineImpllinks
 
 
@@ -28,14 +28,14 @@ class PipelineImpl(BaseModel):
         links: The links of this PipelineImpl [Optional].
     """
 
-    _class: Optional[str] = None
-    display_name: Optional[str] = None
-    estimated_duration_in_millis: Optional[int] = None
-    full_name: Optional[str] = None
-    latest_run: Optional[str] = None
-    name: Optional[str] = None
-    organization: Optional[str] = None
-    weather_score: Optional[int] = None
-    links: Optional[PipelineImpllinks] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    estimated_duration_in_millis: Optional[int] = Field(alias="estimatedDurationInMillis", default=None)
+    full_name: Optional[str] = Field(alias="fullName", default=None)
+    latest_run: Optional[str] = Field(alias="latestRun", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    weather_score: Optional[int] = Field(alias="weatherScore", default=None)
+    links: Optional[PipelineImpllinks] = Field(alias="_links", default=None)
 
 PipelineImpl.update_forward_refs()

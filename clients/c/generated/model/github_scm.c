@@ -58,15 +58,15 @@ cJSON *github_scm_convertToJSON(github_scm_t *github_scm) {
     cJSON *item = cJSON_CreateObject();
 
     // github_scm->_class
-    if(github_scm->_class) { 
+    if(github_scm->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_scm->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_scm->_links
-    if(github_scm->_links) { 
+    if(github_scm->_links) {
     cJSON *_links_local_JSON = github_scmlinks_convertToJSON(github_scm->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -75,31 +75,31 @@ cJSON *github_scm_convertToJSON(github_scm_t *github_scm) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_scm->credential_id
-    if(github_scm->credential_id) { 
+    if(github_scm->credential_id) {
     if(cJSON_AddStringToObject(item, "credentialId", github_scm->credential_id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_scm->id
-    if(github_scm->id) { 
+    if(github_scm->id) {
     if(cJSON_AddStringToObject(item, "id", github_scm->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_scm->uri
-    if(github_scm->uri) { 
+    if(github_scm->uri) {
     if(cJSON_AddStringToObject(item, "uri", github_scm->uri) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

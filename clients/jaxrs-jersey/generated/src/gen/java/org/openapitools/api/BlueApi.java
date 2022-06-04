@@ -44,7 +44,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the blue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class BlueApi  {
    private final BlueApiService delegate;
 
@@ -69,7 +69,7 @@ public class BlueApi  {
       this.delegate = delegate;
    }
 
-    @DELETE
+    @javax.ws.rs.DELETE
     @Path("/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")
     
     
@@ -85,7 +85,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.deletePipelineQueueItem(organization, pipeline, queue, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/user/")
     
     @Produces({ "application/json" })
@@ -101,7 +101,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getAuthenticatedUser(organization, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/classes/{class}")
     
     @Produces({ "application/json" })
@@ -117,7 +117,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getClasses(propertyClass, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}")
     
     @Produces({ "application/json" })
@@ -134,7 +134,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getOrganisation(organization, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/")
     
     @Produces({ "application/json" })
@@ -150,7 +150,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getOrganisations(securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}")
     
     @Produces({ "application/json" })
@@ -167,7 +167,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipeline(organization, pipeline, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/activities")
     
     @Produces({ "application/json" })
@@ -183,7 +183,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineActivities(organization, pipeline, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/")
     
     @Produces({ "application/json" })
@@ -199,7 +199,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineBranch(organization, pipeline, branch, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}")
     
     @Produces({ "application/json" })
@@ -215,7 +215,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineBranchRun(organization, pipeline, branch, run, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/branches")
     
     @Produces({ "application/json" })
@@ -231,7 +231,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineBranches(organization, pipeline, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{folder}/")
     
     @Produces({ "application/json" })
@@ -247,7 +247,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineFolder(organization, folder, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}")
     
     @Produces({ "application/json" })
@@ -263,7 +263,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineFolderPipeline(organization, pipeline, folder, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/queue")
     
     @Produces({ "application/json" })
@@ -279,7 +279,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineQueue(organization, pipeline, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}")
     
     @Produces({ "application/json" })
@@ -295,7 +295,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRun(organization, pipeline, run, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log")
     
     @Produces({ "application/json" })
@@ -311,7 +311,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRunLog(organization, pipeline, run, start, download, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}")
     
     @Produces({ "application/json" })
@@ -327,7 +327,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRunNode(organization, pipeline, run, node, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}")
     
     @Produces({ "application/json" })
@@ -343,7 +343,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRunNodeStep(organization, pipeline, run, node, step, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log")
     
     @Produces({ "application/json" })
@@ -359,7 +359,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRunNodeStepLog(organization, pipeline, run, node, step, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps")
     
     @Produces({ "application/json" })
@@ -375,7 +375,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRunNodeSteps(organization, pipeline, run, node, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes")
     
     @Produces({ "application/json" })
@@ -391,7 +391,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRunNodes(organization, pipeline, run, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs")
     
     @Produces({ "application/json" })
@@ -407,7 +407,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelineRuns(organization, pipeline, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/pipelines/")
     
     @Produces({ "application/json" })
@@ -423,7 +423,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getPipelines(organization, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/scm/{scm}")
     
     @Produces({ "application/json" })
@@ -439,7 +439,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getSCM(organization, scm, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories")
     
     @Produces({ "application/json" })
@@ -455,7 +455,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}")
     
     @Produces({ "application/json" })
@@ -471,7 +471,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/scm/{scm}/organizations")
     
     @Produces({ "application/json" })
@@ -487,7 +487,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getSCMOrganisations(organization, scm, credentialId, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/users/{user}")
     
     @Produces({ "application/json" })
@@ -503,7 +503,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getUser(organization, user, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/users/{user}/favorites")
     
     @Produces({ "application/json" })
@@ -519,7 +519,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getUserFavorites(user, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/organizations/{organization}/users/")
     
     @Produces({ "application/json" })
@@ -535,7 +535,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.getUsers(organization, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay")
     
     @Produces({ "application/json" })
@@ -551,7 +551,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.postPipelineRun(organization, pipeline, run, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs")
     
     @Produces({ "application/json" })
@@ -567,7 +567,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.postPipelineRuns(organization, pipeline, securityContext);
     }
-    @PUT
+    @javax.ws.rs.PUT
     @Path("/organizations/{organization}/pipelines/{pipeline}/favorite")
     @Consumes({ "application/json" })
     @Produces({ "application/json" })
@@ -583,7 +583,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.putPipelineFavorite(organization, pipeline, body, securityContext);
     }
-    @PUT
+    @javax.ws.rs.PUT
     @Path("/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")
     
     @Produces({ "application/json" })
@@ -599,7 +599,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/search/")
     
     @Produces({ "application/json" })
@@ -615,7 +615,7 @@ public class BlueApi  {
     throws NotFoundException {
         return delegate.search(q, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/classes/")
     
     @Produces({ "application/json" })

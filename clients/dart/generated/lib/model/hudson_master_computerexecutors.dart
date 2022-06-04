@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -21,17 +21,53 @@ class HudsonMasterComputerexecutors {
     this.class_,
   });
 
-  FreeStyleBuild currentExecutable;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? currentExecutable;
 
-  bool idle;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? idle;
 
-  bool likelyStuck;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? likelyStuck;
 
-  int number;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? number;
 
-  int progress;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? progress;
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HudsonMasterComputerexecutors &&
@@ -44,46 +80,58 @@ class HudsonMasterComputerexecutors {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (currentExecutable == null ? 0 : currentExecutable.hashCode) +
-    (idle == null ? 0 : idle.hashCode) +
-    (likelyStuck == null ? 0 : likelyStuck.hashCode) +
-    (number == null ? 0 : number.hashCode) +
-    (progress == null ? 0 : progress.hashCode) +
-    (class_ == null ? 0 : class_.hashCode);
+    // ignore: unnecessary_parenthesis
+    (currentExecutable == null ? 0 : currentExecutable!.hashCode) +
+    (idle == null ? 0 : idle!.hashCode) +
+    (likelyStuck == null ? 0 : likelyStuck!.hashCode) +
+    (number == null ? 0 : number!.hashCode) +
+    (progress == null ? 0 : progress!.hashCode) +
+    (class_ == null ? 0 : class_!.hashCode);
 
   @override
   String toString() => 'HudsonMasterComputerexecutors[currentExecutable=$currentExecutable, idle=$idle, likelyStuck=$likelyStuck, number=$number, progress=$progress, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (currentExecutable != null) {
-      json[r'currentExecutable'] = currentExecutable;
+      _json[r'currentExecutable'] = currentExecutable;
     }
     if (idle != null) {
-      json[r'idle'] = idle;
+      _json[r'idle'] = idle;
     }
     if (likelyStuck != null) {
-      json[r'likelyStuck'] = likelyStuck;
+      _json[r'likelyStuck'] = likelyStuck;
     }
     if (number != null) {
-      json[r'number'] = number;
+      _json[r'number'] = number;
     }
     if (progress != null) {
-      json[r'progress'] = progress;
+      _json[r'progress'] = progress;
     }
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [HudsonMasterComputerexecutors] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static HudsonMasterComputerexecutors fromJson(dynamic value) {
+  static HudsonMasterComputerexecutors? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "HudsonMasterComputerexecutors[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "HudsonMasterComputerexecutors[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return HudsonMasterComputerexecutors(
         currentExecutable: FreeStyleBuild.fromJson(json[r'currentExecutable']),
         idle: mapValueOfType<bool>(json, r'idle'),
@@ -96,36 +144,50 @@ class HudsonMasterComputerexecutors {
     return null;
   }
 
-  static List<HudsonMasterComputerexecutors> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(HudsonMasterComputerexecutors.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <HudsonMasterComputerexecutors>[];
+  static List<HudsonMasterComputerexecutors>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <HudsonMasterComputerexecutors>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = HudsonMasterComputerexecutors.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, HudsonMasterComputerexecutors> mapFromJson(dynamic json) {
     final map = <String, HudsonMasterComputerexecutors>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = HudsonMasterComputerexecutors.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = HudsonMasterComputerexecutors.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of HudsonMasterComputerexecutors-objects as value to a dart map
-  static Map<String, List<HudsonMasterComputerexecutors>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<HudsonMasterComputerexecutors>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<HudsonMasterComputerexecutors>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = HudsonMasterComputerexecutors.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = HudsonMasterComputerexecutors.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

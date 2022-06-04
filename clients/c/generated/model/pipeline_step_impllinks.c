@@ -46,7 +46,7 @@ cJSON *pipeline_step_impllinks_convertToJSON(pipeline_step_impllinks_t *pipeline
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_step_impllinks->self
-    if(pipeline_step_impllinks->self) { 
+    if(pipeline_step_impllinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(pipeline_step_impllinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -55,11 +55,11 @@ cJSON *pipeline_step_impllinks_convertToJSON(pipeline_step_impllinks_t *pipeline
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_step_impllinks->actions
-    if(pipeline_step_impllinks->actions) { 
+    if(pipeline_step_impllinks->actions) {
     cJSON *actions_local_JSON = link_convertToJSON(pipeline_step_impllinks->actions);
     if(actions_local_JSON == NULL) {
     goto fail; //model
@@ -68,15 +68,15 @@ cJSON *pipeline_step_impllinks_convertToJSON(pipeline_step_impllinks_t *pipeline
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_step_impllinks->_class
-    if(pipeline_step_impllinks->_class) { 
+    if(pipeline_step_impllinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_step_impllinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

@@ -55,15 +55,18 @@ RemoteAccessAPI_getComputer(apiClient_t *apiClient, int depth )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved computer details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved computer details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     computer_set_t *elementToReturn = computer_set_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -133,15 +136,18 @@ RemoteAccessAPI_getJenkins(apiClient_t *apiClient)
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved Jenkins details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved Jenkins details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     hudson_t *elementToReturn = hudson_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -209,18 +215,22 @@ RemoteAccessAPI_getJob(apiClient_t *apiClient, char * name )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved job details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved job details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     free_style_project_t *elementToReturn = free_style_project_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -289,18 +299,22 @@ RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char * name )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved job configuration in config.xml format");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved job configuration in config.xml format");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -363,18 +377,22 @@ RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char * name )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved job&#39;s last build details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved job&#39;s last build details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     free_style_build_t *elementToReturn = free_style_build_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -464,18 +482,22 @@ RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char * name , char
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved job&#39;s build progressive text output");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved job&#39;s build progressive text output");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -544,15 +566,18 @@ RemoteAccessAPI_getQueue(apiClient_t *apiClient)
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved queue details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved queue details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     queue_t *elementToReturn = queue_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -620,15 +645,18 @@ RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char * number )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved queued item details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved queued item details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     queue_t *elementToReturn = queue_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -697,18 +725,22 @@ RemoteAccessAPI_getView(apiClient_t *apiClient, char * name )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved view details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","View cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved view details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","View cannot be found on Jenkins instance");
+    //}
     //nonprimitive not container
     cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     list_view_t *elementToReturn = list_view_parseFromJSON(RemoteAccessAPIlocalVarJSON);
@@ -777,18 +809,22 @@ RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char * name )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved view configuration in config.xml format");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","View cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved view configuration in config.xml format");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","View cannot be found on Jenkins instance");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -840,15 +876,18 @@ RemoteAccessAPI_headJenkins(apiClient_t *apiClient)
                     localVarBodyParameters,
                     "HEAD");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved Jenkins headers");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved Jenkins headers");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -965,18 +1004,22 @@ RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char * name , char * from
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully created a new job");
-    }
-    if (apiClient->response_code == 400) {
-        printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully created a new job");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 400) {
+    //    printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1152,18 +1195,22 @@ RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char * name , char * Jenk
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully created the view");
-    }
-    if (apiClient->response_code == 400) {
-        printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully created the view");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 400) {
+    //    printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1298,21 +1345,26 @@ RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char * name , char * json ,
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully built the job (backward compatibility for older versions of Jenkins)");
-    }
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successfully built the job");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully built the job (backward compatibility for older versions of Jenkins)");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successfully built the job");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1441,21 +1493,26 @@ RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char * name , char * body 
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved job configuration in config.xml format");
-    }
-    if (apiClient->response_code == 400) {
-        printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved job configuration in config.xml format");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 400) {
+    //    printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1538,18 +1595,22 @@ RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char * name , char * Jenki
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully deleted the job");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully deleted the job");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1627,18 +1688,22 @@ RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char * name , char * Jenk
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully disabled the job");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully disabled the job");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1716,18 +1781,22 @@ RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char * name , char * Jenki
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully enabled the job");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully enabled the job");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1805,18 +1874,22 @@ RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char * name , char 
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully stopped the job");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Job cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully stopped the job");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Job cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -1905,21 +1978,26 @@ RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char * name , char * body
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully updated view configuration");
-    }
-    if (apiClient->response_code == 400) {
-        printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","View cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully updated view configuration");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 400) {
+    //    printf("%s\n","An error has occurred - error message is embedded inside the HTML response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","View cannot be found on Jenkins instance");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {

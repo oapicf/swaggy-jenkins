@@ -3,7 +3,7 @@
 
 context("Test HudsonMasterComputerexecutors")
 
-model.instance <- HudsonMasterComputerexecutors$new()
+model_instance <- HudsonMasterComputerexecutors$new()
 
 test_that("currentExecutable", {
   # tests for the property `currentExecutable` (FreeStyleBuild)
@@ -46,4 +46,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

@@ -2,7 +2,7 @@ h1. Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-*Version:* 1.1.2-pre.0
+*Version:* 1.5.1-pre.0
 
 ----
 
@@ -22,7 +22,7 @@ h3. getCrumb
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/crumbIssuer/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -48,7 +48,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -58,7 +58,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -84,7 +84,7 @@ h3. deletePipelineQueueItem
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||queue |Name of the queue item | String | (/) |null |  |  |
 
 
@@ -102,7 +102,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -112,7 +112,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -134,11 +134,11 @@ h3. getAuthenticatedUser
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/user/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  |
 
 
@@ -163,7 +163,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -173,7 +173,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -195,11 +195,11 @@ h3. getClasses
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/classes/{class}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |class |Name of the class | String | (/) |null |  |  |
 
 
@@ -224,7 +224,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -234,7 +234,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -256,11 +256,11 @@ h3. getJsonWebKey
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/jwt-auth/jwks/{key}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |key |Key ID received as part of JWT header field kid | Integer | (/) |null |  |  |
 
 
@@ -285,7 +285,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -295,7 +295,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -317,14 +317,14 @@ h3. getJsonWebToken
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/jwt-auth/token{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |expiryTimeInMins |Token expiry time in minutes, default: 30 minutes | Integer | (x) |null |  |  ||maxExpiryTimeInMins |Maximum token expiry time in minutes, default: 480 minutes | Integer | (x) |null |  |  |
 ----
 h4. Responses
@@ -346,7 +346,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -356,7 +356,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -378,11 +378,11 @@ h3. getOrganisation
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  |
 
 
@@ -407,7 +407,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -417,7 +417,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -427,7 +427,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Pipeline cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -449,7 +449,7 @@ h3. getOrganisations
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -475,7 +475,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -485,7 +485,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -507,11 +507,11 @@ h3. getPipeline
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 
@@ -536,7 +536,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -546,7 +546,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -556,7 +556,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Pipeline cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -578,11 +578,11 @@ h3. getPipelineActivities
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 
@@ -607,7 +607,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -617,7 +617,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -639,11 +639,11 @@ h3. getPipelineBranch
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||branch |Name of the branch | String | (/) |null |  |  |
 
 
@@ -668,7 +668,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -678,7 +678,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -700,11 +700,11 @@ h3. getPipelineBranchRun
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||branch |Name of the branch | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  |
 
 
@@ -729,7 +729,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -739,7 +739,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -761,11 +761,11 @@ h3. getPipelineBranches
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 
@@ -790,7 +790,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -800,7 +800,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -822,11 +822,11 @@ h3. getPipelineFolder
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{folder}/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||folder |Name of the folder | String | (/) |null |  |  |
 
 
@@ -851,7 +851,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -861,7 +861,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -883,11 +883,11 @@ h3. getPipelineFolderPipeline
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||folder |Name of the folder | String | (/) |null |  |  |
 
 
@@ -912,7 +912,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -922,7 +922,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -944,11 +944,11 @@ h3. getPipelineQueue
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 
@@ -973,7 +973,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -983,7 +983,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1005,11 +1005,11 @@ h3. getPipelineRun
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  |
 
 
@@ -1034,7 +1034,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1044,7 +1044,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1066,17 +1066,17 @@ h3. getPipelineRunLog
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  |
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |start |Start position of the log | Integer | (x) |null |  |  ||download |Set to true in order to download the file, otherwise it&#39;s passed as a response body | Boolean | (x) |null |  |  |
 ----
 h4. Responses
@@ -1098,7 +1098,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1108,7 +1108,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1130,11 +1130,11 @@ h3. getPipelineRunNode
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  ||node |Name of the node | String | (/) |null |  |  |
 
 
@@ -1159,7 +1159,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1169,7 +1169,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1191,11 +1191,11 @@ h3. getPipelineRunNodeStep
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  ||node |Name of the node | String | (/) |null |  |  ||step |Name of the step | String | (/) |null |  |  |
 
 
@@ -1220,7 +1220,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1230,7 +1230,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1252,11 +1252,11 @@ h3. getPipelineRunNodeStepLog
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  ||node |Name of the node | String | (/) |null |  |  ||step |Name of the step | String | (/) |null |  |  |
 
 
@@ -1281,7 +1281,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1291,7 +1291,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1313,11 +1313,11 @@ h3. getPipelineRunNodeSteps
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  ||node |Name of the node | String | (/) |null |  |  |
 
 
@@ -1342,7 +1342,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1352,7 +1352,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1374,11 +1374,11 @@ h3. getPipelineRunNodes
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  |
 
 
@@ -1403,7 +1403,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1413,7 +1413,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1435,11 +1435,11 @@ h3. getPipelineRuns
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 
@@ -1464,7 +1464,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1474,7 +1474,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1496,11 +1496,11 @@ h3. getPipelines
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  |
 
 
@@ -1525,7 +1525,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1535,7 +1535,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1557,11 +1557,11 @@ h3. getSCM
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/scm/{scm}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||scm |Name of SCM | String | (/) |null |  |  |
 
 
@@ -1586,7 +1586,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1596,7 +1596,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1618,17 +1618,17 @@ h3. getSCMOrganisationRepositories
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||scm |Name of SCM | String | (/) |null |  |  ||scmOrganisation |Name of the SCM organization | String | (/) |null |  |  |
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |credentialId |Credential ID | String | (x) |null |  |  ||pageSize |Number of items in a page | Integer | (x) |null |  |  ||pageNumber |Page number | Integer | (x) |null |  |  |
 ----
 h4. Responses
@@ -1650,7 +1650,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1660,7 +1660,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1682,17 +1682,17 @@ h3. getSCMOrganisationRepository
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||scm |Name of SCM | String | (/) |null |  |  ||scmOrganisation |Name of the SCM organization | String | (/) |null |  |  ||repository |Name of the SCM repository | String | (/) |null |  |  |
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |credentialId |Credential ID | String | (x) |null |  |  |
 ----
 h4. Responses
@@ -1714,7 +1714,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1724,7 +1724,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1746,17 +1746,17 @@ h3. getSCMOrganisations
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/scm/{scm}/organizations{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||scm |Name of SCM | String | (/) |null |  |  |
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |credentialId |Credential ID | String | (x) |null |  |  |
 ----
 h4. Responses
@@ -1778,7 +1778,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1788,7 +1788,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1810,11 +1810,11 @@ h3. getUser
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/users/{user}{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||user |Name of the user | String | (/) |null |  |  |
 
 
@@ -1839,7 +1839,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1849,7 +1849,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1871,11 +1871,11 @@ h3. getUserFavorites
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/users/{user}/favorites{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |user |Name of the user | String | (/) |null |  |  |
 
 
@@ -1900,7 +1900,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1910,7 +1910,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1932,11 +1932,11 @@ h3. getUsers
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/users/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  |
 
 
@@ -1961,7 +1961,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1971,7 +1971,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -1993,11 +1993,11 @@ h3. postPipelineRun
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  |
 
 
@@ -2022,7 +2022,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2032,7 +2032,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2054,11 +2054,11 @@ h3. postPipelineRuns
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 
@@ -2083,7 +2083,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2093,7 +2093,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2115,16 +2115,16 @@ h3. putPipelineFavorite
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  |
 
 h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
-        |body |Set JSON string body to {&quot;favorite&quot;: true} to favorite, set value to false to unfavorite | Boolean | (/) | |  |  |
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |body |Set JSON string body to \{&quot;favorite&quot;: true\} to favorite, set value to false to unfavorite | Boolean | (/) | |  |  |
 
 
 ----
@@ -2147,7 +2147,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2157,7 +2157,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2179,17 +2179,17 @@ h3. putPipelineRun
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |organization |Name of the organization | String | (/) |null |  |  ||pipeline |Name of the pipeline | String | (/) |null |  |  ||run |Name of the run | String | (/) |null |  |  |
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |blocking |Set to true to make blocking stop, default: false | String | (x) |null |  |  ||timeOutInSecs |Timeout in seconds, default: 10 seconds | Integer | (x) |null |  |  |
 ----
 h4. Responses
@@ -2211,7 +2211,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2221,7 +2221,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2243,14 +2243,14 @@ h3. search
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/search/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |q |Query string | String | (/) |null |  |  |
 ----
 h4. Responses
@@ -2272,7 +2272,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2282,7 +2282,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2304,14 +2304,14 @@ h3. searchClasses
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/blue/rest/classes/{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |q |Query string containing an array of class names | String | (/) |null |  |  |
 ----
 h4. Responses
@@ -2333,7 +2333,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2343,7 +2343,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2365,14 +2365,14 @@ h3. getComputer
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/computer/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |depth |Recursion depth in response model | Integer | (/) |null |  |  |
 ----
 h4. Responses
@@ -2394,7 +2394,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2404,7 +2404,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2426,7 +2426,7 @@ h3. getJenkins
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -2452,7 +2452,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2462,7 +2462,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2484,11 +2484,11 @@ h3. getJob
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/job/{name}/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
@@ -2513,7 +2513,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2523,7 +2523,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2533,7 +2533,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2555,11 +2555,11 @@ h3. getJobConfig
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/job/{name}/config.xml{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}text/xml{noformat} |
+    || Produces | {noformat:nopanel=true}text/xml {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
@@ -2584,7 +2584,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2594,7 +2594,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2604,7 +2604,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2626,11 +2626,11 @@ h3. getJobLastBuild
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/job/{name}/lastBuild/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
@@ -2655,7 +2655,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2665,7 +2665,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2675,7 +2675,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2701,13 +2701,13 @@ h3. getJobProgressiveText
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  ||number |Build number | String | (/) |null |  |  |
 
 
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |start |Starting point of progressive text output | String | (/) |null |  |  |
 ----
 h4. Responses
@@ -2722,7 +2722,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2732,7 +2732,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2742,7 +2742,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2764,7 +2764,7 @@ h3. getQueue
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/queue/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 
@@ -2790,7 +2790,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2800,7 +2800,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2822,11 +2822,11 @@ h3. getQueueItem
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/queue/item/{number}/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |number |Queue number | String | (/) |null |  |  |
 
 
@@ -2851,7 +2851,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2861,7 +2861,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2883,11 +2883,11 @@ h3. getView
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/view/{name}/api/json{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}application/json{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the view | String | (/) |null |  |  |
 
 
@@ -2912,7 +2912,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2922,7 +2922,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2932,7 +2932,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | View cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2954,11 +2954,11 @@ h3. getViewConfig
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/view/{name}/config.xml{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}text/xml{noformat} |
+    || Produces | {noformat:nopanel=true}text/xml {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the view | String | (/) |null |  |  |
 
 
@@ -2983,7 +2983,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -2993,7 +2993,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3003,7 +3003,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | View cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3054,7 +3054,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3064,7 +3064,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3086,20 +3086,20 @@ h3. postCreateItem
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/createItem{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}*/*{noformat} |
+    || Produces | {noformat:nopanel=true}*/* {noformat} |
 ----
 h4. Parameters
 
 h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |body |Job configuration in config.xml format | String | (x) | |  |  |
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  ||Content-Type |Content type header application/xml | String | (x) |null |  |  |
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the new job | String | (/) |null |  |  ||from |Existing job to copy from | String | (x) |null |  |  ||mode |Set to &#39;copy&#39; for copying an existing job | String | (x) |null |  |  |
 ----
 h4. Responses
@@ -3114,7 +3114,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | An error has occurred - error message is embedded inside the HTML response |
     	|| Response Type | String |
     	|| Response Model | [String Model|#StringModelAnchor|Jump to model] |
@@ -3131,7 +3131,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3141,7 +3141,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3163,20 +3163,20 @@ h3. postCreateView
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/createView{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}*/*{noformat} |
+    || Produces | {noformat:nopanel=true}*/* {noformat} |
 ----
 h4. Parameters
 
 h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |body |View configuration in config.xml format | String | (x) | |  |  |
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  ||Content-Type |Content type header application/xml | String | (x) |null |  |  |
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the new view | String | (/) |null |  |  |
 ----
 h4. Responses
@@ -3191,7 +3191,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | An error has occurred - error message is embedded inside the HTML response |
     	|| Response Type | String |
     	|| Response Model | [String Model|#StringModelAnchor|Jump to model] |
@@ -3208,7 +3208,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3218,7 +3218,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3244,16 +3244,16 @@ h3. postJobBuild
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 h5. Query Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |json | | String | (/) |null |  |  ||token | | String | (x) |null |  |  |
 ----
 h4. Responses
@@ -3278,7 +3278,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3288,7 +3288,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3298,7 +3298,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3320,19 +3320,19 @@ h3. postJobConfig
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/job/{name}/config.xml{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}*/*{noformat} |
+    || Produces | {noformat:nopanel=true}*/* {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |body |Job configuration in config.xml format | String | (/) | |  |  |
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 ----
@@ -3348,7 +3348,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | An error has occurred - error message is embedded inside the HTML response |
     	|| Response Type | String |
     	|| Response Model | [String Model|#StringModelAnchor|Jump to model] |
@@ -3365,7 +3365,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3375,7 +3375,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3385,7 +3385,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3411,12 +3411,12 @@ h3. postJobDelete
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 ----
@@ -3432,7 +3432,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3442,7 +3442,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3452,7 +3452,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3478,12 +3478,12 @@ h3. postJobDisable
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 ----
@@ -3499,7 +3499,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3509,7 +3509,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3519,7 +3519,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3545,12 +3545,12 @@ h3. postJobEnable
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 ----
@@ -3566,7 +3566,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3576,7 +3576,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3586,7 +3586,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3612,12 +3612,12 @@ h3. postJobLastBuildStop
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the job | String | (/) |null |  |  |
 
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 ----
@@ -3633,7 +3633,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3643,7 +3643,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3653,7 +3653,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | Job cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3675,19 +3675,19 @@ h3. postViewConfig
     || Protocol | {noformat:nopanel=true}http{noformat} |
     || Path | {noformat:nopanel=true}/view/{name}/config.xml{noformat} |
     || Base Path | {noformat:nopanel=true}http://localhost{noformat} |
-    || Produces | {noformat:nopanel=true}*/*{noformat} |
+    || Produces | {noformat:nopanel=true}*/* {noformat} |
 ----
 h4. Parameters
 h5. Path Parameters
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |name |Name of the view | String | (/) |null |  |  |
 
 h5. Body Parameter
-        ||Name||Description||Type||Required||Default||Pattern||Enum||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |body |View configuration in config.xml format | String | (/) | |  |  |
 
 h5. Header Parameters
-        ||Name||Description||Required||Default||Pattern||
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
         |Jenkins-Crumb |CSRF protection token | String | (x) |null |  |  |
 
 ----
@@ -3703,7 +3703,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=400|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
     	|| Message | An error has occurred - error message is embedded inside the HTML response |
     	|| Response Type | String |
     	|| Response Model | [String Model|#StringModelAnchor|Jump to model] |
@@ -3720,7 +3720,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=401|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
     	|| Message | Authentication failed - incorrect username and/or password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3730,7 +3730,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=403|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=403|subtle=false} |
     	|| Message | Jenkins requires authentication - please set username and password |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3740,7 +3740,7 @@ h4. Responses
        
 
 
-    	|| Status Code | {status:colour=Green|title=404|subtle=false} |
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
     	|| Message | View cannot be found on Jenkins instance |
     	|| Response Type |  |
     	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
@@ -3761,10 +3761,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:BranchImplModelAnchor}
         h3. BranchImpl
@@ -3772,20 +3772,20 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |fullDisplayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |parameters |(x) |{noformat:nopanel=true}array[StringParameterDefinition]{noformat} | |  |
-         |permissions |(x) |{noformat:nopanel=true}BranchImplpermissions{noformat} | |  |
-         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |pullRequest |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}BranchImpllinks{noformat} | |  |
-         |latestRun |(x) |{noformat:nopanel=true}PipelineRunImpl{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |fullDisplayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |parameters |(x) |{noformat:nopanel=true}array[StringParameterDefinition]{noformat} |  |  | null
+         |permissions |(x) |{noformat:nopanel=true}BranchImplpermissions{noformat} |  |  | null
+         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |pullRequest |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}BranchImpllinks{noformat} |  |  | null
+         |latestRun |(x) |{noformat:nopanel=true}PipelineRunImpl{noformat} |  |  | null
          
         {anchor:BranchImpllinksModelAnchor}
         h3. BranchImpllinks
@@ -3793,12 +3793,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |runs |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |queue |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |runs |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |queue |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:BranchImplpermissionsModelAnchor}
         h3. BranchImplpermissions
@@ -3806,12 +3806,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |create |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |read |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |start |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |stop |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |create |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |read |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |start |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |stop |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:CauseActionModelAnchor}
         h3. CauseAction
@@ -3819,9 +3819,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |causes |(x) |{noformat:nopanel=true}array[CauseUserIdCause]{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |causes |(x) |{noformat:nopanel=true}array[CauseUserIdCause]{noformat} |  |  | null
          
         {anchor:CauseUserIdCauseModelAnchor}
         h3. CauseUserIdCause
@@ -3829,11 +3829,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |shortDescription |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |userId |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |userName |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |shortDescription |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |userId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |userName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:ClassesByClassModelAnchor}
         h3. ClassesByClass
@@ -3841,9 +3841,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |classes |(x) |{noformat:nopanel=true}array[String]{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |classes |(x) |{noformat:nopanel=true}array[String]{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:ClockDifferenceModelAnchor}
         h3. ClockDifference
@@ -3851,9 +3851,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |diff |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |diff |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:ComputerSetModelAnchor}
         h3. ComputerSet
@@ -3861,12 +3861,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |busyExecutors |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |computer |(x) |{noformat:nopanel=true}array[HudsonMasterComputer]{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |totalExecutors |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |busyExecutors |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |computer |(x) |{noformat:nopanel=true}array[HudsonMasterComputer]{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |totalExecutors |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:DefaultCrumbIssuerModelAnchor}
         h3. DefaultCrumbIssuer
@@ -3874,10 +3874,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |crumb |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |crumbRequestField |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |crumb |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |crumbRequestField |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:DiskSpaceMonitorDescriptorDiskSpaceModelAnchor}
         h3. DiskSpaceMonitorDescriptorDiskSpace
@@ -3885,11 +3885,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |timestamp |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |path |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |size |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |timestamp |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |path |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |size |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:EmptyChangeLogSetModelAnchor}
         h3. EmptyChangeLogSet
@@ -3897,9 +3897,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |kind |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |kind |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:ExtensionClassContainerImpl1ModelAnchor}
         h3. ExtensionClassContainerImpl1
@@ -3907,10 +3907,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}ExtensionClassContainerImpl1links{noformat} | |  |
-         |map |(x) |{noformat:nopanel=true}ExtensionClassContainerImpl1map{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}ExtensionClassContainerImpl1links{noformat} |  |  | null
+         |map |(x) |{noformat:nopanel=true}ExtensionClassContainerImpl1map{noformat} |  |  | null
          
         {anchor:ExtensionClassContainerImpl1linksModelAnchor}
         h3. ExtensionClassContainerImpl1links
@@ -3918,9 +3918,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:ExtensionClassContainerImpl1mapModelAnchor}
         h3. ExtensionClassContainerImpl1map
@@ -3928,10 +3928,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |io.jenkins.blueocean.service.embedded.rest.PipelineImpl |(x) |{noformat:nopanel=true}ExtensionClassImpl{noformat} | |  |
-         |io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl |(x) |{noformat:nopanel=true}ExtensionClassImpl{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |io.jenkins.blueocean.service.embedded.rest.PipelineImpl |(x) |{noformat:nopanel=true}ExtensionClassImpl{noformat} |  |  | null
+         |io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl |(x) |{noformat:nopanel=true}ExtensionClassImpl{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:ExtensionClassImplModelAnchor}
         h3. ExtensionClassImpl
@@ -3939,10 +3939,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}ExtensionClassImpllinks{noformat} | |  |
-         |classes |(x) |{noformat:nopanel=true}array[String]{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}ExtensionClassImpllinks{noformat} |  |  | null
+         |classes |(x) |{noformat:nopanel=true}array[String]{noformat} |  |  | null
          
         {anchor:ExtensionClassImpllinksModelAnchor}
         h3. ExtensionClassImpllinks
@@ -3950,9 +3950,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:FavoriteImplModelAnchor}
         h3. FavoriteImpl
@@ -3960,10 +3960,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}FavoriteImpllinks{noformat} | |  |
-         |item |(x) |{noformat:nopanel=true}PipelineImpl{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}FavoriteImpllinks{noformat} |  |  | null
+         |item |(x) |{noformat:nopanel=true}PipelineImpl{noformat} |  |  | null
          
         {anchor:FavoriteImpllinksModelAnchor}
         h3. FavoriteImpllinks
@@ -3971,9 +3971,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:FreeStyleBuildModelAnchor}
         h3. FreeStyleBuild
@@ -3981,25 +3981,25 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |number |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}array[CauseAction]{noformat} | |  |
-         |building |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |duration |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |estimatedDuration |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |executor |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullDisplayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |keepLog |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |queueId |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |timestamp |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |builtOn |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |changeSet |(x) |{noformat:nopanel=true}EmptyChangeLogSet{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |number |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}array[CauseAction]{noformat} |  |  | null
+         |building |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |duration |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |estimatedDuration |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |executor |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullDisplayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |keepLog |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |queueId |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |timestamp |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |builtOn |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |changeSet |(x) |{noformat:nopanel=true}EmptyChangeLogSet{noformat} |  |  | null
          
         {anchor:FreeStyleProjectModelAnchor}
         h3. FreeStyleProject
@@ -4007,34 +4007,34 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |color |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}array[FreeStyleProjectactions]{noformat} | |  |
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayNameOrNull |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullDisplayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |buildable |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |builds |(x) |{noformat:nopanel=true}array[FreeStyleBuild]{noformat} | |  |
-         |firstBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
-         |healthReport |(x) |{noformat:nopanel=true}array[FreeStyleProjecthealthReport]{noformat} | |  |
-         |inQueue |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |keepDependencies |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |lastBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
-         |lastCompletedBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
-         |lastFailedBuild |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |lastStableBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
-         |lastSuccessfulBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
-         |lastUnstableBuild |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |lastUnsuccessfulBuild |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |nextBuildNumber |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |queueItem |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |concurrentBuild |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |scm |(x) |{noformat:nopanel=true}NullSCM{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |color |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}array[FreeStyleProjectactions]{noformat} |  |  | null
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayNameOrNull |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullDisplayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |buildable |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |builds |(x) |{noformat:nopanel=true}array[FreeStyleBuild]{noformat} |  |  | null
+         |firstBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
+         |healthReport |(x) |{noformat:nopanel=true}array[FreeStyleProjecthealthReport]{noformat} |  |  | null
+         |inQueue |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |keepDependencies |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |lastBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
+         |lastCompletedBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
+         |lastFailedBuild |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |lastStableBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
+         |lastSuccessfulBuild |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
+         |lastUnstableBuild |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |lastUnsuccessfulBuild |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |nextBuildNumber |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |queueItem |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |concurrentBuild |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |scm |(x) |{noformat:nopanel=true}NullSCM{noformat} |  |  | null
          
         {anchor:FreeStyleProjectactionsModelAnchor}
         h3. FreeStyleProjectactions
@@ -4042,8 +4042,8 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:FreeStyleProjecthealthReportModelAnchor}
         h3. FreeStyleProjecthealthReport
@@ -4051,12 +4051,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |iconClassName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |iconUrl |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |score |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |iconClassName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |iconUrl |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |score |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GenericResourceModelAnchor}
         h3. GenericResource
@@ -4064,13 +4064,13 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubContentModelAnchor}
         h3. GithubContent
@@ -4078,15 +4078,15 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |sha |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |repo |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |size |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |owner |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |path |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |base64Data |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |sha |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |repo |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |size |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |owner |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |path |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |base64Data |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubFileModelAnchor}
         h3. GithubFile
@@ -4094,9 +4094,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |content |(x) |{noformat:nopanel=true}GithubContent{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |content |(x) |{noformat:nopanel=true}GithubContent{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubOrganizationModelAnchor}
         h3. GithubOrganization
@@ -4104,11 +4104,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}GithubOrganizationlinks{noformat} | |  |
-         |jenkinsOrganizationPipeline |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}GithubOrganizationlinks{noformat} |  |  | null
+         |jenkinsOrganizationPipeline |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubOrganizationlinksModelAnchor}
         h3. GithubOrganizationlinks
@@ -4116,10 +4116,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |repositories |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |repositories |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubRepositoriesModelAnchor}
         h3. GithubRepositories
@@ -4127,13 +4127,13 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}GithubRepositorieslinks{noformat} | |  |
-         |items |(x) |{noformat:nopanel=true}array[GithubRepository]{noformat} | |  |
-         |lastPage |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |nextPage |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |pageSize |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}GithubRepositorieslinks{noformat} |  |  | null
+         |items |(x) |{noformat:nopanel=true}array[GithubRepository]{noformat} |  |  | null
+         |lastPage |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |nextPage |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |pageSize |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:GithubRepositorieslinksModelAnchor}
         h3. GithubRepositorieslinks
@@ -4141,9 +4141,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubRepositoryModelAnchor}
         h3. GithubRepository
@@ -4151,15 +4151,15 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}GithubRepositorylinks{noformat} | |  |
-         |defaultBranch |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |permissions |(x) |{noformat:nopanel=true}GithubRepositorypermissions{noformat} | |  |
-         |private |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}GithubRepositorylinks{noformat} |  |  | null
+         |defaultBranch |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |permissions |(x) |{noformat:nopanel=true}GithubRepositorypermissions{noformat} |  |  | null
+         |private |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubRepositorylinksModelAnchor}
         h3. GithubRepositorylinks
@@ -4167,9 +4167,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubRepositorypermissionsModelAnchor}
         h3. GithubRepositorypermissions
@@ -4177,11 +4177,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |admin |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |push |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |pull |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |admin |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |push |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |pull |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubRespositoryContainerModelAnchor}
         h3. GithubRespositoryContainer
@@ -4189,10 +4189,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}GithubRespositoryContainerlinks{noformat} | |  |
-         |repositories |(x) |{noformat:nopanel=true}GithubRepositories{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}GithubRespositoryContainerlinks{noformat} |  |  | null
+         |repositories |(x) |{noformat:nopanel=true}GithubRepositories{noformat} |  |  | null
          
         {anchor:GithubRespositoryContainerlinksModelAnchor}
         h3. GithubRespositoryContainerlinks
@@ -4200,9 +4200,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubScmModelAnchor}
         h3. GithubScm
@@ -4210,12 +4210,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}GithubScmlinks{noformat} | |  |
-         |credentialId |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |uri |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}GithubScmlinks{noformat} |  |  | null
+         |credentialId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |uri |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:GithubScmlinksModelAnchor}
         h3. GithubScmlinks
@@ -4223,9 +4223,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:HudsonModelAnchor}
         h3. Hudson
@@ -4233,22 +4233,22 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |assignedLabels |(x) |{noformat:nopanel=true}array[HudsonassignedLabels]{noformat} | |  |
-         |mode |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |nodeDescription |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |nodeName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |numExecutors |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |jobs |(x) |{noformat:nopanel=true}array[FreeStyleProject]{noformat} | |  |
-         |primaryView |(x) |{noformat:nopanel=true}AllView{noformat} | |  |
-         |quietingDown |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |slaveAgentPort |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |unlabeledLoad |(x) |{noformat:nopanel=true}UnlabeledLoadStatistics{noformat} | |  |
-         |useCrumbs |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |useSecurity |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |views |(x) |{noformat:nopanel=true}array[AllView]{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |assignedLabels |(x) |{noformat:nopanel=true}array[HudsonassignedLabels]{noformat} |  |  | null
+         |mode |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |nodeDescription |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |nodeName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |numExecutors |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |jobs |(x) |{noformat:nopanel=true}array[FreeStyleProject]{noformat} |  |  | null
+         |primaryView |(x) |{noformat:nopanel=true}AllView{noformat} |  |  | null
+         |quietingDown |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |slaveAgentPort |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |unlabeledLoad |(x) |{noformat:nopanel=true}UnlabeledLoadStatistics{noformat} |  |  | null
+         |useCrumbs |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |useSecurity |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |views |(x) |{noformat:nopanel=true}array[AllView]{noformat} |  |  | null
          
         {anchor:HudsonMasterComputerModelAnchor}
         h3. HudsonMasterComputer
@@ -4256,23 +4256,23 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |executors |(x) |{noformat:nopanel=true}array[HudsonMasterComputerexecutors]{noformat} | |  |
-         |icon |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |iconClassName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |idle |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |jnlpAgent |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |launchSupported |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |loadStatistics |(x) |{noformat:nopanel=true}Label1{noformat} | |  |
-         |manualLaunchAllowed |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |monitorData |(x) |{noformat:nopanel=true}HudsonMasterComputermonitorData{noformat} | |  |
-         |numExecutors |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |offline |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |offlineCause |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |offlineCauseReason |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |temporarilyOffline |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |executors |(x) |{noformat:nopanel=true}array[HudsonMasterComputerexecutors]{noformat} |  |  | null
+         |icon |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |iconClassName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |idle |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |jnlpAgent |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |launchSupported |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |loadStatistics |(x) |{noformat:nopanel=true}Label1{noformat} |  |  | null
+         |manualLaunchAllowed |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |monitorData |(x) |{noformat:nopanel=true}HudsonMasterComputermonitorData{noformat} |  |  | null
+         |numExecutors |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |offline |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |offlineCause |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |offlineCauseReason |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |temporarilyOffline |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
          
         {anchor:HudsonMasterComputerexecutorsModelAnchor}
         h3. HudsonMasterComputerexecutors
@@ -4280,13 +4280,13 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |currentExecutable |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
-         |idle |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |likelyStuck |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |number |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |progress |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |currentExecutable |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
+         |idle |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |likelyStuck |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |number |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |progress |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:HudsonMasterComputermonitorDataModelAnchor}
         h3. HudsonMasterComputermonitorData
@@ -4294,14 +4294,14 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |hudson.node_monitors.SwapSpaceMonitor |(x) |{noformat:nopanel=true}SwapSpaceMonitorMemoryUsage2{noformat} | |  |
-         |hudson.node_monitors.TemporarySpaceMonitor |(x) |{noformat:nopanel=true}DiskSpaceMonitorDescriptorDiskSpace{noformat} | |  |
-         |hudson.node_monitors.DiskSpaceMonitor |(x) |{noformat:nopanel=true}DiskSpaceMonitorDescriptorDiskSpace{noformat} | |  |
-         |hudson.node_monitors.ArchitectureMonitor |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |hudson.node_monitors.ResponseTimeMonitor |(x) |{noformat:nopanel=true}ResponseTimeMonitorData{noformat} | |  |
-         |hudson.node_monitors.ClockMonitor |(x) |{noformat:nopanel=true}ClockDifference{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |hudson.node_monitors.SwapSpaceMonitor |(x) |{noformat:nopanel=true}SwapSpaceMonitorMemoryUsage2{noformat} |  |  | null
+         |hudson.node_monitors.TemporarySpaceMonitor |(x) |{noformat:nopanel=true}DiskSpaceMonitorDescriptorDiskSpace{noformat} |  |  | null
+         |hudson.node_monitors.DiskSpaceMonitor |(x) |{noformat:nopanel=true}DiskSpaceMonitorDescriptorDiskSpace{noformat} |  |  | null
+         |hudson.node_monitors.ArchitectureMonitor |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |hudson.node_monitors.ResponseTimeMonitor |(x) |{noformat:nopanel=true}ResponseTimeMonitorData{noformat} |  |  | null
+         |hudson.node_monitors.ClockMonitor |(x) |{noformat:nopanel=true}ClockDifference{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:HudsonassignedLabelsModelAnchor}
         h3. HudsonassignedLabels
@@ -4309,8 +4309,8 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:InputStepImplModelAnchor}
         h3. InputStepImpl
@@ -4318,14 +4318,14 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}InputStepImpllinks{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |message |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |ok |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |parameters |(x) |{noformat:nopanel=true}array[StringParameterDefinition]{noformat} | |  |
-         |submitter |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}InputStepImpllinks{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |message |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |ok |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |parameters |(x) |{noformat:nopanel=true}array[StringParameterDefinition]{noformat} |  |  | null
+         |submitter |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:InputStepImpllinksModelAnchor}
         h3. InputStepImpllinks
@@ -4333,9 +4333,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:Label1ModelAnchor}
         h3. Label1
@@ -4343,8 +4343,8 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:LinkModelAnchor}
         h3. Link
@@ -4352,9 +4352,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |href |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |href |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:ListViewModelAnchor}
         h3. ListView
@@ -4362,12 +4362,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |jobs |(x) |{noformat:nopanel=true}array[FreeStyleProject]{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |jobs |(x) |{noformat:nopanel=true}array[FreeStyleProject]{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:MultibranchPipelineModelAnchor}
         h3. MultibranchPipeline
@@ -4375,21 +4375,21 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |latestRun |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |branchNames |(x) |{noformat:nopanel=true}array[String]{noformat} | |  |
-         |numberOfFailingBranches |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |numberOfFailingPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |numberOfSuccessfulBranches |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |numberOfSuccessfulPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |totalNumberOfBranches |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |totalNumberOfPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |latestRun |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |branchNames |(x) |{noformat:nopanel=true}array[String]{noformat} |  |  | null
+         |numberOfFailingBranches |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |numberOfFailingPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |numberOfSuccessfulBranches |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |numberOfSuccessfulPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |totalNumberOfBranches |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |totalNumberOfPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:NullSCMModelAnchor}
         h3. NullSCM
@@ -4397,8 +4397,8 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:OrganisationModelAnchor}
         h3. Organisation
@@ -4406,9 +4406,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineModelAnchor}
         h3. Pipeline
@@ -4416,15 +4416,15 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |latestRun |(x) |{noformat:nopanel=true}PipelinelatestRun{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |latestRun |(x) |{noformat:nopanel=true}PipelinelatestRun{noformat} |  |  | null
          
         {anchor:PipelineActivityModelAnchor}
         h3. PipelineActivity
@@ -4432,22 +4432,22 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |artifacts |(x) |{noformat:nopanel=true}array[PipelineActivityartifacts]{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |endTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pipeline |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |runSummary |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |type |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |commitId |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |artifacts |(x) |{noformat:nopanel=true}array[PipelineActivityartifacts]{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |endTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pipeline |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |runSummary |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |type |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |commitId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineActivityartifactsModelAnchor}
         h3. PipelineActivityartifacts
@@ -4455,11 +4455,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |size |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |size |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineBranchesitemModelAnchor}
         h3. PipelineBranchesitem
@@ -4467,16 +4467,16 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |latestRun |(x) |{noformat:nopanel=true}PipelineBranchesitemlatestRun{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pullRequest |(x) |{noformat:nopanel=true}PipelineBranchesitempullRequest{noformat} | |  |
-         |totalNumberOfPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |latestRun |(x) |{noformat:nopanel=true}PipelineBranchesitemlatestRun{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pullRequest |(x) |{noformat:nopanel=true}PipelineBranchesitempullRequest{noformat} |  |  | null
+         |totalNumberOfPullRequests |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineBranchesitemlatestRunModelAnchor}
         h3. PipelineBranchesitemlatestRun
@@ -4484,21 +4484,21 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |endTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pipeline |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |runSummary |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |type |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |commitId |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |endTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pipeline |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |runSummary |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |type |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |commitId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineBranchesitempullRequestModelAnchor}
         h3. PipelineBranchesitempullRequest
@@ -4506,13 +4506,13 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_links |(x) |{noformat:nopanel=true}PipelineBranchesitempullRequestlinks{noformat} | |  |
-         |author |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |title |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_links |(x) |{noformat:nopanel=true}PipelineBranchesitempullRequestlinks{noformat} |  |  | null
+         |author |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |title |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineBranchesitempullRequestlinksModelAnchor}
         h3. PipelineBranchesitempullRequestlinks
@@ -4520,9 +4520,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineFolderImplModelAnchor}
         h3. PipelineFolderImpl
@@ -4530,14 +4530,14 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |numberOfFolders |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |numberOfPipelines |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |numberOfFolders |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |numberOfPipelines |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:PipelineImplModelAnchor}
         h3. PipelineImpl
@@ -4545,16 +4545,16 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |latestRun |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}PipelineImpllinks{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |latestRun |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |weatherScore |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}PipelineImpllinks{noformat} |  |  | null
          
         {anchor:PipelineImpllinksModelAnchor}
         h3. PipelineImpllinks
@@ -4562,12 +4562,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |runs |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |queue |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |runs |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |queue |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunModelAnchor}
         h3. PipelineRun
@@ -4575,22 +4575,22 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |artifacts |(x) |{noformat:nopanel=true}array[PipelineRunartifacts]{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |endTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pipeline |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |runSummary |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |type |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |commitId |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |artifacts |(x) |{noformat:nopanel=true}array[PipelineRunartifacts]{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |endTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pipeline |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |runSummary |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |type |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |commitId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunImplModelAnchor}
         h3. PipelineRunImpl
@@ -4598,22 +4598,22 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}PipelineRunImpllinks{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |endTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pipeline |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |runSummary |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |type |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |commitId |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}PipelineRunImpllinks{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |endTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pipeline |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |runSummary |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |type |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |commitId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunImpllinksModelAnchor}
         h3. PipelineRunImpllinks
@@ -4621,13 +4621,13 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |nodes |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |log |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |steps |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |nodes |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |log |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |steps |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunNodeModelAnchor}
         h3. PipelineRunNode
@@ -4635,15 +4635,15 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |edges |(x) |{noformat:nopanel=true}array[PipelineRunNodeedges]{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |edges |(x) |{noformat:nopanel=true}array[PipelineRunNodeedges]{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunNodeedgesModelAnchor}
         h3. PipelineRunNodeedges
@@ -4651,9 +4651,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunartifactsModelAnchor}
         h3. PipelineRunartifacts
@@ -4661,11 +4661,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |size |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |size |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineStepImplModelAnchor}
         h3. PipelineStepImpl
@@ -4673,16 +4673,16 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_links |(x) |{noformat:nopanel=true}PipelineStepImpllinks{noformat} | |  |
-         |displayName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |input |(x) |{noformat:nopanel=true}InputStepImpl{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_links |(x) |{noformat:nopanel=true}PipelineStepImpllinks{noformat} |  |  | null
+         |displayName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |input |(x) |{noformat:nopanel=true}InputStepImpl{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineStepImpllinksModelAnchor}
         h3. PipelineStepImpllinks
@@ -4690,10 +4690,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |self |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}Link{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelinelatestRunModelAnchor}
         h3. PipelinelatestRun
@@ -4701,22 +4701,22 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |artifacts |(x) |{noformat:nopanel=true}array[PipelinelatestRunartifacts]{noformat} | |  |
-         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |endTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |organization |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pipeline |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |result |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |runSummary |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |startTime |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |state |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |type |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |commitId |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |artifacts |(x) |{noformat:nopanel=true}array[PipelinelatestRunartifacts]{noformat} |  |  | null
+         |durationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |estimatedDurationInMillis |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |enQueueTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |endTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |organization |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pipeline |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |result |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |runSummary |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |startTime |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |state |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |type |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |commitId |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelinelatestRunartifactsModelAnchor}
         h3. PipelinelatestRunartifacts
@@ -4724,11 +4724,11 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |size |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |size |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:QueueModelAnchor}
         h3. Queue
@@ -4736,9 +4736,9 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |items |(x) |{noformat:nopanel=true}array[QueueBlockedItem]{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |items |(x) |{noformat:nopanel=true}array[QueueBlockedItem]{noformat} |  |  | null
          
         {anchor:QueueBlockedItemModelAnchor}
         h3. QueueBlockedItem
@@ -4746,19 +4746,19 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}array[CauseAction]{noformat} | |  |
-         |blocked |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |buildable |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |inQueueSince |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |params |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |stuck |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |task |(x) |{noformat:nopanel=true}FreeStyleProject{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |why |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |buildableStartMilliseconds |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}array[CauseAction]{noformat} |  |  | null
+         |blocked |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |buildable |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |inQueueSince |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |params |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |stuck |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |task |(x) |{noformat:nopanel=true}FreeStyleProject{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |why |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |buildableStartMilliseconds |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:QueueItemImplModelAnchor}
         h3. QueueItemImpl
@@ -4766,12 +4766,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |expectedBuildNumber |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |pipeline |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |queuedTime |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |expectedBuildNumber |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |pipeline |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |queuedTime |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:QueueLeftItemModelAnchor}
         h3. QueueLeftItem
@@ -4779,20 +4779,20 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |actions |(x) |{noformat:nopanel=true}array[CauseAction]{noformat} | |  |
-         |blocked |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |buildable |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |inQueueSince |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |params |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |stuck |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |task |(x) |{noformat:nopanel=true}FreeStyleProject{noformat} | |  |
-         |url |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |why |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |cancelled |(x) |{noformat:nopanel=true}Boolean{noformat} | |  |
-         |executable |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |actions |(x) |{noformat:nopanel=true}array[CauseAction]{noformat} |  |  | null
+         |blocked |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |buildable |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |inQueueSince |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |params |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |stuck |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |task |(x) |{noformat:nopanel=true}FreeStyleProject{noformat} |  |  | null
+         |url |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |why |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |cancelled |(x) |{noformat:nopanel=true}Boolean{noformat} |  |  | null
+         |executable |(x) |{noformat:nopanel=true}FreeStyleBuild{noformat} |  |  | null
          
         {anchor:ResponseTimeMonitorDataModelAnchor}
         h3. ResponseTimeMonitorData
@@ -4800,10 +4800,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |timestamp |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |average |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |timestamp |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |average |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:StringParameterDefinitionModelAnchor}
         h3. StringParameterDefinition
@@ -4811,12 +4811,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |defaultParameterValue |(x) |{noformat:nopanel=true}StringParameterValue{noformat} | |  |
-         |description |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |type |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |defaultParameterValue |(x) |{noformat:nopanel=true}StringParameterValue{noformat} |  |  | null
+         |description |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |type |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:StringParameterValueModelAnchor}
         h3. StringParameterValue
@@ -4824,10 +4824,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |value |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |value |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:SwapSpaceMonitorMemoryUsage2ModelAnchor}
         h3. SwapSpaceMonitorMemoryUsage2
@@ -4835,12 +4835,12 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |availablePhysicalMemory |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |availableSwapSpace |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |totalPhysicalMemory |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
-         |totalSwapSpace |(x) |{noformat:nopanel=true}Integer{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |availablePhysicalMemory |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |availableSwapSpace |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |totalPhysicalMemory |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |totalSwapSpace |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:UnlabeledLoadStatisticsModelAnchor}
         h3. UnlabeledLoadStatistics
@@ -4848,8 +4848,8 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:UserModelAnchor}
         h3. User
@@ -4857,10 +4857,10 @@ h2. Models
         
 
         
-        ||Field Name||Required||Type||Description||Enum||
-         |_class |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |id |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |fullName |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |email |(x) |{noformat:nopanel=true}String{noformat} | |  |
-         |name |(x) |{noformat:nopanel=true}String{noformat} | |  |
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |id |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |fullName |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |email |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |name |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          

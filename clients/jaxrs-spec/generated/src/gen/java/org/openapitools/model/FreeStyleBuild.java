@@ -19,12 +19,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleBuild")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class FreeStyleBuild   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class FreeStyleBuild   {
   
   private @Valid String propertyClass;
   private @Valid Integer number;
   private @Valid String url;
-  private @Valid List<CauseAction> actions = new ArrayList<CauseAction>();
+  private @Valid List<CauseAction> actions = new ArrayList<>();
   private @Valid Boolean building;
   private @Valid String description;
   private @Valid String displayName;
@@ -48,8 +49,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
@@ -67,8 +66,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.number = number;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -90,8 +87,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
@@ -111,8 +106,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<CauseAction> getActions() {
@@ -126,7 +119,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public FreeStyleBuild addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<CauseAction>();
+      this.actions = new ArrayList<>();
     }
 
     this.actions.add(actionsItem);
@@ -148,8 +141,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("building")
   public Boolean getBuilding() {
@@ -167,8 +158,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.description = description;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -190,8 +179,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
@@ -209,8 +196,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.duration = duration;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -232,8 +217,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDuration")
   public Integer getEstimatedDuration() {
@@ -251,8 +234,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.executor = executor;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -274,8 +255,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
@@ -293,8 +272,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.id = id;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -316,8 +293,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("keepLog")
   public Boolean getKeepLog() {
@@ -335,8 +310,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.queueId = queueId;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -358,8 +331,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("result")
   public String getResult() {
@@ -377,8 +348,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.timestamp = timestamp;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -400,8 +369,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("builtOn")
   public String getBuiltOn() {
@@ -419,8 +386,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.changeSet = changeSet;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

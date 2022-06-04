@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * The version of the OpenAPI document: 1.1.2-pre.0
+ * The version of the OpenAPI document: 1.5.1-pre.0
  * Contact: blah@cliffano.com
  *
  * Please note:
@@ -21,6 +21,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
+import okhttp3.OkHttpClient
 
 import org.openapitools.client.models.BranchImpl
 import org.openapitools.client.models.FavoriteImpl
@@ -47,13 +48,14 @@ import org.openapitools.client.infrastructure.ClientError
 import org.openapitools.client.infrastructure.ServerException
 import org.openapitools.client.infrastructure.ServerError
 import org.openapitools.client.infrastructure.MultiValueMap
+import org.openapitools.client.infrastructure.PartConfig
 import org.openapitools.client.infrastructure.RequestConfig
 import org.openapitools.client.infrastructure.RequestMethod
 import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -62,18 +64,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Delete queue item from an organization pipeline queue
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param queue Name of the queue item 
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deletePipelineQueueItem(organization: kotlin.String, pipeline: kotlin.String, queue: kotlin.String) : Unit {
         val localVarResponse = deletePipelineQueueItemWithHttpInfo(organization = organization, pipeline = pipeline, queue = queue)
@@ -94,15 +96,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Delete queue item from an organization pipeline queue
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param queue Name of the queue item 
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Delete queue item from an organization pipeline queue
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun deletePipelineQueueItemWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, queue: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = deletePipelineQueueItemRequestConfig(organization = organization, pipeline = pipeline, queue = queue)
@@ -113,13 +115,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation deletePipelineQueueItem
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param queue Name of the queue item 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation deletePipelineQueueItem
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param queue Name of the queue item
+     * @return RequestConfig
+     */
     fun deletePipelineQueueItemRequestConfig(organization: kotlin.String, pipeline: kotlin.String, queue: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -135,16 +137,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve authenticated user details for an organization
-    * @param organization Name of the organization 
-    * @return User
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization
+     * @return User
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getAuthenticatedUser(organization: kotlin.String) : User {
@@ -166,13 +168,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve authenticated user details for an organization
-    * @param organization Name of the organization 
-    * @return ApiResponse<User?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve authenticated user details for an organization
+     * @param organization Name of the organization
+     * @return ApiResponse<User?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getAuthenticatedUserWithHttpInfo(organization: kotlin.String) : ApiResponse<User?> {
@@ -184,11 +186,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getAuthenticatedUser
-    *
-    * @param organization Name of the organization 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getAuthenticatedUser
+     *
+     * @param organization Name of the organization
+     * @return RequestConfig
+     */
     fun getAuthenticatedUserRequestConfig(organization: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -205,16 +207,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get a list of class names supported by a given class
-    * @param propertyClass Name of the class 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Get a list of class names supported by a given class
+     * @param propertyClass Name of the class
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getClasses(propertyClass: kotlin.String) : kotlin.String {
@@ -236,13 +238,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get a list of class names supported by a given class
-    * @param propertyClass Name of the class 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Get a list of class names supported by a given class
+     * @param propertyClass Name of the class
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getClassesWithHttpInfo(propertyClass: kotlin.String) : ApiResponse<kotlin.String?> {
@@ -254,11 +256,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getClasses
-    *
-    * @param propertyClass Name of the class 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getClasses
+     *
+     * @param propertyClass Name of the class
+     * @return RequestConfig
+     */
     fun getClassesRequestConfig(propertyClass: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -275,16 +277,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve JSON Web Key
-    * @param key Key ID received as part of JWT header field kid 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve JSON Web Key
+     * @param key Key ID received as part of JWT header field kid
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getJsonWebKey(key: kotlin.Int) : kotlin.String {
@@ -306,13 +308,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve JSON Web Key
-    * @param key Key ID received as part of JWT header field kid 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve JSON Web Key
+     * @param key Key ID received as part of JWT header field kid
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getJsonWebKeyWithHttpInfo(key: kotlin.Int) : ApiResponse<kotlin.String?> {
@@ -324,11 +326,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getJsonWebKey
-    *
-    * @param key Key ID received as part of JWT header field kid 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJsonWebKey
+     *
+     * @param key Key ID received as part of JWT header field kid
+     * @return RequestConfig
+     */
     fun getJsonWebKeyRequestConfig(key: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -345,20 +347,20 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve JSON Web Token
-    * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
-    * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes (optional)
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve JSON Web Token
+     * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
+     * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes (optional)
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getJsonWebToken(expiryTimeInMins: kotlin.Int?, maxExpiryTimeInMins: kotlin.Int?) : kotlin.String {
+    fun getJsonWebToken(expiryTimeInMins: kotlin.Int? = null, maxExpiryTimeInMins: kotlin.Int? = null) : kotlin.String {
         val localVarResponse = getJsonWebTokenWithHttpInfo(expiryTimeInMins = expiryTimeInMins, maxExpiryTimeInMins = maxExpiryTimeInMins)
 
         return when (localVarResponse.responseType) {
@@ -377,14 +379,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve JSON Web Token
-    * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
-    * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes (optional)
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve JSON Web Token
+     * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
+     * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes (optional)
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getJsonWebTokenWithHttpInfo(expiryTimeInMins: kotlin.Int?, maxExpiryTimeInMins: kotlin.Int?) : ApiResponse<kotlin.String?> {
@@ -396,12 +398,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getJsonWebToken
-    *
-    * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
-    * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJsonWebToken
+     *
+     * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
+     * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes (optional)
+     * @return RequestConfig
+     */
     fun getJsonWebTokenRequestConfig(expiryTimeInMins: kotlin.Int?, maxExpiryTimeInMins: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -426,16 +428,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve organization details
-    * @param organization Name of the organization 
-    * @return Organisation
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve organization details
+     * @param organization Name of the organization
+     * @return Organisation
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getOrganisation(organization: kotlin.String) : Organisation {
@@ -457,13 +459,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve organization details
-    * @param organization Name of the organization 
-    * @return ApiResponse<Organisation?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve organization details
+     * @param organization Name of the organization
+     * @return ApiResponse<Organisation?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getOrganisationWithHttpInfo(organization: kotlin.String) : ApiResponse<Organisation?> {
@@ -475,11 +477,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getOrganisation
-    *
-    * @param organization Name of the organization 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getOrganisation
+     *
+     * @param organization Name of the organization
+     * @return RequestConfig
+     */
     fun getOrganisationRequestConfig(organization: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -496,15 +498,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all organizations details
-    * @return kotlin.collections.List<Organisation>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve all organizations details
+     * @return kotlin.collections.List<Organisation>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getOrganisations() : kotlin.collections.List<Organisation> {
@@ -526,12 +528,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all organizations details
-    * @return ApiResponse<kotlin.collections.List<Organisation>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve all organizations details
+     * @return ApiResponse<kotlin.collections.List<Organisation>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getOrganisationsWithHttpInfo() : ApiResponse<kotlin.collections.List<Organisation>?> {
@@ -543,10 +545,10 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getOrganisations
-    *
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getOrganisations
+     *
+     * @return RequestConfig
+     */
     fun getOrganisationsRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -563,17 +565,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve pipeline details for an organization
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return Pipeline
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return Pipeline
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipeline(organization: kotlin.String, pipeline: kotlin.String) : Pipeline {
@@ -595,14 +597,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve pipeline details for an organization
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return ApiResponse<Pipeline?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve pipeline details for an organization
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return ApiResponse<Pipeline?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String) : ApiResponse<Pipeline?> {
@@ -614,12 +616,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipeline
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipeline
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return RequestConfig
+     */
     fun getPipelineRequestConfig(organization: kotlin.String, pipeline: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -636,17 +638,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all activities details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return kotlin.collections.List<PipelineActivity>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return kotlin.collections.List<PipelineActivity>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineActivities(organization: kotlin.String, pipeline: kotlin.String) : kotlin.collections.List<PipelineActivity> {
@@ -668,14 +670,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all activities details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return ApiResponse<kotlin.collections.List<PipelineActivity>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve all activities details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return ApiResponse<kotlin.collections.List<PipelineActivity>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineActivitiesWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String) : ApiResponse<kotlin.collections.List<PipelineActivity>?> {
@@ -687,12 +689,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineActivities
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineActivities
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return RequestConfig
+     */
     fun getPipelineActivitiesRequestConfig(organization: kotlin.String, pipeline: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -709,18 +711,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve branch details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param branch Name of the branch 
-    * @return BranchImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @return BranchImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineBranch(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String) : BranchImpl {
@@ -742,15 +744,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve branch details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param branch Name of the branch 
-    * @return ApiResponse<BranchImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve branch details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @return ApiResponse<BranchImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineBranchWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String) : ApiResponse<BranchImpl?> {
@@ -762,13 +764,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineBranch
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param branch Name of the branch 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineBranch
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @return RequestConfig
+     */
     fun getPipelineBranchRequestConfig(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -785,19 +787,19 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve branch run details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param branch Name of the branch 
-    * @param run Name of the run 
-    * @return PipelineRun
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
+     * @return PipelineRun
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineBranchRun(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String, run: kotlin.String) : PipelineRun {
@@ -819,16 +821,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve branch run details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param branch Name of the branch 
-    * @param run Name of the run 
-    * @return ApiResponse<PipelineRun?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve branch run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
+     * @return ApiResponse<PipelineRun?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineBranchRunWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String, run: kotlin.String) : ApiResponse<PipelineRun?> {
@@ -840,14 +842,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineBranchRun
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param branch Name of the branch 
-    * @param run Name of the run 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineBranchRun
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param branch Name of the branch
+     * @param run Name of the run
+     * @return RequestConfig
+     */
     fun getPipelineBranchRunRequestConfig(organization: kotlin.String, pipeline: kotlin.String, branch: kotlin.String, run: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -864,17 +866,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all branches details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return MultibranchPipeline
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return MultibranchPipeline
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineBranches(organization: kotlin.String, pipeline: kotlin.String) : MultibranchPipeline {
@@ -896,14 +898,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all branches details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return ApiResponse<MultibranchPipeline?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve all branches details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return ApiResponse<MultibranchPipeline?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineBranchesWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String) : ApiResponse<MultibranchPipeline?> {
@@ -915,12 +917,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineBranches
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineBranches
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return RequestConfig
+     */
     fun getPipelineBranchesRequestConfig(organization: kotlin.String, pipeline: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -937,17 +939,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve pipeline folder for an organization
-    * @param organization Name of the organization 
-    * @param folder Name of the folder 
-    * @return PipelineFolderImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization
+     * @param folder Name of the folder
+     * @return PipelineFolderImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineFolder(organization: kotlin.String, folder: kotlin.String) : PipelineFolderImpl {
@@ -969,14 +971,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve pipeline folder for an organization
-    * @param organization Name of the organization 
-    * @param folder Name of the folder 
-    * @return ApiResponse<PipelineFolderImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve pipeline folder for an organization
+     * @param organization Name of the organization
+     * @param folder Name of the folder
+     * @return ApiResponse<PipelineFolderImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineFolderWithHttpInfo(organization: kotlin.String, folder: kotlin.String) : ApiResponse<PipelineFolderImpl?> {
@@ -988,12 +990,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineFolder
-    *
-    * @param organization Name of the organization 
-    * @param folder Name of the folder 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineFolder
+     *
+     * @param organization Name of the organization
+     * @param folder Name of the folder
+     * @return RequestConfig
+     */
     fun getPipelineFolderRequestConfig(organization: kotlin.String, folder: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1010,18 +1012,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve pipeline details for an organization folder
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param folder Name of the folder 
-    * @return PipelineImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param folder Name of the folder
+     * @return PipelineImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineFolderPipeline(organization: kotlin.String, pipeline: kotlin.String, folder: kotlin.String) : PipelineImpl {
@@ -1043,15 +1045,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve pipeline details for an organization folder
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param folder Name of the folder 
-    * @return ApiResponse<PipelineImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve pipeline details for an organization folder
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param folder Name of the folder
+     * @return ApiResponse<PipelineImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineFolderPipelineWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, folder: kotlin.String) : ApiResponse<PipelineImpl?> {
@@ -1063,13 +1065,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineFolderPipeline
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param folder Name of the folder 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineFolderPipeline
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param folder Name of the folder
+     * @return RequestConfig
+     */
     fun getPipelineFolderPipelineRequestConfig(organization: kotlin.String, pipeline: kotlin.String, folder: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1086,17 +1088,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve queue details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return kotlin.collections.List<QueueItemImpl>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return kotlin.collections.List<QueueItemImpl>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineQueue(organization: kotlin.String, pipeline: kotlin.String) : kotlin.collections.List<QueueItemImpl> {
@@ -1118,14 +1120,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve queue details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return ApiResponse<kotlin.collections.List<QueueItemImpl>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve queue details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return ApiResponse<kotlin.collections.List<QueueItemImpl>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineQueueWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String) : ApiResponse<kotlin.collections.List<QueueItemImpl>?> {
@@ -1137,12 +1139,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineQueue
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineQueue
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return RequestConfig
+     */
     fun getPipelineQueueRequestConfig(organization: kotlin.String, pipeline: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1159,18 +1161,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return PipelineRun
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return PipelineRun
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : PipelineRun {
@@ -1192,15 +1194,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return ApiResponse<PipelineRun?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve run details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return ApiResponse<PipelineRun?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : ApiResponse<PipelineRun?> {
@@ -1212,13 +1214,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRun
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRun
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return RequestConfig
+     */
     fun getPipelineRunRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1235,23 +1237,23 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get log for a pipeline run
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param start Start position of the log (optional)
-    * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Get log for a pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log (optional)
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getPipelineRunLog(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, start: kotlin.Int?, download: kotlin.Boolean?) : kotlin.String {
+    fun getPipelineRunLog(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, start: kotlin.Int? = null, download: kotlin.Boolean? = null) : kotlin.String {
         val localVarResponse = getPipelineRunLogWithHttpInfo(organization = organization, pipeline = pipeline, run = run, start = start, download = download)
 
         return when (localVarResponse.responseType) {
@@ -1270,17 +1272,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get log for a pipeline run
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param start Start position of the log (optional)
-    * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Get log for a pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log (optional)
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunLogWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, start: kotlin.Int?, download: kotlin.Boolean?) : ApiResponse<kotlin.String?> {
@@ -1292,15 +1294,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRunLog
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param start Start position of the log (optional)
-    * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRunLog
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param start Start position of the log (optional)
+     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body (optional)
+     * @return RequestConfig
+     */
     fun getPipelineRunLogRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, start: kotlin.Int?, download: kotlin.Boolean?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -1325,19 +1327,19 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run node details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @return PipelineRunNode
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @return PipelineRunNode
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRunNode(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : PipelineRunNode {
@@ -1359,16 +1361,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run node details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @return ApiResponse<PipelineRunNode?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @return ApiResponse<PipelineRunNode?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunNodeWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : ApiResponse<PipelineRunNode?> {
@@ -1380,14 +1382,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRunNode
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRunNode
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @return RequestConfig
+     */
     fun getPipelineRunNodeRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1404,20 +1406,20 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run node details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @param step Name of the step 
-    * @return PipelineStepImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     * @return PipelineStepImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRunNodeStep(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : PipelineStepImpl {
@@ -1439,17 +1441,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run node details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @param step Name of the step 
-    * @return ApiResponse<PipelineStepImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve run node details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     * @return ApiResponse<PipelineStepImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunNodeStepWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : ApiResponse<PipelineStepImpl?> {
@@ -1461,15 +1463,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRunNodeStep
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @param step Name of the step 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRunNodeStep
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     * @return RequestConfig
+     */
     fun getPipelineRunNodeStepRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1486,20 +1488,20 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get log for a pipeline run node step
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @param step Name of the step 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRunNodeStepLog(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : kotlin.String {
@@ -1521,17 +1523,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get log for a pipeline run node step
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @param step Name of the step 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Get log for a pipeline run node step
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunNodeStepLogWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : ApiResponse<kotlin.String?> {
@@ -1543,15 +1545,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRunNodeStepLog
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @param step Name of the step 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRunNodeStepLog
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @param step Name of the step
+     * @return RequestConfig
+     */
     fun getPipelineRunNodeStepLogRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String, step: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1568,19 +1570,19 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run node steps details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @return kotlin.collections.List<PipelineStepImpl>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @return kotlin.collections.List<PipelineStepImpl>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRunNodeSteps(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : kotlin.collections.List<PipelineStepImpl> {
@@ -1602,16 +1604,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run node steps details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @return ApiResponse<kotlin.collections.List<PipelineStepImpl>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve run node steps details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @return ApiResponse<kotlin.collections.List<PipelineStepImpl>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunNodeStepsWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : ApiResponse<kotlin.collections.List<PipelineStepImpl>?> {
@@ -1623,14 +1625,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRunNodeSteps
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param node Name of the node 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRunNodeSteps
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param node Name of the node
+     * @return RequestConfig
+     */
     fun getPipelineRunNodeStepsRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, node: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1647,18 +1649,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run nodes details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return kotlin.collections.List<PipelineRunNode>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return kotlin.collections.List<PipelineRunNode>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRunNodes(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : kotlin.collections.List<PipelineRunNode> {
@@ -1680,15 +1682,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve run nodes details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return ApiResponse<kotlin.collections.List<PipelineRunNode>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve run nodes details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return ApiResponse<kotlin.collections.List<PipelineRunNode>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunNodesWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : ApiResponse<kotlin.collections.List<PipelineRunNode>?> {
@@ -1700,13 +1702,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRunNodes
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRunNodes
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return RequestConfig
+     */
     fun getPipelineRunNodesRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1723,17 +1725,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all runs details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return kotlin.collections.List<PipelineRun>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return kotlin.collections.List<PipelineRun>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelineRuns(organization: kotlin.String, pipeline: kotlin.String) : kotlin.collections.List<PipelineRun> {
@@ -1755,14 +1757,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all runs details for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return ApiResponse<kotlin.collections.List<PipelineRun>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve all runs details for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return ApiResponse<kotlin.collections.List<PipelineRun>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelineRunsWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String) : ApiResponse<kotlin.collections.List<PipelineRun>?> {
@@ -1774,12 +1776,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelineRuns
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelineRuns
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return RequestConfig
+     */
     fun getPipelineRunsRequestConfig(organization: kotlin.String, pipeline: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1796,16 +1798,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all pipelines details for an organization
-    * @param organization Name of the organization 
-    * @return kotlin.collections.List<Pipeline>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization
+     * @return kotlin.collections.List<Pipeline>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getPipelines(organization: kotlin.String) : kotlin.collections.List<Pipeline> {
@@ -1827,13 +1829,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve all pipelines details for an organization
-    * @param organization Name of the organization 
-    * @return ApiResponse<kotlin.collections.List<Pipeline>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve all pipelines details for an organization
+     * @param organization Name of the organization
+     * @return ApiResponse<kotlin.collections.List<Pipeline>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getPipelinesWithHttpInfo(organization: kotlin.String) : ApiResponse<kotlin.collections.List<Pipeline>?> {
@@ -1845,11 +1847,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getPipelines
-    *
-    * @param organization Name of the organization 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getPipelines
+     *
+     * @param organization Name of the organization
+     * @return RequestConfig
+     */
     fun getPipelinesRequestConfig(organization: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1866,17 +1868,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @return GithubScm
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @return GithubScm
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getSCM(organization: kotlin.String, scm: kotlin.String) : GithubScm {
@@ -1898,14 +1900,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @return ApiResponse<GithubScm?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve SCM details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @return ApiResponse<GithubScm?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getSCMWithHttpInfo(organization: kotlin.String, scm: kotlin.String) : ApiResponse<GithubScm?> {
@@ -1917,12 +1919,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getSCM
-    *
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getSCM
+     *
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @return RequestConfig
+     */
     fun getSCMRequestConfig(organization: kotlin.String, scm: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1939,24 +1941,24 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM organization repositories details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param scmOrganisation Name of the SCM organization 
-    * @param credentialId Credential ID (optional)
-    * @param pageSize Number of items in a page (optional)
-    * @param pageNumber Page number (optional)
-    * @return kotlin.collections.List<GithubOrganization>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID (optional)
+     * @param pageSize Number of items in a page (optional)
+     * @param pageNumber Page number (optional)
+     * @return kotlin.collections.List<GithubOrganization>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getSCMOrganisationRepositories(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, credentialId: kotlin.String?, pageSize: kotlin.Int?, pageNumber: kotlin.Int?) : kotlin.collections.List<GithubOrganization> {
+    fun getSCMOrganisationRepositories(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, credentialId: kotlin.String? = null, pageSize: kotlin.Int? = null, pageNumber: kotlin.Int? = null) : kotlin.collections.List<GithubOrganization> {
         val localVarResponse = getSCMOrganisationRepositoriesWithHttpInfo(organization = organization, scm = scm, scmOrganisation = scmOrganisation, credentialId = credentialId, pageSize = pageSize, pageNumber = pageNumber)
 
         return when (localVarResponse.responseType) {
@@ -1975,18 +1977,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM organization repositories details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param scmOrganisation Name of the SCM organization 
-    * @param credentialId Credential ID (optional)
-    * @param pageSize Number of items in a page (optional)
-    * @param pageNumber Page number (optional)
-    * @return ApiResponse<kotlin.collections.List<GithubOrganization>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve SCM organization repositories details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID (optional)
+     * @param pageSize Number of items in a page (optional)
+     * @param pageNumber Page number (optional)
+     * @return ApiResponse<kotlin.collections.List<GithubOrganization>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getSCMOrganisationRepositoriesWithHttpInfo(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, credentialId: kotlin.String?, pageSize: kotlin.Int?, pageNumber: kotlin.Int?) : ApiResponse<kotlin.collections.List<GithubOrganization>?> {
@@ -1998,16 +2000,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getSCMOrganisationRepositories
-    *
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param scmOrganisation Name of the SCM organization 
-    * @param credentialId Credential ID (optional)
-    * @param pageSize Number of items in a page (optional)
-    * @param pageNumber Page number (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getSCMOrganisationRepositories
+     *
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param credentialId Credential ID (optional)
+     * @param pageSize Number of items in a page (optional)
+     * @param pageNumber Page number (optional)
+     * @return RequestConfig
+     */
     fun getSCMOrganisationRepositoriesRequestConfig(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, credentialId: kotlin.String?, pageSize: kotlin.Int?, pageNumber: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -2035,23 +2037,23 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM organization repository details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param scmOrganisation Name of the SCM organization 
-    * @param repository Name of the SCM repository 
-    * @param credentialId Credential ID (optional)
-    * @return kotlin.collections.List<GithubOrganization>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID (optional)
+     * @return kotlin.collections.List<GithubOrganization>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getSCMOrganisationRepository(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, repository: kotlin.String, credentialId: kotlin.String?) : kotlin.collections.List<GithubOrganization> {
+    fun getSCMOrganisationRepository(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, repository: kotlin.String, credentialId: kotlin.String? = null) : kotlin.collections.List<GithubOrganization> {
         val localVarResponse = getSCMOrganisationRepositoryWithHttpInfo(organization = organization, scm = scm, scmOrganisation = scmOrganisation, repository = repository, credentialId = credentialId)
 
         return when (localVarResponse.responseType) {
@@ -2070,17 +2072,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM organization repository details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param scmOrganisation Name of the SCM organization 
-    * @param repository Name of the SCM repository 
-    * @param credentialId Credential ID (optional)
-    * @return ApiResponse<kotlin.collections.List<GithubOrganization>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve SCM organization repository details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID (optional)
+     * @return ApiResponse<kotlin.collections.List<GithubOrganization>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getSCMOrganisationRepositoryWithHttpInfo(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, repository: kotlin.String, credentialId: kotlin.String?) : ApiResponse<kotlin.collections.List<GithubOrganization>?> {
@@ -2092,15 +2094,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getSCMOrganisationRepository
-    *
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param scmOrganisation Name of the SCM organization 
-    * @param repository Name of the SCM repository 
-    * @param credentialId Credential ID (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getSCMOrganisationRepository
+     *
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param scmOrganisation Name of the SCM organization
+     * @param repository Name of the SCM repository
+     * @param credentialId Credential ID (optional)
+     * @return RequestConfig
+     */
     fun getSCMOrganisationRepositoryRequestConfig(organization: kotlin.String, scm: kotlin.String, scmOrganisation: kotlin.String, repository: kotlin.String, credentialId: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -2122,21 +2124,21 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM organizations details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param credentialId Credential ID (optional)
-    * @return kotlin.collections.List<GithubOrganization>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID (optional)
+     * @return kotlin.collections.List<GithubOrganization>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getSCMOrganisations(organization: kotlin.String, scm: kotlin.String, credentialId: kotlin.String?) : kotlin.collections.List<GithubOrganization> {
+    fun getSCMOrganisations(organization: kotlin.String, scm: kotlin.String, credentialId: kotlin.String? = null) : kotlin.collections.List<GithubOrganization> {
         val localVarResponse = getSCMOrganisationsWithHttpInfo(organization = organization, scm = scm, credentialId = credentialId)
 
         return when (localVarResponse.responseType) {
@@ -2155,15 +2157,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve SCM organizations details for an organization
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param credentialId Credential ID (optional)
-    * @return ApiResponse<kotlin.collections.List<GithubOrganization>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve SCM organizations details for an organization
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID (optional)
+     * @return ApiResponse<kotlin.collections.List<GithubOrganization>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getSCMOrganisationsWithHttpInfo(organization: kotlin.String, scm: kotlin.String, credentialId: kotlin.String?) : ApiResponse<kotlin.collections.List<GithubOrganization>?> {
@@ -2175,13 +2177,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getSCMOrganisations
-    *
-    * @param organization Name of the organization 
-    * @param scm Name of SCM 
-    * @param credentialId Credential ID (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getSCMOrganisations
+     *
+     * @param organization Name of the organization
+     * @param scm Name of SCM
+     * @param credentialId Credential ID (optional)
+     * @return RequestConfig
+     */
     fun getSCMOrganisationsRequestConfig(organization: kotlin.String, scm: kotlin.String, credentialId: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -2203,17 +2205,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve user details for an organization
-    * @param organization Name of the organization 
-    * @param user Name of the user 
-    * @return User
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve user details for an organization
+     * @param organization Name of the organization
+     * @param user Name of the user
+     * @return User
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getUser(organization: kotlin.String, user: kotlin.String) : User {
@@ -2235,14 +2237,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve user details for an organization
-    * @param organization Name of the organization 
-    * @param user Name of the user 
-    * @return ApiResponse<User?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve user details for an organization
+     * @param organization Name of the organization
+     * @param user Name of the user
+     * @return ApiResponse<User?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getUserWithHttpInfo(organization: kotlin.String, user: kotlin.String) : ApiResponse<User?> {
@@ -2254,12 +2256,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getUser
-    *
-    * @param organization Name of the organization 
-    * @param user Name of the user 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getUser
+     *
+     * @param organization Name of the organization
+     * @param user Name of the user
+     * @return RequestConfig
+     */
     fun getUserRequestConfig(organization: kotlin.String, user: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -2276,16 +2278,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve user favorites details for an organization
-    * @param user Name of the user 
-    * @return kotlin.collections.List<FavoriteImpl>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user
+     * @return kotlin.collections.List<FavoriteImpl>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getUserFavorites(user: kotlin.String) : kotlin.collections.List<FavoriteImpl> {
@@ -2307,13 +2309,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve user favorites details for an organization
-    * @param user Name of the user 
-    * @return ApiResponse<kotlin.collections.List<FavoriteImpl>?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve user favorites details for an organization
+     * @param user Name of the user
+     * @return ApiResponse<kotlin.collections.List<FavoriteImpl>?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getUserFavoritesWithHttpInfo(user: kotlin.String) : ApiResponse<kotlin.collections.List<FavoriteImpl>?> {
@@ -2325,11 +2327,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getUserFavorites
-    *
-    * @param user Name of the user 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getUserFavorites
+     *
+     * @param user Name of the user
+     * @return RequestConfig
+     */
     fun getUserFavoritesRequestConfig(user: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -2346,16 +2348,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve users details for an organization
-    * @param organization Name of the organization 
-    * @return User
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve users details for an organization
+     * @param organization Name of the organization
+     * @return User
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getUsers(organization: kotlin.String) : User {
@@ -2377,13 +2379,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Retrieve users details for an organization
-    * @param organization Name of the organization 
-    * @return ApiResponse<User?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve users details for an organization
+     * @param organization Name of the organization
+     * @return ApiResponse<User?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getUsersWithHttpInfo(organization: kotlin.String) : ApiResponse<User?> {
@@ -2395,11 +2397,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation getUsers
-    *
-    * @param organization Name of the organization 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getUsers
+     *
+     * @param organization Name of the organization
+     * @return RequestConfig
+     */
     fun getUsersRequestConfig(organization: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -2416,18 +2418,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Replay an organization pipeline run
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return QueueItemImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Replay an organization pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return QueueItemImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun postPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : QueueItemImpl {
@@ -2449,15 +2451,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Replay an organization pipeline run
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return ApiResponse<QueueItemImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Replay an organization pipeline run
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return ApiResponse<QueueItemImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun postPipelineRunWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : ApiResponse<QueueItemImpl?> {
@@ -2469,13 +2471,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation postPipelineRun
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postPipelineRun
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @return RequestConfig
+     */
     fun postPipelineRunRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -2492,17 +2494,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Start a build for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return QueueItemImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return QueueItemImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun postPipelineRuns(organization: kotlin.String, pipeline: kotlin.String) : QueueItemImpl {
@@ -2524,14 +2526,14 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Start a build for an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return ApiResponse<QueueItemImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Start a build for an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return ApiResponse<QueueItemImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun postPipelineRunsWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String) : ApiResponse<QueueItemImpl?> {
@@ -2543,12 +2545,12 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation postPipelineRuns
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postPipelineRuns
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @return RequestConfig
+     */
     fun postPipelineRunsRequestConfig(organization: kotlin.String, pipeline: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -2565,18 +2567,18 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Favorite/unfavorite a pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
-    * @return FavoriteImpl
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @return FavoriteImpl
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun putPipelineFavorite(organization: kotlin.String, pipeline: kotlin.String, body: kotlin.Boolean) : FavoriteImpl {
@@ -2598,15 +2600,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Favorite/unfavorite a pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
-    * @return ApiResponse<FavoriteImpl?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Favorite/unfavorite a pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @return ApiResponse<FavoriteImpl?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun putPipelineFavoriteWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, body: kotlin.Boolean) : ApiResponse<FavoriteImpl?> {
@@ -2618,13 +2620,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation putPipelineFavorite
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation putPipelineFavorite
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
+     * @return RequestConfig
+     */
     fun putPipelineFavoriteRequestConfig(organization: kotlin.String, pipeline: kotlin.String, body: kotlin.Boolean) : RequestConfig<kotlin.Boolean> {
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -2642,23 +2644,23 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Stop a build of an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param blocking Set to true to make blocking stop, default: false (optional)
-    * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
-    * @return PipelineRun
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false (optional)
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
+     * @return PipelineRun
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun putPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, blocking: kotlin.String?, timeOutInSecs: kotlin.Int?) : PipelineRun {
+    fun putPipelineRun(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, blocking: kotlin.String? = null, timeOutInSecs: kotlin.Int? = null) : PipelineRun {
         val localVarResponse = putPipelineRunWithHttpInfo(organization = organization, pipeline = pipeline, run = run, blocking = blocking, timeOutInSecs = timeOutInSecs)
 
         return when (localVarResponse.responseType) {
@@ -2677,17 +2679,17 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Stop a build of an organization pipeline
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param blocking Set to true to make blocking stop, default: false (optional)
-    * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
-    * @return ApiResponse<PipelineRun?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Stop a build of an organization pipeline
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false (optional)
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
+     * @return ApiResponse<PipelineRun?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun putPipelineRunWithHttpInfo(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, blocking: kotlin.String?, timeOutInSecs: kotlin.Int?) : ApiResponse<PipelineRun?> {
@@ -2699,15 +2701,15 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation putPipelineRun
-    *
-    * @param organization Name of the organization 
-    * @param pipeline Name of the pipeline 
-    * @param run Name of the run 
-    * @param blocking Set to true to make blocking stop, default: false (optional)
-    * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation putPipelineRun
+     *
+     * @param organization Name of the organization
+     * @param pipeline Name of the pipeline
+     * @param run Name of the run
+     * @param blocking Set to true to make blocking stop, default: false (optional)
+     * @param timeOutInSecs Timeout in seconds, default: 10 seconds (optional)
+     * @return RequestConfig
+     */
     fun putPipelineRunRequestConfig(organization: kotlin.String, pipeline: kotlin.String, run: kotlin.String, blocking: kotlin.String?, timeOutInSecs: kotlin.Int?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -2732,16 +2734,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Search for any resource details
-    * @param q Query string 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Search for any resource details
+     * @param q Query string
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun search(q: kotlin.String) : kotlin.String {
@@ -2763,13 +2765,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Search for any resource details
-    * @param q Query string 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Search for any resource details
+     * @param q Query string
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun searchWithHttpInfo(q: kotlin.String) : ApiResponse<kotlin.String?> {
@@ -2781,11 +2783,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation search
-    *
-    * @param q Query string 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation search
+     *
+     * @param q Query string
+     * @return RequestConfig
+     */
     fun searchRequestConfig(q: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -2805,16 +2807,16 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get classes details
-    * @param q Query string containing an array of class names 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Get classes details
+     * @param q Query string containing an array of class names
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun searchClasses(q: kotlin.String) : kotlin.String {
@@ -2836,13 +2838,13 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * 
-    * Get classes details
-    * @param q Query string containing an array of class names 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Get classes details
+     * @param q Query string containing an array of class names
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun searchClassesWithHttpInfo(q: kotlin.String) : ApiResponse<kotlin.String?> {
@@ -2854,11 +2856,11 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
     }
 
     /**
-    * To obtain the request config of the operation searchClasses
-    *
-    * @param q Query string containing an array of class names 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation searchClasses
+     *
+     * @param q Query string containing an array of class names
+     * @return RequestConfig
+     */
     fun searchClassesRequestConfig(q: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()

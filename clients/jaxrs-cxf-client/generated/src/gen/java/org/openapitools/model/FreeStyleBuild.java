@@ -8,6 +8,7 @@ import org.openapitools.model.EmptyChangeLogSet;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class FreeStyleBuild  {
   
   @ApiModelProperty(value = "")

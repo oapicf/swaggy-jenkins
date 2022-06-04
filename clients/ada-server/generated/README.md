@@ -1,4 +1,4 @@
-# Jenkins API clients generated from Swagger / Open API specification - Swagger Ada Server
+# Jenkins API clients generated from Swagger / Open API specification - OpenAPI Ada Server
 
 ## Overview
 
@@ -9,9 +9,9 @@ you can easily generate a server stub.
 ## Building
 
 To build the server you will need the GNAT Ada compiler as well as
-the [Swagger Ada library](https://github.com/stcarrez/swagger-ada).
+the [OpenAPI Ada library](https://github.com/stcarrez/swagger-ada).
 
-When the GNAT Ada compiler and Swagger Ada libraries are installed,
+When the GNAT Ada compiler and OpenAPI Ada libraries are installed,
 run the following command:
 
 ```shell

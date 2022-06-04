@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputerexecutors")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class HudsonMasterComputerexecutors   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class HudsonMasterComputerexecutors   {
   
   private @Valid FreeStyleBuild currentExecutable;
   private @Valid Boolean idle;
@@ -31,8 +32,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.currentExecutable = currentExecutable;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -54,8 +53,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("idle")
   public Boolean getIdle() {
@@ -73,8 +70,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.likelyStuck = likelyStuck;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -96,8 +91,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("number")
   public Integer getNumber() {
@@ -117,8 +110,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("progress")
   public Integer getProgress() {
@@ -136,8 +127,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

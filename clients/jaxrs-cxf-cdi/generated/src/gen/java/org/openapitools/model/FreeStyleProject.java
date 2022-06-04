@@ -166,7 +166,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addActionsItem(FreeStyleProjectactions actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<FreeStyleProjectactions>();
+      this.actions = new ArrayList<>();
     }
     this.actions.add(actionsItem);
     return this;
@@ -300,7 +300,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addBuildsItem(FreeStyleBuild buildsItem) {
     if (this.builds == null) {
-      this.builds = new ArrayList<FreeStyleBuild>();
+      this.builds = new ArrayList<>();
     }
     this.builds.add(buildsItem);
     return this;
@@ -344,7 +344,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
     if (this.healthReport == null) {
-      this.healthReport = new ArrayList<FreeStyleProjecthealthReport>();
+      this.healthReport = new ArrayList<>();
     }
     this.healthReport.add(healthReportItem);
     return this;

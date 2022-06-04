@@ -8,9 +8,9 @@ package org.openapitools.server.model
  * @param size  for example: ''null''
 */
 final case class DiskSpaceMonitorDescriptorDiskSpace (
-  `class`: Option[String],
-  timestamp: Option[Int],
-  path: Option[String],
-  size: Option[Int]
+  `class`: Option[String] = None,
+  timestamp: Option[Int] = None,
+  path: Option[String] = None,
+  size: Option[Int] = None
 )
 

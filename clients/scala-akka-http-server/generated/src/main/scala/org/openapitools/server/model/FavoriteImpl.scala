@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param item  for example: ''null''
 */
 final case class FavoriteImpl (
-  `class`: Option[String],
-  links: Option[FavoriteImpllinks],
-  item: Option[PipelineImpl]
+  `class`: Option[String] = None,
+  links: Option[FavoriteImpllinks] = None,
+  item: Option[PipelineImpl] = None
 )
 

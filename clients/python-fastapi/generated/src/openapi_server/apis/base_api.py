@@ -31,6 +31,7 @@ router = APIRouter()
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["base"],
+    response_model_by_alias=True,
 )
 async def get_crumb(
     token_jenkins_auth: TokenModel = Security(

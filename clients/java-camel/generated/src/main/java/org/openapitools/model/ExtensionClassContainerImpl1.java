@@ -20,8 +20,8 @@ import javax.annotation.Generated;
  * ExtensionClassContainerImpl1
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class ExtensionClassContainerImpl1   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class ExtensionClassContainerImpl1 {
 
   @JsonProperty("_class")
   private String propertyClass;

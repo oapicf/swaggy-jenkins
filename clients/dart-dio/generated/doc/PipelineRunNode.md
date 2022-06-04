@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **class_** | **String** |  | [optional] 
 **displayName** | **String** |  | [optional] 
 **durationInMillis** | **int** |  | [optional] 
-**edges** | [**BuiltList<PipelineRunNodeedges>**](PipelineRunNodeedges.md) |  | [optional] 
+**edges** | [**BuiltList&lt;PipelineRunNodeedges&gt;**](PipelineRunNodeedges.md) |  | [optional] 
 **id** | **String** |  | [optional] 
 **result** | **String** |  | [optional] 
 **startTime** | **String** |  | [optional] 

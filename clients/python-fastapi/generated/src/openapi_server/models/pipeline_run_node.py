@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.pipeline_run_nodeedges import PipelineRunNodeedges
 
 
@@ -27,13 +27,13 @@ class PipelineRunNode(BaseModel):
         state: The state of this PipelineRunNode [Optional].
     """
 
-    _class: Optional[str] = None
-    display_name: Optional[str] = None
-    duration_in_millis: Optional[int] = None
-    edges: Optional[List[PipelineRunNodeedges]] = None
-    id: Optional[str] = None
-    result: Optional[str] = None
-    start_time: Optional[str] = None
-    state: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    duration_in_millis: Optional[int] = Field(alias="durationInMillis", default=None)
+    edges: Optional[List[PipelineRunNodeedges]] = Field(alias="edges", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    result: Optional[str] = Field(alias="result", default=None)
+    start_time: Optional[str] = Field(alias="startTime", default=None)
+    state: Optional[str] = Field(alias="state", default=None)
 
 PipelineRunNode.update_forward_refs()

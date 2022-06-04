@@ -18,10 +18,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Queue")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class Queue   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class Queue   {
   
   private @Valid String propertyClass;
-  private @Valid List<QueueBlockedItem> items = new ArrayList<QueueBlockedItem>();
+  private @Valid List<QueueBlockedItem> items = new ArrayList<>();
 
   /**
    **/
@@ -29,8 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -52,8 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("items")
   public List<QueueBlockedItem> getItems() {
@@ -67,7 +64,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public Queue addItemsItem(QueueBlockedItem itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<QueueBlockedItem>();
+      this.items = new ArrayList<>();
     }
 
     this.items.add(itemsItem);

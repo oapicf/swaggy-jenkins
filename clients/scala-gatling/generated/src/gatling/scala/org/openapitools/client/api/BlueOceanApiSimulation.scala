@@ -202,8 +202,8 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(getJsonWebTokenQUERYFeeder)
         .exec(http("getJsonWebToken")
         .httpRequest("GET","/jwt-auth/token")
-        .queryParam("expiryTimeInMins","${expiryTimeInMins}")
         .queryParam("maxExpiryTimeInMins","${maxExpiryTimeInMins}")
+        .queryParam("expiryTimeInMins","${expiryTimeInMins}")
 )
 
     // Run scngetJsonWebToken with warm up and reach a constant rate for entire duration
@@ -501,8 +501,8 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(getSCMOrganisationRepositoriesPATHFeeder)
         .exec(http("getSCMOrganisationRepositories")
         .httpRequest("GET","/blue/rest/organizations/${organization}/scm/${scm}/organizations/${scmOrganisation}/repositories")
-        .queryParam("pageSize","${pageSize}")
         .queryParam("pageNumber","${pageNumber}")
+        .queryParam("pageSize","${pageSize}")
         .queryParam("credentialId","${credentialId}")
 )
 

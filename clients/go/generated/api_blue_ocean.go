@@ -3,7 +3,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-API version: 1.1.2-pre.0
+API version: 1.5.1-pre.0
 Contact: blah@cliffano.com
 */
 
@@ -20,10 +20,6 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // BlueOceanApiService BlueOceanApi service
 type BlueOceanApiService service
@@ -35,7 +31,6 @@ type ApiDeletePipelineQueueItemRequest struct {
 	pipeline string
 	queue string
 }
-
 
 func (r ApiDeletePipelineQueueItemRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePipelineQueueItemExecute(r)
@@ -134,7 +129,6 @@ type ApiGetAuthenticatedUserRequest struct {
 	ApiService *BlueOceanApiService
 	organization string
 }
-
 
 func (r ApiGetAuthenticatedUserRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.GetAuthenticatedUserExecute(r)
@@ -239,7 +233,6 @@ type ApiGetClassesRequest struct {
 	class string
 }
 
-
 func (r ApiGetClassesRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetClassesExecute(r)
 }
@@ -342,7 +335,6 @@ type ApiGetJsonWebKeyRequest struct {
 	ApiService *BlueOceanApiService
 	key int32
 }
-
 
 func (r ApiGetJsonWebKeyRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetJsonWebKeyExecute(r)
@@ -453,6 +445,7 @@ func (r ApiGetJsonWebTokenRequest) ExpiryTimeInMins(expiryTimeInMins int32) ApiG
 	r.expiryTimeInMins = &expiryTimeInMins
 	return r
 }
+
 // Maximum token expiry time in minutes, default: 480 minutes
 func (r ApiGetJsonWebTokenRequest) MaxExpiryTimeInMins(maxExpiryTimeInMins int32) ApiGetJsonWebTokenRequest {
 	r.maxExpiryTimeInMins = &maxExpiryTimeInMins
@@ -565,7 +558,6 @@ type ApiGetOrganisationRequest struct {
 	organization string
 }
 
-
 func (r ApiGetOrganisationRequest) Execute() (*Organisation, *http.Response, error) {
 	return r.ApiService.GetOrganisationExecute(r)
 }
@@ -668,7 +660,6 @@ type ApiGetOrganisationsRequest struct {
 	ApiService *BlueOceanApiService
 }
 
-
 func (r ApiGetOrganisationsRequest) Execute() ([]Organisation, *http.Response, error) {
 	return r.ApiService.GetOrganisationsExecute(r)
 }
@@ -769,7 +760,6 @@ type ApiGetPipelineRequest struct {
 	organization string
 	pipeline string
 }
-
 
 func (r ApiGetPipelineRequest) Execute() (*Pipeline, *http.Response, error) {
 	return r.ApiService.GetPipelineExecute(r)
@@ -878,7 +868,6 @@ type ApiGetPipelineActivitiesRequest struct {
 	pipeline string
 }
 
-
 func (r ApiGetPipelineActivitiesRequest) Execute() ([]PipelineActivity, *http.Response, error) {
 	return r.ApiService.GetPipelineActivitiesExecute(r)
 }
@@ -986,7 +975,6 @@ type ApiGetPipelineBranchRequest struct {
 	pipeline string
 	branch string
 }
-
 
 func (r ApiGetPipelineBranchRequest) Execute() (*BranchImpl, *http.Response, error) {
 	return r.ApiService.GetPipelineBranchExecute(r)
@@ -1099,7 +1087,6 @@ type ApiGetPipelineBranchRunRequest struct {
 	branch string
 	run string
 }
-
 
 func (r ApiGetPipelineBranchRunRequest) Execute() (*PipelineRun, *http.Response, error) {
 	return r.ApiService.GetPipelineBranchRunExecute(r)
@@ -1214,7 +1201,6 @@ type ApiGetPipelineBranchesRequest struct {
 	pipeline string
 }
 
-
 func (r ApiGetPipelineBranchesRequest) Execute() (*MultibranchPipeline, *http.Response, error) {
 	return r.ApiService.GetPipelineBranchesExecute(r)
 }
@@ -1321,7 +1307,6 @@ type ApiGetPipelineFolderRequest struct {
 	organization string
 	folder string
 }
-
 
 func (r ApiGetPipelineFolderRequest) Execute() (*PipelineFolderImpl, *http.Response, error) {
 	return r.ApiService.GetPipelineFolderExecute(r)
@@ -1430,7 +1415,6 @@ type ApiGetPipelineFolderPipelineRequest struct {
 	pipeline string
 	folder string
 }
-
 
 func (r ApiGetPipelineFolderPipelineRequest) Execute() (*PipelineImpl, *http.Response, error) {
 	return r.ApiService.GetPipelineFolderPipelineExecute(r)
@@ -1542,7 +1526,6 @@ type ApiGetPipelineQueueRequest struct {
 	pipeline string
 }
 
-
 func (r ApiGetPipelineQueueRequest) Execute() ([]QueueItemImpl, *http.Response, error) {
 	return r.ApiService.GetPipelineQueueExecute(r)
 }
@@ -1650,7 +1633,6 @@ type ApiGetPipelineRunRequest struct {
 	pipeline string
 	run string
 }
-
 
 func (r ApiGetPipelineRunRequest) Execute() (*PipelineRun, *http.Response, error) {
 	return r.ApiService.GetPipelineRunExecute(r)
@@ -1770,6 +1752,7 @@ func (r ApiGetPipelineRunLogRequest) Start(start int32) ApiGetPipelineRunLogRequ
 	r.start = &start
 	return r
 }
+
 // Set to true in order to download the file, otherwise it&#39;s passed as a response body
 func (r ApiGetPipelineRunLogRequest) Download(download bool) ApiGetPipelineRunLogRequest {
 	r.download = &download
@@ -1894,7 +1877,6 @@ type ApiGetPipelineRunNodeRequest struct {
 	node string
 }
 
-
 func (r ApiGetPipelineRunNodeRequest) Execute() (*PipelineRunNode, *http.Response, error) {
 	return r.ApiService.GetPipelineRunNodeExecute(r)
 }
@@ -2010,7 +1992,6 @@ type ApiGetPipelineRunNodeStepRequest struct {
 	node string
 	step string
 }
-
 
 func (r ApiGetPipelineRunNodeStepRequest) Execute() (*PipelineStepImpl, *http.Response, error) {
 	return r.ApiService.GetPipelineRunNodeStepExecute(r)
@@ -2131,7 +2112,6 @@ type ApiGetPipelineRunNodeStepLogRequest struct {
 	step string
 }
 
-
 func (r ApiGetPipelineRunNodeStepLogRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetPipelineRunNodeStepLogExecute(r)
 }
@@ -2250,7 +2230,6 @@ type ApiGetPipelineRunNodeStepsRequest struct {
 	node string
 }
 
-
 func (r ApiGetPipelineRunNodeStepsRequest) Execute() ([]PipelineStepImpl, *http.Response, error) {
 	return r.ApiService.GetPipelineRunNodeStepsExecute(r)
 }
@@ -2365,7 +2344,6 @@ type ApiGetPipelineRunNodesRequest struct {
 	run string
 }
 
-
 func (r ApiGetPipelineRunNodesRequest) Execute() ([]PipelineRunNode, *http.Response, error) {
 	return r.ApiService.GetPipelineRunNodesExecute(r)
 }
@@ -2476,7 +2454,6 @@ type ApiGetPipelineRunsRequest struct {
 	pipeline string
 }
 
-
 func (r ApiGetPipelineRunsRequest) Execute() ([]PipelineRun, *http.Response, error) {
 	return r.ApiService.GetPipelineRunsExecute(r)
 }
@@ -2583,7 +2560,6 @@ type ApiGetPipelinesRequest struct {
 	organization string
 }
 
-
 func (r ApiGetPipelinesRequest) Execute() ([]Pipeline, *http.Response, error) {
 	return r.ApiService.GetPipelinesExecute(r)
 }
@@ -2687,7 +2663,6 @@ type ApiGetSCMRequest struct {
 	organization string
 	scm string
 }
-
 
 func (r ApiGetSCMRequest) Execute() (*GithubScm, *http.Response, error) {
 	return r.ApiService.GetSCMExecute(r)
@@ -2805,11 +2780,13 @@ func (r ApiGetSCMOrganisationRepositoriesRequest) CredentialId(credentialId stri
 	r.credentialId = &credentialId
 	return r
 }
+
 // Number of items in a page
 func (r ApiGetSCMOrganisationRepositoriesRequest) PageSize(pageSize int32) ApiGetSCMOrganisationRepositoriesRequest {
 	r.pageSize = &pageSize
 	return r
 }
+
 // Page number
 func (r ApiGetSCMOrganisationRepositoriesRequest) PageNumber(pageNumber int32) ApiGetSCMOrganisationRepositoriesRequest {
 	r.pageNumber = &pageNumber
@@ -3177,7 +3154,6 @@ type ApiGetUserRequest struct {
 	user string
 }
 
-
 func (r ApiGetUserRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.GetUserExecute(r)
 }
@@ -3284,7 +3260,6 @@ type ApiGetUserFavoritesRequest struct {
 	user string
 }
 
-
 func (r ApiGetUserFavoritesRequest) Execute() ([]FavoriteImpl, *http.Response, error) {
 	return r.ApiService.GetUserFavoritesExecute(r)
 }
@@ -3387,7 +3362,6 @@ type ApiGetUsersRequest struct {
 	ApiService *BlueOceanApiService
 	organization string
 }
-
 
 func (r ApiGetUsersRequest) Execute() (*User, *http.Response, error) {
 	return r.ApiService.GetUsersExecute(r)
@@ -3493,7 +3467,6 @@ type ApiPostPipelineRunRequest struct {
 	pipeline string
 	run string
 }
-
 
 func (r ApiPostPipelineRunRequest) Execute() (*QueueItemImpl, *http.Response, error) {
 	return r.ApiService.PostPipelineRunExecute(r)
@@ -3604,7 +3577,6 @@ type ApiPostPipelineRunsRequest struct {
 	organization string
 	pipeline string
 }
-
 
 func (r ApiPostPipelineRunsRequest) Execute() (*QueueItemImpl, *http.Response, error) {
 	return r.ApiService.PostPipelineRunsExecute(r)
@@ -3840,6 +3812,7 @@ func (r ApiPutPipelineRunRequest) Blocking(blocking string) ApiPutPipelineRunReq
 	r.blocking = &blocking
 	return r
 }
+
 // Timeout in seconds, default: 10 seconds
 func (r ApiPutPipelineRunRequest) TimeOutInSecs(timeOutInSecs int32) ApiPutPipelineRunRequest {
 	r.timeOutInSecs = &timeOutInSecs

@@ -12,38 +12,23 @@ import org.openapitools.model.PipelineRunartifacts;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
 public class PipelineRun   {
   
-
   private String propertyClass;
-
-  private List<PipelineRunartifacts> artifacts = new ArrayList<PipelineRunartifacts>();
-
+  private List<PipelineRunartifacts> artifacts = new ArrayList<>();
   private Integer durationInMillis;
-
   private Integer estimatedDurationInMillis;
-
   private String enQueueTime;
-
   private String endTime;
-
   private String id;
-
   private String organization;
-
   private String pipeline;
-
   private String result;
-
   private String runSummary;
-
   private String startTime;
-
   private String state;
-
   private String type;
-
   private String commitId;
 
   /**

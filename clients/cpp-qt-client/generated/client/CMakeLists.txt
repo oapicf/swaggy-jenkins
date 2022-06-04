@@ -13,6 +13,7 @@ endif ()
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
+find_package(Qt5Gui REQUIRED)
 
 add_library(${PROJECT_NAME}
     OAIAllView.cpp
@@ -103,8 +104,9 @@ add_library(${PROJECT_NAME}
     OAIHttpFileElement.cpp
     OAIOauth.cpp
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network Qt5::Gui)
 if(NOT APPLE)
+  find_package(OpenSSL REQUIRED)
   target_link_libraries(${PROJECT_NAME} PRIVATE ssl crypto)
 endif()
 

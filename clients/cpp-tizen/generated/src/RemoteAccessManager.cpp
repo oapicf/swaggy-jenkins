@@ -150,7 +150,7 @@ static bool getComputerHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getComputerProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -296,7 +296,7 @@ static bool getJenkinsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJenkinsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -448,7 +448,7 @@ static bool getJobHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJobProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -595,7 +595,7 @@ static bool getJobConfigHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJobConfigProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -747,7 +747,7 @@ static bool getJobLastBuildHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJobLastBuildProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -887,7 +887,7 @@ static bool getJobProgressiveTextHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJobProgressiveTextProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1033,7 +1033,7 @@ static bool getQueueHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getQueueProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1185,7 +1185,7 @@ static bool getQueueItemHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getQueueItemProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1337,7 +1337,7 @@ static bool getViewHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getViewProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1484,7 +1484,7 @@ static bool getViewConfigHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getViewConfigProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1608,7 +1608,7 @@ static bool headJenkinsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = headJenkinsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1771,7 +1771,7 @@ static bool postCreateItemHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postCreateItemProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1920,7 +1920,7 @@ static bool postCreateViewHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postCreateViewProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2067,7 +2067,7 @@ static bool postJobBuildHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postJobBuildProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2212,7 +2212,7 @@ static bool postJobConfigHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postJobConfigProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2348,7 +2348,7 @@ static bool postJobDeleteHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postJobDeleteProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2484,7 +2484,7 @@ static bool postJobDisableHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postJobDisableProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2620,7 +2620,7 @@ static bool postJobEnableHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postJobEnableProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2756,7 +2756,7 @@ static bool postJobLastBuildStopHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postJobLastBuildStopProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2901,7 +2901,7 @@ static bool postViewConfigHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postViewConfigProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);

@@ -46,15 +46,15 @@ cJSON *favorite_impl_convertToJSON(favorite_impl_t *favorite_impl) {
     cJSON *item = cJSON_CreateObject();
 
     // favorite_impl->_class
-    if(favorite_impl->_class) { 
+    if(favorite_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", favorite_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // favorite_impl->_links
-    if(favorite_impl->_links) { 
+    if(favorite_impl->_links) {
     cJSON *_links_local_JSON = favorite_impllinks_convertToJSON(favorite_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -63,11 +63,11 @@ cJSON *favorite_impl_convertToJSON(favorite_impl_t *favorite_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // favorite_impl->item
-    if(favorite_impl->item) { 
+    if(favorite_impl->item) {
     cJSON *item_local_JSON = pipeline_impl_convertToJSON(favorite_impl->item);
     if(item_local_JSON == NULL) {
     goto fail; //model
@@ -76,7 +76,7 @@ cJSON *favorite_impl_convertToJSON(favorite_impl_t *favorite_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

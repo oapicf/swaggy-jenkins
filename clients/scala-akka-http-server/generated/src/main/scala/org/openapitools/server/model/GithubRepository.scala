@@ -12,13 +12,13 @@ package org.openapitools.server.model
  * @param fullName  for example: ''null''
 */
 final case class GithubRepository (
-  `class`: Option[String],
-  links: Option[GithubRepositorylinks],
-  defaultBranch: Option[String],
-  description: Option[String],
-  name: Option[String],
-  permissions: Option[GithubRepositorypermissions],
-  `private`: Option[Boolean],
-  fullName: Option[String]
+  `class`: Option[String] = None,
+  links: Option[GithubRepositorylinks] = None,
+  defaultBranch: Option[String] = None,
+  description: Option[String] = None,
+  name: Option[String] = None,
+  permissions: Option[GithubRepositorypermissions] = None,
+  `private`: Option[Boolean] = None,
+  fullName: Option[String] = None
 )
 

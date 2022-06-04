@@ -46,7 +46,7 @@ cJSON *extension_class_container_impl1map_convertToJSON(extension_class_containe
     cJSON *item = cJSON_CreateObject();
 
     // extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_pipeline_impl
-    if(extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_pipeline_impl) { 
+    if(extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_pipeline_impl) {
     cJSON *io_jenkins_blueocean_service_embedded_rest_pipeline_impl_local_JSON = extension_class_impl_convertToJSON(extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_pipeline_impl);
     if(io_jenkins_blueocean_service_embedded_rest_pipeline_impl_local_JSON == NULL) {
     goto fail; //model
@@ -55,11 +55,11 @@ cJSON *extension_class_container_impl1map_convertToJSON(extension_class_containe
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl
-    if(extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl) { 
+    if(extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl) {
     cJSON *io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl_local_JSON = extension_class_impl_convertToJSON(extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl);
     if(io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl_local_JSON == NULL) {
     goto fail; //model
@@ -68,15 +68,15 @@ cJSON *extension_class_container_impl1map_convertToJSON(extension_class_containe
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // extension_class_container_impl1map->_class
-    if(extension_class_container_impl1map->_class) { 
+    if(extension_class_container_impl1map->_class) {
     if(cJSON_AddStringToObject(item, "_class", extension_class_container_impl1map->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

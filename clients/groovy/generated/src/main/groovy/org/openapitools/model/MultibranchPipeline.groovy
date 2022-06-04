@@ -21,7 +21,7 @@ class MultibranchPipeline {
     
     Integer weatherScore
     
-    List<String> branchNames = new ArrayList<String>()
+    List<String> branchNames = new ArrayList<>()
     
     Integer numberOfFailingBranches
     

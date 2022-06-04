@@ -45,11 +45,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.blueOcean:
-        class: Acme\MyBundle\Api\BlueOceanApi
+    Acme\MyBundle\Api\BlueOceanApi:
         tags:
             - { name: "open_api_server.api", api: "blueOcean" }
     # ...
@@ -79,7 +78,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#deletePipelineQueueItem
      */
-    public function deletePipelineQueueItem($organization, $pipeline, $queue)
+    public function deletePipelineQueueItem($organization, $pipeline, $queue, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -135,7 +134,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getAuthenticatedUser
      */
-    public function getAuthenticatedUser($organization)
+    public function getAuthenticatedUser($organization, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\User
     {
         // Implement the operation ...
     }
@@ -189,7 +188,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getClasses
      */
-    public function getClasses($class)
+    public function getClasses($class, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -243,7 +242,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getJsonWebKey
      */
-    public function getJsonWebKey($key)
+    public function getJsonWebKey($key, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -297,7 +296,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getJsonWebToken
      */
-    public function getJsonWebToken($expiryTimeInMins = null, $maxExpiryTimeInMins = null)
+    public function getJsonWebToken($expiryTimeInMins = null, $maxExpiryTimeInMins = null, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -352,7 +351,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getOrganisation
      */
-    public function getOrganisation($organization)
+    public function getOrganisation($organization, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\Organisation
     {
         // Implement the operation ...
     }
@@ -406,7 +405,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getOrganisations
      */
-    public function getOrganisations()
+    public function getOrganisations(, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -457,7 +456,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipeline
      */
-    public function getPipeline($organization, $pipeline)
+    public function getPipeline($organization, $pipeline, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\Pipeline
     {
         // Implement the operation ...
     }
@@ -512,7 +511,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineActivities
      */
-    public function getPipelineActivities($organization, $pipeline)
+    public function getPipelineActivities($organization, $pipeline, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -567,7 +566,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineBranch
      */
-    public function getPipelineBranch($organization, $pipeline, $branch)
+    public function getPipelineBranch($organization, $pipeline, $branch, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\BranchImpl
     {
         // Implement the operation ...
     }
@@ -623,7 +622,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineBranchRun
      */
-    public function getPipelineBranchRun($organization, $pipeline, $branch, $run)
+    public function getPipelineBranchRun($organization, $pipeline, $branch, $run, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineRun
     {
         // Implement the operation ...
     }
@@ -680,7 +679,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineBranches
      */
-    public function getPipelineBranches($organization, $pipeline)
+    public function getPipelineBranches($organization, $pipeline, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\MultibranchPipeline
     {
         // Implement the operation ...
     }
@@ -735,7 +734,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineFolder
      */
-    public function getPipelineFolder($organization, $folder)
+    public function getPipelineFolder($organization, $folder, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineFolderImpl
     {
         // Implement the operation ...
     }
@@ -790,7 +789,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineFolderPipeline
      */
-    public function getPipelineFolderPipeline($organization, $pipeline, $folder)
+    public function getPipelineFolderPipeline($organization, $pipeline, $folder, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineImpl
     {
         // Implement the operation ...
     }
@@ -846,7 +845,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineQueue
      */
-    public function getPipelineQueue($organization, $pipeline)
+    public function getPipelineQueue($organization, $pipeline, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -901,7 +900,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRun
      */
-    public function getPipelineRun($organization, $pipeline, $run)
+    public function getPipelineRun($organization, $pipeline, $run, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineRun
     {
         // Implement the operation ...
     }
@@ -957,7 +956,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRunLog
      */
-    public function getPipelineRunLog($organization, $pipeline, $run, $start = null, $download = null)
+    public function getPipelineRunLog($organization, $pipeline, $run, $start = null, $download = null, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -1015,7 +1014,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRunNode
      */
-    public function getPipelineRunNode($organization, $pipeline, $run, $node)
+    public function getPipelineRunNode($organization, $pipeline, $run, $node, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineRunNode
     {
         // Implement the operation ...
     }
@@ -1072,7 +1071,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRunNodeStep
      */
-    public function getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step)
+    public function getPipelineRunNodeStep($organization, $pipeline, $run, $node, $step, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineStepImpl
     {
         // Implement the operation ...
     }
@@ -1130,7 +1129,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRunNodeStepLog
      */
-    public function getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step)
+    public function getPipelineRunNodeStepLog($organization, $pipeline, $run, $node, $step, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -1188,7 +1187,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRunNodeSteps
      */
-    public function getPipelineRunNodeSteps($organization, $pipeline, $run, $node)
+    public function getPipelineRunNodeSteps($organization, $pipeline, $run, $node, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1245,7 +1244,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRunNodes
      */
-    public function getPipelineRunNodes($organization, $pipeline, $run)
+    public function getPipelineRunNodes($organization, $pipeline, $run, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1301,7 +1300,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelineRuns
      */
-    public function getPipelineRuns($organization, $pipeline)
+    public function getPipelineRuns($organization, $pipeline, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1356,7 +1355,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getPipelines
      */
-    public function getPipelines($organization)
+    public function getPipelines($organization, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1410,7 +1409,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getSCM
      */
-    public function getSCM($organization, $scm)
+    public function getSCM($organization, $scm, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\GithubScm
     {
         // Implement the operation ...
     }
@@ -1465,7 +1464,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getSCMOrganisationRepositories
      */
-    public function getSCMOrganisationRepositories($organization, $scm, $scmOrganisation, $credentialId = null, $pageSize = null, $pageNumber = null)
+    public function getSCMOrganisationRepositories($organization, $scm, $scmOrganisation, $credentialId = null, $pageSize = null, $pageNumber = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1524,7 +1523,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getSCMOrganisationRepository
      */
-    public function getSCMOrganisationRepository($organization, $scm, $scmOrganisation, $repository, $credentialId = null)
+    public function getSCMOrganisationRepository($organization, $scm, $scmOrganisation, $repository, $credentialId = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1582,7 +1581,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getSCMOrganisations
      */
-    public function getSCMOrganisations($organization, $scm, $credentialId = null)
+    public function getSCMOrganisations($organization, $scm, $credentialId = null, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1638,7 +1637,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getUser
      */
-    public function getUser($organization, $user)
+    public function getUser($organization, $user, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\User
     {
         // Implement the operation ...
     }
@@ -1693,7 +1692,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getUserFavorites
      */
-    public function getUserFavorites($user)
+    public function getUserFavorites($user, &$responseCode, array &$responseHeaders): iterable
     {
         // Implement the operation ...
     }
@@ -1747,7 +1746,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#getUsers
      */
-    public function getUsers($organization)
+    public function getUsers($organization, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\User
     {
         // Implement the operation ...
     }
@@ -1801,7 +1800,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#postPipelineRun
      */
-    public function postPipelineRun($organization, $pipeline, $run)
+    public function postPipelineRun($organization, $pipeline, $run, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\QueueItemImpl
     {
         // Implement the operation ...
     }
@@ -1857,7 +1856,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#postPipelineRuns
      */
-    public function postPipelineRuns($organization, $pipeline)
+    public function postPipelineRuns($organization, $pipeline, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\QueueItemImpl
     {
         // Implement the operation ...
     }
@@ -1912,7 +1911,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#putPipelineFavorite
      */
-    public function putPipelineFavorite($organization, $pipeline, $body)
+    public function putPipelineFavorite($organization, $pipeline, $body, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\FavoriteImpl
     {
         // Implement the operation ...
     }
@@ -1968,7 +1967,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#putPipelineRun
      */
-    public function putPipelineRun($organization, $pipeline, $run, $blocking = null, $timeOutInSecs = null)
+    public function putPipelineRun($organization, $pipeline, $run, $blocking = null, $timeOutInSecs = null, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\PipelineRun
     {
         // Implement the operation ...
     }
@@ -2026,7 +2025,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#search
      */
-    public function search($q)
+    public function search($q, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -2080,7 +2079,7 @@ class BlueOceanApi implements BlueOceanApiInterface
     /**
      * Implementation of BlueOceanApiInterface#searchClasses
      */
-    public function searchClasses($q)
+    public function searchClasses($q, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }

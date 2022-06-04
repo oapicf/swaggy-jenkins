@@ -142,7 +142,7 @@ static bool deletePipelineQueueItemHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = deletePipelineQueueItemProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -294,7 +294,7 @@ static bool getAuthenticatedUserHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getAuthenticatedUserProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -441,7 +441,7 @@ static bool getClassesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getClassesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -588,7 +588,7 @@ static bool getJsonWebKeyHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJsonWebKeyProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -743,7 +743,7 @@ static bool getJsonWebTokenHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getJsonWebTokenProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -895,7 +895,7 @@ static bool getOrganisationHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getOrganisationProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1033,7 +1033,7 @@ static bool getOrganisationsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getOrganisationsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1191,7 +1191,7 @@ static bool getPipelineHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1341,7 +1341,7 @@ static bool getPipelineActivitiesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineActivitiesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1505,7 +1505,7 @@ static bool getPipelineBranchHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineBranchProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1675,7 +1675,7 @@ static bool getPipelineBranchRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineBranchRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1833,7 +1833,7 @@ static bool getPipelineBranchesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineBranchesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -1991,7 +1991,7 @@ static bool getPipelineFolderHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineFolderProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2155,7 +2155,7 @@ static bool getPipelineFolderPipelineHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineFolderPipelineProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2305,7 +2305,7 @@ static bool getPipelineQueueHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineQueueProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2469,7 +2469,7 @@ static bool getPipelineRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2642,7 +2642,7 @@ static bool getPipelineRunLogHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunLogProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2812,7 +2812,7 @@ static bool getPipelineRunNodeHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -2988,7 +2988,7 @@ static bool getPipelineRunNodeStepHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeStepProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3159,7 +3159,7 @@ static bool getPipelineRunNodeStepLogHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeStepLogProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3321,7 +3321,7 @@ static bool getPipelineRunNodeStepsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodeStepsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3477,7 +3477,7 @@ static bool getPipelineRunNodesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunNodesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3627,7 +3627,7 @@ static bool getPipelineRunsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelineRunsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3771,7 +3771,7 @@ static bool getPipelinesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getPipelinesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -3929,7 +3929,7 @@ static bool getSCMHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4106,7 +4106,7 @@ static bool getSCMOrganisationRepositoriesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMOrganisationRepositoriesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4275,7 +4275,7 @@ static bool getSCMOrganisationRepositoryHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMOrganisationRepositoryProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4432,7 +4432,7 @@ static bool getSCMOrganisationsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getSCMOrganisationsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4590,7 +4590,7 @@ static bool getUserHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getUserProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4734,7 +4734,7 @@ static bool getUserFavoritesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getUserFavoritesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -4886,7 +4886,7 @@ static bool getUsersHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = getUsersProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5050,7 +5050,7 @@ static bool postPipelineRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postPipelineRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5208,7 +5208,7 @@ static bool postPipelineRunsHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = postPipelineRunsProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5375,7 +5375,7 @@ static bool putPipelineFavoriteHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = putPipelineFavoriteProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5553,7 +5553,7 @@ static bool putPipelineRunHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = putPipelineRunProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5698,7 +5698,7 @@ static bool searchHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = searchProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);
@@ -5843,7 +5843,7 @@ static bool searchClassesHelper(char * accessToken,
 			mBody, headerList, p_chunk, &code, errormsg);
 		bool retval = searchClassesProcessor(*p_chunk, code, errormsg, userData,reinterpret_cast<void(*)()>(handler));
 
-		curl_slist_freeList_all(headerList);
+		curl_slist_free_all(headerList);
 		if (p_chunk) {
 			if(p_chunk->memory) {
 				free(p_chunk->memory);

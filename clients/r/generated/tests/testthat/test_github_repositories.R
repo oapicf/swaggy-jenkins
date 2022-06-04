@@ -3,7 +3,7 @@
 
 context("Test GithubRepositories")
 
-model.instance <- GithubRepositories$new()
+model_instance <- GithubRepositories$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -46,4 +46,3 @@ test_that("pageSize", {
   # uncomment below to test the property
   #expect_equal(model.instance$`pageSize`, "EXPECTED_RESULT")
 })
-

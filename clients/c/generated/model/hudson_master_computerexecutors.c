@@ -48,7 +48,7 @@ cJSON *hudson_master_computerexecutors_convertToJSON(hudson_master_computerexecu
     cJSON *item = cJSON_CreateObject();
 
     // hudson_master_computerexecutors->current_executable
-    if(hudson_master_computerexecutors->current_executable) { 
+    if(hudson_master_computerexecutors->current_executable) {
     cJSON *current_executable_local_JSON = free_style_build_convertToJSON(hudson_master_computerexecutors->current_executable);
     if(current_executable_local_JSON == NULL) {
     goto fail; //model
@@ -57,47 +57,47 @@ cJSON *hudson_master_computerexecutors_convertToJSON(hudson_master_computerexecu
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computerexecutors->idle
-    if(hudson_master_computerexecutors->idle) { 
+    if(hudson_master_computerexecutors->idle) {
     if(cJSON_AddBoolToObject(item, "idle", hudson_master_computerexecutors->idle) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computerexecutors->likely_stuck
-    if(hudson_master_computerexecutors->likely_stuck) { 
+    if(hudson_master_computerexecutors->likely_stuck) {
     if(cJSON_AddBoolToObject(item, "likelyStuck", hudson_master_computerexecutors->likely_stuck) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computerexecutors->number
-    if(hudson_master_computerexecutors->number) { 
+    if(hudson_master_computerexecutors->number) {
     if(cJSON_AddNumberToObject(item, "number", hudson_master_computerexecutors->number) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // hudson_master_computerexecutors->progress
-    if(hudson_master_computerexecutors->progress) { 
+    if(hudson_master_computerexecutors->progress) {
     if(cJSON_AddNumberToObject(item, "progress", hudson_master_computerexecutors->progress) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // hudson_master_computerexecutors->_class
-    if(hudson_master_computerexecutors->_class) { 
+    if(hudson_master_computerexecutors->_class) {
     if(cJSON_AddStringToObject(item, "_class", hudson_master_computerexecutors->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

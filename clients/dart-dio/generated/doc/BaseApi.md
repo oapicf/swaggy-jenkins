@@ -26,12 +26,12 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BaseApi();
+final api = Openapi().getBaseApi();
 
 try {
-    var result = api_instance.getCrumb();
-    print(result);
-} catch (e) {
+    final response = api.getCrumb();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BaseApi->getCrumb: $e\n');
 }
 ```

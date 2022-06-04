@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param queuedTime  for example: ''null''
 */
 final case class QueueItemImpl (
-  `class`: Option[String],
-  expectedBuildNumber: Option[Int],
-  id: Option[String],
-  pipeline: Option[String],
-  queuedTime: Option[Int]
+  `class`: Option[String] = None,
+  expectedBuildNumber: Option[Int] = None,
+  id: Option[String] = None,
+  pipeline: Option[String] = None,
+  queuedTime: Option[Int] = None
 )
 

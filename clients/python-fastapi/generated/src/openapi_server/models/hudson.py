@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.all_view import AllView
 from openapi_server.models.free_style_project import FreeStyleProject
 from openapi_server.models.hudsonassigned_labels import HudsonassignedLabels
@@ -37,20 +37,20 @@ class Hudson(BaseModel):
         views: The views of this Hudson [Optional].
     """
 
-    _class: Optional[str] = None
-    assigned_labels: Optional[List[HudsonassignedLabels]] = None
-    mode: Optional[str] = None
-    node_description: Optional[str] = None
-    node_name: Optional[str] = None
-    num_executors: Optional[int] = None
-    description: Optional[str] = None
-    jobs: Optional[List[FreeStyleProject]] = None
-    primary_view: Optional[AllView] = None
-    quieting_down: Optional[bool] = None
-    slave_agent_port: Optional[int] = None
-    unlabeled_load: Optional[UnlabeledLoadStatistics] = None
-    use_crumbs: Optional[bool] = None
-    use_security: Optional[bool] = None
-    views: Optional[List[AllView]] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    assigned_labels: Optional[List[HudsonassignedLabels]] = Field(alias="assignedLabels", default=None)
+    mode: Optional[str] = Field(alias="mode", default=None)
+    node_description: Optional[str] = Field(alias="nodeDescription", default=None)
+    node_name: Optional[str] = Field(alias="nodeName", default=None)
+    num_executors: Optional[int] = Field(alias="numExecutors", default=None)
+    description: Optional[str] = Field(alias="description", default=None)
+    jobs: Optional[List[FreeStyleProject]] = Field(alias="jobs", default=None)
+    primary_view: Optional[AllView] = Field(alias="primaryView", default=None)
+    quieting_down: Optional[bool] = Field(alias="quietingDown", default=None)
+    slave_agent_port: Optional[int] = Field(alias="slaveAgentPort", default=None)
+    unlabeled_load: Optional[UnlabeledLoadStatistics] = Field(alias="unlabeledLoad", default=None)
+    use_crumbs: Optional[bool] = Field(alias="useCrumbs", default=None)
+    use_security: Optional[bool] = Field(alias="useSecurity", default=None)
+    views: Optional[List[AllView]] = Field(alias="views", default=None)
 
 Hudson.update_forward_refs()

@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the view API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class ViewApi  {
    private final ViewApiService delegate;
 
@@ -55,7 +55,7 @@ public class ViewApi  {
       this.delegate = delegate;
    }
 
-    @GET
+    @javax.ws.rs.GET
     @Path("/api/json")
     
     @Produces({ "application/json" })
@@ -72,7 +72,7 @@ public class ViewApi  {
     throws NotFoundException {
         return delegate.getView(name, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/config.xml")
     
     @Produces({ "text/xml" })
@@ -89,7 +89,7 @@ public class ViewApi  {
     throws NotFoundException {
         return delegate.getViewConfig(name, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/config.xml")
     @Consumes({ "application/json" })
     @Produces({ "*/*" })

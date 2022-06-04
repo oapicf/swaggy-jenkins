@@ -3,7 +3,7 @@
 
 context("Test FreeStyleBuild")
 
-model.instance <- FreeStyleBuild$new()
+model_instance <- FreeStyleBuild$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -130,4 +130,3 @@ test_that("changeSet", {
   # uncomment below to test the property
   #expect_equal(model.instance$`changeSet`, "EXPECTED_RESULT")
 })
-

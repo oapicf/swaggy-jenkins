@@ -2,9 +2,9 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getCrumb**](BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getCrumb**](BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json |  |
 
 
 ## Creating BaseApi

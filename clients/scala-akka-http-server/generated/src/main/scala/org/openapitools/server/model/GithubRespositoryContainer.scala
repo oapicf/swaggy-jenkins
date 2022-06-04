@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param repositories  for example: ''null''
 */
 final case class GithubRespositoryContainer (
-  `class`: Option[String],
-  links: Option[GithubRespositoryContainerlinks],
-  repositories: Option[GithubRepositories]
+  `class`: Option[String] = None,
+  links: Option[GithubRespositoryContainerlinks] = None,
+  repositories: Option[GithubRepositories] = None
 )
 

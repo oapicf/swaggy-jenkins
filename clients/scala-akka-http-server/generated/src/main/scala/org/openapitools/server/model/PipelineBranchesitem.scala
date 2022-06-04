@@ -13,14 +13,14 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelineBranchesitem (
-  displayName: Option[String],
-  estimatedDurationInMillis: Option[Int],
-  name: Option[String],
-  weatherScore: Option[Int],
-  latestRun: Option[PipelineBranchesitemlatestRun],
-  organization: Option[String],
-  pullRequest: Option[PipelineBranchesitempullRequest],
-  totalNumberOfPullRequests: Option[Int],
-  `class`: Option[String]
+  displayName: Option[String] = None,
+  estimatedDurationInMillis: Option[Int] = None,
+  name: Option[String] = None,
+  weatherScore: Option[Int] = None,
+  latestRun: Option[PipelineBranchesitemlatestRun] = None,
+  organization: Option[String] = None,
+  pullRequest: Option[PipelineBranchesitempullRequest] = None,
+  totalNumberOfPullRequests: Option[Int] = None,
+  `class`: Option[String] = None
 )
 

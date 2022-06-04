@@ -49,15 +49,15 @@ cJSON *extension_class_impl_convertToJSON(extension_class_impl_t *extension_clas
     cJSON *item = cJSON_CreateObject();
 
     // extension_class_impl->_class
-    if(extension_class_impl->_class) { 
+    if(extension_class_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", extension_class_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // extension_class_impl->_links
-    if(extension_class_impl->_links) { 
+    if(extension_class_impl->_links) {
     cJSON *_links_local_JSON = extension_class_impllinks_convertToJSON(extension_class_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -66,11 +66,11 @@ cJSON *extension_class_impl_convertToJSON(extension_class_impl_t *extension_clas
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // extension_class_impl->classes
-    if(extension_class_impl->classes) { 
+    if(extension_class_impl->classes) {
     cJSON *classes = cJSON_AddArrayToObject(item, "classes");
     if(classes == NULL) {
         goto fail; //primitive container
@@ -83,7 +83,7 @@ cJSON *extension_class_impl_convertToJSON(extension_class_impl_t *extension_clas
         goto fail;
     }
     }
-     } 
+    }
 
     return item;
 fail:
@@ -99,6 +99,9 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
 
     // define the local variable for extension_class_impl->_links
     extension_class_impllinks_t *_links_local_nonprim = NULL;
+
+    // define the local list for extension_class_impl->classes
+    list_t *classesList = NULL;
 
     // extension_class_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_implJSON, "_class");
@@ -117,9 +120,8 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
 
     // extension_class_impl->classes
     cJSON *classes = cJSON_GetObjectItemCaseSensitive(extension_class_implJSON, "classes");
-    list_t *classesList;
     if (classes) { 
-    cJSON *classes_local;
+    cJSON *classes_local = NULL;
     if(!cJSON_IsArray(classes)) {
         goto end;//primitive container
     }
@@ -147,6 +149,15 @@ end:
     if (_links_local_nonprim) {
         extension_class_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
+    }
+    if (classesList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, classesList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(classesList);
+        classesList = NULL;
     }
     return NULL;
 

@@ -1,7 +1,8 @@
 Package: openapi
 Title: R Package Client for Swaggy Jenkins
 Version: 1.0.0
-Authors@R: person("Cliffano Subagio", email = "blah@cliffano.com", role = c("aut", "cre"))
+Author: person("Cliffano Subagio", email = "blah@cliffano.com", role = c("aut", "cre"))
+Maintainer: Cliffano Subagio <blah@cliffano.com>
 Description: Jenkins API clients generated from Swagger / Open API specification
 URL: https://github.com/GIT_USER_ID/GIT_REPO_ID
 BugReports: https://github.com/GIT_USER_ID/GIT_REPO_ID/issues

@@ -99,23 +99,23 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
     cJSON *item = cJSON_CreateObject();
 
     // hudson_master_computer->_class
-    if(hudson_master_computer->_class) { 
+    if(hudson_master_computer->_class) {
     if(cJSON_AddStringToObject(item, "_class", hudson_master_computer->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computer->display_name
-    if(hudson_master_computer->display_name) { 
+    if(hudson_master_computer->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", hudson_master_computer->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computer->executors
-    if(hudson_master_computer->executors) { 
+    if(hudson_master_computer->executors) {
     cJSON *executors = cJSON_AddArrayToObject(item, "executors");
     if(executors == NULL) {
     goto fail; //nonprimitive container
@@ -131,51 +131,51 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
     cJSON_AddItemToArray(executors, itemLocal);
     }
     }
-     } 
+    }
 
 
     // hudson_master_computer->icon
-    if(hudson_master_computer->icon) { 
+    if(hudson_master_computer->icon) {
     if(cJSON_AddStringToObject(item, "icon", hudson_master_computer->icon) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computer->icon_class_name
-    if(hudson_master_computer->icon_class_name) { 
+    if(hudson_master_computer->icon_class_name) {
     if(cJSON_AddStringToObject(item, "iconClassName", hudson_master_computer->icon_class_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computer->idle
-    if(hudson_master_computer->idle) { 
+    if(hudson_master_computer->idle) {
     if(cJSON_AddBoolToObject(item, "idle", hudson_master_computer->idle) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computer->jnlp_agent
-    if(hudson_master_computer->jnlp_agent) { 
+    if(hudson_master_computer->jnlp_agent) {
     if(cJSON_AddBoolToObject(item, "jnlpAgent", hudson_master_computer->jnlp_agent) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computer->launch_supported
-    if(hudson_master_computer->launch_supported) { 
+    if(hudson_master_computer->launch_supported) {
     if(cJSON_AddBoolToObject(item, "launchSupported", hudson_master_computer->launch_supported) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computer->load_statistics
-    if(hudson_master_computer->load_statistics) { 
+    if(hudson_master_computer->load_statistics) {
     cJSON *load_statistics_local_JSON = label1_convertToJSON(hudson_master_computer->load_statistics);
     if(load_statistics_local_JSON == NULL) {
     goto fail; //model
@@ -184,19 +184,19 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computer->manual_launch_allowed
-    if(hudson_master_computer->manual_launch_allowed) { 
+    if(hudson_master_computer->manual_launch_allowed) {
     if(cJSON_AddBoolToObject(item, "manualLaunchAllowed", hudson_master_computer->manual_launch_allowed) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computer->monitor_data
-    if(hudson_master_computer->monitor_data) { 
+    if(hudson_master_computer->monitor_data) {
     cJSON *monitor_data_local_JSON = hudson_master_computermonitor_data_convertToJSON(hudson_master_computer->monitor_data);
     if(monitor_data_local_JSON == NULL) {
     goto fail; //model
@@ -205,47 +205,47 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computer->num_executors
-    if(hudson_master_computer->num_executors) { 
+    if(hudson_master_computer->num_executors) {
     if(cJSON_AddNumberToObject(item, "numExecutors", hudson_master_computer->num_executors) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // hudson_master_computer->offline
-    if(hudson_master_computer->offline) { 
+    if(hudson_master_computer->offline) {
     if(cJSON_AddBoolToObject(item, "offline", hudson_master_computer->offline) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // hudson_master_computer->offline_cause
-    if(hudson_master_computer->offline_cause) { 
+    if(hudson_master_computer->offline_cause) {
     if(cJSON_AddStringToObject(item, "offlineCause", hudson_master_computer->offline_cause) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computer->offline_cause_reason
-    if(hudson_master_computer->offline_cause_reason) { 
+    if(hudson_master_computer->offline_cause_reason) {
     if(cJSON_AddStringToObject(item, "offlineCauseReason", hudson_master_computer->offline_cause_reason) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computer->temporarily_offline
-    if(hudson_master_computer->temporarily_offline) { 
+    if(hudson_master_computer->temporarily_offline) {
     if(cJSON_AddBoolToObject(item, "temporarilyOffline", hudson_master_computer->temporarily_offline) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
     return item;
 fail:
@@ -258,6 +258,9 @@ fail:
 hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_master_computerJSON){
 
     hudson_master_computer_t *hudson_master_computer_local_var = NULL;
+
+    // define the local list for hudson_master_computer->executors
+    list_t *executorsList = NULL;
 
     // define the local variable for hudson_master_computer->load_statistics
     label1_t *load_statistics_local_nonprim = NULL;
@@ -285,9 +288,8 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->executors
     cJSON *executors = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "executors");
-    list_t *executorsList;
     if (executors) { 
-    cJSON *executors_local_nonprimitive;
+    cJSON *executors_local_nonprimitive = NULL;
     if(!cJSON_IsArray(executors)){
         goto end; //nonprimitive container
     }
@@ -438,6 +440,15 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     return hudson_master_computer_local_var;
 end:
+    if (executorsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, executorsList) {
+            hudson_master_computerexecutors_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(executorsList);
+        executorsList = NULL;
+    }
     if (load_statistics_local_nonprim) {
         label1_free(load_statistics_local_nonprim);
         load_statistics_local_nonprim = NULL;

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **class_** | **String** |  | [optional] 
 **displayName** | **String** |  | [optional] 
-**executors** | [**BuiltList<HudsonMasterComputerexecutors>**](HudsonMasterComputerexecutors.md) |  | [optional] 
+**executors** | [**BuiltList&lt;HudsonMasterComputerexecutors&gt;**](HudsonMasterComputerexecutors.md) |  | [optional] 
 **icon** | **String** |  | [optional] 
 **iconClassName** | **String** |  | [optional] 
 **idle** | **bool** |  | [optional] 

@@ -1,6 +1,6 @@
 apply plugin: 'war'
 
-project.version = "1.1.2-pre.0"
+project.version = "1.5.1-pre.0"
 project.group = "org.openapitools"
 
 repositories {
@@ -23,7 +23,7 @@ dependencies {
     //TODO: swaggerFeature
     compile 'io.swagger:swagger-jaxrs:1.5.12'
 
-    testCompile     'junit:junit:4.13.1',
+    testCompile     'junit:junit:4.13.2',
                     'org.hamcrest:hamcrest-core:1.3'
 }
 

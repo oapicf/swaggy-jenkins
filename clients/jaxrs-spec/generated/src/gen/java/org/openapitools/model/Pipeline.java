@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Pipeline")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class Pipeline   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class Pipeline   {
   
   private @Valid String propertyClass;
   private @Valid String organization;
@@ -33,8 +34,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -56,8 +55,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
@@ -75,8 +72,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.name = name;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -98,8 +93,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
@@ -117,8 +110,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.fullName = fullName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -140,8 +131,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
@@ -161,8 +150,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
@@ -180,8 +167,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.latestRun = latestRun;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

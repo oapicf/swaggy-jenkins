@@ -9,6 +9,7 @@ import org.openapitools.model.FreeStyleProject;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class QueueLeftItem  {
   
   @ApiModelProperty(value = "")

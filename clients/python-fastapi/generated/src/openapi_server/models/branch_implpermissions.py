@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class BranchImplpermissions(BaseModel):
@@ -23,10 +23,10 @@ class BranchImplpermissions(BaseModel):
         _class: The _class of this BranchImplpermissions [Optional].
     """
 
-    create: Optional[bool] = None
-    read: Optional[bool] = None
-    start: Optional[bool] = None
-    stop: Optional[bool] = None
-    _class: Optional[str] = None
+    create: Optional[bool] = Field(alias="create", default=None)
+    read: Optional[bool] = Field(alias="read", default=None)
+    start: Optional[bool] = Field(alias="start", default=None)
+    stop: Optional[bool] = Field(alias="stop", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 BranchImplpermissions.update_forward_refs()

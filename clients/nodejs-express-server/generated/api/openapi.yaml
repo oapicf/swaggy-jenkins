@@ -6,7 +6,7 @@ info:
     url: http://github.com/cliffano/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
-  version: 1.1.2-pre.0
+  version: 1.5.1-pre.0
 servers:
 - url: /
 paths:
@@ -83,8 +83,8 @@ paths:
       x-eov-operation-handler: controllers/RemoteAccessController
   /createItem:
     post:
-      description: Create a new job using job configuration, or copied from an existing
-        job
+      description: "Create a new job using job configuration, or copied from an existing\
+        \ job"
       operationId: postCreateItem
       parameters:
       - description: Name of the new job
@@ -766,7 +766,7 @@ paths:
       description: Retrieve JSON Web Token
       operationId: getJsonWebToken
       parameters:
-      - description: 'Token expiry time in minutes, default: 30 minutes'
+      - description: "Token expiry time in minutes, default: 30 minutes"
         explode: true
         in: query
         name: expiryTimeInMins
@@ -774,7 +774,7 @@ paths:
         schema:
           type: integer
         style: form
-      - description: 'Maximum token expiry time in minutes, default: 480 minutes'
+      - description: "Maximum token expiry time in minutes, default: 480 minutes"
         explode: true
         in: query
         name: maxExpiryTimeInMins
@@ -1309,8 +1309,8 @@ paths:
           application/json:
             schema:
               type: boolean
-        description: 'Set JSON string body to {"favorite": true} to favorite, set
-          value to false to unfavorite'
+        description: "Set JSON string body to {\"favorite\": true} to favorite, set\
+          \ value to false to unfavorite"
         required: true
       responses:
         "200":
@@ -1834,8 +1834,8 @@ paths:
         schema:
           type: integer
         style: form
-      - description: Set to true in order to download the file, otherwise it's passed
-          as a response body
+      - description: "Set to true in order to download the file, otherwise it's passed\
+          \ as a response body"
         explode: true
         in: query
         name: download
@@ -1933,7 +1933,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: 'Set to true to make blocking stop, default: false'
+      - description: "Set to true to make blocking stop, default: false"
         explode: true
         in: query
         name: blocking
@@ -1941,7 +1941,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: 'Timeout in seconds, default: 10 seconds'
+      - description: "Timeout in seconds, default: 10 seconds"
         explode: true
         in: query
         name: timeOutInSecs

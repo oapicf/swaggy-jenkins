@@ -9,7 +9,7 @@ import 'package:openapi/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **class_** | **String** |  | [optional] 
-**actions** | [**BuiltList<CauseAction>**](CauseAction.md) |  | [optional] 
+**actions** | [**BuiltList&lt;CauseAction&gt;**](CauseAction.md) |  | [optional] 
 **blocked** | **bool** |  | [optional] 
 **buildable** | **bool** |  | [optional] 
 **id** | **int** |  | [optional] 

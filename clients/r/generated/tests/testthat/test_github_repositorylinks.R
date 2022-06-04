@@ -3,7 +3,7 @@
 
 context("Test GithubRepositorylinks")
 
-model.instance <- GithubRepositorylinks$new()
+model_instance <- GithubRepositorylinks$new()
 
 test_that("self", {
   # tests for the property `self` (Link)
@@ -18,4 +18,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

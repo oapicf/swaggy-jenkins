@@ -113,15 +113,15 @@ cJSON *pipeline_run_convertToJSON(pipeline_run_t *pipeline_run) {
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_run->_class
-    if(pipeline_run->_class) { 
+    if(pipeline_run->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_run->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->artifacts
-    if(pipeline_run->artifacts) { 
+    if(pipeline_run->artifacts) {
     cJSON *artifacts = cJSON_AddArrayToObject(item, "artifacts");
     if(artifacts == NULL) {
     goto fail; //nonprimitive container
@@ -137,111 +137,111 @@ cJSON *pipeline_run_convertToJSON(pipeline_run_t *pipeline_run) {
     cJSON_AddItemToArray(artifacts, itemLocal);
     }
     }
-     } 
+    }
 
 
     // pipeline_run->duration_in_millis
-    if(pipeline_run->duration_in_millis) { 
+    if(pipeline_run->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_run->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_run->estimated_duration_in_millis
-    if(pipeline_run->estimated_duration_in_millis) { 
+    if(pipeline_run->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_run->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_run->en_queue_time
-    if(pipeline_run->en_queue_time) { 
+    if(pipeline_run->en_queue_time) {
     if(cJSON_AddStringToObject(item, "enQueueTime", pipeline_run->en_queue_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->end_time
-    if(pipeline_run->end_time) { 
+    if(pipeline_run->end_time) {
     if(cJSON_AddStringToObject(item, "endTime", pipeline_run->end_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->id
-    if(pipeline_run->id) { 
+    if(pipeline_run->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_run->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->organization
-    if(pipeline_run->organization) { 
+    if(pipeline_run->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_run->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->pipeline
-    if(pipeline_run->pipeline) { 
+    if(pipeline_run->pipeline) {
     if(cJSON_AddStringToObject(item, "pipeline", pipeline_run->pipeline) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->result
-    if(pipeline_run->result) { 
+    if(pipeline_run->result) {
     if(cJSON_AddStringToObject(item, "result", pipeline_run->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->run_summary
-    if(pipeline_run->run_summary) { 
+    if(pipeline_run->run_summary) {
     if(cJSON_AddStringToObject(item, "runSummary", pipeline_run->run_summary) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->start_time
-    if(pipeline_run->start_time) { 
+    if(pipeline_run->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", pipeline_run->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->state
-    if(pipeline_run->state) { 
+    if(pipeline_run->state) {
     if(cJSON_AddStringToObject(item, "state", pipeline_run->state) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->type
-    if(pipeline_run->type) { 
+    if(pipeline_run->type) {
     if(cJSON_AddStringToObject(item, "type", pipeline_run->type) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run->commit_id
-    if(pipeline_run->commit_id) { 
+    if(pipeline_run->commit_id) {
     if(cJSON_AddStringToObject(item, "commitId", pipeline_run->commit_id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -255,6 +255,9 @@ pipeline_run_t *pipeline_run_parseFromJSON(cJSON *pipeline_runJSON){
 
     pipeline_run_t *pipeline_run_local_var = NULL;
 
+    // define the local list for pipeline_run->artifacts
+    list_t *artifactsList = NULL;
+
     // pipeline_run->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_runJSON, "_class");
     if (_class) { 
@@ -266,9 +269,8 @@ pipeline_run_t *pipeline_run_parseFromJSON(cJSON *pipeline_runJSON){
 
     // pipeline_run->artifacts
     cJSON *artifacts = cJSON_GetObjectItemCaseSensitive(pipeline_runJSON, "artifacts");
-    list_t *artifactsList;
     if (artifacts) { 
-    cJSON *artifacts_local_nonprimitive;
+    cJSON *artifacts_local_nonprimitive = NULL;
     if(!cJSON_IsArray(artifacts)){
         goto end; //nonprimitive container
     }
@@ -424,6 +426,15 @@ pipeline_run_t *pipeline_run_parseFromJSON(cJSON *pipeline_runJSON){
 
     return pipeline_run_local_var;
 end:
+    if (artifactsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, artifactsList) {
+            pipeline_runartifacts_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(artifactsList);
+        artifactsList = NULL;
+    }
     return NULL;
 
 }

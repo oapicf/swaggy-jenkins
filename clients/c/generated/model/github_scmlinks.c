@@ -40,7 +40,7 @@ cJSON *github_scmlinks_convertToJSON(github_scmlinks_t *github_scmlinks) {
     cJSON *item = cJSON_CreateObject();
 
     // github_scmlinks->self
-    if(github_scmlinks->self) { 
+    if(github_scmlinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(github_scmlinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -49,15 +49,15 @@ cJSON *github_scmlinks_convertToJSON(github_scmlinks_t *github_scmlinks) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_scmlinks->_class
-    if(github_scmlinks->_class) { 
+    if(github_scmlinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_scmlinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

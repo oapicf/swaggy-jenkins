@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.input_step_impllinks import InputStepImpllinks
 from openapi_server.models.string_parameter_definition import StringParameterDefinition
 
@@ -27,12 +27,12 @@ class InputStepImpl(BaseModel):
         submitter: The submitter of this InputStepImpl [Optional].
     """
 
-    _class: Optional[str] = None
-    links: Optional[InputStepImpllinks] = None
-    id: Optional[str] = None
-    message: Optional[str] = None
-    ok: Optional[str] = None
-    parameters: Optional[List[StringParameterDefinition]] = None
-    submitter: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    links: Optional[InputStepImpllinks] = Field(alias="_links", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    message: Optional[str] = Field(alias="message", default=None)
+    ok: Optional[str] = Field(alias="ok", default=None)
+    parameters: Optional[List[StringParameterDefinition]] = Field(alias="parameters", default=None)
+    submitter: Optional[str] = Field(alias="submitter", default=None)
 
 InputStepImpl.update_forward_refs()

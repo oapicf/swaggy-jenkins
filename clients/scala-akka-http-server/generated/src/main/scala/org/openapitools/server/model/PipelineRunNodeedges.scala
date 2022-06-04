@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelineRunNodeedges (
-  id: Option[String],
-  `class`: Option[String]
+  id: Option[String] = None,
+  `class`: Option[String] = None
 )
 

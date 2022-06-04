@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -19,13 +19,37 @@ class PipelineRunartifacts {
     this.class_,
   });
 
-  String name;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? name;
 
-  int size;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? size;
 
-  String url;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? url;
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineRunartifacts &&
@@ -36,38 +60,50 @@ class PipelineRunartifacts {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (name == null ? 0 : name.hashCode) +
-    (size == null ? 0 : size.hashCode) +
-    (url == null ? 0 : url.hashCode) +
-    (class_ == null ? 0 : class_.hashCode);
+    // ignore: unnecessary_parenthesis
+    (name == null ? 0 : name!.hashCode) +
+    (size == null ? 0 : size!.hashCode) +
+    (url == null ? 0 : url!.hashCode) +
+    (class_ == null ? 0 : class_!.hashCode);
 
   @override
   String toString() => 'PipelineRunartifacts[name=$name, size=$size, url=$url, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (name != null) {
-      json[r'name'] = name;
+      _json[r'name'] = name;
     }
     if (size != null) {
-      json[r'size'] = size;
+      _json[r'size'] = size;
     }
     if (url != null) {
-      json[r'url'] = url;
+      _json[r'url'] = url;
     }
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [PipelineRunartifacts] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PipelineRunartifacts fromJson(dynamic value) {
+  static PipelineRunartifacts? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PipelineRunartifacts[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PipelineRunartifacts[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return PipelineRunartifacts(
         name: mapValueOfType<String>(json, r'name'),
         size: mapValueOfType<int>(json, r'size'),
@@ -78,36 +114,50 @@ class PipelineRunartifacts {
     return null;
   }
 
-  static List<PipelineRunartifacts> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(PipelineRunartifacts.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <PipelineRunartifacts>[];
+  static List<PipelineRunartifacts>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PipelineRunartifacts>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = PipelineRunartifacts.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, PipelineRunartifacts> mapFromJson(dynamic json) {
     final map = <String, PipelineRunartifacts>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = PipelineRunartifacts.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineRunartifacts.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of PipelineRunartifacts-objects as value to a dart map
-  static Map<String, List<PipelineRunartifacts>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<PipelineRunartifacts>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineRunartifacts>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = PipelineRunartifacts.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineRunartifacts.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

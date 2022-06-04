@@ -34,11 +34,11 @@ cJSON *hudsonassigned_labels_convertToJSON(hudsonassigned_labels_t *hudsonassign
     cJSON *item = cJSON_CreateObject();
 
     // hudsonassigned_labels->_class
-    if(hudsonassigned_labels->_class) { 
+    if(hudsonassigned_labels->_class) {
     if(cJSON_AddStringToObject(item, "_class", hudsonassigned_labels->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

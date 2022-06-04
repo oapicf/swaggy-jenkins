@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 1.1.2-pre.0
+ * OpenAPI document version: 1.5.1-pre.0
  * Maintained by: blah@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -24,12 +24,12 @@ import org.openapitools.model.GithubRepository;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-13T02:18:20.173053Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-06-04T08:08:37.196387Z[Etc/UTC]")
 public class GithubRepositories   {
   
   private String propertyClass;
   private GithubRepositorieslinks links;
-  private List<GithubRepository> items = new ArrayList<GithubRepository>();
+  private List<GithubRepository> items = new ArrayList<>();
   private Integer lastPage;
   private Integer nextPage;
   private Integer pageSize;

@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class GithubRepositorylinks (
-  self: Option[Link],
-  `class`: Option[String]
+  self: Option[Link] = None,
+  `class`: Option[String] = None
 )
 

@@ -1,12 +1,5 @@
-//
-// AUTO-GENERATED FILE, DO NOT MODIFY!
-//
-// @dart=2.7
-
-// ignore_for_file: unused_import
-
-import 'package:openapi/model/pipeline_folder_impl.dart';
 import 'package:test/test.dart';
+import 'package:openapi/openapi.dart';
 
 // tests for PipelineFolderImpl
 void main() {
@@ -49,7 +42,5 @@ void main() {
       // TODO
     });
 
-
   });
-
 }

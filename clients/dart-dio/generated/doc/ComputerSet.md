@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **class_** | **String** |  | [optional] 
 **busyExecutors** | **int** |  | [optional] 
-**computer** | [**BuiltList<HudsonMasterComputer>**](HudsonMasterComputer.md) |  | [optional] 
+**computer** | [**BuiltList&lt;HudsonMasterComputer&gt;**](HudsonMasterComputer.md) |  | [optional] 
 **displayName** | **String** |  | [optional] 
 **totalExecutors** | **int** |  | [optional] 
 

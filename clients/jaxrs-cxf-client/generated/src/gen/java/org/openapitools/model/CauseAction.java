@@ -7,6 +7,7 @@ import org.openapitools.model.CauseUserIdCause;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class CauseAction  {
   
   @ApiModelProperty(value = "")

@@ -6,7 +6,7 @@ import play.api.libs.json._
 import play.api.mvc._
 import model.DefaultCrumbIssuer
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-13T02:38:35.589632Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
 @Singleton
 class BaseApiController @Inject()(cc: ControllerComponents, api: BaseApi) extends AbstractController(cc) {
   /**

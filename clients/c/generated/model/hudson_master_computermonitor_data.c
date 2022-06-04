@@ -70,7 +70,7 @@ cJSON *hudson_master_computermonitor_data_convertToJSON(hudson_master_computermo
     cJSON *item = cJSON_CreateObject();
 
     // hudson_master_computermonitor_data->hudson_node_monitors_swap_space_monitor
-    if(hudson_master_computermonitor_data->hudson_node_monitors_swap_space_monitor) { 
+    if(hudson_master_computermonitor_data->hudson_node_monitors_swap_space_monitor) {
     cJSON *hudson_node_monitors_swap_space_monitor_local_JSON = swap_space_monitor_memory_usage2_convertToJSON(hudson_master_computermonitor_data->hudson_node_monitors_swap_space_monitor);
     if(hudson_node_monitors_swap_space_monitor_local_JSON == NULL) {
     goto fail; //model
@@ -79,11 +79,11 @@ cJSON *hudson_master_computermonitor_data_convertToJSON(hudson_master_computermo
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computermonitor_data->hudson_node_monitors_temporary_space_monitor
-    if(hudson_master_computermonitor_data->hudson_node_monitors_temporary_space_monitor) { 
+    if(hudson_master_computermonitor_data->hudson_node_monitors_temporary_space_monitor) {
     cJSON *hudson_node_monitors_temporary_space_monitor_local_JSON = disk_space_monitor_descriptor_disk_space_convertToJSON(hudson_master_computermonitor_data->hudson_node_monitors_temporary_space_monitor);
     if(hudson_node_monitors_temporary_space_monitor_local_JSON == NULL) {
     goto fail; //model
@@ -92,11 +92,11 @@ cJSON *hudson_master_computermonitor_data_convertToJSON(hudson_master_computermo
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computermonitor_data->hudson_node_monitors_disk_space_monitor
-    if(hudson_master_computermonitor_data->hudson_node_monitors_disk_space_monitor) { 
+    if(hudson_master_computermonitor_data->hudson_node_monitors_disk_space_monitor) {
     cJSON *hudson_node_monitors_disk_space_monitor_local_JSON = disk_space_monitor_descriptor_disk_space_convertToJSON(hudson_master_computermonitor_data->hudson_node_monitors_disk_space_monitor);
     if(hudson_node_monitors_disk_space_monitor_local_JSON == NULL) {
     goto fail; //model
@@ -105,19 +105,19 @@ cJSON *hudson_master_computermonitor_data_convertToJSON(hudson_master_computermo
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computermonitor_data->hudson_node_monitors_architecture_monitor
-    if(hudson_master_computermonitor_data->hudson_node_monitors_architecture_monitor) { 
+    if(hudson_master_computermonitor_data->hudson_node_monitors_architecture_monitor) {
     if(cJSON_AddStringToObject(item, "hudson.node_monitors.ArchitectureMonitor", hudson_master_computermonitor_data->hudson_node_monitors_architecture_monitor) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // hudson_master_computermonitor_data->hudson_node_monitors_response_time_monitor
-    if(hudson_master_computermonitor_data->hudson_node_monitors_response_time_monitor) { 
+    if(hudson_master_computermonitor_data->hudson_node_monitors_response_time_monitor) {
     cJSON *hudson_node_monitors_response_time_monitor_local_JSON = response_time_monitor_data_convertToJSON(hudson_master_computermonitor_data->hudson_node_monitors_response_time_monitor);
     if(hudson_node_monitors_response_time_monitor_local_JSON == NULL) {
     goto fail; //model
@@ -126,11 +126,11 @@ cJSON *hudson_master_computermonitor_data_convertToJSON(hudson_master_computermo
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computermonitor_data->hudson_node_monitors_clock_monitor
-    if(hudson_master_computermonitor_data->hudson_node_monitors_clock_monitor) { 
+    if(hudson_master_computermonitor_data->hudson_node_monitors_clock_monitor) {
     cJSON *hudson_node_monitors_clock_monitor_local_JSON = clock_difference_convertToJSON(hudson_master_computermonitor_data->hudson_node_monitors_clock_monitor);
     if(hudson_node_monitors_clock_monitor_local_JSON == NULL) {
     goto fail; //model
@@ -139,15 +139,15 @@ cJSON *hudson_master_computermonitor_data_convertToJSON(hudson_master_computermo
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // hudson_master_computermonitor_data->_class
-    if(hudson_master_computermonitor_data->_class) { 
+    if(hudson_master_computermonitor_data->_class) {
     if(cJSON_AddStringToObject(item, "_class", hudson_master_computermonitor_data->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

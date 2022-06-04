@@ -40,35 +40,35 @@ cJSON *github_repositorypermissions_convertToJSON(github_repositorypermissions_t
     cJSON *item = cJSON_CreateObject();
 
     // github_repositorypermissions->admin
-    if(github_repositorypermissions->admin) { 
+    if(github_repositorypermissions->admin) {
     if(cJSON_AddBoolToObject(item, "admin", github_repositorypermissions->admin) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // github_repositorypermissions->push
-    if(github_repositorypermissions->push) { 
+    if(github_repositorypermissions->push) {
     if(cJSON_AddBoolToObject(item, "push", github_repositorypermissions->push) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // github_repositorypermissions->pull
-    if(github_repositorypermissions->pull) { 
+    if(github_repositorypermissions->pull) {
     if(cJSON_AddBoolToObject(item, "pull", github_repositorypermissions->pull) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // github_repositorypermissions->_class
-    if(github_repositorypermissions->_class) { 
+    if(github_repositorypermissions->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_repositorypermissions->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

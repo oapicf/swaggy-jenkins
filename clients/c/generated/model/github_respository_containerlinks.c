@@ -40,7 +40,7 @@ cJSON *github_respository_containerlinks_convertToJSON(github_respository_contai
     cJSON *item = cJSON_CreateObject();
 
     // github_respository_containerlinks->self
-    if(github_respository_containerlinks->self) { 
+    if(github_respository_containerlinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(github_respository_containerlinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -49,15 +49,15 @@ cJSON *github_respository_containerlinks_convertToJSON(github_respository_contai
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_respository_containerlinks->_class
-    if(github_respository_containerlinks->_class) { 
+    if(github_respository_containerlinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_respository_containerlinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

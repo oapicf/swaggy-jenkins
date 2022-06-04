@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.string_parameter_value import StringParameterValue
 
 
@@ -24,10 +24,10 @@ class StringParameterDefinition(BaseModel):
         type: The type of this StringParameterDefinition [Optional].
     """
 
-    _class: Optional[str] = None
-    default_parameter_value: Optional[StringParameterValue] = None
-    description: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    default_parameter_value: Optional[StringParameterValue] = Field(alias="defaultParameterValue", default=None)
+    description: Optional[str] = Field(alias="description", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    type: Optional[str] = Field(alias="type", default=None)
 
 StringParameterDefinition.update_forward_refs()

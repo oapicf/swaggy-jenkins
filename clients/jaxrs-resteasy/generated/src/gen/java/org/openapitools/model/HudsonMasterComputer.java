@@ -14,12 +14,12 @@ import org.openapitools.model.Label1;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-13T02:21:30.640855Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
 public class HudsonMasterComputer   {
   
   private String propertyClass;
   private String displayName;
-  private List<HudsonMasterComputerexecutors> executors = new ArrayList<HudsonMasterComputerexecutors>();
+  private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
   private String icon;
   private String iconClassName;
   private Boolean idle;

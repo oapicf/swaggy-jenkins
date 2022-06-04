@@ -1,3 +1,4 @@
+.github/workflows/main.yml
 .gitignore
 .openapi-generator-ignore
 README.md
@@ -11,6 +12,7 @@ lib/Api/AbstractRemoteAccessApi.php
 lib/App/RegisterDependencies.php
 lib/App/RegisterMiddlewares.php
 lib/App/RegisterRoutes.php
+lib/App/ResponseEmitter.php
 lib/Auth/AbstractAuthenticator.php
 lib/BaseModel.php
 lib/Model/AllView.php
@@ -93,6 +95,7 @@ lib/Model/StringParameterValue.php
 lib/Model/SwapSpaceMonitorMemoryUsage2.php
 lib/Model/UnlabeledLoadStatistics.php
 lib/Model/User.php
+logs/.htaccess
 phpcs.xml.dist
 phpunit.xml.dist
 public/.htaccess

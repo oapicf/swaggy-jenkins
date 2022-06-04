@@ -3,7 +3,7 @@
 
 context("Test QueueLeftItem")
 
-model.instance <- QueueLeftItem$new()
+model_instance <- QueueLeftItem$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -95,4 +95,3 @@ test_that("executable", {
   # uncomment below to test the property
   #expect_equal(model.instance$`executable`, "EXPECTED_RESULT")
 })
-

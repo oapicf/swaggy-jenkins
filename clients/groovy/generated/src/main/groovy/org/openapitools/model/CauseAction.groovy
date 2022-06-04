@@ -12,5 +12,5 @@ class CauseAction {
     
     String propertyClass
     
-    List<CauseUserIdCause> causes = new ArrayList<CauseUserIdCause>()
+    List<CauseUserIdCause> causes = new ArrayList<>()
 }

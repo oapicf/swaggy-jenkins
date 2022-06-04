@@ -1,6 +1,6 @@
 = Swaggy Jenkins
 blah@cliffano.com
-1.1.2-pre.0
+1.5.1-pre.0
 :toc: left
 :numbered:
 :toclevels: 3

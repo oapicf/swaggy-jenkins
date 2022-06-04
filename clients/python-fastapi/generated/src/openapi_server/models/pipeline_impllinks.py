@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.link import Link
 
 
@@ -24,10 +24,10 @@ class PipelineImpllinks(BaseModel):
         _class: The _class of this PipelineImpllinks [Optional].
     """
 
-    runs: Optional[Link] = None
-    _self: Optional[Link] = None
-    queue: Optional[Link] = None
-    actions: Optional[Link] = None
-    _class: Optional[str] = None
+    runs: Optional[Link] = Field(alias="runs", default=None)
+    _self: Optional[Link] = Field(alias="self", default=None)
+    queue: Optional[Link] = Field(alias="queue", default=None)
+    actions: Optional[Link] = Field(alias="actions", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 PipelineImpllinks.update_forward_refs()

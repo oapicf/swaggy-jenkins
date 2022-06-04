@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.pipeline_runartifacts import PipelineRunartifacts
 
 
@@ -34,20 +34,20 @@ class PipelineRun(BaseModel):
         commit_id: The commit_id of this PipelineRun [Optional].
     """
 
-    _class: Optional[str] = None
-    artifacts: Optional[List[PipelineRunartifacts]] = None
-    duration_in_millis: Optional[int] = None
-    estimated_duration_in_millis: Optional[int] = None
-    en_queue_time: Optional[str] = None
-    end_time: Optional[str] = None
-    id: Optional[str] = None
-    organization: Optional[str] = None
-    pipeline: Optional[str] = None
-    result: Optional[str] = None
-    run_summary: Optional[str] = None
-    start_time: Optional[str] = None
-    state: Optional[str] = None
-    type: Optional[str] = None
-    commit_id: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    artifacts: Optional[List[PipelineRunartifacts]] = Field(alias="artifacts", default=None)
+    duration_in_millis: Optional[int] = Field(alias="durationInMillis", default=None)
+    estimated_duration_in_millis: Optional[int] = Field(alias="estimatedDurationInMillis", default=None)
+    en_queue_time: Optional[str] = Field(alias="enQueueTime", default=None)
+    end_time: Optional[str] = Field(alias="endTime", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    pipeline: Optional[str] = Field(alias="pipeline", default=None)
+    result: Optional[str] = Field(alias="result", default=None)
+    run_summary: Optional[str] = Field(alias="runSummary", default=None)
+    start_time: Optional[str] = Field(alias="startTime", default=None)
+    state: Optional[str] = Field(alias="state", default=None)
+    type: Optional[str] = Field(alias="type", default=None)
+    commit_id: Optional[str] = Field(alias="commitId", default=None)
 
 PipelineRun.update_forward_refs()

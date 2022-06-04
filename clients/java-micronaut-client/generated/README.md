@@ -1,4 +1,4 @@
-# openapi-micronaut
+# openapi-micronaut-client
 
 This is a generated client based on [Micronaut](https://micronaut.io/) framework.
 

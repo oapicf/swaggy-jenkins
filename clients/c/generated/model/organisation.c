@@ -40,19 +40,19 @@ cJSON *organisation_convertToJSON(organisation_t *organisation) {
     cJSON *item = cJSON_CreateObject();
 
     // organisation->_class
-    if(organisation->_class) { 
+    if(organisation->_class) {
     if(cJSON_AddStringToObject(item, "_class", organisation->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // organisation->name
-    if(organisation->name) { 
+    if(organisation->name) {
     if(cJSON_AddStringToObject(item, "name", organisation->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

@@ -48,15 +48,15 @@ cJSON *github_organization_convertToJSON(github_organization_t *github_organizat
     cJSON *item = cJSON_CreateObject();
 
     // github_organization->_class
-    if(github_organization->_class) { 
+    if(github_organization->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_organization->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_organization->_links
-    if(github_organization->_links) { 
+    if(github_organization->_links) {
     cJSON *_links_local_JSON = github_organizationlinks_convertToJSON(github_organization->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -65,23 +65,23 @@ cJSON *github_organization_convertToJSON(github_organization_t *github_organizat
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_organization->jenkins_organization_pipeline
-    if(github_organization->jenkins_organization_pipeline) { 
+    if(github_organization->jenkins_organization_pipeline) {
     if(cJSON_AddBoolToObject(item, "jenkinsOrganizationPipeline", github_organization->jenkins_organization_pipeline) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // github_organization->name
-    if(github_organization->name) { 
+    if(github_organization->name) {
     if(cJSON_AddStringToObject(item, "name", github_organization->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

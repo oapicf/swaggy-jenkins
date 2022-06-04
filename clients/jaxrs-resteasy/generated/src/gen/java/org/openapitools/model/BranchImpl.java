@@ -15,7 +15,7 @@ import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-13T02:21:30.640855Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
 public class BranchImpl   {
   
   private String propertyClass;
@@ -25,7 +25,7 @@ public class BranchImpl   {
   private String fullName;
   private String name;
   private String organization;
-  private List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
+  private List<StringParameterDefinition> parameters = new ArrayList<>();
   private BranchImplpermissions permissions;
   private Integer weatherScore;
   private String pullRequest;

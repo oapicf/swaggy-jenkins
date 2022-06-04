@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param `type`  for example: ''null''
 */
 final case class StringParameterDefinition (
-  `class`: Option[String],
-  defaultParameterValue: Option[StringParameterValue],
-  description: Option[String],
-  name: Option[String],
-  `type`: Option[String]
+  `class`: Option[String] = None,
+  defaultParameterValue: Option[StringParameterValue] = None,
+  description: Option[String] = None,
+  name: Option[String] = None,
+  `type`: Option[String] = None
 )
 

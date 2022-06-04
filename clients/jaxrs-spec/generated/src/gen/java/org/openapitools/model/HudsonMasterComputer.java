@@ -20,11 +20,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputer")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class HudsonMasterComputer   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class HudsonMasterComputer   {
   
   private @Valid String propertyClass;
   private @Valid String displayName;
-  private @Valid List<HudsonMasterComputerexecutors> executors = new ArrayList<HudsonMasterComputerexecutors>();
+  private @Valid List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
   private @Valid String icon;
   private @Valid String iconClassName;
   private @Valid Boolean idle;
@@ -47,8 +48,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
@@ -66,8 +65,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.displayName = displayName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -89,8 +86,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("executors")
   public List<HudsonMasterComputerexecutors> getExecutors() {
@@ -104,7 +99,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public HudsonMasterComputer addExecutorsItem(HudsonMasterComputerexecutors executorsItem) {
     if (this.executors == null) {
-      this.executors = new ArrayList<HudsonMasterComputerexecutors>();
+      this.executors = new ArrayList<>();
     }
 
     this.executors.add(executorsItem);
@@ -126,8 +121,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("icon")
   public String getIcon() {
@@ -145,8 +138,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.iconClassName = iconClassName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -168,8 +159,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("idle")
   public Boolean getIdle() {
@@ -187,8 +176,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.jnlpAgent = jnlpAgent;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -210,8 +197,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("launchSupported")
   public Boolean getLaunchSupported() {
@@ -229,8 +214,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.loadStatistics = loadStatistics;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -252,8 +235,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("manualLaunchAllowed")
   public Boolean getManualLaunchAllowed() {
@@ -271,8 +252,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.monitorData = monitorData;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -294,8 +273,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("numExecutors")
   public Integer getNumExecutors() {
@@ -313,8 +290,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.offline = offline;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -336,8 +311,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("offlineCause")
   public String getOfflineCause() {
@@ -357,8 +330,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("offlineCauseReason")
   public String getOfflineCauseReason() {
@@ -376,8 +347,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.temporarilyOffline = temporarilyOffline;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

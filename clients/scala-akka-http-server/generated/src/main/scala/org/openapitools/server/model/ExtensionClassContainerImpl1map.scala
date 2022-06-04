@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class ExtensionClassContainerImpl1map (
-  ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl: Option[ExtensionClassImpl],
-  ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl: Option[ExtensionClassImpl],
-  `class`: Option[String]
+  ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl: Option[ExtensionClassImpl] = None,
+  ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl: Option[ExtensionClassImpl] = None,
+  `class`: Option[String] = None
 )
 

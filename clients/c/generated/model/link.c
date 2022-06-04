@@ -40,19 +40,19 @@ cJSON *link_convertToJSON(link_t *link) {
     cJSON *item = cJSON_CreateObject();
 
     // link->_class
-    if(link->_class) { 
+    if(link->_class) {
     if(cJSON_AddStringToObject(item, "_class", link->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // link->href
-    if(link->href) { 
+    if(link->href) {
     if(cJSON_AddStringToObject(item, "href", link->href) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

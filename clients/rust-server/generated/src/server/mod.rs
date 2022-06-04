@@ -4002,7 +4002,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 // Body parameters (note that non-required body parameters will ignore garbage
                 // values, rather than causing a 400 response). Produce warning header and logs for
                 // any unused fields.
-                let result = body.to_raw().await;
+                let result = body.into_raw().await;
                 match result {
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
@@ -5374,7 +5374,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 // Body parameters (note that non-required body parameters will ignore garbage
                 // values, rather than causing a 400 response). Produce warning header and logs for
                 // any unused fields.
-                let result = body.to_raw().await;
+                let result = body.into_raw().await;
                 match result {
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
@@ -5536,7 +5536,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 // Body parameters (note that non-required body parameters will ignore garbage
                 // values, rather than causing a 400 response). Produce warning header and logs for
                 // any unused fields.
-                let result = body.to_raw().await;
+                let result = body.into_raw().await;
                 match result {
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
@@ -5820,7 +5820,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 // Body parameters (note that non-required body parameters will ignore garbage
                 // values, rather than causing a 400 response). Produce warning header and logs for
                 // any unused fields.
-                let result = body.to_raw().await;
+                let result = body.into_raw().await;
                 match result {
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
@@ -6355,7 +6355,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 // Body parameters (note that non-required body parameters will ignore garbage
                 // values, rather than causing a 400 response). Produce warning header and logs for
                 // any unused fields.
-                let result = body.to_raw().await;
+                let result = body.into_raw().await;
                 match result {
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
@@ -6512,126 +6512,126 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 /// Request parser for `Api`.
 pub struct ApiRequestParser;
 impl<T> RequestParser<T> for ApiRequestParser {
-    fn parse_operation_id(request: &Request<T>) -> Result<&'static str, ()> {
+    fn parse_operation_id(request: &Request<T>) -> Option<&'static str> {
         let path = paths::GLOBAL_REGEX_SET.matches(request.uri().path());
         match request.method() {
             // GetCrumb - GET /crumbIssuer/api/json
-            &hyper::Method::GET if path.matched(paths::ID_CRUMBISSUER_API_JSON) => Ok("GetCrumb"),
+            &hyper::Method::GET if path.matched(paths::ID_CRUMBISSUER_API_JSON) => Some("GetCrumb"),
             // DeletePipelineQueueItem - DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
-            &hyper::Method::DELETE if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE) => Ok("DeletePipelineQueueItem"),
+            &hyper::Method::DELETE if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE) => Some("DeletePipelineQueueItem"),
             // GetAuthenticatedUser - GET /blue/rest/organizations/{organization}/user/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_) => Ok("GetAuthenticatedUser"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_) => Some("GetAuthenticatedUser"),
             // GetClasses - GET /blue/rest/classes/{class}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_CLASS) => Ok("GetClasses"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_CLASS) => Some("GetClasses"),
             // GetJsonWebKey - GET /jwt-auth/jwks/{key}
-            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_JWKS_KEY) => Ok("GetJsonWebKey"),
+            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_JWKS_KEY) => Some("GetJsonWebKey"),
             // GetJsonWebToken - GET /jwt-auth/token
-            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_TOKEN) => Ok("GetJsonWebToken"),
+            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_TOKEN) => Some("GetJsonWebToken"),
             // GetOrganisation - GET /blue/rest/organizations/{organization}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION) => Ok("GetOrganisation"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION) => Some("GetOrganisation"),
             // GetOrganisations - GET /blue/rest/organizations/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_) => Ok("GetOrganisations"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_) => Some("GetOrganisations"),
             // GetPipeline - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE) => Ok("GetPipeline"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE) => Some("GetPipeline"),
             // GetPipelineActivities - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES) => Ok("GetPipelineActivities"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES) => Some("GetPipelineActivities"),
             // GetPipelineBranch - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_) => Ok("GetPipelineBranch"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_) => Some("GetPipelineBranch"),
             // GetPipelineBranchRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN) => Ok("GetPipelineBranchRun"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN) => Some("GetPipelineBranchRun"),
             // GetPipelineBranches - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES) => Ok("GetPipelineBranches"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES) => Some("GetPipelineBranches"),
             // GetPipelineFolder - GET /blue/rest/organizations/{organization}/pipelines/{folder}/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_) => Ok("GetPipelineFolder"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_) => Some("GetPipelineFolder"),
             // GetPipelineFolderPipeline - GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE) => Ok("GetPipelineFolderPipeline"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE) => Some("GetPipelineFolderPipeline"),
             // GetPipelineQueue - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE) => Ok("GetPipelineQueue"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE) => Some("GetPipelineQueue"),
             // GetPipelineRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN) => Ok("GetPipelineRun"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN) => Some("GetPipelineRun"),
             // GetPipelineRunLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG) => Ok("GetPipelineRunLog"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG) => Some("GetPipelineRunLog"),
             // GetPipelineRunNode - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE) => Ok("GetPipelineRunNode"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE) => Some("GetPipelineRunNode"),
             // GetPipelineRunNodeStep - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP) => Ok("GetPipelineRunNodeStep"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP) => Some("GetPipelineRunNodeStep"),
             // GetPipelineRunNodeStepLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG) => Ok("GetPipelineRunNodeStepLog"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG) => Some("GetPipelineRunNodeStepLog"),
             // GetPipelineRunNodeSteps - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS) => Ok("GetPipelineRunNodeSteps"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS) => Some("GetPipelineRunNodeSteps"),
             // GetPipelineRunNodes - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES) => Ok("GetPipelineRunNodes"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES) => Some("GetPipelineRunNodes"),
             // GetPipelineRuns - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Ok("GetPipelineRuns"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Some("GetPipelineRuns"),
             // GetPipelines - GET /blue/rest/organizations/{organization}/pipelines/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_) => Ok("GetPipelines"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_) => Some("GetPipelines"),
             // GetSCM - GET /blue/rest/organizations/{organization}/scm/{scm}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM) => Ok("GetSCM"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM) => Some("GetSCM"),
             // GetSCMOrganisationRepositories - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES) => Ok("GetSCMOrganisationRepositories"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES) => Some("GetSCMOrganisationRepositories"),
             // GetSCMOrganisationRepository - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY) => Ok("GetSCMOrganisationRepository"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY) => Some("GetSCMOrganisationRepository"),
             // GetSCMOrganisations - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS) => Ok("GetSCMOrganisations"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS) => Some("GetSCMOrganisations"),
             // GetUser - GET /blue/rest/organizations/{organization}/users/{user}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER) => Ok("GetUser"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER) => Some("GetUser"),
             // GetUserFavorites - GET /blue/rest/users/{user}/favorites
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_USERS_USER_FAVORITES) => Ok("GetUserFavorites"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_USERS_USER_FAVORITES) => Some("GetUserFavorites"),
             // GetUsers - GET /blue/rest/organizations/{organization}/users/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_) => Ok("GetUsers"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_) => Some("GetUsers"),
             // PostPipelineRun - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
-            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY) => Ok("PostPipelineRun"),
+            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY) => Some("PostPipelineRun"),
             // PostPipelineRuns - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
-            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Ok("PostPipelineRuns"),
+            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Some("PostPipelineRuns"),
             // PutPipelineFavorite - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
-            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE) => Ok("PutPipelineFavorite"),
+            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE) => Some("PutPipelineFavorite"),
             // PutPipelineRun - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
-            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP) => Ok("PutPipelineRun"),
+            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP) => Some("PutPipelineRun"),
             // Search - GET /blue/rest/search/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_SEARCH_) => Ok("Search"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_SEARCH_) => Some("Search"),
             // SearchClasses - GET /blue/rest/classes/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_) => Ok("SearchClasses"),
+            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_) => Some("SearchClasses"),
             // GetComputer - GET /computer/api/json
-            &hyper::Method::GET if path.matched(paths::ID_COMPUTER_API_JSON) => Ok("GetComputer"),
+            &hyper::Method::GET if path.matched(paths::ID_COMPUTER_API_JSON) => Some("GetComputer"),
             // GetJenkins - GET /api/json
-            &hyper::Method::GET if path.matched(paths::ID_API_JSON) => Ok("GetJenkins"),
+            &hyper::Method::GET if path.matched(paths::ID_API_JSON) => Some("GetJenkins"),
             // GetJob - GET /job/{name}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_API_JSON) => Ok("GetJob"),
+            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_API_JSON) => Some("GetJob"),
             // GetJobConfig - GET /job/{name}/config.xml
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Ok("GetJobConfig"),
+            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Some("GetJobConfig"),
             // GetJobLastBuild - GET /job/{name}/lastBuild/api/json
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_LASTBUILD_API_JSON) => Ok("GetJobLastBuild"),
+            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_LASTBUILD_API_JSON) => Some("GetJobLastBuild"),
             // GetJobProgressiveText - GET /job/{name}/{number}/logText/progressiveText
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT) => Ok("GetJobProgressiveText"),
+            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT) => Some("GetJobProgressiveText"),
             // GetQueue - GET /queue/api/json
-            &hyper::Method::GET if path.matched(paths::ID_QUEUE_API_JSON) => Ok("GetQueue"),
+            &hyper::Method::GET if path.matched(paths::ID_QUEUE_API_JSON) => Some("GetQueue"),
             // GetQueueItem - GET /queue/item/{number}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_QUEUE_ITEM_NUMBER_API_JSON) => Ok("GetQueueItem"),
+            &hyper::Method::GET if path.matched(paths::ID_QUEUE_ITEM_NUMBER_API_JSON) => Some("GetQueueItem"),
             // GetView - GET /view/{name}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_API_JSON) => Ok("GetView"),
+            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_API_JSON) => Some("GetView"),
             // GetViewConfig - GET /view/{name}/config.xml
-            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Ok("GetViewConfig"),
+            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Some("GetViewConfig"),
             // HeadJenkins - HEAD /api/json
-            &hyper::Method::HEAD if path.matched(paths::ID_API_JSON) => Ok("HeadJenkins"),
+            &hyper::Method::HEAD if path.matched(paths::ID_API_JSON) => Some("HeadJenkins"),
             // PostCreateItem - POST /createItem
-            &hyper::Method::POST if path.matched(paths::ID_CREATEITEM) => Ok("PostCreateItem"),
+            &hyper::Method::POST if path.matched(paths::ID_CREATEITEM) => Some("PostCreateItem"),
             // PostCreateView - POST /createView
-            &hyper::Method::POST if path.matched(paths::ID_CREATEVIEW) => Ok("PostCreateView"),
+            &hyper::Method::POST if path.matched(paths::ID_CREATEVIEW) => Some("PostCreateView"),
             // PostJobBuild - POST /job/{name}/build
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_BUILD) => Ok("PostJobBuild"),
+            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_BUILD) => Some("PostJobBuild"),
             // PostJobConfig - POST /job/{name}/config.xml
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Ok("PostJobConfig"),
+            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Some("PostJobConfig"),
             // PostJobDelete - POST /job/{name}/doDelete
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DODELETE) => Ok("PostJobDelete"),
+            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DODELETE) => Some("PostJobDelete"),
             // PostJobDisable - POST /job/{name}/disable
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DISABLE) => Ok("PostJobDisable"),
+            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DISABLE) => Some("PostJobDisable"),
             // PostJobEnable - POST /job/{name}/enable
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_ENABLE) => Ok("PostJobEnable"),
+            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_ENABLE) => Some("PostJobEnable"),
             // PostJobLastBuildStop - POST /job/{name}/lastBuild/stop
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_LASTBUILD_STOP) => Ok("PostJobLastBuildStop"),
+            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_LASTBUILD_STOP) => Some("PostJobLastBuildStop"),
             // PostViewConfig - POST /view/{name}/config.xml
-            &hyper::Method::POST if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Ok("PostViewConfig"),
-            _ => Err(()),
+            &hyper::Method::POST if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Some("PostViewConfig"),
+            _ => None,
         }
     }
 }

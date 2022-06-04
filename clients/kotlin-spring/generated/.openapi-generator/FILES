@@ -4,6 +4,8 @@ build.gradle.kts
 pom.xml
 settings.gradle
 src/main/kotlin/org/openapitools/Application.kt
+src/main/kotlin/org/openapitools/HomeController.kt
+src/main/kotlin/org/openapitools/SpringDocConfiguration.kt
 src/main/kotlin/org/openapitools/api/ApiApiController.kt
 src/main/kotlin/org/openapitools/api/ApiUtil.kt
 src/main/kotlin/org/openapitools/api/BlueApiController.kt
@@ -97,6 +99,7 @@ src/main/kotlin/org/openapitools/model/SwapSpaceMonitorMemoryUsage2.kt
 src/main/kotlin/org/openapitools/model/UnlabeledLoadStatistics.kt
 src/main/kotlin/org/openapitools/model/User.kt
 src/main/resources/application.yaml
+src/main/resources/openapi.yaml
 src/test/kotlin/org/openapitools/api/ApiApiTest.kt
 src/test/kotlin/org/openapitools/api/BlueApiTest.kt
 src/test/kotlin/org/openapitools/api/ComputerApiTest.kt

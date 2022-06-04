@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param totalExecutors  for example: ''null''
 */
 final case class ComputerSet (
-  `class`: Option[String],
-  busyExecutors: Option[Int],
-  computer: Option[Seq[HudsonMasterComputer]],
-  displayName: Option[String],
-  totalExecutors: Option[Int]
+  `class`: Option[String] = None,
+  busyExecutors: Option[Int] = None,
+  computer: Option[Seq[HudsonMasterComputer]] = None,
+  displayName: Option[String] = None,
+  totalExecutors: Option[Int] = None
 )
 

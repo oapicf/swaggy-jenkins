@@ -34,11 +34,11 @@ cJSON *label1_convertToJSON(label1_t *label1) {
     cJSON *item = cJSON_CreateObject();
 
     // label1->_class
-    if(label1->_class) { 
+    if(label1->_class) {
     if(cJSON_AddStringToObject(item, "_class", label1->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

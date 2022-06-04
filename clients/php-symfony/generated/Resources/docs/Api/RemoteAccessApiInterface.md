@@ -28,11 +28,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.remoteAccess:
-        class: Acme\MyBundle\Api\RemoteAccessApi
+    Acme\MyBundle\Api\RemoteAccessApi:
         tags:
             - { name: "open_api_server.api", api: "remoteAccess" }
     # ...
@@ -62,7 +61,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getComputer
      */
-    public function getComputer($depth)
+    public function getComputer($depth, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\ComputerSet
     {
         // Implement the operation ...
     }
@@ -116,7 +115,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getJenkins
      */
-    public function getJenkins()
+    public function getJenkins(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\Hudson
     {
         // Implement the operation ...
     }
@@ -167,7 +166,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getJob
      */
-    public function getJob($name)
+    public function getJob($name, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\FreeStyleProject
     {
         // Implement the operation ...
     }
@@ -221,7 +220,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getJobConfig
      */
-    public function getJobConfig($name)
+    public function getJobConfig($name, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -275,7 +274,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getJobLastBuild
      */
-    public function getJobLastBuild($name)
+    public function getJobLastBuild($name, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\FreeStyleBuild
     {
         // Implement the operation ...
     }
@@ -329,7 +328,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getJobProgressiveText
      */
-    public function getJobProgressiveText($name, $number, $start)
+    public function getJobProgressiveText($name, $number, $start, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -385,7 +384,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getQueue
      */
-    public function getQueue()
+    public function getQueue(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\Queue
     {
         // Implement the operation ...
     }
@@ -436,7 +435,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getQueueItem
      */
-    public function getQueueItem($number)
+    public function getQueueItem($number, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\Queue
     {
         // Implement the operation ...
     }
@@ -490,7 +489,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getView
      */
-    public function getView($name)
+    public function getView($name, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\ListView
     {
         // Implement the operation ...
     }
@@ -544,7 +543,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getViewConfig
      */
-    public function getViewConfig($name)
+    public function getViewConfig($name, &$responseCode, array &$responseHeaders): array|\string
     {
         // Implement the operation ...
     }
@@ -598,7 +597,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#headJenkins
      */
-    public function headJenkins()
+    public function headJenkins(, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -649,7 +648,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postCreateItem
      */
-    public function postCreateItem($name, $from = null, $mode = null, $jenkinsCrumb = null, $contentType = null, $body = null)
+    public function postCreateItem($name, $from = null, $mode = null, $jenkinsCrumb = null, $contentType = null, $body = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -708,7 +707,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postCreateView
      */
-    public function postCreateView($name, $jenkinsCrumb = null, $contentType = null, $body = null)
+    public function postCreateView($name, $jenkinsCrumb = null, $contentType = null, $body = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -765,7 +764,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postJobBuild
      */
-    public function postJobBuild($name, $json, $token = null, $jenkinsCrumb = null)
+    public function postJobBuild($name, $json, $token = null, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -822,7 +821,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postJobConfig
      */
-    public function postJobConfig($name, $body, $jenkinsCrumb = null)
+    public function postJobConfig($name, $body, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -878,7 +877,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postJobDelete
      */
-    public function postJobDelete($name, $jenkinsCrumb = null)
+    public function postJobDelete($name, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -933,7 +932,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postJobDisable
      */
-    public function postJobDisable($name, $jenkinsCrumb = null)
+    public function postJobDisable($name, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -988,7 +987,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postJobEnable
      */
-    public function postJobEnable($name, $jenkinsCrumb = null)
+    public function postJobEnable($name, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -1043,7 +1042,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postJobLastBuildStop
      */
-    public function postJobLastBuildStop($name, $jenkinsCrumb = null)
+    public function postJobLastBuildStop($name, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }
@@ -1098,7 +1097,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#postViewConfig
      */
-    public function postViewConfig($name, $body, $jenkinsCrumb = null)
+    public function postViewConfig($name, $body, $jenkinsCrumb = null, &$responseCode, array &$responseHeaders): void
     {
         // Implement the operation ...
     }

@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubOrganization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class GithubOrganization   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class GithubOrganization   {
   
   private @Valid String propertyClass;
   private @Valid GithubOrganizationlinks links;
@@ -29,8 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -52,8 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public GithubOrganizationlinks getLinks() {
@@ -73,8 +70,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("jenkinsOrganizationPipeline")
   public Boolean getJenkinsOrganizationPipeline() {
@@ -92,8 +87,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.name = name;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

@@ -179,39 +179,39 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     cJSON *item = cJSON_CreateObject();
 
     // free_style_project->_class
-    if(free_style_project->_class) { 
+    if(free_style_project->_class) {
     if(cJSON_AddStringToObject(item, "_class", free_style_project->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->name
-    if(free_style_project->name) { 
+    if(free_style_project->name) {
     if(cJSON_AddStringToObject(item, "name", free_style_project->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->url
-    if(free_style_project->url) { 
+    if(free_style_project->url) {
     if(cJSON_AddStringToObject(item, "url", free_style_project->url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->color
-    if(free_style_project->color) { 
+    if(free_style_project->color) {
     if(cJSON_AddStringToObject(item, "color", free_style_project->color) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->actions
-    if(free_style_project->actions) { 
+    if(free_style_project->actions) {
     cJSON *actions = cJSON_AddArrayToObject(item, "actions");
     if(actions == NULL) {
     goto fail; //nonprimitive container
@@ -227,59 +227,59 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     cJSON_AddItemToArray(actions, itemLocal);
     }
     }
-     } 
+    }
 
 
     // free_style_project->description
-    if(free_style_project->description) { 
+    if(free_style_project->description) {
     if(cJSON_AddStringToObject(item, "description", free_style_project->description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->display_name
-    if(free_style_project->display_name) { 
+    if(free_style_project->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", free_style_project->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->display_name_or_null
-    if(free_style_project->display_name_or_null) { 
+    if(free_style_project->display_name_or_null) {
     if(cJSON_AddStringToObject(item, "displayNameOrNull", free_style_project->display_name_or_null) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->full_display_name
-    if(free_style_project->full_display_name) { 
+    if(free_style_project->full_display_name) {
     if(cJSON_AddStringToObject(item, "fullDisplayName", free_style_project->full_display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->full_name
-    if(free_style_project->full_name) { 
+    if(free_style_project->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", free_style_project->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->buildable
-    if(free_style_project->buildable) { 
+    if(free_style_project->buildable) {
     if(cJSON_AddBoolToObject(item, "buildable", free_style_project->buildable) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // free_style_project->builds
-    if(free_style_project->builds) { 
+    if(free_style_project->builds) {
     cJSON *builds = cJSON_AddArrayToObject(item, "builds");
     if(builds == NULL) {
     goto fail; //nonprimitive container
@@ -295,11 +295,11 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     cJSON_AddItemToArray(builds, itemLocal);
     }
     }
-     } 
+    }
 
 
     // free_style_project->first_build
-    if(free_style_project->first_build) { 
+    if(free_style_project->first_build) {
     cJSON *first_build_local_JSON = free_style_build_convertToJSON(free_style_project->first_build);
     if(first_build_local_JSON == NULL) {
     goto fail; //model
@@ -308,11 +308,11 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // free_style_project->health_report
-    if(free_style_project->health_report) { 
+    if(free_style_project->health_report) {
     cJSON *health_report = cJSON_AddArrayToObject(item, "healthReport");
     if(health_report == NULL) {
     goto fail; //nonprimitive container
@@ -328,27 +328,27 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     cJSON_AddItemToArray(health_report, itemLocal);
     }
     }
-     } 
+    }
 
 
     // free_style_project->in_queue
-    if(free_style_project->in_queue) { 
+    if(free_style_project->in_queue) {
     if(cJSON_AddBoolToObject(item, "inQueue", free_style_project->in_queue) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // free_style_project->keep_dependencies
-    if(free_style_project->keep_dependencies) { 
+    if(free_style_project->keep_dependencies) {
     if(cJSON_AddBoolToObject(item, "keepDependencies", free_style_project->keep_dependencies) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // free_style_project->last_build
-    if(free_style_project->last_build) { 
+    if(free_style_project->last_build) {
     cJSON *last_build_local_JSON = free_style_build_convertToJSON(free_style_project->last_build);
     if(last_build_local_JSON == NULL) {
     goto fail; //model
@@ -357,11 +357,11 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // free_style_project->last_completed_build
-    if(free_style_project->last_completed_build) { 
+    if(free_style_project->last_completed_build) {
     cJSON *last_completed_build_local_JSON = free_style_build_convertToJSON(free_style_project->last_completed_build);
     if(last_completed_build_local_JSON == NULL) {
     goto fail; //model
@@ -370,19 +370,19 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // free_style_project->last_failed_build
-    if(free_style_project->last_failed_build) { 
+    if(free_style_project->last_failed_build) {
     if(cJSON_AddStringToObject(item, "lastFailedBuild", free_style_project->last_failed_build) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->last_stable_build
-    if(free_style_project->last_stable_build) { 
+    if(free_style_project->last_stable_build) {
     cJSON *last_stable_build_local_JSON = free_style_build_convertToJSON(free_style_project->last_stable_build);
     if(last_stable_build_local_JSON == NULL) {
     goto fail; //model
@@ -391,11 +391,11 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // free_style_project->last_successful_build
-    if(free_style_project->last_successful_build) { 
+    if(free_style_project->last_successful_build) {
     cJSON *last_successful_build_local_JSON = free_style_build_convertToJSON(free_style_project->last_successful_build);
     if(last_successful_build_local_JSON == NULL) {
     goto fail; //model
@@ -404,51 +404,51 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // free_style_project->last_unstable_build
-    if(free_style_project->last_unstable_build) { 
+    if(free_style_project->last_unstable_build) {
     if(cJSON_AddStringToObject(item, "lastUnstableBuild", free_style_project->last_unstable_build) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->last_unsuccessful_build
-    if(free_style_project->last_unsuccessful_build) { 
+    if(free_style_project->last_unsuccessful_build) {
     if(cJSON_AddStringToObject(item, "lastUnsuccessfulBuild", free_style_project->last_unsuccessful_build) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->next_build_number
-    if(free_style_project->next_build_number) { 
+    if(free_style_project->next_build_number) {
     if(cJSON_AddNumberToObject(item, "nextBuildNumber", free_style_project->next_build_number) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // free_style_project->queue_item
-    if(free_style_project->queue_item) { 
+    if(free_style_project->queue_item) {
     if(cJSON_AddStringToObject(item, "queueItem", free_style_project->queue_item) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_project->concurrent_build
-    if(free_style_project->concurrent_build) { 
+    if(free_style_project->concurrent_build) {
     if(cJSON_AddBoolToObject(item, "concurrentBuild", free_style_project->concurrent_build) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // free_style_project->scm
-    if(free_style_project->scm) { 
+    if(free_style_project->scm) {
     cJSON *scm_local_JSON = null_scm_convertToJSON(free_style_project->scm);
     if(scm_local_JSON == NULL) {
     goto fail; //model
@@ -457,7 +457,7 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:
@@ -471,8 +471,17 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     free_style_project_t *free_style_project_local_var = NULL;
 
+    // define the local list for free_style_project->actions
+    list_t *actionsList = NULL;
+
+    // define the local list for free_style_project->builds
+    list_t *buildsList = NULL;
+
     // define the local variable for free_style_project->first_build
     free_style_build_t *first_build_local_nonprim = NULL;
+
+    // define the local list for free_style_project->health_report
+    list_t *health_reportList = NULL;
 
     // define the local variable for free_style_project->last_build
     free_style_build_t *last_build_local_nonprim = NULL;
@@ -527,9 +536,8 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "actions");
-    list_t *actionsList;
     if (actions) { 
-    cJSON *actions_local_nonprimitive;
+    cJSON *actions_local_nonprimitive = NULL;
     if(!cJSON_IsArray(actions)){
         goto end; //nonprimitive container
     }
@@ -603,9 +611,8 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->builds
     cJSON *builds = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "builds");
-    list_t *buildsList;
     if (builds) { 
-    cJSON *builds_local_nonprimitive;
+    cJSON *builds_local_nonprimitive = NULL;
     if(!cJSON_IsArray(builds)){
         goto end; //nonprimitive container
     }
@@ -631,9 +638,8 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->health_report
     cJSON *health_report = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "healthReport");
-    list_t *health_reportList;
     if (health_report) { 
-    cJSON *health_report_local_nonprimitive;
+    cJSON *health_report_local_nonprimitive = NULL;
     if(!cJSON_IsArray(health_report)){
         goto end; //nonprimitive container
     }
@@ -786,9 +792,36 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     return free_style_project_local_var;
 end:
+    if (actionsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, actionsList) {
+            free_style_projectactions_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(actionsList);
+        actionsList = NULL;
+    }
+    if (buildsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, buildsList) {
+            free_style_build_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(buildsList);
+        buildsList = NULL;
+    }
     if (first_build_local_nonprim) {
         free_style_build_free(first_build_local_nonprim);
         first_build_local_nonprim = NULL;
+    }
+    if (health_reportList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, health_reportList) {
+            free_style_projecthealth_report_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(health_reportList);
+        health_reportList = NULL;
     }
     if (last_build_local_nonprim) {
         free_style_build_free(last_build_local_nonprim);

@@ -1,5 +1,8 @@
 import connexion
 import six
+from typing import Dict
+from typing import Tuple
+from typing import Union
 
 from openapi_server.models.computer_set import ComputerSet  # noqa: E501
 from openapi_server.models.free_style_build import FreeStyleBuild  # noqa: E501
@@ -18,7 +21,7 @@ def get_computer(depth):  # noqa: E501
     :param depth: Recursion depth in response model
     :type depth: int
 
-    :rtype: ComputerSet
+    :rtype: Union[ComputerSet, Tuple[ComputerSet, int], Tuple[ComputerSet, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -29,7 +32,7 @@ def get_jenkins():  # noqa: E501
     Retrieve Jenkins details # noqa: E501
 
 
-    :rtype: Hudson
+    :rtype: Union[Hudson, Tuple[Hudson, int], Tuple[Hudson, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -42,7 +45,7 @@ def get_job(name):  # noqa: E501
     :param name: Name of the job
     :type name: str
 
-    :rtype: FreeStyleProject
+    :rtype: Union[FreeStyleProject, Tuple[FreeStyleProject, int], Tuple[FreeStyleProject, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -55,7 +58,7 @@ def get_job_config(name):  # noqa: E501
     :param name: Name of the job
     :type name: str
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -68,7 +71,7 @@ def get_job_last_build(name):  # noqa: E501
     :param name: Name of the job
     :type name: str
 
-    :rtype: FreeStyleBuild
+    :rtype: Union[FreeStyleBuild, Tuple[FreeStyleBuild, int], Tuple[FreeStyleBuild, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -85,7 +88,7 @@ def get_job_progressive_text(name, number, start):  # noqa: E501
     :param start: Starting point of progressive text output
     :type start: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -96,7 +99,7 @@ def get_queue():  # noqa: E501
     Retrieve queue details # noqa: E501
 
 
-    :rtype: Queue
+    :rtype: Union[Queue, Tuple[Queue, int], Tuple[Queue, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -109,7 +112,7 @@ def get_queue_item(number):  # noqa: E501
     :param number: Queue number
     :type number: str
 
-    :rtype: Queue
+    :rtype: Union[Queue, Tuple[Queue, int], Tuple[Queue, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -122,7 +125,7 @@ def get_view(name):  # noqa: E501
     :param name: Name of the view
     :type name: str
 
-    :rtype: ListView
+    :rtype: Union[ListView, Tuple[ListView, int], Tuple[ListView, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -135,7 +138,7 @@ def get_view_config(name):  # noqa: E501
     :param name: Name of the view
     :type name: str
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -146,7 +149,7 @@ def head_jenkins():  # noqa: E501
     Retrieve Jenkins headers # noqa: E501
 
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -169,7 +172,7 @@ def post_create_item(name, _from=None, mode=None, jenkins_crumb=None, content_ty
     :param body: Job configuration in config.xml format
     :type body: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -188,7 +191,7 @@ def post_create_view(name, jenkins_crumb=None, content_type=None, body=None):  #
     :param body: View configuration in config.xml format
     :type body: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -207,7 +210,7 @@ def post_job_build(name, json, token=None, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -224,7 +227,7 @@ def post_job_config(name, body, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -239,7 +242,7 @@ def post_job_delete(name, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -254,7 +257,7 @@ def post_job_disable(name, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -269,7 +272,7 @@ def post_job_enable(name, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -284,7 +287,7 @@ def post_job_last_build_stop(name, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -301,6 +304,6 @@ def post_view_config(name, body, jenkins_crumb=None):  # noqa: E501
     :param jenkins_crumb: CSRF protection token
     :type jenkins_crumb: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'

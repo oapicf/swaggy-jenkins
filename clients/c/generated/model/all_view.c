@@ -46,27 +46,27 @@ cJSON *all_view_convertToJSON(all_view_t *all_view) {
     cJSON *item = cJSON_CreateObject();
 
     // all_view->_class
-    if(all_view->_class) { 
+    if(all_view->_class) {
     if(cJSON_AddStringToObject(item, "_class", all_view->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // all_view->name
-    if(all_view->name) { 
+    if(all_view->name) {
     if(cJSON_AddStringToObject(item, "name", all_view->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // all_view->url
-    if(all_view->url) { 
+    if(all_view->url) {
     if(cJSON_AddStringToObject(item, "url", all_view->url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

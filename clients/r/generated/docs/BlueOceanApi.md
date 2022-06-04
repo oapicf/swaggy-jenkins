@@ -232,7 +232,7 @@ No authorization required
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetJsonWebToken**
-> character GetJsonWebToken(expiry.time.in.mins=var.expiry.time.in.mins, max.expiry.time.in.mins=var.max.expiry.time.in.mins)
+> character GetJsonWebToken(expiry_time_in_mins=var.expiry_time_in_mins, max_expiry_time_in_mins=var.max_expiry_time_in_mins)
 
 
 
@@ -242,11 +242,11 @@ Retrieve JSON Web Token
 ```R
 library(openapi)
 
-var.expiry.time.in.mins <- 56 # integer | Token expiry time in minutes, default: 30 minutes
-var.max.expiry.time.in.mins <- 56 # integer | Maximum token expiry time in minutes, default: 480 minutes
+var.expiry_time_in_mins <- 56 # integer | Token expiry time in minutes, default: 30 minutes
+var.max_expiry_time_in_mins <- 56 # integer | Maximum token expiry time in minutes, default: 480 minutes
 
 api.instance <- BlueOceanApi$new()
-result <- api.instance$GetJsonWebToken(expiry.time.in.mins=var.expiry.time.in.mins, max.expiry.time.in.mins=var.max.expiry.time.in.mins)
+result <- api.instance$GetJsonWebToken(expiry_time_in_mins=var.expiry_time_in_mins, max_expiry_time_in_mins=var.max_expiry_time_in_mins)
 dput(result)
 ```
 
@@ -254,8 +254,8 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expiry.time.in.mins** | **integer**| Token expiry time in minutes, default: 30 minutes | [optional] 
- **max.expiry.time.in.mins** | **integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+ **expiry_time_in_mins** | **integer**| Token expiry time in minutes, default: 30 minutes | [optional] 
+ **max_expiry_time_in_mins** | **integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
 
 ### Return type
 
@@ -1288,7 +1288,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetSCMOrganisationRepositories**
-> array[GithubOrganization] GetSCMOrganisationRepositories(organization, scm, scm.organisation, credential.id=var.credential.id, page.size=var.page.size, page.number=var.page.number)
+> array[GithubOrganization] GetSCMOrganisationRepositories(organization, scm, scm_organisation, credential_id=var.credential_id, page_size=var.page_size, page_number=var.page_number)
 
 
 
@@ -1300,16 +1300,16 @@ library(openapi)
 
 var.organization <- 'organization_example' # character | Name of the organization
 var.scm <- 'scm_example' # character | Name of SCM
-var.scm.organisation <- 'scm.organisation_example' # character | Name of the SCM organization
-var.credential.id <- 'credential.id_example' # character | Credential ID
-var.page.size <- 56 # integer | Number of items in a page
-var.page.number <- 56 # integer | Page number
+var.scm_organisation <- 'scm_organisation_example' # character | Name of the SCM organization
+var.credential_id <- 'credential_id_example' # character | Credential ID
+var.page_size <- 56 # integer | Number of items in a page
+var.page_number <- 56 # integer | Page number
 
 api.instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCMOrganisationRepositories(var.organization, var.scm, var.scm.organisation, credential.id=var.credential.id, page.size=var.page.size, page.number=var.page.number)
+result <- api.instance$GetSCMOrganisationRepositories(var.organization, var.scm, var.scm_organisation, credential_id=var.credential_id, page_size=var.page_size, page_number=var.page_number)
 dput(result)
 ```
 
@@ -1319,10 +1319,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **character**| Name of the organization | 
  **scm** | **character**| Name of SCM | 
- **scm.organisation** | **character**| Name of the SCM organization | 
- **credential.id** | **character**| Credential ID | [optional] 
- **page.size** | **integer**| Number of items in a page | [optional] 
- **page.number** | **integer**| Page number | [optional] 
+ **scm_organisation** | **character**| Name of the SCM organization | 
+ **credential_id** | **character**| Credential ID | [optional] 
+ **page_size** | **integer**| Number of items in a page | [optional] 
+ **page_number** | **integer**| Page number | [optional] 
 
 ### Return type
 
@@ -1345,7 +1345,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetSCMOrganisationRepository**
-> array[GithubOrganization] GetSCMOrganisationRepository(organization, scm, scm.organisation, repository, credential.id=var.credential.id)
+> array[GithubOrganization] GetSCMOrganisationRepository(organization, scm, scm_organisation, repository, credential_id=var.credential_id)
 
 
 
@@ -1357,15 +1357,15 @@ library(openapi)
 
 var.organization <- 'organization_example' # character | Name of the organization
 var.scm <- 'scm_example' # character | Name of SCM
-var.scm.organisation <- 'scm.organisation_example' # character | Name of the SCM organization
+var.scm_organisation <- 'scm_organisation_example' # character | Name of the SCM organization
 var.repository <- 'repository_example' # character | Name of the SCM repository
-var.credential.id <- 'credential.id_example' # character | Credential ID
+var.credential_id <- 'credential_id_example' # character | Credential ID
 
 api.instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCMOrganisationRepository(var.organization, var.scm, var.scm.organisation, var.repository, credential.id=var.credential.id)
+result <- api.instance$GetSCMOrganisationRepository(var.organization, var.scm, var.scm_organisation, var.repository, credential_id=var.credential_id)
 dput(result)
 ```
 
@@ -1375,9 +1375,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **character**| Name of the organization | 
  **scm** | **character**| Name of SCM | 
- **scm.organisation** | **character**| Name of the SCM organization | 
+ **scm_organisation** | **character**| Name of the SCM organization | 
  **repository** | **character**| Name of the SCM repository | 
- **credential.id** | **character**| Credential ID | [optional] 
+ **credential_id** | **character**| Credential ID | [optional] 
 
 ### Return type
 
@@ -1400,7 +1400,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetSCMOrganisations**
-> array[GithubOrganization] GetSCMOrganisations(organization, scm, credential.id=var.credential.id)
+> array[GithubOrganization] GetSCMOrganisations(organization, scm, credential_id=var.credential_id)
 
 
 
@@ -1412,13 +1412,13 @@ library(openapi)
 
 var.organization <- 'organization_example' # character | Name of the organization
 var.scm <- 'scm_example' # character | Name of SCM
-var.credential.id <- 'credential.id_example' # character | Credential ID
+var.credential_id <- 'credential_id_example' # character | Credential ID
 
 api.instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCMOrganisations(var.organization, var.scm, credential.id=var.credential.id)
+result <- api.instance$GetSCMOrganisations(var.organization, var.scm, credential_id=var.credential_id)
 dput(result)
 ```
 
@@ -1428,7 +1428,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization** | **character**| Name of the organization | 
  **scm** | **character**| Name of SCM | 
- **credential.id** | **character**| Credential ID | [optional] 
+ **credential_id** | **character**| Credential ID | [optional] 
 
 ### Return type
 
@@ -1745,7 +1745,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PutPipelineRun**
-> PipelineRun PutPipelineRun(organization, pipeline, run, blocking=var.blocking, time.out.in.secs=var.time.out.in.secs)
+> PipelineRun PutPipelineRun(organization, pipeline, run, blocking=var.blocking, time_out_in_secs=var.time_out_in_secs)
 
 
 
@@ -1759,13 +1759,13 @@ var.organization <- 'organization_example' # character | Name of the organizatio
 var.pipeline <- 'pipeline_example' # character | Name of the pipeline
 var.run <- 'run_example' # character | Name of the run
 var.blocking <- 'blocking_example' # character | Set to true to make blocking stop, default: false
-var.time.out.in.secs <- 56 # integer | Timeout in seconds, default: 10 seconds
+var.time_out_in_secs <- 56 # integer | Timeout in seconds, default: 10 seconds
 
 api.instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$PutPipelineRun(var.organization, var.pipeline, var.run, blocking=var.blocking, time.out.in.secs=var.time.out.in.secs)
+result <- api.instance$PutPipelineRun(var.organization, var.pipeline, var.run, blocking=var.blocking, time_out_in_secs=var.time_out_in_secs)
 dput(result)
 ```
 
@@ -1777,7 +1777,7 @@ Name | Type | Description  | Notes
  **pipeline** | **character**| Name of the pipeline | 
  **run** | **character**| Name of the run | 
  **blocking** | **character**| Set to true to make blocking stop, default: false | [optional] 
- **time.out.in.secs** | **integer**| Timeout in seconds, default: 10 seconds | [optional] 
+ **time_out_in_secs** | **integer**| Timeout in seconds, default: 10 seconds | [optional] 
 
 ### Return type
 

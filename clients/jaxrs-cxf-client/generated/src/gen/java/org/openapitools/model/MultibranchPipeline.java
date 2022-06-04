@@ -6,6 +6,7 @@ import java.util.List;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class MultibranchPipeline  {
   
   @ApiModelProperty(value = "")

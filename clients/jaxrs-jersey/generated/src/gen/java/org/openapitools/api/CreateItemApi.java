@@ -29,7 +29,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the createItem API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class CreateItemApi  {
    private final CreateItemApiService delegate;
 
@@ -54,7 +54,7 @@ public class CreateItemApi  {
       this.delegate = delegate;
    }
 
-    @POST
+    @javax.ws.rs.POST
     
     @Consumes({ "application/json" })
     @Produces({ "*/*" })

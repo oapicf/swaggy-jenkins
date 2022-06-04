@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class PipelineFolderImpl(BaseModel):
@@ -25,12 +25,12 @@ class PipelineFolderImpl(BaseModel):
         number_of_pipelines: The number_of_pipelines of this PipelineFolderImpl [Optional].
     """
 
-    _class: Optional[str] = None
-    display_name: Optional[str] = None
-    full_name: Optional[str] = None
-    name: Optional[str] = None
-    organization: Optional[str] = None
-    number_of_folders: Optional[int] = None
-    number_of_pipelines: Optional[int] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    full_name: Optional[str] = Field(alias="fullName", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    number_of_folders: Optional[int] = Field(alias="numberOfFolders", default=None)
+    number_of_pipelines: Optional[int] = Field(alias="numberOfPipelines", default=None)
 
 PipelineFolderImpl.update_forward_refs()

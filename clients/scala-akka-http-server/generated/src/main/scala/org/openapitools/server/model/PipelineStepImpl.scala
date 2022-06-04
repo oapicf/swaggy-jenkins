@@ -13,14 +13,14 @@ package org.openapitools.server.model
  * @param state  for example: ''null''
 */
 final case class PipelineStepImpl (
-  `class`: Option[String],
-  links: Option[PipelineStepImpllinks],
-  displayName: Option[String],
-  durationInMillis: Option[Int],
-  id: Option[String],
-  input: Option[InputStepImpl],
-  result: Option[String],
-  startTime: Option[String],
-  state: Option[String]
+  `class`: Option[String] = None,
+  links: Option[PipelineStepImpllinks] = None,
+  displayName: Option[String] = None,
+  durationInMillis: Option[Int] = None,
+  id: Option[String] = None,
+  input: Option[InputStepImpl] = None,
+  result: Option[String] = None,
+  startTime: Option[String] = None,
+  state: Option[String] = None
 )
 

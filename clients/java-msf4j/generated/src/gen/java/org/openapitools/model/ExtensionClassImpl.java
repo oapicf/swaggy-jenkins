@@ -12,7 +12,7 @@ import org.openapitools.model.ExtensionClassImpllinks;
 /**
  * ExtensionClassImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class ExtensionClassImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -66,7 +66,7 @@ public class ExtensionClassImpl   {
 
   public ExtensionClassImpl addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<String>();
+      this.classes = new ArrayList<>();
     }
     this.classes.add(classesItem);
     return this;

@@ -3,7 +3,7 @@
 
 context("Test GithubContent")
 
-model.instance <- GithubContent$new()
+model_instance <- GithubContent$new()
 
 test_that("name", {
   # tests for the property `name` (character)
@@ -60,4 +60,3 @@ test_that("base64Data", {
   # uncomment below to test the property
   #expect_equal(model.instance$`base64Data`, "EXPECTED_RESULT")
 })
-

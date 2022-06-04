@@ -3,7 +3,7 @@
 
 context("Test PipelineStepImpllinks")
 
-model.instance <- PipelineStepImpllinks$new()
+model_instance <- PipelineStepImpllinks$new()
 
 test_that("self", {
   # tests for the property `self` (Link)
@@ -25,4 +25,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

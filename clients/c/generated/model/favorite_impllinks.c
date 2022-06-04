@@ -40,7 +40,7 @@ cJSON *favorite_impllinks_convertToJSON(favorite_impllinks_t *favorite_impllinks
     cJSON *item = cJSON_CreateObject();
 
     // favorite_impllinks->self
-    if(favorite_impllinks->self) { 
+    if(favorite_impllinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(favorite_impllinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -49,15 +49,15 @@ cJSON *favorite_impllinks_convertToJSON(favorite_impllinks_t *favorite_impllinks
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // favorite_impllinks->_class
-    if(favorite_impllinks->_class) { 
+    if(favorite_impllinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", favorite_impllinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

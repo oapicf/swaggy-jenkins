@@ -3,7 +3,7 @@
 
 context("Test StringParameterValue")
 
-model.instance <- StringParameterValue$new()
+model_instance <- StringParameterValue$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -25,4 +25,3 @@ test_that("value", {
   # uncomment below to test the property
   #expect_equal(model.instance$`value`, "EXPECTED_RESULT")
 })
-

@@ -3,7 +3,7 @@
 
 context("Test Queue")
 
-model.instance <- Queue$new()
+model_instance <- Queue$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -18,4 +18,3 @@ test_that("items", {
   # uncomment below to test the property
   #expect_equal(model.instance$`items`, "EXPECTED_RESULT")
 })
-

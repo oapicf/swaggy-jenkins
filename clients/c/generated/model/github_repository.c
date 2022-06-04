@@ -72,15 +72,15 @@ cJSON *github_repository_convertToJSON(github_repository_t *github_repository) {
     cJSON *item = cJSON_CreateObject();
 
     // github_repository->_class
-    if(github_repository->_class) { 
+    if(github_repository->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_repository->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_repository->_links
-    if(github_repository->_links) { 
+    if(github_repository->_links) {
     cJSON *_links_local_JSON = github_repositorylinks_convertToJSON(github_repository->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -89,35 +89,35 @@ cJSON *github_repository_convertToJSON(github_repository_t *github_repository) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_repository->default_branch
-    if(github_repository->default_branch) { 
+    if(github_repository->default_branch) {
     if(cJSON_AddStringToObject(item, "defaultBranch", github_repository->default_branch) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_repository->description
-    if(github_repository->description) { 
+    if(github_repository->description) {
     if(cJSON_AddStringToObject(item, "description", github_repository->description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_repository->name
-    if(github_repository->name) { 
+    if(github_repository->name) {
     if(cJSON_AddStringToObject(item, "name", github_repository->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_repository->permissions
-    if(github_repository->permissions) { 
+    if(github_repository->permissions) {
     cJSON *permissions_local_JSON = github_repositorypermissions_convertToJSON(github_repository->permissions);
     if(permissions_local_JSON == NULL) {
     goto fail; //model
@@ -126,23 +126,23 @@ cJSON *github_repository_convertToJSON(github_repository_t *github_repository) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_repository->_private
-    if(github_repository->_private) { 
+    if(github_repository->_private) {
     if(cJSON_AddBoolToObject(item, "private", github_repository->_private) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // github_repository->full_name
-    if(github_repository->full_name) { 
+    if(github_repository->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", github_repository->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

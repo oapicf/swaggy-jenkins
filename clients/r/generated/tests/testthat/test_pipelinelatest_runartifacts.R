@@ -3,7 +3,7 @@
 
 context("Test PipelinelatestRunartifacts")
 
-model.instance <- PipelinelatestRunartifacts$new()
+model_instance <- PipelinelatestRunartifacts$new()
 
 test_that("name", {
   # tests for the property `name` (character)
@@ -32,4 +32,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

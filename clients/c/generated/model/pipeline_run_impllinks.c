@@ -64,7 +64,7 @@ cJSON *pipeline_run_impllinks_convertToJSON(pipeline_run_impllinks_t *pipeline_r
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_run_impllinks->nodes
-    if(pipeline_run_impllinks->nodes) { 
+    if(pipeline_run_impllinks->nodes) {
     cJSON *nodes_local_JSON = link_convertToJSON(pipeline_run_impllinks->nodes);
     if(nodes_local_JSON == NULL) {
     goto fail; //model
@@ -73,11 +73,11 @@ cJSON *pipeline_run_impllinks_convertToJSON(pipeline_run_impllinks_t *pipeline_r
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_run_impllinks->log
-    if(pipeline_run_impllinks->log) { 
+    if(pipeline_run_impllinks->log) {
     cJSON *log_local_JSON = link_convertToJSON(pipeline_run_impllinks->log);
     if(log_local_JSON == NULL) {
     goto fail; //model
@@ -86,11 +86,11 @@ cJSON *pipeline_run_impllinks_convertToJSON(pipeline_run_impllinks_t *pipeline_r
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_run_impllinks->self
-    if(pipeline_run_impllinks->self) { 
+    if(pipeline_run_impllinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(pipeline_run_impllinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -99,11 +99,11 @@ cJSON *pipeline_run_impllinks_convertToJSON(pipeline_run_impllinks_t *pipeline_r
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_run_impllinks->actions
-    if(pipeline_run_impllinks->actions) { 
+    if(pipeline_run_impllinks->actions) {
     cJSON *actions_local_JSON = link_convertToJSON(pipeline_run_impllinks->actions);
     if(actions_local_JSON == NULL) {
     goto fail; //model
@@ -112,11 +112,11 @@ cJSON *pipeline_run_impllinks_convertToJSON(pipeline_run_impllinks_t *pipeline_r
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_run_impllinks->steps
-    if(pipeline_run_impllinks->steps) { 
+    if(pipeline_run_impllinks->steps) {
     cJSON *steps_local_JSON = link_convertToJSON(pipeline_run_impllinks->steps);
     if(steps_local_JSON == NULL) {
     goto fail; //model
@@ -125,15 +125,15 @@ cJSON *pipeline_run_impllinks_convertToJSON(pipeline_run_impllinks_t *pipeline_r
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_run_impllinks->_class
-    if(pipeline_run_impllinks->_class) { 
+    if(pipeline_run_impllinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_run_impllinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

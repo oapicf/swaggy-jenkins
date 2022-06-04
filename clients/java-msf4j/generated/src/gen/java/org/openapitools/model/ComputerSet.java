@@ -12,7 +12,7 @@ import org.openapitools.model.HudsonMasterComputer;
 /**
  * ComputerSet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class ComputerSet   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -72,7 +72,7 @@ public class ComputerSet   {
 
   public ComputerSet addComputerItem(HudsonMasterComputer computerItem) {
     if (this.computer == null) {
-      this.computer = new ArrayList<HudsonMasterComputer>();
+      this.computer = new ArrayList<>();
     }
     this.computer.add(computerItem);
     return this;

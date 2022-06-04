@@ -15,7 +15,7 @@ class Hudson {
     
     String propertyClass
     
-    List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>()
+    List<HudsonassignedLabels> assignedLabels = new ArrayList<>()
     
     String mode
     
@@ -27,7 +27,7 @@ class Hudson {
     
     String description
     
-    List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>()
+    List<FreeStyleProject> jobs = new ArrayList<>()
     
     AllView primaryView
     
@@ -41,5 +41,5 @@ class Hudson {
     
     Boolean useSecurity
     
-    List<AllView> views = new ArrayList<AllView>()
+    List<AllView> views = new ArrayList<>()
 }

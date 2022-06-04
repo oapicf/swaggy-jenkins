@@ -59,7 +59,7 @@ public class CauseAction   {
 
   public CauseAction addCausesItem(CauseUserIdCause causesItem) {
     if (this.causes == null) {
-      this.causes = new ArrayList<CauseUserIdCause>();
+      this.causes = new ArrayList<>();
     }
     this.causes.add(causesItem);
     return this;

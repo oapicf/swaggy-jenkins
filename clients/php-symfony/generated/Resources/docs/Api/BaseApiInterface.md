@@ -9,11 +9,10 @@ Method | HTTP request | Description
 
 ## Service Declaration
 ```yaml
-# src/Acme/MyBundle/Resources/services.yml
+# config/services.yml
 services:
     # ...
-    acme.my_bundle.api.base:
-        class: Acme\MyBundle\Api\BaseApi
+    Acme\MyBundle\Api\BaseApi:
         tags:
             - { name: "open_api_server.api", api: "base" }
     # ...
@@ -43,7 +42,7 @@ class BaseApi implements BaseApiInterface
     /**
      * Implementation of BaseApiInterface#getCrumb
      */
-    public function getCrumb()
+    public function getCrumb(, &$responseCode, array &$responseHeaders): array|\OpenAPI\Server\Model\DefaultCrumbIssuer
     {
         // Implement the operation ...
     }

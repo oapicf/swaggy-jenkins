@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepositorypermissions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class GithubRepositorypermissions   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class GithubRepositorypermissions   {
   
   private @Valid Boolean admin;
   private @Valid Boolean push;
@@ -28,8 +29,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.admin = admin;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -51,8 +50,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("push")
   public Boolean getPush() {
@@ -72,8 +69,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("pull")
   public Boolean getPull() {
@@ -91,8 +86,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

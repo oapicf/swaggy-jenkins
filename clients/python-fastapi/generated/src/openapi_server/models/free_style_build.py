@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.cause_action import CauseAction
 from openapi_server.models.empty_change_log_set import EmptyChangeLogSet
 
@@ -38,23 +38,23 @@ class FreeStyleBuild(BaseModel):
         change_set: The change_set of this FreeStyleBuild [Optional].
     """
 
-    _class: Optional[str] = None
-    number: Optional[int] = None
-    url: Optional[str] = None
-    actions: Optional[List[CauseAction]] = None
-    building: Optional[bool] = None
-    description: Optional[str] = None
-    display_name: Optional[str] = None
-    duration: Optional[int] = None
-    estimated_duration: Optional[int] = None
-    executor: Optional[str] = None
-    full_display_name: Optional[str] = None
-    id: Optional[str] = None
-    keep_log: Optional[bool] = None
-    queue_id: Optional[int] = None
-    result: Optional[str] = None
-    timestamp: Optional[int] = None
-    built_on: Optional[str] = None
-    change_set: Optional[EmptyChangeLogSet] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    number: Optional[int] = Field(alias="number", default=None)
+    url: Optional[str] = Field(alias="url", default=None)
+    actions: Optional[List[CauseAction]] = Field(alias="actions", default=None)
+    building: Optional[bool] = Field(alias="building", default=None)
+    description: Optional[str] = Field(alias="description", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    duration: Optional[int] = Field(alias="duration", default=None)
+    estimated_duration: Optional[int] = Field(alias="estimatedDuration", default=None)
+    executor: Optional[str] = Field(alias="executor", default=None)
+    full_display_name: Optional[str] = Field(alias="fullDisplayName", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    keep_log: Optional[bool] = Field(alias="keepLog", default=None)
+    queue_id: Optional[int] = Field(alias="queueId", default=None)
+    result: Optional[str] = Field(alias="result", default=None)
+    timestamp: Optional[int] = Field(alias="timestamp", default=None)
+    built_on: Optional[str] = Field(alias="builtOn", default=None)
+    change_set: Optional[EmptyChangeLogSet] = Field(alias="changeSet", default=None)
 
 FreeStyleBuild.update_forward_refs()

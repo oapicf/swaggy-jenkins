@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.hudson_master_computerexecutors import HudsonMasterComputerexecutors
 from openapi_server.models.hudson_master_computermonitor_data import HudsonMasterComputermonitorData
 from openapi_server.models.label1 import Label1
@@ -37,21 +37,21 @@ class HudsonMasterComputer(BaseModel):
         temporarily_offline: The temporarily_offline of this HudsonMasterComputer [Optional].
     """
 
-    _class: Optional[str] = None
-    display_name: Optional[str] = None
-    executors: Optional[List[HudsonMasterComputerexecutors]] = None
-    icon: Optional[str] = None
-    icon_class_name: Optional[str] = None
-    idle: Optional[bool] = None
-    jnlp_agent: Optional[bool] = None
-    launch_supported: Optional[bool] = None
-    load_statistics: Optional[Label1] = None
-    manual_launch_allowed: Optional[bool] = None
-    monitor_data: Optional[HudsonMasterComputermonitorData] = None
-    num_executors: Optional[int] = None
-    offline: Optional[bool] = None
-    offline_cause: Optional[str] = None
-    offline_cause_reason: Optional[str] = None
-    temporarily_offline: Optional[bool] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    executors: Optional[List[HudsonMasterComputerexecutors]] = Field(alias="executors", default=None)
+    icon: Optional[str] = Field(alias="icon", default=None)
+    icon_class_name: Optional[str] = Field(alias="iconClassName", default=None)
+    idle: Optional[bool] = Field(alias="idle", default=None)
+    jnlp_agent: Optional[bool] = Field(alias="jnlpAgent", default=None)
+    launch_supported: Optional[bool] = Field(alias="launchSupported", default=None)
+    load_statistics: Optional[Label1] = Field(alias="loadStatistics", default=None)
+    manual_launch_allowed: Optional[bool] = Field(alias="manualLaunchAllowed", default=None)
+    monitor_data: Optional[HudsonMasterComputermonitorData] = Field(alias="monitorData", default=None)
+    num_executors: Optional[int] = Field(alias="numExecutors", default=None)
+    offline: Optional[bool] = Field(alias="offline", default=None)
+    offline_cause: Optional[str] = Field(alias="offlineCause", default=None)
+    offline_cause_reason: Optional[str] = Field(alias="offlineCauseReason", default=None)
+    temporarily_offline: Optional[bool] = Field(alias="temporarilyOffline", default=None)
 
 HudsonMasterComputer.update_forward_refs()

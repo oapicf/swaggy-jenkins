@@ -18,11 +18,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ExtensionClassImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class ExtensionClassImpl   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class ExtensionClassImpl   {
   
   private @Valid String propertyClass;
   private @Valid ExtensionClassImpllinks links;
-  private @Valid List<String> classes = new ArrayList<String>();
+  private @Valid List<String> classes = new ArrayList<>();
 
   /**
    **/
@@ -30,8 +31,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -53,8 +52,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public ExtensionClassImpllinks getLinks() {
@@ -74,8 +71,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("classes")
   public List<String> getClasses() {
@@ -89,7 +84,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public ExtensionClassImpl addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<String>();
+      this.classes = new ArrayList<>();
     }
 
     this.classes.add(classesItem);

@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class DefaultCrumbIssuer(BaseModel):
@@ -21,8 +21,8 @@ class DefaultCrumbIssuer(BaseModel):
         crumb_request_field: The crumb_request_field of this DefaultCrumbIssuer [Optional].
     """
 
-    _class: Optional[str] = None
-    crumb: Optional[str] = None
-    crumb_request_field: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    crumb: Optional[str] = Field(alias="crumb", default=None)
+    crumb_request_field: Optional[str] = Field(alias="crumbRequestField", default=None)
 
 DefaultCrumbIssuer.update_forward_refs()

@@ -40,19 +40,19 @@ cJSON *pipeline_run_nodeedges_convertToJSON(pipeline_run_nodeedges_t *pipeline_r
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_run_nodeedges->id
-    if(pipeline_run_nodeedges->id) { 
+    if(pipeline_run_nodeedges->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_run_nodeedges->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_nodeedges->_class
-    if(pipeline_run_nodeedges->_class) { 
+    if(pipeline_run_nodeedges->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_run_nodeedges->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

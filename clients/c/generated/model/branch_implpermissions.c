@@ -42,43 +42,43 @@ cJSON *branch_implpermissions_convertToJSON(branch_implpermissions_t *branch_imp
     cJSON *item = cJSON_CreateObject();
 
     // branch_implpermissions->create
-    if(branch_implpermissions->create) { 
+    if(branch_implpermissions->create) {
     if(cJSON_AddBoolToObject(item, "create", branch_implpermissions->create) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // branch_implpermissions->read
-    if(branch_implpermissions->read) { 
+    if(branch_implpermissions->read) {
     if(cJSON_AddBoolToObject(item, "read", branch_implpermissions->read) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // branch_implpermissions->start
-    if(branch_implpermissions->start) { 
+    if(branch_implpermissions->start) {
     if(cJSON_AddBoolToObject(item, "start", branch_implpermissions->start) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // branch_implpermissions->stop
-    if(branch_implpermissions->stop) { 
+    if(branch_implpermissions->stop) {
     if(cJSON_AddBoolToObject(item, "stop", branch_implpermissions->stop) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // branch_implpermissions->_class
-    if(branch_implpermissions->_class) { 
+    if(branch_implpermissions->_class) {
     if(cJSON_AddStringToObject(item, "_class", branch_implpermissions->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

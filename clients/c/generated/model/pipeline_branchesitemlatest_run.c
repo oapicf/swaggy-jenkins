@@ -104,115 +104,115 @@ cJSON *pipeline_branchesitemlatest_run_convertToJSON(pipeline_branchesitemlatest
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_branchesitemlatest_run->duration_in_millis
-    if(pipeline_branchesitemlatest_run->duration_in_millis) { 
+    if(pipeline_branchesitemlatest_run->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_branchesitemlatest_run->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->estimated_duration_in_millis
-    if(pipeline_branchesitemlatest_run->estimated_duration_in_millis) { 
+    if(pipeline_branchesitemlatest_run->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_branchesitemlatest_run->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->en_queue_time
-    if(pipeline_branchesitemlatest_run->en_queue_time) { 
+    if(pipeline_branchesitemlatest_run->en_queue_time) {
     if(cJSON_AddStringToObject(item, "enQueueTime", pipeline_branchesitemlatest_run->en_queue_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->end_time
-    if(pipeline_branchesitemlatest_run->end_time) { 
+    if(pipeline_branchesitemlatest_run->end_time) {
     if(cJSON_AddStringToObject(item, "endTime", pipeline_branchesitemlatest_run->end_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->id
-    if(pipeline_branchesitemlatest_run->id) { 
+    if(pipeline_branchesitemlatest_run->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_branchesitemlatest_run->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->organization
-    if(pipeline_branchesitemlatest_run->organization) { 
+    if(pipeline_branchesitemlatest_run->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_branchesitemlatest_run->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->pipeline
-    if(pipeline_branchesitemlatest_run->pipeline) { 
+    if(pipeline_branchesitemlatest_run->pipeline) {
     if(cJSON_AddStringToObject(item, "pipeline", pipeline_branchesitemlatest_run->pipeline) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->result
-    if(pipeline_branchesitemlatest_run->result) { 
+    if(pipeline_branchesitemlatest_run->result) {
     if(cJSON_AddStringToObject(item, "result", pipeline_branchesitemlatest_run->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->run_summary
-    if(pipeline_branchesitemlatest_run->run_summary) { 
+    if(pipeline_branchesitemlatest_run->run_summary) {
     if(cJSON_AddStringToObject(item, "runSummary", pipeline_branchesitemlatest_run->run_summary) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->start_time
-    if(pipeline_branchesitemlatest_run->start_time) { 
+    if(pipeline_branchesitemlatest_run->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", pipeline_branchesitemlatest_run->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->state
-    if(pipeline_branchesitemlatest_run->state) { 
+    if(pipeline_branchesitemlatest_run->state) {
     if(cJSON_AddStringToObject(item, "state", pipeline_branchesitemlatest_run->state) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->type
-    if(pipeline_branchesitemlatest_run->type) { 
+    if(pipeline_branchesitemlatest_run->type) {
     if(cJSON_AddStringToObject(item, "type", pipeline_branchesitemlatest_run->type) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->commit_id
-    if(pipeline_branchesitemlatest_run->commit_id) { 
+    if(pipeline_branchesitemlatest_run->commit_id) {
     if(cJSON_AddStringToObject(item, "commitId", pipeline_branchesitemlatest_run->commit_id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitemlatest_run->_class
-    if(pipeline_branchesitemlatest_run->_class) { 
+    if(pipeline_branchesitemlatest_run->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_branchesitemlatest_run->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

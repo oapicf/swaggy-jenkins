@@ -42,43 +42,43 @@ cJSON *swap_space_monitor_memory_usage2_convertToJSON(swap_space_monitor_memory_
     cJSON *item = cJSON_CreateObject();
 
     // swap_space_monitor_memory_usage2->_class
-    if(swap_space_monitor_memory_usage2->_class) { 
+    if(swap_space_monitor_memory_usage2->_class) {
     if(cJSON_AddStringToObject(item, "_class", swap_space_monitor_memory_usage2->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // swap_space_monitor_memory_usage2->available_physical_memory
-    if(swap_space_monitor_memory_usage2->available_physical_memory) { 
+    if(swap_space_monitor_memory_usage2->available_physical_memory) {
     if(cJSON_AddNumberToObject(item, "availablePhysicalMemory", swap_space_monitor_memory_usage2->available_physical_memory) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // swap_space_monitor_memory_usage2->available_swap_space
-    if(swap_space_monitor_memory_usage2->available_swap_space) { 
+    if(swap_space_monitor_memory_usage2->available_swap_space) {
     if(cJSON_AddNumberToObject(item, "availableSwapSpace", swap_space_monitor_memory_usage2->available_swap_space) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // swap_space_monitor_memory_usage2->total_physical_memory
-    if(swap_space_monitor_memory_usage2->total_physical_memory) { 
+    if(swap_space_monitor_memory_usage2->total_physical_memory) {
     if(cJSON_AddNumberToObject(item, "totalPhysicalMemory", swap_space_monitor_memory_usage2->total_physical_memory) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // swap_space_monitor_memory_usage2->total_swap_space
-    if(swap_space_monitor_memory_usage2->total_swap_space) { 
+    if(swap_space_monitor_memory_usage2->total_swap_space) {
     if(cJSON_AddNumberToObject(item, "totalSwapSpace", swap_space_monitor_memory_usage2->total_swap_space) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

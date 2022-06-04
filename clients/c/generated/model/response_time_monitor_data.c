@@ -38,27 +38,27 @@ cJSON *response_time_monitor_data_convertToJSON(response_time_monitor_data_t *re
     cJSON *item = cJSON_CreateObject();
 
     // response_time_monitor_data->_class
-    if(response_time_monitor_data->_class) { 
+    if(response_time_monitor_data->_class) {
     if(cJSON_AddStringToObject(item, "_class", response_time_monitor_data->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // response_time_monitor_data->timestamp
-    if(response_time_monitor_data->timestamp) { 
+    if(response_time_monitor_data->timestamp) {
     if(cJSON_AddNumberToObject(item, "timestamp", response_time_monitor_data->timestamp) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // response_time_monitor_data->average
-    if(response_time_monitor_data->average) { 
+    if(response_time_monitor_data->average) {
     if(cJSON_AddNumberToObject(item, "average", response_time_monitor_data->average) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

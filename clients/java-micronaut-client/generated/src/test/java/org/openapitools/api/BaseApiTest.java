@@ -4,13 +4,14 @@ import org.openapitools.model.DefaultCrumbIssuer;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import jakarta.inject.Inject;
-import reactor.core.publisher.Mono;
-
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
 
 
 /**
@@ -29,10 +30,15 @@ public class BaseApiTest {
      * Retrieve CSRF protection token
      */
     @Test
+    @Disabled("Not Implemented")
     public void getCrumbTest() {
-        // DefaultCrumbIssuer response = api.getCrumb().block();
-        // Mono<DefaultCrumbIssuer> asyncResponse = api.getCrumb();
-        // TODO: test validations
+        // given
+
+        // when
+        DefaultCrumbIssuer body = api.getCrumb().block();
+
+        // then
+        // TODO implement the getCrumbTest()
     }
 
     

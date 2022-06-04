@@ -43,7 +43,7 @@ cJSON *classes_by_class_convertToJSON(classes_by_class_t *classes_by_class) {
     cJSON *item = cJSON_CreateObject();
 
     // classes_by_class->classes
-    if(classes_by_class->classes) { 
+    if(classes_by_class->classes) {
     cJSON *classes = cJSON_AddArrayToObject(item, "classes");
     if(classes == NULL) {
         goto fail; //primitive container
@@ -56,15 +56,15 @@ cJSON *classes_by_class_convertToJSON(classes_by_class_t *classes_by_class) {
         goto fail;
     }
     }
-     } 
+    }
 
 
     // classes_by_class->_class
-    if(classes_by_class->_class) { 
+    if(classes_by_class->_class) {
     if(cJSON_AddStringToObject(item, "_class", classes_by_class->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -78,11 +78,13 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
 
     classes_by_class_t *classes_by_class_local_var = NULL;
 
+    // define the local list for classes_by_class->classes
+    list_t *classesList = NULL;
+
     // classes_by_class->classes
     cJSON *classes = cJSON_GetObjectItemCaseSensitive(classes_by_classJSON, "classes");
-    list_t *classesList;
     if (classes) { 
-    cJSON *classes_local;
+    cJSON *classes_local = NULL;
     if(!cJSON_IsArray(classes)) {
         goto end;//primitive container
     }
@@ -115,6 +117,15 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
 
     return classes_by_class_local_var;
 end:
+    if (classesList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, classesList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(classesList);
+        classesList = NULL;
+    }
     return NULL;
 
 }

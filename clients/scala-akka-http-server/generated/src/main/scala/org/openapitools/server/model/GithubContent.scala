@@ -12,13 +12,13 @@ package org.openapitools.server.model
  * @param base64Data  for example: ''null''
 */
 final case class GithubContent (
-  name: Option[String],
-  sha: Option[String],
-  `class`: Option[String],
-  repo: Option[String],
-  size: Option[Int],
-  owner: Option[String],
-  path: Option[String],
-  base64Data: Option[String]
+  name: Option[String] = None,
+  sha: Option[String] = None,
+  `class`: Option[String] = None,
+  repo: Option[String] = None,
+  size: Option[Int] = None,
+  owner: Option[String] = None,
+  path: Option[String] = None,
+  base64Data: Option[String] = None
 )
 

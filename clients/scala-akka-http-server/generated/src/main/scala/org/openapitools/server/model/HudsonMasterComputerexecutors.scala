@@ -10,11 +10,11 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class HudsonMasterComputerexecutors (
-  currentExecutable: Option[FreeStyleBuild],
-  idle: Option[Boolean],
-  likelyStuck: Option[Boolean],
-  number: Option[Int],
-  progress: Option[Int],
-  `class`: Option[String]
+  currentExecutable: Option[FreeStyleBuild] = None,
+  idle: Option[Boolean] = None,
+  likelyStuck: Option[Boolean] = None,
+  number: Option[Int] = None,
+  progress: Option[Int] = None,
+  `class`: Option[String] = None
 )
 

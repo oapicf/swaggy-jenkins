@@ -8,9 +8,9 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelineActivityartifacts (
-  name: Option[String],
-  size: Option[Int],
-  url: Option[String],
-  `class`: Option[String]
+  name: Option[String] = None,
+  size: Option[Int] = None,
+  url: Option[String] = None,
+  `class`: Option[String] = None
 )
 

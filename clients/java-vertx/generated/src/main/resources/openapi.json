@@ -8,7 +8,7 @@
     },
     "description" : "Jenkins API clients generated from Swagger / Open API specification",
     "title" : "Swaggy Jenkins",
-    "version" : "1.1.2-pre.0"
+    "version" : "1.5.1-pre.0"
   },
   "servers" : [ {
     "url" : "/"
@@ -209,7 +209,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*",
         "x-serviceid" : "postCreateItem",
         "x-serviceid-varname" : "POSTCREATEITEM_SERVICE_ID"
@@ -285,7 +285,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*",
         "x-serviceid" : "postCreateView",
         "x-serviceid-varname" : "POSTCREATEVIEW_SERVICE_ID"
@@ -543,7 +543,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*",
         "x-serviceid" : "postJobConfig",
         "x-serviceid-varname" : "POSTJOBCONFIG_SERVICE_ID"
@@ -1069,7 +1069,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*",
         "x-serviceid" : "postViewConfig",
         "x-serviceid-varname" : "POSTVIEWCONFIG_SERVICE_ID"
@@ -1872,7 +1872,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "application/json",
         "x-serviceid" : "putPipelineFavorite",
         "x-serviceid-varname" : "PUTPIPELINEFAVORITE_SERVICE_ID"

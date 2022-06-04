@@ -21,7 +21,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class BranchImpl   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class BranchImpl   {
   
   private @Valid String propertyClass;
   private @Valid String displayName;
@@ -30,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   private @Valid String fullName;
   private @Valid String name;
   private @Valid String organization;
-  private @Valid List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
+  private @Valid List<StringParameterDefinition> parameters = new ArrayList<>();
   private @Valid BranchImplpermissions permissions;
   private @Valid Integer weatherScore;
   private @Valid String pullRequest;
@@ -43,8 +44,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -66,8 +65,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
@@ -85,8 +82,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -108,8 +103,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
@@ -127,8 +120,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.fullName = fullName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -150,8 +141,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
@@ -169,8 +158,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.organization = organization;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -192,8 +179,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
   public List<StringParameterDefinition> getParameters() {
@@ -207,7 +192,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public BranchImpl addParametersItem(StringParameterDefinition parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<StringParameterDefinition>();
+      this.parameters = new ArrayList<>();
     }
 
     this.parameters.add(parametersItem);
@@ -229,8 +214,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("permissions")
   public BranchImplpermissions getPermissions() {
@@ -248,8 +231,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.weatherScore = weatherScore;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -271,8 +252,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("pullRequest")
   public String getPullRequest() {
@@ -292,8 +271,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public BranchImpllinks getLinks() {
@@ -311,8 +288,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.latestRun = latestRun;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

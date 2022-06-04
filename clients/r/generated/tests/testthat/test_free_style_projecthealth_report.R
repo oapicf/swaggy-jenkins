@@ -3,7 +3,7 @@
 
 context("Test FreeStyleProjecthealthReport")
 
-model.instance <- FreeStyleProjecthealthReport$new()
+model_instance <- FreeStyleProjecthealthReport$new()
 
 test_that("description", {
   # tests for the property `description` (character)
@@ -39,4 +39,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

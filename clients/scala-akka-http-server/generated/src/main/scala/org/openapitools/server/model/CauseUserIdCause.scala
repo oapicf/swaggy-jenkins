@@ -8,9 +8,9 @@ package org.openapitools.server.model
  * @param userName  for example: ''null''
 */
 final case class CauseUserIdCause (
-  `class`: Option[String],
-  shortDescription: Option[String],
-  userId: Option[String],
-  userName: Option[String]
+  `class`: Option[String] = None,
+  shortDescription: Option[String] = None,
+  userId: Option[String] = None,
+  userName: Option[String] = None
 )
 

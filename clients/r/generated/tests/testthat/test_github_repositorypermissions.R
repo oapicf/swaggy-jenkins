@@ -3,7 +3,7 @@
 
 context("Test GithubRepositorypermissions")
 
-model.instance <- GithubRepositorypermissions$new()
+model_instance <- GithubRepositorypermissions$new()
 
 test_that("admin", {
   # tests for the property `admin` (character)
@@ -32,4 +32,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

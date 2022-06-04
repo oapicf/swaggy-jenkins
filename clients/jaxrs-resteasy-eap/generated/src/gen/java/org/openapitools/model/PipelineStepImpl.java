@@ -11,26 +11,17 @@ import org.openapitools.model.PipelineStepImpllinks;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
 public class PipelineStepImpl   {
   
-
   private String propertyClass;
-
   private PipelineStepImpllinks links;
-
   private String displayName;
-
   private Integer durationInMillis;
-
   private String id;
-
   private InputStepImpl input;
-
   private String result;
-
   private String startTime;
-
   private String state;
 
   /**

@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleProjecthealthReport")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class FreeStyleProjecthealthReport   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class FreeStyleProjecthealthReport   {
   
   private @Valid String description;
   private @Valid String iconClassName;
@@ -29,8 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.description = description;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -52,8 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("iconClassName")
   public String getIconClassName() {
@@ -71,8 +68,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.iconUrl = iconUrl;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -94,8 +89,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("score")
   public Integer getScore() {
@@ -113,8 +106,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

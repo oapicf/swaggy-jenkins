@@ -68,63 +68,63 @@ cJSON *pipeline_convertToJSON(pipeline_t *pipeline) {
     cJSON *item = cJSON_CreateObject();
 
     // pipeline->_class
-    if(pipeline->_class) { 
+    if(pipeline->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline->organization
-    if(pipeline->organization) { 
+    if(pipeline->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline->name
-    if(pipeline->name) { 
+    if(pipeline->name) {
     if(cJSON_AddStringToObject(item, "name", pipeline->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline->display_name
-    if(pipeline->display_name) { 
+    if(pipeline->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", pipeline->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline->full_name
-    if(pipeline->full_name) { 
+    if(pipeline->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", pipeline->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline->weather_score
-    if(pipeline->weather_score) { 
+    if(pipeline->weather_score) {
     if(cJSON_AddNumberToObject(item, "weatherScore", pipeline->weather_score) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline->estimated_duration_in_millis
-    if(pipeline->estimated_duration_in_millis) { 
+    if(pipeline->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline->latest_run
-    if(pipeline->latest_run) { 
+    if(pipeline->latest_run) {
     cJSON *latest_run_local_JSON = pipelinelatest_run_convertToJSON(pipeline->latest_run);
     if(latest_run_local_JSON == NULL) {
     goto fail; //model
@@ -133,7 +133,7 @@ cJSON *pipeline_convertToJSON(pipeline_t *pipeline) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

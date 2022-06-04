@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **class_** | **String** |  | [optional] 
 **links** | [**GithubRepositorieslinks**](GithubRepositorieslinks.md) |  | [optional] 
-**items** | [**BuiltList<GithubRepository>**](GithubRepository.md) |  | [optional] 
+**items** | [**BuiltList&lt;GithubRepository&gt;**](GithubRepository.md) |  | [optional] 
 **lastPage** | **int** |  | [optional] 
 **nextPage** | **int** |  | [optional] 
 **pageSize** | **int** |  | [optional] 

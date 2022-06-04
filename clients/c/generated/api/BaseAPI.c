@@ -42,15 +42,18 @@ BaseAPI_getCrumb(apiClient_t *apiClient)
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved CSRF protection token");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved CSRF protection token");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BaseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     default_crumb_issuer_t *elementToReturn = default_crumb_issuer_parseFromJSON(BaseAPIlocalVarJSON);

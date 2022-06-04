@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class Label1(BaseModel):
@@ -19,6 +19,6 @@ class Label1(BaseModel):
         _class: The _class of this Label1 [Optional].
     """
 
-    _class: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 Label1.update_forward_refs()

@@ -10,11 +10,11 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelineBranchesitempullRequest (
-  links: Option[PipelineBranchesitempullRequestlinks],
-  author: Option[String],
-  id: Option[String],
-  title: Option[String],
-  url: Option[String],
-  `class`: Option[String]
+  links: Option[PipelineBranchesitempullRequestlinks] = None,
+  author: Option[String] = None,
+  id: Option[String] = None,
+  title: Option[String] = None,
+  url: Option[String] = None,
+  `class`: Option[String] = None
 )
 

@@ -34,11 +34,11 @@ cJSON *free_style_projectactions_convertToJSON(free_style_projectactions_t *free
     cJSON *item = cJSON_CreateObject();
 
     // free_style_projectactions->_class
-    if(free_style_projectactions->_class) { 
+    if(free_style_projectactions->_class) {
     if(cJSON_AddStringToObject(item, "_class", free_style_projectactions->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

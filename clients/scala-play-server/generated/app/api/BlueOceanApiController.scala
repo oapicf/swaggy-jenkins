@@ -20,7 +20,7 @@ import model.PipelineStepImpl
 import model.QueueItemImpl
 import model.User
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-13T02:38:35.589632Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
 @Singleton
 class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanApi) extends AbstractController(cc) {
   /**

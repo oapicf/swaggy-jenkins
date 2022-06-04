@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -33,41 +33,143 @@ class FreeStyleBuild {
     this.changeSet,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  int number;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? number;
 
-  String url;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? url;
 
   List<CauseAction> actions;
 
-  bool building;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? building;
 
-  String description;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? description;
 
-  String displayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? displayName;
 
-  int duration;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? duration;
 
-  int estimatedDuration;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? estimatedDuration;
 
-  String executor;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? executor;
 
-  String fullDisplayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? fullDisplayName;
 
-  String id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-  bool keepLog;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? keepLog;
 
-  int queueId;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? queueId;
 
-  String result;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? result;
 
-  int timestamp;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? timestamp;
 
-  String builtOn;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? builtOn;
 
-  EmptyChangeLogSet changeSet;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  EmptyChangeLogSet? changeSet;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FreeStyleBuild &&
@@ -92,99 +194,109 @@ class FreeStyleBuild {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (number == null ? 0 : number.hashCode) +
-    (url == null ? 0 : url.hashCode) +
-    (actions == null ? 0 : actions.hashCode) +
-    (building == null ? 0 : building.hashCode) +
-    (description == null ? 0 : description.hashCode) +
-    (displayName == null ? 0 : displayName.hashCode) +
-    (duration == null ? 0 : duration.hashCode) +
-    (estimatedDuration == null ? 0 : estimatedDuration.hashCode) +
-    (executor == null ? 0 : executor.hashCode) +
-    (fullDisplayName == null ? 0 : fullDisplayName.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (keepLog == null ? 0 : keepLog.hashCode) +
-    (queueId == null ? 0 : queueId.hashCode) +
-    (result == null ? 0 : result.hashCode) +
-    (timestamp == null ? 0 : timestamp.hashCode) +
-    (builtOn == null ? 0 : builtOn.hashCode) +
-    (changeSet == null ? 0 : changeSet.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (number == null ? 0 : number!.hashCode) +
+    (url == null ? 0 : url!.hashCode) +
+    (actions.hashCode) +
+    (building == null ? 0 : building!.hashCode) +
+    (description == null ? 0 : description!.hashCode) +
+    (displayName == null ? 0 : displayName!.hashCode) +
+    (duration == null ? 0 : duration!.hashCode) +
+    (estimatedDuration == null ? 0 : estimatedDuration!.hashCode) +
+    (executor == null ? 0 : executor!.hashCode) +
+    (fullDisplayName == null ? 0 : fullDisplayName!.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (keepLog == null ? 0 : keepLog!.hashCode) +
+    (queueId == null ? 0 : queueId!.hashCode) +
+    (result == null ? 0 : result!.hashCode) +
+    (timestamp == null ? 0 : timestamp!.hashCode) +
+    (builtOn == null ? 0 : builtOn!.hashCode) +
+    (changeSet == null ? 0 : changeSet!.hashCode);
 
   @override
   String toString() => 'FreeStyleBuild[class_=$class_, number=$number, url=$url, actions=$actions, building=$building, description=$description, displayName=$displayName, duration=$duration, estimatedDuration=$estimatedDuration, executor=$executor, fullDisplayName=$fullDisplayName, id=$id, keepLog=$keepLog, queueId=$queueId, result=$result, timestamp=$timestamp, builtOn=$builtOn, changeSet=$changeSet]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (number != null) {
-      json[r'number'] = number;
+      _json[r'number'] = number;
     }
     if (url != null) {
-      json[r'url'] = url;
+      _json[r'url'] = url;
     }
-    if (actions != null) {
-      json[r'actions'] = actions;
-    }
+      _json[r'actions'] = actions;
     if (building != null) {
-      json[r'building'] = building;
+      _json[r'building'] = building;
     }
     if (description != null) {
-      json[r'description'] = description;
+      _json[r'description'] = description;
     }
     if (displayName != null) {
-      json[r'displayName'] = displayName;
+      _json[r'displayName'] = displayName;
     }
     if (duration != null) {
-      json[r'duration'] = duration;
+      _json[r'duration'] = duration;
     }
     if (estimatedDuration != null) {
-      json[r'estimatedDuration'] = estimatedDuration;
+      _json[r'estimatedDuration'] = estimatedDuration;
     }
     if (executor != null) {
-      json[r'executor'] = executor;
+      _json[r'executor'] = executor;
     }
     if (fullDisplayName != null) {
-      json[r'fullDisplayName'] = fullDisplayName;
+      _json[r'fullDisplayName'] = fullDisplayName;
     }
     if (id != null) {
-      json[r'id'] = id;
+      _json[r'id'] = id;
     }
     if (keepLog != null) {
-      json[r'keepLog'] = keepLog;
+      _json[r'keepLog'] = keepLog;
     }
     if (queueId != null) {
-      json[r'queueId'] = queueId;
+      _json[r'queueId'] = queueId;
     }
     if (result != null) {
-      json[r'result'] = result;
+      _json[r'result'] = result;
     }
     if (timestamp != null) {
-      json[r'timestamp'] = timestamp;
+      _json[r'timestamp'] = timestamp;
     }
     if (builtOn != null) {
-      json[r'builtOn'] = builtOn;
+      _json[r'builtOn'] = builtOn;
     }
     if (changeSet != null) {
-      json[r'changeSet'] = changeSet;
+      _json[r'changeSet'] = changeSet;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [FreeStyleBuild] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static FreeStyleBuild fromJson(dynamic value) {
+  static FreeStyleBuild? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "FreeStyleBuild[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "FreeStyleBuild[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return FreeStyleBuild(
         class_: mapValueOfType<String>(json, r'_class'),
         number: mapValueOfType<int>(json, r'number'),
         url: mapValueOfType<String>(json, r'url'),
-        actions: CauseAction.listFromJson(json[r'actions']),
+        actions: CauseAction.listFromJson(json[r'actions']) ?? const [],
         building: mapValueOfType<bool>(json, r'building'),
         description: mapValueOfType<String>(json, r'description'),
         displayName: mapValueOfType<String>(json, r'displayName'),
@@ -204,36 +316,50 @@ class FreeStyleBuild {
     return null;
   }
 
-  static List<FreeStyleBuild> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(FreeStyleBuild.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <FreeStyleBuild>[];
+  static List<FreeStyleBuild>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <FreeStyleBuild>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = FreeStyleBuild.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, FreeStyleBuild> mapFromJson(dynamic json) {
     final map = <String, FreeStyleBuild>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = FreeStyleBuild.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = FreeStyleBuild.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of FreeStyleBuild-objects as value to a dart map
-  static Map<String, List<FreeStyleBuild>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<FreeStyleBuild>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<FreeStyleBuild>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = FreeStyleBuild.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = FreeStyleBuild.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

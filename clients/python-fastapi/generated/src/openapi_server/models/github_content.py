@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class GithubContent(BaseModel):
@@ -26,13 +26,13 @@ class GithubContent(BaseModel):
         base64_data: The base64_data of this GithubContent [Optional].
     """
 
-    name: Optional[str] = None
-    sha: Optional[str] = None
-    _class: Optional[str] = None
-    repo: Optional[str] = None
-    size: Optional[int] = None
-    owner: Optional[str] = None
-    path: Optional[str] = None
-    base64_data: Optional[str] = None
+    name: Optional[str] = Field(alias="name", default=None)
+    sha: Optional[str] = Field(alias="sha", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
+    repo: Optional[str] = Field(alias="repo", default=None)
+    size: Optional[int] = Field(alias="size", default=None)
+    owner: Optional[str] = Field(alias="owner", default=None)
+    path: Optional[str] = Field(alias="path", default=None)
+    base64_data: Optional[str] = Field(alias="base64Data", default=None)
 
 GithubContent.update_forward_refs()

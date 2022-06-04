@@ -21,22 +21,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleProject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class FreeStyleProject   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class FreeStyleProject   {
   
   private @Valid String propertyClass;
   private @Valid String name;
   private @Valid String url;
   private @Valid String color;
-  private @Valid List<FreeStyleProjectactions> actions = new ArrayList<FreeStyleProjectactions>();
+  private @Valid List<FreeStyleProjectactions> actions = new ArrayList<>();
   private @Valid String description;
   private @Valid String displayName;
   private @Valid String displayNameOrNull;
   private @Valid String fullDisplayName;
   private @Valid String fullName;
   private @Valid Boolean buildable;
-  private @Valid List<FreeStyleBuild> builds = new ArrayList<FreeStyleBuild>();
+  private @Valid List<FreeStyleBuild> builds = new ArrayList<>();
   private @Valid FreeStyleBuild firstBuild;
-  private @Valid List<FreeStyleProjecthealthReport> healthReport = new ArrayList<FreeStyleProjecthealthReport>();
+  private @Valid List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
   private @Valid Boolean inQueue;
   private @Valid Boolean keepDependencies;
   private @Valid FreeStyleBuild lastBuild;
@@ -59,8 +60,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_class")
   public String getPropertyClass() {
@@ -78,8 +77,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.name = name;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -101,8 +98,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("url")
   public String getUrl() {
@@ -120,8 +115,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.color = color;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -143,8 +136,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<FreeStyleProjectactions> getActions() {
@@ -158,7 +149,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public FreeStyleProject addActionsItem(FreeStyleProjectactions actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<FreeStyleProjectactions>();
+      this.actions = new ArrayList<>();
     }
 
     this.actions.add(actionsItem);
@@ -180,8 +171,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
@@ -199,8 +188,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.displayName = displayName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -222,8 +209,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayNameOrNull")
   public String getDisplayNameOrNull() {
@@ -241,8 +226,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.fullDisplayName = fullDisplayName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -264,8 +247,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
@@ -283,8 +264,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.buildable = buildable;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -306,8 +285,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("builds")
   public List<FreeStyleBuild> getBuilds() {
@@ -321,7 +298,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public FreeStyleProject addBuildsItem(FreeStyleBuild buildsItem) {
     if (this.builds == null) {
-      this.builds = new ArrayList<FreeStyleBuild>();
+      this.builds = new ArrayList<>();
     }
 
     this.builds.add(buildsItem);
@@ -343,8 +320,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("firstBuild")
   public FreeStyleBuild getFirstBuild() {
@@ -364,8 +339,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("healthReport")
   public List<FreeStyleProjecthealthReport> getHealthReport() {
@@ -379,7 +352,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public FreeStyleProject addHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
     if (this.healthReport == null) {
-      this.healthReport = new ArrayList<FreeStyleProjecthealthReport>();
+      this.healthReport = new ArrayList<>();
     }
 
     this.healthReport.add(healthReportItem);
@@ -401,8 +374,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("inQueue")
   public Boolean getInQueue() {
@@ -420,8 +391,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.keepDependencies = keepDependencies;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -443,8 +412,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("lastBuild")
   public FreeStyleBuild getLastBuild() {
@@ -462,8 +429,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.lastCompletedBuild = lastCompletedBuild;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -485,8 +450,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("lastFailedBuild")
   public String getLastFailedBuild() {
@@ -504,8 +467,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.lastStableBuild = lastStableBuild;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -527,8 +488,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("lastSuccessfulBuild")
   public FreeStyleBuild getLastSuccessfulBuild() {
@@ -546,8 +505,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.lastUnstableBuild = lastUnstableBuild;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -569,8 +526,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("lastUnsuccessfulBuild")
   public String getLastUnsuccessfulBuild() {
@@ -588,8 +543,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.nextBuildNumber = nextBuildNumber;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -611,8 +564,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("queueItem")
   public String getQueueItem() {
@@ -632,8 +583,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("concurrentBuild")
   public Boolean getConcurrentBuild() {
@@ -651,8 +600,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.scm = scm;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

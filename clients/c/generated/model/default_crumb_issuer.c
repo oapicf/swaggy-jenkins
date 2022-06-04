@@ -46,27 +46,27 @@ cJSON *default_crumb_issuer_convertToJSON(default_crumb_issuer_t *default_crumb_
     cJSON *item = cJSON_CreateObject();
 
     // default_crumb_issuer->_class
-    if(default_crumb_issuer->_class) { 
+    if(default_crumb_issuer->_class) {
     if(cJSON_AddStringToObject(item, "_class", default_crumb_issuer->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // default_crumb_issuer->crumb
-    if(default_crumb_issuer->crumb) { 
+    if(default_crumb_issuer->crumb) {
     if(cJSON_AddStringToObject(item, "crumb", default_crumb_issuer->crumb) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // default_crumb_issuer->crumb_request_field
-    if(default_crumb_issuer->crumb_request_field) { 
+    if(default_crumb_issuer->crumb_request_field) {
     if(cJSON_AddStringToObject(item, "crumbRequestField", default_crumb_issuer->crumb_request_field) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

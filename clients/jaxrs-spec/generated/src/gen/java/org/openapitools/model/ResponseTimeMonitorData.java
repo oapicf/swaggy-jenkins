@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ResponseTimeMonitorData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class ResponseTimeMonitorData   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class ResponseTimeMonitorData   {
   
   private @Valid String propertyClass;
   private @Valid Integer timestamp;
@@ -27,8 +28,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -50,8 +49,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("timestamp")
   public Integer getTimestamp() {
@@ -69,8 +66,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.average = average;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

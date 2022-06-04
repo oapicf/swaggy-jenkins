@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param kind  for example: ''null''
 */
 final case class EmptyChangeLogSet (
-  `class`: Option[String],
-  kind: Option[String]
+  `class`: Option[String] = None,
+  kind: Option[String] = None
 )
 

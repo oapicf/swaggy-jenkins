@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunImpllinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineRunImpllinks   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class PipelineRunImpllinks   {
   
   private @Valid Link nodes;
   private @Valid Link log;
@@ -31,8 +32,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.nodes = nodes;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -54,8 +53,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("log")
   public Link getLog() {
@@ -73,8 +70,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.self = self;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -96,8 +91,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public Link getActions() {
@@ -117,8 +110,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("steps")
   public Link getSteps() {
@@ -136,8 +127,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

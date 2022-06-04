@@ -57,9 +57,9 @@ This endpoint does not need any parameter.
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved CSRF protection token 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved CSRF protection token
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes

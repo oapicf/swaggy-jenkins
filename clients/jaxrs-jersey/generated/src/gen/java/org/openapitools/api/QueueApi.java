@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the queue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class QueueApi  {
    private final QueueApiService delegate;
 
@@ -55,7 +55,7 @@ public class QueueApi  {
       this.delegate = delegate;
    }
 
-    @GET
+    @javax.ws.rs.GET
     @Path("/api/json")
     
     @Produces({ "application/json" })
@@ -71,7 +71,7 @@ public class QueueApi  {
     throws NotFoundException {
         return delegate.getQueue(securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/item/{number}/api/json")
     
     @Produces({ "application/json" })

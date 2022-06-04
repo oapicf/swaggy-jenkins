@@ -5,6 +5,7 @@ import org.openapitools.model.PipelineRunImpllinks;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class PipelineRunImpl  {
   
   @ApiModelProperty(value = "")

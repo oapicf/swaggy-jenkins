@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * The version of the OpenAPI document: 1.1.2-pre.0
+ * The version of the OpenAPI document: 1.5.1-pre.0
  * Contact: blah@cliffano.com
  *
  * Please note:
@@ -21,6 +21,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
+import okhttp3.OkHttpClient
 
 import org.openapitools.client.models.ComputerSet
 import org.openapitools.client.models.FreeStyleBuild
@@ -38,13 +39,14 @@ import org.openapitools.client.infrastructure.ClientError
 import org.openapitools.client.infrastructure.ServerException
 import org.openapitools.client.infrastructure.ServerError
 import org.openapitools.client.infrastructure.MultiValueMap
+import org.openapitools.client.infrastructure.PartConfig
 import org.openapitools.client.infrastructure.RequestConfig
 import org.openapitools.client.infrastructure.RequestMethod
 import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -53,16 +55,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve computer details
-    * @param depth Recursion depth in response model 
-    * @return ComputerSet
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve computer details
+     * @param depth Recursion depth in response model
+     * @return ComputerSet
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getComputer(depth: kotlin.Int) : ComputerSet {
@@ -84,13 +86,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve computer details
-    * @param depth Recursion depth in response model 
-    * @return ApiResponse<ComputerSet?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve computer details
+     * @param depth Recursion depth in response model
+     * @return ApiResponse<ComputerSet?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getComputerWithHttpInfo(depth: kotlin.Int) : ApiResponse<ComputerSet?> {
@@ -102,11 +104,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getComputer
-    *
-    * @param depth Recursion depth in response model 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getComputer
+     *
+     * @param depth Recursion depth in response model
+     * @return RequestConfig
+     */
     fun getComputerRequestConfig(depth: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -126,15 +128,15 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve Jenkins details
-    * @return Hudson
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve Jenkins details
+     * @return Hudson
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getJenkins() : Hudson {
@@ -156,12 +158,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve Jenkins details
-    * @return ApiResponse<Hudson?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve Jenkins details
+     * @return ApiResponse<Hudson?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getJenkinsWithHttpInfo() : ApiResponse<Hudson?> {
@@ -173,10 +175,10 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getJenkins
-    *
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJenkins
+     *
+     * @return RequestConfig
+     */
     fun getJenkinsRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -193,16 +195,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job details
-    * @param name Name of the job 
-    * @return FreeStyleProject
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve job details
+     * @param name Name of the job
+     * @return FreeStyleProject
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getJob(name: kotlin.String) : FreeStyleProject {
@@ -224,13 +226,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job details
-    * @param name Name of the job 
-    * @return ApiResponse<FreeStyleProject?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve job details
+     * @param name Name of the job
+     * @return ApiResponse<FreeStyleProject?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getJobWithHttpInfo(name: kotlin.String) : ApiResponse<FreeStyleProject?> {
@@ -242,11 +244,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getJob
-    *
-    * @param name Name of the job 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJob
+     *
+     * @param name Name of the job
+     * @return RequestConfig
+     */
     fun getJobRequestConfig(name: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -263,16 +265,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job configuration
-    * @param name Name of the job 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve job configuration
+     * @param name Name of the job
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getJobConfig(name: kotlin.String) : kotlin.String {
@@ -294,13 +296,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job configuration
-    * @param name Name of the job 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve job configuration
+     * @param name Name of the job
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getJobConfigWithHttpInfo(name: kotlin.String) : ApiResponse<kotlin.String?> {
@@ -312,11 +314,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getJobConfig
-    *
-    * @param name Name of the job 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJobConfig
+     *
+     * @param name Name of the job
+     * @return RequestConfig
+     */
     fun getJobConfigRequestConfig(name: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -332,16 +334,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job&#39;s last build details
-    * @param name Name of the job 
-    * @return FreeStyleBuild
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve job&#39;s last build details
+     * @param name Name of the job
+     * @return FreeStyleBuild
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getJobLastBuild(name: kotlin.String) : FreeStyleBuild {
@@ -363,13 +365,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job&#39;s last build details
-    * @param name Name of the job 
-    * @return ApiResponse<FreeStyleBuild?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve job&#39;s last build details
+     * @param name Name of the job
+     * @return ApiResponse<FreeStyleBuild?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getJobLastBuildWithHttpInfo(name: kotlin.String) : ApiResponse<FreeStyleBuild?> {
@@ -381,11 +383,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getJobLastBuild
-    *
-    * @param name Name of the job 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJobLastBuild
+     *
+     * @param name Name of the job
+     * @return RequestConfig
+     */
     fun getJobLastBuildRequestConfig(name: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -402,18 +404,18 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job&#39;s build progressive text output
-    * @param name Name of the job 
-    * @param number Build number 
-    * @param start Starting point of progressive text output 
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve job&#39;s build progressive text output
+     * @param name Name of the job
+     * @param number Build number
+     * @param start Starting point of progressive text output
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getJobProgressiveText(name: kotlin.String, number: kotlin.String, start: kotlin.String) : Unit {
         val localVarResponse = getJobProgressiveTextWithHttpInfo(name = name, number = number, start = start)
@@ -434,15 +436,15 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve job&#39;s build progressive text output
-    * @param name Name of the job 
-    * @param number Build number 
-    * @param start Starting point of progressive text output 
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve job&#39;s build progressive text output
+     * @param name Name of the job
+     * @param number Build number
+     * @param start Starting point of progressive text output
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun getJobProgressiveTextWithHttpInfo(name: kotlin.String, number: kotlin.String, start: kotlin.String) : ApiResponse<Unit?> {
         val localVariableConfig = getJobProgressiveTextRequestConfig(name = name, number = number, start = start)
@@ -453,13 +455,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getJobProgressiveText
-    *
-    * @param name Name of the job 
-    * @param number Build number 
-    * @param start Starting point of progressive text output 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getJobProgressiveText
+     *
+     * @param name Name of the job
+     * @param number Build number
+     * @param start Starting point of progressive text output
+     * @return RequestConfig
+     */
     fun getJobProgressiveTextRequestConfig(name: kotlin.String, number: kotlin.String, start: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -478,15 +480,15 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve queue details
-    * @return Queue
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve queue details
+     * @return Queue
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getQueue() : Queue {
@@ -508,12 +510,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve queue details
-    * @return ApiResponse<Queue?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve queue details
+     * @return ApiResponse<Queue?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getQueueWithHttpInfo() : ApiResponse<Queue?> {
@@ -525,10 +527,10 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getQueue
-    *
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getQueue
+     *
+     * @return RequestConfig
+     */
     fun getQueueRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -545,16 +547,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve queued item details
-    * @param number Queue number 
-    * @return Queue
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve queued item details
+     * @param number Queue number
+     * @return Queue
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getQueueItem(number: kotlin.String) : Queue {
@@ -576,13 +578,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve queued item details
-    * @param number Queue number 
-    * @return ApiResponse<Queue?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve queued item details
+     * @param number Queue number
+     * @return ApiResponse<Queue?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getQueueItemWithHttpInfo(number: kotlin.String) : ApiResponse<Queue?> {
@@ -594,11 +596,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getQueueItem
-    *
-    * @param number Queue number 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getQueueItem
+     *
+     * @param number Queue number
+     * @return RequestConfig
+     */
     fun getQueueItemRequestConfig(number: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -615,16 +617,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve view details
-    * @param name Name of the view 
-    * @return ListView
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve view details
+     * @param name Name of the view
+     * @return ListView
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getView(name: kotlin.String) : ListView {
@@ -646,13 +648,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve view details
-    * @param name Name of the view 
-    * @return ApiResponse<ListView?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve view details
+     * @param name Name of the view
+     * @return ApiResponse<ListView?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getViewWithHttpInfo(name: kotlin.String) : ApiResponse<ListView?> {
@@ -664,11 +666,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getView
-    *
-    * @param name Name of the view 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getView
+     *
+     * @param name Name of the view
+     * @return RequestConfig
+     */
     fun getViewRequestConfig(name: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -685,16 +687,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve view configuration
-    * @param name Name of the view 
-    * @return kotlin.String
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve view configuration
+     * @param name Name of the view
+     * @return kotlin.String
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getViewConfig(name: kotlin.String) : kotlin.String {
@@ -716,13 +718,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve view configuration
-    * @param name Name of the view 
-    * @return ApiResponse<kotlin.String?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve view configuration
+     * @param name Name of the view
+     * @return ApiResponse<kotlin.String?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
     fun getViewConfigWithHttpInfo(name: kotlin.String) : ApiResponse<kotlin.String?> {
@@ -734,11 +736,11 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation getViewConfig
-    *
-    * @param name Name of the view 
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation getViewConfig
+     *
+     * @param name Name of the view
+     * @return RequestConfig
+     */
     fun getViewConfigRequestConfig(name: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -754,15 +756,15 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve Jenkins headers
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Retrieve Jenkins headers
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun headJenkins() : Unit {
         val localVarResponse = headJenkinsWithHttpInfo()
@@ -783,12 +785,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Retrieve Jenkins headers
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Retrieve Jenkins headers
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun headJenkinsWithHttpInfo() : ApiResponse<Unit?> {
         val localVariableConfig = headJenkinsRequestConfig()
@@ -799,10 +801,10 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation headJenkins
-    *
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation headJenkins
+     *
+     * @return RequestConfig
+     */
     fun headJenkinsRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -818,23 +820,23 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Create a new job using job configuration, or copied from an existing job
-    * @param name Name of the new job 
-    * @param from Existing job to copy from (optional)
-    * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @param contentType Content type header application/xml (optional)
-    * @param body Job configuration in config.xml format (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Create a new job using job configuration, or copied from an existing job
+     * @param name Name of the new job
+     * @param from Existing job to copy from (optional)
+     * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @param contentType Content type header application/xml (optional)
+     * @param body Job configuration in config.xml format (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postCreateItem(name: kotlin.String, from: kotlin.String?, mode: kotlin.String?, jenkinsCrumb: kotlin.String?, contentType: kotlin.String?, body: kotlin.String?) : Unit {
+    fun postCreateItem(name: kotlin.String, from: kotlin.String? = null, mode: kotlin.String? = null, jenkinsCrumb: kotlin.String? = null, contentType: kotlin.String? = null, body: kotlin.String? = null) : Unit {
         val localVarResponse = postCreateItemWithHttpInfo(name = name, from = from, mode = mode, jenkinsCrumb = jenkinsCrumb, contentType = contentType, body = body)
 
         return when (localVarResponse.responseType) {
@@ -853,18 +855,18 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Create a new job using job configuration, or copied from an existing job
-    * @param name Name of the new job 
-    * @param from Existing job to copy from (optional)
-    * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @param contentType Content type header application/xml (optional)
-    * @param body Job configuration in config.xml format (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Create a new job using job configuration, or copied from an existing job
+     * @param name Name of the new job
+     * @param from Existing job to copy from (optional)
+     * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @param contentType Content type header application/xml (optional)
+     * @param body Job configuration in config.xml format (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postCreateItemWithHttpInfo(name: kotlin.String, from: kotlin.String?, mode: kotlin.String?, jenkinsCrumb: kotlin.String?, contentType: kotlin.String?, body: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postCreateItemRequestConfig(name = name, from = from, mode = mode, jenkinsCrumb = jenkinsCrumb, contentType = contentType, body = body)
@@ -875,16 +877,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postCreateItem
-    *
-    * @param name Name of the new job 
-    * @param from Existing job to copy from (optional)
-    * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @param contentType Content type header application/xml (optional)
-    * @param body Job configuration in config.xml format (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postCreateItem
+     *
+     * @param name Name of the new job
+     * @param from Existing job to copy from (optional)
+     * @param mode Set to &#39;copy&#39; for copying an existing job (optional)
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @param contentType Content type header application/xml (optional)
+     * @param body Job configuration in config.xml format (optional)
+     * @return RequestConfig
+     */
     fun postCreateItemRequestConfig(name: kotlin.String, from: kotlin.String?, mode: kotlin.String?, jenkinsCrumb: kotlin.String?, contentType: kotlin.String?, body: kotlin.String?) : RequestConfig<kotlin.String> {
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -912,21 +914,21 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Create a new view using view configuration
-    * @param name Name of the new view 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @param contentType Content type header application/xml (optional)
-    * @param body View configuration in config.xml format (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Create a new view using view configuration
+     * @param name Name of the new view
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @param contentType Content type header application/xml (optional)
+     * @param body View configuration in config.xml format (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postCreateView(name: kotlin.String, jenkinsCrumb: kotlin.String?, contentType: kotlin.String?, body: kotlin.String?) : Unit {
+    fun postCreateView(name: kotlin.String, jenkinsCrumb: kotlin.String? = null, contentType: kotlin.String? = null, body: kotlin.String? = null) : Unit {
         val localVarResponse = postCreateViewWithHttpInfo(name = name, jenkinsCrumb = jenkinsCrumb, contentType = contentType, body = body)
 
         return when (localVarResponse.responseType) {
@@ -945,16 +947,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Create a new view using view configuration
-    * @param name Name of the new view 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @param contentType Content type header application/xml (optional)
-    * @param body View configuration in config.xml format (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Create a new view using view configuration
+     * @param name Name of the new view
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @param contentType Content type header application/xml (optional)
+     * @param body View configuration in config.xml format (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postCreateViewWithHttpInfo(name: kotlin.String, jenkinsCrumb: kotlin.String?, contentType: kotlin.String?, body: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postCreateViewRequestConfig(name = name, jenkinsCrumb = jenkinsCrumb, contentType = contentType, body = body)
@@ -965,14 +967,14 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postCreateView
-    *
-    * @param name Name of the new view 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @param contentType Content type header application/xml (optional)
-    * @param body View configuration in config.xml format (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postCreateView
+     *
+     * @param name Name of the new view
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @param contentType Content type header application/xml (optional)
+     * @param body View configuration in config.xml format (optional)
+     * @return RequestConfig
+     */
     fun postCreateViewRequestConfig(name: kotlin.String, jenkinsCrumb: kotlin.String?, contentType: kotlin.String?, body: kotlin.String?) : RequestConfig<kotlin.String> {
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -994,21 +996,21 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Build a job
-    * @param name Name of the job 
-    * @param json  
-    * @param token  (optional)
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Build a job
+     * @param name Name of the job
+     * @param json 
+     * @param token  (optional)
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postJobBuild(name: kotlin.String, json: kotlin.String, token: kotlin.String?, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postJobBuild(name: kotlin.String, json: kotlin.String, token: kotlin.String? = null, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postJobBuildWithHttpInfo(name = name, json = json, token = token, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1027,16 +1029,16 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Build a job
-    * @param name Name of the job 
-    * @param json  
-    * @param token  (optional)
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Build a job
+     * @param name Name of the job
+     * @param json 
+     * @param token  (optional)
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postJobBuildWithHttpInfo(name: kotlin.String, json: kotlin.String, token: kotlin.String?, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postJobBuildRequestConfig(name = name, json = json, token = token, jenkinsCrumb = jenkinsCrumb)
@@ -1047,14 +1049,14 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postJobBuild
-    *
-    * @param name Name of the job 
-    * @param json  
-    * @param token  (optional)
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postJobBuild
+     *
+     * @param name Name of the job
+     * @param json 
+     * @param token  (optional)
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postJobBuildRequestConfig(name: kotlin.String, json: kotlin.String, token: kotlin.String?, jenkinsCrumb: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
@@ -1077,20 +1079,20 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Update job configuration
-    * @param name Name of the job 
-    * @param body Job configuration in config.xml format 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Update job configuration
+     * @param name Name of the job
+     * @param body Job configuration in config.xml format
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postJobConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postJobConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postJobConfigWithHttpInfo(name = name, body = body, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1109,15 +1111,15 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Update job configuration
-    * @param name Name of the job 
-    * @param body Job configuration in config.xml format 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Update job configuration
+     * @param name Name of the job
+     * @param body Job configuration in config.xml format
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postJobConfigWithHttpInfo(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postJobConfigRequestConfig(name = name, body = body, jenkinsCrumb = jenkinsCrumb)
@@ -1128,13 +1130,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postJobConfig
-    *
-    * @param name Name of the job 
-    * @param body Job configuration in config.xml format 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postJobConfig
+     *
+     * @param name Name of the job
+     * @param body Job configuration in config.xml format
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postJobConfigRequestConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String?) : RequestConfig<kotlin.String> {
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1152,19 +1154,19 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Delete a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Delete a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postJobDelete(name: kotlin.String, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postJobDelete(name: kotlin.String, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postJobDeleteWithHttpInfo(name = name, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1183,14 +1185,14 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Delete a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Delete a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postJobDeleteWithHttpInfo(name: kotlin.String, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postJobDeleteRequestConfig(name = name, jenkinsCrumb = jenkinsCrumb)
@@ -1201,12 +1203,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postJobDelete
-    *
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postJobDelete
+     *
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postJobDeleteRequestConfig(name: kotlin.String, jenkinsCrumb: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1223,19 +1225,19 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Disable a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Disable a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postJobDisable(name: kotlin.String, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postJobDisable(name: kotlin.String, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postJobDisableWithHttpInfo(name = name, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1254,14 +1256,14 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Disable a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Disable a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postJobDisableWithHttpInfo(name: kotlin.String, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postJobDisableRequestConfig(name = name, jenkinsCrumb = jenkinsCrumb)
@@ -1272,12 +1274,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postJobDisable
-    *
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postJobDisable
+     *
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postJobDisableRequestConfig(name: kotlin.String, jenkinsCrumb: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1294,19 +1296,19 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Enable a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Enable a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postJobEnable(name: kotlin.String, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postJobEnable(name: kotlin.String, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postJobEnableWithHttpInfo(name = name, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1325,14 +1327,14 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Enable a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Enable a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postJobEnableWithHttpInfo(name: kotlin.String, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postJobEnableRequestConfig(name = name, jenkinsCrumb = jenkinsCrumb)
@@ -1343,12 +1345,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postJobEnable
-    *
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postJobEnable
+     *
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postJobEnableRequestConfig(name: kotlin.String, jenkinsCrumb: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1365,19 +1367,19 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Stop a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Stop a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postJobLastBuildStop(name: kotlin.String, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postJobLastBuildStop(name: kotlin.String, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postJobLastBuildStopWithHttpInfo(name = name, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1396,14 +1398,14 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Stop a job
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Stop a job
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postJobLastBuildStopWithHttpInfo(name: kotlin.String, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postJobLastBuildStopRequestConfig(name = name, jenkinsCrumb = jenkinsCrumb)
@@ -1414,12 +1416,12 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postJobLastBuildStop
-    *
-    * @param name Name of the job 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postJobLastBuildStop
+     *
+     * @param name Name of the job
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postJobLastBuildStopRequestConfig(name: kotlin.String, jenkinsCrumb: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
@@ -1436,20 +1438,20 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Update view configuration
-    * @param name Name of the view 
-    * @param body View configuration in config.xml format 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return void
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Update view configuration
+     * @param name Name of the view
+     * @param body View configuration in config.xml format
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun postViewConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String?) : Unit {
+    fun postViewConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String? = null) : Unit {
         val localVarResponse = postViewConfigWithHttpInfo(name = name, body = body, jenkinsCrumb = jenkinsCrumb)
 
         return when (localVarResponse.responseType) {
@@ -1468,15 +1470,15 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * 
-    * Update view configuration
-    * @param name Name of the view 
-    * @param body View configuration in config.xml format 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return ApiResponse<Unit?>
-    * @throws IllegalStateException If the request is not correctly configured
-    * @throws IOException Rethrows the OkHttp execute method exception
-    */
+     * 
+     * Update view configuration
+     * @param name Name of the view
+     * @param body View configuration in config.xml format
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
     @Throws(IllegalStateException::class, IOException::class)
     fun postViewConfigWithHttpInfo(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String?) : ApiResponse<Unit?> {
         val localVariableConfig = postViewConfigRequestConfig(name = name, body = body, jenkinsCrumb = jenkinsCrumb)
@@ -1487,13 +1489,13 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
     }
 
     /**
-    * To obtain the request config of the operation postViewConfig
-    *
-    * @param name Name of the view 
-    * @param body View configuration in config.xml format 
-    * @param jenkinsCrumb CSRF protection token (optional)
-    * @return RequestConfig
-    */
+     * To obtain the request config of the operation postViewConfig
+     *
+     * @param name Name of the view
+     * @param body View configuration in config.xml format
+     * @param jenkinsCrumb CSRF protection token (optional)
+     * @return RequestConfig
+     */
     fun postViewConfigRequestConfig(name: kotlin.String, body: kotlin.String, jenkinsCrumb: kotlin.String?) : RequestConfig<kotlin.String> {
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()

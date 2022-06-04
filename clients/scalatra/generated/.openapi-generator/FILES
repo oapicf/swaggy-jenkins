@@ -6,9 +6,9 @@ project/build.properties
 project/plugins.sbt
 sbt
 src/main/resources/logback.xml
-src/main/scala/JettyMain.scala
-src/main/scala/ScalatraBootstrap.scala
-src/main/scala/ServletApp.scala
+src/main/scala/org/openapitools/JettyMain.scala
+src/main/scala/org/openapitools/ScalatraBootstrap.scala
+src/main/scala/org/openapitools/app/ServletApp.scala
 src/main/scala/org/openapitools/server/api/BaseApi.scala
 src/main/scala/org/openapitools/server/api/BlueOceanApi.scala
 src/main/scala/org/openapitools/server/api/RemoteAccessApi.scala

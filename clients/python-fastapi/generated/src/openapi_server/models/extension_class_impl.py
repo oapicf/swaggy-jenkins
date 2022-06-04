@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.extension_class_impllinks import ExtensionClassImpllinks
 
 
@@ -22,8 +22,8 @@ class ExtensionClassImpl(BaseModel):
         classes: The classes of this ExtensionClassImpl [Optional].
     """
 
-    _class: Optional[str] = None
-    links: Optional[ExtensionClassImpllinks] = None
-    classes: Optional[List[str]] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    links: Optional[ExtensionClassImpllinks] = Field(alias="_links", default=None)
+    classes: Optional[List[str]] = Field(alias="classes", default=None)
 
 ExtensionClassImpl.update_forward_refs()

@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class MultibranchPipeline(BaseModel):
@@ -32,19 +32,19 @@ class MultibranchPipeline(BaseModel):
         _class: The _class of this MultibranchPipeline [Optional].
     """
 
-    display_name: Optional[str] = None
-    estimated_duration_in_millis: Optional[int] = None
-    latest_run: Optional[str] = None
-    name: Optional[str] = None
-    organization: Optional[str] = None
-    weather_score: Optional[int] = None
-    branch_names: Optional[List[str]] = None
-    number_of_failing_branches: Optional[int] = None
-    number_of_failing_pull_requests: Optional[int] = None
-    number_of_successful_branches: Optional[int] = None
-    number_of_successful_pull_requests: Optional[int] = None
-    total_number_of_branches: Optional[int] = None
-    total_number_of_pull_requests: Optional[int] = None
-    _class: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    estimated_duration_in_millis: Optional[int] = Field(alias="estimatedDurationInMillis", default=None)
+    latest_run: Optional[str] = Field(alias="latestRun", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    weather_score: Optional[int] = Field(alias="weatherScore", default=None)
+    branch_names: Optional[List[str]] = Field(alias="branchNames", default=None)
+    number_of_failing_branches: Optional[int] = Field(alias="numberOfFailingBranches", default=None)
+    number_of_failing_pull_requests: Optional[int] = Field(alias="numberOfFailingPullRequests", default=None)
+    number_of_successful_branches: Optional[int] = Field(alias="numberOfSuccessfulBranches", default=None)
+    number_of_successful_pull_requests: Optional[int] = Field(alias="numberOfSuccessfulPullRequests", default=None)
+    total_number_of_branches: Optional[int] = Field(alias="totalNumberOfBranches", default=None)
+    total_number_of_pull_requests: Optional[int] = Field(alias="totalNumberOfPullRequests", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 MultibranchPipeline.update_forward_refs()

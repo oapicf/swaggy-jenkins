@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **class_** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
-**jobs** | [**BuiltList<FreeStyleProject>**](FreeStyleProject.md) |  | [optional] 
+**jobs** | [**BuiltList&lt;FreeStyleProject&gt;**](FreeStyleProject.md) |  | [optional] 
 **name** | **String** |  | [optional] 
 **url** | **String** |  | [optional] 
 

@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param name  for example: ''null''
 */
 final case class Organisation (
-  `class`: Option[String],
-  name: Option[String]
+  `class`: Option[String] = None,
+  name: Option[String] = None
 )
 

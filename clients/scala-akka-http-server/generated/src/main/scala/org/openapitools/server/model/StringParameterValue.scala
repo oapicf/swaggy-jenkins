@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param value  for example: ''null''
 */
 final case class StringParameterValue (
-  `class`: Option[String],
-  name: Option[String],
-  value: Option[String]
+  `class`: Option[String] = None,
+  name: Option[String] = None,
+  value: Option[String] = None
 )
 

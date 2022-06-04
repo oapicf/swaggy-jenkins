@@ -21,8 +21,8 @@ import javax.annotation.Generated;
  * Queue
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class Queue   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class Queue {
 
   @JsonProperty("_class")
   private String propertyClass;
@@ -57,7 +57,7 @@ public class Queue   {
 
   public Queue addItemsItem(QueueBlockedItem itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<QueueBlockedItem>();
+      this.items = new ArrayList<>();
     }
     this.items.add(itemsItem);
     return this;

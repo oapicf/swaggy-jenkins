@@ -3,7 +3,7 @@
 
 context("Test InputStepImpl")
 
-model.instance <- InputStepImpl$new()
+model_instance <- InputStepImpl$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -53,4 +53,3 @@ test_that("submitter", {
   # uncomment below to test the property
   #expect_equal(model.instance$`submitter`, "EXPECTED_RESULT")
 })
-

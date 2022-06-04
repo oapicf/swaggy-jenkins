@@ -1,6 +1,11 @@
 package org.openapitools.api
 
 import org.openapitools.model.ComputerSet
+import io.swagger.v3.oas.annotations.*
+import io.swagger.v3.oas.annotations.enums.*
+import io.swagger.v3.oas.annotations.media.*
+import io.swagger.v3.oas.annotations.responses.*
+import io.swagger.v3.oas.annotations.security.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -13,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
+import javax.validation.constraints.Email
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
@@ -27,14 +33,22 @@ import kotlin.collections.Map
 @RequestMapping("\${api.base-path:}")
 class ComputerApiController() {
 
-
+    @Operation(
+        summary = "",
+        operationId = "getComputer",
+        description = "Retrieve computer details",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved computer details", content = [Content(schema = Schema(implementation = ComputerSet::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/computer/api/json"],
         produces = ["application/json"]
     )
-    fun getComputer(@NotNull  @RequestParam(value = "depth", required = true) depth: kotlin.Int
-): ResponseEntity<ComputerSet> {
+    fun getComputer(@NotNull @Parameter(description = "Recursion depth in response model", required = true) @Valid @RequestParam(value = "depth", required = true) depth: kotlin.Int): ResponseEntity<ComputerSet> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 }

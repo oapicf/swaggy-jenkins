@@ -59,7 +59,7 @@ public class Queue   {
 
   public Queue addItemsItem(QueueBlockedItem itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<QueueBlockedItem>();
+      this.items = new ArrayList<>();
     }
     this.items.add(itemsItem);
     return this;

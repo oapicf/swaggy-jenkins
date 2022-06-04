@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelineStepImpllinks (
-  self: Option[Link],
-  actions: Option[Link],
-  `class`: Option[String]
+  self: Option[Link] = None,
+  actions: Option[Link] = None,
+  `class`: Option[String] = None
 )
 

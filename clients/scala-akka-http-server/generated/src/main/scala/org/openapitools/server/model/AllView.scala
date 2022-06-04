@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param url  for example: ''null''
 */
 final case class AllView (
-  `class`: Option[String],
-  name: Option[String],
-  url: Option[String]
+  `class`: Option[String] = None,
+  name: Option[String] = None,
+  url: Option[String] = None
 )
 

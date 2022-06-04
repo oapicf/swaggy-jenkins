@@ -14,7 +14,7 @@ class ComputerSet {
     
     Integer busyExecutors
     
-    List<HudsonMasterComputer> computer = new ArrayList<HudsonMasterComputer>()
+    List<HudsonMasterComputer> computer = new ArrayList<>()
     
     String displayName
     

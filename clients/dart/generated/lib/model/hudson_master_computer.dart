@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -31,37 +31,127 @@ class HudsonMasterComputer {
     this.temporarilyOffline,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  String displayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? displayName;
 
   List<HudsonMasterComputerexecutors> executors;
 
-  String icon;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? icon;
 
-  String iconClassName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? iconClassName;
 
-  bool idle;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? idle;
 
-  bool jnlpAgent;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? jnlpAgent;
 
-  bool launchSupported;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? launchSupported;
 
-  Label1 loadStatistics;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Label1? loadStatistics;
 
-  bool manualLaunchAllowed;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? manualLaunchAllowed;
 
-  HudsonMasterComputermonitorData monitorData;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  HudsonMasterComputermonitorData? monitorData;
 
-  int numExecutors;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? numExecutors;
 
-  bool offline;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? offline;
 
-  String offlineCause;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? offlineCause;
 
-  String offlineCauseReason;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? offlineCauseReason;
 
-  bool temporarilyOffline;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? temporarilyOffline;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HudsonMasterComputer &&
@@ -84,90 +174,100 @@ class HudsonMasterComputer {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (displayName == null ? 0 : displayName.hashCode) +
-    (executors == null ? 0 : executors.hashCode) +
-    (icon == null ? 0 : icon.hashCode) +
-    (iconClassName == null ? 0 : iconClassName.hashCode) +
-    (idle == null ? 0 : idle.hashCode) +
-    (jnlpAgent == null ? 0 : jnlpAgent.hashCode) +
-    (launchSupported == null ? 0 : launchSupported.hashCode) +
-    (loadStatistics == null ? 0 : loadStatistics.hashCode) +
-    (manualLaunchAllowed == null ? 0 : manualLaunchAllowed.hashCode) +
-    (monitorData == null ? 0 : monitorData.hashCode) +
-    (numExecutors == null ? 0 : numExecutors.hashCode) +
-    (offline == null ? 0 : offline.hashCode) +
-    (offlineCause == null ? 0 : offlineCause.hashCode) +
-    (offlineCauseReason == null ? 0 : offlineCauseReason.hashCode) +
-    (temporarilyOffline == null ? 0 : temporarilyOffline.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (displayName == null ? 0 : displayName!.hashCode) +
+    (executors.hashCode) +
+    (icon == null ? 0 : icon!.hashCode) +
+    (iconClassName == null ? 0 : iconClassName!.hashCode) +
+    (idle == null ? 0 : idle!.hashCode) +
+    (jnlpAgent == null ? 0 : jnlpAgent!.hashCode) +
+    (launchSupported == null ? 0 : launchSupported!.hashCode) +
+    (loadStatistics == null ? 0 : loadStatistics!.hashCode) +
+    (manualLaunchAllowed == null ? 0 : manualLaunchAllowed!.hashCode) +
+    (monitorData == null ? 0 : monitorData!.hashCode) +
+    (numExecutors == null ? 0 : numExecutors!.hashCode) +
+    (offline == null ? 0 : offline!.hashCode) +
+    (offlineCause == null ? 0 : offlineCause!.hashCode) +
+    (offlineCauseReason == null ? 0 : offlineCauseReason!.hashCode) +
+    (temporarilyOffline == null ? 0 : temporarilyOffline!.hashCode);
 
   @override
   String toString() => 'HudsonMasterComputer[class_=$class_, displayName=$displayName, executors=$executors, icon=$icon, iconClassName=$iconClassName, idle=$idle, jnlpAgent=$jnlpAgent, launchSupported=$launchSupported, loadStatistics=$loadStatistics, manualLaunchAllowed=$manualLaunchAllowed, monitorData=$monitorData, numExecutors=$numExecutors, offline=$offline, offlineCause=$offlineCause, offlineCauseReason=$offlineCauseReason, temporarilyOffline=$temporarilyOffline]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (displayName != null) {
-      json[r'displayName'] = displayName;
+      _json[r'displayName'] = displayName;
     }
-    if (executors != null) {
-      json[r'executors'] = executors;
-    }
+      _json[r'executors'] = executors;
     if (icon != null) {
-      json[r'icon'] = icon;
+      _json[r'icon'] = icon;
     }
     if (iconClassName != null) {
-      json[r'iconClassName'] = iconClassName;
+      _json[r'iconClassName'] = iconClassName;
     }
     if (idle != null) {
-      json[r'idle'] = idle;
+      _json[r'idle'] = idle;
     }
     if (jnlpAgent != null) {
-      json[r'jnlpAgent'] = jnlpAgent;
+      _json[r'jnlpAgent'] = jnlpAgent;
     }
     if (launchSupported != null) {
-      json[r'launchSupported'] = launchSupported;
+      _json[r'launchSupported'] = launchSupported;
     }
     if (loadStatistics != null) {
-      json[r'loadStatistics'] = loadStatistics;
+      _json[r'loadStatistics'] = loadStatistics;
     }
     if (manualLaunchAllowed != null) {
-      json[r'manualLaunchAllowed'] = manualLaunchAllowed;
+      _json[r'manualLaunchAllowed'] = manualLaunchAllowed;
     }
     if (monitorData != null) {
-      json[r'monitorData'] = monitorData;
+      _json[r'monitorData'] = monitorData;
     }
     if (numExecutors != null) {
-      json[r'numExecutors'] = numExecutors;
+      _json[r'numExecutors'] = numExecutors;
     }
     if (offline != null) {
-      json[r'offline'] = offline;
+      _json[r'offline'] = offline;
     }
     if (offlineCause != null) {
-      json[r'offlineCause'] = offlineCause;
+      _json[r'offlineCause'] = offlineCause;
     }
     if (offlineCauseReason != null) {
-      json[r'offlineCauseReason'] = offlineCauseReason;
+      _json[r'offlineCauseReason'] = offlineCauseReason;
     }
     if (temporarilyOffline != null) {
-      json[r'temporarilyOffline'] = temporarilyOffline;
+      _json[r'temporarilyOffline'] = temporarilyOffline;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [HudsonMasterComputer] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static HudsonMasterComputer fromJson(dynamic value) {
+  static HudsonMasterComputer? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "HudsonMasterComputer[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "HudsonMasterComputer[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return HudsonMasterComputer(
         class_: mapValueOfType<String>(json, r'_class'),
         displayName: mapValueOfType<String>(json, r'displayName'),
-        executors: HudsonMasterComputerexecutors.listFromJson(json[r'executors']),
+        executors: HudsonMasterComputerexecutors.listFromJson(json[r'executors']) ?? const [],
         icon: mapValueOfType<String>(json, r'icon'),
         iconClassName: mapValueOfType<String>(json, r'iconClassName'),
         idle: mapValueOfType<bool>(json, r'idle'),
@@ -186,36 +286,50 @@ class HudsonMasterComputer {
     return null;
   }
 
-  static List<HudsonMasterComputer> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(HudsonMasterComputer.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <HudsonMasterComputer>[];
+  static List<HudsonMasterComputer>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <HudsonMasterComputer>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = HudsonMasterComputer.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, HudsonMasterComputer> mapFromJson(dynamic json) {
     final map = <String, HudsonMasterComputer>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = HudsonMasterComputer.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = HudsonMasterComputer.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of HudsonMasterComputer-objects as value to a dart map
-  static Map<String, List<HudsonMasterComputer>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<HudsonMasterComputer>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<HudsonMasterComputer>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = HudsonMasterComputer.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = HudsonMasterComputer.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

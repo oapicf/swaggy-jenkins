@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param name  for example: ''null''
 */
 final case class User (
-  `class`: Option[String],
-  id: Option[String],
-  fullName: Option[String],
-  email: Option[String],
-  name: Option[String]
+  `class`: Option[String] = None,
+  id: Option[String] = None,
+  fullName: Option[String] = None,
+  email: Option[String] = None,
+  name: Option[String] = None
 )
 

@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineStepImpl   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class PipelineStepImpl   {
   
   private @Valid String propertyClass;
   private @Valid PipelineStepImpllinks links;
@@ -35,8 +36,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -58,8 +57,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public PipelineStepImpllinks getLinks() {
@@ -77,8 +74,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.displayName = displayName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -100,8 +95,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
@@ -119,8 +112,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.id = id;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -142,8 +133,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("input")
   public InputStepImpl getInput() {
@@ -161,8 +150,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.result = result;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -184,8 +171,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("startTime")
   public String getStartTime() {
@@ -203,8 +188,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.state = state;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

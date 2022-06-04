@@ -30,7 +30,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the api API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class ApiApi  {
    private final ApiApiService delegate;
 
@@ -55,7 +55,7 @@ public class ApiApi  {
       this.delegate = delegate;
    }
 
-    @GET
+    @javax.ws.rs.GET
     
     
     @Produces({ "application/json" })
@@ -71,7 +71,7 @@ public class ApiApi  {
     throws NotFoundException {
         return delegate.getJenkins(securityContext);
     }
-    @HEAD
+    @javax.ws.rs.HEAD
     
     
     

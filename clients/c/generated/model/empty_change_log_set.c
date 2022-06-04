@@ -40,19 +40,19 @@ cJSON *empty_change_log_set_convertToJSON(empty_change_log_set_t *empty_change_l
     cJSON *item = cJSON_CreateObject();
 
     // empty_change_log_set->_class
-    if(empty_change_log_set->_class) { 
+    if(empty_change_log_set->_class) {
     if(cJSON_AddStringToObject(item, "_class", empty_change_log_set->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // empty_change_log_set->kind
-    if(empty_change_log_set->kind) { 
+    if(empty_change_log_set->kind) {
     if(cJSON_AddStringToObject(item, "kind", empty_change_log_set->kind) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

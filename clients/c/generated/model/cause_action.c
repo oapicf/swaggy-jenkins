@@ -43,15 +43,15 @@ cJSON *cause_action_convertToJSON(cause_action_t *cause_action) {
     cJSON *item = cJSON_CreateObject();
 
     // cause_action->_class
-    if(cause_action->_class) { 
+    if(cause_action->_class) {
     if(cJSON_AddStringToObject(item, "_class", cause_action->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // cause_action->causes
-    if(cause_action->causes) { 
+    if(cause_action->causes) {
     cJSON *causes = cJSON_AddArrayToObject(item, "causes");
     if(causes == NULL) {
     goto fail; //nonprimitive container
@@ -67,7 +67,7 @@ cJSON *cause_action_convertToJSON(cause_action_t *cause_action) {
     cJSON_AddItemToArray(causes, itemLocal);
     }
     }
-     } 
+    }
 
     return item;
 fail:
@@ -81,6 +81,9 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
     cause_action_t *cause_action_local_var = NULL;
 
+    // define the local list for cause_action->causes
+    list_t *causesList = NULL;
+
     // cause_action->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(cause_actionJSON, "_class");
     if (_class) { 
@@ -92,9 +95,8 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
     // cause_action->causes
     cJSON *causes = cJSON_GetObjectItemCaseSensitive(cause_actionJSON, "causes");
-    list_t *causesList;
     if (causes) { 
-    cJSON *causes_local_nonprimitive;
+    cJSON *causes_local_nonprimitive = NULL;
     if(!cJSON_IsArray(causes)){
         goto end; //nonprimitive container
     }
@@ -120,6 +122,15 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
     return cause_action_local_var;
 end:
+    if (causesList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, causesList) {
+            cause_user_id_cause_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(causesList);
+        causesList = NULL;
+    }
     return NULL;
 
 }

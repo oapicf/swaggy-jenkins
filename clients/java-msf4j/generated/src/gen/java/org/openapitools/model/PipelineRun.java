@@ -12,7 +12,7 @@ import org.openapitools.model.PipelineRunartifacts;
 /**
  * PipelineRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class PipelineRun   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -84,7 +84,7 @@ public class PipelineRun   {
 
   public PipelineRun addArtifactsItem(PipelineRunartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = new ArrayList<PipelineRunartifacts>();
+      this.artifacts = new ArrayList<>();
     }
     this.artifacts.add(artifactsItem);
     return this;

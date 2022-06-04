@@ -18,11 +18,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ComputerSet")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class ComputerSet   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class ComputerSet   {
   
   private @Valid String propertyClass;
   private @Valid Integer busyExecutors;
-  private @Valid List<HudsonMasterComputer> computer = new ArrayList<HudsonMasterComputer>();
+  private @Valid List<HudsonMasterComputer> computer = new ArrayList<>();
   private @Valid String displayName;
   private @Valid Integer totalExecutors;
 
@@ -32,8 +33,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -55,8 +54,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("busyExecutors")
   public Integer getBusyExecutors() {
@@ -76,8 +73,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("computer")
   public List<HudsonMasterComputer> getComputer() {
@@ -91,7 +86,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public ComputerSet addComputerItem(HudsonMasterComputer computerItem) {
     if (this.computer == null) {
-      this.computer = new ArrayList<HudsonMasterComputer>();
+      this.computer = new ArrayList<>();
     }
 
     this.computer.add(computerItem);
@@ -113,8 +108,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
@@ -132,8 +125,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.totalExecutors = totalExecutors;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

@@ -21,8 +21,8 @@ import javax.annotation.Generated;
  * PipelineActivity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class PipelineActivity   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class PipelineActivity {
 
   @JsonProperty("_class")
   private String propertyClass;
@@ -96,7 +96,7 @@ public class PipelineActivity   {
 
   public PipelineActivity addArtifactsItem(PipelineActivityartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = new ArrayList<PipelineActivityartifacts>();
+      this.artifacts = new ArrayList<>();
     }
     this.artifacts.add(artifactsItem);
     return this;

@@ -19,7 +19,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputermonitorData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class HudsonMasterComputermonitorData   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class HudsonMasterComputermonitorData   {
   
   private @Valid SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
   private @Valid DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
@@ -35,8 +36,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -58,8 +57,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
@@ -77,8 +74,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -100,8 +95,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
   public String getHudsonNodeMonitorsArchitectureMonitor() {
@@ -119,8 +112,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -142,8 +133,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.ClockMonitor")
   public ClockDifference getHudsonNodeMonitorsClockMonitor() {
@@ -161,8 +150,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

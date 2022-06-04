@@ -13,7 +13,7 @@ import org.openapitools.model.EmptyChangeLogSet;
 /**
  * FreeStyleBuild
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class FreeStyleBuild   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -130,7 +130,7 @@ public class FreeStyleBuild   {
 
   public FreeStyleBuild addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<CauseAction>();
+      this.actions = new ArrayList<>();
     }
     this.actions.add(actionsItem);
     return this;

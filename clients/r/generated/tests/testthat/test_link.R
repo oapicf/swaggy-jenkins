@@ -3,7 +3,7 @@
 
 context("Test Link")
 
-model.instance <- Link$new()
+model_instance <- Link$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -18,4 +18,3 @@ test_that("href", {
   # uncomment below to test the property
   #expect_equal(model.instance$`href`, "EXPECTED_RESULT")
 })
-

@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param totalSwapSpace  for example: ''null''
 */
 final case class SwapSpaceMonitorMemoryUsage2 (
-  `class`: Option[String],
-  availablePhysicalMemory: Option[Int],
-  availableSwapSpace: Option[Int],
-  totalPhysicalMemory: Option[Int],
-  totalSwapSpace: Option[Int]
+  `class`: Option[String] = None,
+  availablePhysicalMemory: Option[Int] = None,
+  availableSwapSpace: Option[Int] = None,
+  totalPhysicalMemory: Option[Int] = None,
+  totalSwapSpace: Option[Int] = None
 )
 

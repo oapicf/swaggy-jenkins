@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param uri  for example: ''null''
 */
 final case class GithubScm (
-  `class`: Option[String],
-  links: Option[GithubScmlinks],
-  credentialId: Option[String],
-  id: Option[String],
-  uri: Option[String]
+  `class`: Option[String] = None,
+  links: Option[GithubScmlinks] = None,
+  credentialId: Option[String] = None,
+  id: Option[String] = None,
+  uri: Option[String] = None
 )
 

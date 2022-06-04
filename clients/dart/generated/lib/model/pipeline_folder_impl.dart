@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -22,19 +22,61 @@ class PipelineFolderImpl {
     this.numberOfPipelines,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  String displayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? displayName;
 
-  String fullName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? fullName;
 
-  String name;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? name;
 
-  String organization;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? organization;
 
-  int numberOfFolders;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? numberOfFolders;
 
-  int numberOfPipelines;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? numberOfPipelines;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineFolderImpl &&
@@ -48,50 +90,62 @@ class PipelineFolderImpl {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (displayName == null ? 0 : displayName.hashCode) +
-    (fullName == null ? 0 : fullName.hashCode) +
-    (name == null ? 0 : name.hashCode) +
-    (organization == null ? 0 : organization.hashCode) +
-    (numberOfFolders == null ? 0 : numberOfFolders.hashCode) +
-    (numberOfPipelines == null ? 0 : numberOfPipelines.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (displayName == null ? 0 : displayName!.hashCode) +
+    (fullName == null ? 0 : fullName!.hashCode) +
+    (name == null ? 0 : name!.hashCode) +
+    (organization == null ? 0 : organization!.hashCode) +
+    (numberOfFolders == null ? 0 : numberOfFolders!.hashCode) +
+    (numberOfPipelines == null ? 0 : numberOfPipelines!.hashCode);
 
   @override
   String toString() => 'PipelineFolderImpl[class_=$class_, displayName=$displayName, fullName=$fullName, name=$name, organization=$organization, numberOfFolders=$numberOfFolders, numberOfPipelines=$numberOfPipelines]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (displayName != null) {
-      json[r'displayName'] = displayName;
+      _json[r'displayName'] = displayName;
     }
     if (fullName != null) {
-      json[r'fullName'] = fullName;
+      _json[r'fullName'] = fullName;
     }
     if (name != null) {
-      json[r'name'] = name;
+      _json[r'name'] = name;
     }
     if (organization != null) {
-      json[r'organization'] = organization;
+      _json[r'organization'] = organization;
     }
     if (numberOfFolders != null) {
-      json[r'numberOfFolders'] = numberOfFolders;
+      _json[r'numberOfFolders'] = numberOfFolders;
     }
     if (numberOfPipelines != null) {
-      json[r'numberOfPipelines'] = numberOfPipelines;
+      _json[r'numberOfPipelines'] = numberOfPipelines;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [PipelineFolderImpl] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PipelineFolderImpl fromJson(dynamic value) {
+  static PipelineFolderImpl? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PipelineFolderImpl[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PipelineFolderImpl[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return PipelineFolderImpl(
         class_: mapValueOfType<String>(json, r'_class'),
         displayName: mapValueOfType<String>(json, r'displayName'),
@@ -105,36 +159,50 @@ class PipelineFolderImpl {
     return null;
   }
 
-  static List<PipelineFolderImpl> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(PipelineFolderImpl.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <PipelineFolderImpl>[];
+  static List<PipelineFolderImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PipelineFolderImpl>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = PipelineFolderImpl.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, PipelineFolderImpl> mapFromJson(dynamic json) {
     final map = <String, PipelineFolderImpl>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = PipelineFolderImpl.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineFolderImpl.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of PipelineFolderImpl-objects as value to a dart map
-  static Map<String, List<PipelineFolderImpl>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<PipelineFolderImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineFolderImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = PipelineFolderImpl.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineFolderImpl.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

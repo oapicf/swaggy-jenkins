@@ -40,7 +40,7 @@ cJSON *extension_class_impllinks_convertToJSON(extension_class_impllinks_t *exte
     cJSON *item = cJSON_CreateObject();
 
     // extension_class_impllinks->self
-    if(extension_class_impllinks->self) { 
+    if(extension_class_impllinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(extension_class_impllinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -49,15 +49,15 @@ cJSON *extension_class_impllinks_convertToJSON(extension_class_impllinks_t *exte
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // extension_class_impllinks->_class
-    if(extension_class_impllinks->_class) { 
+    if(extension_class_impllinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", extension_class_impllinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

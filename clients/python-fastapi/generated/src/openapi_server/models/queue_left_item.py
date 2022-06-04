@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.cause_action import CauseAction
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server.models.free_style_project import FreeStyleProject
@@ -34,18 +34,18 @@ class QueueLeftItem(BaseModel):
         executable: The executable of this QueueLeftItem [Optional].
     """
 
-    _class: Optional[str] = None
-    actions: Optional[List[CauseAction]] = None
-    blocked: Optional[bool] = None
-    buildable: Optional[bool] = None
-    id: Optional[int] = None
-    in_queue_since: Optional[int] = None
-    params: Optional[str] = None
-    stuck: Optional[bool] = None
-    task: Optional[FreeStyleProject] = None
-    url: Optional[str] = None
-    why: Optional[str] = None
-    cancelled: Optional[bool] = None
-    executable: Optional[FreeStyleBuild] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    actions: Optional[List[CauseAction]] = Field(alias="actions", default=None)
+    blocked: Optional[bool] = Field(alias="blocked", default=None)
+    buildable: Optional[bool] = Field(alias="buildable", default=None)
+    id: Optional[int] = Field(alias="id", default=None)
+    in_queue_since: Optional[int] = Field(alias="inQueueSince", default=None)
+    params: Optional[str] = Field(alias="params", default=None)
+    stuck: Optional[bool] = Field(alias="stuck", default=None)
+    task: Optional[FreeStyleProject] = Field(alias="task", default=None)
+    url: Optional[str] = Field(alias="url", default=None)
+    why: Optional[str] = Field(alias="why", default=None)
+    cancelled: Optional[bool] = Field(alias="cancelled", default=None)
+    executable: Optional[FreeStyleBuild] = Field(alias="executable", default=None)
 
 QueueLeftItem.update_forward_refs()

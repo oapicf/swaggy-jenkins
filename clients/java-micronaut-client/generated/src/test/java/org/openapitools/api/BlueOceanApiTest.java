@@ -18,13 +18,14 @@ import org.openapitools.model.User;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import jakarta.inject.Inject;
-import reactor.core.publisher.Mono;
-
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
 
 
 /**
@@ -43,13 +44,18 @@ public class BlueOceanApiTest {
      * Delete queue item from an organization pipeline queue
      */
     @Test
+    @Disabled("Not Implemented")
     public void deletePipelineQueueItemTest() {
-        String organization = null;
-        String pipeline = null;
-        String queue = null;
-        // api.deletePipelineQueueItem(organization, pipeline, queue).block();
-        // Mono<Object> asyncResponse = api.deletePipelineQueueItem(organization, pipeline, queue);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String queue = "example";
+
+        // when
+        api.deletePipelineQueueItem(organization, pipeline, queue).block();
+
+        // then
+        // TODO implement the deletePipelineQueueItemTest()
     }
 
     
@@ -59,11 +65,16 @@ public class BlueOceanApiTest {
      * Retrieve authenticated user details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getAuthenticatedUserTest() {
-        String organization = null;
-        // User response = api.getAuthenticatedUser(organization).block();
-        // Mono<User> asyncResponse = api.getAuthenticatedUser(organization);
-        // TODO: test validations
+        // given
+        String organization = "example";
+
+        // when
+        User body = api.getAuthenticatedUser(organization).block();
+
+        // then
+        // TODO implement the getAuthenticatedUserTest()
     }
 
     
@@ -73,11 +84,16 @@ public class BlueOceanApiTest {
      * Get a list of class names supported by a given class
      */
     @Test
+    @Disabled("Not Implemented")
     public void getClassesTest() {
-        String propertyClass = null;
-        // String response = api.getClasses(propertyClass).block();
-        // Mono<String> asyncResponse = api.getClasses(propertyClass);
-        // TODO: test validations
+        // given
+        String propertyClass = "example";
+
+        // when
+        String body = api.getClasses(propertyClass).block();
+
+        // then
+        // TODO implement the getClassesTest()
     }
 
     
@@ -87,11 +103,16 @@ public class BlueOceanApiTest {
      * Retrieve JSON Web Key
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJsonWebKeyTest() {
-        Integer key = null;
-        // String response = api.getJsonWebKey(key).block();
-        // Mono<String> asyncResponse = api.getJsonWebKey(key);
-        // TODO: test validations
+        // given
+        Integer key = 56;
+
+        // when
+        String body = api.getJsonWebKey(key).block();
+
+        // then
+        // TODO implement the getJsonWebKeyTest()
     }
 
     
@@ -101,12 +122,17 @@ public class BlueOceanApiTest {
      * Retrieve JSON Web Token
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJsonWebTokenTest() {
-        Integer expiryTimeInMins = null;
-        Integer maxExpiryTimeInMins = null;
-        // String response = api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins).block();
-        // Mono<String> asyncResponse = api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
-        // TODO: test validations
+        // given
+        Integer expiryTimeInMins = 56;
+        Integer maxExpiryTimeInMins = 56;
+
+        // when
+        String body = api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins).block();
+
+        // then
+        // TODO implement the getJsonWebTokenTest()
     }
 
     
@@ -116,11 +142,16 @@ public class BlueOceanApiTest {
      * Retrieve organization details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getOrganisationTest() {
-        String organization = null;
-        // Organisation response = api.getOrganisation(organization).block();
-        // Mono<Organisation> asyncResponse = api.getOrganisation(organization);
-        // TODO: test validations
+        // given
+        String organization = "example";
+
+        // when
+        Organisation body = api.getOrganisation(organization).block();
+
+        // then
+        // TODO implement the getOrganisationTest()
     }
 
     
@@ -130,10 +161,15 @@ public class BlueOceanApiTest {
      * Retrieve all organizations details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getOrganisationsTest() {
-        // List<Organisation> response = api.getOrganisations().block();
-        // Mono<List<Organisation>> asyncResponse = api.getOrganisations();
-        // TODO: test validations
+        // given
+
+        // when
+        List<Organisation> body = api.getOrganisations().block();
+
+        // then
+        // TODO implement the getOrganisationsTest()
     }
 
     
@@ -143,12 +179,17 @@ public class BlueOceanApiTest {
      * Retrieve pipeline details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineTest() {
-        String organization = null;
-        String pipeline = null;
-        // Pipeline response = api.getPipeline(organization, pipeline).block();
-        // Mono<Pipeline> asyncResponse = api.getPipeline(organization, pipeline);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+
+        // when
+        Pipeline body = api.getPipeline(organization, pipeline).block();
+
+        // then
+        // TODO implement the getPipelineTest()
     }
 
     
@@ -158,12 +199,17 @@ public class BlueOceanApiTest {
      * Retrieve all activities details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineActivitiesTest() {
-        String organization = null;
-        String pipeline = null;
-        // List<PipelineActivity> response = api.getPipelineActivities(organization, pipeline).block();
-        // Mono<List<PipelineActivity>> asyncResponse = api.getPipelineActivities(organization, pipeline);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+
+        // when
+        List<PipelineActivity> body = api.getPipelineActivities(organization, pipeline).block();
+
+        // then
+        // TODO implement the getPipelineActivitiesTest()
     }
 
     
@@ -173,13 +219,18 @@ public class BlueOceanApiTest {
      * Retrieve branch details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineBranchTest() {
-        String organization = null;
-        String pipeline = null;
-        String branch = null;
-        // BranchImpl response = api.getPipelineBranch(organization, pipeline, branch).block();
-        // Mono<BranchImpl> asyncResponse = api.getPipelineBranch(organization, pipeline, branch);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String branch = "example";
+
+        // when
+        BranchImpl body = api.getPipelineBranch(organization, pipeline, branch).block();
+
+        // then
+        // TODO implement the getPipelineBranchTest()
     }
 
     
@@ -189,14 +240,19 @@ public class BlueOceanApiTest {
      * Retrieve branch run details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineBranchRunTest() {
-        String organization = null;
-        String pipeline = null;
-        String branch = null;
-        String run = null;
-        // PipelineRun response = api.getPipelineBranchRun(organization, pipeline, branch, run).block();
-        // Mono<PipelineRun> asyncResponse = api.getPipelineBranchRun(organization, pipeline, branch, run);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String branch = "example";
+        String run = "example";
+
+        // when
+        PipelineRun body = api.getPipelineBranchRun(organization, pipeline, branch, run).block();
+
+        // then
+        // TODO implement the getPipelineBranchRunTest()
     }
 
     
@@ -206,12 +262,17 @@ public class BlueOceanApiTest {
      * Retrieve all branches details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineBranchesTest() {
-        String organization = null;
-        String pipeline = null;
-        // MultibranchPipeline response = api.getPipelineBranches(organization, pipeline).block();
-        // Mono<MultibranchPipeline> asyncResponse = api.getPipelineBranches(organization, pipeline);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+
+        // when
+        MultibranchPipeline body = api.getPipelineBranches(organization, pipeline).block();
+
+        // then
+        // TODO implement the getPipelineBranchesTest()
     }
 
     
@@ -221,12 +282,17 @@ public class BlueOceanApiTest {
      * Retrieve pipeline folder for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineFolderTest() {
-        String organization = null;
-        String folder = null;
-        // PipelineFolderImpl response = api.getPipelineFolder(organization, folder).block();
-        // Mono<PipelineFolderImpl> asyncResponse = api.getPipelineFolder(organization, folder);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String folder = "example";
+
+        // when
+        PipelineFolderImpl body = api.getPipelineFolder(organization, folder).block();
+
+        // then
+        // TODO implement the getPipelineFolderTest()
     }
 
     
@@ -236,13 +302,18 @@ public class BlueOceanApiTest {
      * Retrieve pipeline details for an organization folder
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineFolderPipelineTest() {
-        String organization = null;
-        String pipeline = null;
-        String folder = null;
-        // PipelineImpl response = api.getPipelineFolderPipeline(organization, pipeline, folder).block();
-        // Mono<PipelineImpl> asyncResponse = api.getPipelineFolderPipeline(organization, pipeline, folder);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String folder = "example";
+
+        // when
+        PipelineImpl body = api.getPipelineFolderPipeline(organization, pipeline, folder).block();
+
+        // then
+        // TODO implement the getPipelineFolderPipelineTest()
     }
 
     
@@ -252,12 +323,17 @@ public class BlueOceanApiTest {
      * Retrieve queue details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineQueueTest() {
-        String organization = null;
-        String pipeline = null;
-        // List<QueueItemImpl> response = api.getPipelineQueue(organization, pipeline).block();
-        // Mono<List<QueueItemImpl>> asyncResponse = api.getPipelineQueue(organization, pipeline);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+
+        // when
+        List<QueueItemImpl> body = api.getPipelineQueue(organization, pipeline).block();
+
+        // then
+        // TODO implement the getPipelineQueueTest()
     }
 
     
@@ -267,13 +343,18 @@ public class BlueOceanApiTest {
      * Retrieve run details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        // PipelineRun response = api.getPipelineRun(organization, pipeline, run).block();
-        // Mono<PipelineRun> asyncResponse = api.getPipelineRun(organization, pipeline, run);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+
+        // when
+        PipelineRun body = api.getPipelineRun(organization, pipeline, run).block();
+
+        // then
+        // TODO implement the getPipelineRunTest()
     }
 
     
@@ -283,15 +364,20 @@ public class BlueOceanApiTest {
      * Get log for a pipeline run
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunLogTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        Integer start = null;
-        Boolean download = null;
-        // String response = api.getPipelineRunLog(organization, pipeline, run, start, download).block();
-        // Mono<String> asyncResponse = api.getPipelineRunLog(organization, pipeline, run, start, download);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+        Integer start = 56;
+        Boolean download = false;
+
+        // when
+        String body = api.getPipelineRunLog(organization, pipeline, run, start, download).block();
+
+        // then
+        // TODO implement the getPipelineRunLogTest()
     }
 
     
@@ -301,14 +387,19 @@ public class BlueOceanApiTest {
      * Retrieve run node details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunNodeTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        String node = null;
-        // PipelineRunNode response = api.getPipelineRunNode(organization, pipeline, run, node).block();
-        // Mono<PipelineRunNode> asyncResponse = api.getPipelineRunNode(organization, pipeline, run, node);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+        String node = "example";
+
+        // when
+        PipelineRunNode body = api.getPipelineRunNode(organization, pipeline, run, node).block();
+
+        // then
+        // TODO implement the getPipelineRunNodeTest()
     }
 
     
@@ -318,15 +409,20 @@ public class BlueOceanApiTest {
      * Retrieve run node details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunNodeStepTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        String node = null;
-        String step = null;
-        // PipelineStepImpl response = api.getPipelineRunNodeStep(organization, pipeline, run, node, step).block();
-        // Mono<PipelineStepImpl> asyncResponse = api.getPipelineRunNodeStep(organization, pipeline, run, node, step);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+        String node = "example";
+        String step = "example";
+
+        // when
+        PipelineStepImpl body = api.getPipelineRunNodeStep(organization, pipeline, run, node, step).block();
+
+        // then
+        // TODO implement the getPipelineRunNodeStepTest()
     }
 
     
@@ -336,15 +432,20 @@ public class BlueOceanApiTest {
      * Get log for a pipeline run node step
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunNodeStepLogTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        String node = null;
-        String step = null;
-        // String response = api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step).block();
-        // Mono<String> asyncResponse = api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+        String node = "example";
+        String step = "example";
+
+        // when
+        String body = api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step).block();
+
+        // then
+        // TODO implement the getPipelineRunNodeStepLogTest()
     }
 
     
@@ -354,14 +455,19 @@ public class BlueOceanApiTest {
      * Retrieve run node steps details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunNodeStepsTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        String node = null;
-        // List<PipelineStepImpl> response = api.getPipelineRunNodeSteps(organization, pipeline, run, node).block();
-        // Mono<List<PipelineStepImpl>> asyncResponse = api.getPipelineRunNodeSteps(organization, pipeline, run, node);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+        String node = "example";
+
+        // when
+        List<PipelineStepImpl> body = api.getPipelineRunNodeSteps(organization, pipeline, run, node).block();
+
+        // then
+        // TODO implement the getPipelineRunNodeStepsTest()
     }
 
     
@@ -371,13 +477,18 @@ public class BlueOceanApiTest {
      * Retrieve run nodes details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunNodesTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        // List<PipelineRunNode> response = api.getPipelineRunNodes(organization, pipeline, run).block();
-        // Mono<List<PipelineRunNode>> asyncResponse = api.getPipelineRunNodes(organization, pipeline, run);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+
+        // when
+        List<PipelineRunNode> body = api.getPipelineRunNodes(organization, pipeline, run).block();
+
+        // then
+        // TODO implement the getPipelineRunNodesTest()
     }
 
     
@@ -387,12 +498,17 @@ public class BlueOceanApiTest {
      * Retrieve all runs details for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelineRunsTest() {
-        String organization = null;
-        String pipeline = null;
-        // List<PipelineRun> response = api.getPipelineRuns(organization, pipeline).block();
-        // Mono<List<PipelineRun>> asyncResponse = api.getPipelineRuns(organization, pipeline);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+
+        // when
+        List<PipelineRun> body = api.getPipelineRuns(organization, pipeline).block();
+
+        // then
+        // TODO implement the getPipelineRunsTest()
     }
 
     
@@ -402,11 +518,16 @@ public class BlueOceanApiTest {
      * Retrieve all pipelines details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getPipelinesTest() {
-        String organization = null;
-        // List<Pipeline> response = api.getPipelines(organization).block();
-        // Mono<List<Pipeline>> asyncResponse = api.getPipelines(organization);
-        // TODO: test validations
+        // given
+        String organization = "example";
+
+        // when
+        List<Pipeline> body = api.getPipelines(organization).block();
+
+        // then
+        // TODO implement the getPipelinesTest()
     }
 
     
@@ -416,12 +537,17 @@ public class BlueOceanApiTest {
      * Retrieve SCM details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getSCMTest() {
-        String organization = null;
-        String scm = null;
-        // GithubScm response = api.getSCM(organization, scm).block();
-        // Mono<GithubScm> asyncResponse = api.getSCM(organization, scm);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String scm = "example";
+
+        // when
+        GithubScm body = api.getSCM(organization, scm).block();
+
+        // then
+        // TODO implement the getSCMTest()
     }
 
     
@@ -431,16 +557,21 @@ public class BlueOceanApiTest {
      * Retrieve SCM organization repositories details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getSCMOrganisationRepositoriesTest() {
-        String organization = null;
-        String scm = null;
-        String scmOrganisation = null;
-        String credentialId = null;
-        Integer pageSize = null;
-        Integer pageNumber = null;
-        // List<GithubOrganization> response = api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber).block();
-        // Mono<List<GithubOrganization>> asyncResponse = api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String scm = "example";
+        String scmOrganisation = "example";
+        String credentialId = "example";
+        Integer pageSize = 56;
+        Integer pageNumber = 56;
+
+        // when
+        List<GithubOrganization> body = api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber).block();
+
+        // then
+        // TODO implement the getSCMOrganisationRepositoriesTest()
     }
 
     
@@ -450,15 +581,20 @@ public class BlueOceanApiTest {
      * Retrieve SCM organization repository details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getSCMOrganisationRepositoryTest() {
-        String organization = null;
-        String scm = null;
-        String scmOrganisation = null;
-        String repository = null;
-        String credentialId = null;
-        // List<GithubOrganization> response = api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId).block();
-        // Mono<List<GithubOrganization>> asyncResponse = api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String scm = "example";
+        String scmOrganisation = "example";
+        String repository = "example";
+        String credentialId = "example";
+
+        // when
+        List<GithubOrganization> body = api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId).block();
+
+        // then
+        // TODO implement the getSCMOrganisationRepositoryTest()
     }
 
     
@@ -468,13 +604,18 @@ public class BlueOceanApiTest {
      * Retrieve SCM organizations details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getSCMOrganisationsTest() {
-        String organization = null;
-        String scm = null;
-        String credentialId = null;
-        // List<GithubOrganization> response = api.getSCMOrganisations(organization, scm, credentialId).block();
-        // Mono<List<GithubOrganization>> asyncResponse = api.getSCMOrganisations(organization, scm, credentialId);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String scm = "example";
+        String credentialId = "example";
+
+        // when
+        List<GithubOrganization> body = api.getSCMOrganisations(organization, scm, credentialId).block();
+
+        // then
+        // TODO implement the getSCMOrganisationsTest()
     }
 
     
@@ -484,12 +625,17 @@ public class BlueOceanApiTest {
      * Retrieve user details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getUserTest() {
-        String organization = null;
-        String user = null;
-        // User response = api.getUser(organization, user).block();
-        // Mono<User> asyncResponse = api.getUser(organization, user);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String user = "example";
+
+        // when
+        User body = api.getUser(organization, user).block();
+
+        // then
+        // TODO implement the getUserTest()
     }
 
     
@@ -499,11 +645,16 @@ public class BlueOceanApiTest {
      * Retrieve user favorites details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getUserFavoritesTest() {
-        String user = null;
-        // List<FavoriteImpl> response = api.getUserFavorites(user).block();
-        // Mono<List<FavoriteImpl>> asyncResponse = api.getUserFavorites(user);
-        // TODO: test validations
+        // given
+        String user = "example";
+
+        // when
+        List<FavoriteImpl> body = api.getUserFavorites(user).block();
+
+        // then
+        // TODO implement the getUserFavoritesTest()
     }
 
     
@@ -513,11 +664,16 @@ public class BlueOceanApiTest {
      * Retrieve users details for an organization
      */
     @Test
+    @Disabled("Not Implemented")
     public void getUsersTest() {
-        String organization = null;
-        // User response = api.getUsers(organization).block();
-        // Mono<User> asyncResponse = api.getUsers(organization);
-        // TODO: test validations
+        // given
+        String organization = "example";
+
+        // when
+        User body = api.getUsers(organization).block();
+
+        // then
+        // TODO implement the getUsersTest()
     }
 
     
@@ -527,13 +683,18 @@ public class BlueOceanApiTest {
      * Replay an organization pipeline run
      */
     @Test
+    @Disabled("Not Implemented")
     public void postPipelineRunTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        // QueueItemImpl response = api.postPipelineRun(organization, pipeline, run).block();
-        // Mono<QueueItemImpl> asyncResponse = api.postPipelineRun(organization, pipeline, run);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+
+        // when
+        QueueItemImpl body = api.postPipelineRun(organization, pipeline, run).block();
+
+        // then
+        // TODO implement the postPipelineRunTest()
     }
 
     
@@ -543,12 +704,17 @@ public class BlueOceanApiTest {
      * Start a build for an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void postPipelineRunsTest() {
-        String organization = null;
-        String pipeline = null;
-        // QueueItemImpl response = api.postPipelineRuns(organization, pipeline).block();
-        // Mono<QueueItemImpl> asyncResponse = api.postPipelineRuns(organization, pipeline);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+
+        // when
+        QueueItemImpl body = api.postPipelineRuns(organization, pipeline).block();
+
+        // then
+        // TODO implement the postPipelineRunsTest()
     }
 
     
@@ -558,13 +724,18 @@ public class BlueOceanApiTest {
      * Favorite/unfavorite a pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void putPipelineFavoriteTest() {
-        String organization = null;
-        String pipeline = null;
-        Boolean _body = null;
-        // FavoriteImpl response = api.putPipelineFavorite(organization, pipeline, _body).block();
-        // Mono<FavoriteImpl> asyncResponse = api.putPipelineFavorite(organization, pipeline, _body);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        Boolean _body = false;
+
+        // when
+        FavoriteImpl body = api.putPipelineFavorite(organization, pipeline, _body).block();
+
+        // then
+        // TODO implement the putPipelineFavoriteTest()
     }
 
     
@@ -574,15 +745,20 @@ public class BlueOceanApiTest {
      * Stop a build of an organization pipeline
      */
     @Test
+    @Disabled("Not Implemented")
     public void putPipelineRunTest() {
-        String organization = null;
-        String pipeline = null;
-        String run = null;
-        String blocking = null;
-        Integer timeOutInSecs = null;
-        // PipelineRun response = api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs).block();
-        // Mono<PipelineRun> asyncResponse = api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
-        // TODO: test validations
+        // given
+        String organization = "example";
+        String pipeline = "example";
+        String run = "example";
+        String blocking = "example";
+        Integer timeOutInSecs = 56;
+
+        // when
+        PipelineRun body = api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs).block();
+
+        // then
+        // TODO implement the putPipelineRunTest()
     }
 
     
@@ -592,11 +768,16 @@ public class BlueOceanApiTest {
      * Search for any resource details
      */
     @Test
+    @Disabled("Not Implemented")
     public void searchTest() {
-        String q = null;
-        // String response = api.search(q).block();
-        // Mono<String> asyncResponse = api.search(q);
-        // TODO: test validations
+        // given
+        String q = "example";
+
+        // when
+        String body = api.search(q).block();
+
+        // then
+        // TODO implement the searchTest()
     }
 
     
@@ -606,11 +787,16 @@ public class BlueOceanApiTest {
      * Get classes details
      */
     @Test
+    @Disabled("Not Implemented")
     public void searchClassesTest() {
-        String q = null;
-        // String response = api.searchClasses(q).block();
-        // Mono<String> asyncResponse = api.searchClasses(q);
-        // TODO: test validations
+        // given
+        String q = "example";
+
+        // when
+        String body = api.searchClasses(q).block();
+
+        // then
+        // TODO implement the searchClassesTest()
     }
 
     

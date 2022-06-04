@@ -3,7 +3,7 @@
 
 context("Test RemoteAccessApi")
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 
 test_that("GetComputer", {
   # tests for GetComputer
@@ -132,8 +132,8 @@ test_that("PostCreateItem", {
   # @param name character Name of the new job
   # @param from character Existing job to copy from (optional)
   # @param mode character Set to 'copy' for copying an existing job (optional)
-  # @param jenkins.crumb character CSRF protection token (optional)
-  # @param content.type character Content type header application/xml (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
+  # @param content_type character Content type header application/xml (optional)
   # @param body character Job configuration in config.xml format (optional)
   # @return [Void]
 
@@ -146,8 +146,8 @@ test_that("PostCreateView", {
   # base path: http://localhost
   # Create a new view using view configuration
   # @param name character Name of the new view
-  # @param jenkins.crumb character CSRF protection token (optional)
-  # @param content.type character Content type header application/xml (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
+  # @param content_type character Content type header application/xml (optional)
   # @param body character View configuration in config.xml format (optional)
   # @return [Void]
 
@@ -162,7 +162,7 @@ test_that("PostJobBuild", {
   # @param name character Name of the job
   # @param json character 
   # @param token character  (optional)
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
@@ -175,7 +175,7 @@ test_that("PostJobConfig", {
   # Update job configuration
   # @param name character Name of the job
   # @param body character Job configuration in config.xml format
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
@@ -187,7 +187,7 @@ test_that("PostJobDelete", {
   # base path: http://localhost
   # Delete a job
   # @param name character Name of the job
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
@@ -199,7 +199,7 @@ test_that("PostJobDisable", {
   # base path: http://localhost
   # Disable a job
   # @param name character Name of the job
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
@@ -211,7 +211,7 @@ test_that("PostJobEnable", {
   # base path: http://localhost
   # Enable a job
   # @param name character Name of the job
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
@@ -223,7 +223,7 @@ test_that("PostJobLastBuildStop", {
   # base path: http://localhost
   # Stop a job
   # @param name character Name of the job
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
@@ -236,10 +236,9 @@ test_that("PostViewConfig", {
   # Update view configuration
   # @param name character Name of the view
   # @param body character View configuration in config.xml format
-  # @param jenkins.crumb character CSRF protection token (optional)
+  # @param jenkins_crumb character CSRF protection token (optional)
   # @return [Void]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
 })
-

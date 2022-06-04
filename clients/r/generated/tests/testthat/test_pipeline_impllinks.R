@@ -3,7 +3,7 @@
 
 context("Test PipelineImpllinks")
 
-model.instance <- PipelineImpllinks$new()
+model_instance <- PipelineImpllinks$new()
 
 test_that("runs", {
   # tests for the property `runs` (Link)
@@ -39,4 +39,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

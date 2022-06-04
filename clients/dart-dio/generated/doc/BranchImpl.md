@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **fullName** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 
 **organization** | **String** |  | [optional] 
-**parameters** | [**BuiltList<StringParameterDefinition>**](StringParameterDefinition.md) |  | [optional] 
+**parameters** | [**BuiltList&lt;StringParameterDefinition&gt;**](StringParameterDefinition.md) |  | [optional] 
 **permissions** | [**BranchImplpermissions**](BranchImplpermissions.md) |  | [optional] 
 **weatherScore** | **int** |  | [optional] 
 **pullRequest** | **String** |  | [optional] 

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -20,15 +20,45 @@ class SwapSpaceMonitorMemoryUsage2 {
     this.totalSwapSpace,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  int availablePhysicalMemory;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? availablePhysicalMemory;
 
-  int availableSwapSpace;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? availableSwapSpace;
 
-  int totalPhysicalMemory;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? totalPhysicalMemory;
 
-  int totalSwapSpace;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? totalSwapSpace;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SwapSpaceMonitorMemoryUsage2 &&
@@ -40,42 +70,54 @@ class SwapSpaceMonitorMemoryUsage2 {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (availablePhysicalMemory == null ? 0 : availablePhysicalMemory.hashCode) +
-    (availableSwapSpace == null ? 0 : availableSwapSpace.hashCode) +
-    (totalPhysicalMemory == null ? 0 : totalPhysicalMemory.hashCode) +
-    (totalSwapSpace == null ? 0 : totalSwapSpace.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (availablePhysicalMemory == null ? 0 : availablePhysicalMemory!.hashCode) +
+    (availableSwapSpace == null ? 0 : availableSwapSpace!.hashCode) +
+    (totalPhysicalMemory == null ? 0 : totalPhysicalMemory!.hashCode) +
+    (totalSwapSpace == null ? 0 : totalSwapSpace!.hashCode);
 
   @override
   String toString() => 'SwapSpaceMonitorMemoryUsage2[class_=$class_, availablePhysicalMemory=$availablePhysicalMemory, availableSwapSpace=$availableSwapSpace, totalPhysicalMemory=$totalPhysicalMemory, totalSwapSpace=$totalSwapSpace]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (availablePhysicalMemory != null) {
-      json[r'availablePhysicalMemory'] = availablePhysicalMemory;
+      _json[r'availablePhysicalMemory'] = availablePhysicalMemory;
     }
     if (availableSwapSpace != null) {
-      json[r'availableSwapSpace'] = availableSwapSpace;
+      _json[r'availableSwapSpace'] = availableSwapSpace;
     }
     if (totalPhysicalMemory != null) {
-      json[r'totalPhysicalMemory'] = totalPhysicalMemory;
+      _json[r'totalPhysicalMemory'] = totalPhysicalMemory;
     }
     if (totalSwapSpace != null) {
-      json[r'totalSwapSpace'] = totalSwapSpace;
+      _json[r'totalSwapSpace'] = totalSwapSpace;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [SwapSpaceMonitorMemoryUsage2] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static SwapSpaceMonitorMemoryUsage2 fromJson(dynamic value) {
+  static SwapSpaceMonitorMemoryUsage2? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "SwapSpaceMonitorMemoryUsage2[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "SwapSpaceMonitorMemoryUsage2[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return SwapSpaceMonitorMemoryUsage2(
         class_: mapValueOfType<String>(json, r'_class'),
         availablePhysicalMemory: mapValueOfType<int>(json, r'availablePhysicalMemory'),
@@ -87,36 +129,50 @@ class SwapSpaceMonitorMemoryUsage2 {
     return null;
   }
 
-  static List<SwapSpaceMonitorMemoryUsage2> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(SwapSpaceMonitorMemoryUsage2.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <SwapSpaceMonitorMemoryUsage2>[];
+  static List<SwapSpaceMonitorMemoryUsage2>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <SwapSpaceMonitorMemoryUsage2>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = SwapSpaceMonitorMemoryUsage2.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, SwapSpaceMonitorMemoryUsage2> mapFromJson(dynamic json) {
     final map = <String, SwapSpaceMonitorMemoryUsage2>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = SwapSpaceMonitorMemoryUsage2.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SwapSpaceMonitorMemoryUsage2.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of SwapSpaceMonitorMemoryUsage2-objects as value to a dart map
-  static Map<String, List<SwapSpaceMonitorMemoryUsage2>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<SwapSpaceMonitorMemoryUsage2>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<SwapSpaceMonitorMemoryUsage2>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = SwapSpaceMonitorMemoryUsage2.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = SwapSpaceMonitorMemoryUsage2.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

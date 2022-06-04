@@ -1,5 +1,8 @@
 import connexion
 import six
+from typing import Dict
+from typing import Tuple
+from typing import Union
 
 from openapi_server.models.branch_impl import BranchImpl  # noqa: E501
 from openapi_server.models.favorite_impl import FavoriteImpl  # noqa: E501
@@ -31,7 +34,7 @@ def delete_pipeline_queue_item(organization, pipeline, queue):  # noqa: E501
     :param queue: Name of the queue item
     :type queue: str
 
-    :rtype: None
+    :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -44,7 +47,7 @@ def get_authenticated_user(organization):  # noqa: E501
     :param organization: Name of the organization
     :type organization: str
 
-    :rtype: User
+    :rtype: Union[User, Tuple[User, int], Tuple[User, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -57,7 +60,7 @@ def get_classes(_class):  # noqa: E501
     :param _class: Name of the class
     :type _class: str
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -70,7 +73,7 @@ def get_json_web_key(key):  # noqa: E501
     :param key: Key ID received as part of JWT header field kid
     :type key: int
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -85,7 +88,7 @@ def get_json_web_token(expiry_time_in_mins=None, max_expiry_time_in_mins=None): 
     :param max_expiry_time_in_mins: Maximum token expiry time in minutes, default: 480 minutes
     :type max_expiry_time_in_mins: int
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -98,7 +101,7 @@ def get_organisation(organization):  # noqa: E501
     :param organization: Name of the organization
     :type organization: str
 
-    :rtype: Organisation
+    :rtype: Union[Organisation, Tuple[Organisation, int], Tuple[Organisation, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -109,7 +112,7 @@ def get_organisations():  # noqa: E501
     Retrieve all organizations details # noqa: E501
 
 
-    :rtype: List[Organisation]
+    :rtype: Union[List[Organisation], Tuple[List[Organisation], int], Tuple[List[Organisation], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -124,7 +127,7 @@ def get_pipeline(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: Pipeline
+    :rtype: Union[Pipeline, Tuple[Pipeline, int], Tuple[Pipeline, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -139,7 +142,7 @@ def get_pipeline_activities(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: List[PipelineActivity]
+    :rtype: Union[List[PipelineActivity], Tuple[List[PipelineActivity], int], Tuple[List[PipelineActivity], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -156,7 +159,7 @@ def get_pipeline_branch(organization, pipeline, branch):  # noqa: E501
     :param branch: Name of the branch
     :type branch: str
 
-    :rtype: BranchImpl
+    :rtype: Union[BranchImpl, Tuple[BranchImpl, int], Tuple[BranchImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -175,7 +178,7 @@ def get_pipeline_branch_run(organization, pipeline, branch, run):  # noqa: E501
     :param run: Name of the run
     :type run: str
 
-    :rtype: PipelineRun
+    :rtype: Union[PipelineRun, Tuple[PipelineRun, int], Tuple[PipelineRun, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -190,7 +193,7 @@ def get_pipeline_branches(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: MultibranchPipeline
+    :rtype: Union[MultibranchPipeline, Tuple[MultibranchPipeline, int], Tuple[MultibranchPipeline, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -205,7 +208,7 @@ def get_pipeline_folder(organization, folder):  # noqa: E501
     :param folder: Name of the folder
     :type folder: str
 
-    :rtype: PipelineFolderImpl
+    :rtype: Union[PipelineFolderImpl, Tuple[PipelineFolderImpl, int], Tuple[PipelineFolderImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -222,7 +225,7 @@ def get_pipeline_folder_pipeline(organization, pipeline, folder):  # noqa: E501
     :param folder: Name of the folder
     :type folder: str
 
-    :rtype: PipelineImpl
+    :rtype: Union[PipelineImpl, Tuple[PipelineImpl, int], Tuple[PipelineImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -237,7 +240,7 @@ def get_pipeline_queue(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: List[QueueItemImpl]
+    :rtype: Union[List[QueueItemImpl], Tuple[List[QueueItemImpl], int], Tuple[List[QueueItemImpl], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -254,7 +257,7 @@ def get_pipeline_run(organization, pipeline, run):  # noqa: E501
     :param run: Name of the run
     :type run: str
 
-    :rtype: PipelineRun
+    :rtype: Union[PipelineRun, Tuple[PipelineRun, int], Tuple[PipelineRun, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -275,7 +278,7 @@ def get_pipeline_run_log(organization, pipeline, run, start=None, download=None)
     :param download: Set to true in order to download the file, otherwise it&#39;s passed as a response body
     :type download: bool
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -294,7 +297,7 @@ def get_pipeline_run_node(organization, pipeline, run, node):  # noqa: E501
     :param node: Name of the node
     :type node: str
 
-    :rtype: PipelineRunNode
+    :rtype: Union[PipelineRunNode, Tuple[PipelineRunNode, int], Tuple[PipelineRunNode, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -315,7 +318,7 @@ def get_pipeline_run_node_step(organization, pipeline, run, node, step):  # noqa
     :param step: Name of the step
     :type step: str
 
-    :rtype: PipelineStepImpl
+    :rtype: Union[PipelineStepImpl, Tuple[PipelineStepImpl, int], Tuple[PipelineStepImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -336,7 +339,7 @@ def get_pipeline_run_node_step_log(organization, pipeline, run, node, step):  # 
     :param step: Name of the step
     :type step: str
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -355,7 +358,7 @@ def get_pipeline_run_node_steps(organization, pipeline, run, node):  # noqa: E50
     :param node: Name of the node
     :type node: str
 
-    :rtype: List[PipelineStepImpl]
+    :rtype: Union[List[PipelineStepImpl], Tuple[List[PipelineStepImpl], int], Tuple[List[PipelineStepImpl], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -372,7 +375,7 @@ def get_pipeline_run_nodes(organization, pipeline, run):  # noqa: E501
     :param run: Name of the run
     :type run: str
 
-    :rtype: List[PipelineRunNode]
+    :rtype: Union[List[PipelineRunNode], Tuple[List[PipelineRunNode], int], Tuple[List[PipelineRunNode], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -387,7 +390,7 @@ def get_pipeline_runs(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: List[PipelineRun]
+    :rtype: Union[List[PipelineRun], Tuple[List[PipelineRun], int], Tuple[List[PipelineRun], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -400,7 +403,7 @@ def get_pipelines(organization):  # noqa: E501
     :param organization: Name of the organization
     :type organization: str
 
-    :rtype: List[Pipeline]
+    :rtype: Union[List[Pipeline], Tuple[List[Pipeline], int], Tuple[List[Pipeline], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -415,7 +418,7 @@ def get_scm(organization, scm):  # noqa: E501
     :param scm: Name of SCM
     :type scm: str
 
-    :rtype: GithubScm
+    :rtype: Union[GithubScm, Tuple[GithubScm, int], Tuple[GithubScm, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -438,7 +441,7 @@ def get_scm_organisation_repositories(organization, scm, scm_organisation, crede
     :param page_number: Page number
     :type page_number: int
 
-    :rtype: List[GithubOrganization]
+    :rtype: Union[List[GithubOrganization], Tuple[List[GithubOrganization], int], Tuple[List[GithubOrganization], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -459,7 +462,7 @@ def get_scm_organisation_repository(organization, scm, scm_organisation, reposit
     :param credential_id: Credential ID
     :type credential_id: str
 
-    :rtype: List[GithubOrganization]
+    :rtype: Union[List[GithubOrganization], Tuple[List[GithubOrganization], int], Tuple[List[GithubOrganization], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -476,7 +479,7 @@ def get_scm_organisations(organization, scm, credential_id=None):  # noqa: E501
     :param credential_id: Credential ID
     :type credential_id: str
 
-    :rtype: List[GithubOrganization]
+    :rtype: Union[List[GithubOrganization], Tuple[List[GithubOrganization], int], Tuple[List[GithubOrganization], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -491,7 +494,7 @@ def get_user(organization, user):  # noqa: E501
     :param user: Name of the user
     :type user: str
 
-    :rtype: User
+    :rtype: Union[User, Tuple[User, int], Tuple[User, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -504,7 +507,7 @@ def get_user_favorites(user):  # noqa: E501
     :param user: Name of the user
     :type user: str
 
-    :rtype: List[FavoriteImpl]
+    :rtype: Union[List[FavoriteImpl], Tuple[List[FavoriteImpl], int], Tuple[List[FavoriteImpl], int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -517,7 +520,7 @@ def get_users(organization):  # noqa: E501
     :param organization: Name of the organization
     :type organization: str
 
-    :rtype: User
+    :rtype: Union[User, Tuple[User, int], Tuple[User, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -534,7 +537,7 @@ def post_pipeline_run(organization, pipeline, run):  # noqa: E501
     :param run: Name of the run
     :type run: str
 
-    :rtype: QueueItemImpl
+    :rtype: Union[QueueItemImpl, Tuple[QueueItemImpl, int], Tuple[QueueItemImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -549,7 +552,7 @@ def post_pipeline_runs(organization, pipeline):  # noqa: E501
     :param pipeline: Name of the pipeline
     :type pipeline: str
 
-    :rtype: QueueItemImpl
+    :rtype: Union[QueueItemImpl, Tuple[QueueItemImpl, int], Tuple[QueueItemImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -566,7 +569,7 @@ def put_pipeline_favorite(organization, pipeline, body):  # noqa: E501
     :param body: Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
     :type body: bool
 
-    :rtype: FavoriteImpl
+    :rtype: Union[FavoriteImpl, Tuple[FavoriteImpl, int], Tuple[FavoriteImpl, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -587,7 +590,7 @@ def put_pipeline_run(organization, pipeline, run, blocking=None, time_out_in_sec
     :param time_out_in_secs: Timeout in seconds, default: 10 seconds
     :type time_out_in_secs: int
 
-    :rtype: PipelineRun
+    :rtype: Union[PipelineRun, Tuple[PipelineRun, int], Tuple[PipelineRun, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -600,7 +603,7 @@ def search(q):  # noqa: E501
     :param q: Query string
     :type q: str
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'
 
@@ -613,6 +616,6 @@ def search_classes(q):  # noqa: E501
     :param q: Query string containing an array of class names
     :type q: str
 
-    :rtype: str
+    :rtype: Union[str, Tuple[str, int], Tuple[str, int, Dict[str, str]]
     """
     return 'do some magic!'

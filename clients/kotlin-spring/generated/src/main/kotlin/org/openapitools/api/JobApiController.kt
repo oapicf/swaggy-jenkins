@@ -2,6 +2,11 @@ package org.openapitools.api
 
 import org.openapitools.model.FreeStyleBuild
 import org.openapitools.model.FreeStyleProject
+import io.swagger.v3.oas.annotations.*
+import io.swagger.v3.oas.annotations.enums.*
+import io.swagger.v3.oas.annotations.media.*
+import io.swagger.v3.oas.annotations.responses.*
+import io.swagger.v3.oas.annotations.security.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -14,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
+import javax.validation.constraints.Email
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
@@ -28,119 +34,200 @@ import kotlin.collections.Map
 @RequestMapping("\${api.base-path:}")
 class JobApiController() {
 
-
+    @Operation(
+        summary = "",
+        operationId = "getJob",
+        description = "Retrieve job details",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved job details", content = [Content(schema = Schema(implementation = FreeStyleProject::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/job/{name}/api/json"],
         produces = ["application/json"]
     )
-    fun getJob( @PathVariable("name") name: kotlin.String
-): ResponseEntity<FreeStyleProject> {
+    fun getJob(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<FreeStyleProject> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "getJobConfig",
+        description = "Retrieve job configuration",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved job configuration in config.xml format", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/job/{name}/config.xml"],
         produces = ["text/xml"]
     )
-    fun getJobConfig( @PathVariable("name") name: kotlin.String
-): ResponseEntity<kotlin.String> {
+    fun getJobConfig(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "getJobLastBuild",
+        description = "Retrieve job's last build details",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved job's last build details", content = [Content(schema = Schema(implementation = FreeStyleBuild::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/job/{name}/lastBuild/api/json"],
         produces = ["application/json"]
     )
-    fun getJobLastBuild( @PathVariable("name") name: kotlin.String
-): ResponseEntity<FreeStyleBuild> {
+    fun getJobLastBuild(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<FreeStyleBuild> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "getJobProgressiveText",
+        description = "Retrieve job's build progressive text output",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved job's build progressive text output"),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/job/{name}/{number}/logText/progressiveText"]
     )
-    fun getJobProgressiveText( @PathVariable("name") name: kotlin.String
-, @PathVariable("number") number: kotlin.String
-,@NotNull  @RequestParam(value = "start", required = true) start: kotlin.String
-): ResponseEntity<Unit> {
+    fun getJobProgressiveText(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "Build number", required = true) @PathVariable("number") number: kotlin.String,@NotNull @Parameter(description = "Starting point of progressive text output", required = true) @Valid @RequestParam(value = "start", required = true) start: kotlin.String): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "postJobBuild",
+        description = "Build a job",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully built the job (backward compatibility for older versions of Jenkins)"),
+            ApiResponse(responseCode = "201", description = "Successfully built the job"),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/job/{name}/build"]
     )
-    fun postJobBuild( @PathVariable("name") name: kotlin.String
-,@NotNull  @RequestParam(value = "json", required = true) json: kotlin.String
-, @RequestParam(value = "token", required = false) token: kotlin.String?
-, @RequestHeader(value="Jenkins-Crumb", required=false) jenkinsCrumb: kotlin.String?
-): ResponseEntity<Unit> {
+    fun postJobBuild(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@NotNull @Parameter(description = "", required = true) @Valid @RequestParam(value = "json", required = true) json: kotlin.String,@Parameter(description = "") @Valid @RequestParam(value = "token", required = false) token: kotlin.String?,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "postJobConfig",
+        description = "Update job configuration",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved job configuration in config.xml format"),
+            ApiResponse(responseCode = "400", description = "An error has occurred - error message is embedded inside the HTML response", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/job/{name}/config.xml"],
         produces = ["*/*"],
         consumes = ["application/json"]
     )
-    fun postJobConfig( @PathVariable("name") name: kotlin.String
-, @Valid @RequestBody body: kotlin.String
-, @RequestHeader(value="Jenkins-Crumb", required=false) jenkinsCrumb: kotlin.String?
-): ResponseEntity<Unit> {
+    fun postJobConfig(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "Job configuration in config.xml format", required = true) @Valid @RequestBody body: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "postJobDelete",
+        description = "Delete a job",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully deleted the job"),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/job/{name}/doDelete"]
     )
-    fun postJobDelete( @PathVariable("name") name: kotlin.String
-, @RequestHeader(value="Jenkins-Crumb", required=false) jenkinsCrumb: kotlin.String?
-): ResponseEntity<Unit> {
+    fun postJobDelete(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "postJobDisable",
+        description = "Disable a job",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully disabled the job"),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/job/{name}/disable"]
     )
-    fun postJobDisable( @PathVariable("name") name: kotlin.String
-, @RequestHeader(value="Jenkins-Crumb", required=false) jenkinsCrumb: kotlin.String?
-): ResponseEntity<Unit> {
+    fun postJobDisable(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "postJobEnable",
+        description = "Enable a job",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully enabled the job"),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/job/{name}/enable"]
     )
-    fun postJobEnable( @PathVariable("name") name: kotlin.String
-, @RequestHeader(value="Jenkins-Crumb", required=false) jenkinsCrumb: kotlin.String?
-): ResponseEntity<Unit> {
+    fun postJobEnable(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "postJobLastBuildStop",
+        description = "Stop a job",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully stopped the job"),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password"),
+            ApiResponse(responseCode = "404", description = "Job cannot be found on Jenkins instance") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.POST],
         value = ["/job/{name}/lastBuild/stop"]
     )
-    fun postJobLastBuildStop( @PathVariable("name") name: kotlin.String
-, @RequestHeader(value="Jenkins-Crumb", required=false) jenkinsCrumb: kotlin.String?
-): ResponseEntity<Unit> {
+    fun postJobLastBuildStop(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 }

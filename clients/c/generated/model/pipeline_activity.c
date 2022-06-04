@@ -113,15 +113,15 @@ cJSON *pipeline_activity_convertToJSON(pipeline_activity_t *pipeline_activity) {
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_activity->_class
-    if(pipeline_activity->_class) { 
+    if(pipeline_activity->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_activity->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->artifacts
-    if(pipeline_activity->artifacts) { 
+    if(pipeline_activity->artifacts) {
     cJSON *artifacts = cJSON_AddArrayToObject(item, "artifacts");
     if(artifacts == NULL) {
     goto fail; //nonprimitive container
@@ -137,111 +137,111 @@ cJSON *pipeline_activity_convertToJSON(pipeline_activity_t *pipeline_activity) {
     cJSON_AddItemToArray(artifacts, itemLocal);
     }
     }
-     } 
+    }
 
 
     // pipeline_activity->duration_in_millis
-    if(pipeline_activity->duration_in_millis) { 
+    if(pipeline_activity->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_activity->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_activity->estimated_duration_in_millis
-    if(pipeline_activity->estimated_duration_in_millis) { 
+    if(pipeline_activity->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_activity->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_activity->en_queue_time
-    if(pipeline_activity->en_queue_time) { 
+    if(pipeline_activity->en_queue_time) {
     if(cJSON_AddStringToObject(item, "enQueueTime", pipeline_activity->en_queue_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->end_time
-    if(pipeline_activity->end_time) { 
+    if(pipeline_activity->end_time) {
     if(cJSON_AddStringToObject(item, "endTime", pipeline_activity->end_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->id
-    if(pipeline_activity->id) { 
+    if(pipeline_activity->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_activity->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->organization
-    if(pipeline_activity->organization) { 
+    if(pipeline_activity->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_activity->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->pipeline
-    if(pipeline_activity->pipeline) { 
+    if(pipeline_activity->pipeline) {
     if(cJSON_AddStringToObject(item, "pipeline", pipeline_activity->pipeline) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->result
-    if(pipeline_activity->result) { 
+    if(pipeline_activity->result) {
     if(cJSON_AddStringToObject(item, "result", pipeline_activity->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->run_summary
-    if(pipeline_activity->run_summary) { 
+    if(pipeline_activity->run_summary) {
     if(cJSON_AddStringToObject(item, "runSummary", pipeline_activity->run_summary) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->start_time
-    if(pipeline_activity->start_time) { 
+    if(pipeline_activity->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", pipeline_activity->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->state
-    if(pipeline_activity->state) { 
+    if(pipeline_activity->state) {
     if(cJSON_AddStringToObject(item, "state", pipeline_activity->state) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->type
-    if(pipeline_activity->type) { 
+    if(pipeline_activity->type) {
     if(cJSON_AddStringToObject(item, "type", pipeline_activity->type) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activity->commit_id
-    if(pipeline_activity->commit_id) { 
+    if(pipeline_activity->commit_id) {
     if(cJSON_AddStringToObject(item, "commitId", pipeline_activity->commit_id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -255,6 +255,9 @@ pipeline_activity_t *pipeline_activity_parseFromJSON(cJSON *pipeline_activityJSO
 
     pipeline_activity_t *pipeline_activity_local_var = NULL;
 
+    // define the local list for pipeline_activity->artifacts
+    list_t *artifactsList = NULL;
+
     // pipeline_activity->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_activityJSON, "_class");
     if (_class) { 
@@ -266,9 +269,8 @@ pipeline_activity_t *pipeline_activity_parseFromJSON(cJSON *pipeline_activityJSO
 
     // pipeline_activity->artifacts
     cJSON *artifacts = cJSON_GetObjectItemCaseSensitive(pipeline_activityJSON, "artifacts");
-    list_t *artifactsList;
     if (artifacts) { 
-    cJSON *artifacts_local_nonprimitive;
+    cJSON *artifacts_local_nonprimitive = NULL;
     if(!cJSON_IsArray(artifacts)){
         goto end; //nonprimitive container
     }
@@ -424,6 +426,15 @@ pipeline_activity_t *pipeline_activity_parseFromJSON(cJSON *pipeline_activityJSO
 
     return pipeline_activity_local_var;
 end:
+    if (artifactsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, artifactsList) {
+            pipeline_activityartifacts_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(artifactsList);
+        artifactsList = NULL;
+    }
     return NULL;
 
 }

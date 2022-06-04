@@ -40,7 +40,7 @@ cJSON *github_file_convertToJSON(github_file_t *github_file) {
     cJSON *item = cJSON_CreateObject();
 
     // github_file->content
-    if(github_file->content) { 
+    if(github_file->content) {
     cJSON *content_local_JSON = github_content_convertToJSON(github_file->content);
     if(content_local_JSON == NULL) {
     goto fail; //model
@@ -49,15 +49,15 @@ cJSON *github_file_convertToJSON(github_file_t *github_file) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_file->_class
-    if(github_file->_class) { 
+    if(github_file->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_file->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

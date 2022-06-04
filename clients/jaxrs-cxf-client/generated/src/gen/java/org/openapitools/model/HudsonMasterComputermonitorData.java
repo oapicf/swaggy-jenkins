@@ -8,6 +8,7 @@ import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class HudsonMasterComputermonitorData  {
   
   @ApiModelProperty(value = "")

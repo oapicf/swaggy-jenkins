@@ -44,35 +44,35 @@ cJSON *disk_space_monitor_descriptor_disk_space_convertToJSON(disk_space_monitor
     cJSON *item = cJSON_CreateObject();
 
     // disk_space_monitor_descriptor_disk_space->_class
-    if(disk_space_monitor_descriptor_disk_space->_class) { 
+    if(disk_space_monitor_descriptor_disk_space->_class) {
     if(cJSON_AddStringToObject(item, "_class", disk_space_monitor_descriptor_disk_space->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // disk_space_monitor_descriptor_disk_space->timestamp
-    if(disk_space_monitor_descriptor_disk_space->timestamp) { 
+    if(disk_space_monitor_descriptor_disk_space->timestamp) {
     if(cJSON_AddNumberToObject(item, "timestamp", disk_space_monitor_descriptor_disk_space->timestamp) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // disk_space_monitor_descriptor_disk_space->path
-    if(disk_space_monitor_descriptor_disk_space->path) { 
+    if(disk_space_monitor_descriptor_disk_space->path) {
     if(cJSON_AddStringToObject(item, "path", disk_space_monitor_descriptor_disk_space->path) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // disk_space_monitor_descriptor_disk_space->size
-    if(disk_space_monitor_descriptor_disk_space->size) { 
+    if(disk_space_monitor_descriptor_disk_space->size) {
     if(cJSON_AddNumberToObject(item, "size", disk_space_monitor_descriptor_disk_space->size) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

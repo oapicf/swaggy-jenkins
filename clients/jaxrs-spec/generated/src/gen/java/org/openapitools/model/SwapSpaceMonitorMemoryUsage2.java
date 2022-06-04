@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("SwapSpaceMonitorMemoryUsage2")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class SwapSpaceMonitorMemoryUsage2   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class SwapSpaceMonitorMemoryUsage2   {
   
   private @Valid String propertyClass;
   private @Valid Integer availablePhysicalMemory;
@@ -29,8 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -52,8 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("availablePhysicalMemory")
   public Integer getAvailablePhysicalMemory() {
@@ -71,8 +68,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.availableSwapSpace = availableSwapSpace;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -94,8 +89,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("totalPhysicalMemory")
   public Integer getTotalPhysicalMemory() {
@@ -113,8 +106,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.totalSwapSpace = totalSwapSpace;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

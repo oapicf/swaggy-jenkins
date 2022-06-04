@@ -46,7 +46,7 @@ cJSON *github_organizationlinks_convertToJSON(github_organizationlinks_t *github
     cJSON *item = cJSON_CreateObject();
 
     // github_organizationlinks->repositories
-    if(github_organizationlinks->repositories) { 
+    if(github_organizationlinks->repositories) {
     cJSON *repositories_local_JSON = link_convertToJSON(github_organizationlinks->repositories);
     if(repositories_local_JSON == NULL) {
     goto fail; //model
@@ -55,11 +55,11 @@ cJSON *github_organizationlinks_convertToJSON(github_organizationlinks_t *github
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_organizationlinks->self
-    if(github_organizationlinks->self) { 
+    if(github_organizationlinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(github_organizationlinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -68,15 +68,15 @@ cJSON *github_organizationlinks_convertToJSON(github_organizationlinks_t *github
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_organizationlinks->_class
-    if(github_organizationlinks->_class) { 
+    if(github_organizationlinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_organizationlinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

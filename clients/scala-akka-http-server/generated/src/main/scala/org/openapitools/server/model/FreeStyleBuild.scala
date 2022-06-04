@@ -22,23 +22,23 @@ package org.openapitools.server.model
  * @param changeSet  for example: ''null''
 */
 final case class FreeStyleBuild (
-  `class`: Option[String],
-  number: Option[Int],
-  url: Option[String],
-  actions: Option[Seq[CauseAction]],
-  building: Option[Boolean],
-  description: Option[String],
-  displayName: Option[String],
-  duration: Option[Int],
-  estimatedDuration: Option[Int],
-  executor: Option[String],
-  fullDisplayName: Option[String],
-  id: Option[String],
-  keepLog: Option[Boolean],
-  queueId: Option[Int],
-  result: Option[String],
-  timestamp: Option[Int],
-  builtOn: Option[String],
-  changeSet: Option[EmptyChangeLogSet]
+  `class`: Option[String] = None,
+  number: Option[Int] = None,
+  url: Option[String] = None,
+  actions: Option[Seq[CauseAction]] = None,
+  building: Option[Boolean] = None,
+  description: Option[String] = None,
+  displayName: Option[String] = None,
+  duration: Option[Int] = None,
+  estimatedDuration: Option[Int] = None,
+  executor: Option[String] = None,
+  fullDisplayName: Option[String] = None,
+  id: Option[String] = None,
+  keepLog: Option[Boolean] = None,
+  queueId: Option[Int] = None,
+  result: Option[String] = None,
+  timestamp: Option[Int] = None,
+  builtOn: Option[String] = None,
+  changeSet: Option[EmptyChangeLogSet] = None
 )
 

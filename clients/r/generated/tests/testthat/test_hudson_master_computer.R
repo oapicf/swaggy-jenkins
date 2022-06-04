@@ -3,7 +3,7 @@
 
 context("Test HudsonMasterComputer")
 
-model.instance <- HudsonMasterComputer$new()
+model_instance <- HudsonMasterComputer$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -116,4 +116,3 @@ test_that("temporarilyOffline", {
   # uncomment below to test the property
   #expect_equal(model.instance$`temporarilyOffline`, "EXPECTED_RESULT")
 })
-

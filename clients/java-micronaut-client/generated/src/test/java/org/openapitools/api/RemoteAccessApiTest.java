@@ -9,13 +9,14 @@ import org.openapitools.model.Queue;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import jakarta.inject.Inject;
-import reactor.core.publisher.Mono;
-
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
 
 
 /**
@@ -34,11 +35,16 @@ public class RemoteAccessApiTest {
      * Retrieve computer details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getComputerTest() {
-        Integer depth = null;
-        // ComputerSet response = api.getComputer(depth).block();
-        // Mono<ComputerSet> asyncResponse = api.getComputer(depth);
-        // TODO: test validations
+        // given
+        Integer depth = 56;
+
+        // when
+        ComputerSet body = api.getComputer(depth).block();
+
+        // then
+        // TODO implement the getComputerTest()
     }
 
     
@@ -48,10 +54,15 @@ public class RemoteAccessApiTest {
      * Retrieve Jenkins details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJenkinsTest() {
-        // Hudson response = api.getJenkins().block();
-        // Mono<Hudson> asyncResponse = api.getJenkins();
-        // TODO: test validations
+        // given
+
+        // when
+        Hudson body = api.getJenkins().block();
+
+        // then
+        // TODO implement the getJenkinsTest()
     }
 
     
@@ -61,11 +72,16 @@ public class RemoteAccessApiTest {
      * Retrieve job details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJobTest() {
-        String name = null;
-        // FreeStyleProject response = api.getJob(name).block();
-        // Mono<FreeStyleProject> asyncResponse = api.getJob(name);
-        // TODO: test validations
+        // given
+        String name = "example";
+
+        // when
+        FreeStyleProject body = api.getJob(name).block();
+
+        // then
+        // TODO implement the getJobTest()
     }
 
     
@@ -75,11 +91,16 @@ public class RemoteAccessApiTest {
      * Retrieve job configuration
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJobConfigTest() {
-        String name = null;
-        // String response = api.getJobConfig(name).block();
-        // Mono<String> asyncResponse = api.getJobConfig(name);
-        // TODO: test validations
+        // given
+        String name = "example";
+
+        // when
+        String body = api.getJobConfig(name).block();
+
+        // then
+        // TODO implement the getJobConfigTest()
     }
 
     
@@ -89,11 +110,16 @@ public class RemoteAccessApiTest {
      * Retrieve job&#39;s last build details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJobLastBuildTest() {
-        String name = null;
-        // FreeStyleBuild response = api.getJobLastBuild(name).block();
-        // Mono<FreeStyleBuild> asyncResponse = api.getJobLastBuild(name);
-        // TODO: test validations
+        // given
+        String name = "example";
+
+        // when
+        FreeStyleBuild body = api.getJobLastBuild(name).block();
+
+        // then
+        // TODO implement the getJobLastBuildTest()
     }
 
     
@@ -103,13 +129,18 @@ public class RemoteAccessApiTest {
      * Retrieve job&#39;s build progressive text output
      */
     @Test
+    @Disabled("Not Implemented")
     public void getJobProgressiveTextTest() {
-        String name = null;
-        String number = null;
-        String start = null;
-        // api.getJobProgressiveText(name, number, start).block();
-        // Mono<Object> asyncResponse = api.getJobProgressiveText(name, number, start);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String number = "example";
+        String start = "example";
+
+        // when
+        api.getJobProgressiveText(name, number, start).block();
+
+        // then
+        // TODO implement the getJobProgressiveTextTest()
     }
 
     
@@ -119,10 +150,15 @@ public class RemoteAccessApiTest {
      * Retrieve queue details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getQueueTest() {
-        // Queue response = api.getQueue().block();
-        // Mono<Queue> asyncResponse = api.getQueue();
-        // TODO: test validations
+        // given
+
+        // when
+        Queue body = api.getQueue().block();
+
+        // then
+        // TODO implement the getQueueTest()
     }
 
     
@@ -132,11 +168,16 @@ public class RemoteAccessApiTest {
      * Retrieve queued item details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getQueueItemTest() {
-        String number = null;
-        // Queue response = api.getQueueItem(number).block();
-        // Mono<Queue> asyncResponse = api.getQueueItem(number);
-        // TODO: test validations
+        // given
+        String number = "example";
+
+        // when
+        Queue body = api.getQueueItem(number).block();
+
+        // then
+        // TODO implement the getQueueItemTest()
     }
 
     
@@ -146,11 +187,16 @@ public class RemoteAccessApiTest {
      * Retrieve view details
      */
     @Test
+    @Disabled("Not Implemented")
     public void getViewTest() {
-        String name = null;
-        // ListView response = api.getView(name).block();
-        // Mono<ListView> asyncResponse = api.getView(name);
-        // TODO: test validations
+        // given
+        String name = "example";
+
+        // when
+        ListView body = api.getView(name).block();
+
+        // then
+        // TODO implement the getViewTest()
     }
 
     
@@ -160,11 +206,16 @@ public class RemoteAccessApiTest {
      * Retrieve view configuration
      */
     @Test
+    @Disabled("Not Implemented")
     public void getViewConfigTest() {
-        String name = null;
-        // String response = api.getViewConfig(name).block();
-        // Mono<String> asyncResponse = api.getViewConfig(name);
-        // TODO: test validations
+        // given
+        String name = "example";
+
+        // when
+        String body = api.getViewConfig(name).block();
+
+        // then
+        // TODO implement the getViewConfigTest()
     }
 
     
@@ -174,10 +225,15 @@ public class RemoteAccessApiTest {
      * Retrieve Jenkins headers
      */
     @Test
+    @Disabled("Not Implemented")
     public void headJenkinsTest() {
-        // api.headJenkins().block();
-        // Mono<Object> asyncResponse = api.headJenkins();
-        // TODO: test validations
+        // given
+
+        // when
+        api.headJenkins().block();
+
+        // then
+        // TODO implement the headJenkinsTest()
     }
 
     
@@ -187,16 +243,21 @@ public class RemoteAccessApiTest {
      * Create a new job using job configuration, or copied from an existing job
      */
     @Test
+    @Disabled("Not Implemented")
     public void postCreateItemTest() {
-        String name = null;
-        String from = null;
-        String mode = null;
-        String jenkinsCrumb = null;
-        String contentType = null;
-        String _body = null;
-        // api.postCreateItem(name, from, mode, jenkinsCrumb, contentType, _body).block();
-        // Mono<Object> asyncResponse = api.postCreateItem(name, from, mode, jenkinsCrumb, contentType, _body);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String from = "example";
+        String mode = "example";
+        String jenkinsCrumb = "example";
+        String contentType = "example";
+        String _body = "example";
+
+        // when
+        api.postCreateItem(name, from, mode, jenkinsCrumb, contentType, _body).block();
+
+        // then
+        // TODO implement the postCreateItemTest()
     }
 
     
@@ -206,14 +267,19 @@ public class RemoteAccessApiTest {
      * Create a new view using view configuration
      */
     @Test
+    @Disabled("Not Implemented")
     public void postCreateViewTest() {
-        String name = null;
-        String jenkinsCrumb = null;
-        String contentType = null;
-        String _body = null;
-        // api.postCreateView(name, jenkinsCrumb, contentType, _body).block();
-        // Mono<Object> asyncResponse = api.postCreateView(name, jenkinsCrumb, contentType, _body);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String jenkinsCrumb = "example";
+        String contentType = "example";
+        String _body = "example";
+
+        // when
+        api.postCreateView(name, jenkinsCrumb, contentType, _body).block();
+
+        // then
+        // TODO implement the postCreateViewTest()
     }
 
     
@@ -223,14 +289,19 @@ public class RemoteAccessApiTest {
      * Build a job
      */
     @Test
+    @Disabled("Not Implemented")
     public void postJobBuildTest() {
-        String name = null;
-        String json = null;
-        String token = null;
-        String jenkinsCrumb = null;
-        // api.postJobBuild(name, json, token, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postJobBuild(name, json, token, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String json = "example";
+        String token = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postJobBuild(name, json, token, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postJobBuildTest()
     }
 
     
@@ -240,13 +311,18 @@ public class RemoteAccessApiTest {
      * Update job configuration
      */
     @Test
+    @Disabled("Not Implemented")
     public void postJobConfigTest() {
-        String name = null;
-        String _body = null;
-        String jenkinsCrumb = null;
-        // api.postJobConfig(name, _body, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postJobConfig(name, _body, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String _body = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postJobConfig(name, _body, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postJobConfigTest()
     }
 
     
@@ -256,12 +332,17 @@ public class RemoteAccessApiTest {
      * Delete a job
      */
     @Test
+    @Disabled("Not Implemented")
     public void postJobDeleteTest() {
-        String name = null;
-        String jenkinsCrumb = null;
-        // api.postJobDelete(name, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postJobDelete(name, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postJobDelete(name, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postJobDeleteTest()
     }
 
     
@@ -271,12 +352,17 @@ public class RemoteAccessApiTest {
      * Disable a job
      */
     @Test
+    @Disabled("Not Implemented")
     public void postJobDisableTest() {
-        String name = null;
-        String jenkinsCrumb = null;
-        // api.postJobDisable(name, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postJobDisable(name, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postJobDisable(name, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postJobDisableTest()
     }
 
     
@@ -286,12 +372,17 @@ public class RemoteAccessApiTest {
      * Enable a job
      */
     @Test
+    @Disabled("Not Implemented")
     public void postJobEnableTest() {
-        String name = null;
-        String jenkinsCrumb = null;
-        // api.postJobEnable(name, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postJobEnable(name, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postJobEnable(name, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postJobEnableTest()
     }
 
     
@@ -301,12 +392,17 @@ public class RemoteAccessApiTest {
      * Stop a job
      */
     @Test
+    @Disabled("Not Implemented")
     public void postJobLastBuildStopTest() {
-        String name = null;
-        String jenkinsCrumb = null;
-        // api.postJobLastBuildStop(name, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postJobLastBuildStop(name, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postJobLastBuildStop(name, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postJobLastBuildStopTest()
     }
 
     
@@ -316,13 +412,18 @@ public class RemoteAccessApiTest {
      * Update view configuration
      */
     @Test
+    @Disabled("Not Implemented")
     public void postViewConfigTest() {
-        String name = null;
-        String _body = null;
-        String jenkinsCrumb = null;
-        // api.postViewConfig(name, _body, jenkinsCrumb).block();
-        // Mono<Object> asyncResponse = api.postViewConfig(name, _body, jenkinsCrumb);
-        // TODO: test validations
+        // given
+        String name = "example";
+        String _body = "example";
+        String jenkinsCrumb = "example";
+
+        // when
+        api.postViewConfig(name, _body, jenkinsCrumb).block();
+
+        // then
+        // TODO implement the postViewConfigTest()
     }
 
     

@@ -142,7 +142,7 @@ public class InputStepImpl   {
 
   public InputStepImpl addParametersItem(StringParameterDefinition parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<StringParameterDefinition>();
+      this.parameters = new ArrayList<>();
     }
     this.parameters.add(parametersItem);
     return this;

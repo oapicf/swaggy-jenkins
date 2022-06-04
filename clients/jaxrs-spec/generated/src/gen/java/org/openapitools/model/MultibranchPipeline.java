@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("MultibranchPipeline")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class MultibranchPipeline   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class MultibranchPipeline   {
   
   private @Valid String displayName;
   private @Valid Integer estimatedDurationInMillis;
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   private @Valid String name;
   private @Valid String organization;
   private @Valid Integer weatherScore;
-  private @Valid List<String> branchNames = new ArrayList<String>();
+  private @Valid List<String> branchNames = new ArrayList<>();
   private @Valid Integer numberOfFailingBranches;
   private @Valid Integer numberOfFailingPullRequests;
   private @Valid Integer numberOfSuccessfulBranches;
@@ -40,8 +41,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.displayName = displayName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -63,8 +62,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
@@ -82,8 +79,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.latestRun = latestRun;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -105,8 +100,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
@@ -124,8 +117,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.organization = organization;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -147,8 +138,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
@@ -168,8 +157,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("branchNames")
   public List<String> getBranchNames() {
@@ -183,7 +170,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
     if (this.branchNames == null) {
-      this.branchNames = new ArrayList<String>();
+      this.branchNames = new ArrayList<>();
     }
 
     this.branchNames.add(branchNamesItem);
@@ -205,8 +192,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfFailingBranches")
   public Integer getNumberOfFailingBranches() {
@@ -224,8 +209,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.numberOfFailingPullRequests = numberOfFailingPullRequests;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -247,8 +230,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("numberOfSuccessfulBranches")
   public Integer getNumberOfSuccessfulBranches() {
@@ -266,8 +247,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.numberOfSuccessfulPullRequests = numberOfSuccessfulPullRequests;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -289,8 +268,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("totalNumberOfBranches")
   public Integer getTotalNumberOfBranches() {
@@ -310,8 +287,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("totalNumberOfPullRequests")
   public Integer getTotalNumberOfPullRequests() {
@@ -329,8 +304,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

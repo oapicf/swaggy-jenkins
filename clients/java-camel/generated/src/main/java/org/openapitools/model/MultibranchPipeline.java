@@ -20,8 +20,8 @@ import javax.annotation.Generated;
  * MultibranchPipeline
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class MultibranchPipeline   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class MultibranchPipeline {
 
   @JsonProperty("displayName")
   private String displayName;
@@ -187,7 +187,7 @@ public class MultibranchPipeline   {
 
   public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
     if (this.branchNames == null) {
-      this.branchNames = new ArrayList<String>();
+      this.branchNames = new ArrayList<>();
     }
     this.branchNames.add(branchNamesItem);
     return this;

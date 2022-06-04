@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -21,17 +21,53 @@ class PipelineBranchesitempullRequest {
     this.class_,
   });
 
-  PipelineBranchesitempullRequestlinks links;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  PipelineBranchesitempullRequestlinks? links;
 
-  String author;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? author;
 
-  String id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-  String title;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? title;
 
-  String url;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? url;
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineBranchesitempullRequest &&
@@ -44,46 +80,58 @@ class PipelineBranchesitempullRequest {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (links == null ? 0 : links.hashCode) +
-    (author == null ? 0 : author.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (title == null ? 0 : title.hashCode) +
-    (url == null ? 0 : url.hashCode) +
-    (class_ == null ? 0 : class_.hashCode);
+    // ignore: unnecessary_parenthesis
+    (links == null ? 0 : links!.hashCode) +
+    (author == null ? 0 : author!.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (title == null ? 0 : title!.hashCode) +
+    (url == null ? 0 : url!.hashCode) +
+    (class_ == null ? 0 : class_!.hashCode);
 
   @override
   String toString() => 'PipelineBranchesitempullRequest[links=$links, author=$author, id=$id, title=$title, url=$url, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (links != null) {
-      json[r'_links'] = links;
+      _json[r'_links'] = links;
     }
     if (author != null) {
-      json[r'author'] = author;
+      _json[r'author'] = author;
     }
     if (id != null) {
-      json[r'id'] = id;
+      _json[r'id'] = id;
     }
     if (title != null) {
-      json[r'title'] = title;
+      _json[r'title'] = title;
     }
     if (url != null) {
-      json[r'url'] = url;
+      _json[r'url'] = url;
     }
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [PipelineBranchesitempullRequest] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PipelineBranchesitempullRequest fromJson(dynamic value) {
+  static PipelineBranchesitempullRequest? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PipelineBranchesitempullRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PipelineBranchesitempullRequest[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return PipelineBranchesitempullRequest(
         links: PipelineBranchesitempullRequestlinks.fromJson(json[r'_links']),
         author: mapValueOfType<String>(json, r'author'),
@@ -96,36 +144,50 @@ class PipelineBranchesitempullRequest {
     return null;
   }
 
-  static List<PipelineBranchesitempullRequest> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(PipelineBranchesitempullRequest.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <PipelineBranchesitempullRequest>[];
+  static List<PipelineBranchesitempullRequest>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PipelineBranchesitempullRequest>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = PipelineBranchesitempullRequest.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, PipelineBranchesitempullRequest> mapFromJson(dynamic json) {
     final map = <String, PipelineBranchesitempullRequest>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = PipelineBranchesitempullRequest.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineBranchesitempullRequest.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of PipelineBranchesitempullRequest-objects as value to a dart map
-  static Map<String, List<PipelineBranchesitempullRequest>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<PipelineBranchesitempullRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineBranchesitempullRequest>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = PipelineBranchesitempullRequest.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineBranchesitempullRequest.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

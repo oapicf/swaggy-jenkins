@@ -3,7 +3,7 @@
 
 context("Test ExtensionClassContainerImpl1map")
 
-model.instance <- ExtensionClassContainerImpl1map$new()
+model_instance <- ExtensionClassContainerImpl1map$new()
 
 test_that("io.jenkins.blueocean.service.embedded.rest.PipelineImpl", {
   # tests for the property `io.jenkins.blueocean.service.embedded.rest.PipelineImpl` (ExtensionClassImpl)
@@ -25,4 +25,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

@@ -3,7 +3,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.prokarma</groupId>
    <artifactId>pkmst-microservice</artifactId>
-   <version>1.1.2-pre.0</version>
+   <version>1.5.1-pre.0</version>
    <packaging>jar</packaging>
    <name>pkmst-microservice</name>
    <description>Demo project for Spring Boot Microservices</description>
@@ -20,8 +20,8 @@
       <springfox-swagger-ui>2.6.0</springfox-swagger-ui>
       <slf4j-api>1.7.25</slf4j-api>
       <logstash-logback-encoder>4.11</logstash-logback-encoder>
-      <logback-core>1.2.3</logback-core>
-      <logback-classic>1.2.3</logback-classic>
+      <logback-core>1.2.10</logback-core>
+      <logback-classic>1.2.10</logback-classic>
       <gatling.version>2.3.0</gatling.version>
       <gatling-plugin.version>2.2.4</gatling-plugin.version>
       <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>

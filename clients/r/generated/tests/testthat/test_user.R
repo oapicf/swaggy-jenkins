@@ -3,7 +3,7 @@
 
 context("Test User")
 
-model.instance <- User$new()
+model_instance <- User$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -39,4 +39,3 @@ test_that("name", {
   # uncomment below to test the property
   #expect_equal(model.instance$`name`, "EXPECTED_RESULT")
 })
-

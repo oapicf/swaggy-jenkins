@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.github_repositorieslinks import GithubRepositorieslinks
 from openapi_server.models.github_repository import GithubRepository
 
@@ -26,11 +26,11 @@ class GithubRepositories(BaseModel):
         page_size: The page_size of this GithubRepositories [Optional].
     """
 
-    _class: Optional[str] = None
-    links: Optional[GithubRepositorieslinks] = None
-    items: Optional[List[GithubRepository]] = None
-    last_page: Optional[int] = None
-    next_page: Optional[int] = None
-    page_size: Optional[int] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    links: Optional[GithubRepositorieslinks] = Field(alias="_links", default=None)
+    items: Optional[List[GithubRepository]] = Field(alias="items", default=None)
+    last_page: Optional[int] = Field(alias="lastPage", default=None)
+    next_page: Optional[int] = Field(alias="nextPage", default=None)
+    page_size: Optional[int] = Field(alias="pageSize", default=None)
 
 GithubRepositories.update_forward_refs()

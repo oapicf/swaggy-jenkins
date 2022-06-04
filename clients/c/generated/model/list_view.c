@@ -61,23 +61,23 @@ cJSON *list_view_convertToJSON(list_view_t *list_view) {
     cJSON *item = cJSON_CreateObject();
 
     // list_view->_class
-    if(list_view->_class) { 
+    if(list_view->_class) {
     if(cJSON_AddStringToObject(item, "_class", list_view->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // list_view->description
-    if(list_view->description) { 
+    if(list_view->description) {
     if(cJSON_AddStringToObject(item, "description", list_view->description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // list_view->jobs
-    if(list_view->jobs) { 
+    if(list_view->jobs) {
     cJSON *jobs = cJSON_AddArrayToObject(item, "jobs");
     if(jobs == NULL) {
     goto fail; //nonprimitive container
@@ -93,23 +93,23 @@ cJSON *list_view_convertToJSON(list_view_t *list_view) {
     cJSON_AddItemToArray(jobs, itemLocal);
     }
     }
-     } 
+    }
 
 
     // list_view->name
-    if(list_view->name) { 
+    if(list_view->name) {
     if(cJSON_AddStringToObject(item, "name", list_view->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // list_view->url
-    if(list_view->url) { 
+    if(list_view->url) {
     if(cJSON_AddStringToObject(item, "url", list_view->url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -122,6 +122,9 @@ fail:
 list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     list_view_t *list_view_local_var = NULL;
+
+    // define the local list for list_view->jobs
+    list_t *jobsList = NULL;
 
     // list_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "_class");
@@ -143,9 +146,8 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     // list_view->jobs
     cJSON *jobs = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "jobs");
-    list_t *jobsList;
     if (jobs) { 
-    cJSON *jobs_local_nonprimitive;
+    cJSON *jobs_local_nonprimitive = NULL;
     if(!cJSON_IsArray(jobs)){
         goto end; //nonprimitive container
     }
@@ -192,6 +194,15 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     return list_view_local_var;
 end:
+    if (jobsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, jobsList) {
+            free_style_project_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(jobsList);
+        jobsList = NULL;
+    }
     return NULL;
 
 }

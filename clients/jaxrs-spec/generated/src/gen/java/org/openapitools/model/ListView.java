@@ -18,11 +18,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ListView")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class ListView   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class ListView   {
   
   private @Valid String propertyClass;
   private @Valid String description;
-  private @Valid List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
+  private @Valid List<FreeStyleProject> jobs = new ArrayList<>();
   private @Valid String name;
   private @Valid String url;
 
@@ -32,8 +33,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -55,8 +54,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
@@ -76,8 +73,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
   public List<FreeStyleProject> getJobs() {
@@ -91,7 +86,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public ListView addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<FreeStyleProject>();
+      this.jobs = new ArrayList<>();
     }
 
     this.jobs.add(jobsItem);
@@ -113,8 +108,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
@@ -132,8 +125,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.url = url;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

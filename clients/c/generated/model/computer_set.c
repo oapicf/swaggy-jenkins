@@ -53,23 +53,23 @@ cJSON *computer_set_convertToJSON(computer_set_t *computer_set) {
     cJSON *item = cJSON_CreateObject();
 
     // computer_set->_class
-    if(computer_set->_class) { 
+    if(computer_set->_class) {
     if(cJSON_AddStringToObject(item, "_class", computer_set->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // computer_set->busy_executors
-    if(computer_set->busy_executors) { 
+    if(computer_set->busy_executors) {
     if(cJSON_AddNumberToObject(item, "busyExecutors", computer_set->busy_executors) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // computer_set->computer
-    if(computer_set->computer) { 
+    if(computer_set->computer) {
     cJSON *computer = cJSON_AddArrayToObject(item, "computer");
     if(computer == NULL) {
     goto fail; //nonprimitive container
@@ -85,23 +85,23 @@ cJSON *computer_set_convertToJSON(computer_set_t *computer_set) {
     cJSON_AddItemToArray(computer, itemLocal);
     }
     }
-     } 
+    }
 
 
     // computer_set->display_name
-    if(computer_set->display_name) { 
+    if(computer_set->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", computer_set->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // computer_set->total_executors
-    if(computer_set->total_executors) { 
+    if(computer_set->total_executors) {
     if(cJSON_AddNumberToObject(item, "totalExecutors", computer_set->total_executors) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:
@@ -114,6 +114,9 @@ fail:
 computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     computer_set_t *computer_set_local_var = NULL;
+
+    // define the local list for computer_set->computer
+    list_t *computerList = NULL;
 
     // computer_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "_class");
@@ -135,9 +138,8 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     // computer_set->computer
     cJSON *computer = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "computer");
-    list_t *computerList;
     if (computer) { 
-    cJSON *computer_local_nonprimitive;
+    cJSON *computer_local_nonprimitive = NULL;
     if(!cJSON_IsArray(computer)){
         goto end; //nonprimitive container
     }
@@ -184,6 +186,15 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     return computer_set_local_var;
 end:
+    if (computerList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, computerList) {
+            hudson_master_computer_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(computerList);
+        computerList = NULL;
+    }
     return NULL;
 
 }

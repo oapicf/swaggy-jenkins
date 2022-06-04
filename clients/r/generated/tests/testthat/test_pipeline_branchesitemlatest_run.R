@@ -3,7 +3,7 @@
 
 context("Test PipelineBranchesitemlatestRun")
 
-model.instance <- PipelineBranchesitemlatestRun$new()
+model_instance <- PipelineBranchesitemlatestRun$new()
 
 test_that("durationInMillis", {
   # tests for the property `durationInMillis` (integer)
@@ -102,4 +102,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

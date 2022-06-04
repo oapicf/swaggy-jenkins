@@ -11,12 +11,12 @@ package org.openapitools.server.model
  * @param numberOfPipelines  for example: ''null''
 */
 final case class PipelineFolderImpl (
-  `class`: Option[String],
-  displayName: Option[String],
-  fullName: Option[String],
-  name: Option[String],
-  organization: Option[String],
-  numberOfFolders: Option[Int],
-  numberOfPipelines: Option[Int]
+  `class`: Option[String] = None,
+  displayName: Option[String] = None,
+  fullName: Option[String] = None,
+  name: Option[String] = None,
+  organization: Option[String] = None,
+  numberOfFolders: Option[Int] = None,
+  numberOfPipelines: Option[Int] = None
 )
 

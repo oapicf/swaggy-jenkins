@@ -29,7 +29,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class JwtAuthApi  {
    private final JwtAuthApiService delegate;
 
@@ -54,7 +54,7 @@ public class JwtAuthApi  {
       this.delegate = delegate;
    }
 
-    @GET
+    @javax.ws.rs.GET
     @Path("/jwks/{key}")
     
     @Produces({ "application/json" })
@@ -68,7 +68,7 @@ public class JwtAuthApi  {
     throws NotFoundException {
         return delegate.getJsonWebKey(key, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/token")
     
     @Produces({ "application/json" })

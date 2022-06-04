@@ -3,7 +3,7 @@
 
 context("Test HudsonMasterComputermonitorData")
 
-model.instance <- HudsonMasterComputermonitorData$new()
+model_instance <- HudsonMasterComputermonitorData$new()
 
 test_that("hudson.node_monitors.SwapSpaceMonitor", {
   # tests for the property `hudson.node_monitors.SwapSpaceMonitor` (SwapSpaceMonitorMemoryUsage2)
@@ -53,4 +53,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

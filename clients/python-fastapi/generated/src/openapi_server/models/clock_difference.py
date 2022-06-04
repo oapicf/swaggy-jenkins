@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class ClockDifference(BaseModel):
@@ -20,7 +20,7 @@ class ClockDifference(BaseModel):
         diff: The diff of this ClockDifference [Optional].
     """
 
-    _class: Optional[str] = None
-    diff: Optional[int] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    diff: Optional[int] = Field(alias="diff", default=None)
 
 ClockDifference.update_forward_refs()

@@ -22,8 +22,8 @@ import javax.annotation.Generated;
  * GithubRepositories
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class GithubRepositories   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class GithubRepositories {
 
   @JsonProperty("_class")
   private String propertyClass;
@@ -89,7 +89,7 @@ public class GithubRepositories   {
 
   public GithubRepositories addItemsItem(GithubRepository itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<GithubRepository>();
+      this.items = new ArrayList<>();
     }
     this.items.add(itemsItem);
     return this;

@@ -3,7 +3,7 @@
 
 context("Test GithubRepository")
 
-model.instance <- GithubRepository$new()
+model_instance <- GithubRepository$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -60,4 +60,3 @@ test_that("fullName", {
   # uncomment below to test the property
   #expect_equal(model.instance$`fullName`, "EXPECTED_RESULT")
 })
-

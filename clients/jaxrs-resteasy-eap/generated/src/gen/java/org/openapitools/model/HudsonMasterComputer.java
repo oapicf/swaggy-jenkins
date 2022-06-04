@@ -14,40 +14,24 @@ import org.openapitools.model.Label1;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
 public class HudsonMasterComputer   {
   
-
   private String propertyClass;
-
   private String displayName;
-
-  private List<HudsonMasterComputerexecutors> executors = new ArrayList<HudsonMasterComputerexecutors>();
-
+  private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
   private String icon;
-
   private String iconClassName;
-
   private Boolean idle;
-
   private Boolean jnlpAgent;
-
   private Boolean launchSupported;
-
   private Label1 loadStatistics;
-
   private Boolean manualLaunchAllowed;
-
   private HudsonMasterComputermonitorData monitorData;
-
   private Integer numExecutors;
-
   private Boolean offline;
-
   private String offlineCause;
-
   private String offlineCauseReason;
-
   private Boolean temporarilyOffline;
 
   /**

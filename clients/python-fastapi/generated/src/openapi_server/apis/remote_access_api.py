@@ -36,6 +36,7 @@ router = APIRouter()
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_computer(
     depth: int = Query(None, description="Recursion depth in response model"),
@@ -55,6 +56,7 @@ async def get_computer(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_jenkins(
     token_jenkins_auth: TokenModel = Security(
@@ -74,6 +76,7 @@ async def get_jenkins(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_job(
     name: str = Path(None, description="Name of the job"),
@@ -94,6 +97,7 @@ async def get_job(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_job_config(
     name: str = Path(None, description="Name of the job"),
@@ -114,6 +118,7 @@ async def get_job_config(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_job_last_build(
     name: str = Path(None, description="Name of the job"),
@@ -134,6 +139,7 @@ async def get_job_last_build(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_job_progressive_text(
     name: str = Path(None, description="Name of the job"),
@@ -155,6 +161,7 @@ async def get_job_progressive_text(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_queue(
     token_jenkins_auth: TokenModel = Security(
@@ -173,6 +180,7 @@ async def get_queue(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_queue_item(
     number: str = Path(None, description="Queue number"),
@@ -193,6 +201,7 @@ async def get_queue_item(
         404: {"description": "View cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_view(
     name: str = Path(None, description="Name of the view"),
@@ -213,6 +222,7 @@ async def get_view(
         404: {"description": "View cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def get_view_config(
     name: str = Path(None, description="Name of the view"),
@@ -232,6 +242,7 @@ async def get_view_config(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def head_jenkins(
     token_jenkins_auth: TokenModel = Security(
@@ -251,6 +262,7 @@ async def head_jenkins(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_create_item(
     name: str = Query(None, description="Name of the new job"),
@@ -276,6 +288,7 @@ async def post_create_item(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_create_view(
     name: str = Query(None, description="Name of the new view"),
@@ -300,6 +313,7 @@ async def post_create_view(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_job_build(
     name: str = Path(None, description="Name of the job"),
@@ -324,6 +338,7 @@ async def post_job_build(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_job_config(
     name: str = Path(None, description="Name of the job"),
@@ -346,6 +361,7 @@ async def post_job_config(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_job_delete(
     name: str = Path(None, description="Name of the job"),
@@ -367,6 +383,7 @@ async def post_job_delete(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_job_disable(
     name: str = Path(None, description="Name of the job"),
@@ -388,6 +405,7 @@ async def post_job_disable(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_job_enable(
     name: str = Path(None, description="Name of the job"),
@@ -409,6 +427,7 @@ async def post_job_enable(
         404: {"description": "Job cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_job_last_build_stop(
     name: str = Path(None, description="Name of the job"),
@@ -431,6 +450,7 @@ async def post_job_last_build_stop(
         404: {"description": "View cannot be found on Jenkins instance"},
     },
     tags=["remoteAccess"],
+    response_model_by_alias=True,
 )
 async def post_view_config(
     name: str = Path(None, description="Name of the view"),

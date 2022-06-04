@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.pipelinelatest_run import PipelinelatestRun
 
 
@@ -27,13 +27,13 @@ class Pipeline(BaseModel):
         latest_run: The latest_run of this Pipeline [Optional].
     """
 
-    _class: Optional[str] = None
-    organization: Optional[str] = None
-    name: Optional[str] = None
-    display_name: Optional[str] = None
-    full_name: Optional[str] = None
-    weather_score: Optional[int] = None
-    estimated_duration_in_millis: Optional[int] = None
-    latest_run: Optional[PipelinelatestRun] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    full_name: Optional[str] = Field(alias="fullName", default=None)
+    weather_score: Optional[int] = Field(alias="weatherScore", default=None)
+    estimated_duration_in_millis: Optional[int] = Field(alias="estimatedDurationInMillis", default=None)
+    latest_run: Optional[PipelinelatestRun] = Field(alias="latestRun", default=None)
 
 Pipeline.update_forward_refs()

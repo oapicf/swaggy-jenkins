@@ -19,14 +19,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("InputStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class InputStepImpl   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class InputStepImpl   {
   
   private @Valid String propertyClass;
   private @Valid InputStepImpllinks links;
   private @Valid String id;
   private @Valid String message;
   private @Valid String ok;
-  private @Valid List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>();
+  private @Valid List<StringParameterDefinition> parameters = new ArrayList<>();
   private @Valid String submitter;
 
   /**
@@ -35,8 +36,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -58,8 +57,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public InputStepImpllinks getLinks() {
@@ -77,8 +74,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.id = id;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -100,8 +95,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("message")
   public String getMessage() {
@@ -119,8 +112,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.ok = ok;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -142,8 +133,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
   public List<StringParameterDefinition> getParameters() {
@@ -157,7 +146,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public InputStepImpl addParametersItem(StringParameterDefinition parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<StringParameterDefinition>();
+      this.parameters = new ArrayList<>();
     }
 
     this.parameters.add(parametersItem);
@@ -177,8 +166,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.submitter = submitter;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

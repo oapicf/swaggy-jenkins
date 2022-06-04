@@ -43,15 +43,15 @@ cJSON *queue_convertToJSON(queue_t *queue) {
     cJSON *item = cJSON_CreateObject();
 
     // queue->_class
-    if(queue->_class) { 
+    if(queue->_class) {
     if(cJSON_AddStringToObject(item, "_class", queue->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue->items
-    if(queue->items) { 
+    if(queue->items) {
     cJSON *items = cJSON_AddArrayToObject(item, "items");
     if(items == NULL) {
     goto fail; //nonprimitive container
@@ -67,7 +67,7 @@ cJSON *queue_convertToJSON(queue_t *queue) {
     cJSON_AddItemToArray(items, itemLocal);
     }
     }
-     } 
+    }
 
     return item;
 fail:
@@ -81,6 +81,9 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
     queue_t *queue_local_var = NULL;
 
+    // define the local list for queue->items
+    list_t *itemsList = NULL;
+
     // queue->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queueJSON, "_class");
     if (_class) { 
@@ -92,9 +95,8 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
     // queue->items
     cJSON *items = cJSON_GetObjectItemCaseSensitive(queueJSON, "items");
-    list_t *itemsList;
     if (items) { 
-    cJSON *items_local_nonprimitive;
+    cJSON *items_local_nonprimitive = NULL;
     if(!cJSON_IsArray(items)){
         goto end; //nonprimitive container
     }
@@ -120,6 +122,15 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
     return queue_local_var;
 end:
+    if (itemsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, itemsList) {
+            queue_blocked_item_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(itemsList);
+        itemsList = NULL;
+    }
     return NULL;
 
 }

@@ -46,15 +46,15 @@ cJSON *github_respository_container_convertToJSON(github_respository_container_t
     cJSON *item = cJSON_CreateObject();
 
     // github_respository_container->_class
-    if(github_respository_container->_class) { 
+    if(github_respository_container->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_respository_container->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_respository_container->_links
-    if(github_respository_container->_links) { 
+    if(github_respository_container->_links) {
     cJSON *_links_local_JSON = github_respository_containerlinks_convertToJSON(github_respository_container->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -63,11 +63,11 @@ cJSON *github_respository_container_convertToJSON(github_respository_container_t
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // github_respository_container->repositories
-    if(github_respository_container->repositories) { 
+    if(github_respository_container->repositories) {
     cJSON *repositories_local_JSON = github_repositories_convertToJSON(github_respository_container->repositories);
     if(repositories_local_JSON == NULL) {
     goto fail; //model
@@ -76,7 +76,7 @@ cJSON *github_respository_container_convertToJSON(github_respository_container_t
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

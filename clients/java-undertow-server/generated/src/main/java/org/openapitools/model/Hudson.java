@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 1.1.2-pre.0
+ * OpenAPI document version: 1.5.1-pre.0
  * Maintained by: blah@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -26,24 +26,24 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-02-13T02:18:20.173053Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-06-04T08:08:37.196387Z[Etc/UTC]")
 public class Hudson   {
   
   private String propertyClass;
-  private List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>();
+  private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
   private String mode;
   private String nodeDescription;
   private String nodeName;
   private Integer numExecutors;
   private String description;
-  private List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
+  private List<FreeStyleProject> jobs = new ArrayList<>();
   private AllView primaryView;
   private Boolean quietingDown;
   private Integer slaveAgentPort;
   private UnlabeledLoadStatistics unlabeledLoad;
   private Boolean useCrumbs;
   private Boolean useSecurity;
-  private List<AllView> views = new ArrayList<AllView>();
+  private List<AllView> views = new ArrayList<>();
 
   /**
    */

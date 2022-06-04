@@ -19,20 +19,20 @@ package org.openapitools.server.model
  * @param views  for example: ''null''
 */
 final case class Hudson (
-  `class`: Option[String],
-  assignedLabels: Option[Seq[HudsonassignedLabels]],
-  mode: Option[String],
-  nodeDescription: Option[String],
-  nodeName: Option[String],
-  numExecutors: Option[Int],
-  description: Option[String],
-  jobs: Option[Seq[FreeStyleProject]],
-  primaryView: Option[AllView],
-  quietingDown: Option[Boolean],
-  slaveAgentPort: Option[Int],
-  unlabeledLoad: Option[UnlabeledLoadStatistics],
-  useCrumbs: Option[Boolean],
-  useSecurity: Option[Boolean],
-  views: Option[Seq[AllView]]
+  `class`: Option[String] = None,
+  assignedLabels: Option[Seq[HudsonassignedLabels]] = None,
+  mode: Option[String] = None,
+  nodeDescription: Option[String] = None,
+  nodeName: Option[String] = None,
+  numExecutors: Option[Int] = None,
+  description: Option[String] = None,
+  jobs: Option[Seq[FreeStyleProject]] = None,
+  primaryView: Option[AllView] = None,
+  quietingDown: Option[Boolean] = None,
+  slaveAgentPort: Option[Int] = None,
+  unlabeledLoad: Option[UnlabeledLoadStatistics] = None,
+  useCrumbs: Option[Boolean] = None,
+  useSecurity: Option[Boolean] = None,
+  views: Option[Seq[AllView]] = None
 )
 

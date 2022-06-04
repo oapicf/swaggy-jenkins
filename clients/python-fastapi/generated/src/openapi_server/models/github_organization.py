@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.github_organizationlinks import GithubOrganizationlinks
 
 
@@ -23,9 +23,9 @@ class GithubOrganization(BaseModel):
         name: The name of this GithubOrganization [Optional].
     """
 
-    _class: Optional[str] = None
-    links: Optional[GithubOrganizationlinks] = None
-    jenkins_organization_pipeline: Optional[bool] = None
-    name: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    links: Optional[GithubOrganizationlinks] = Field(alias="_links", default=None)
+    jenkins_organization_pipeline: Optional[bool] = Field(alias="jenkinsOrganizationPipeline", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
 
 GithubOrganization.update_forward_refs()

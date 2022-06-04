@@ -20,8 +20,8 @@ import javax.annotation.Generated;
  * PipelineBranchesitem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-13T02:39:21.029908Z[Etc/UTC]")
-public class PipelineBranchesitem   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+public class PipelineBranchesitem {
 
   @JsonProperty("displayName")
   private String displayName;

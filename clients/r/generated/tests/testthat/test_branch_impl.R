@@ -3,7 +3,7 @@
 
 context("Test BranchImpl")
 
-model.instance <- BranchImpl$new()
+model_instance <- BranchImpl$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -95,4 +95,3 @@ test_that("latestRun", {
   # uncomment below to test the property
   #expect_equal(model.instance$`latestRun`, "EXPECTED_RESULT")
 })
-

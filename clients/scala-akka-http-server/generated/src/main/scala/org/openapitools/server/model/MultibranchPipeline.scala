@@ -18,19 +18,19 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class MultibranchPipeline (
-  displayName: Option[String],
-  estimatedDurationInMillis: Option[Int],
-  latestRun: Option[String],
-  name: Option[String],
-  organization: Option[String],
-  weatherScore: Option[Int],
-  branchNames: Option[Seq[String]],
-  numberOfFailingBranches: Option[Int],
-  numberOfFailingPullRequests: Option[Int],
-  numberOfSuccessfulBranches: Option[Int],
-  numberOfSuccessfulPullRequests: Option[Int],
-  totalNumberOfBranches: Option[Int],
-  totalNumberOfPullRequests: Option[Int],
-  `class`: Option[String]
+  displayName: Option[String] = None,
+  estimatedDurationInMillis: Option[Int] = None,
+  latestRun: Option[String] = None,
+  name: Option[String] = None,
+  organization: Option[String] = None,
+  weatherScore: Option[Int] = None,
+  branchNames: Option[Seq[String]] = None,
+  numberOfFailingBranches: Option[Int] = None,
+  numberOfFailingPullRequests: Option[Int] = None,
+  numberOfSuccessfulBranches: Option[Int] = None,
+  numberOfSuccessfulPullRequests: Option[Int] = None,
+  totalNumberOfBranches: Option[Int] = None,
+  totalNumberOfPullRequests: Option[Int] = None,
+  `class`: Option[String] = None
 )
 

@@ -62,59 +62,59 @@ cJSON *pipeline_folder_impl_convertToJSON(pipeline_folder_impl_t *pipeline_folde
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_folder_impl->_class
-    if(pipeline_folder_impl->_class) { 
+    if(pipeline_folder_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_folder_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_folder_impl->display_name
-    if(pipeline_folder_impl->display_name) { 
+    if(pipeline_folder_impl->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", pipeline_folder_impl->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_folder_impl->full_name
-    if(pipeline_folder_impl->full_name) { 
+    if(pipeline_folder_impl->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", pipeline_folder_impl->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_folder_impl->name
-    if(pipeline_folder_impl->name) { 
+    if(pipeline_folder_impl->name) {
     if(cJSON_AddStringToObject(item, "name", pipeline_folder_impl->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_folder_impl->organization
-    if(pipeline_folder_impl->organization) { 
+    if(pipeline_folder_impl->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_folder_impl->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_folder_impl->number_of_folders
-    if(pipeline_folder_impl->number_of_folders) { 
+    if(pipeline_folder_impl->number_of_folders) {
     if(cJSON_AddNumberToObject(item, "numberOfFolders", pipeline_folder_impl->number_of_folders) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_folder_impl->number_of_pipelines
-    if(pipeline_folder_impl->number_of_pipelines) { 
+    if(pipeline_folder_impl->number_of_pipelines) {
     if(cJSON_AddNumberToObject(item, "numberOfPipelines", pipeline_folder_impl->number_of_pipelines) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

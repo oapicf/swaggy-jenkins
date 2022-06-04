@@ -20,10 +20,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("QueueLeftItem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class QueueLeftItem   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class QueueLeftItem   {
   
   private @Valid String propertyClass;
-  private @Valid List<CauseAction> actions = new ArrayList<CauseAction>();
+  private @Valid List<CauseAction> actions = new ArrayList<>();
   private @Valid Boolean blocked;
   private @Valid Boolean buildable;
   private @Valid Integer id;
@@ -42,8 +43,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -65,8 +64,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public List<CauseAction> getActions() {
@@ -80,7 +77,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public QueueLeftItem addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<CauseAction>();
+      this.actions = new ArrayList<>();
     }
 
     this.actions.add(actionsItem);
@@ -102,8 +99,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("blocked")
   public Boolean getBlocked() {
@@ -121,8 +116,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.buildable = buildable;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -144,8 +137,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public Integer getId() {
@@ -163,8 +154,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.inQueueSince = inQueueSince;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -186,8 +175,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("params")
   public String getParams() {
@@ -205,8 +192,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.stuck = stuck;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -228,8 +213,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("task")
   public FreeStyleProject getTask() {
@@ -247,8 +230,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.url = url;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -270,8 +251,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("why")
   public String getWhy() {
@@ -291,8 +270,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("cancelled")
   public Boolean getCancelled() {
@@ -310,8 +287,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.executable = executable;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

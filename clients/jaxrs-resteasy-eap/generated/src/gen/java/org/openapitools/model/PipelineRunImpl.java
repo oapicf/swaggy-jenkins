@@ -10,38 +10,23 @@ import org.openapitools.model.PipelineRunImpllinks;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
 public class PipelineRunImpl   {
   
-
   private String propertyClass;
-
   private PipelineRunImpllinks links;
-
   private Integer durationInMillis;
-
   private String enQueueTime;
-
   private String endTime;
-
   private Integer estimatedDurationInMillis;
-
   private String id;
-
   private String organization;
-
   private String pipeline;
-
   private String result;
-
   private String runSummary;
-
   private String startTime;
-
   private String state;
-
   private String type;
-
   private String commitId;
 
   /**

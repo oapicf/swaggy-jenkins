@@ -15,24 +15,24 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-13T02:21:30.640855Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
 public class Hudson   {
   
   private String propertyClass;
-  private List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>();
+  private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
   private String mode;
   private String nodeDescription;
   private String nodeName;
   private Integer numExecutors;
   private String description;
-  private List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
+  private List<FreeStyleProject> jobs = new ArrayList<>();
   private AllView primaryView;
   private Boolean quietingDown;
   private Integer slaveAgentPort;
   private UnlabeledLoadStatistics unlabeledLoad;
   private Boolean useCrumbs;
   private Boolean useSecurity;
-  private List<AllView> views = new ArrayList<AllView>();
+  private List<AllView> views = new ArrayList<>();
 
   /**
    **/

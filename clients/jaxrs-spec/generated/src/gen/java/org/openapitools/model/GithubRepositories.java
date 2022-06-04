@@ -19,11 +19,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepositories")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class GithubRepositories   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class GithubRepositories   {
   
   private @Valid String propertyClass;
   private @Valid GithubRepositorieslinks links;
-  private @Valid List<GithubRepository> items = new ArrayList<GithubRepository>();
+  private @Valid List<GithubRepository> items = new ArrayList<>();
   private @Valid Integer lastPage;
   private @Valid Integer nextPage;
   private @Valid Integer pageSize;
@@ -34,8 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -57,8 +56,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public GithubRepositorieslinks getLinks() {
@@ -78,8 +75,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("items")
   public List<GithubRepository> getItems() {
@@ -93,7 +88,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public GithubRepositories addItemsItem(GithubRepository itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<GithubRepository>();
+      this.items = new ArrayList<>();
     }
 
     this.items.add(itemsItem);
@@ -115,8 +110,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("lastPage")
   public Integer getLastPage() {
@@ -136,8 +129,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("nextPage")
   public Integer getNextPage() {
@@ -155,8 +146,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.pageSize = pageSize;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

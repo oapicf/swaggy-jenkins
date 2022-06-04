@@ -34,11 +34,11 @@ cJSON *unlabeled_load_statistics_convertToJSON(unlabeled_load_statistics_t *unla
     cJSON *item = cJSON_CreateObject();
 
     // unlabeled_load_statistics->_class
-    if(unlabeled_load_statistics->_class) { 
+    if(unlabeled_load_statistics->_class) {
     if(cJSON_AddStringToObject(item, "_class", unlabeled_load_statistics->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

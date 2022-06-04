@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -23,21 +23,63 @@ class PipelineRunNode {
     this.state,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  String displayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? displayName;
 
-  int durationInMillis;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? durationInMillis;
 
   List<PipelineRunNodeedges> edges;
 
-  String id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-  String result;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? result;
 
-  String startTime;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? startTime;
 
-  String state;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? state;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineRunNode &&
@@ -52,59 +94,69 @@ class PipelineRunNode {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (displayName == null ? 0 : displayName.hashCode) +
-    (durationInMillis == null ? 0 : durationInMillis.hashCode) +
-    (edges == null ? 0 : edges.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (result == null ? 0 : result.hashCode) +
-    (startTime == null ? 0 : startTime.hashCode) +
-    (state == null ? 0 : state.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (displayName == null ? 0 : displayName!.hashCode) +
+    (durationInMillis == null ? 0 : durationInMillis!.hashCode) +
+    (edges.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (result == null ? 0 : result!.hashCode) +
+    (startTime == null ? 0 : startTime!.hashCode) +
+    (state == null ? 0 : state!.hashCode);
 
   @override
   String toString() => 'PipelineRunNode[class_=$class_, displayName=$displayName, durationInMillis=$durationInMillis, edges=$edges, id=$id, result=$result, startTime=$startTime, state=$state]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (displayName != null) {
-      json[r'displayName'] = displayName;
+      _json[r'displayName'] = displayName;
     }
     if (durationInMillis != null) {
-      json[r'durationInMillis'] = durationInMillis;
+      _json[r'durationInMillis'] = durationInMillis;
     }
-    if (edges != null) {
-      json[r'edges'] = edges;
-    }
+      _json[r'edges'] = edges;
     if (id != null) {
-      json[r'id'] = id;
+      _json[r'id'] = id;
     }
     if (result != null) {
-      json[r'result'] = result;
+      _json[r'result'] = result;
     }
     if (startTime != null) {
-      json[r'startTime'] = startTime;
+      _json[r'startTime'] = startTime;
     }
     if (state != null) {
-      json[r'state'] = state;
+      _json[r'state'] = state;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [PipelineRunNode] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PipelineRunNode fromJson(dynamic value) {
+  static PipelineRunNode? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PipelineRunNode[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PipelineRunNode[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return PipelineRunNode(
         class_: mapValueOfType<String>(json, r'_class'),
         displayName: mapValueOfType<String>(json, r'displayName'),
         durationInMillis: mapValueOfType<int>(json, r'durationInMillis'),
-        edges: PipelineRunNodeedges.listFromJson(json[r'edges']),
+        edges: PipelineRunNodeedges.listFromJson(json[r'edges']) ?? const [],
         id: mapValueOfType<String>(json, r'id'),
         result: mapValueOfType<String>(json, r'result'),
         startTime: mapValueOfType<String>(json, r'startTime'),
@@ -114,36 +166,50 @@ class PipelineRunNode {
     return null;
   }
 
-  static List<PipelineRunNode> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(PipelineRunNode.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <PipelineRunNode>[];
+  static List<PipelineRunNode>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PipelineRunNode>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = PipelineRunNode.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, PipelineRunNode> mapFromJson(dynamic json) {
     final map = <String, PipelineRunNode>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = PipelineRunNode.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineRunNode.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of PipelineRunNode-objects as value to a dart map
-  static Map<String, List<PipelineRunNode>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<PipelineRunNode>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineRunNode>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = PipelineRunNode.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineRunNode.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

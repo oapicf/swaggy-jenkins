@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineImpl   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class PipelineImpl   {
   
   private @Valid String propertyClass;
   private @Valid String displayName;
@@ -34,8 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -57,8 +56,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
@@ -76,8 +73,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -99,8 +94,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("fullName")
   public String getFullName() {
@@ -118,8 +111,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.latestRun = latestRun;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -141,8 +132,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("name")
   public String getName() {
@@ -160,8 +149,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.organization = organization;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -183,8 +170,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
@@ -202,8 +187,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.links = links;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -28,31 +28,103 @@ class QueueLeftItem {
     this.executable,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   List<CauseAction> actions;
 
-  bool blocked;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? blocked;
 
-  bool buildable;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? buildable;
 
-  int id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? id;
 
-  int inQueueSince;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? inQueueSince;
 
-  String params;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? params;
 
-  bool stuck;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? stuck;
 
-  FreeStyleProject task;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleProject? task;
 
-  String url;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? url;
 
-  String why;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? why;
 
-  bool cancelled;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? cancelled;
 
-  FreeStyleBuild executable;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? executable;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is QueueLeftItem &&
@@ -72,77 +144,87 @@ class QueueLeftItem {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (actions == null ? 0 : actions.hashCode) +
-    (blocked == null ? 0 : blocked.hashCode) +
-    (buildable == null ? 0 : buildable.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (inQueueSince == null ? 0 : inQueueSince.hashCode) +
-    (params == null ? 0 : params.hashCode) +
-    (stuck == null ? 0 : stuck.hashCode) +
-    (task == null ? 0 : task.hashCode) +
-    (url == null ? 0 : url.hashCode) +
-    (why == null ? 0 : why.hashCode) +
-    (cancelled == null ? 0 : cancelled.hashCode) +
-    (executable == null ? 0 : executable.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (actions.hashCode) +
+    (blocked == null ? 0 : blocked!.hashCode) +
+    (buildable == null ? 0 : buildable!.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (inQueueSince == null ? 0 : inQueueSince!.hashCode) +
+    (params == null ? 0 : params!.hashCode) +
+    (stuck == null ? 0 : stuck!.hashCode) +
+    (task == null ? 0 : task!.hashCode) +
+    (url == null ? 0 : url!.hashCode) +
+    (why == null ? 0 : why!.hashCode) +
+    (cancelled == null ? 0 : cancelled!.hashCode) +
+    (executable == null ? 0 : executable!.hashCode);
 
   @override
   String toString() => 'QueueLeftItem[class_=$class_, actions=$actions, blocked=$blocked, buildable=$buildable, id=$id, inQueueSince=$inQueueSince, params=$params, stuck=$stuck, task=$task, url=$url, why=$why, cancelled=$cancelled, executable=$executable]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    if (actions != null) {
-      json[r'actions'] = actions;
-    }
+      _json[r'actions'] = actions;
     if (blocked != null) {
-      json[r'blocked'] = blocked;
+      _json[r'blocked'] = blocked;
     }
     if (buildable != null) {
-      json[r'buildable'] = buildable;
+      _json[r'buildable'] = buildable;
     }
     if (id != null) {
-      json[r'id'] = id;
+      _json[r'id'] = id;
     }
     if (inQueueSince != null) {
-      json[r'inQueueSince'] = inQueueSince;
+      _json[r'inQueueSince'] = inQueueSince;
     }
     if (params != null) {
-      json[r'params'] = params;
+      _json[r'params'] = params;
     }
     if (stuck != null) {
-      json[r'stuck'] = stuck;
+      _json[r'stuck'] = stuck;
     }
     if (task != null) {
-      json[r'task'] = task;
+      _json[r'task'] = task;
     }
     if (url != null) {
-      json[r'url'] = url;
+      _json[r'url'] = url;
     }
     if (why != null) {
-      json[r'why'] = why;
+      _json[r'why'] = why;
     }
     if (cancelled != null) {
-      json[r'cancelled'] = cancelled;
+      _json[r'cancelled'] = cancelled;
     }
     if (executable != null) {
-      json[r'executable'] = executable;
+      _json[r'executable'] = executable;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [QueueLeftItem] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static QueueLeftItem fromJson(dynamic value) {
+  static QueueLeftItem? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "QueueLeftItem[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "QueueLeftItem[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return QueueLeftItem(
         class_: mapValueOfType<String>(json, r'_class'),
-        actions: CauseAction.listFromJson(json[r'actions']),
+        actions: CauseAction.listFromJson(json[r'actions']) ?? const [],
         blocked: mapValueOfType<bool>(json, r'blocked'),
         buildable: mapValueOfType<bool>(json, r'buildable'),
         id: mapValueOfType<int>(json, r'id'),
@@ -159,36 +241,50 @@ class QueueLeftItem {
     return null;
   }
 
-  static List<QueueLeftItem> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(QueueLeftItem.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <QueueLeftItem>[];
+  static List<QueueLeftItem>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <QueueLeftItem>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = QueueLeftItem.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, QueueLeftItem> mapFromJson(dynamic json) {
     final map = <String, QueueLeftItem>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = QueueLeftItem.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = QueueLeftItem.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of QueueLeftItem-objects as value to a dart map
-  static Map<String, List<QueueLeftItem>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<QueueLeftItem>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<QueueLeftItem>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = QueueLeftItem.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = QueueLeftItem.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

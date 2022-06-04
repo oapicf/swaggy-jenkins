@@ -10,7 +10,7 @@ defmodule SwaggyJenkins.Connection do
   use Tesla
 
   # Add any middleware here (authentication)
-  plug Tesla.Middleware.BaseUrl, "http://localhost"
+  plug Tesla.Middleware.BaseUrl, Application.get_env(:swaggy_jenkins, :base_url, "http://localhost")
   plug Tesla.Middleware.Headers, [{"user-agent", "Elixir"}]
   plug Tesla.Middleware.EncodeJson, engine: Poison
 

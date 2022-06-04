@@ -24,8 +24,8 @@ import javax.annotation.Generated;
  * BranchImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class BranchImpl   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class BranchImpl {
 
   @JsonProperty("_class")
   private String propertyClass;
@@ -207,7 +207,7 @@ public class BranchImpl   {
 
   public BranchImpl addParametersItem(StringParameterDefinition parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<StringParameterDefinition>();
+      this.parameters = new ArrayList<>();
     }
     this.parameters.add(parametersItem);
     return this;

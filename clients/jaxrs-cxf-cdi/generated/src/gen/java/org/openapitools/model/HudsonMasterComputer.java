@@ -107,7 +107,7 @@ public class HudsonMasterComputer   {
 
   public HudsonMasterComputer addExecutorsItem(HudsonMasterComputerexecutors executorsItem) {
     if (this.executors == null) {
-      this.executors = new ArrayList<HudsonMasterComputerexecutors>();
+      this.executors = new ArrayList<>();
     }
     this.executors.add(executorsItem);
     return this;

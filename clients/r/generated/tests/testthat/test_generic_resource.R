@@ -3,7 +3,7 @@
 
 context("Test GenericResource")
 
-model.instance <- GenericResource$new()
+model_instance <- GenericResource$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -46,4 +46,3 @@ test_that("startTime", {
   # uncomment below to test the property
   #expect_equal(model.instance$`startTime`, "EXPECTED_RESULT")
 })
-

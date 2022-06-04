@@ -7,6 +7,7 @@ import org.openapitools.model.PipelineActivityartifacts;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class PipelineActivity  {
   
   @ApiModelProperty(value = "")

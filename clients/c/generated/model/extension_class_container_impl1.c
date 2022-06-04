@@ -46,15 +46,15 @@ cJSON *extension_class_container_impl1_convertToJSON(extension_class_container_i
     cJSON *item = cJSON_CreateObject();
 
     // extension_class_container_impl1->_class
-    if(extension_class_container_impl1->_class) { 
+    if(extension_class_container_impl1->_class) {
     if(cJSON_AddStringToObject(item, "_class", extension_class_container_impl1->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // extension_class_container_impl1->_links
-    if(extension_class_container_impl1->_links) { 
+    if(extension_class_container_impl1->_links) {
     cJSON *_links_local_JSON = extension_class_container_impl1links_convertToJSON(extension_class_container_impl1->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -63,11 +63,11 @@ cJSON *extension_class_container_impl1_convertToJSON(extension_class_container_i
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // extension_class_container_impl1->map
-    if(extension_class_container_impl1->map) { 
+    if(extension_class_container_impl1->map) {
     cJSON *map_local_JSON = extension_class_container_impl1map_convertToJSON(extension_class_container_impl1->map);
     if(map_local_JSON == NULL) {
     goto fail; //model
@@ -76,7 +76,7 @@ cJSON *extension_class_container_impl1_convertToJSON(extension_class_container_i
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

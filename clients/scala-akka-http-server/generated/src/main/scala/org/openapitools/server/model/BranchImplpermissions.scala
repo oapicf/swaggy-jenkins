@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class BranchImplpermissions (
-  create: Option[Boolean],
-  read: Option[Boolean],
-  start: Option[Boolean],
-  stop: Option[Boolean],
-  `class`: Option[String]
+  create: Option[Boolean] = None,
+  read: Option[Boolean] = None,
+  start: Option[Boolean] = None,
+  stop: Option[Boolean] = None,
+  `class`: Option[String] = None
 )
 

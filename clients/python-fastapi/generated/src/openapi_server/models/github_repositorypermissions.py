@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class GithubRepositorypermissions(BaseModel):
@@ -22,9 +22,9 @@ class GithubRepositorypermissions(BaseModel):
         _class: The _class of this GithubRepositorypermissions [Optional].
     """
 
-    admin: Optional[bool] = None
-    push: Optional[bool] = None
-    pull: Optional[bool] = None
-    _class: Optional[str] = None
+    admin: Optional[bool] = Field(alias="admin", default=None)
+    push: Optional[bool] = Field(alias="push", default=None)
+    pull: Optional[bool] = Field(alias="pull", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 GithubRepositorypermissions.update_forward_refs()

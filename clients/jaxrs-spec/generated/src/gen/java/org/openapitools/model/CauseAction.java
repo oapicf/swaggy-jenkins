@@ -18,10 +18,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("CauseAction")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class CauseAction   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class CauseAction   {
   
   private @Valid String propertyClass;
-  private @Valid List<CauseUserIdCause> causes = new ArrayList<CauseUserIdCause>();
+  private @Valid List<CauseUserIdCause> causes = new ArrayList<>();
 
   /**
    **/
@@ -29,8 +30,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -52,8 +51,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("causes")
   public List<CauseUserIdCause> getCauses() {
@@ -67,7 +64,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public CauseAction addCausesItem(CauseUserIdCause causesItem) {
     if (this.causes == null) {
-      this.causes = new ArrayList<CauseUserIdCause>();
+      this.causes = new ArrayList<>();
     }
 
     this.causes.add(causesItem);

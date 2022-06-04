@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -42,59 +42,203 @@ class FreeStyleProject {
     this.scm,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  String name;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? name;
 
-  String url;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? url;
 
-  String color;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? color;
 
   List<FreeStyleProjectactions> actions;
 
-  String description;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? description;
 
-  String displayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? displayName;
 
-  String displayNameOrNull;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? displayNameOrNull;
 
-  String fullDisplayName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? fullDisplayName;
 
-  String fullName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? fullName;
 
-  bool buildable;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? buildable;
 
   List<FreeStyleBuild> builds;
 
-  FreeStyleBuild firstBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? firstBuild;
 
   List<FreeStyleProjecthealthReport> healthReport;
 
-  bool inQueue;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? inQueue;
 
-  bool keepDependencies;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? keepDependencies;
 
-  FreeStyleBuild lastBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? lastBuild;
 
-  FreeStyleBuild lastCompletedBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? lastCompletedBuild;
 
-  String lastFailedBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? lastFailedBuild;
 
-  FreeStyleBuild lastStableBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? lastStableBuild;
 
-  FreeStyleBuild lastSuccessfulBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  FreeStyleBuild? lastSuccessfulBuild;
 
-  String lastUnstableBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? lastUnstableBuild;
 
-  String lastUnsuccessfulBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? lastUnsuccessfulBuild;
 
-  int nextBuildNumber;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? nextBuildNumber;
 
-  String queueItem;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? queueItem;
 
-  bool concurrentBuild;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? concurrentBuild;
 
-  NullSCM scm;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  NullSCM? scm;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FreeStyleProject &&
@@ -128,145 +272,151 @@ class FreeStyleProject {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (name == null ? 0 : name.hashCode) +
-    (url == null ? 0 : url.hashCode) +
-    (color == null ? 0 : color.hashCode) +
-    (actions == null ? 0 : actions.hashCode) +
-    (description == null ? 0 : description.hashCode) +
-    (displayName == null ? 0 : displayName.hashCode) +
-    (displayNameOrNull == null ? 0 : displayNameOrNull.hashCode) +
-    (fullDisplayName == null ? 0 : fullDisplayName.hashCode) +
-    (fullName == null ? 0 : fullName.hashCode) +
-    (buildable == null ? 0 : buildable.hashCode) +
-    (builds == null ? 0 : builds.hashCode) +
-    (firstBuild == null ? 0 : firstBuild.hashCode) +
-    (healthReport == null ? 0 : healthReport.hashCode) +
-    (inQueue == null ? 0 : inQueue.hashCode) +
-    (keepDependencies == null ? 0 : keepDependencies.hashCode) +
-    (lastBuild == null ? 0 : lastBuild.hashCode) +
-    (lastCompletedBuild == null ? 0 : lastCompletedBuild.hashCode) +
-    (lastFailedBuild == null ? 0 : lastFailedBuild.hashCode) +
-    (lastStableBuild == null ? 0 : lastStableBuild.hashCode) +
-    (lastSuccessfulBuild == null ? 0 : lastSuccessfulBuild.hashCode) +
-    (lastUnstableBuild == null ? 0 : lastUnstableBuild.hashCode) +
-    (lastUnsuccessfulBuild == null ? 0 : lastUnsuccessfulBuild.hashCode) +
-    (nextBuildNumber == null ? 0 : nextBuildNumber.hashCode) +
-    (queueItem == null ? 0 : queueItem.hashCode) +
-    (concurrentBuild == null ? 0 : concurrentBuild.hashCode) +
-    (scm == null ? 0 : scm.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (name == null ? 0 : name!.hashCode) +
+    (url == null ? 0 : url!.hashCode) +
+    (color == null ? 0 : color!.hashCode) +
+    (actions.hashCode) +
+    (description == null ? 0 : description!.hashCode) +
+    (displayName == null ? 0 : displayName!.hashCode) +
+    (displayNameOrNull == null ? 0 : displayNameOrNull!.hashCode) +
+    (fullDisplayName == null ? 0 : fullDisplayName!.hashCode) +
+    (fullName == null ? 0 : fullName!.hashCode) +
+    (buildable == null ? 0 : buildable!.hashCode) +
+    (builds.hashCode) +
+    (firstBuild == null ? 0 : firstBuild!.hashCode) +
+    (healthReport.hashCode) +
+    (inQueue == null ? 0 : inQueue!.hashCode) +
+    (keepDependencies == null ? 0 : keepDependencies!.hashCode) +
+    (lastBuild == null ? 0 : lastBuild!.hashCode) +
+    (lastCompletedBuild == null ? 0 : lastCompletedBuild!.hashCode) +
+    (lastFailedBuild == null ? 0 : lastFailedBuild!.hashCode) +
+    (lastStableBuild == null ? 0 : lastStableBuild!.hashCode) +
+    (lastSuccessfulBuild == null ? 0 : lastSuccessfulBuild!.hashCode) +
+    (lastUnstableBuild == null ? 0 : lastUnstableBuild!.hashCode) +
+    (lastUnsuccessfulBuild == null ? 0 : lastUnsuccessfulBuild!.hashCode) +
+    (nextBuildNumber == null ? 0 : nextBuildNumber!.hashCode) +
+    (queueItem == null ? 0 : queueItem!.hashCode) +
+    (concurrentBuild == null ? 0 : concurrentBuild!.hashCode) +
+    (scm == null ? 0 : scm!.hashCode);
 
   @override
   String toString() => 'FreeStyleProject[class_=$class_, name=$name, url=$url, color=$color, actions=$actions, description=$description, displayName=$displayName, displayNameOrNull=$displayNameOrNull, fullDisplayName=$fullDisplayName, fullName=$fullName, buildable=$buildable, builds=$builds, firstBuild=$firstBuild, healthReport=$healthReport, inQueue=$inQueue, keepDependencies=$keepDependencies, lastBuild=$lastBuild, lastCompletedBuild=$lastCompletedBuild, lastFailedBuild=$lastFailedBuild, lastStableBuild=$lastStableBuild, lastSuccessfulBuild=$lastSuccessfulBuild, lastUnstableBuild=$lastUnstableBuild, lastUnsuccessfulBuild=$lastUnsuccessfulBuild, nextBuildNumber=$nextBuildNumber, queueItem=$queueItem, concurrentBuild=$concurrentBuild, scm=$scm]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (name != null) {
-      json[r'name'] = name;
+      _json[r'name'] = name;
     }
     if (url != null) {
-      json[r'url'] = url;
+      _json[r'url'] = url;
     }
     if (color != null) {
-      json[r'color'] = color;
+      _json[r'color'] = color;
     }
-    if (actions != null) {
-      json[r'actions'] = actions;
-    }
+      _json[r'actions'] = actions;
     if (description != null) {
-      json[r'description'] = description;
+      _json[r'description'] = description;
     }
     if (displayName != null) {
-      json[r'displayName'] = displayName;
+      _json[r'displayName'] = displayName;
     }
     if (displayNameOrNull != null) {
-      json[r'displayNameOrNull'] = displayNameOrNull;
+      _json[r'displayNameOrNull'] = displayNameOrNull;
     }
     if (fullDisplayName != null) {
-      json[r'fullDisplayName'] = fullDisplayName;
+      _json[r'fullDisplayName'] = fullDisplayName;
     }
     if (fullName != null) {
-      json[r'fullName'] = fullName;
+      _json[r'fullName'] = fullName;
     }
     if (buildable != null) {
-      json[r'buildable'] = buildable;
+      _json[r'buildable'] = buildable;
     }
-    if (builds != null) {
-      json[r'builds'] = builds;
-    }
+      _json[r'builds'] = builds;
     if (firstBuild != null) {
-      json[r'firstBuild'] = firstBuild;
+      _json[r'firstBuild'] = firstBuild;
     }
-    if (healthReport != null) {
-      json[r'healthReport'] = healthReport;
-    }
+      _json[r'healthReport'] = healthReport;
     if (inQueue != null) {
-      json[r'inQueue'] = inQueue;
+      _json[r'inQueue'] = inQueue;
     }
     if (keepDependencies != null) {
-      json[r'keepDependencies'] = keepDependencies;
+      _json[r'keepDependencies'] = keepDependencies;
     }
     if (lastBuild != null) {
-      json[r'lastBuild'] = lastBuild;
+      _json[r'lastBuild'] = lastBuild;
     }
     if (lastCompletedBuild != null) {
-      json[r'lastCompletedBuild'] = lastCompletedBuild;
+      _json[r'lastCompletedBuild'] = lastCompletedBuild;
     }
     if (lastFailedBuild != null) {
-      json[r'lastFailedBuild'] = lastFailedBuild;
+      _json[r'lastFailedBuild'] = lastFailedBuild;
     }
     if (lastStableBuild != null) {
-      json[r'lastStableBuild'] = lastStableBuild;
+      _json[r'lastStableBuild'] = lastStableBuild;
     }
     if (lastSuccessfulBuild != null) {
-      json[r'lastSuccessfulBuild'] = lastSuccessfulBuild;
+      _json[r'lastSuccessfulBuild'] = lastSuccessfulBuild;
     }
     if (lastUnstableBuild != null) {
-      json[r'lastUnstableBuild'] = lastUnstableBuild;
+      _json[r'lastUnstableBuild'] = lastUnstableBuild;
     }
     if (lastUnsuccessfulBuild != null) {
-      json[r'lastUnsuccessfulBuild'] = lastUnsuccessfulBuild;
+      _json[r'lastUnsuccessfulBuild'] = lastUnsuccessfulBuild;
     }
     if (nextBuildNumber != null) {
-      json[r'nextBuildNumber'] = nextBuildNumber;
+      _json[r'nextBuildNumber'] = nextBuildNumber;
     }
     if (queueItem != null) {
-      json[r'queueItem'] = queueItem;
+      _json[r'queueItem'] = queueItem;
     }
     if (concurrentBuild != null) {
-      json[r'concurrentBuild'] = concurrentBuild;
+      _json[r'concurrentBuild'] = concurrentBuild;
     }
     if (scm != null) {
-      json[r'scm'] = scm;
+      _json[r'scm'] = scm;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [FreeStyleProject] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static FreeStyleProject fromJson(dynamic value) {
+  static FreeStyleProject? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "FreeStyleProject[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "FreeStyleProject[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return FreeStyleProject(
         class_: mapValueOfType<String>(json, r'_class'),
         name: mapValueOfType<String>(json, r'name'),
         url: mapValueOfType<String>(json, r'url'),
         color: mapValueOfType<String>(json, r'color'),
-        actions: FreeStyleProjectactions.listFromJson(json[r'actions']),
+        actions: FreeStyleProjectactions.listFromJson(json[r'actions']) ?? const [],
         description: mapValueOfType<String>(json, r'description'),
         displayName: mapValueOfType<String>(json, r'displayName'),
         displayNameOrNull: mapValueOfType<String>(json, r'displayNameOrNull'),
         fullDisplayName: mapValueOfType<String>(json, r'fullDisplayName'),
         fullName: mapValueOfType<String>(json, r'fullName'),
         buildable: mapValueOfType<bool>(json, r'buildable'),
-        builds: FreeStyleBuild.listFromJson(json[r'builds']),
+        builds: FreeStyleBuild.listFromJson(json[r'builds']) ?? const [],
         firstBuild: FreeStyleBuild.fromJson(json[r'firstBuild']),
-        healthReport: FreeStyleProjecthealthReport.listFromJson(json[r'healthReport']),
+        healthReport: FreeStyleProjecthealthReport.listFromJson(json[r'healthReport']) ?? const [],
         inQueue: mapValueOfType<bool>(json, r'inQueue'),
         keepDependencies: mapValueOfType<bool>(json, r'keepDependencies'),
         lastBuild: FreeStyleBuild.fromJson(json[r'lastBuild']),
@@ -285,36 +435,50 @@ class FreeStyleProject {
     return null;
   }
 
-  static List<FreeStyleProject> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(FreeStyleProject.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <FreeStyleProject>[];
+  static List<FreeStyleProject>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <FreeStyleProject>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = FreeStyleProject.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, FreeStyleProject> mapFromJson(dynamic json) {
     final map = <String, FreeStyleProject>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = FreeStyleProject.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = FreeStyleProject.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of FreeStyleProject-objects as value to a dart map
-  static Map<String, List<FreeStyleProject>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<FreeStyleProject>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<FreeStyleProject>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = FreeStyleProject.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = FreeStyleProject.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

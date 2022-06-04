@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class ResponseTimeMonitorData(BaseModel):
@@ -21,8 +21,8 @@ class ResponseTimeMonitorData(BaseModel):
         average: The average of this ResponseTimeMonitorData [Optional].
     """
 
-    _class: Optional[str] = None
-    timestamp: Optional[int] = None
-    average: Optional[int] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    timestamp: Optional[int] = Field(alias="timestamp", default=None)
+    average: Optional[int] = Field(alias="average", default=None)
 
 ResponseTimeMonitorData.update_forward_refs()

@@ -71,15 +71,18 @@ BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char * organization
                     localVarBodyParameters,
                     "DELETE");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully deleted queue item");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully deleted queue item");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //No return type
 end:
     if (apiClient->dataReceived) {
@@ -139,15 +142,18 @@ BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char * organization )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved authenticated user details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved authenticated user details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     user_t *elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -216,15 +222,18 @@ BlueOceanAPI_getClasses(apiClient_t *apiClient, char * _class )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved class names");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved class names");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -291,15 +300,18 @@ BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int key )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved JWT token");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved JWT token");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -378,15 +390,18 @@ BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int expiryTimeInMins , int 
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved JWT token");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved JWT token");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -472,18 +487,22 @@ BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char * organization )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipeline details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Pipeline cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipeline details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Pipeline cannot be found on Jenkins instance");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     organisation_t *elementToReturn = organisation_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -542,15 +561,18 @@ BlueOceanAPI_getOrganisations(apiClient_t *apiClient)
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipelines details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipelines details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -638,18 +660,22 @@ BlueOceanAPI_getPipeline(apiClient_t *apiClient, char * organization , char * pi
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipeline details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","Pipeline cannot be found on Jenkins instance");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipeline details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","Pipeline cannot be found on Jenkins instance");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_t *elementToReturn = pipeline_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -729,15 +755,18 @@ BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char * organization ,
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved all activities details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved all activities details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -837,15 +866,18 @@ BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char * organization , cha
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved branch details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved branch details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     branch_impl_t *elementToReturn = branch_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -946,15 +978,18 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char * organization , 
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved run details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved run details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_run_t *elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1036,15 +1071,18 @@ BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char * organization , c
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved all branches details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved all branches details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     multibranch_pipeline_t *elementToReturn = multibranch_pipeline_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1124,15 +1162,18 @@ BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char * organization , cha
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved folder details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved folder details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_folder_impl_t *elementToReturn = pipeline_folder_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1222,15 +1263,18 @@ BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char * organizati
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipeline details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipeline details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_impl_t *elementToReturn = pipeline_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1311,15 +1355,18 @@ BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char * organization , char
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved queue details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved queue details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -1419,15 +1466,18 @@ BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char * organization , char *
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved run details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved run details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_run_t *elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1544,15 +1594,18 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char * organization , cha
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipeline run log");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipeline run log");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -1671,15 +1724,18 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char * organization , ch
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved run node details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved run node details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_run_node_t *elementToReturn = pipeline_run_node_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1791,15 +1847,18 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char * organization 
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved run node step details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved run node step details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_step_impl_t *elementToReturn = pipeline_step_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -1912,15 +1971,18 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char * organizati
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipeline run node step log");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipeline run node step log");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -2017,15 +2079,18 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char * organization
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved run node steps details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved run node steps details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2127,15 +2192,18 @@ BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char * organization , c
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved run nodes details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved run nodes details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2226,15 +2294,18 @@ BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char * organization , char 
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved runs details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved runs details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2314,15 +2385,18 @@ BlueOceanAPI_getPipelines(apiClient_t *apiClient, char * organization )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved pipelines details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved pipelines details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2411,15 +2485,18 @@ BlueOceanAPI_getSCM(apiClient_t *apiClient, char * organization , char * scm )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved SCM details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved SCM details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     github_scm_t *elementToReturn = github_scm_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -2547,15 +2624,18 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char * organ
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved SCM organization repositories details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved SCM organization repositories details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2714,15 +2794,18 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char * organiz
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved SCM organizations details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved SCM organizations details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2838,15 +2921,18 @@ BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char * organization , c
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved SCM organizations details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved SCM organizations details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -2948,15 +3034,18 @@ BlueOceanAPI_getUser(apiClient_t *apiClient, char * organization , char * user )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved users details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved users details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     user_t *elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -3026,15 +3115,18 @@ BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char * user )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved users favorites details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved users favorites details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
         return 0;//nonprimitive container
@@ -3113,15 +3205,18 @@ BlueOceanAPI_getUsers(apiClient_t *apiClient, char * organization )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved users details");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved users details");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     user_t *elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -3210,15 +3305,18 @@ BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char * organization , char 
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully replayed a pipeline run");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully replayed a pipeline run");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     queue_item_impl_t *elementToReturn = queue_item_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -3299,15 +3397,18 @@ BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char * organization , char
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully started a build");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully started a build");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     queue_item_impl_t *elementToReturn = queue_item_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -3397,15 +3498,18 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , c
                     localVarBodyParameters,
                     "PUT");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully favorited/unfavorited a pipeline");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully favorited/unfavorited a pipeline");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     favorite_impl_t *elementToReturn = favorite_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -3525,15 +3629,18 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char * organization , char *
                     localVarBodyParameters,
                     "PUT");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully stopped a build");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully stopped a build");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //nonprimitive not container
     cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     pipeline_run_t *elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
@@ -3630,15 +3737,18 @@ BlueOceanAPI_search(apiClient_t *apiClient, char * q )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved search result");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved search result");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 
@@ -3714,15 +3824,18 @@ BlueOceanAPI_searchClasses(apiClient_t *apiClient, char * q )
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successfully retrieved search result");
-    }
-    if (apiClient->response_code == 401) {
-        printf("%s\n","Authentication failed - incorrect username and/or password");
-    }
-    if (apiClient->response_code == 403) {
-        printf("%s\n","Jenkins requires authentication - please set username and password");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successfully retrieved search result");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed - incorrect username and/or password");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 403) {
+    //    printf("%s\n","Jenkins requires authentication - please set username and password");
+    //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
 

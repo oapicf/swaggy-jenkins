@@ -19,20 +19,20 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelinelatestRun (
-  artifacts: Option[Seq[PipelinelatestRunartifacts]],
-  durationInMillis: Option[Int],
-  estimatedDurationInMillis: Option[Int],
-  enQueueTime: Option[String],
-  endTime: Option[String],
-  id: Option[String],
-  organization: Option[String],
-  pipeline: Option[String],
-  result: Option[String],
-  runSummary: Option[String],
-  startTime: Option[String],
-  state: Option[String],
-  `type`: Option[String],
-  commitId: Option[String],
-  `class`: Option[String]
+  artifacts: Option[Seq[PipelinelatestRunartifacts]] = None,
+  durationInMillis: Option[Int] = None,
+  estimatedDurationInMillis: Option[Int] = None,
+  enQueueTime: Option[String] = None,
+  endTime: Option[String] = None,
+  id: Option[String] = None,
+  organization: Option[String] = None,
+  pipeline: Option[String] = None,
+  result: Option[String] = None,
+  runSummary: Option[String] = None,
+  startTime: Option[String] = None,
+  state: Option[String] = None,
+  `type`: Option[String] = None,
+  commitId: Option[String] = None,
+  `class`: Option[String] = None
 )
 

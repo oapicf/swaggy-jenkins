@@ -40,7 +40,7 @@ public class ClassesByClass   {
 
   public ClassesByClass addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<String>();
+      this.classes = new ArrayList<>();
     }
     this.classes.add(classesItem);
     return this;

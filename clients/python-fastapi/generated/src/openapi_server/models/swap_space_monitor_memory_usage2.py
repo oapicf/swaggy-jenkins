@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class SwapSpaceMonitorMemoryUsage2(BaseModel):
@@ -23,10 +23,10 @@ class SwapSpaceMonitorMemoryUsage2(BaseModel):
         total_swap_space: The total_swap_space of this SwapSpaceMonitorMemoryUsage2 [Optional].
     """
 
-    _class: Optional[str] = None
-    available_physical_memory: Optional[int] = None
-    available_swap_space: Optional[int] = None
-    total_physical_memory: Optional[int] = None
-    total_swap_space: Optional[int] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    available_physical_memory: Optional[int] = Field(alias="availablePhysicalMemory", default=None)
+    available_swap_space: Optional[int] = Field(alias="availableSwapSpace", default=None)
+    total_physical_memory: Optional[int] = Field(alias="totalPhysicalMemory", default=None)
+    total_swap_space: Optional[int] = Field(alias="totalSwapSpace", default=None)
 
 SwapSpaceMonitorMemoryUsage2.update_forward_refs()

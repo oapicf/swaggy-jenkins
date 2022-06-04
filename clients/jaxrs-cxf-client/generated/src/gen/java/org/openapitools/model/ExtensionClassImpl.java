@@ -7,6 +7,7 @@ import org.openapitools.model.ExtensionClassImpllinks;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class ExtensionClassImpl  {
   
   @ApiModelProperty(value = "")

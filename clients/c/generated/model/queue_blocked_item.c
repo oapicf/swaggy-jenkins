@@ -79,15 +79,15 @@ cJSON *queue_blocked_item_convertToJSON(queue_blocked_item_t *queue_blocked_item
     cJSON *item = cJSON_CreateObject();
 
     // queue_blocked_item->_class
-    if(queue_blocked_item->_class) { 
+    if(queue_blocked_item->_class) {
     if(cJSON_AddStringToObject(item, "_class", queue_blocked_item->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_blocked_item->actions
-    if(queue_blocked_item->actions) { 
+    if(queue_blocked_item->actions) {
     cJSON *actions = cJSON_AddArrayToObject(item, "actions");
     if(actions == NULL) {
     goto fail; //nonprimitive container
@@ -103,59 +103,59 @@ cJSON *queue_blocked_item_convertToJSON(queue_blocked_item_t *queue_blocked_item
     cJSON_AddItemToArray(actions, itemLocal);
     }
     }
-     } 
+    }
 
 
     // queue_blocked_item->blocked
-    if(queue_blocked_item->blocked) { 
+    if(queue_blocked_item->blocked) {
     if(cJSON_AddBoolToObject(item, "blocked", queue_blocked_item->blocked) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // queue_blocked_item->buildable
-    if(queue_blocked_item->buildable) { 
+    if(queue_blocked_item->buildable) {
     if(cJSON_AddBoolToObject(item, "buildable", queue_blocked_item->buildable) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // queue_blocked_item->id
-    if(queue_blocked_item->id) { 
+    if(queue_blocked_item->id) {
     if(cJSON_AddNumberToObject(item, "id", queue_blocked_item->id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // queue_blocked_item->in_queue_since
-    if(queue_blocked_item->in_queue_since) { 
+    if(queue_blocked_item->in_queue_since) {
     if(cJSON_AddNumberToObject(item, "inQueueSince", queue_blocked_item->in_queue_since) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // queue_blocked_item->params
-    if(queue_blocked_item->params) { 
+    if(queue_blocked_item->params) {
     if(cJSON_AddStringToObject(item, "params", queue_blocked_item->params) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_blocked_item->stuck
-    if(queue_blocked_item->stuck) { 
+    if(queue_blocked_item->stuck) {
     if(cJSON_AddBoolToObject(item, "stuck", queue_blocked_item->stuck) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // queue_blocked_item->task
-    if(queue_blocked_item->task) { 
+    if(queue_blocked_item->task) {
     cJSON *task_local_JSON = free_style_project_convertToJSON(queue_blocked_item->task);
     if(task_local_JSON == NULL) {
     goto fail; //model
@@ -164,31 +164,31 @@ cJSON *queue_blocked_item_convertToJSON(queue_blocked_item_t *queue_blocked_item
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // queue_blocked_item->url
-    if(queue_blocked_item->url) { 
+    if(queue_blocked_item->url) {
     if(cJSON_AddStringToObject(item, "url", queue_blocked_item->url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_blocked_item->why
-    if(queue_blocked_item->why) { 
+    if(queue_blocked_item->why) {
     if(cJSON_AddStringToObject(item, "why", queue_blocked_item->why) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_blocked_item->buildable_start_milliseconds
-    if(queue_blocked_item->buildable_start_milliseconds) { 
+    if(queue_blocked_item->buildable_start_milliseconds) {
     if(cJSON_AddNumberToObject(item, "buildableStartMilliseconds", queue_blocked_item->buildable_start_milliseconds) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:
@@ -201,6 +201,9 @@ fail:
 queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_itemJSON){
 
     queue_blocked_item_t *queue_blocked_item_local_var = NULL;
+
+    // define the local list for queue_blocked_item->actions
+    list_t *actionsList = NULL;
 
     // define the local variable for queue_blocked_item->task
     free_style_project_t *task_local_nonprim = NULL;
@@ -216,9 +219,8 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "actions");
-    list_t *actionsList;
     if (actions) { 
-    cJSON *actions_local_nonprimitive;
+    cJSON *actions_local_nonprimitive = NULL;
     if(!cJSON_IsArray(actions)){
         goto end; //nonprimitive container
     }
@@ -341,6 +343,15 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     return queue_blocked_item_local_var;
 end:
+    if (actionsList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, actionsList) {
+            cause_action_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(actionsList);
+        actionsList = NULL;
+    }
     if (task_local_nonprim) {
         free_style_project_free(task_local_nonprim);
         task_local_nonprim = NULL;

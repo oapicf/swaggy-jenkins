@@ -54,43 +54,43 @@ cJSON *free_style_projecthealth_report_convertToJSON(free_style_projecthealth_re
     cJSON *item = cJSON_CreateObject();
 
     // free_style_projecthealth_report->description
-    if(free_style_projecthealth_report->description) { 
+    if(free_style_projecthealth_report->description) {
     if(cJSON_AddStringToObject(item, "description", free_style_projecthealth_report->description) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_projecthealth_report->icon_class_name
-    if(free_style_projecthealth_report->icon_class_name) { 
+    if(free_style_projecthealth_report->icon_class_name) {
     if(cJSON_AddStringToObject(item, "iconClassName", free_style_projecthealth_report->icon_class_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_projecthealth_report->icon_url
-    if(free_style_projecthealth_report->icon_url) { 
+    if(free_style_projecthealth_report->icon_url) {
     if(cJSON_AddStringToObject(item, "iconUrl", free_style_projecthealth_report->icon_url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // free_style_projecthealth_report->score
-    if(free_style_projecthealth_report->score) { 
+    if(free_style_projecthealth_report->score) {
     if(cJSON_AddNumberToObject(item, "score", free_style_projecthealth_report->score) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // free_style_projecthealth_report->_class
-    if(free_style_projecthealth_report->_class) { 
+    if(free_style_projecthealth_report->_class) {
     if(cJSON_AddStringToObject(item, "_class", free_style_projecthealth_report->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

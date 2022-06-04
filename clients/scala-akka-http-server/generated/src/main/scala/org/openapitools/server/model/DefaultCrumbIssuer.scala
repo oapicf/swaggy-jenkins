@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param crumbRequestField  for example: ''null''
 */
 final case class DefaultCrumbIssuer (
-  `class`: Option[String],
-  crumb: Option[String],
-  crumbRequestField: Option[String]
+  `class`: Option[String] = None,
+  crumb: Option[String] = None,
+  crumbRequestField: Option[String] = None
 )
 

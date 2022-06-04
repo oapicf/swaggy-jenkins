@@ -73,15 +73,15 @@ cJSON *input_step_impl_convertToJSON(input_step_impl_t *input_step_impl) {
     cJSON *item = cJSON_CreateObject();
 
     // input_step_impl->_class
-    if(input_step_impl->_class) { 
+    if(input_step_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", input_step_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // input_step_impl->_links
-    if(input_step_impl->_links) { 
+    if(input_step_impl->_links) {
     cJSON *_links_local_JSON = input_step_impllinks_convertToJSON(input_step_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -90,35 +90,35 @@ cJSON *input_step_impl_convertToJSON(input_step_impl_t *input_step_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // input_step_impl->id
-    if(input_step_impl->id) { 
+    if(input_step_impl->id) {
     if(cJSON_AddStringToObject(item, "id", input_step_impl->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // input_step_impl->message
-    if(input_step_impl->message) { 
+    if(input_step_impl->message) {
     if(cJSON_AddStringToObject(item, "message", input_step_impl->message) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // input_step_impl->ok
-    if(input_step_impl->ok) { 
+    if(input_step_impl->ok) {
     if(cJSON_AddStringToObject(item, "ok", input_step_impl->ok) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // input_step_impl->parameters
-    if(input_step_impl->parameters) { 
+    if(input_step_impl->parameters) {
     cJSON *parameters = cJSON_AddArrayToObject(item, "parameters");
     if(parameters == NULL) {
     goto fail; //nonprimitive container
@@ -134,15 +134,15 @@ cJSON *input_step_impl_convertToJSON(input_step_impl_t *input_step_impl) {
     cJSON_AddItemToArray(parameters, itemLocal);
     }
     }
-     } 
+    }
 
 
     // input_step_impl->submitter
-    if(input_step_impl->submitter) { 
+    if(input_step_impl->submitter) {
     if(cJSON_AddStringToObject(item, "submitter", input_step_impl->submitter) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -158,6 +158,9 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
 
     // define the local variable for input_step_impl->_links
     input_step_impllinks_t *_links_local_nonprim = NULL;
+
+    // define the local list for input_step_impl->parameters
+    list_t *parametersList = NULL;
 
     // input_step_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "_class");
@@ -203,9 +206,8 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
 
     // input_step_impl->parameters
     cJSON *parameters = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "parameters");
-    list_t *parametersList;
     if (parameters) { 
-    cJSON *parameters_local_nonprimitive;
+    cJSON *parameters_local_nonprimitive = NULL;
     if(!cJSON_IsArray(parameters)){
         goto end; //nonprimitive container
     }
@@ -248,6 +250,15 @@ end:
     if (_links_local_nonprim) {
         input_step_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
+    }
+    if (parametersList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, parametersList) {
+            string_parameter_definition_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(parametersList);
+        parametersList = NULL;
     }
     return NULL;
 

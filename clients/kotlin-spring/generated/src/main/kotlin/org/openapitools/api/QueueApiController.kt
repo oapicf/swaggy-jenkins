@@ -1,6 +1,11 @@
 package org.openapitools.api
 
 import org.openapitools.model.Queue
+import io.swagger.v3.oas.annotations.*
+import io.swagger.v3.oas.annotations.enums.*
+import io.swagger.v3.oas.annotations.media.*
+import io.swagger.v3.oas.annotations.responses.*
+import io.swagger.v3.oas.annotations.security.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -13,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
+import javax.validation.constraints.Email
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
@@ -27,7 +33,16 @@ import kotlin.collections.Map
 @RequestMapping("\${api.base-path:}")
 class QueueApiController() {
 
-
+    @Operation(
+        summary = "",
+        operationId = "getQueue",
+        description = "Retrieve queue details",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved queue details", content = [Content(schema = Schema(implementation = Queue::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/queue/api/json"],
@@ -37,14 +52,22 @@ class QueueApiController() {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
-
+    @Operation(
+        summary = "",
+        operationId = "getQueueItem",
+        description = "Retrieve queued item details",
+        responses = [
+            ApiResponse(responseCode = "200", description = "Successfully retrieved queued item details", content = [Content(schema = Schema(implementation = Queue::class))]),
+            ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
+            ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
+        security = [ SecurityRequirement(name = "jenkins_auth") ]
+    )
     @RequestMapping(
         method = [RequestMethod.GET],
         value = ["/queue/item/{number}/api/json"],
         produces = ["application/json"]
     )
-    fun getQueueItem( @PathVariable("number") number: kotlin.String
-): ResponseEntity<Queue> {
+    fun getQueueItem(@Parameter(description = "Queue number", required = true) @PathVariable("number") number: kotlin.String): ResponseEntity<Queue> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 }

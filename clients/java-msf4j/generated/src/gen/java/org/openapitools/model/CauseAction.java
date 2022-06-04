@@ -12,7 +12,7 @@ import org.openapitools.model.CauseUserIdCause;
 /**
  * CauseAction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class CauseAction   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -45,7 +45,7 @@ public class CauseAction   {
 
   public CauseAction addCausesItem(CauseUserIdCause causesItem) {
     if (this.causes == null) {
-      this.causes = new ArrayList<CauseUserIdCause>();
+      this.causes = new ArrayList<>();
     }
     this.causes.add(causesItem);
     return this;

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * ClassesByClass
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class ClassesByClass   {
   @JsonProperty("classes")
   private List<String> classes = null;
@@ -26,7 +26,7 @@ public class ClassesByClass   {
 
   public ClassesByClass addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<String>();
+      this.classes = new ArrayList<>();
     }
     this.classes.add(classesItem);
     return this;

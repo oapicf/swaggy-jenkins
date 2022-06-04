@@ -58,7 +58,7 @@ cJSON *pipeline_impllinks_convertToJSON(pipeline_impllinks_t *pipeline_impllinks
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_impllinks->runs
-    if(pipeline_impllinks->runs) { 
+    if(pipeline_impllinks->runs) {
     cJSON *runs_local_JSON = link_convertToJSON(pipeline_impllinks->runs);
     if(runs_local_JSON == NULL) {
     goto fail; //model
@@ -67,11 +67,11 @@ cJSON *pipeline_impllinks_convertToJSON(pipeline_impllinks_t *pipeline_impllinks
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_impllinks->self
-    if(pipeline_impllinks->self) { 
+    if(pipeline_impllinks->self) {
     cJSON *self_local_JSON = link_convertToJSON(pipeline_impllinks->self);
     if(self_local_JSON == NULL) {
     goto fail; //model
@@ -80,11 +80,11 @@ cJSON *pipeline_impllinks_convertToJSON(pipeline_impllinks_t *pipeline_impllinks
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_impllinks->queue
-    if(pipeline_impllinks->queue) { 
+    if(pipeline_impllinks->queue) {
     cJSON *queue_local_JSON = link_convertToJSON(pipeline_impllinks->queue);
     if(queue_local_JSON == NULL) {
     goto fail; //model
@@ -93,11 +93,11 @@ cJSON *pipeline_impllinks_convertToJSON(pipeline_impllinks_t *pipeline_impllinks
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_impllinks->actions
-    if(pipeline_impllinks->actions) { 
+    if(pipeline_impllinks->actions) {
     cJSON *actions_local_JSON = link_convertToJSON(pipeline_impllinks->actions);
     if(actions_local_JSON == NULL) {
     goto fail; //model
@@ -106,15 +106,15 @@ cJSON *pipeline_impllinks_convertToJSON(pipeline_impllinks_t *pipeline_impllinks
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_impllinks->_class
-    if(pipeline_impllinks->_class) { 
+    if(pipeline_impllinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_impllinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

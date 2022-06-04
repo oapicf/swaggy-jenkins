@@ -3,7 +3,7 @@
 
 context("Test PipelineRunImpl")
 
-model.instance <- PipelineRunImpl$new()
+model_instance <- PipelineRunImpl$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -109,4 +109,3 @@ test_that("commitId", {
   # uncomment below to test the property
   #expect_equal(model.instance$`commitId`, "EXPECTED_RESULT")
 })
-

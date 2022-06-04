@@ -70,39 +70,39 @@ cJSON *pipeline_branchesitem_convertToJSON(pipeline_branchesitem_t *pipeline_bra
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_branchesitem->display_name
-    if(pipeline_branchesitem->display_name) { 
+    if(pipeline_branchesitem->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", pipeline_branchesitem->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->estimated_duration_in_millis
-    if(pipeline_branchesitem->estimated_duration_in_millis) { 
+    if(pipeline_branchesitem->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_branchesitem->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->name
-    if(pipeline_branchesitem->name) { 
+    if(pipeline_branchesitem->name) {
     if(cJSON_AddStringToObject(item, "name", pipeline_branchesitem->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->weather_score
-    if(pipeline_branchesitem->weather_score) { 
+    if(pipeline_branchesitem->weather_score) {
     if(cJSON_AddNumberToObject(item, "weatherScore", pipeline_branchesitem->weather_score) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->latest_run
-    if(pipeline_branchesitem->latest_run) { 
+    if(pipeline_branchesitem->latest_run) {
     cJSON *latest_run_local_JSON = pipeline_branchesitemlatest_run_convertToJSON(pipeline_branchesitem->latest_run);
     if(latest_run_local_JSON == NULL) {
     goto fail; //model
@@ -111,19 +111,19 @@ cJSON *pipeline_branchesitem_convertToJSON(pipeline_branchesitem_t *pipeline_bra
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->organization
-    if(pipeline_branchesitem->organization) { 
+    if(pipeline_branchesitem->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_branchesitem->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->pull_request
-    if(pipeline_branchesitem->pull_request) { 
+    if(pipeline_branchesitem->pull_request) {
     cJSON *pull_request_local_JSON = pipeline_branchesitempull_request_convertToJSON(pipeline_branchesitem->pull_request);
     if(pull_request_local_JSON == NULL) {
     goto fail; //model
@@ -132,23 +132,23 @@ cJSON *pipeline_branchesitem_convertToJSON(pipeline_branchesitem_t *pipeline_bra
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->total_number_of_pull_requests
-    if(pipeline_branchesitem->total_number_of_pull_requests) { 
+    if(pipeline_branchesitem->total_number_of_pull_requests) {
     if(cJSON_AddNumberToObject(item, "totalNumberOfPullRequests", pipeline_branchesitem->total_number_of_pull_requests) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_branchesitem->_class
-    if(pipeline_branchesitem->_class) { 
+    if(pipeline_branchesitem->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_branchesitem->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

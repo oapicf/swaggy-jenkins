@@ -62,14 +62,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var queue = queue_example; // String | Name of the queue item
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String queue = queue_example; // String | Name of the queue item
 
 try {
-    api_instance.deletePipelineQueueItem(organization, pipeline, queue);
-} catch (e) {
+    api.deletePipelineQueueItem(organization, pipeline, queue);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->deletePipelineQueueItem: $e\n');
 }
 ```
@@ -111,13 +111,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
 
 try {
-    var result = api_instance.getAuthenticatedUser(organization);
-    print(result);
-} catch (e) {
+    final response = api.getAuthenticatedUser(organization);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getAuthenticatedUser: $e\n');
 }
 ```
@@ -157,13 +157,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var class_ = class__example; // String | Name of the class
+final api = Openapi().getBlueOceanApi();
+final String class_ = class__example; // String | Name of the class
 
 try {
-    var result = api_instance.getClasses(class_);
-    print(result);
-} catch (e) {
+    final response = api.getClasses(class_);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getClasses: $e\n');
 }
 ```
@@ -200,13 +200,13 @@ Retrieve JSON Web Key
 ```dart
 import 'package:openapi/api.dart';
 
-var api_instance = new BlueOceanApi();
-var key = 56; // int | Key ID received as part of JWT header field kid
+final api = Openapi().getBlueOceanApi();
+final int key = 56; // int | Key ID received as part of JWT header field kid
 
 try {
-    var result = api_instance.getJsonWebKey(key);
-    print(result);
-} catch (e) {
+    final response = api.getJsonWebKey(key);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getJsonWebKey: $e\n');
 }
 ```
@@ -243,14 +243,14 @@ Retrieve JSON Web Token
 ```dart
 import 'package:openapi/api.dart';
 
-var api_instance = new BlueOceanApi();
-var expiryTimeInMins = 56; // int | Token expiry time in minutes, default: 30 minutes
-var maxExpiryTimeInMins = 56; // int | Maximum token expiry time in minutes, default: 480 minutes
+final api = Openapi().getBlueOceanApi();
+final int expiryTimeInMins = 56; // int | Token expiry time in minutes, default: 30 minutes
+final int maxExpiryTimeInMins = 56; // int | Maximum token expiry time in minutes, default: 480 minutes
 
 try {
-    var result = api_instance.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
-    print(result);
-} catch (e) {
+    final response = api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getJsonWebToken: $e\n');
 }
 ```
@@ -291,13 +291,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
 
 try {
-    var result = api_instance.getOrganisation(organization);
-    print(result);
-} catch (e) {
+    final response = api.getOrganisation(organization);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getOrganisation: $e\n');
 }
 ```
@@ -337,12 +337,12 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
+final api = Openapi().getBlueOceanApi();
 
 try {
-    var result = api_instance.getOrganisations();
-    print(result);
-} catch (e) {
+    final response = api.getOrganisations();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getOrganisations: $e\n');
 }
 ```
@@ -352,7 +352,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList<Organisation>**](Organisation.md)
+[**BuiltList&lt;Organisation&gt;**](Organisation.md)
 
 ### Authorization
 
@@ -379,14 +379,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
 
 try {
-    var result = api_instance.getPipeline(organization, pipeline);
-    print(result);
-} catch (e) {
+    final response = api.getPipeline(organization, pipeline);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipeline: $e\n');
 }
 ```
@@ -427,14 +427,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
 
 try {
-    var result = api_instance.getPipelineActivities(organization, pipeline);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineActivities(organization, pipeline);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineActivities: $e\n');
 }
 ```
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<PipelineActivity>**](PipelineActivity.md)
+[**BuiltList&lt;PipelineActivity&gt;**](PipelineActivity.md)
 
 ### Authorization
 
@@ -475,15 +475,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var branch = branch_example; // String | Name of the branch
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String branch = branch_example; // String | Name of the branch
 
 try {
-    var result = api_instance.getPipelineBranch(organization, pipeline, branch);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineBranch(organization, pipeline, branch);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineBranch: $e\n');
 }
 ```
@@ -525,16 +525,16 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var branch = branch_example; // String | Name of the branch
-var run = run_example; // String | Name of the run
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String branch = branch_example; // String | Name of the branch
+final String run = run_example; // String | Name of the run
 
 try {
-    var result = api_instance.getPipelineBranchRun(organization, pipeline, branch, run);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineBranchRun(organization, pipeline, branch, run);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineBranchRun: $e\n');
 }
 ```
@@ -577,14 +577,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
 
 try {
-    var result = api_instance.getPipelineBranches(organization, pipeline);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineBranches(organization, pipeline);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineBranches: $e\n');
 }
 ```
@@ -625,14 +625,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var folder = folder_example; // String | Name of the folder
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String folder = folder_example; // String | Name of the folder
 
 try {
-    var result = api_instance.getPipelineFolder(organization, folder);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineFolder(organization, folder);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineFolder: $e\n');
 }
 ```
@@ -673,15 +673,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var folder = folder_example; // String | Name of the folder
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String folder = folder_example; // String | Name of the folder
 
 try {
-    var result = api_instance.getPipelineFolderPipeline(organization, pipeline, folder);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineFolderPipeline(organization, pipeline, folder);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineFolderPipeline: $e\n');
 }
 ```
@@ -723,14 +723,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
 
 try {
-    var result = api_instance.getPipelineQueue(organization, pipeline);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineQueue(organization, pipeline);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineQueue: $e\n');
 }
 ```
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<QueueItemImpl>**](QueueItemImpl.md)
+[**BuiltList&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -771,15 +771,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
 
 try {
-    var result = api_instance.getPipelineRun(organization, pipeline, run);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRun(organization, pipeline, run);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRun: $e\n');
 }
 ```
@@ -821,17 +821,17 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
-var start = 56; // int | Start position of the log
-var download = true; // bool | Set to true in order to download the file, otherwise it's passed as a response body
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
+final int start = 56; // int | Start position of the log
+final bool download = true; // bool | Set to true in order to download the file, otherwise it's passed as a response body
 
 try {
-    var result = api_instance.getPipelineRunLog(organization, pipeline, run, start, download);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRunLog(organization, pipeline, run, start, download);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunLog: $e\n');
 }
 ```
@@ -875,16 +875,16 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
-var node = node_example; // String | Name of the node
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
+final String node = node_example; // String | Name of the node
 
 try {
-    var result = api_instance.getPipelineRunNode(organization, pipeline, run, node);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRunNode(organization, pipeline, run, node);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNode: $e\n');
 }
 ```
@@ -927,17 +927,17 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
-var node = node_example; // String | Name of the node
-var step = step_example; // String | Name of the step
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
+final String node = node_example; // String | Name of the node
+final String step = step_example; // String | Name of the step
 
 try {
-    var result = api_instance.getPipelineRunNodeStep(organization, pipeline, run, node, step);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRunNodeStep(organization, pipeline, run, node, step);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodeStep: $e\n');
 }
 ```
@@ -981,17 +981,17 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
-var node = node_example; // String | Name of the node
-var step = step_example; // String | Name of the step
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
+final String node = node_example; // String | Name of the node
+final String step = step_example; // String | Name of the step
 
 try {
-    var result = api_instance.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodeStepLog: $e\n');
 }
 ```
@@ -1035,16 +1035,16 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
-var node = node_example; // String | Name of the node
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
+final String node = node_example; // String | Name of the node
 
 try {
-    var result = api_instance.getPipelineRunNodeSteps(organization, pipeline, run, node);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRunNodeSteps(organization, pipeline, run, node);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodeSteps: $e\n');
 }
 ```
@@ -1060,7 +1060,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<PipelineStepImpl>**](PipelineStepImpl.md)
+[**BuiltList&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1087,15 +1087,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
 
 try {
-    var result = api_instance.getPipelineRunNodes(organization, pipeline, run);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRunNodes(organization, pipeline, run);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodes: $e\n');
 }
 ```
@@ -1110,7 +1110,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<PipelineRunNode>**](PipelineRunNode.md)
+[**BuiltList&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1137,14 +1137,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
 
 try {
-    var result = api_instance.getPipelineRuns(organization, pipeline);
-    print(result);
-} catch (e) {
+    final response = api.getPipelineRuns(organization, pipeline);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelineRuns: $e\n');
 }
 ```
@@ -1158,7 +1158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<PipelineRun>**](PipelineRun.md)
+[**BuiltList&lt;PipelineRun&gt;**](PipelineRun.md)
 
 ### Authorization
 
@@ -1185,13 +1185,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
 
 try {
-    var result = api_instance.getPipelines(organization);
-    print(result);
-} catch (e) {
+    final response = api.getPipelines(organization);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getPipelines: $e\n');
 }
 ```
@@ -1204,7 +1204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<Pipeline>**](Pipeline.md)
+[**BuiltList&lt;Pipeline&gt;**](Pipeline.md)
 
 ### Authorization
 
@@ -1231,14 +1231,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var scm = scm_example; // String | Name of SCM
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String scm = scm_example; // String | Name of SCM
 
 try {
-    var result = api_instance.getSCM(organization, scm);
-    print(result);
-} catch (e) {
+    final response = api.getSCM(organization, scm);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getSCM: $e\n');
 }
 ```
@@ -1279,18 +1279,18 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var scm = scm_example; // String | Name of SCM
-var scmOrganisation = scmOrganisation_example; // String | Name of the SCM organization
-var credentialId = credentialId_example; // String | Credential ID
-var pageSize = 56; // int | Number of items in a page
-var pageNumber = 56; // int | Page number
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String scm = scm_example; // String | Name of SCM
+final String scmOrganisation = scmOrganisation_example; // String | Name of the SCM organization
+final String credentialId = credentialId_example; // String | Credential ID
+final int pageSize = 56; // int | Number of items in a page
+final int pageNumber = 56; // int | Page number
 
 try {
-    var result = api_instance.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
-    print(result);
-} catch (e) {
+    final response = api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getSCMOrganisationRepositories: $e\n');
 }
 ```
@@ -1308,7 +1308,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<GithubOrganization>**](GithubOrganization.md)
+[**BuiltList&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1335,17 +1335,17 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var scm = scm_example; // String | Name of SCM
-var scmOrganisation = scmOrganisation_example; // String | Name of the SCM organization
-var repository = repository_example; // String | Name of the SCM repository
-var credentialId = credentialId_example; // String | Credential ID
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String scm = scm_example; // String | Name of SCM
+final String scmOrganisation = scmOrganisation_example; // String | Name of the SCM organization
+final String repository = repository_example; // String | Name of the SCM repository
+final String credentialId = credentialId_example; // String | Credential ID
 
 try {
-    var result = api_instance.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
-    print(result);
-} catch (e) {
+    final response = api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getSCMOrganisationRepository: $e\n');
 }
 ```
@@ -1362,7 +1362,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<GithubOrganization>**](GithubOrganization.md)
+[**BuiltList&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1389,15 +1389,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var scm = scm_example; // String | Name of SCM
-var credentialId = credentialId_example; // String | Credential ID
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String scm = scm_example; // String | Name of SCM
+final String credentialId = credentialId_example; // String | Credential ID
 
 try {
-    var result = api_instance.getSCMOrganisations(organization, scm, credentialId);
-    print(result);
-} catch (e) {
+    final response = api.getSCMOrganisations(organization, scm, credentialId);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getSCMOrganisations: $e\n');
 }
 ```
@@ -1412,7 +1412,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<GithubOrganization>**](GithubOrganization.md)
+[**BuiltList&lt;GithubOrganization&gt;**](GithubOrganization.md)
 
 ### Authorization
 
@@ -1439,14 +1439,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var user = user_example; // String | Name of the user
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String user = user_example; // String | Name of the user
 
 try {
-    var result = api_instance.getUser(organization, user);
-    print(result);
-} catch (e) {
+    final response = api.getUser(organization, user);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getUser: $e\n');
 }
 ```
@@ -1487,13 +1487,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var user = user_example; // String | Name of the user
+final api = Openapi().getBlueOceanApi();
+final String user = user_example; // String | Name of the user
 
 try {
-    var result = api_instance.getUserFavorites(user);
-    print(result);
-} catch (e) {
+    final response = api.getUserFavorites(user);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getUserFavorites: $e\n');
 }
 ```
@@ -1506,7 +1506,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BuiltList<FavoriteImpl>**](FavoriteImpl.md)
+[**BuiltList&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1533,13 +1533,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
 
 try {
-    var result = api_instance.getUsers(organization);
-    print(result);
-} catch (e) {
+    final response = api.getUsers(organization);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->getUsers: $e\n');
 }
 ```
@@ -1579,15 +1579,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
 
 try {
-    var result = api_instance.postPipelineRun(organization, pipeline, run);
-    print(result);
-} catch (e) {
+    final response = api.postPipelineRun(organization, pipeline, run);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->postPipelineRun: $e\n');
 }
 ```
@@ -1629,14 +1629,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
 
 try {
-    var result = api_instance.postPipelineRuns(organization, pipeline);
-    print(result);
-} catch (e) {
+    final response = api.postPipelineRuns(organization, pipeline);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->postPipelineRuns: $e\n');
 }
 ```
@@ -1677,15 +1677,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var body = new bool(); // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final bool body = true; // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
 try {
-    var result = api_instance.putPipelineFavorite(organization, pipeline, body);
-    print(result);
-} catch (e) {
+    final response = api.putPipelineFavorite(organization, pipeline, body);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->putPipelineFavorite: $e\n');
 }
 ```
@@ -1727,17 +1727,17 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var organization = organization_example; // String | Name of the organization
-var pipeline = pipeline_example; // String | Name of the pipeline
-var run = run_example; // String | Name of the run
-var blocking = blocking_example; // String | Set to true to make blocking stop, default: false
-var timeOutInSecs = 56; // int | Timeout in seconds, default: 10 seconds
+final api = Openapi().getBlueOceanApi();
+final String organization = organization_example; // String | Name of the organization
+final String pipeline = pipeline_example; // String | Name of the pipeline
+final String run = run_example; // String | Name of the run
+final String blocking = blocking_example; // String | Set to true to make blocking stop, default: false
+final int timeOutInSecs = 56; // int | Timeout in seconds, default: 10 seconds
 
 try {
-    var result = api_instance.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
-    print(result);
-} catch (e) {
+    final response = api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->putPipelineRun: $e\n');
 }
 ```
@@ -1781,13 +1781,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var q = q_example; // String | Query string
+final api = Openapi().getBlueOceanApi();
+final String q = q_example; // String | Query string
 
 try {
-    var result = api_instance.search(q);
-    print(result);
-} catch (e) {
+    final response = api.search(q);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->search: $e\n');
 }
 ```
@@ -1827,13 +1827,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new BlueOceanApi();
-var q = q_example; // String | Query string containing an array of class names
+final api = Openapi().getBlueOceanApi();
+final String q = q_example; // String | Query string containing an array of class names
 
 try {
-    var result = api_instance.searchClasses(q);
-    print(result);
-} catch (e) {
+    final response = api.searchClasses(q);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling BlueOceanApi->searchClasses: $e\n');
 }
 ```

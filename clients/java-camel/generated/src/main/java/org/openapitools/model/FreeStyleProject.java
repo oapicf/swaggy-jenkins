@@ -24,8 +24,8 @@ import javax.annotation.Generated;
  * FreeStyleProject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class FreeStyleProject   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class FreeStyleProject {
 
   @JsonProperty("_class")
   private String propertyClass;
@@ -194,7 +194,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addActionsItem(FreeStyleProjectactions actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<FreeStyleProjectactions>();
+      this.actions = new ArrayList<>();
     }
     this.actions.add(actionsItem);
     return this;
@@ -335,7 +335,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addBuildsItem(FreeStyleBuild buildsItem) {
     if (this.builds == null) {
-      this.builds = new ArrayList<FreeStyleBuild>();
+      this.builds = new ArrayList<>();
     }
     this.builds.add(buildsItem);
     return this;
@@ -381,7 +381,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
     if (this.healthReport == null) {
-      this.healthReport = new ArrayList<FreeStyleProjecthealthReport>();
+      this.healthReport = new ArrayList<>();
     }
     this.healthReport.add(healthReportItem);
     return this;

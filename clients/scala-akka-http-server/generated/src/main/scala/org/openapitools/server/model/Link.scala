@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param href  for example: ''null''
 */
 final case class Link (
-  `class`: Option[String],
-  href: Option[String]
+  `class`: Option[String] = None,
+  href: Option[String] = None
 )
 

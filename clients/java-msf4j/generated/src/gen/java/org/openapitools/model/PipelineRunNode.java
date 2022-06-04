@@ -12,7 +12,7 @@ import org.openapitools.model.PipelineRunNodeedges;
 /**
  * PipelineRunNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class PipelineRunNode   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -99,7 +99,7 @@ public class PipelineRunNode   {
 
   public PipelineRunNode addEdgesItem(PipelineRunNodeedges edgesItem) {
     if (this.edges == null) {
-      this.edges = new ArrayList<PipelineRunNodeedges>();
+      this.edges = new ArrayList<>();
     }
     this.edges.add(edgesItem);
     return this;

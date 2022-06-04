@@ -83,55 +83,55 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
     cJSON *item = cJSON_CreateObject();
 
     // multibranch_pipeline->display_name
-    if(multibranch_pipeline->display_name) { 
+    if(multibranch_pipeline->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", multibranch_pipeline->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // multibranch_pipeline->estimated_duration_in_millis
-    if(multibranch_pipeline->estimated_duration_in_millis) { 
+    if(multibranch_pipeline->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", multibranch_pipeline->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->latest_run
-    if(multibranch_pipeline->latest_run) { 
+    if(multibranch_pipeline->latest_run) {
     if(cJSON_AddStringToObject(item, "latestRun", multibranch_pipeline->latest_run) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // multibranch_pipeline->name
-    if(multibranch_pipeline->name) { 
+    if(multibranch_pipeline->name) {
     if(cJSON_AddStringToObject(item, "name", multibranch_pipeline->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // multibranch_pipeline->organization
-    if(multibranch_pipeline->organization) { 
+    if(multibranch_pipeline->organization) {
     if(cJSON_AddStringToObject(item, "organization", multibranch_pipeline->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // multibranch_pipeline->weather_score
-    if(multibranch_pipeline->weather_score) { 
+    if(multibranch_pipeline->weather_score) {
     if(cJSON_AddNumberToObject(item, "weatherScore", multibranch_pipeline->weather_score) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->branch_names
-    if(multibranch_pipeline->branch_names) { 
+    if(multibranch_pipeline->branch_names) {
     cJSON *branch_names = cJSON_AddArrayToObject(item, "branchNames");
     if(branch_names == NULL) {
         goto fail; //primitive container
@@ -144,63 +144,63 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
         goto fail;
     }
     }
-     } 
+    }
 
 
     // multibranch_pipeline->number_of_failing_branches
-    if(multibranch_pipeline->number_of_failing_branches) { 
+    if(multibranch_pipeline->number_of_failing_branches) {
     if(cJSON_AddNumberToObject(item, "numberOfFailingBranches", multibranch_pipeline->number_of_failing_branches) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->number_of_failing_pull_requests
-    if(multibranch_pipeline->number_of_failing_pull_requests) { 
+    if(multibranch_pipeline->number_of_failing_pull_requests) {
     if(cJSON_AddNumberToObject(item, "numberOfFailingPullRequests", multibranch_pipeline->number_of_failing_pull_requests) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->number_of_successful_branches
-    if(multibranch_pipeline->number_of_successful_branches) { 
+    if(multibranch_pipeline->number_of_successful_branches) {
     if(cJSON_AddNumberToObject(item, "numberOfSuccessfulBranches", multibranch_pipeline->number_of_successful_branches) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->number_of_successful_pull_requests
-    if(multibranch_pipeline->number_of_successful_pull_requests) { 
+    if(multibranch_pipeline->number_of_successful_pull_requests) {
     if(cJSON_AddNumberToObject(item, "numberOfSuccessfulPullRequests", multibranch_pipeline->number_of_successful_pull_requests) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->total_number_of_branches
-    if(multibranch_pipeline->total_number_of_branches) { 
+    if(multibranch_pipeline->total_number_of_branches) {
     if(cJSON_AddNumberToObject(item, "totalNumberOfBranches", multibranch_pipeline->total_number_of_branches) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->total_number_of_pull_requests
-    if(multibranch_pipeline->total_number_of_pull_requests) { 
+    if(multibranch_pipeline->total_number_of_pull_requests) {
     if(cJSON_AddNumberToObject(item, "totalNumberOfPullRequests", multibranch_pipeline->total_number_of_pull_requests) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // multibranch_pipeline->_class
-    if(multibranch_pipeline->_class) { 
+    if(multibranch_pipeline->_class) {
     if(cJSON_AddStringToObject(item, "_class", multibranch_pipeline->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -213,6 +213,9 @@ fail:
 multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pipelineJSON){
 
     multibranch_pipeline_t *multibranch_pipeline_local_var = NULL;
+
+    // define the local list for multibranch_pipeline->branch_names
+    list_t *branch_namesList = NULL;
 
     // multibranch_pipeline->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "displayName");
@@ -270,9 +273,8 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->branch_names
     cJSON *branch_names = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "branchNames");
-    list_t *branch_namesList;
     if (branch_names) { 
-    cJSON *branch_names_local;
+    cJSON *branch_names_local = NULL;
     if(!cJSON_IsArray(branch_names)) {
         goto end;//primitive container
     }
@@ -371,6 +373,15 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     return multibranch_pipeline_local_var;
 end:
+    if (branch_namesList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, branch_namesList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(branch_namesList);
+        branch_namesList = NULL;
+    }
     return NULL;
 
 }

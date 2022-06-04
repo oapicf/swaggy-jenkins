@@ -7,8 +7,6 @@ use futures::{future, Stream, StreamExt, TryFutureExt, TryStreamExt};
 use hyper::server::conn::Http;
 use hyper::service::Service;
 use log::info;
-#[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-use openssl::ssl::SslAcceptorBuilder;
 use std::future::Future;
 use std::marker::PhantomData;
 use std::net::SocketAddr;
@@ -20,7 +18,7 @@ use swagger::EmptyContext;
 use tokio::net::TcpListener;
 
 #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "ios")))]
-use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
+use openssl::ssl::{Ssl, SslAcceptor, SslAcceptorBuilder, SslFiletype, SslMethod};
 
 use openapi_client::models;
 
@@ -54,26 +52,25 @@ pub async fn create(addr: &str, https: bool) {
             ssl.set_certificate_chain_file("examples/server-chain.pem").expect("Failed to set certificate chain");
             ssl.check_private_key().expect("Failed to check private key");
 
-            let tls_acceptor = Arc::new(ssl.build());
-            let mut tcp_listener = TcpListener::bind(&addr).await.unwrap();
-            let mut incoming = tcp_listener.incoming();
+            let tls_acceptor = ssl.build();
+            let tcp_listener = TcpListener::bind(&addr).await.unwrap();
 
-            while let (Some(tcp), rest) = incoming.into_future().await {
-                if let Ok(tcp) = tcp {
+            loop {
+                if let Ok((tcp, _)) = tcp_listener.accept().await {
+                    let ssl = Ssl::new(tls_acceptor.context()).unwrap();
                     let addr = tcp.peer_addr().expect("Unable to get remote address");
                     let service = service.call(addr);
-                    let tls_acceptor = Arc::clone(&tls_acceptor);
 
                     tokio::spawn(async move {
-                        let tls = tokio_openssl::accept(&*tls_acceptor, tcp).await.map_err(|_| ())?;
-
+                        let tls = tokio_openssl::SslStream::new(ssl, tcp).map_err(|_| ())?;
                         let service = service.await.map_err(|_| ())?;
 
-                        Http::new().serve_connection(tls, service).await.map_err(|_| ())
+                        Http::new()
+                            .serve_connection(tls, service)
+                            .await
+                            .map_err(|_| ())
                     });
                 }
-
-                incoming = rest;
             }
         }
     } else {
@@ -168,7 +165,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_crumb() - X-Span-ID: {:?}", context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn delete_pipeline_queue_item(
@@ -180,7 +177,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("delete_pipeline_queue_item(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, queue, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_authenticated_user(
@@ -190,7 +187,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_authenticated_user(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_classes(
@@ -200,7 +197,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_classes(\"{}\") - X-Span-ID: {:?}", class, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_json_web_key(
@@ -210,7 +207,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_json_web_key({}) - X-Span-ID: {:?}", key, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_json_web_token(
@@ -221,7 +218,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_json_web_token({:?}, {:?}) - X-Span-ID: {:?}", expiry_time_in_mins, max_expiry_time_in_mins, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_organisation(
@@ -231,7 +228,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_organisation(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_organisations(
@@ -240,7 +237,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_organisations() - X-Span-ID: {:?}", context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline(
@@ -251,7 +248,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_activities(
@@ -262,7 +259,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_activities(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_branch(
@@ -274,7 +271,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_branch(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, branch, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_branch_run(
@@ -287,7 +284,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_branch_run(\"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, branch, run, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_branches(
@@ -298,7 +295,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_branches(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_folder(
@@ -309,7 +306,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_folder(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, folder, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_folder_pipeline(
@@ -321,7 +318,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_folder_pipeline(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, folder, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_queue(
@@ -332,7 +329,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_queue(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run(
@@ -344,7 +341,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run_log(
@@ -358,7 +355,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run_log(\"{}\", \"{}\", \"{}\", {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, start, download, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run_node(
@@ -371,7 +368,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run_node(\"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run_node_step(
@@ -385,7 +382,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run_node_step(\"{}\", \"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, step, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run_node_step_log(
@@ -399,7 +396,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run_node_step_log(\"{}\", \"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, step, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run_node_steps(
@@ -412,7 +409,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run_node_steps(\"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_run_nodes(
@@ -424,7 +421,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_run_nodes(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipeline_runs(
@@ -435,7 +432,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipeline_runs(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_pipelines(
@@ -445,7 +442,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_pipelines(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_scm(
@@ -456,7 +453,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_scm(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, scm, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_scm_organisation_repositories(
@@ -471,7 +468,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_scm_organisation_repositories(\"{}\", \"{}\", \"{}\", {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, scm, scm_organisation, credential_id, page_size, page_number, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_scm_organisation_repository(
@@ -485,7 +482,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_scm_organisation_repository(\"{}\", \"{}\", \"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", organization, scm, scm_organisation, repository, credential_id, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_scm_organisations(
@@ -497,7 +494,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_scm_organisations(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", organization, scm, credential_id, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_user(
@@ -508,7 +505,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_user(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, user, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_user_favorites(
@@ -518,7 +515,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_user_favorites(\"{}\") - X-Span-ID: {:?}", user, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_users(
@@ -528,7 +525,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_users(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_pipeline_run(
@@ -540,7 +537,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_pipeline_run(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_pipeline_runs(
@@ -551,7 +548,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_pipeline_runs(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn put_pipeline_favorite(
@@ -563,7 +560,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("put_pipeline_favorite(\"{}\", \"{}\", {}) - X-Span-ID: {:?}", organization, pipeline, body, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn put_pipeline_run(
@@ -577,7 +574,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("put_pipeline_run(\"{}\", \"{}\", \"{}\", {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, blocking, time_out_in_secs, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn search(
@@ -587,7 +584,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("search(\"{}\") - X-Span-ID: {:?}", q, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn search_classes(
@@ -597,7 +594,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("search_classes(\"{}\") - X-Span-ID: {:?}", q, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_computer(
@@ -607,7 +604,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_computer({}) - X-Span-ID: {:?}", depth, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_jenkins(
@@ -616,7 +613,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_jenkins() - X-Span-ID: {:?}", context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_job(
@@ -626,7 +623,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_job(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_job_config(
@@ -636,7 +633,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_job_config(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_job_last_build(
@@ -646,7 +643,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_job_last_build(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_job_progressive_text(
@@ -658,7 +655,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_job_progressive_text(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", name, number, start, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_queue(
@@ -667,7 +664,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_queue() - X-Span-ID: {:?}", context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_queue_item(
@@ -677,7 +674,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_queue_item(\"{}\") - X-Span-ID: {:?}", number, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_view(
@@ -687,7 +684,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_view(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn get_view_config(
@@ -697,7 +694,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("get_view_config(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn head_jenkins(
@@ -706,7 +703,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("head_jenkins() - X-Span-ID: {:?}", context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_create_item(
@@ -721,7 +718,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_create_item(\"{}\", {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, from, mode, jenkins_crumb, content_type, body, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_create_view(
@@ -734,7 +731,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_create_view(\"{}\", {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, content_type, body, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_job_build(
@@ -747,7 +744,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_job_build(\"{}\", \"{}\", {:?}, {:?}) - X-Span-ID: {:?}", name, json, token, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_job_config(
@@ -759,7 +756,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_job_config(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", name, body, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_job_delete(
@@ -770,7 +767,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_job_delete(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_job_disable(
@@ -781,7 +778,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_job_disable(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_job_enable(
@@ -792,7 +789,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_job_enable(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_job_last_build_stop(
@@ -803,7 +800,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_job_last_build_stop(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
     async fn post_view_config(
@@ -815,7 +812,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
     {
         let context = context.clone();
         info!("post_view_config(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", name, body, jenkins_crumb, context.get().0.clone());
-        Err("Generic failure".into())
+        Err(ApiError("Generic failure".into()))
     }
 
 }

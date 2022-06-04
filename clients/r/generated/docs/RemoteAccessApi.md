@@ -540,7 +540,7 @@ void (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PostCreateItem**
-> PostCreateItem(name, from=var.from, mode=var.mode, jenkins.crumb=var.jenkins.crumb, content.type=var.content.type, body=var.body)
+> PostCreateItem(name, from=var.from, mode=var.mode, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
 
 
 
@@ -553,15 +553,15 @@ library(openapi)
 var.name <- 'name_example' # character | Name of the new job
 var.from <- 'from_example' # character | Existing job to copy from
 var.mode <- 'mode_example' # character | Set to 'copy' for copying an existing job
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
-var.content.type <- 'content.type_example' # character | Content type header application/xml
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+var.content_type <- 'content_type_example' # character | Content type header application/xml
 var.body <- 'body_example' # character | Job configuration in config.xml format
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostCreateItem(var.name, from=var.from, mode=var.mode, jenkins.crumb=var.jenkins.crumb, content.type=var.content.type, body=var.body)
+api.instance$PostCreateItem(var.name, from=var.from, mode=var.mode, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
 ```
 
 ### Parameters
@@ -571,8 +571,8 @@ Name | Type | Description  | Notes
  **name** | **character**| Name of the new job | 
  **from** | **character**| Existing job to copy from | [optional] 
  **mode** | **character**| Set to &#39;copy&#39; for copying an existing job | [optional] 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
- **content.type** | **character**| Content type header application/xml | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
+ **content_type** | **character**| Content type header application/xml | [optional] 
  **body** | **character**| Job configuration in config.xml format | [optional] 
 
 ### Return type
@@ -597,7 +597,7 @@ void (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PostCreateView**
-> PostCreateView(name, jenkins.crumb=var.jenkins.crumb, content.type=var.content.type, body=var.body)
+> PostCreateView(name, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
 
 
 
@@ -608,15 +608,15 @@ Create a new view using view configuration
 library(openapi)
 
 var.name <- 'name_example' # character | Name of the new view
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
-var.content.type <- 'content.type_example' # character | Content type header application/xml
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+var.content_type <- 'content_type_example' # character | Content type header application/xml
 var.body <- 'body_example' # character | View configuration in config.xml format
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostCreateView(var.name, jenkins.crumb=var.jenkins.crumb, content.type=var.content.type, body=var.body)
+api.instance$PostCreateView(var.name, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
 ```
 
 ### Parameters
@@ -624,8 +624,8 @@ api.instance$PostCreateView(var.name, jenkins.crumb=var.jenkins.crumb, content.t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the new view | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
- **content.type** | **character**| Content type header application/xml | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
+ **content_type** | **character**| Content type header application/xml | [optional] 
  **body** | **character**| View configuration in config.xml format | [optional] 
 
 ### Return type
@@ -650,7 +650,7 @@ void (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PostJobBuild**
-> PostJobBuild(name, json, token=var.token, jenkins.crumb=var.jenkins.crumb)
+> PostJobBuild(name, json, token=var.token, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -663,13 +663,13 @@ library(openapi)
 var.name <- 'name_example' # character | Name of the job
 var.json <- 'json_example' # character | 
 var.token <- 'token_example' # character | 
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobBuild(var.name, var.json, token=var.token, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostJobBuild(var.name, var.json, token=var.token, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -679,7 +679,7 @@ Name | Type | Description  | Notes
  **name** | **character**| Name of the job | 
  **json** | **character**|  | 
  **token** | **character**|  | [optional] 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -704,7 +704,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobConfig**
-> PostJobConfig(name, body, jenkins.crumb=var.jenkins.crumb)
+> PostJobConfig(name, body, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -716,13 +716,13 @@ library(openapi)
 
 var.name <- 'name_example' # character | Name of the job
 var.body <- 'body_example' # character | Job configuration in config.xml format
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobConfig(var.name, var.body, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostJobConfig(var.name, var.body, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -731,7 +731,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the job | 
  **body** | **character**| Job configuration in config.xml format | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -756,7 +756,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobDelete**
-> PostJobDelete(name, jenkins.crumb=var.jenkins.crumb)
+> PostJobDelete(name, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -767,13 +767,13 @@ Delete a job
 library(openapi)
 
 var.name <- 'name_example' # character | Name of the job
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobDelete(var.name, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostJobDelete(var.name, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -781,7 +781,7 @@ api.instance$PostJobDelete(var.name, jenkins.crumb=var.jenkins.crumb)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the job | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -805,7 +805,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobDisable**
-> PostJobDisable(name, jenkins.crumb=var.jenkins.crumb)
+> PostJobDisable(name, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -816,13 +816,13 @@ Disable a job
 library(openapi)
 
 var.name <- 'name_example' # character | Name of the job
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobDisable(var.name, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostJobDisable(var.name, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -830,7 +830,7 @@ api.instance$PostJobDisable(var.name, jenkins.crumb=var.jenkins.crumb)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the job | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -854,7 +854,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobEnable**
-> PostJobEnable(name, jenkins.crumb=var.jenkins.crumb)
+> PostJobEnable(name, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -865,13 +865,13 @@ Enable a job
 library(openapi)
 
 var.name <- 'name_example' # character | Name of the job
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobEnable(var.name, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostJobEnable(var.name, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -879,7 +879,7 @@ api.instance$PostJobEnable(var.name, jenkins.crumb=var.jenkins.crumb)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the job | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -903,7 +903,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobLastBuildStop**
-> PostJobLastBuildStop(name, jenkins.crumb=var.jenkins.crumb)
+> PostJobLastBuildStop(name, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -914,13 +914,13 @@ Stop a job
 library(openapi)
 
 var.name <- 'name_example' # character | Name of the job
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobLastBuildStop(var.name, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostJobLastBuildStop(var.name, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -928,7 +928,7 @@ api.instance$PostJobLastBuildStop(var.name, jenkins.crumb=var.jenkins.crumb)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the job | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 
@@ -952,7 +952,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostViewConfig**
-> PostViewConfig(name, body, jenkins.crumb=var.jenkins.crumb)
+> PostViewConfig(name, body, jenkins_crumb=var.jenkins_crumb)
 
 
 
@@ -964,13 +964,13 @@ library(openapi)
 
 var.name <- 'name_example' # character | Name of the view
 var.body <- 'body_example' # character | View configuration in config.xml format
-var.jenkins.crumb <- 'jenkins.crumb_example' # character | CSRF protection token
+var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
 
 api.instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
 api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
 api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostViewConfig(var.name, var.body, jenkins.crumb=var.jenkins.crumb)
+api.instance$PostViewConfig(var.name, var.body, jenkins_crumb=var.jenkins_crumb)
 ```
 
 ### Parameters
@@ -979,7 +979,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **character**| Name of the view | 
  **body** | **character**| View configuration in config.xml format | 
- **jenkins.crumb** | **character**| CSRF protection token | [optional] 
+ **jenkins_crumb** | **character**| CSRF protection token | [optional] 
 
 ### Return type
 

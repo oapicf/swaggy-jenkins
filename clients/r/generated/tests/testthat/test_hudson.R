@@ -3,7 +3,7 @@
 
 context("Test Hudson")
 
-model.instance <- Hudson$new()
+model_instance <- Hudson$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -109,4 +109,3 @@ test_that("views", {
   # uncomment below to test the property
   #expect_equal(model.instance$`views`, "EXPECTED_RESULT")
 })
-

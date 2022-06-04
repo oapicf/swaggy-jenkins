@@ -21,8 +21,8 @@ import javax.annotation.Generated;
  * PipelinelatestRun
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-02-13T02:39:21.029908Z[Etc/UTC]")
-public class PipelinelatestRun   {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+public class PipelinelatestRun {
 
   @JsonProperty("artifacts")
   @Valid

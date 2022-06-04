@@ -16,17 +16,17 @@ package org.openapitools.server.model
  * @param buildableStartMilliseconds  for example: ''null''
 */
 final case class QueueBlockedItem (
-  `class`: Option[String],
-  actions: Option[Seq[CauseAction]],
-  blocked: Option[Boolean],
-  buildable: Option[Boolean],
-  id: Option[Int],
-  inQueueSince: Option[Int],
-  params: Option[String],
-  stuck: Option[Boolean],
-  task: Option[FreeStyleProject],
-  url: Option[String],
-  why: Option[String],
-  buildableStartMilliseconds: Option[Int]
+  `class`: Option[String] = None,
+  actions: Option[Seq[CauseAction]] = None,
+  blocked: Option[Boolean] = None,
+  buildable: Option[Boolean] = None,
+  id: Option[Int] = None,
+  inQueueSince: Option[Int] = None,
+  params: Option[String] = None,
+  stuck: Option[Boolean] = None,
+  task: Option[FreeStyleProject] = None,
+  url: Option[String] = None,
+  why: Option[String] = None,
+  buildableStartMilliseconds: Option[Int] = None
 )
 

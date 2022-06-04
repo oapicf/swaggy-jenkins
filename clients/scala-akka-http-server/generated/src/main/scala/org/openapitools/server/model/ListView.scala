@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param url  for example: ''null''
 */
 final case class ListView (
-  `class`: Option[String],
-  description: Option[String],
-  jobs: Option[Seq[FreeStyleProject]],
-  name: Option[String],
-  url: Option[String]
+  `class`: Option[String] = None,
+  description: Option[String] = None,
+  jobs: Option[Seq[FreeStyleProject]] = None,
+  name: Option[String] = None,
+  url: Option[String] = None
 )
 

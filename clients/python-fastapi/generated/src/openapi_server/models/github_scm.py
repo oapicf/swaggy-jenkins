@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.github_scmlinks import GithubScmlinks
 
 
@@ -24,10 +24,10 @@ class GithubScm(BaseModel):
         uri: The uri of this GithubScm [Optional].
     """
 
-    _class: Optional[str] = None
-    links: Optional[GithubScmlinks] = None
-    credential_id: Optional[str] = None
-    id: Optional[str] = None
-    uri: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    links: Optional[GithubScmlinks] = Field(alias="_links", default=None)
+    credential_id: Optional[str] = Field(alias="credentialId", default=None)
+    id: Optional[str] = Field(alias="id", default=None)
+    uri: Optional[str] = Field(alias="uri", default=None)
 
 GithubScm.update_forward_refs()

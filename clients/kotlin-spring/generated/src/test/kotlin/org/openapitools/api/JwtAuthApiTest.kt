@@ -15,7 +15,7 @@ class JwtAuthApiTest {
      */
     @Test
     fun getJsonWebKeyTest() {
-        val key:kotlin.Int = TODO()
+        val key: kotlin.Int = TODO()
         val response: ResponseEntity<kotlin.String> = api.getJsonWebKey(key)
 
         // TODO: test validations
@@ -29,11 +29,10 @@ class JwtAuthApiTest {
      */
     @Test
     fun getJsonWebTokenTest() {
-        val expiryTimeInMins:kotlin.Int? = TODO()
-        val maxExpiryTimeInMins:kotlin.Int? = TODO()
+        val expiryTimeInMins: kotlin.Int? = TODO()
+        val maxExpiryTimeInMins: kotlin.Int? = TODO()
         val response: ResponseEntity<kotlin.String> = api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
 
         // TODO: test validations
     }
-
 }

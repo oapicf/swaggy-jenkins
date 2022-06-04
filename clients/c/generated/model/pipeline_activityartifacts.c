@@ -48,35 +48,35 @@ cJSON *pipeline_activityartifacts_convertToJSON(pipeline_activityartifacts_t *pi
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_activityartifacts->name
-    if(pipeline_activityartifacts->name) { 
+    if(pipeline_activityartifacts->name) {
     if(cJSON_AddStringToObject(item, "name", pipeline_activityartifacts->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activityartifacts->size
-    if(pipeline_activityartifacts->size) { 
+    if(pipeline_activityartifacts->size) {
     if(cJSON_AddNumberToObject(item, "size", pipeline_activityartifacts->size) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_activityartifacts->url
-    if(pipeline_activityartifacts->url) { 
+    if(pipeline_activityartifacts->url) {
     if(cJSON_AddStringToObject(item, "url", pipeline_activityartifacts->url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_activityartifacts->_class
-    if(pipeline_activityartifacts->_class) { 
+    if(pipeline_activityartifacts->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_activityartifacts->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

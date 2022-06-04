@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param items  for example: ''null''
 */
 final case class Queue (
-  `class`: Option[String],
-  items: Option[Seq[QueueBlockedItem]]
+  `class`: Option[String] = None,
+  items: Option[Seq[QueueBlockedItem]] = None
 )
 

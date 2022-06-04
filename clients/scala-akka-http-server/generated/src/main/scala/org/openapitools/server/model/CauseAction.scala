@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param causes  for example: ''null''
 */
 final case class CauseAction (
-  `class`: Option[String],
-  causes: Option[Seq[CauseUserIdCause]]
+  `class`: Option[String] = None,
+  causes: Option[Seq[CauseUserIdCause]] = None
 )
 

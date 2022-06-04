@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.cause_user_id_cause import CauseUserIdCause
 
 
@@ -21,7 +21,7 @@ class CauseAction(BaseModel):
         causes: The causes of this CauseAction [Optional].
     """
 
-    _class: Optional[str] = None
-    causes: Optional[List[CauseUserIdCause]] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    causes: Optional[List[CauseUserIdCause]] = Field(alias="causes", default=None)
 
 CauseAction.update_forward_refs()

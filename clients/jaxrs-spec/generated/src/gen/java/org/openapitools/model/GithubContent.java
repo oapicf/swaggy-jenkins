@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubContent")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class GithubContent   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class GithubContent   {
   
   private @Valid String name;
   private @Valid String sha;
@@ -32,8 +33,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.name = name;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -55,8 +54,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("sha")
   public String getSha() {
@@ -74,8 +71,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -97,8 +92,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("repo")
   public String getRepo() {
@@ -116,8 +109,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.size = size;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -139,8 +130,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("owner")
   public String getOwner() {
@@ -160,8 +149,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("path")
   public String getPath() {
@@ -179,8 +166,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.base64Data = base64Data;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

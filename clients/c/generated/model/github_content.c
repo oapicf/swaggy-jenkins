@@ -72,67 +72,67 @@ cJSON *github_content_convertToJSON(github_content_t *github_content) {
     cJSON *item = cJSON_CreateObject();
 
     // github_content->name
-    if(github_content->name) { 
+    if(github_content->name) {
     if(cJSON_AddStringToObject(item, "name", github_content->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_content->sha
-    if(github_content->sha) { 
+    if(github_content->sha) {
     if(cJSON_AddStringToObject(item, "sha", github_content->sha) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_content->_class
-    if(github_content->_class) { 
+    if(github_content->_class) {
     if(cJSON_AddStringToObject(item, "_class", github_content->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_content->repo
-    if(github_content->repo) { 
+    if(github_content->repo) {
     if(cJSON_AddStringToObject(item, "repo", github_content->repo) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_content->size
-    if(github_content->size) { 
+    if(github_content->size) {
     if(cJSON_AddNumberToObject(item, "size", github_content->size) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // github_content->owner
-    if(github_content->owner) { 
+    if(github_content->owner) {
     if(cJSON_AddStringToObject(item, "owner", github_content->owner) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_content->path
-    if(github_content->path) { 
+    if(github_content->path) {
     if(cJSON_AddStringToObject(item, "path", github_content->path) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // github_content->base64_data
-    if(github_content->base64_data) { 
+    if(github_content->base64_data) {
     if(cJSON_AddStringToObject(item, "base64Data", github_content->base64_data) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

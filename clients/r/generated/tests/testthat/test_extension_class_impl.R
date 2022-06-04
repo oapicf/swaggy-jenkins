@@ -3,7 +3,7 @@
 
 context("Test ExtensionClassImpl")
 
-model.instance <- ExtensionClassImpl$new()
+model_instance <- ExtensionClassImpl$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -25,4 +25,3 @@ test_that("classes", {
   # uncomment below to test the property
   #expect_equal(model.instance$`classes`, "EXPECTED_RESULT")
 })
-

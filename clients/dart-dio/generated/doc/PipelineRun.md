@@ -9,7 +9,7 @@ import 'package:openapi/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **class_** | **String** |  | [optional] 
-**artifacts** | [**BuiltList<PipelineRunartifacts>**](PipelineRunartifacts.md) |  | [optional] 
+**artifacts** | [**BuiltList&lt;PipelineRunartifacts&gt;**](PipelineRunartifacts.md) |  | [optional] 
 **durationInMillis** | **int** |  | [optional] 
 **estimatedDurationInMillis** | **int** |  | [optional] 
 **enQueueTime** | **String** |  | [optional] 

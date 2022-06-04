@@ -21,8 +21,8 @@ import javax.annotation.Generated;
  * ListView
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class ListView   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class ListView {
 
   @JsonProperty("_class")
   private String propertyClass;
@@ -85,7 +85,7 @@ public class ListView   {
 
   public ListView addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<FreeStyleProject>();
+      this.jobs = new ArrayList<>();
     }
     this.jobs.add(jobsItem);
     return this;

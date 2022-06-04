@@ -7,7 +7,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.base_api import BaseApi
+#   from openapi_client.api.base_api import BaseApi
 #
 # or import this package, but before doing it, use:
 #

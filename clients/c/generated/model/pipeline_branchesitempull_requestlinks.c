@@ -40,19 +40,19 @@ cJSON *pipeline_branchesitempull_requestlinks_convertToJSON(pipeline_branchesite
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_branchesitempull_requestlinks->self
-    if(pipeline_branchesitempull_requestlinks->self) { 
+    if(pipeline_branchesitempull_requestlinks->self) {
     if(cJSON_AddStringToObject(item, "self", pipeline_branchesitempull_requestlinks->self) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitempull_requestlinks->_class
-    if(pipeline_branchesitempull_requestlinks->_class) { 
+    if(pipeline_branchesitempull_requestlinks->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_branchesitempull_requestlinks->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

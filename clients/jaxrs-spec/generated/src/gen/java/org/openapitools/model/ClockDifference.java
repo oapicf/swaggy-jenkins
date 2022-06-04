@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ClockDifference")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class ClockDifference   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class ClockDifference   {
   
   private @Valid String propertyClass;
   private @Valid Integer diff;
@@ -26,8 +27,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -47,8 +46,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.diff = diff;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

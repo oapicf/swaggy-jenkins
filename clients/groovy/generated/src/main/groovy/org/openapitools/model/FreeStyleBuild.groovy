@@ -17,7 +17,7 @@ class FreeStyleBuild {
     
     String url
     
-    List<CauseAction> actions = new ArrayList<CauseAction>()
+    List<CauseAction> actions = new ArrayList<>()
     
     Boolean building
     

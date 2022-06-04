@@ -85,7 +85,7 @@ public class PipelineActivity   {
 
   public PipelineActivity addArtifactsItem(PipelineActivityartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = new ArrayList<PipelineActivityartifacts>();
+      this.artifacts = new ArrayList<>();
     }
     this.artifacts.add(artifactsItem);
     return this;

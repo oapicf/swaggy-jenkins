@@ -45,7 +45,7 @@ public class RemoteAccessControllerTest {
     EmbeddedServer server;
 
     @Inject
-    @Client("${context-path}")
+    @Client
     HttpClient client;
 
     @Inject
@@ -589,7 +589,6 @@ public class RemoteAccessControllerTest {
         String body = "example";
         String uri = UriTemplate.of("/createItem").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .contentType("application/json")
             .accept("*/*")
             .header("Jenkins-Crumb", "example")
             .header("Content-Type", "example");
@@ -643,7 +642,6 @@ public class RemoteAccessControllerTest {
         String body = "example";
         String uri = UriTemplate.of("/createView").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .contentType("application/json")
             .accept("*/*")
             .header("Jenkins-Crumb", "example")
             .header("Content-Type", "example");
@@ -750,7 +748,6 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .contentType("application/json")
             .accept("*/*")
             .header("Jenkins-Crumb", "example");
 
@@ -993,7 +990,6 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .contentType("application/json")
             .accept("*/*")
             .header("Jenkins-Crumb", "example");
 

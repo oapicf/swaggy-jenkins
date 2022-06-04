@@ -45,13 +45,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var depth = 56; // int | Recursion depth in response model
+final api = Openapi().getRemoteAccessApi();
+final int depth = 56; // int | Recursion depth in response model
 
 try {
-    var result = api_instance.getComputer(depth);
-    print(result);
-} catch (e) {
+    final response = api.getComputer(depth);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getComputer: $e\n');
 }
 ```
@@ -91,12 +91,12 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
+final api = Openapi().getRemoteAccessApi();
 
 try {
-    var result = api_instance.getJenkins();
-    print(result);
-} catch (e) {
+    final response = api.getJenkins();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getJenkins: $e\n');
 }
 ```
@@ -133,13 +133,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
 
 try {
-    var result = api_instance.getJob(name);
-    print(result);
-} catch (e) {
+    final response = api.getJob(name);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getJob: $e\n');
 }
 ```
@@ -179,13 +179,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
 
 try {
-    var result = api_instance.getJobConfig(name);
-    print(result);
-} catch (e) {
+    final response = api.getJobConfig(name);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getJobConfig: $e\n');
 }
 ```
@@ -225,13 +225,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
 
 try {
-    var result = api_instance.getJobLastBuild(name);
-    print(result);
-} catch (e) {
+    final response = api.getJobLastBuild(name);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getJobLastBuild: $e\n');
 }
 ```
@@ -271,14 +271,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var number = number_example; // String | Build number
-var start = start_example; // String | Starting point of progressive text output
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String number = number_example; // String | Build number
+final String start = start_example; // String | Starting point of progressive text output
 
 try {
-    api_instance.getJobProgressiveText(name, number, start);
-} catch (e) {
+    api.getJobProgressiveText(name, number, start);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getJobProgressiveText: $e\n');
 }
 ```
@@ -320,12 +320,12 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
+final api = Openapi().getRemoteAccessApi();
 
 try {
-    var result = api_instance.getQueue();
-    print(result);
-} catch (e) {
+    final response = api.getQueue();
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getQueue: $e\n');
 }
 ```
@@ -362,13 +362,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var number = number_example; // String | Queue number
+final api = Openapi().getRemoteAccessApi();
+final String number = number_example; // String | Queue number
 
 try {
-    var result = api_instance.getQueueItem(number);
-    print(result);
-} catch (e) {
+    final response = api.getQueueItem(number);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getQueueItem: $e\n');
 }
 ```
@@ -408,13 +408,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the view
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the view
 
 try {
-    var result = api_instance.getView(name);
-    print(result);
-} catch (e) {
+    final response = api.getView(name);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getView: $e\n');
 }
 ```
@@ -454,13 +454,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the view
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the view
 
 try {
-    var result = api_instance.getViewConfig(name);
-    print(result);
-} catch (e) {
+    final response = api.getViewConfig(name);
+    print(response);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->getViewConfig: $e\n');
 }
 ```
@@ -500,11 +500,11 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
+final api = Openapi().getRemoteAccessApi();
 
 try {
-    api_instance.headJenkins();
-} catch (e) {
+    api.headJenkins();
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->headJenkins: $e\n');
 }
 ```
@@ -541,17 +541,17 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the new job
-var from = from_example; // String | Existing job to copy from
-var mode = mode_example; // String | Set to 'copy' for copying an existing job
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
-var contentType = contentType_example; // String | Content type header application/xml
-var body = new String(); // String | Job configuration in config.xml format
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the new job
+final String from = from_example; // String | Existing job to copy from
+final String mode = mode_example; // String | Set to 'copy' for copying an existing job
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final String contentType = contentType_example; // String | Content type header application/xml
+final String body = body_example; // String | Job configuration in config.xml format
 
 try {
-    api_instance.postCreateItem(name, from, mode, jenkinsCrumb, contentType, body);
-} catch (e) {
+    api.postCreateItem(name, from, mode, jenkinsCrumb, contentType, body);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postCreateItem: $e\n');
 }
 ```
@@ -596,15 +596,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the new view
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
-var contentType = contentType_example; // String | Content type header application/xml
-var body = new String(); // String | View configuration in config.xml format
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the new view
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final String contentType = contentType_example; // String | Content type header application/xml
+final String body = body_example; // String | View configuration in config.xml format
 
 try {
-    api_instance.postCreateView(name, jenkinsCrumb, contentType, body);
-} catch (e) {
+    api.postCreateView(name, jenkinsCrumb, contentType, body);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postCreateView: $e\n');
 }
 ```
@@ -647,15 +647,15 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var json = json_example; // String | 
-var token = token_example; // String | 
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String json = json_example; // String | 
+final String token = token_example; // String | 
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postJobBuild(name, json, token, jenkinsCrumb);
-} catch (e) {
+    api.postJobBuild(name, json, token, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postJobBuild: $e\n');
 }
 ```
@@ -698,14 +698,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var body = new String(); // String | Job configuration in config.xml format
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String body = body_example; // String | Job configuration in config.xml format
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postJobConfig(name, body, jenkinsCrumb);
-} catch (e) {
+    api.postJobConfig(name, body, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postJobConfig: $e\n');
 }
 ```
@@ -747,13 +747,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postJobDelete(name, jenkinsCrumb);
-} catch (e) {
+    api.postJobDelete(name, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postJobDelete: $e\n');
 }
 ```
@@ -794,13 +794,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postJobDisable(name, jenkinsCrumb);
-} catch (e) {
+    api.postJobDisable(name, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postJobDisable: $e\n');
 }
 ```
@@ -841,13 +841,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postJobEnable(name, jenkinsCrumb);
-} catch (e) {
+    api.postJobEnable(name, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postJobEnable: $e\n');
 }
 ```
@@ -888,13 +888,13 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the job
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the job
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postJobLastBuildStop(name, jenkinsCrumb);
-} catch (e) {
+    api.postJobLastBuildStop(name, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postJobLastBuildStop: $e\n');
 }
 ```
@@ -935,14 +935,14 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('jenkins_auth').password = 'YOUR_PASSWORD';
 
-var api_instance = new RemoteAccessApi();
-var name = name_example; // String | Name of the view
-var body = new String(); // String | View configuration in config.xml format
-var jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
+final api = Openapi().getRemoteAccessApi();
+final String name = name_example; // String | Name of the view
+final String body = body_example; // String | View configuration in config.xml format
+final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection token
 
 try {
-    api_instance.postViewConfig(name, body, jenkinsCrumb);
-} catch (e) {
+    api.postViewConfig(name, body, jenkinsCrumb);
+} catch on DioError (e) {
     print('Exception when calling RemoteAccessApi->postViewConfig: $e\n');
 }
 ```

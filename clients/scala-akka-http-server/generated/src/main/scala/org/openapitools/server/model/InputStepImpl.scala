@@ -11,12 +11,12 @@ package org.openapitools.server.model
  * @param submitter  for example: ''null''
 */
 final case class InputStepImpl (
-  `class`: Option[String],
-  links: Option[InputStepImpllinks],
-  id: Option[String],
-  message: Option[String],
-  ok: Option[String],
-  parameters: Option[Seq[StringParameterDefinition]],
-  submitter: Option[String]
+  `class`: Option[String] = None,
+  links: Option[InputStepImpllinks] = None,
+  id: Option[String] = None,
+  message: Option[String] = None,
+  ok: Option[String] = None,
+  parameters: Option[Seq[StringParameterDefinition]] = None,
+  submitter: Option[String] = None
 )
 

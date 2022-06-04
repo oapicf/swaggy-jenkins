@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param map  for example: ''null''
 */
 final case class ExtensionClassContainerImpl1 (
-  `class`: Option[String],
-  links: Option[ExtensionClassContainerImpl1links],
-  map: Option[ExtensionClassContainerImpl1map]
+  `class`: Option[String] = None,
+  links: Option[ExtensionClassContainerImpl1links] = None,
+  map: Option[ExtensionClassContainerImpl1map] = None
 )
 

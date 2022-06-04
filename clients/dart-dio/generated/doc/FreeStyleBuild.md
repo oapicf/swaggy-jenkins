@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **class_** | **String** |  | [optional] 
 **number** | **int** |  | [optional] 
 **url** | **String** |  | [optional] 
-**actions** | [**BuiltList<CauseAction>**](CauseAction.md) |  | [optional] 
+**actions** | [**BuiltList&lt;CauseAction&gt;**](CauseAction.md) |  | [optional] 
 **building** | **bool** |  | [optional] 
 **description** | **String** |  | [optional] 
 **displayName** | **String** |  | [optional] 

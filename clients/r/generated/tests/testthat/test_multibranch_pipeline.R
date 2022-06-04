@@ -3,7 +3,7 @@
 
 context("Test MultibranchPipeline")
 
-model.instance <- MultibranchPipeline$new()
+model_instance <- MultibranchPipeline$new()
 
 test_that("displayName", {
   # tests for the property `displayName` (character)
@@ -102,4 +102,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param classes  for example: ''null''
 */
 final case class ExtensionClassImpl (
-  `class`: Option[String],
-  links: Option[ExtensionClassImpllinks],
-  classes: Option[Seq[String]]
+  `class`: Option[String] = None,
+  links: Option[ExtensionClassImpllinks] = None,
+  classes: Option[Seq[String]] = None
 )
 

@@ -15,7 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitemlatestRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineBranchesitemlatestRun   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class PipelineBranchesitemlatestRun   {
   
   private @Valid Integer durationInMillis;
   private @Valid Integer estimatedDurationInMillis;
@@ -40,8 +41,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
@@ -59,8 +58,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -82,8 +79,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("enQueueTime")
   public String getEnQueueTime() {
@@ -101,8 +96,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.endTime = endTime;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -124,8 +117,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
@@ -143,8 +134,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.organization = organization;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -166,8 +155,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("pipeline")
   public String getPipeline() {
@@ -185,8 +172,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.result = result;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -208,8 +193,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("runSummary")
   public String getRunSummary() {
@@ -227,8 +210,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.startTime = startTime;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -250,8 +231,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("state")
   public String getState() {
@@ -269,8 +248,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.type = type;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -292,8 +269,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("commitId")
   public String getCommitId() {
@@ -311,8 +286,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

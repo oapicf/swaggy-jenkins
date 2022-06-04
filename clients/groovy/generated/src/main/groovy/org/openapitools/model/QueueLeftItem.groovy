@@ -14,7 +14,7 @@ class QueueLeftItem {
     
     String propertyClass
     
-    List<CauseAction> actions = new ArrayList<CauseAction>()
+    List<CauseAction> actions = new ArrayList<>()
     
     Boolean blocked
     

@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineBranchesitem   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class PipelineBranchesitem   {
   
   private @Valid String displayName;
   private @Valid Integer estimatedDurationInMillis;
@@ -35,8 +36,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.displayName = displayName;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -58,8 +57,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
@@ -77,8 +74,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.name = name;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -100,8 +95,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
@@ -119,8 +112,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.latestRun = latestRun;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -142,8 +133,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("organization")
   public String getOrganization() {
@@ -161,8 +150,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.pullRequest = pullRequest;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -184,8 +171,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("totalNumberOfPullRequests")
   public Integer getTotalNumberOfPullRequests() {
@@ -203,8 +188,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param diff  for example: ''null''
 */
 final case class ClockDifference (
-  `class`: Option[String],
-  diff: Option[Int]
+  `class`: Option[String] = None,
+  diff: Option[Int] = None
 )
 

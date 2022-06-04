@@ -36,19 +36,19 @@ cJSON *clock_difference_convertToJSON(clock_difference_t *clock_difference) {
     cJSON *item = cJSON_CreateObject();
 
     // clock_difference->_class
-    if(clock_difference->_class) { 
+    if(clock_difference->_class) {
     if(cJSON_AddStringToObject(item, "_class", clock_difference->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // clock_difference->diff
-    if(clock_difference->diff) { 
+    if(clock_difference->diff) {
     if(cJSON_AddNumberToObject(item, "diff", clock_difference->diff) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

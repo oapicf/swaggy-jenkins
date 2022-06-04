@@ -74,71 +74,71 @@ cJSON *pipeline_impl_convertToJSON(pipeline_impl_t *pipeline_impl) {
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_impl->_class
-    if(pipeline_impl->_class) { 
+    if(pipeline_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_impl->display_name
-    if(pipeline_impl->display_name) { 
+    if(pipeline_impl->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", pipeline_impl->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_impl->estimated_duration_in_millis
-    if(pipeline_impl->estimated_duration_in_millis) { 
+    if(pipeline_impl->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_impl->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_impl->full_name
-    if(pipeline_impl->full_name) { 
+    if(pipeline_impl->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", pipeline_impl->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_impl->latest_run
-    if(pipeline_impl->latest_run) { 
+    if(pipeline_impl->latest_run) {
     if(cJSON_AddStringToObject(item, "latestRun", pipeline_impl->latest_run) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_impl->name
-    if(pipeline_impl->name) { 
+    if(pipeline_impl->name) {
     if(cJSON_AddStringToObject(item, "name", pipeline_impl->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_impl->organization
-    if(pipeline_impl->organization) { 
+    if(pipeline_impl->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_impl->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_impl->weather_score
-    if(pipeline_impl->weather_score) { 
+    if(pipeline_impl->weather_score) {
     if(cJSON_AddNumberToObject(item, "weatherScore", pipeline_impl->weather_score) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_impl->_links
-    if(pipeline_impl->_links) { 
+    if(pipeline_impl->_links) {
     cJSON *_links_local_JSON = pipeline_impllinks_convertToJSON(pipeline_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -147,7 +147,7 @@ cJSON *pipeline_impl_convertToJSON(pipeline_impl_t *pipeline_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

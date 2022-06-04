@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class FreeStyleProjecthealthReport(BaseModel):
@@ -23,10 +23,10 @@ class FreeStyleProjecthealthReport(BaseModel):
         _class: The _class of this FreeStyleProjecthealthReport [Optional].
     """
 
-    description: Optional[str] = None
-    icon_class_name: Optional[str] = None
-    icon_url: Optional[str] = None
-    score: Optional[int] = None
-    _class: Optional[str] = None
+    description: Optional[str] = Field(alias="description", default=None)
+    icon_class_name: Optional[str] = Field(alias="iconClassName", default=None)
+    icon_url: Optional[str] = Field(alias="iconUrl", default=None)
+    score: Optional[int] = Field(alias="score", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 FreeStyleProjecthealthReport.update_forward_refs()

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -29,33 +29,117 @@ class PipelineBranchesitemlatestRun {
     this.class_,
   });
 
-  int durationInMillis;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? durationInMillis;
 
-  int estimatedDurationInMillis;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? estimatedDurationInMillis;
 
-  String enQueueTime;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? enQueueTime;
 
-  String endTime;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? endTime;
 
-  String id;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? id;
 
-  String organization;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? organization;
 
-  String pipeline;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? pipeline;
 
-  String result;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? result;
 
-  String runSummary;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? runSummary;
 
-  String startTime;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? startTime;
 
-  String state;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? state;
 
-  String type;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? type;
 
-  String commitId;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? commitId;
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineBranchesitemlatestRun &&
@@ -76,78 +160,90 @@ class PipelineBranchesitemlatestRun {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (durationInMillis == null ? 0 : durationInMillis.hashCode) +
-    (estimatedDurationInMillis == null ? 0 : estimatedDurationInMillis.hashCode) +
-    (enQueueTime == null ? 0 : enQueueTime.hashCode) +
-    (endTime == null ? 0 : endTime.hashCode) +
-    (id == null ? 0 : id.hashCode) +
-    (organization == null ? 0 : organization.hashCode) +
-    (pipeline == null ? 0 : pipeline.hashCode) +
-    (result == null ? 0 : result.hashCode) +
-    (runSummary == null ? 0 : runSummary.hashCode) +
-    (startTime == null ? 0 : startTime.hashCode) +
-    (state == null ? 0 : state.hashCode) +
-    (type == null ? 0 : type.hashCode) +
-    (commitId == null ? 0 : commitId.hashCode) +
-    (class_ == null ? 0 : class_.hashCode);
+    // ignore: unnecessary_parenthesis
+    (durationInMillis == null ? 0 : durationInMillis!.hashCode) +
+    (estimatedDurationInMillis == null ? 0 : estimatedDurationInMillis!.hashCode) +
+    (enQueueTime == null ? 0 : enQueueTime!.hashCode) +
+    (endTime == null ? 0 : endTime!.hashCode) +
+    (id == null ? 0 : id!.hashCode) +
+    (organization == null ? 0 : organization!.hashCode) +
+    (pipeline == null ? 0 : pipeline!.hashCode) +
+    (result == null ? 0 : result!.hashCode) +
+    (runSummary == null ? 0 : runSummary!.hashCode) +
+    (startTime == null ? 0 : startTime!.hashCode) +
+    (state == null ? 0 : state!.hashCode) +
+    (type == null ? 0 : type!.hashCode) +
+    (commitId == null ? 0 : commitId!.hashCode) +
+    (class_ == null ? 0 : class_!.hashCode);
 
   @override
   String toString() => 'PipelineBranchesitemlatestRun[durationInMillis=$durationInMillis, estimatedDurationInMillis=$estimatedDurationInMillis, enQueueTime=$enQueueTime, endTime=$endTime, id=$id, organization=$organization, pipeline=$pipeline, result=$result, runSummary=$runSummary, startTime=$startTime, state=$state, type=$type, commitId=$commitId, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (durationInMillis != null) {
-      json[r'durationInMillis'] = durationInMillis;
+      _json[r'durationInMillis'] = durationInMillis;
     }
     if (estimatedDurationInMillis != null) {
-      json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
+      _json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
     }
     if (enQueueTime != null) {
-      json[r'enQueueTime'] = enQueueTime;
+      _json[r'enQueueTime'] = enQueueTime;
     }
     if (endTime != null) {
-      json[r'endTime'] = endTime;
+      _json[r'endTime'] = endTime;
     }
     if (id != null) {
-      json[r'id'] = id;
+      _json[r'id'] = id;
     }
     if (organization != null) {
-      json[r'organization'] = organization;
+      _json[r'organization'] = organization;
     }
     if (pipeline != null) {
-      json[r'pipeline'] = pipeline;
+      _json[r'pipeline'] = pipeline;
     }
     if (result != null) {
-      json[r'result'] = result;
+      _json[r'result'] = result;
     }
     if (runSummary != null) {
-      json[r'runSummary'] = runSummary;
+      _json[r'runSummary'] = runSummary;
     }
     if (startTime != null) {
-      json[r'startTime'] = startTime;
+      _json[r'startTime'] = startTime;
     }
     if (state != null) {
-      json[r'state'] = state;
+      _json[r'state'] = state;
     }
     if (type != null) {
-      json[r'type'] = type;
+      _json[r'type'] = type;
     }
     if (commitId != null) {
-      json[r'commitId'] = commitId;
+      _json[r'commitId'] = commitId;
     }
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [PipelineBranchesitemlatestRun] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PipelineBranchesitemlatestRun fromJson(dynamic value) {
+  static PipelineBranchesitemlatestRun? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PipelineBranchesitemlatestRun[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PipelineBranchesitemlatestRun[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return PipelineBranchesitemlatestRun(
         durationInMillis: mapValueOfType<int>(json, r'durationInMillis'),
         estimatedDurationInMillis: mapValueOfType<int>(json, r'estimatedDurationInMillis'),
@@ -168,36 +264,50 @@ class PipelineBranchesitemlatestRun {
     return null;
   }
 
-  static List<PipelineBranchesitemlatestRun> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(PipelineBranchesitemlatestRun.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <PipelineBranchesitemlatestRun>[];
+  static List<PipelineBranchesitemlatestRun>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PipelineBranchesitemlatestRun>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = PipelineBranchesitemlatestRun.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, PipelineBranchesitemlatestRun> mapFromJson(dynamic json) {
     final map = <String, PipelineBranchesitemlatestRun>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = PipelineBranchesitemlatestRun.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineBranchesitemlatestRun.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of PipelineBranchesitemlatestRun-objects as value to a dart map
-  static Map<String, List<PipelineBranchesitemlatestRun>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<PipelineBranchesitemlatestRun>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineBranchesitemlatestRun>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = PipelineBranchesitemlatestRun.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineBranchesitemlatestRun.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

@@ -1,7 +1,5 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ClockDifference;
 import org.openapitools.model.DiskSpaceMonitorDescriptorDiskSpace;
 import org.openapitools.model.ResponseTimeMonitorData;

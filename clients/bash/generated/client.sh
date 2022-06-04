@@ -879,7 +879,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.2-pre.0)${OFF}
+${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.5.1-pre.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -1014,7 +1014,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://localhost')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.1.2-pre.0)${OFF}"
+    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.5.1-pre.0)${OFF}"
     echo ""
     echo -e "License: "
     echo -e "Contact: blah@cliffano.com"
@@ -1034,7 +1034,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.1.2-pre.0)${OFF}"
+    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.5.1-pre.0)${OFF}"
     echo ""
 }
 

@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class FreeStyleProjecthealthReport (
-  description: Option[String],
-  iconClassName: Option[String],
-  iconUrl: Option[String],
-  score: Option[Int],
-  `class`: Option[String]
+  description: Option[String] = None,
+  iconClassName: Option[String] = None,
+  iconUrl: Option[String] = None,
+  score: Option[Int] = None,
+  `class`: Option[String] = None
 )
 

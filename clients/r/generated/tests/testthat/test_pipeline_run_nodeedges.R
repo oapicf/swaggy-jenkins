@@ -3,7 +3,7 @@
 
 context("Test PipelineRunNodeedges")
 
-model.instance <- PipelineRunNodeedges$new()
+model_instance <- PipelineRunNodeedges$new()
 
 test_that("id", {
   # tests for the property `id` (character)
@@ -18,4 +18,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

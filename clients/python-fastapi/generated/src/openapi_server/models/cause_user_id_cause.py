@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class CauseUserIdCause(BaseModel):
@@ -22,9 +22,9 @@ class CauseUserIdCause(BaseModel):
         user_name: The user_name of this CauseUserIdCause [Optional].
     """
 
-    _class: Optional[str] = None
-    short_description: Optional[str] = None
-    user_id: Optional[str] = None
-    user_name: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    short_description: Optional[str] = Field(alias="shortDescription", default=None)
+    user_id: Optional[str] = Field(alias="userId", default=None)
+    user_name: Optional[str] = Field(alias="userName", default=None)
 
 CauseUserIdCause.update_forward_refs()

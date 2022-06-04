@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class StringParameterValue(BaseModel):
@@ -21,8 +21,8 @@ class StringParameterValue(BaseModel):
         value: The value of this StringParameterValue [Optional].
     """
 
-    _class: Optional[str] = None
-    name: Optional[str] = None
-    value: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    value: Optional[str] = Field(alias="value", default=None)
 
 StringParameterValue.update_forward_refs()

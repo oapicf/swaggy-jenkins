@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | [optional] 
 **organization** | **String** |  | [optional] 
 **weatherScore** | **int** |  | [optional] 
-**branchNames** | **BuiltList<String>** |  | [optional] 
+**branchNames** | **BuiltList&lt;String&gt;** |  | [optional] 
 **numberOfFailingBranches** | **int** |  | [optional] 
 **numberOfFailingPullRequests** | **int** |  | [optional] 
 **numberOfSuccessfulBranches** | **int** |  | [optional] 

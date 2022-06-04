@@ -10,11 +10,11 @@ package org.openapitools.server.model
  * @param startTime  for example: ''null''
 */
 final case class GenericResource (
-  `class`: Option[String],
-  displayName: Option[String],
-  durationInMillis: Option[Int],
-  id: Option[String],
-  result: Option[String],
-  startTime: Option[String]
+  `class`: Option[String] = None,
+  displayName: Option[String] = None,
+  durationInMillis: Option[Int] = None,
+  id: Option[String] = None,
+  result: Option[String] = None,
+  startTime: Option[String] = None
 )
 

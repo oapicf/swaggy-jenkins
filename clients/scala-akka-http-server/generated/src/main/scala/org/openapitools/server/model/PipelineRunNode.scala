@@ -12,13 +12,13 @@ package org.openapitools.server.model
  * @param state  for example: ''null''
 */
 final case class PipelineRunNode (
-  `class`: Option[String],
-  displayName: Option[String],
-  durationInMillis: Option[Int],
-  edges: Option[Seq[PipelineRunNodeedges]],
-  id: Option[String],
-  result: Option[String],
-  startTime: Option[String],
-  state: Option[String]
+  `class`: Option[String] = None,
+  displayName: Option[String] = None,
+  durationInMillis: Option[Int] = None,
+  edges: Option[Seq[PipelineRunNodeedges]] = None,
+  id: Option[String] = None,
+  result: Option[String] = None,
+  startTime: Option[String] = None,
+  state: Option[String] = None
 )
 

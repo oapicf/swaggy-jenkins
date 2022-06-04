@@ -3,7 +3,7 @@
 
 context("Test BranchImplpermissions")
 
-model.instance <- BranchImplpermissions$new()
+model_instance <- BranchImplpermissions$new()
 
 test_that("create", {
   # tests for the property `create` (character)
@@ -39,4 +39,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

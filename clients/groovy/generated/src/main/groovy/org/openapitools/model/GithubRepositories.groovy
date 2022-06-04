@@ -15,7 +15,7 @@ class GithubRepositories {
     
     GithubRepositorieslinks links
     
-    List<GithubRepository> items = new ArrayList<GithubRepository>()
+    List<GithubRepository> items = new ArrayList<>()
     
     Integer lastPage
     

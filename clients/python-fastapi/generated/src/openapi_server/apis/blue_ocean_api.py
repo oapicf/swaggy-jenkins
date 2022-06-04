@@ -45,6 +45,7 @@ router = APIRouter()
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def delete_pipeline_queue_item(
     organization: str = Path(None, description="Name of the organization"),
@@ -66,6 +67,7 @@ async def delete_pipeline_queue_item(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_authenticated_user(
     organization: str = Path(None, description="Name of the organization"),
@@ -85,6 +87,7 @@ async def get_authenticated_user(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_classes(
     class: str = Path(None, description="Name of the class"),
@@ -104,6 +107,7 @@ async def get_classes(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_json_web_key(
     key: int = Path(None, description="Key ID received as part of JWT header field kid"),
@@ -120,6 +124,7 @@ async def get_json_web_key(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_json_web_token(
     expiry_time_in_mins: int = Query(None, description="Token expiry time in minutes, default: 30 minutes"),
@@ -138,6 +143,7 @@ async def get_json_web_token(
         404: {"description": "Pipeline cannot be found on Jenkins instance"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_organisation(
     organization: str = Path(None, description="Name of the organization"),
@@ -157,6 +163,7 @@ async def get_organisation(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_organisations(
     token_jenkins_auth: TokenModel = Security(
@@ -176,6 +183,7 @@ async def get_organisations(
         404: {"description": "Pipeline cannot be found on Jenkins instance"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline(
     organization: str = Path(None, description="Name of the organization"),
@@ -196,6 +204,7 @@ async def get_pipeline(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_activities(
     organization: str = Path(None, description="Name of the organization"),
@@ -216,6 +225,7 @@ async def get_pipeline_activities(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_branch(
     organization: str = Path(None, description="Name of the organization"),
@@ -237,6 +247,7 @@ async def get_pipeline_branch(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_branch_run(
     organization: str = Path(None, description="Name of the organization"),
@@ -259,6 +270,7 @@ async def get_pipeline_branch_run(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_branches(
     organization: str = Path(None, description="Name of the organization"),
@@ -279,6 +291,7 @@ async def get_pipeline_branches(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_folder(
     organization: str = Path(None, description="Name of the organization"),
@@ -299,6 +312,7 @@ async def get_pipeline_folder(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_folder_pipeline(
     organization: str = Path(None, description="Name of the organization"),
@@ -320,6 +334,7 @@ async def get_pipeline_folder_pipeline(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_queue(
     organization: str = Path(None, description="Name of the organization"),
@@ -340,6 +355,7 @@ async def get_pipeline_queue(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run(
     organization: str = Path(None, description="Name of the organization"),
@@ -361,6 +377,7 @@ async def get_pipeline_run(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run_log(
     organization: str = Path(None, description="Name of the organization"),
@@ -384,6 +401,7 @@ async def get_pipeline_run_log(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run_node(
     organization: str = Path(None, description="Name of the organization"),
@@ -406,6 +424,7 @@ async def get_pipeline_run_node(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run_node_step(
     organization: str = Path(None, description="Name of the organization"),
@@ -429,6 +448,7 @@ async def get_pipeline_run_node_step(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run_node_step_log(
     organization: str = Path(None, description="Name of the organization"),
@@ -452,6 +472,7 @@ async def get_pipeline_run_node_step_log(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run_node_steps(
     organization: str = Path(None, description="Name of the organization"),
@@ -474,6 +495,7 @@ async def get_pipeline_run_node_steps(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_run_nodes(
     organization: str = Path(None, description="Name of the organization"),
@@ -495,6 +517,7 @@ async def get_pipeline_run_nodes(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipeline_runs(
     organization: str = Path(None, description="Name of the organization"),
@@ -515,6 +538,7 @@ async def get_pipeline_runs(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_pipelines(
     organization: str = Path(None, description="Name of the organization"),
@@ -534,6 +558,7 @@ async def get_pipelines(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_scm(
     organization: str = Path(None, description="Name of the organization"),
@@ -554,6 +579,7 @@ async def get_scm(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_scm_organisation_repositories(
     organization: str = Path(None, description="Name of the organization"),
@@ -578,6 +604,7 @@ async def get_scm_organisation_repositories(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_scm_organisation_repository(
     organization: str = Path(None, description="Name of the organization"),
@@ -601,6 +628,7 @@ async def get_scm_organisation_repository(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_scm_organisations(
     organization: str = Path(None, description="Name of the organization"),
@@ -622,6 +650,7 @@ async def get_scm_organisations(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_user(
     organization: str = Path(None, description="Name of the organization"),
@@ -642,6 +671,7 @@ async def get_user(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_user_favorites(
     user: str = Path(None, description="Name of the user"),
@@ -661,6 +691,7 @@ async def get_user_favorites(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def get_users(
     organization: str = Path(None, description="Name of the organization"),
@@ -680,6 +711,7 @@ async def get_users(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def post_pipeline_run(
     organization: str = Path(None, description="Name of the organization"),
@@ -701,6 +733,7 @@ async def post_pipeline_run(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def post_pipeline_runs(
     organization: str = Path(None, description="Name of the organization"),
@@ -721,6 +754,7 @@ async def post_pipeline_runs(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def put_pipeline_favorite(
     organization: str = Path(None, description="Name of the organization"),
@@ -742,6 +776,7 @@ async def put_pipeline_favorite(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def put_pipeline_run(
     organization: str = Path(None, description="Name of the organization"),
@@ -765,6 +800,7 @@ async def put_pipeline_run(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def search(
     q: str = Query(None, description="Query string"),
@@ -784,6 +820,7 @@ async def search(
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
+    response_model_by_alias=True,
 )
 async def search_classes(
     q: str = Query(None, description="Query string containing an array of class names"),

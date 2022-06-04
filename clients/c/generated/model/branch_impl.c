@@ -101,63 +101,63 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
     cJSON *item = cJSON_CreateObject();
 
     // branch_impl->_class
-    if(branch_impl->_class) { 
+    if(branch_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", branch_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->display_name
-    if(branch_impl->display_name) { 
+    if(branch_impl->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", branch_impl->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->estimated_duration_in_millis
-    if(branch_impl->estimated_duration_in_millis) { 
+    if(branch_impl->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", branch_impl->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // branch_impl->full_display_name
-    if(branch_impl->full_display_name) { 
+    if(branch_impl->full_display_name) {
     if(cJSON_AddStringToObject(item, "fullDisplayName", branch_impl->full_display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->full_name
-    if(branch_impl->full_name) { 
+    if(branch_impl->full_name) {
     if(cJSON_AddStringToObject(item, "fullName", branch_impl->full_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->name
-    if(branch_impl->name) { 
+    if(branch_impl->name) {
     if(cJSON_AddStringToObject(item, "name", branch_impl->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->organization
-    if(branch_impl->organization) { 
+    if(branch_impl->organization) {
     if(cJSON_AddStringToObject(item, "organization", branch_impl->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->parameters
-    if(branch_impl->parameters) { 
+    if(branch_impl->parameters) {
     cJSON *parameters = cJSON_AddArrayToObject(item, "parameters");
     if(parameters == NULL) {
     goto fail; //nonprimitive container
@@ -173,11 +173,11 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
     cJSON_AddItemToArray(parameters, itemLocal);
     }
     }
-     } 
+    }
 
 
     // branch_impl->permissions
-    if(branch_impl->permissions) { 
+    if(branch_impl->permissions) {
     cJSON *permissions_local_JSON = branch_implpermissions_convertToJSON(branch_impl->permissions);
     if(permissions_local_JSON == NULL) {
     goto fail; //model
@@ -186,27 +186,27 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // branch_impl->weather_score
-    if(branch_impl->weather_score) { 
+    if(branch_impl->weather_score) {
     if(cJSON_AddNumberToObject(item, "weatherScore", branch_impl->weather_score) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // branch_impl->pull_request
-    if(branch_impl->pull_request) { 
+    if(branch_impl->pull_request) {
     if(cJSON_AddStringToObject(item, "pullRequest", branch_impl->pull_request) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // branch_impl->_links
-    if(branch_impl->_links) { 
+    if(branch_impl->_links) {
     cJSON *_links_local_JSON = branch_impllinks_convertToJSON(branch_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -215,11 +215,11 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // branch_impl->latest_run
-    if(branch_impl->latest_run) { 
+    if(branch_impl->latest_run) {
     cJSON *latest_run_local_JSON = pipeline_run_impl_convertToJSON(branch_impl->latest_run);
     if(latest_run_local_JSON == NULL) {
     goto fail; //model
@@ -228,7 +228,7 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:
@@ -241,6 +241,9 @@ fail:
 branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     branch_impl_t *branch_impl_local_var = NULL;
+
+    // define the local list for branch_impl->parameters
+    list_t *parametersList = NULL;
 
     // define the local variable for branch_impl->permissions
     branch_implpermissions_t *permissions_local_nonprim = NULL;
@@ -316,9 +319,8 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->parameters
     cJSON *parameters = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "parameters");
-    list_t *parametersList;
     if (parameters) { 
-    cJSON *parameters_local_nonprimitive;
+    cJSON *parameters_local_nonprimitive = NULL;
     if(!cJSON_IsArray(parameters)){
         goto end; //nonprimitive container
     }
@@ -391,6 +393,15 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     return branch_impl_local_var;
 end:
+    if (parametersList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, parametersList) {
+            string_parameter_definition_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(parametersList);
+        parametersList = NULL;
+    }
     if (permissions_local_nonprim) {
         branch_implpermissions_free(permissions_local_nonprim);
         permissions_local_nonprim = NULL;

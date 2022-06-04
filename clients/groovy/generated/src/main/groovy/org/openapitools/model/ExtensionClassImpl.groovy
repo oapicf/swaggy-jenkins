@@ -14,5 +14,5 @@ class ExtensionClassImpl {
     
     ExtensionClassImpllinks links
     
-    List<String> classes = new ArrayList<String>()
+    List<String> classes = new ArrayList<>()
 }

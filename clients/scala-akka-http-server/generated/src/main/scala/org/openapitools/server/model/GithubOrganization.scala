@@ -8,9 +8,9 @@ package org.openapitools.server.model
  * @param name  for example: ''null''
 */
 final case class GithubOrganization (
-  `class`: Option[String],
-  links: Option[GithubOrganizationlinks],
-  jenkinsOrganizationPipeline: Option[Boolean],
-  name: Option[String]
+  `class`: Option[String] = None,
+  links: Option[GithubOrganizationlinks] = None,
+  jenkinsOrganizationPipeline: Option[Boolean] = None,
+  name: Option[String] = None
 )
 

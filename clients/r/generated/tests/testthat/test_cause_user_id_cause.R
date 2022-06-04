@@ -3,7 +3,7 @@
 
 context("Test CauseUserIdCause")
 
-model.instance <- CauseUserIdCause$new()
+model_instance <- CauseUserIdCause$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -32,4 +32,3 @@ test_that("userName", {
   # uncomment below to test the property
   #expect_equal(model.instance$`userName`, "EXPECTED_RESULT")
 })
-

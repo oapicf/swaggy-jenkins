@@ -12,12 +12,12 @@ import org.openapitools.model.HudsonMasterComputer;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-02-13T02:21:30.640855Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
 public class ComputerSet   {
   
   private String propertyClass;
   private Integer busyExecutors;
-  private List<HudsonMasterComputer> computer = new ArrayList<HudsonMasterComputer>();
+  private List<HudsonMasterComputer> computer = new ArrayList<>();
   private String displayName;
   private Integer totalExecutors;
 

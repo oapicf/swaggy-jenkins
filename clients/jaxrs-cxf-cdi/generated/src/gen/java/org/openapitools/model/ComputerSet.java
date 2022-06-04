@@ -83,7 +83,7 @@ public class ComputerSet   {
 
   public ComputerSet addComputerItem(HudsonMasterComputer computerItem) {
     if (this.computer == null) {
-      this.computer = new ArrayList<HudsonMasterComputer>();
+      this.computer = new ArrayList<>();
     }
     this.computer.add(computerItem);
     return this;

@@ -3,7 +3,7 @@
 
 context("Test ClassesByClass")
 
-model.instance <- ClassesByClass$new()
+model_instance <- ClassesByClass$new()
 
 test_that("classes", {
   # tests for the property `classes` (array[character])
@@ -18,4 +18,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

@@ -85,7 +85,7 @@ public class PipelineRun   {
 
   public PipelineRun addArtifactsItem(PipelineRunartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = new ArrayList<PipelineRunartifacts>();
+      this.artifacts = new ArrayList<>();
     }
     this.artifacts.add(artifactsItem);
     return this;

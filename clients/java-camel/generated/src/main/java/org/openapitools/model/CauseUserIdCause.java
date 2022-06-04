@@ -18,8 +18,8 @@ import javax.annotation.Generated;
  * CauseUserIdCause
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-02-13T02:19:25.316848Z[Etc/UTC]")
-public class CauseUserIdCause   {
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+public class CauseUserIdCause {
 
   @JsonProperty("_class")
   private String propertyClass;

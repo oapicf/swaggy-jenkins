@@ -13,14 +13,14 @@ package org.openapitools.server.model
  * @param links  for example: ''null''
 */
 final case class PipelineImpl (
-  `class`: Option[String],
-  displayName: Option[String],
-  estimatedDurationInMillis: Option[Int],
-  fullName: Option[String],
-  latestRun: Option[String],
-  name: Option[String],
-  organization: Option[String],
-  weatherScore: Option[Int],
-  links: Option[PipelineImpllinks]
+  `class`: Option[String] = None,
+  displayName: Option[String] = None,
+  estimatedDurationInMillis: Option[Int] = None,
+  fullName: Option[String] = None,
+  latestRun: Option[String] = None,
+  name: Option[String] = None,
+  organization: Option[String] = None,
+  weatherScore: Option[Int] = None,
+  links: Option[PipelineImpllinks] = None
 )
 

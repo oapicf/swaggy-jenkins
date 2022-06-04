@@ -50,43 +50,43 @@ cJSON *queue_item_impl_convertToJSON(queue_item_impl_t *queue_item_impl) {
     cJSON *item = cJSON_CreateObject();
 
     // queue_item_impl->_class
-    if(queue_item_impl->_class) { 
+    if(queue_item_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", queue_item_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_item_impl->expected_build_number
-    if(queue_item_impl->expected_build_number) { 
+    if(queue_item_impl->expected_build_number) {
     if(cJSON_AddNumberToObject(item, "expectedBuildNumber", queue_item_impl->expected_build_number) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // queue_item_impl->id
-    if(queue_item_impl->id) { 
+    if(queue_item_impl->id) {
     if(cJSON_AddStringToObject(item, "id", queue_item_impl->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_item_impl->pipeline
-    if(queue_item_impl->pipeline) { 
+    if(queue_item_impl->pipeline) {
     if(cJSON_AddStringToObject(item, "pipeline", queue_item_impl->pipeline) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // queue_item_impl->queued_time
-    if(queue_item_impl->queued_time) { 
+    if(queue_item_impl->queued_time) {
     if(cJSON_AddNumberToObject(item, "queuedTime", queue_item_impl->queued_time) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

@@ -21,23 +21,24 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Hudson")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class Hudson   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class Hudson   {
   
   private @Valid String propertyClass;
-  private @Valid List<HudsonassignedLabels> assignedLabels = new ArrayList<HudsonassignedLabels>();
+  private @Valid List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
   private @Valid String mode;
   private @Valid String nodeDescription;
   private @Valid String nodeName;
   private @Valid Integer numExecutors;
   private @Valid String description;
-  private @Valid List<FreeStyleProject> jobs = new ArrayList<FreeStyleProject>();
+  private @Valid List<FreeStyleProject> jobs = new ArrayList<>();
   private @Valid AllView primaryView;
   private @Valid Boolean quietingDown;
   private @Valid Integer slaveAgentPort;
   private @Valid UnlabeledLoadStatistics unlabeledLoad;
   private @Valid Boolean useCrumbs;
   private @Valid Boolean useSecurity;
-  private @Valid List<AllView> views = new ArrayList<AllView>();
+  private @Valid List<AllView> views = new ArrayList<>();
 
   /**
    **/
@@ -45,8 +46,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -68,8 +67,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("assignedLabels")
   public List<HudsonassignedLabels> getAssignedLabels() {
@@ -83,7 +80,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public Hudson addAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
     if (this.assignedLabels == null) {
-      this.assignedLabels = new ArrayList<HudsonassignedLabels>();
+      this.assignedLabels = new ArrayList<>();
     }
 
     this.assignedLabels.add(assignedLabelsItem);
@@ -105,8 +102,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("mode")
   public String getMode() {
@@ -124,8 +119,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.nodeDescription = nodeDescription;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -147,8 +140,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("nodeName")
   public String getNodeName() {
@@ -166,8 +157,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.numExecutors = numExecutors;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -189,8 +178,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("description")
   public String getDescription() {
@@ -210,8 +197,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
   public List<FreeStyleProject> getJobs() {
@@ -225,7 +210,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public Hudson addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<FreeStyleProject>();
+      this.jobs = new ArrayList<>();
     }
 
     this.jobs.add(jobsItem);
@@ -247,8 +232,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("primaryView")
   public AllView getPrimaryView() {
@@ -266,8 +249,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.quietingDown = quietingDown;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -289,8 +270,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("slaveAgentPort")
   public Integer getSlaveAgentPort() {
@@ -308,8 +287,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.unlabeledLoad = unlabeledLoad;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -331,8 +308,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("useCrumbs")
   public Boolean getUseCrumbs() {
@@ -350,8 +325,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.useSecurity = useSecurity;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -373,8 +346,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("views")
   public List<AllView> getViews() {
@@ -388,7 +359,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public Hudson addViewsItem(AllView viewsItem) {
     if (this.views == null) {
-      this.views = new ArrayList<AllView>();
+      this.views = new ArrayList<>();
     }
 
     this.views.add(viewsItem);

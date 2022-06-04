@@ -64,7 +64,7 @@ cJSON *pipeline_branchesitempull_request_convertToJSON(pipeline_branchesitempull
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_branchesitempull_request->_links
-    if(pipeline_branchesitempull_request->_links) { 
+    if(pipeline_branchesitempull_request->_links) {
     cJSON *_links_local_JSON = pipeline_branchesitempull_requestlinks_convertToJSON(pipeline_branchesitempull_request->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -73,47 +73,47 @@ cJSON *pipeline_branchesitempull_request_convertToJSON(pipeline_branchesitempull
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_branchesitempull_request->author
-    if(pipeline_branchesitempull_request->author) { 
+    if(pipeline_branchesitempull_request->author) {
     if(cJSON_AddStringToObject(item, "author", pipeline_branchesitempull_request->author) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitempull_request->id
-    if(pipeline_branchesitempull_request->id) { 
+    if(pipeline_branchesitempull_request->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_branchesitempull_request->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitempull_request->title
-    if(pipeline_branchesitempull_request->title) { 
+    if(pipeline_branchesitempull_request->title) {
     if(cJSON_AddStringToObject(item, "title", pipeline_branchesitempull_request->title) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitempull_request->url
-    if(pipeline_branchesitempull_request->url) { 
+    if(pipeline_branchesitempull_request->url) {
     if(cJSON_AddStringToObject(item, "url", pipeline_branchesitempull_request->url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_branchesitempull_request->_class
-    if(pipeline_branchesitempull_request->_class) { 
+    if(pipeline_branchesitempull_request->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_branchesitempull_request->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

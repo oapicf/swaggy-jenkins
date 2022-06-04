@@ -5,6 +5,7 @@ import org.openapitools.model.FreeStyleBuild;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class HudsonMasterComputerexecutors  {
   
   @ApiModelProperty(value = "")

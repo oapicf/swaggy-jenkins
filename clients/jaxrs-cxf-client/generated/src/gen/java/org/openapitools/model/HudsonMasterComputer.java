@@ -9,6 +9,7 @@ import org.openapitools.model.Label1;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class HudsonMasterComputer  {
   
   @ApiModelProperty(value = "")

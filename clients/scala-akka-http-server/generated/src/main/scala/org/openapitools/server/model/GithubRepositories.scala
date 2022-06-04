@@ -10,11 +10,11 @@ package org.openapitools.server.model
  * @param pageSize  for example: ''null''
 */
 final case class GithubRepositories (
-  `class`: Option[String],
-  links: Option[GithubRepositorieslinks],
-  items: Option[Seq[GithubRepository]],
-  lastPage: Option[Int],
-  nextPage: Option[Int],
-  pageSize: Option[Int]
+  `class`: Option[String] = None,
+  links: Option[GithubRepositorieslinks] = None,
+  items: Option[Seq[GithubRepository]] = None,
+  lastPage: Option[Int] = None,
+  nextPage: Option[Int] = None,
+  pageSize: Option[Int] = None
 )
 

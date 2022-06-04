@@ -9,10 +9,10 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class PipelineImpllinks (
-  runs: Option[Link],
-  self: Option[Link],
-  queue: Option[Link],
-  actions: Option[Link],
-  `class`: Option[String]
+  runs: Option[Link] = None,
+  self: Option[Link] = None,
+  queue: Option[Link] = None,
+  actions: Option[Link] = None,
+  `class`: Option[String] = None
 )
 

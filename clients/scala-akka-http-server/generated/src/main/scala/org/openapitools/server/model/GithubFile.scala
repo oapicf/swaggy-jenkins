@@ -6,7 +6,7 @@ package org.openapitools.server.model
  * @param `class`  for example: ''null''
 */
 final case class GithubFile (
-  content: Option[GithubContent],
-  `class`: Option[String]
+  content: Option[GithubContent] = None,
+  `class`: Option[String] = None
 )
 

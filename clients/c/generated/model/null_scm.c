@@ -34,11 +34,11 @@ cJSON *null_scm_convertToJSON(null_scm_t *null_scm) {
     cJSON *item = cJSON_CreateObject();
 
     // null_scm->_class
-    if(null_scm->_class) { 
+    if(null_scm->_class) {
     if(cJSON_AddStringToObject(item, "_class", null_scm->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

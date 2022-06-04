@@ -11,36 +11,22 @@ import java.util.List;
 import javax.validation.constraints.*;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-02-13T02:21:55.978017Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
 public class MultibranchPipeline   {
   
-
   private String displayName;
-
   private Integer estimatedDurationInMillis;
-
   private String latestRun;
-
   private String name;
-
   private String organization;
-
   private Integer weatherScore;
-
-  private List<String> branchNames = new ArrayList<String>();
-
+  private List<String> branchNames = new ArrayList<>();
   private Integer numberOfFailingBranches;
-
   private Integer numberOfFailingPullRequests;
-
   private Integer numberOfSuccessfulBranches;
-
   private Integer numberOfSuccessfulPullRequests;
-
   private Integer totalNumberOfBranches;
-
   private Integer totalNumberOfPullRequests;
-
   private String propertyClass;
 
   /**

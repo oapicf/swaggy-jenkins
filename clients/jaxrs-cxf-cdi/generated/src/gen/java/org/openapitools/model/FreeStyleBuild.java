@@ -128,7 +128,7 @@ public class FreeStyleBuild   {
 
   public FreeStyleBuild addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<CauseAction>();
+      this.actions = new ArrayList<>();
     }
     this.actions.add(actionsItem);
     return this;

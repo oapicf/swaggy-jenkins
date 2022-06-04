@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.branch_impllinks import BranchImpllinks
 from openapi_server.models.branch_implpermissions import BranchImplpermissions
 from openapi_server.models.pipeline_run_impl import PipelineRunImpl
@@ -35,18 +35,18 @@ class BranchImpl(BaseModel):
         latest_run: The latest_run of this BranchImpl [Optional].
     """
 
-    _class: Optional[str] = None
-    display_name: Optional[str] = None
-    estimated_duration_in_millis: Optional[int] = None
-    full_display_name: Optional[str] = None
-    full_name: Optional[str] = None
-    name: Optional[str] = None
-    organization: Optional[str] = None
-    parameters: Optional[List[StringParameterDefinition]] = None
-    permissions: Optional[BranchImplpermissions] = None
-    weather_score: Optional[int] = None
-    pull_request: Optional[str] = None
-    links: Optional[BranchImpllinks] = None
-    latest_run: Optional[PipelineRunImpl] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    estimated_duration_in_millis: Optional[int] = Field(alias="estimatedDurationInMillis", default=None)
+    full_display_name: Optional[str] = Field(alias="fullDisplayName", default=None)
+    full_name: Optional[str] = Field(alias="fullName", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    parameters: Optional[List[StringParameterDefinition]] = Field(alias="parameters", default=None)
+    permissions: Optional[BranchImplpermissions] = Field(alias="permissions", default=None)
+    weather_score: Optional[int] = Field(alias="weatherScore", default=None)
+    pull_request: Optional[str] = Field(alias="pullRequest", default=None)
+    links: Optional[BranchImpllinks] = Field(alias="_links", default=None)
+    latest_run: Optional[PipelineRunImpl] = Field(alias="latestRun", default=None)
 
 BranchImpl.update_forward_refs()

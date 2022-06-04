@@ -107,7 +107,7 @@ public class PipelineRunNode   {
 
   public PipelineRunNode addEdgesItem(PipelineRunNodeedges edgesItem) {
     if (this.edges == null) {
-      this.edges = new ArrayList<PipelineRunNodeedges>();
+      this.edges = new ArrayList<>();
     }
     this.edges.add(edgesItem);
     return this;

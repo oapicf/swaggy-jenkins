@@ -7,8 +7,8 @@ package org.openapitools.server.model
  * @param average  for example: ''null''
 */
 final case class ResponseTimeMonitorData (
-  `class`: Option[String],
-  timestamp: Option[Int],
-  average: Option[Int]
+  `class`: Option[String] = None,
+  timestamp: Option[Int] = None,
+  average: Option[Int] = None
 )
 

@@ -110,15 +110,15 @@ cJSON *pipeline_run_impl_convertToJSON(pipeline_run_impl_t *pipeline_run_impl) {
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_run_impl->_class
-    if(pipeline_run_impl->_class) { 
+    if(pipeline_run_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_run_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->_links
-    if(pipeline_run_impl->_links) { 
+    if(pipeline_run_impl->_links) {
     cJSON *_links_local_JSON = pipeline_run_impllinks_convertToJSON(pipeline_run_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -127,111 +127,111 @@ cJSON *pipeline_run_impl_convertToJSON(pipeline_run_impl_t *pipeline_run_impl) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_run_impl->duration_in_millis
-    if(pipeline_run_impl->duration_in_millis) { 
+    if(pipeline_run_impl->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_run_impl->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_run_impl->en_queue_time
-    if(pipeline_run_impl->en_queue_time) { 
+    if(pipeline_run_impl->en_queue_time) {
     if(cJSON_AddStringToObject(item, "enQueueTime", pipeline_run_impl->en_queue_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->end_time
-    if(pipeline_run_impl->end_time) { 
+    if(pipeline_run_impl->end_time) {
     if(cJSON_AddStringToObject(item, "endTime", pipeline_run_impl->end_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->estimated_duration_in_millis
-    if(pipeline_run_impl->estimated_duration_in_millis) { 
+    if(pipeline_run_impl->estimated_duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_run_impl->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_run_impl->id
-    if(pipeline_run_impl->id) { 
+    if(pipeline_run_impl->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_run_impl->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->organization
-    if(pipeline_run_impl->organization) { 
+    if(pipeline_run_impl->organization) {
     if(cJSON_AddStringToObject(item, "organization", pipeline_run_impl->organization) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->pipeline
-    if(pipeline_run_impl->pipeline) { 
+    if(pipeline_run_impl->pipeline) {
     if(cJSON_AddStringToObject(item, "pipeline", pipeline_run_impl->pipeline) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->result
-    if(pipeline_run_impl->result) { 
+    if(pipeline_run_impl->result) {
     if(cJSON_AddStringToObject(item, "result", pipeline_run_impl->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->run_summary
-    if(pipeline_run_impl->run_summary) { 
+    if(pipeline_run_impl->run_summary) {
     if(cJSON_AddStringToObject(item, "runSummary", pipeline_run_impl->run_summary) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->start_time
-    if(pipeline_run_impl->start_time) { 
+    if(pipeline_run_impl->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", pipeline_run_impl->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->state
-    if(pipeline_run_impl->state) { 
+    if(pipeline_run_impl->state) {
     if(cJSON_AddStringToObject(item, "state", pipeline_run_impl->state) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->type
-    if(pipeline_run_impl->type) { 
+    if(pipeline_run_impl->type) {
     if(cJSON_AddStringToObject(item, "type", pipeline_run_impl->type) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_impl->commit_id
-    if(pipeline_run_impl->commit_id) { 
+    if(pipeline_run_impl->commit_id) {
     if(cJSON_AddStringToObject(item, "commitId", pipeline_run_impl->commit_id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

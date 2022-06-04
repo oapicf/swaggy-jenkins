@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -12,7 +12,7 @@ part of openapi.api;
 
 
 class RemoteAccessApi {
-  RemoteAccessApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
+  RemoteAccessApi([ApiClient? apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
   final ApiClient apiClient;
 
@@ -25,24 +25,18 @@ class RemoteAccessApi {
   /// * [int] depth (required):
   ///   Recursion depth in response model
   Future<Response> getComputerWithHttpInfo(int depth,) async {
-    // Verify required params are set.
-    if (depth == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: depth');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/computer/api/json';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'depth', depth));
+      queryParams.addAll(_queryParams('', 'depth', depth));
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -53,8 +47,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -64,7 +57,7 @@ class RemoteAccessApi {
   ///
   /// * [int] depth (required):
   ///   Recursion depth in response model
-  Future<ComputerSet> getComputer(int depth,) async {
+  Future<ComputerSet?> getComputer(int depth,) async {
     final response = await getComputerWithHttpInfo(depth,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -72,11 +65,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ComputerSet',) as ComputerSet;
     
     }
-    return Future<ComputerSet>.value();
+    return null;
   }
 
   /// Retrieve Jenkins details
@@ -87,13 +80,12 @@ class RemoteAccessApi {
     final path = r'/api/json';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -104,13 +96,12 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
   /// Retrieve Jenkins details
-  Future<Hudson> getJenkins() async {
+  Future<Hudson?> getJenkins() async {
     final response = await getJenkinsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -118,11 +109,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Hudson',) as Hudson;
     
     }
-    return Future<Hudson>.value();
+    return null;
   }
 
   /// Retrieve job details
@@ -134,23 +125,17 @@ class RemoteAccessApi {
   /// * [String] name (required):
   ///   Name of the job
   Future<Response> getJobWithHttpInfo(String name,) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/api/json'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -161,8 +146,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -172,7 +156,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<FreeStyleProject> getJob(String name,) async {
+  Future<FreeStyleProject?> getJob(String name,) async {
     final response = await getJobWithHttpInfo(name,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -180,11 +164,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FreeStyleProject',) as FreeStyleProject;
     
     }
-    return Future<FreeStyleProject>.value();
+    return null;
   }
 
   /// Retrieve job configuration
@@ -196,23 +180,17 @@ class RemoteAccessApi {
   /// * [String] name (required):
   ///   Name of the job
   Future<Response> getJobConfigWithHttpInfo(String name,) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/config.xml'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -223,8 +201,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -234,7 +211,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<String> getJobConfig(String name,) async {
+  Future<String?> getJobConfig(String name,) async {
     final response = await getJobConfigWithHttpInfo(name,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -242,11 +219,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
     
     }
-    return Future<String>.value();
+    return null;
   }
 
   /// Retrieve job's last build details
@@ -258,23 +235,17 @@ class RemoteAccessApi {
   /// * [String] name (required):
   ///   Name of the job
   Future<Response> getJobLastBuildWithHttpInfo(String name,) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/lastBuild/api/json'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -285,8 +256,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -296,7 +266,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<FreeStyleBuild> getJobLastBuild(String name,) async {
+  Future<FreeStyleBuild?> getJobLastBuild(String name,) async {
     final response = await getJobLastBuildWithHttpInfo(name,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -304,11 +274,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'FreeStyleBuild',) as FreeStyleBuild;
     
     }
-    return Future<FreeStyleBuild>.value();
+    return null;
   }
 
   /// Retrieve job's build progressive text output
@@ -326,32 +296,20 @@ class RemoteAccessApi {
   /// * [String] start (required):
   ///   Starting point of progressive text output
   Future<Response> getJobProgressiveTextWithHttpInfo(String name, String number, String start,) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-    if (number == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: number');
-    }
-    if (start == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: start');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/{number}/logText/progressiveText'
       .replaceAll('{name}', name)
       .replaceAll('{number}', number);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'start', start));
+      queryParams.addAll(_queryParams('', 'start', start));
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -362,8 +320,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -394,13 +351,12 @@ class RemoteAccessApi {
     final path = r'/queue/api/json';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -411,13 +367,12 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
   /// Retrieve queue details
-  Future<Queue> getQueue() async {
+  Future<Queue?> getQueue() async {
     final response = await getQueueWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -425,11 +380,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Queue',) as Queue;
     
     }
-    return Future<Queue>.value();
+    return null;
   }
 
   /// Retrieve queued item details
@@ -441,23 +396,17 @@ class RemoteAccessApi {
   /// * [String] number (required):
   ///   Queue number
   Future<Response> getQueueItemWithHttpInfo(String number,) async {
-    // Verify required params are set.
-    if (number == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: number');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/queue/item/{number}/api/json'
       .replaceAll('{number}', number);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -468,8 +417,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -479,7 +427,7 @@ class RemoteAccessApi {
   ///
   /// * [String] number (required):
   ///   Queue number
-  Future<Queue> getQueueItem(String number,) async {
+  Future<Queue?> getQueueItem(String number,) async {
     final response = await getQueueItemWithHttpInfo(number,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -487,11 +435,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'Queue',) as Queue;
     
     }
-    return Future<Queue>.value();
+    return null;
   }
 
   /// Retrieve view details
@@ -503,23 +451,17 @@ class RemoteAccessApi {
   /// * [String] name (required):
   ///   Name of the view
   Future<Response> getViewWithHttpInfo(String name,) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/view/{name}/api/json'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -530,8 +472,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -541,7 +482,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the view
-  Future<ListView> getView(String name,) async {
+  Future<ListView?> getView(String name,) async {
     final response = await getViewWithHttpInfo(name,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -549,11 +490,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListView',) as ListView;
     
     }
-    return Future<ListView>.value();
+    return null;
   }
 
   /// Retrieve view configuration
@@ -565,23 +506,17 @@ class RemoteAccessApi {
   /// * [String] name (required):
   ///   Name of the view
   Future<Response> getViewConfigWithHttpInfo(String name,) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
     // ignore: prefer_const_declarations
     final path = r'/view/{name}/config.xml'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -592,8 +527,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -603,7 +537,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the view
-  Future<String> getViewConfig(String name,) async {
+  Future<String?> getViewConfig(String name,) async {
     final response = await getViewConfigWithHttpInfo(name,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -611,11 +545,11 @@ class RemoteAccessApi {
     // When a remote server returns no body with a status of 204, we shall not decode it.
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
-    if (response.body != null && response.statusCode != HttpStatus.noContent) {
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
     
     }
-    return Future<String>.value();
+    return null;
   }
 
   /// Retrieve Jenkins headers
@@ -626,13 +560,12 @@ class RemoteAccessApi {
     final path = r'/api/json';
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -643,8 +576,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -679,28 +611,23 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   Job configuration in config.xml format
-  Future<Response> postCreateItemWithHttpInfo(String name, { String from, String mode, String jenkinsCrumb, String contentType, String body, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
+  Future<Response> postCreateItemWithHttpInfo(String name, { String? from, String? mode, String? jenkinsCrumb, String? contentType, String? body, }) async {
     // ignore: prefer_const_declarations
     final path = r'/createItem';
 
     // ignore: prefer_final_locals
-    Object postBody = body;
+    Object? postBody = body;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'name', name));
+      queryParams.addAll(_queryParams('', 'name', name));
     if (from != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'from', from));
+      queryParams.addAll(_queryParams('', 'from', from));
     }
     if (mode != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'mode', mode));
+      queryParams.addAll(_queryParams('', 'mode', mode));
     }
 
     if (jenkinsCrumb != null) {
@@ -710,7 +637,6 @@ class RemoteAccessApi {
       headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>['application/json'];
 
 
@@ -721,8 +647,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -747,7 +672,7 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   Job configuration in config.xml format
-  Future<void> postCreateItem(String name, { String from, String mode, String jenkinsCrumb, String contentType, String body, }) async {
+  Future<void> postCreateItem(String name, { String? from, String? mode, String? jenkinsCrumb, String? contentType, String? body, }) async {
     final response = await postCreateItemWithHttpInfo(name,  from: from, mode: mode, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -771,23 +696,18 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   View configuration in config.xml format
-  Future<Response> postCreateViewWithHttpInfo(String name, { String jenkinsCrumb, String contentType, String body, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
+  Future<Response> postCreateViewWithHttpInfo(String name, { String? jenkinsCrumb, String? contentType, String? body, }) async {
     // ignore: prefer_const_declarations
     final path = r'/createView';
 
     // ignore: prefer_final_locals
-    Object postBody = body;
+    Object? postBody = body;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'name', name));
+      queryParams.addAll(_queryParams('', 'name', name));
 
     if (jenkinsCrumb != null) {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
@@ -796,7 +716,6 @@ class RemoteAccessApi {
       headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>['application/json'];
 
 
@@ -807,8 +726,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -827,7 +745,7 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   View configuration in config.xml format
-  Future<void> postCreateView(String name, { String jenkinsCrumb, String contentType, String body, }) async {
+  Future<void> postCreateView(String name, { String? jenkinsCrumb, String? contentType, String? body, }) async {
     final response = await postCreateViewWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -849,36 +767,27 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobBuildWithHttpInfo(String name, String json, { String token, String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-    if (json == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: json');
-    }
-
+  Future<Response> postJobBuildWithHttpInfo(String name, String json, { String? token, String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/build'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'json', json));
+      queryParams.addAll(_queryParams('', 'json', json));
     if (token != null) {
-      queryParams.addAll(_convertParametersForCollectionFormat('', 'token', token));
+      queryParams.addAll(_queryParams('', 'token', token));
     }
 
     if (jenkinsCrumb != null) {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -889,8 +798,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -907,7 +815,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobBuild(String name, String json, { String token, String jenkinsCrumb, }) async {
+  Future<void> postJobBuild(String name, String json, { String? token, String? jenkinsCrumb, }) async {
     final response = await postJobBuildWithHttpInfo(name, json,  token: token, jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -928,21 +836,13 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobConfigWithHttpInfo(String name, String body, { String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-    if (body == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
-    }
-
+  Future<Response> postJobConfigWithHttpInfo(String name, String body, { String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/config.xml'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody = body;
+    Object? postBody = body;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -952,7 +852,6 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>['application/json'];
 
 
@@ -963,8 +862,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -980,7 +878,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobConfig(String name, String body, { String jenkinsCrumb, }) async {
+  Future<void> postJobConfig(String name, String body, { String? jenkinsCrumb, }) async {
     final response = await postJobConfigWithHttpInfo(name, body,  jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -998,18 +896,13 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobDeleteWithHttpInfo(String name, { String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
+  Future<Response> postJobDeleteWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/doDelete'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1019,7 +912,6 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -1030,8 +922,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -1044,7 +935,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobDelete(String name, { String jenkinsCrumb, }) async {
+  Future<void> postJobDelete(String name, { String? jenkinsCrumb, }) async {
     final response = await postJobDeleteWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1062,18 +953,13 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobDisableWithHttpInfo(String name, { String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
+  Future<Response> postJobDisableWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/disable'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1083,7 +969,6 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -1094,8 +979,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -1108,7 +992,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobDisable(String name, { String jenkinsCrumb, }) async {
+  Future<void> postJobDisable(String name, { String? jenkinsCrumb, }) async {
     final response = await postJobDisableWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1126,18 +1010,13 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobEnableWithHttpInfo(String name, { String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
+  Future<Response> postJobEnableWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/enable'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1147,7 +1026,6 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -1158,8 +1036,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -1172,7 +1049,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobEnable(String name, { String jenkinsCrumb, }) async {
+  Future<void> postJobEnable(String name, { String? jenkinsCrumb, }) async {
     final response = await postJobEnableWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1190,18 +1067,13 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobLastBuildStopWithHttpInfo(String name, { String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-
+  Future<Response> postJobLastBuildStopWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/lastBuild/stop'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1211,7 +1083,6 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>[];
 
 
@@ -1222,8 +1093,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -1236,7 +1106,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobLastBuildStop(String name, { String jenkinsCrumb, }) async {
+  Future<void> postJobLastBuildStop(String name, { String? jenkinsCrumb, }) async {
     final response = await postJobLastBuildStopWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
@@ -1257,21 +1127,13 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postViewConfigWithHttpInfo(String name, String body, { String jenkinsCrumb, }) async {
-    // Verify required params are set.
-    if (name == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: name');
-    }
-    if (body == null) {
-     throw ApiException(HttpStatus.badRequest, 'Missing required param: body');
-    }
-
+  Future<Response> postViewConfigWithHttpInfo(String name, String body, { String? jenkinsCrumb, }) async {
     // ignore: prefer_const_declarations
     final path = r'/view/{name}/config.xml'
       .replaceAll('{name}', name);
 
     // ignore: prefer_final_locals
-    Object postBody = body;
+    Object? postBody = body;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -1281,7 +1143,6 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const authNames = <String>['jenkins_auth'];
     const contentTypes = <String>['application/json'];
 
 
@@ -1292,8 +1153,7 @@ class RemoteAccessApi {
       postBody,
       headerParams,
       formParams,
-      contentTypes.isEmpty ? null : contentTypes[0],
-      authNames,
+      contentTypes.isEmpty ? null : contentTypes.first,
     );
   }
 
@@ -1309,7 +1169,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postViewConfig(String name, String body, { String jenkinsCrumb, }) async {
+  Future<void> postViewConfig(String name, String body, { String? jenkinsCrumb, }) async {
     final response = await postViewConfigWithHttpInfo(name, body,  jenkinsCrumb: jenkinsCrumb, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

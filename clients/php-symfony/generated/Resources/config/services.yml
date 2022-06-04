@@ -27,8 +27,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.blueOcean:
         class: OpenAPI\Server\Controller\BlueOceanController
@@ -36,8 +36,8 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 
     open_api_server.controller.remoteAccess:
         class: OpenAPI\Server\Controller\RemoteAccessController
@@ -45,6 +45,6 @@ services:
          - [setSerializer, ['@open_api_server.service.serializer']]
          - [setValidator,  ['@open_api_server.service.validator']]
          - [setApiServer,  ['@open_api_server.api.api_server']]
+         - [setContainer,  ['@service_container']]
         tags: ['controller.service_arguments']
-        autowire: true
 

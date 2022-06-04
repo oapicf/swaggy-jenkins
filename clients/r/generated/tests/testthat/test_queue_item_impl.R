@@ -3,7 +3,7 @@
 
 context("Test QueueItemImpl")
 
-model.instance <- QueueItemImpl$new()
+model_instance <- QueueItemImpl$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -39,4 +39,3 @@ test_that("queuedTime", {
   # uncomment below to test the property
   #expect_equal(model.instance$`queuedTime`, "EXPECTED_RESULT")
 })
-

@@ -17,18 +17,18 @@ package org.openapitools.server.model
  * @param latestRun  for example: ''null''
 */
 final case class BranchImpl (
-  `class`: Option[String],
-  displayName: Option[String],
-  estimatedDurationInMillis: Option[Int],
-  fullDisplayName: Option[String],
-  fullName: Option[String],
-  name: Option[String],
-  organization: Option[String],
-  parameters: Option[Seq[StringParameterDefinition]],
-  permissions: Option[BranchImplpermissions],
-  weatherScore: Option[Int],
-  pullRequest: Option[String],
-  links: Option[BranchImpllinks],
-  latestRun: Option[PipelineRunImpl]
+  `class`: Option[String] = None,
+  displayName: Option[String] = None,
+  estimatedDurationInMillis: Option[Int] = None,
+  fullDisplayName: Option[String] = None,
+  fullName: Option[String] = None,
+  name: Option[String] = None,
+  organization: Option[String] = None,
+  parameters: Option[Seq[StringParameterDefinition]] = None,
+  permissions: Option[BranchImplpermissions] = None,
+  weatherScore: Option[Int] = None,
+  pullRequest: Option[String] = None,
+  links: Option[BranchImpllinks] = None,
+  latestRun: Option[PipelineRunImpl] = None
 )
 

@@ -21,7 +21,7 @@ class InputStepImpl {
     
     String ok
     
-    List<StringParameterDefinition> parameters = new ArrayList<StringParameterDefinition>()
+    List<StringParameterDefinition> parameters = new ArrayList<>()
     
     String submitter
 }

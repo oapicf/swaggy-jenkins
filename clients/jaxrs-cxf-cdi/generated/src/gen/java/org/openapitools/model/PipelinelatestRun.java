@@ -67,7 +67,7 @@ public class PipelinelatestRun   {
 
   public PipelinelatestRun addArtifactsItem(PipelinelatestRunartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = new ArrayList<PipelinelatestRunartifacts>();
+      this.artifacts = new ArrayList<>();
     }
     this.artifacts.add(artifactsItem);
     return this;

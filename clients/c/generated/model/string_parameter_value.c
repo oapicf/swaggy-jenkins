@@ -46,27 +46,27 @@ cJSON *string_parameter_value_convertToJSON(string_parameter_value_t *string_par
     cJSON *item = cJSON_CreateObject();
 
     // string_parameter_value->_class
-    if(string_parameter_value->_class) { 
+    if(string_parameter_value->_class) {
     if(cJSON_AddStringToObject(item, "_class", string_parameter_value->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // string_parameter_value->name
-    if(string_parameter_value->name) { 
+    if(string_parameter_value->name) {
     if(cJSON_AddStringToObject(item, "name", string_parameter_value->name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // string_parameter_value->value
-    if(string_parameter_value->value) { 
+    if(string_parameter_value->value) {
     if(cJSON_AddStringToObject(item, "value", string_parameter_value->value) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

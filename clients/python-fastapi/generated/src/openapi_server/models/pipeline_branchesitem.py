@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.pipeline_branchesitemlatest_run import PipelineBranchesitemlatestRun
 from openapi_server.models.pipeline_branchesitempull_request import PipelineBranchesitempullRequest
 
@@ -29,14 +29,14 @@ class PipelineBranchesitem(BaseModel):
         _class: The _class of this PipelineBranchesitem [Optional].
     """
 
-    display_name: Optional[str] = None
-    estimated_duration_in_millis: Optional[int] = None
-    name: Optional[str] = None
-    weather_score: Optional[int] = None
-    latest_run: Optional[PipelineBranchesitemlatestRun] = None
-    organization: Optional[str] = None
-    pull_request: Optional[PipelineBranchesitempullRequest] = None
-    total_number_of_pull_requests: Optional[int] = None
-    _class: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    estimated_duration_in_millis: Optional[int] = Field(alias="estimatedDurationInMillis", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    weather_score: Optional[int] = Field(alias="weatherScore", default=None)
+    latest_run: Optional[PipelineBranchesitemlatestRun] = Field(alias="latestRun", default=None)
+    organization: Optional[str] = Field(alias="organization", default=None)
+    pull_request: Optional[PipelineBranchesitempullRequest] = Field(alias="pullRequest", default=None)
+    total_number_of_pull_requests: Optional[int] = Field(alias="totalNumberOfPullRequests", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 PipelineBranchesitem.update_forward_refs()

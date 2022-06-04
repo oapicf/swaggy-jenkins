@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.github_repositorylinks import GithubRepositorylinks
 from openapi_server.models.github_repositorypermissions import GithubRepositorypermissions
 
@@ -28,13 +28,13 @@ class GithubRepository(BaseModel):
         full_name: The full_name of this GithubRepository [Optional].
     """
 
-    _class: Optional[str] = None
-    links: Optional[GithubRepositorylinks] = None
-    default_branch: Optional[str] = None
-    description: Optional[str] = None
-    name: Optional[str] = None
-    permissions: Optional[GithubRepositorypermissions] = None
-    private: Optional[bool] = None
-    full_name: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    links: Optional[GithubRepositorylinks] = Field(alias="_links", default=None)
+    default_branch: Optional[str] = Field(alias="defaultBranch", default=None)
+    description: Optional[str] = Field(alias="description", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    permissions: Optional[GithubRepositorypermissions] = Field(alias="permissions", default=None)
+    private: Optional[bool] = Field(alias="private", default=None)
+    full_name: Optional[str] = Field(alias="fullName", default=None)
 
 GithubRepository.update_forward_refs()

@@ -17,7 +17,7 @@ import model.PipelineStepImpl
 import model.QueueItemImpl
 import model.User
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-02-13T02:38:35.589632Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
 trait BlueOceanApi {
   /**
     * Delete queue item from an organization pipeline queue

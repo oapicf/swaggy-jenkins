@@ -3,7 +3,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-API version: 1.1.2-pre.0
+API version: 1.5.1-pre.0
 Contact: blah@cliffano.com
 */
 
@@ -20,10 +20,6 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ context.Context
-)
 
 // RemoteAccessApiService RemoteAccessApi service
 type RemoteAccessApiService service
@@ -143,7 +139,6 @@ type ApiGetJenkinsRequest struct {
 	ApiService *RemoteAccessApiService
 }
 
-
 func (r ApiGetJenkinsRequest) Execute() (*Hudson, *http.Response, error) {
 	return r.ApiService.GetJenkinsExecute(r)
 }
@@ -243,7 +238,6 @@ type ApiGetJobRequest struct {
 	ApiService *RemoteAccessApiService
 	name string
 }
-
 
 func (r ApiGetJobRequest) Execute() (*FreeStyleProject, *http.Response, error) {
 	return r.ApiService.GetJobExecute(r)
@@ -348,7 +342,6 @@ type ApiGetJobConfigRequest struct {
 	name string
 }
 
-
 func (r ApiGetJobConfigRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetJobConfigExecute(r)
 }
@@ -451,7 +444,6 @@ type ApiGetJobLastBuildRequest struct {
 	ApiService *RemoteAccessApiService
 	name string
 }
-
 
 func (r ApiGetJobLastBuildRequest) Execute() (*FreeStyleBuild, *http.Response, error) {
 	return r.ApiService.GetJobLastBuildExecute(r)
@@ -662,7 +654,6 @@ type ApiGetQueueRequest struct {
 	ApiService *RemoteAccessApiService
 }
 
-
 func (r ApiGetQueueRequest) Execute() (*Queue, *http.Response, error) {
 	return r.ApiService.GetQueueExecute(r)
 }
@@ -762,7 +753,6 @@ type ApiGetQueueItemRequest struct {
 	ApiService *RemoteAccessApiService
 	number string
 }
-
 
 func (r ApiGetQueueItemRequest) Execute() (*Queue, *http.Response, error) {
 	return r.ApiService.GetQueueItemExecute(r)
@@ -867,7 +857,6 @@ type ApiGetViewRequest struct {
 	name string
 }
 
-
 func (r ApiGetViewRequest) Execute() (*ListView, *http.Response, error) {
 	return r.ApiService.GetViewExecute(r)
 }
@@ -971,7 +960,6 @@ type ApiGetViewConfigRequest struct {
 	name string
 }
 
-
 func (r ApiGetViewConfigRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetViewConfigExecute(r)
 }
@@ -1074,7 +1062,6 @@ type ApiHeadJenkinsRequest struct {
 	ApiService *RemoteAccessApiService
 }
 
-
 func (r ApiHeadJenkinsRequest) Execute() (*http.Response, error) {
 	return r.ApiService.HeadJenkinsExecute(r)
 }
@@ -1174,26 +1161,31 @@ func (r ApiPostCreateItemRequest) Name(name string) ApiPostCreateItemRequest {
 	r.name = &name
 	return r
 }
+
 // Existing job to copy from
 func (r ApiPostCreateItemRequest) From(from string) ApiPostCreateItemRequest {
 	r.from = &from
 	return r
 }
+
 // Set to &#39;copy&#39; for copying an existing job
 func (r ApiPostCreateItemRequest) Mode(mode string) ApiPostCreateItemRequest {
 	r.mode = &mode
 	return r
 }
+
 // CSRF protection token
 func (r ApiPostCreateItemRequest) JenkinsCrumb(jenkinsCrumb string) ApiPostCreateItemRequest {
 	r.jenkinsCrumb = &jenkinsCrumb
 	return r
 }
+
 // Content type header application/xml
 func (r ApiPostCreateItemRequest) ContentType(contentType string) ApiPostCreateItemRequest {
 	r.contentType = &contentType
 	return r
 }
+
 // Job configuration in config.xml format
 func (r ApiPostCreateItemRequest) Body(body string) ApiPostCreateItemRequest {
 	r.body = &body
@@ -1325,16 +1317,19 @@ func (r ApiPostCreateViewRequest) Name(name string) ApiPostCreateViewRequest {
 	r.name = &name
 	return r
 }
+
 // CSRF protection token
 func (r ApiPostCreateViewRequest) JenkinsCrumb(jenkinsCrumb string) ApiPostCreateViewRequest {
 	r.jenkinsCrumb = &jenkinsCrumb
 	return r
 }
+
 // Content type header application/xml
 func (r ApiPostCreateViewRequest) ContentType(contentType string) ApiPostCreateViewRequest {
 	r.contentType = &contentType
 	return r
 }
+
 // View configuration in config.xml format
 func (r ApiPostCreateViewRequest) Body(body string) ApiPostCreateViewRequest {
 	r.body = &body
@@ -1459,10 +1454,12 @@ func (r ApiPostJobBuildRequest) Json(json string) ApiPostJobBuildRequest {
 	r.json = &json
 	return r
 }
+
 func (r ApiPostJobBuildRequest) Token(token string) ApiPostJobBuildRequest {
 	r.token = &token
 	return r
 }
+
 // CSRF protection token
 func (r ApiPostJobBuildRequest) JenkinsCrumb(jenkinsCrumb string) ApiPostJobBuildRequest {
 	r.jenkinsCrumb = &jenkinsCrumb
@@ -1578,6 +1575,7 @@ func (r ApiPostJobConfigRequest) Body(body string) ApiPostJobConfigRequest {
 	r.body = &body
 	return r
 }
+
 // CSRF protection token
 func (r ApiPostJobConfigRequest) JenkinsCrumb(jenkinsCrumb string) ApiPostJobConfigRequest {
 	r.jenkinsCrumb = &jenkinsCrumb
@@ -2109,6 +2107,7 @@ func (r ApiPostViewConfigRequest) Body(body string) ApiPostViewConfigRequest {
 	r.body = &body
 	return r
 }
+
 // CSRF protection token
 func (r ApiPostViewConfigRequest) JenkinsCrumb(jenkinsCrumb string) ApiPostViewConfigRequest {
 	r.jenkinsCrumb = &jenkinsCrumb

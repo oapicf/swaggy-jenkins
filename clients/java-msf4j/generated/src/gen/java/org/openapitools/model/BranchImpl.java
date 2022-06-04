@@ -15,7 +15,7 @@ import org.openapitools.model.StringParameterDefinition;
 /**
  * BranchImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-02-13T02:17:10.827152Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
 public class BranchImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -189,7 +189,7 @@ public class BranchImpl   {
 
   public BranchImpl addParametersItem(StringParameterDefinition parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<StringParameterDefinition>();
+      this.parameters = new ArrayList<>();
     }
     this.parameters.add(parametersItem);
     return this;

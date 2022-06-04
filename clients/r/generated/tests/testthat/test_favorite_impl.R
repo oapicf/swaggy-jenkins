@@ -3,7 +3,7 @@
 
 context("Test FavoriteImpl")
 
-model.instance <- FavoriteImpl$new()
+model_instance <- FavoriteImpl$new()
 
 test_that("_class", {
   # tests for the property `_class` (character)
@@ -25,4 +25,3 @@ test_that("item", {
   # uncomment below to test the property
   #expect_equal(model.instance$`item`, "EXPECTED_RESULT")
 })
-

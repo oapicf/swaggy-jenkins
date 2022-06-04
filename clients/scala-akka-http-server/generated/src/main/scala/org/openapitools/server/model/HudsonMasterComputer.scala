@@ -20,21 +20,21 @@ package org.openapitools.server.model
  * @param temporarilyOffline  for example: ''null''
 */
 final case class HudsonMasterComputer (
-  `class`: Option[String],
-  displayName: Option[String],
-  executors: Option[Seq[HudsonMasterComputerexecutors]],
-  icon: Option[String],
-  iconClassName: Option[String],
-  idle: Option[Boolean],
-  jnlpAgent: Option[Boolean],
-  launchSupported: Option[Boolean],
-  loadStatistics: Option[Label1],
-  manualLaunchAllowed: Option[Boolean],
-  monitorData: Option[HudsonMasterComputermonitorData],
-  numExecutors: Option[Int],
-  offline: Option[Boolean],
-  offlineCause: Option[String],
-  offlineCauseReason: Option[String],
-  temporarilyOffline: Option[Boolean]
+  `class`: Option[String] = None,
+  displayName: Option[String] = None,
+  executors: Option[Seq[HudsonMasterComputerexecutors]] = None,
+  icon: Option[String] = None,
+  iconClassName: Option[String] = None,
+  idle: Option[Boolean] = None,
+  jnlpAgent: Option[Boolean] = None,
+  launchSupported: Option[Boolean] = None,
+  loadStatistics: Option[Label1] = None,
+  manualLaunchAllowed: Option[Boolean] = None,
+  monitorData: Option[HudsonMasterComputermonitorData] = None,
+  numExecutors: Option[Int] = None,
+  offline: Option[Boolean] = None,
+  offlineCause: Option[String] = None,
+  offlineCauseReason: Option[String] = None,
+  temporarilyOffline: Option[Boolean] = None
 )
 

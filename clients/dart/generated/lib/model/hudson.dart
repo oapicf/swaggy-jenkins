@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -30,33 +30,105 @@ class Hudson {
     this.views = const [],
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   List<HudsonassignedLabels> assignedLabels;
 
-  String mode;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? mode;
 
-  String nodeDescription;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? nodeDescription;
 
-  String nodeName;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? nodeName;
 
-  int numExecutors;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? numExecutors;
 
-  String description;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? description;
 
   List<FreeStyleProject> jobs;
 
-  AllView primaryView;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  AllView? primaryView;
 
-  bool quietingDown;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? quietingDown;
 
-  int slaveAgentPort;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? slaveAgentPort;
 
-  UnlabeledLoadStatistics unlabeledLoad;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  UnlabeledLoadStatistics? unlabeledLoad;
 
-  bool useCrumbs;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? useCrumbs;
 
-  bool useSecurity;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  bool? useSecurity;
 
   List<AllView> views;
 
@@ -80,133 +152,153 @@ class Hudson {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (assignedLabels == null ? 0 : assignedLabels.hashCode) +
-    (mode == null ? 0 : mode.hashCode) +
-    (nodeDescription == null ? 0 : nodeDescription.hashCode) +
-    (nodeName == null ? 0 : nodeName.hashCode) +
-    (numExecutors == null ? 0 : numExecutors.hashCode) +
-    (description == null ? 0 : description.hashCode) +
-    (jobs == null ? 0 : jobs.hashCode) +
-    (primaryView == null ? 0 : primaryView.hashCode) +
-    (quietingDown == null ? 0 : quietingDown.hashCode) +
-    (slaveAgentPort == null ? 0 : slaveAgentPort.hashCode) +
-    (unlabeledLoad == null ? 0 : unlabeledLoad.hashCode) +
-    (useCrumbs == null ? 0 : useCrumbs.hashCode) +
-    (useSecurity == null ? 0 : useSecurity.hashCode) +
-    (views == null ? 0 : views.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (assignedLabels.hashCode) +
+    (mode == null ? 0 : mode!.hashCode) +
+    (nodeDescription == null ? 0 : nodeDescription!.hashCode) +
+    (nodeName == null ? 0 : nodeName!.hashCode) +
+    (numExecutors == null ? 0 : numExecutors!.hashCode) +
+    (description == null ? 0 : description!.hashCode) +
+    (jobs.hashCode) +
+    (primaryView == null ? 0 : primaryView!.hashCode) +
+    (quietingDown == null ? 0 : quietingDown!.hashCode) +
+    (slaveAgentPort == null ? 0 : slaveAgentPort!.hashCode) +
+    (unlabeledLoad == null ? 0 : unlabeledLoad!.hashCode) +
+    (useCrumbs == null ? 0 : useCrumbs!.hashCode) +
+    (useSecurity == null ? 0 : useSecurity!.hashCode) +
+    (views.hashCode);
 
   @override
   String toString() => 'Hudson[class_=$class_, assignedLabels=$assignedLabels, mode=$mode, nodeDescription=$nodeDescription, nodeName=$nodeName, numExecutors=$numExecutors, description=$description, jobs=$jobs, primaryView=$primaryView, quietingDown=$quietingDown, slaveAgentPort=$slaveAgentPort, unlabeledLoad=$unlabeledLoad, useCrumbs=$useCrumbs, useSecurity=$useSecurity, views=$views]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    if (assignedLabels != null) {
-      json[r'assignedLabels'] = assignedLabels;
-    }
+      _json[r'assignedLabels'] = assignedLabels;
     if (mode != null) {
-      json[r'mode'] = mode;
+      _json[r'mode'] = mode;
     }
     if (nodeDescription != null) {
-      json[r'nodeDescription'] = nodeDescription;
+      _json[r'nodeDescription'] = nodeDescription;
     }
     if (nodeName != null) {
-      json[r'nodeName'] = nodeName;
+      _json[r'nodeName'] = nodeName;
     }
     if (numExecutors != null) {
-      json[r'numExecutors'] = numExecutors;
+      _json[r'numExecutors'] = numExecutors;
     }
     if (description != null) {
-      json[r'description'] = description;
+      _json[r'description'] = description;
     }
-    if (jobs != null) {
-      json[r'jobs'] = jobs;
-    }
+      _json[r'jobs'] = jobs;
     if (primaryView != null) {
-      json[r'primaryView'] = primaryView;
+      _json[r'primaryView'] = primaryView;
     }
     if (quietingDown != null) {
-      json[r'quietingDown'] = quietingDown;
+      _json[r'quietingDown'] = quietingDown;
     }
     if (slaveAgentPort != null) {
-      json[r'slaveAgentPort'] = slaveAgentPort;
+      _json[r'slaveAgentPort'] = slaveAgentPort;
     }
     if (unlabeledLoad != null) {
-      json[r'unlabeledLoad'] = unlabeledLoad;
+      _json[r'unlabeledLoad'] = unlabeledLoad;
     }
     if (useCrumbs != null) {
-      json[r'useCrumbs'] = useCrumbs;
+      _json[r'useCrumbs'] = useCrumbs;
     }
     if (useSecurity != null) {
-      json[r'useSecurity'] = useSecurity;
+      _json[r'useSecurity'] = useSecurity;
     }
-    if (views != null) {
-      json[r'views'] = views;
-    }
-    return json;
+      _json[r'views'] = views;
+    return _json;
   }
 
   /// Returns a new [Hudson] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static Hudson fromJson(dynamic value) {
+  static Hudson? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Hudson[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Hudson[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return Hudson(
         class_: mapValueOfType<String>(json, r'_class'),
-        assignedLabels: HudsonassignedLabels.listFromJson(json[r'assignedLabels']),
+        assignedLabels: HudsonassignedLabels.listFromJson(json[r'assignedLabels']) ?? const [],
         mode: mapValueOfType<String>(json, r'mode'),
         nodeDescription: mapValueOfType<String>(json, r'nodeDescription'),
         nodeName: mapValueOfType<String>(json, r'nodeName'),
         numExecutors: mapValueOfType<int>(json, r'numExecutors'),
         description: mapValueOfType<String>(json, r'description'),
-        jobs: FreeStyleProject.listFromJson(json[r'jobs']),
+        jobs: FreeStyleProject.listFromJson(json[r'jobs']) ?? const [],
         primaryView: AllView.fromJson(json[r'primaryView']),
         quietingDown: mapValueOfType<bool>(json, r'quietingDown'),
         slaveAgentPort: mapValueOfType<int>(json, r'slaveAgentPort'),
         unlabeledLoad: UnlabeledLoadStatistics.fromJson(json[r'unlabeledLoad']),
         useCrumbs: mapValueOfType<bool>(json, r'useCrumbs'),
         useSecurity: mapValueOfType<bool>(json, r'useSecurity'),
-        views: AllView.listFromJson(json[r'views']),
+        views: AllView.listFromJson(json[r'views']) ?? const [],
       );
     }
     return null;
   }
 
-  static List<Hudson> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(Hudson.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <Hudson>[];
+  static List<Hudson>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <Hudson>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = Hudson.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, Hudson> mapFromJson(dynamic json) {
     final map = <String, Hudson>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = Hudson.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Hudson.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of Hudson-objects as value to a dart map
-  static Map<String, List<Hudson>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<Hudson>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Hudson>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = Hudson.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = Hudson.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

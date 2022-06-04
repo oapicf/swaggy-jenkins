@@ -86,7 +86,7 @@ public class GithubRepositories   {
 
   public GithubRepositories addItemsItem(GithubRepository itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<GithubRepository>();
+      this.items = new ArrayList<>();
     }
     this.items.add(itemsItem);
     return this;

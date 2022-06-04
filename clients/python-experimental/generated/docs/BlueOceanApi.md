@@ -131,9 +131,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully deleted queue item 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully deleted queue item
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -241,9 +241,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved authenticated user details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved authenticated user details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -356,9 +356,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved class names 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved class names
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -460,9 +460,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved JWT token 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved JWT token
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -573,9 +573,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved JWT token 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved JWT token
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -689,10 +689,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipeline details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Pipeline cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved pipeline details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Pipeline cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -788,9 +788,9 @@ This endpoint does not need any parameter.
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipelines details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved pipelines details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -912,10 +912,10 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipeline details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
-404 | ApiResponseFor404 | Pipeline cannot be found on Jenkins instance 
+200 | ApiResponseFor200 | Successfully retrieved pipeline details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
+404 | ApiResponseFor404 | Pipeline cannot be found on Jenkins instance
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1044,9 +1044,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved all activities details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved all activities details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1176,9 +1176,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved branch details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved branch details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1316,9 +1316,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved run details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved run details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1440,9 +1440,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved all branches details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved all branches details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1564,9 +1564,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved folder details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved folder details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1696,9 +1696,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipeline details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved pipeline details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1820,9 +1820,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved queue details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved queue details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -1952,9 +1952,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved run details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved run details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2127,9 +2127,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipeline run log 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved pipeline run log
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2267,9 +2267,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved run node details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved run node details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2415,9 +2415,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved run node step details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved run node step details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2562,9 +2562,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipeline run node step log 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved pipeline run node step log
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2702,9 +2702,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved run node steps details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved run node steps details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2834,9 +2834,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved run nodes details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved run nodes details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -2958,9 +2958,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved runs details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved runs details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3074,9 +3074,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved pipelines details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved pipelines details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3198,9 +3198,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved SCM details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved SCM details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3382,9 +3382,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved SCM organization repositories details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved SCM organization repositories details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3559,9 +3559,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved SCM organizations details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved SCM organizations details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3718,9 +3718,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved SCM organizations details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved SCM organizations details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3842,9 +3842,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved users details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved users details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -3958,9 +3958,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved users favorites details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved users favorites details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4074,9 +4074,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved users details 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved users details
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4206,9 +4206,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully replayed a pipeline run 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully replayed a pipeline run
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4330,9 +4330,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully started a build 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully started a build
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4466,9 +4466,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully favorited/unfavorited a pipeline 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully favorited/unfavorited a pipeline
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4642,9 +4642,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully stopped a build 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully stopped a build
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4758,9 +4758,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved search result 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved search result
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes
@@ -4874,9 +4874,9 @@ Type | Description | Notes
 Code | Class | Description
 ------------- | ------------- | -------------
 n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | ApiResponseFor200 | Successfully retrieved search result 
-401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password 
-403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password 
+200 | ApiResponseFor200 | Successfully retrieved search result
+401 | ApiResponseFor401 | Authentication failed - incorrect username and/or password
+403 | ApiResponseFor403 | Jenkins requires authentication - please set username and password
 
 #### ApiResponseFor200
 Name | Type | Description  | Notes

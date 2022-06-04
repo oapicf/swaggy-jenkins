@@ -3,7 +3,7 @@
 
 context("Test GithubFile")
 
-model.instance <- GithubFile$new()
+model_instance <- GithubFile$new()
 
 test_that("content", {
   # tests for the property `content` (GithubContent)
@@ -18,4 +18,3 @@ test_that("_class", {
   # uncomment below to test the property
   #expect_equal(model.instance$`_class`, "EXPECTED_RESULT")
 })
-

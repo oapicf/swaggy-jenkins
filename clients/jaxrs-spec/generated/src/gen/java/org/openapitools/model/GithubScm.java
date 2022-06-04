@@ -16,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubScm")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class GithubScm   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class GithubScm   {
   
   private @Valid String propertyClass;
   private @Valid GithubScmlinks links;
@@ -30,8 +31,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -53,8 +52,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
   public GithubScmlinks getLinks() {
@@ -72,8 +69,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.credentialId = credentialId;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -95,8 +90,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
@@ -114,8 +107,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.uri = uri;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

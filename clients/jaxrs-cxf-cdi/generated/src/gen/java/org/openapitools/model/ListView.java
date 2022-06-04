@@ -83,7 +83,7 @@ public class ListView   {
 
   public ListView addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<FreeStyleProject>();
+      this.jobs = new ArrayList<>();
     }
     this.jobs.add(jobsItem);
     return this;

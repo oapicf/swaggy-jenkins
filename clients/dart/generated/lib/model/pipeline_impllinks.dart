@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -20,15 +20,45 @@ class PipelineImpllinks {
     this.class_,
   });
 
-  Link runs;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Link? runs;
 
-  Link self;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Link? self;
 
-  Link queue;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Link? queue;
 
-  Link actions;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Link? actions;
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineImpllinks &&
@@ -40,42 +70,54 @@ class PipelineImpllinks {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (runs == null ? 0 : runs.hashCode) +
-    (self == null ? 0 : self.hashCode) +
-    (queue == null ? 0 : queue.hashCode) +
-    (actions == null ? 0 : actions.hashCode) +
-    (class_ == null ? 0 : class_.hashCode);
+    // ignore: unnecessary_parenthesis
+    (runs == null ? 0 : runs!.hashCode) +
+    (self == null ? 0 : self!.hashCode) +
+    (queue == null ? 0 : queue!.hashCode) +
+    (actions == null ? 0 : actions!.hashCode) +
+    (class_ == null ? 0 : class_!.hashCode);
 
   @override
   String toString() => 'PipelineImpllinks[runs=$runs, self=$self, queue=$queue, actions=$actions, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (runs != null) {
-      json[r'runs'] = runs;
+      _json[r'runs'] = runs;
     }
     if (self != null) {
-      json[r'self'] = self;
+      _json[r'self'] = self;
     }
     if (queue != null) {
-      json[r'queue'] = queue;
+      _json[r'queue'] = queue;
     }
     if (actions != null) {
-      json[r'actions'] = actions;
+      _json[r'actions'] = actions;
     }
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [PipelineImpllinks] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static PipelineImpllinks fromJson(dynamic value) {
+  static PipelineImpllinks? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PipelineImpllinks[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PipelineImpllinks[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return PipelineImpllinks(
         runs: Link.fromJson(json[r'runs']),
         self: Link.fromJson(json[r'self']),
@@ -87,36 +129,50 @@ class PipelineImpllinks {
     return null;
   }
 
-  static List<PipelineImpllinks> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(PipelineImpllinks.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <PipelineImpllinks>[];
+  static List<PipelineImpllinks>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <PipelineImpllinks>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = PipelineImpllinks.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, PipelineImpllinks> mapFromJson(dynamic json) {
     final map = <String, PipelineImpllinks>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = PipelineImpllinks.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineImpllinks.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of PipelineImpllinks-objects as value to a dart map
-  static Map<String, List<PipelineImpllinks>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<PipelineImpllinks>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineImpllinks>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = PipelineImpllinks.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = PipelineImpllinks.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

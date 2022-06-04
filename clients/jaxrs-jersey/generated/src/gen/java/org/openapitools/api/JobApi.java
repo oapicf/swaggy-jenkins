@@ -31,7 +31,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the job API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-02-13T02:21:04.175010Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
 public class JobApi  {
    private final JobApiService delegate;
 
@@ -56,7 +56,7 @@ public class JobApi  {
       this.delegate = delegate;
    }
 
-    @GET
+    @javax.ws.rs.GET
     @Path("/api/json")
     
     @Produces({ "application/json" })
@@ -73,7 +73,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.getJob(name, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/config.xml")
     
     @Produces({ "text/xml" })
@@ -90,7 +90,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.getJobConfig(name, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/lastBuild/api/json")
     
     @Produces({ "application/json" })
@@ -107,7 +107,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.getJobLastBuild(name, securityContext);
     }
-    @GET
+    @javax.ws.rs.GET
     @Path("/{number}/logText/progressiveText")
     
     
@@ -124,7 +124,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.getJobProgressiveText(name, number, start, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/build")
     
     
@@ -142,7 +142,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.postJobBuild(name, json, token, jenkinsCrumb, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/config.xml")
     @Consumes({ "application/json" })
     @Produces({ "*/*" })
@@ -160,7 +160,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.postJobConfig(name, body, jenkinsCrumb, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/doDelete")
     
     
@@ -177,7 +177,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.postJobDelete(name, jenkinsCrumb, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/disable")
     
     
@@ -194,7 +194,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.postJobDisable(name, jenkinsCrumb, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/enable")
     
     
@@ -211,7 +211,7 @@ public class JobApi  {
     throws NotFoundException {
         return delegate.postJobEnable(name, jenkinsCrumb, securityContext);
     }
-    @POST
+    @javax.ws.rs.POST
     @Path("/lastBuild/stop")
     
     

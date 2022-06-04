@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.0
+// @dart=2.12
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -21,17 +21,47 @@ class GithubRepositories {
     this.pageSize,
   });
 
-  String class_;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  String? class_;
 
-  GithubRepositorieslinks links;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  GithubRepositorieslinks? links;
 
   List<GithubRepository> items;
 
-  int lastPage;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? lastPage;
 
-  int nextPage;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? nextPage;
 
-  int pageSize;
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? pageSize;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GithubRepositories &&
@@ -44,50 +74,60 @@ class GithubRepositories {
 
   @override
   int get hashCode =>
-  // ignore: unnecessary_parenthesis
-    (class_ == null ? 0 : class_.hashCode) +
-    (links == null ? 0 : links.hashCode) +
-    (items == null ? 0 : items.hashCode) +
-    (lastPage == null ? 0 : lastPage.hashCode) +
-    (nextPage == null ? 0 : nextPage.hashCode) +
-    (pageSize == null ? 0 : pageSize.hashCode);
+    // ignore: unnecessary_parenthesis
+    (class_ == null ? 0 : class_!.hashCode) +
+    (links == null ? 0 : links!.hashCode) +
+    (items.hashCode) +
+    (lastPage == null ? 0 : lastPage!.hashCode) +
+    (nextPage == null ? 0 : nextPage!.hashCode) +
+    (pageSize == null ? 0 : pageSize!.hashCode);
 
   @override
   String toString() => 'GithubRepositories[class_=$class_, links=$links, items=$items, lastPage=$lastPage, nextPage=$nextPage, pageSize=$pageSize]';
 
   Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
+    final _json = <String, dynamic>{};
     if (class_ != null) {
-      json[r'_class'] = class_;
+      _json[r'_class'] = class_;
     }
     if (links != null) {
-      json[r'_links'] = links;
+      _json[r'_links'] = links;
     }
-    if (items != null) {
-      json[r'items'] = items;
-    }
+      _json[r'items'] = items;
     if (lastPage != null) {
-      json[r'lastPage'] = lastPage;
+      _json[r'lastPage'] = lastPage;
     }
     if (nextPage != null) {
-      json[r'nextPage'] = nextPage;
+      _json[r'nextPage'] = nextPage;
     }
     if (pageSize != null) {
-      json[r'pageSize'] = pageSize;
+      _json[r'pageSize'] = pageSize;
     }
-    return json;
+    return _json;
   }
 
   /// Returns a new [GithubRepositories] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static GithubRepositories fromJson(dynamic value) {
+  static GithubRepositories? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
+
+      // Ensure that the map contains the required keys.
+      // Note 1: the values aren't checked for validity beyond being non-null.
+      // Note 2: this code is stripped in release mode!
+      assert(() {
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "GithubRepositories[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "GithubRepositories[$key]" has a null value in JSON.');
+        });
+        return true;
+      }());
+
       return GithubRepositories(
         class_: mapValueOfType<String>(json, r'_class'),
         links: GithubRepositorieslinks.fromJson(json[r'_links']),
-        items: GithubRepository.listFromJson(json[r'items']),
+        items: GithubRepository.listFromJson(json[r'items']) ?? const [],
         lastPage: mapValueOfType<int>(json, r'lastPage'),
         nextPage: mapValueOfType<int>(json, r'nextPage'),
         pageSize: mapValueOfType<int>(json, r'pageSize'),
@@ -96,36 +136,50 @@ class GithubRepositories {
     return null;
   }
 
-  static List<GithubRepositories> listFromJson(dynamic json, {bool emptyIsNull, bool growable,}) =>
-    json is List && json.isNotEmpty
-      ? json.map(GithubRepositories.fromJson).toList(growable: true == growable)
-      : true == emptyIsNull ? null : <GithubRepositories>[];
+  static List<GithubRepositories>? listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <GithubRepositories>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = GithubRepositories.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
 
   static Map<String, GithubRepositories> mapFromJson(dynamic json) {
     final map = <String, GithubRepositories>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) => map[key] = GithubRepositories.fromJson(value));
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = GithubRepositories.fromJson(entry.value);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
 
   // maps a json object with a list of GithubRepositories-objects as value to a dart map
-  static Map<String, List<GithubRepositories>> mapListFromJson(dynamic json, {bool emptyIsNull, bool growable,}) {
+  static Map<String, List<GithubRepositories>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GithubRepositories>>{};
     if (json is Map && json.isNotEmpty) {
-      json
-        .cast<String, dynamic>()
-        .forEach((key, dynamic value) {
-          map[key] = GithubRepositories.listFromJson(
-            value,
-            emptyIsNull: emptyIsNull,
-            growable: growable,
-          );
-        });
+      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      for (final entry in json.entries) {
+        final value = GithubRepositories.listFromJson(entry.value, growable: growable,);
+        if (value != null) {
+          map[entry.key] = value;
+        }
+      }
     }
     return map;
   }
+
+  /// The list of required keys that must be present in a JSON.
+  static const requiredKeys = <String>{
+  };
 }
 

@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class PipelineActivityartifacts(BaseModel):
@@ -22,9 +22,9 @@ class PipelineActivityartifacts(BaseModel):
         _class: The _class of this PipelineActivityartifacts [Optional].
     """
 
-    name: Optional[str] = None
-    size: Optional[int] = None
-    url: Optional[str] = None
-    _class: Optional[str] = None
+    name: Optional[str] = Field(alias="name", default=None)
+    size: Optional[int] = Field(alias="size", default=None)
+    url: Optional[str] = Field(alias="url", default=None)
+    _class: Optional[str] = Field(alias="_class", default=None)
 
 PipelineActivityartifacts.update_forward_refs()

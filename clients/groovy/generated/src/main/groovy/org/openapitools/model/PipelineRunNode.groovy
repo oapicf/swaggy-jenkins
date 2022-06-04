@@ -16,7 +16,7 @@ class PipelineRunNode {
     
     Integer durationInMillis
     
-    List<PipelineRunNodeedges> edges = new ArrayList<PipelineRunNodeedges>()
+    List<PipelineRunNodeedges> edges = new ArrayList<>()
     
     String id
     

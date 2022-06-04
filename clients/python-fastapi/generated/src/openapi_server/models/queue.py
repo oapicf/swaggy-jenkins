@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 from openapi_server.models.queue_blocked_item import QueueBlockedItem
 
 
@@ -21,7 +21,7 @@ class Queue(BaseModel):
         items: The items of this Queue [Optional].
     """
 
-    _class: Optional[str] = None
-    items: Optional[List[QueueBlockedItem]] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    items: Optional[List[QueueBlockedItem]] = Field(alias="items", default=None)
 
 Queue.update_forward_refs()

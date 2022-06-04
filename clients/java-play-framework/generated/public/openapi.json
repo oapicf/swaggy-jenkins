@@ -8,7 +8,7 @@
     },
     "description" : "Jenkins API clients generated from Swagger / Open API specification",
     "title" : "Swaggy Jenkins",
-    "version" : "1.1.2-pre.0"
+    "version" : "1.5.1-pre.0"
   },
   "servers" : [ {
     "url" : "/"
@@ -203,7 +203,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*"
       }
     },
@@ -277,7 +277,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*"
       }
     },
@@ -525,7 +525,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*"
       }
     },
@@ -1029,7 +1029,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "*/*"
       }
     },
@@ -1800,7 +1800,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-contentType" : "application/json",
+        "x-content-type" : "application/json",
         "x-accepts" : "application/json"
       }
     },

@@ -88,7 +88,7 @@ public class Hudson   {
 
   public Hudson addAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
     if (this.assignedLabels == null) {
-      this.assignedLabels = new ArrayList<HudsonassignedLabels>();
+      this.assignedLabels = new ArrayList<>();
     }
     this.assignedLabels.add(assignedLabelsItem);
     return this;
@@ -204,7 +204,7 @@ public class Hudson   {
 
   public Hudson addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<FreeStyleProject>();
+      this.jobs = new ArrayList<>();
     }
     this.jobs.add(jobsItem);
     return this;
@@ -338,7 +338,7 @@ public class Hudson   {
 
   public Hudson addViewsItem(AllView viewsItem) {
     if (this.views == null) {
-      this.views = new ArrayList<AllView>();
+      this.views = new ArrayList<>();
     }
     this.views.add(viewsItem);
     return this;

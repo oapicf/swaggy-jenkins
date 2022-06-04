@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 import re  # noqa: F401
 from typing import Any, Dict, List, Optional  # noqa: F401
 
-from pydantic import AnyUrl, BaseModel, EmailStr, validator  # noqa: F401
+from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator  # noqa: F401
 
 
 class AllView(BaseModel):
@@ -21,8 +21,8 @@ class AllView(BaseModel):
         url: The url of this AllView [Optional].
     """
 
-    _class: Optional[str] = None
-    name: Optional[str] = None
-    url: Optional[str] = None
+    _class: Optional[str] = Field(alias="_class", default=None)
+    name: Optional[str] = Field(alias="name", default=None)
+    url: Optional[str] = Field(alias="url", default=None)
 
 AllView.update_forward_refs()

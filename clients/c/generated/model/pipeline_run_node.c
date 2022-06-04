@@ -75,31 +75,31 @@ cJSON *pipeline_run_node_convertToJSON(pipeline_run_node_t *pipeline_run_node) {
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_run_node->_class
-    if(pipeline_run_node->_class) { 
+    if(pipeline_run_node->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_run_node->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_node->display_name
-    if(pipeline_run_node->display_name) { 
+    if(pipeline_run_node->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", pipeline_run_node->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_node->duration_in_millis
-    if(pipeline_run_node->duration_in_millis) { 
+    if(pipeline_run_node->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_run_node->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_run_node->edges
-    if(pipeline_run_node->edges) { 
+    if(pipeline_run_node->edges) {
     cJSON *edges = cJSON_AddArrayToObject(item, "edges");
     if(edges == NULL) {
     goto fail; //nonprimitive container
@@ -115,39 +115,39 @@ cJSON *pipeline_run_node_convertToJSON(pipeline_run_node_t *pipeline_run_node) {
     cJSON_AddItemToArray(edges, itemLocal);
     }
     }
-     } 
+    }
 
 
     // pipeline_run_node->id
-    if(pipeline_run_node->id) { 
+    if(pipeline_run_node->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_run_node->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_node->result
-    if(pipeline_run_node->result) { 
+    if(pipeline_run_node->result) {
     if(cJSON_AddStringToObject(item, "result", pipeline_run_node->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_node->start_time
-    if(pipeline_run_node->start_time) { 
+    if(pipeline_run_node->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", pipeline_run_node->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_run_node->state
-    if(pipeline_run_node->state) { 
+    if(pipeline_run_node->state) {
     if(cJSON_AddStringToObject(item, "state", pipeline_run_node->state) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -160,6 +160,9 @@ fail:
 pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSON){
 
     pipeline_run_node_t *pipeline_run_node_local_var = NULL;
+
+    // define the local list for pipeline_run_node->edges
+    list_t *edgesList = NULL;
 
     // pipeline_run_node->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "_class");
@@ -190,9 +193,8 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->edges
     cJSON *edges = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "edges");
-    list_t *edgesList;
     if (edges) { 
-    cJSON *edges_local_nonprimitive;
+    cJSON *edges_local_nonprimitive = NULL;
     if(!cJSON_IsArray(edges)){
         goto end; //nonprimitive container
     }
@@ -260,6 +262,15 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     return pipeline_run_node_local_var;
 end:
+    if (edgesList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, edgesList) {
+            pipeline_run_nodeedges_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(edgesList);
+        edgesList = NULL;
+    }
     return NULL;
 
 }

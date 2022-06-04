@@ -3,25 +3,25 @@
          xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openapitools</groupId>
-    <artifactId>openapi-micronaut</artifactId>
-    <version>1.1.2-pre.0</version>
+    <artifactId>openapi-micronaut-client</artifactId>
+    <version>1.5.1-pre.0</version>
     <packaging>${packaging}</packaging>
 
     <parent>
         <groupId>io.micronaut</groupId>
         <artifactId>micronaut-parent</artifactId>
-        <version>3.2.6</version>
+        <version>3.4.3</version>
     </parent>
 
     <properties>
         <packaging>jar</packaging>
         <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- If you are building with JDK 9 or higher, you can uncomment the lines below to set the release version -->
         <!-- <release.version>8</release.version> -->
-        <micronaut.version>3.2.6</micronaut.version>
+        <micronaut.version>3.4.3</micronaut.version>
         <exec.mainClass>org.openapitools.Application</exec.mainClass>
         <micronaut.runtime>netty</micronaut.runtime>
-        <swagger-annotations-version>1.5.21</swagger-annotations-version>
     </properties>
 
     <repositories>
@@ -92,11 +92,6 @@
             <artifactId>logback-classic</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger-annotations-version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -127,7 +122,7 @@
                     </annotationProcessorPaths>
                     <compilerArgs>
                         <arg>-Amicronaut.processing.group=org.openapitools</arg>
-                        <arg>-Amicronaut.processing.module=openapi-micronaut</arg>
+                        <arg>-Amicronaut.processing.module=openapi-micronaut-client</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>

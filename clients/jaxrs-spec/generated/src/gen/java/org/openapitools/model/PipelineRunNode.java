@@ -18,12 +18,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunNode")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-02-13T02:22:19.792787Z[Etc/UTC]")public class PipelineRunNode   {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+public class PipelineRunNode   {
   
   private @Valid String propertyClass;
   private @Valid String displayName;
   private @Valid Integer durationInMillis;
-  private @Valid List<PipelineRunNodeedges> edges = new ArrayList<PipelineRunNodeedges>();
+  private @Valid List<PipelineRunNodeedges> edges = new ArrayList<>();
   private @Valid String id;
   private @Valid String result;
   private @Valid String startTime;
@@ -35,8 +36,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.propertyClass = propertyClass;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -58,8 +57,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("displayName")
   public String getDisplayName() {
@@ -77,8 +74,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.durationInMillis = durationInMillis;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -100,8 +95,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("edges")
   public List<PipelineRunNodeedges> getEdges() {
@@ -115,7 +108,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
   public PipelineRunNode addEdgesItem(PipelineRunNodeedges edgesItem) {
     if (this.edges == null) {
-      this.edges = new ArrayList<PipelineRunNodeedges>();
+      this.edges = new ArrayList<>();
     }
 
     this.edges.add(edgesItem);
@@ -137,8 +130,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("id")
   public String getId() {
@@ -156,8 +147,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.result = result;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")
@@ -179,8 +168,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   }
 
   
-
-  
   @ApiModelProperty(value = "")
   @JsonProperty("startTime")
   public String getStartTime() {
@@ -198,8 +185,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     this.state = state;
     return this;
   }
-
-  
 
   
   @ApiModelProperty(value = "")

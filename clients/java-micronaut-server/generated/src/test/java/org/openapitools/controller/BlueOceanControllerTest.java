@@ -54,7 +54,7 @@ public class BlueOceanControllerTest {
     EmbeddedServer server;
 
     @Inject
-    @Client("${context-path}")
+    @Client
     HttpClient client;
 
     @Inject
@@ -1726,7 +1726,6 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.PUT(uri, body)
-            .contentType("application/json")
             .accept("application/json");
 
         // when

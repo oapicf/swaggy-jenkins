@@ -17,7 +17,7 @@ import java.util.List;
  * PipelinelatestRun
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-02-13T02:17:32.113478Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-06-04T08:08:30.217930Z[Etc/UTC]")
 public class PipelinelatestRun   {
   @JsonProperty("artifacts")
   

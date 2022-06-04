@@ -78,15 +78,15 @@ cJSON *pipeline_step_impl_convertToJSON(pipeline_step_impl_t *pipeline_step_impl
     cJSON *item = cJSON_CreateObject();
 
     // pipeline_step_impl->_class
-    if(pipeline_step_impl->_class) { 
+    if(pipeline_step_impl->_class) {
     if(cJSON_AddStringToObject(item, "_class", pipeline_step_impl->_class) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_step_impl->_links
-    if(pipeline_step_impl->_links) { 
+    if(pipeline_step_impl->_links) {
     cJSON *_links_local_JSON = pipeline_step_impllinks_convertToJSON(pipeline_step_impl->_links);
     if(_links_local_JSON == NULL) {
     goto fail; //model
@@ -95,35 +95,35 @@ cJSON *pipeline_step_impl_convertToJSON(pipeline_step_impl_t *pipeline_step_impl
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_step_impl->display_name
-    if(pipeline_step_impl->display_name) { 
+    if(pipeline_step_impl->display_name) {
     if(cJSON_AddStringToObject(item, "displayName", pipeline_step_impl->display_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_step_impl->duration_in_millis
-    if(pipeline_step_impl->duration_in_millis) { 
+    if(pipeline_step_impl->duration_in_millis) {
     if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_step_impl->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // pipeline_step_impl->id
-    if(pipeline_step_impl->id) { 
+    if(pipeline_step_impl->id) {
     if(cJSON_AddStringToObject(item, "id", pipeline_step_impl->id) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_step_impl->input
-    if(pipeline_step_impl->input) { 
+    if(pipeline_step_impl->input) {
     cJSON *input_local_JSON = input_step_impl_convertToJSON(pipeline_step_impl->input);
     if(input_local_JSON == NULL) {
     goto fail; //model
@@ -132,31 +132,31 @@ cJSON *pipeline_step_impl_convertToJSON(pipeline_step_impl_t *pipeline_step_impl
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // pipeline_step_impl->result
-    if(pipeline_step_impl->result) { 
+    if(pipeline_step_impl->result) {
     if(cJSON_AddStringToObject(item, "result", pipeline_step_impl->result) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_step_impl->start_time
-    if(pipeline_step_impl->start_time) { 
+    if(pipeline_step_impl->start_time) {
     if(cJSON_AddStringToObject(item, "startTime", pipeline_step_impl->start_time) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // pipeline_step_impl->state
-    if(pipeline_step_impl->state) { 
+    if(pipeline_step_impl->state) {
     if(cJSON_AddStringToObject(item, "state", pipeline_step_impl->state) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
