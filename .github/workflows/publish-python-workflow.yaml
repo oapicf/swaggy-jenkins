@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-          ref: main
+          ref: 2.0.0
       - uses: ./.github/actions/publish-python-action
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
