@@ -22,7 +22,7 @@ conf-placeholder:
 	done
 
 local-generate:
-	LOCAL=true make generate
+	LOCAL=true make generate generate-primary
 
 generate:
 	if [ "${LOCAL}" = "true" ]; then \
