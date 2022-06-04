@@ -3,7 +3,7 @@ LANGS_PRIMARY = java javascript python ruby
 oag_version = 6.0.0
 version ?= 1.5.1-pre.0
 
-ci: clean deps generate test-javascript test-python test-ruby doc
+ci: clean deps generate generate-primary test-javascript test-python test-ruby doc
 
 clean:
 	rm -rf clients/*/generated
