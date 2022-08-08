@@ -18,5 +18,5 @@ jobs:
       - run: make doc-version
       - run: >-
           CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot
-          <pakkun@cliffano.com>" --repo "https://${{ secrets.STUDIO_GITHUB_TOKEN
+          <blah+pakkun@cliffano.com>" --repo "https://${{ secrets.STUDIO_GITHUB_TOKEN
           }}@github.com/cliffano/swaggy-jenkins.git"
