@@ -54,7 +54,7 @@ Install Ruby client:
 Colophon
 --------
 
-* [API Documentation](http://cliffano.github.io/swaggy-jenkins/api/latest/)
+* [API Documentation](https://cliffano.github.io/swaggy-jenkins/api/latest/)
 
 Videos:
 
