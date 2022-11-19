@@ -1,68 +1,150 @@
-LANGS = ada ada-server android apache2 apex asciidoc aspnetcore avro-schema bash crystal c clojure cwiki cpp-qt-client cpp-qt-qhttpengine-server cpp-pistache-server cpp-restbed-server cpp-restsdk cpp-tiny cpp-tizen cpp-ue4 csharp csharp-netcore csharp-dotnet2 csharp-netcore-functions dart dart-dio eiffel elixir elm erlang-client erlang-proper erlang-server fsharp-functions fsharp-giraffe-server go go-echo-server go-server go-gin-server graphql-schema graphql-nodejs-express-server groovy kotlin kotlin-server kotlin-spring kotlin-vertx ktorm-schema haskell-http-client haskell haskell-yesod jaxrs-cxf-client java-inflector java-micronaut-client java-micronaut-server java-msf4j java-pkmst java-play-framework java-undertow-server java-vertx java-vertx-web java-camel jaxrs-cxf jaxrs-cxf-extended jaxrs-cxf-cdi jaxrs-jersey jaxrs-resteasy jaxrs-resteasy-eap jaxrs-spec javascript-apollo javascript-flowtyped javascript-closure-angular jmeter k6 lua markdown mysql-schema nim nodejs-express-server objc ocaml openapi openapi-yaml plantuml perl php php-laravel php-lumen php-slim-deprecated php-slim4 php-symfony php-mezzio-ph php-dt powershell protobuf-schema python-legacy python-fastapi python-experimental python-flask python-aiohttp python-blueplanet r ruby-on-rails ruby-sinatra rust rust-server scalatra scala-akka scala-akka-http-server scala-finch scala-httpclient-deprecated scala-gatling scala-lagom-server scala-play-server scala-sttp scalaz spring dynamic-html html html2 swift5 typescript typescript-angular typescript-aurelia typescript-axios typescript-fetch typescript-inversify typescript-jquery typescript-nestjs typescript-node typescript-redux-query typescript-rxjs wsdl-schema
-LANGS_PRIMARY = java javascript python ruby
-oag_version = 6.0.0
-version ?= 2.0.1-pre.0
+################################################################
+# Swaggy C: A Makefile for generating API clients using OpenAPI Generator
+# https://github.com/cliffano/swaggy-c
+################################################################
 
-ci: clean deps generate generate-primary test-javascript test-python test-ruby doc
+# The version of Swaggy C
+SWAGGY_C_VERSION = 1.1.0
 
+# The version of OpenAPI Generator (https://openapi-generator.tech/) used for generating the API clients
+OPENAPI_GENERATOR_VERSION = 6.2.1
+
+# LANGS_ALL lists the languages supported by the given OPENAPI_GENERATOR_VERSION
+LANGS_ALL = ada ada-server android apache2 apex asciidoc aspnetcore avro-schema bash crystal c clojure cwiki cpp-qt-client cpp-qt-qhttpengine-server cpp-pistache-server cpp-restbed-server cpp-restsdk cpp-tiny cpp-tizen cpp-ue4 csharp csharp-netcore csharp-dotnet2 csharp-netcore-functions dart dart-dio eiffel elixir elm erlang-client erlang-proper erlang-server fsharp-functions fsharp-giraffe-server go go-echo-server go-server go-gin-server graphql-schema graphql-nodejs-express-server groovy kotlin kotlin-server kotlin-spring kotlin-vertx ktorm-schema haskell-http-client haskell haskell-yesod jaxrs-cxf-client java java-inflector java-micronaut-client java-micronaut-server java-msf4j java-pkmst java-play-framework java-undertow-server java-vertx java-vertx-web java-camel jaxrs-cxf jaxrs-cxf-extended jaxrs-cxf-cdi jaxrs-jersey jaxrs-resteasy jaxrs-resteasy-eap jaxrs-spec javascript javascript-apollo javascript-flowtyped javascript-closure-angular jmeter k6 lua markdown mysql-schema nim nodejs-express-server objc ocaml openapi openapi-yaml plantuml perl php php-laravel php-lumen php-slim-deprecated php-slim4 php-symfony php-mezzio-ph php-dt powershell protobuf-schema python python-legacy python-fastapi python-experimental python-flask python-aiohttp python-blueplanet r ruby ruby-on-rails ruby-sinatra rust rust-server scalatra scala-akka scala-akka-http-server scala-finch scala-httpclient-deprecated scala-gatling scala-lagom-server scala-play-server scala-sttp scalaz spring dynamic-html html html2 swift5 typescript typescript-angular typescript-aurelia typescript-axios typescript-fetch typescript-inversify typescript-jquery typescript-nestjs typescript-node typescript-redux-query typescript-rxjs wsdl-schema
+
+# LANGS_PRIMARY lists the languages which will be built and published to public package registries
+LANGS_PRIMARY = javascript python ruby
+
+# The location where OpenAPI specification file will be placed within the project
+LOCAL_SPEC_PATH = stage/specification.yml
+
+################################################################
+# User configuration variables
+# These variables should be stored in swaggy-c.yml config file,
+# and they will be parsed using yq https://github.com/mikefarah/yq
+# Example:
+# ---
+# spec_uri: specification/someapp.yml
+# version:1.2.3
+# base_dir:
+#   github_actions: /home/runner/work/someapp/someapp
+#   local: /home/someuser/someapp
+
+# SPEC_URI is the file path or URL where the OpenAPI specification is located, for example:
+# - local file path: spec/some-app.yaml
+# - remote URL: https://some-app.com/some-app.yaml
+SPEC_URI=$(shell yq .spec_uri swaggy-c.yml)
+
+# APP_VERSION is version of the application using Swaggy C
+APP_VERSION ?= $(shell yq .version swaggy-c.yml)
+
+# Contact details to be amended to the OpenAPI specification .info.contact.* properties
+CONTACT_NAME ?= $(shell yq .contact.name swaggy-c.yml)
+CONTACT_URL ?= $(shell yq .contact.url swaggy-c.yml)
+CONTACT_EMAIL ?= $(shell yq .contact.email swaggy-c.yml)
+
+# APP_BASE_DIR is the absolute path where the application base directory is located, for example:
+# - MacOS user workspace directory: /Users/some-user/some-path/some-app
+# - GitHub Actions directory: /home/runner/work/some-app/some-app
+ifdef GITHUB_ACTIONS
+APP_BASE_DIR=$(shell yq .base_dir.github_actions swaggy-c.yml)
+else
+APP_BASE_DIR=$(shell yq .base_dir.local swaggy-c.yml)
+endif
+
+$(info ################################################################)
+$(info Building Swaggy C application with user configurations:)
+$(info - OpenAPI specification URI: ${SPEC_URI})
+$(info - Application version: ${APP_VERSION})
+$(info - Application base directory: ${APP_BASE_DIR})
+
+################################################################
+# Base targets
+
+# CI target to be executed by CI/CD tool
+ci: clean deps init-spec generate build-javascript build-python build-ruby test-javascript test-python test-ruby doc
+
+# Ensure stage directory exists
+stage:
+	mkdir -p stage
+
+# Remove all generated API clients code
 clean:
-	rm -rf clients/*/generated
+	rm -rf stage/ clients/*/generated
 
+# Retrieve the OpenAPI Generator Docker image and npm modules
 deps:
-	docker pull openapitools/openapi-generator-cli:v$(oag_version)
+	docker pull openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION)
 	npm install -g bootprint bootprint-openapi gh-pages mocha
 
-conf-placeholder:
-	for lang in ${LANGS} ; do \
+# Initialise OpenAPI specification from either a local file path or a remote URL
+# This target requires the following parameters to be supplied by user
+# - SPEC_URI parameter
+# - CONTACT_NAME parameter
+# - CONTACT_ parameter
+# - CONTACT_NAME parameter
+init-spec: stage
+	if test $(findstring https, $(SPEC_URI)); then \
+	  curl $(SPEC_URI) --output $(LOCAL_SPEC_PATH); \
+	else \
+	  cp $(SPEC_URI) $(LOCAL_SPEC_PATH); \
+	fi
+	yq -i '.info.contact.name = "$(CONTACT_NAME)" | .info.contact.url = "$(CONTACT_URL)" | .info.contact.email = "$(CONTACT_EMAIL)"' "$(LOCAL_SPEC_PATH)"
+
+# Initiailise empty configuration file for all languages
+init-langs-config:
+	for lang in ${LANGS_ALL} ; do \
 	  mkdir -p clients/$$lang/; \
-	  cp fixtures/conf-placeholder.json clients/$$lang/conf.json; \
-	done
-	for lang in ${LANGS_PRIMARY} ; do \
-	  git checkout clients/$$lang/conf.json; \
+		echo "{}" > clients/$$lang/conf.json; \
 	done
 
-local-generate:
-	LOCAL=true make generate generate-primary
+# Update Makefile to the latest version on origin's main branch
+update-to-latest:
+	curl https://raw.githubusercontent.com/cliffano/swaggy-c/main/src/Makefile-swaggy-c -o Makefile
 
-generate:
-	if [ "${LOCAL}" = "true" ]; then \
-	  make  generate-langs GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
-	elif [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  make generate-langs GEN_BASE_DIR=/home/runner/work/swaggy-jenkins/swaggy-jenkins; \
-	fi
+# Update Makefile to the version defined in TARGET_SWAGGY_C_VERSION parameter
+update-to-version:
+	curl https://raw.githubusercontent.com/cliffano/swaggy-c/v$(TARGET_SWAGGY_C_VERSION)/Makefile -o Makefile
 
-generate-langs:
-	for lang in ${LANGS} ; do \
+################################################################
+# API clients generate targets
+
+# Alias for generate-all target
+generate: generate-all
+
+# Generate API clients for all languages, this is separate from generate-primary target in order to
+# reduce the build time when processing primary languages
+# This target requires APP_BASE_DIR parameter to be supplied by user
+generate-all:
+	for lang in ${LANGS_ALL} ; do \
 	  docker \
 		  run \
 		  --rm \
-		  -v $(GEN_BASE_DIR):/local openapitools/openapi-generator-cli:v$(oag_version) \
+		  -v $(APP_BASE_DIR):/local openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION) \
 		  generate \
-		  --input-spec /local/specification/jenkins.yml \
+		  --input-spec /local/$(LOCAL_SPEC_PATH) \
 		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \
 		  --output /local/clients/$$lang/generated; \
 	done
 
+# Generate API clients for primary languages only
+# This target requires APP_BASE_DIR parameter to be supplied by user
 generate-primary:
-	if [ "${LOCAL}" = "true" ]; then \
-	  make  generate-langs-primary GEN_BASE_DIR=/Users/cliffano/dev/workspace-studio/swaggy-jenkins; \
-	elif [ "${GITHUB_ACTIONS}" = "true" ]; then \
-	  make generate-langs-primary GEN_BASE_DIR=/home/runner/work/swaggy-jenkins/swaggy-jenkins; \
-	fi
-
-generate-langs-primary:
 	for lang in ${LANGS_PRIMARY} ; do \
 	  docker \
 		  run \
 		  --rm \
-		  -v $(GEN_BASE_DIR):/local openapitools/openapi-generator-cli:v$(oag_version) \
+		  -v $(APP_BASE_DIR):/local openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION) \
 		  generate \
-		  --input-spec /local/specification/jenkins.yml \
+		  --input-spec /local/$(LOCAL_SPEC_PATH) \
 		  --config /local/clients/$$lang/conf.json \
 		  --generator-name $$lang \
 		  --output /local/clients/$$lang/generated; \
 	done
+	
+################################################################
+# API clients building targets for primary languages
 
 build-javascript:
 	npm install -g babel-cli
@@ -83,10 +165,14 @@ build-python:
 
 build-ruby:
 	cd clients/ruby/generated/ && \
+	  find . -name '*.gem' -delete && \
 	  gem install bundler --version=1.17.3 && \
 	  bundle install --binstubs && \
-	  gem build swaggy_jenkins.gemspec && \
-	  gem install ./swaggy_jenkins-*.gem
+	  gem build *.gemspec && \
+	  gem install ./*.gem
+
+################################################################
+# API clients testing targets for primary languages
 
 test-javascript: build-javascript
 	cd clients/javascript/generated/ && \
@@ -99,6 +185,9 @@ test-python: build-python
 
 test-ruby: build-ruby
 
+################################################################
+# API clients package publishing targets for primary languages
+
 publish-javascript: build-javascript
 	cd clients/javascript/generated/ && \
 	  npm publish
@@ -109,15 +198,27 @@ publish-python: build-python
 
 publish-ruby: build-ruby
 	cd clients/ruby/generated/ && \
-	  gem push `ls swaggy_jenkins-*.gem`
+	  gem push `ls *.gem`
 
-doc:
-	bootprint openapi specification/jenkins.yml doc/api/latest/
+################################################################
+# Documentation targets
 
+# Alias for doc-latest target
+doc: doc-latest
+
+# Generate API documentation locally as the latest version
+doc-latest:
+	bootprint openapi $(LOCAL_SPEC_PATH) doc/api/latest/
+
+# Generate API documentation locally as the application's version
+# This target requires APP_VERSION parameter to be supplied by user
 doc-version:
-	bootprint openapi specification/jenkins.yml doc/api/$(version)/
+	bootprint openapi $(LOCAL_SPEC_PATH) doc/api/$(APP_VERSION)/
 
+# Publish documentation via GitHub Pages
 doc-publish:
 	CACHE_DIR=/tmp gh-pages --dist doc/
 
-.PHONY: clean conf-placeholder deps generate build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-python publish-ruby doc doc-publish
+################################################################
+
+.PHONY: all test ci stage clean deps init-spec init-langs-config generate generate-all generate-primary build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-python publish-ruby doc doc-latest doc-version doc-publish

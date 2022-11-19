@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Modify JavaScript client's API build URL to not encode URI component
+- Switch build system to use Swaggy C
+- Upgrade OpenAPI Generator to 6.2.1
 
 ## 2.0.0 - 2022-06-04
 ### Added
