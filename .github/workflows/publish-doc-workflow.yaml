@@ -7,13 +7,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
           ref: main
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20'
       - run: npm install -g bootprint bootprint-openapi gh-pages
       - run: make doc-version
       - run: >-
