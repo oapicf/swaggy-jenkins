@@ -1,6 +1,7 @@
 # Start of Studio gitignore
 doc/
 clients/ruby/generated/bin/
+stage/
 # End of Studio gitignore
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,ruby,python,java,node
