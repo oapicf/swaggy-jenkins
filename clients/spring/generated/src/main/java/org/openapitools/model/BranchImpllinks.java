@@ -19,22 +19,17 @@ import javax.annotation.Generated;
  * BranchImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImpllinks {
 
-  @JsonProperty("self")
   private Link self;
 
-  @JsonProperty("actions")
   private Link actions;
 
-  @JsonProperty("runs")
   private Link runs;
 
-  @JsonProperty("queue")
   private Link queue;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public BranchImpllinks self(Link self) {
@@ -47,7 +42,8 @@ public class BranchImpllinks {
    * @return self
   */
   @Valid 
-  @Schema(name = "self", required = false)
+  @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
@@ -66,7 +62,8 @@ public class BranchImpllinks {
    * @return actions
   */
   @Valid 
-  @Schema(name = "actions", required = false)
+  @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
@@ -85,7 +82,8 @@ public class BranchImpllinks {
    * @return runs
   */
   @Valid 
-  @Schema(name = "runs", required = false)
+  @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("runs")
   public Link getRuns() {
     return runs;
   }
@@ -104,7 +102,8 @@ public class BranchImpllinks {
    * @return queue
   */
   @Valid 
-  @Schema(name = "queue", required = false)
+  @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("queue")
   public Link getQueue() {
     return queue;
   }
@@ -123,7 +122,8 @@ public class BranchImpllinks {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

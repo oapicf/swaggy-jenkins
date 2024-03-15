@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -15,7 +16,7 @@ public class MultibranchPipeline   {
   private String name;
   private String organization;
   private Integer weatherScore;
-  private List<String> branchNames = new ArrayList<>();
+  private List<String> branchNames;
   private Integer numberOfFailingBranches;
   private Integer numberOfFailingPullRequests;
   private Integer numberOfSuccessfulBranches;

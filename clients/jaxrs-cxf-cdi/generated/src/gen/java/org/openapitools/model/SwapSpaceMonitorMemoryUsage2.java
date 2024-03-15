@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -23,7 +24,6 @@ public class SwapSpaceMonitorMemoryUsage2   {
   private Integer totalPhysicalMemory;
 
   private Integer totalSwapSpace;
-
 
   /**
    **/
@@ -125,11 +125,11 @@ public class SwapSpaceMonitorMemoryUsage2   {
       return false;
     }
     SwapSpaceMonitorMemoryUsage2 swapSpaceMonitorMemoryUsage2 = (SwapSpaceMonitorMemoryUsage2) o;
-    return Objects.equals(propertyClass, swapSpaceMonitorMemoryUsage2.propertyClass) &&
-        Objects.equals(availablePhysicalMemory, swapSpaceMonitorMemoryUsage2.availablePhysicalMemory) &&
-        Objects.equals(availableSwapSpace, swapSpaceMonitorMemoryUsage2.availableSwapSpace) &&
-        Objects.equals(totalPhysicalMemory, swapSpaceMonitorMemoryUsage2.totalPhysicalMemory) &&
-        Objects.equals(totalSwapSpace, swapSpaceMonitorMemoryUsage2.totalSwapSpace);
+    return Objects.equals(this.propertyClass, swapSpaceMonitorMemoryUsage2.propertyClass) &&
+        Objects.equals(this.availablePhysicalMemory, swapSpaceMonitorMemoryUsage2.availablePhysicalMemory) &&
+        Objects.equals(this.availableSwapSpace, swapSpaceMonitorMemoryUsage2.availableSwapSpace) &&
+        Objects.equals(this.totalPhysicalMemory, swapSpaceMonitorMemoryUsage2.totalPhysicalMemory) &&
+        Objects.equals(this.totalSwapSpace, swapSpaceMonitorMemoryUsage2.totalSwapSpace);
   }
 
   @Override

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,23 +22,18 @@ import javax.annotation.Generated;
  * ComputerSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ComputerSet {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("busyExecutors")
   private Integer busyExecutors;
 
-  @JsonProperty("computer")
   @Valid
-  private List<HudsonMasterComputer> computer = null;
+  private List<@Valid HudsonMasterComputer> computer;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("totalExecutors")
   private Integer totalExecutors;
 
   public ComputerSet propertyClass(String propertyClass) {
@@ -50,7 +46,8 @@ public class ComputerSet {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -69,7 +66,8 @@ public class ComputerSet {
    * @return busyExecutors
   */
   
-  @Schema(name = "busyExecutors", required = false)
+  @Schema(name = "busyExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("busyExecutors")
   public Integer getBusyExecutors() {
     return busyExecutors;
   }
@@ -78,7 +76,7 @@ public class ComputerSet {
     this.busyExecutors = busyExecutors;
   }
 
-  public ComputerSet computer(List<HudsonMasterComputer> computer) {
+  public ComputerSet computer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
     return this;
   }
@@ -96,12 +94,13 @@ public class ComputerSet {
    * @return computer
   */
   @Valid 
-  @Schema(name = "computer", required = false)
-  public List<HudsonMasterComputer> getComputer() {
+  @Schema(name = "computer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("computer")
+  public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
 
-  public void setComputer(List<HudsonMasterComputer> computer) {
+  public void setComputer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
   }
 
@@ -115,7 +114,8 @@ public class ComputerSet {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -134,7 +134,8 @@ public class ComputerSet {
    * @return totalExecutors
   */
   
-  @Schema(name = "totalExecutors", required = false)
+  @Schema(name = "totalExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("totalExecutors")
   public Integer getTotalExecutors() {
     return totalExecutors;
   }

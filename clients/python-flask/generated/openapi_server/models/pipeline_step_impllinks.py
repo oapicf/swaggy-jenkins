@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.link import Link
 from openapi_server import util
 
@@ -55,7 +52,7 @@ class PipelineStepImpllinks(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _self(self):
+    def _self(self) -> Link:
         """Gets the _self of this PipelineStepImpllinks.
 
 
@@ -65,7 +62,7 @@ class PipelineStepImpllinks(Model):
         return self.__self
 
     @_self.setter
-    def _self(self, _self):
+    def _self(self, _self: Link):
         """Sets the _self of this PipelineStepImpllinks.
 
 
@@ -76,7 +73,7 @@ class PipelineStepImpllinks(Model):
         self.__self = _self
 
     @property
-    def actions(self):
+    def actions(self) -> Link:
         """Gets the actions of this PipelineStepImpllinks.
 
 
@@ -86,7 +83,7 @@ class PipelineStepImpllinks(Model):
         return self._actions
 
     @actions.setter
-    def actions(self, actions):
+    def actions(self, actions: Link):
         """Sets the actions of this PipelineStepImpllinks.
 
 
@@ -97,7 +94,7 @@ class PipelineStepImpllinks(Model):
         self._actions = actions
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineStepImpllinks.
 
 
@@ -107,7 +104,7 @@ class PipelineStepImpllinks(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineStepImpllinks.
 
 

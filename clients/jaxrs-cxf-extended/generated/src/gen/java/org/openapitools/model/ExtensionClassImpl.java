@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
 import javax.validation.constraints.*;
@@ -21,7 +22,7 @@ public class ExtensionClassImpl  {
   private ExtensionClassImpllinks links;
 
   @ApiModelProperty(value = "")
-  private List<String> classes = null;
+  private List<String> classes;
  /**
   * Get propertyClass
   * @return propertyClass
@@ -102,6 +103,25 @@ public class ExtensionClassImpl  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ExtensionClassImpl extensionClassImpl = (ExtensionClassImpl) o;
+    return Objects.equals(this.propertyClass, extensionClassImpl.propertyClass) &&
+        Objects.equals(this.links, extensionClassImpl.links) &&
+        Objects.equals(this.classes, extensionClassImpl.classes);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, classes);
+  }
 
   @Override
   public String toString() {

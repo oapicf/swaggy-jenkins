@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("SwapSpaceMonitorMemoryUsage2")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class SwapSpaceMonitorMemoryUsage2   {
-  
   private @Valid String propertyClass;
   private @Valid Integer availablePhysicalMemory;
   private @Valid Integer availableSwapSpace;
@@ -43,7 +42,7 @@ public class SwapSpaceMonitorMemoryUsage2   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public SwapSpaceMonitorMemoryUsage2 availablePhysicalMemory(Integer availablePhysicalMemory) {
     this.availablePhysicalMemory = availablePhysicalMemory;
@@ -62,7 +61,7 @@ public class SwapSpaceMonitorMemoryUsage2   {
     this.availablePhysicalMemory = availablePhysicalMemory;
   }
 
-/**
+  /**
    **/
   public SwapSpaceMonitorMemoryUsage2 availableSwapSpace(Integer availableSwapSpace) {
     this.availableSwapSpace = availableSwapSpace;
@@ -81,7 +80,7 @@ public class SwapSpaceMonitorMemoryUsage2   {
     this.availableSwapSpace = availableSwapSpace;
   }
 
-/**
+  /**
    **/
   public SwapSpaceMonitorMemoryUsage2 totalPhysicalMemory(Integer totalPhysicalMemory) {
     this.totalPhysicalMemory = totalPhysicalMemory;
@@ -100,7 +99,7 @@ public class SwapSpaceMonitorMemoryUsage2   {
     this.totalPhysicalMemory = totalPhysicalMemory;
   }
 
-/**
+  /**
    **/
   public SwapSpaceMonitorMemoryUsage2 totalSwapSpace(Integer totalSwapSpace) {
     this.totalSwapSpace = totalSwapSpace;

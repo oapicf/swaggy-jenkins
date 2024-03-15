@@ -21,10 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class EmptyChangeLogSet(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("kind") val kind: kotlin.String? = null
+    @get:JsonProperty("kind") val kind: kotlin.String? = null
 ) {
 
 }

@@ -37,13 +37,16 @@ Retrieve computer details
 ```R
 library(openapi)
 
-var.depth <- 56 # integer | Recursion depth in response model
+# prepare function argument(s)
+var_depth <- 56 # integer | Recursion depth in response model
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetComputer(var.depth)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetComputer(var_depthdata_file = "result.txt")
+result <- api_instance$GetComputer(var_depth)
 dput(result)
 ```
 
@@ -85,11 +88,13 @@ Retrieve Jenkins details
 library(openapi)
 
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetJenkins()
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetJenkins(data_file = "result.txt")
+result <- api_instance$GetJenkins()
 dput(result)
 ```
 
@@ -127,13 +132,16 @@ Retrieve job details
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetJob(var.name)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetJob(var_namedata_file = "result.txt")
+result <- api_instance$GetJob(var_name)
 dput(result)
 ```
 
@@ -175,13 +183,16 @@ Retrieve job configuration
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetJobConfig(var.name)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetJobConfig(var_namedata_file = "result.txt")
+result <- api_instance$GetJobConfig(var_name)
 dput(result)
 ```
 
@@ -223,13 +234,16 @@ Retrieve job's last build details
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetJobLastBuild(var.name)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetJobLastBuild(var_namedata_file = "result.txt")
+result <- api_instance$GetJobLastBuild(var_name)
 dput(result)
 ```
 
@@ -271,15 +285,16 @@ Retrieve job's build progressive text output
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.number <- 'number_example' # character | Build number
-var.start <- 'start_example' # character | Starting point of progressive text output
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_number <- "number_example" # character | Build number
+var_start <- "start_example" # character | Starting point of progressive text output
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$GetJobProgressiveText(var.name, var.number, var.start)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$GetJobProgressiveText(var_name, var_number, var_start)
 ```
 
 ### Parameters
@@ -323,11 +338,13 @@ Retrieve queue details
 library(openapi)
 
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetQueue()
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetQueue(data_file = "result.txt")
+result <- api_instance$GetQueue()
 dput(result)
 ```
 
@@ -365,13 +382,16 @@ Retrieve queued item details
 ```R
 library(openapi)
 
-var.number <- 'number_example' # character | Queue number
+# prepare function argument(s)
+var_number <- "number_example" # character | Queue number
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetQueueItem(var.number)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetQueueItem(var_numberdata_file = "result.txt")
+result <- api_instance$GetQueueItem(var_number)
 dput(result)
 ```
 
@@ -412,13 +432,16 @@ Retrieve view details
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the view
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the view
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetView(var.name)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetView(var_namedata_file = "result.txt")
+result <- api_instance$GetView(var_name)
 dput(result)
 ```
 
@@ -460,13 +483,16 @@ Retrieve view configuration
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the view
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the view
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetViewConfig(var.name)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetViewConfig(var_namedata_file = "result.txt")
+result <- api_instance$GetViewConfig(var_name)
 dput(result)
 ```
 
@@ -509,11 +535,11 @@ Retrieve Jenkins headers
 library(openapi)
 
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$HeadJenkins()
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$HeadJenkins()
 ```
 
 ### Parameters
@@ -540,7 +566,7 @@ void (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PostCreateItem**
-> PostCreateItem(name, from=var.from, mode=var.mode, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
+> PostCreateItem(name, from = var.from, mode = var.mode, jenkins_crumb = var.jenkins_crumb, content_type = var.content_type, body = var.body)
 
 
 
@@ -550,18 +576,19 @@ Create a new job using job configuration, or copied from an existing job
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the new job
-var.from <- 'from_example' # character | Existing job to copy from
-var.mode <- 'mode_example' # character | Set to 'copy' for copying an existing job
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
-var.content_type <- 'content_type_example' # character | Content type header application/xml
-var.body <- 'body_example' # character | Job configuration in config.xml format
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the new job
+var_from <- "from_example" # character | Existing job to copy from (Optional)
+var_mode <- "mode_example" # character | Set to 'copy' for copying an existing job (Optional)
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
+var_content_type <- "content_type_example" # character | Content type header application/xml (Optional)
+var_body <- "body_example" # character | Job configuration in config.xml format (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostCreateItem(var.name, from=var.from, mode=var.mode, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostCreateItem(var_name, from = var_from, mode = var_mode, jenkins_crumb = var_jenkins_crumb, content_type = var_content_type, body = var_body)
 ```
 
 ### Parameters
@@ -597,7 +624,7 @@ void (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PostCreateView**
-> PostCreateView(name, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
+> PostCreateView(name, jenkins_crumb = var.jenkins_crumb, content_type = var.content_type, body = var.body)
 
 
 
@@ -607,16 +634,17 @@ Create a new view using view configuration
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the new view
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
-var.content_type <- 'content_type_example' # character | Content type header application/xml
-var.body <- 'body_example' # character | View configuration in config.xml format
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the new view
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
+var_content_type <- "content_type_example" # character | Content type header application/xml (Optional)
+var_body <- "body_example" # character | View configuration in config.xml format (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostCreateView(var.name, jenkins_crumb=var.jenkins_crumb, content_type=var.content_type, body=var.body)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostCreateView(var_name, jenkins_crumb = var_jenkins_crumb, content_type = var_content_type, body = var_body)
 ```
 
 ### Parameters
@@ -650,7 +678,7 @@ void (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PostJobBuild**
-> PostJobBuild(name, json, token=var.token, jenkins_crumb=var.jenkins_crumb)
+> PostJobBuild(name, json, token = var.token, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -660,16 +688,17 @@ Build a job
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.json <- 'json_example' # character | 
-var.token <- 'token_example' # character | 
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_json <- "json_example" # character | 
+var_token <- "token_example" # character |  (Optional)
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobBuild(var.name, var.json, token=var.token, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostJobBuild(var_name, var_json, token = var_token, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters
@@ -704,7 +733,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobConfig**
-> PostJobConfig(name, body, jenkins_crumb=var.jenkins_crumb)
+> PostJobConfig(name, body, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -714,15 +743,16 @@ Update job configuration
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.body <- 'body_example' # character | Job configuration in config.xml format
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_body <- "body_example" # character | Job configuration in config.xml format
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobConfig(var.name, var.body, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostJobConfig(var_name, var_body, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters
@@ -756,7 +786,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobDelete**
-> PostJobDelete(name, jenkins_crumb=var.jenkins_crumb)
+> PostJobDelete(name, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -766,14 +796,15 @@ Delete a job
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobDelete(var.name, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostJobDelete(var_name, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters
@@ -805,7 +836,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobDisable**
-> PostJobDisable(name, jenkins_crumb=var.jenkins_crumb)
+> PostJobDisable(name, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -815,14 +846,15 @@ Disable a job
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobDisable(var.name, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostJobDisable(var_name, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters
@@ -854,7 +886,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobEnable**
-> PostJobEnable(name, jenkins_crumb=var.jenkins_crumb)
+> PostJobEnable(name, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -864,14 +896,15 @@ Enable a job
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobEnable(var.name, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostJobEnable(var_name, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters
@@ -903,7 +936,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostJobLastBuildStop**
-> PostJobLastBuildStop(name, jenkins_crumb=var.jenkins_crumb)
+> PostJobLastBuildStop(name, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -913,14 +946,15 @@ Stop a job
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the job
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the job
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostJobLastBuildStop(var.name, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostJobLastBuildStop(var_name, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters
@@ -952,7 +986,7 @@ void (empty response body)
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
 # **PostViewConfig**
-> PostViewConfig(name, body, jenkins_crumb=var.jenkins_crumb)
+> PostViewConfig(name, body, jenkins_crumb = var.jenkins_crumb)
 
 
 
@@ -962,15 +996,16 @@ Update view configuration
 ```R
 library(openapi)
 
-var.name <- 'name_example' # character | Name of the view
-var.body <- 'body_example' # character | View configuration in config.xml format
-var.jenkins_crumb <- 'jenkins_crumb_example' # character | CSRF protection token
+# prepare function argument(s)
+var_name <- "name_example" # character | Name of the view
+var_body <- "body_example" # character | View configuration in config.xml format
+var_jenkins_crumb <- "jenkins_crumb_example" # character | CSRF protection token (Optional)
 
-api.instance <- RemoteAccessApi$new()
+api_instance <- RemoteAccessApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$PostViewConfig(var.name, var.body, jenkins_crumb=var.jenkins_crumb)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$PostViewConfig(var_name, var_body, jenkins_crumb = var_jenkins_crumb)
 ```
 
 ### Parameters

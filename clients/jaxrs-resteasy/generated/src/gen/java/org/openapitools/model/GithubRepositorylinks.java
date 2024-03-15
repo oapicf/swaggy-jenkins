@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepositorylinks   {
   
   private Link self;
@@ -21,6 +23,7 @@ public class GithubRepositorylinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
+  @Valid
   public Link getSelf() {
     return self;
   }
@@ -50,8 +53,8 @@ public class GithubRepositorylinks   {
       return false;
     }
     GithubRepositorylinks githubRepositorylinks = (GithubRepositorylinks) o;
-    return Objects.equals(self, githubRepositorylinks.self) &&
-        Objects.equals(propertyClass, githubRepositorylinks.propertyClass);
+    return Objects.equals(this.self, githubRepositorylinks.self) &&
+        Objects.equals(this.propertyClass, githubRepositorylinks.propertyClass);
   }
 
   @Override

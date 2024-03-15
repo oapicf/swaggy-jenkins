@@ -5,36 +5,30 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class DiskSpaceMonitorDescriptorDiskSpace
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="timestamp", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $timestamp;
+    public ?int $timestamp = null;
 
     /**
      * @DTA\Data(field="path", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $path;
+    public ?string $path = null;
 
     /**
      * @DTA\Data(field="size", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $size;
+    public ?int $size = null;
 
 }

@@ -258,6 +258,31 @@ public class PipelineStepImpl  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineStepImpl pipelineStepImpl = (PipelineStepImpl) o;
+    return Objects.equals(this.propertyClass, pipelineStepImpl.propertyClass) &&
+        Objects.equals(this.links, pipelineStepImpl.links) &&
+        Objects.equals(this.displayName, pipelineStepImpl.displayName) &&
+        Objects.equals(this.durationInMillis, pipelineStepImpl.durationInMillis) &&
+        Objects.equals(this.id, pipelineStepImpl.id) &&
+        Objects.equals(this.input, pipelineStepImpl.input) &&
+        Objects.equals(this.result, pipelineStepImpl.result) &&
+        Objects.equals(this.startTime, pipelineStepImpl.startTime) &&
+        Objects.equals(this.state, pipelineStepImpl.state);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, displayName, durationInMillis, id, input, result, startTime, state);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineStepImpl {\n");

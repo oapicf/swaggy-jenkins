@@ -167,7 +167,7 @@ branch_impllinks_t *branch_impllinks_parseFromJSON(cJSON *branch_impllinksJSON){
     // branch_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -179,7 +179,7 @@ branch_impllinks_t *branch_impllinks_parseFromJSON(cJSON *branch_impllinksJSON){
         actions ? actions_local_nonprim : NULL,
         runs ? runs_local_nonprim : NULL,
         queue ? queue_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return branch_impllinks_local_var;

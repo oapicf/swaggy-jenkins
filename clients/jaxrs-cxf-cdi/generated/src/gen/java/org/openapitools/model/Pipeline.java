@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelinelatestRun;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -30,7 +31,6 @@ public class Pipeline   {
   private Integer estimatedDurationInMillis;
 
   private PipelinelatestRun latestRun;
-
 
   /**
    **/
@@ -186,14 +186,14 @@ public class Pipeline   {
       return false;
     }
     Pipeline pipeline = (Pipeline) o;
-    return Objects.equals(propertyClass, pipeline.propertyClass) &&
-        Objects.equals(organization, pipeline.organization) &&
-        Objects.equals(name, pipeline.name) &&
-        Objects.equals(displayName, pipeline.displayName) &&
-        Objects.equals(fullName, pipeline.fullName) &&
-        Objects.equals(weatherScore, pipeline.weatherScore) &&
-        Objects.equals(estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
-        Objects.equals(latestRun, pipeline.latestRun);
+    return Objects.equals(this.propertyClass, pipeline.propertyClass) &&
+        Objects.equals(this.organization, pipeline.organization) &&
+        Objects.equals(this.name, pipeline.name) &&
+        Objects.equals(this.displayName, pipeline.displayName) &&
+        Objects.equals(this.fullName, pipeline.fullName) &&
+        Objects.equals(this.weatherScore, pipeline.weatherScore) &&
+        Objects.equals(this.estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, pipeline.latestRun);
   }
 
   @Override

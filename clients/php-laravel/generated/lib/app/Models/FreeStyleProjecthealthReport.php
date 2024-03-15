@@ -10,18 +10,18 @@ namespace app\Models;
 class FreeStyleProjecthealthReport {
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var string $iconClassName */
-    private $iconClassName;
+    public $iconClassName = "";
 
     /** @var string $iconUrl */
-    private $iconUrl;
+    public $iconUrl = "";
 
     /** @var int $score */
-    private $score;
+    public $score = 0;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

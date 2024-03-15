@@ -11,7 +11,7 @@ import model.Hudson
 import model.ListView
 import model.Queue
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Singleton
 class RemoteAccessApiController @Inject()(cc: ControllerComponents, api: RemoteAccessApi) extends AbstractController(cc) {
   /**
@@ -24,6 +24,7 @@ class RemoteAccessApiController @Inject()(cc: ControllerComponents, api: RemoteA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("depth", "query string")
         }
+        
       api.getComputer(depth)
     }
 
@@ -98,6 +99,7 @@ class RemoteAccessApiController @Inject()(cc: ControllerComponents, api: RemoteA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("start", "query string")
         }
+        
       api.getJobProgressiveText(name, number, start)
     }
 
@@ -186,6 +188,7 @@ class RemoteAccessApiController @Inject()(cc: ControllerComponents, api: RemoteA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("name", "query string")
         }
+        
       val from = request.getQueryString("from")
         
       val mode = request.getQueryString("mode")
@@ -211,6 +214,7 @@ class RemoteAccessApiController @Inject()(cc: ControllerComponents, api: RemoteA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("name", "query string")
         }
+        
       api.postCreateView(name, jenkinsCrumb, contentType, body)
     }
 
@@ -230,6 +234,7 @@ class RemoteAccessApiController @Inject()(cc: ControllerComponents, api: RemoteA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("json", "query string")
         }
+        
       val token = request.getQueryString("token")
         
       api.postJobBuild(name, json, token, jenkinsCrumb)

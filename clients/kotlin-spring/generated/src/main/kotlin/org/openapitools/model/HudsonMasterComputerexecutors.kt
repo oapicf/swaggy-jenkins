@@ -27,22 +27,22 @@ data class HudsonMasterComputerexecutors(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("currentExecutable") val currentExecutable: FreeStyleBuild? = null,
+    @get:JsonProperty("currentExecutable") val currentExecutable: FreeStyleBuild? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("idle") val idle: kotlin.Boolean? = null,
+    @get:JsonProperty("idle") val idle: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("likelyStuck") val likelyStuck: kotlin.Boolean? = null,
+    @get:JsonProperty("likelyStuck") val likelyStuck: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("number") val number: kotlin.Int? = null,
+    @get:JsonProperty("number") val number: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("progress") val progress: kotlin.Int? = null,
+    @get:JsonProperty("progress") val progress: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

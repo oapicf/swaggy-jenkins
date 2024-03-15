@@ -10,9 +10,9 @@ namespace app\Models;
 class PipelineBranchesitempullRequestlinks {
 
     /** @var string $self */
-    private $self;
+    public $self = "";
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

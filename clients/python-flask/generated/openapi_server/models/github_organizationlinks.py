@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.link import Link
 from openapi_server import util
 
@@ -55,7 +52,7 @@ class GithubOrganizationlinks(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def repositories(self):
+    def repositories(self) -> Link:
         """Gets the repositories of this GithubOrganizationlinks.
 
 
@@ -65,7 +62,7 @@ class GithubOrganizationlinks(Model):
         return self._repositories
 
     @repositories.setter
-    def repositories(self, repositories):
+    def repositories(self, repositories: Link):
         """Sets the repositories of this GithubOrganizationlinks.
 
 
@@ -76,7 +73,7 @@ class GithubOrganizationlinks(Model):
         self._repositories = repositories
 
     @property
-    def _self(self):
+    def _self(self) -> Link:
         """Gets the _self of this GithubOrganizationlinks.
 
 
@@ -86,7 +83,7 @@ class GithubOrganizationlinks(Model):
         return self.__self
 
     @_self.setter
-    def _self(self, _self):
+    def _self(self, _self: Link):
         """Sets the _self of this GithubOrganizationlinks.
 
 
@@ -97,7 +94,7 @@ class GithubOrganizationlinks(Model):
         self.__self = _self
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubOrganizationlinks.
 
 
@@ -107,7 +104,7 @@ class GithubOrganizationlinks(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubOrganizationlinks.
 
 

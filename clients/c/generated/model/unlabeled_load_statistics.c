@@ -55,7 +55,7 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_parseFromJSON(cJSON *unla
     // unlabeled_load_statistics->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(unlabeled_load_statisticsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_parseFromJSON(cJSON *unla
 
 
     unlabeled_load_statistics_local_var = unlabeled_load_statistics_create (
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return unlabeled_load_statistics_local_var;

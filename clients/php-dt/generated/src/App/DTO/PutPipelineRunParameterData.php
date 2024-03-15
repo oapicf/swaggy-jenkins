@@ -15,44 +15,39 @@ class PutPipelineRunParameterData
      * @DTA\Data(subset="path", field="pipeline")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $pipeline;
+    public ?string $pipeline = null;
 
     /**
      * Set to true to make blocking stop, default: false
      * @DTA\Data(subset="query", field="blocking", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $blocking;
+    public ?string $blocking = null;
 
     /**
      * Name of the organization
      * @DTA\Data(subset="path", field="organization")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * Name of the run
      * @DTA\Data(subset="path", field="run")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $run;
+    public ?string $run = null;
 
     /**
      * Timeout in seconds, default: 10 seconds
      * @DTA\Data(subset="query", field="timeOutInSecs", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $time_out_in_secs;
+    public ?int $time_out_in_secs = null;
 
 }

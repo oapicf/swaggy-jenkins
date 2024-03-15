@@ -7,19 +7,22 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
 import org.openapitools.model.Label1;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputer   {
   
   private String propertyClass;
   private String displayName;
-  private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
+  private List<@Valid HudsonMasterComputerexecutors> executors;
   private String icon;
   private String iconClassName;
   private Boolean idle;
@@ -63,10 +66,11 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("executors")
-  public List<HudsonMasterComputerexecutors> getExecutors() {
+  @Valid
+  public List<@Valid HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
-  public void setExecutors(List<HudsonMasterComputerexecutors> executors) {
+  public void setExecutors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
   }
 
@@ -135,6 +139,7 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("loadStatistics")
+  @Valid
   public Label1 getLoadStatistics() {
     return loadStatistics;
   }
@@ -159,6 +164,7 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("monitorData")
+  @Valid
   public HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
   }
@@ -236,22 +242,22 @@ public class HudsonMasterComputer   {
       return false;
     }
     HudsonMasterComputer hudsonMasterComputer = (HudsonMasterComputer) o;
-    return Objects.equals(propertyClass, hudsonMasterComputer.propertyClass) &&
-        Objects.equals(displayName, hudsonMasterComputer.displayName) &&
-        Objects.equals(executors, hudsonMasterComputer.executors) &&
-        Objects.equals(icon, hudsonMasterComputer.icon) &&
-        Objects.equals(iconClassName, hudsonMasterComputer.iconClassName) &&
-        Objects.equals(idle, hudsonMasterComputer.idle) &&
-        Objects.equals(jnlpAgent, hudsonMasterComputer.jnlpAgent) &&
-        Objects.equals(launchSupported, hudsonMasterComputer.launchSupported) &&
-        Objects.equals(loadStatistics, hudsonMasterComputer.loadStatistics) &&
-        Objects.equals(manualLaunchAllowed, hudsonMasterComputer.manualLaunchAllowed) &&
-        Objects.equals(monitorData, hudsonMasterComputer.monitorData) &&
-        Objects.equals(numExecutors, hudsonMasterComputer.numExecutors) &&
-        Objects.equals(offline, hudsonMasterComputer.offline) &&
-        Objects.equals(offlineCause, hudsonMasterComputer.offlineCause) &&
-        Objects.equals(offlineCauseReason, hudsonMasterComputer.offlineCauseReason) &&
-        Objects.equals(temporarilyOffline, hudsonMasterComputer.temporarilyOffline);
+    return Objects.equals(this.propertyClass, hudsonMasterComputer.propertyClass) &&
+        Objects.equals(this.displayName, hudsonMasterComputer.displayName) &&
+        Objects.equals(this.executors, hudsonMasterComputer.executors) &&
+        Objects.equals(this.icon, hudsonMasterComputer.icon) &&
+        Objects.equals(this.iconClassName, hudsonMasterComputer.iconClassName) &&
+        Objects.equals(this.idle, hudsonMasterComputer.idle) &&
+        Objects.equals(this.jnlpAgent, hudsonMasterComputer.jnlpAgent) &&
+        Objects.equals(this.launchSupported, hudsonMasterComputer.launchSupported) &&
+        Objects.equals(this.loadStatistics, hudsonMasterComputer.loadStatistics) &&
+        Objects.equals(this.manualLaunchAllowed, hudsonMasterComputer.manualLaunchAllowed) &&
+        Objects.equals(this.monitorData, hudsonMasterComputer.monitorData) &&
+        Objects.equals(this.numExecutors, hudsonMasterComputer.numExecutors) &&
+        Objects.equals(this.offline, hudsonMasterComputer.offline) &&
+        Objects.equals(this.offlineCause, hudsonMasterComputer.offlineCause) &&
+        Objects.equals(this.offlineCauseReason, hudsonMasterComputer.offlineCauseReason) &&
+        Objects.equals(this.temporarilyOffline, hudsonMasterComputer.temporarilyOffline);
   }
 
   @Override

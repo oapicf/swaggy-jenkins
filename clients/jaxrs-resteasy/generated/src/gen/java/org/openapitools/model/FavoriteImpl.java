@@ -9,9 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FavoriteImpllinks;
 import org.openapitools.model.PipelineImpl;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FavoriteImpl   {
   
   private String propertyClass;
@@ -35,6 +37,7 @@ public class FavoriteImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
+  @Valid
   public FavoriteImpllinks getLinks() {
     return links;
   }
@@ -47,6 +50,7 @@ public class FavoriteImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("item")
+  @Valid
   public PipelineImpl getItem() {
     return item;
   }
@@ -64,9 +68,9 @@ public class FavoriteImpl   {
       return false;
     }
     FavoriteImpl favoriteImpl = (FavoriteImpl) o;
-    return Objects.equals(propertyClass, favoriteImpl.propertyClass) &&
-        Objects.equals(links, favoriteImpl.links) &&
-        Objects.equals(item, favoriteImpl.item);
+    return Objects.equals(this.propertyClass, favoriteImpl.propertyClass) &&
+        Objects.equals(this.links, favoriteImpl.links) &&
+        Objects.equals(this.item, favoriteImpl.item);
   }
 
   @Override

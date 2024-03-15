@@ -7,7 +7,7 @@ All URIs are relative to *http://localhost*
 | [**getCrumb**](BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json |  |
 
 
-<a name="getCrumb"></a>
+<a id="getCrumb"></a>
 # **getCrumb**
 > DefaultCrumbIssuer getCrumb()
 
@@ -18,12 +18,12 @@ Retrieve CSRF protection token
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BaseApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BaseApi;
 
 public class Example {
   public static void main(String[] args) {

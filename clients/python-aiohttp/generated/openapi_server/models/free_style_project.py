@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 from typing import List, Dict, Type
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server.models.free_style_projectactions import FreeStyleProjectactions
 from openapi_server.models.free_style_projecthealth_report import FreeStyleProjecthealthReport

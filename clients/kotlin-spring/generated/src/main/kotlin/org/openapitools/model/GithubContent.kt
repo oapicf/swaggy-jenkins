@@ -27,28 +27,28 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubContent(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("sha") val sha: kotlin.String? = null,
+    @get:JsonProperty("sha") val sha: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("repo") val repo: kotlin.String? = null,
+    @get:JsonProperty("repo") val repo: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("size") val propertySize: kotlin.Int? = null,
+    @get:JsonProperty("size") val propertySize: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("owner") val owner: kotlin.String? = null,
+    @get:JsonProperty("owner") val owner: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("path") val path: kotlin.String? = null,
+    @get:JsonProperty("path") val path: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("base64Data") val base64Data: kotlin.String? = null
+    @get:JsonProperty("base64Data") val base64Data: kotlin.String? = null
 ) {
 
 }

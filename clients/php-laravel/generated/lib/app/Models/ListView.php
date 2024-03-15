@@ -10,18 +10,18 @@ namespace app\Models;
 class ListView {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var \app\Models\FreeStyleProject[] $jobs */
-    private $jobs;
+    public $jobs = [];
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
 }

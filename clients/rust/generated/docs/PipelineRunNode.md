@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **_class** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **duration_in_millis** | Option<**i32**> |  | [optional]
-**edges** | Option<[**Vec<crate::models::PipelineRunNodeedges>**](PipelineRunNodeedges.md)> |  | [optional]
+**edges** | Option<[**Vec<models::PipelineRunNodeedges>**](PipelineRunNodeedges.md)> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **result** | Option<**String**> |  | [optional]
 **start_time** | Option<**String**> |  | [optional]

@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -24,7 +26,7 @@ public class FreeStyleBuild   {
 
   private String url;
 
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions;
 
   private Boolean building;
 
@@ -53,7 +55,6 @@ public class FreeStyleBuild   {
   private String builtOn;
 
   private EmptyChangeLogSet changeSet;
-
 
   /**
    **/
@@ -111,7 +112,7 @@ public class FreeStyleBuild   {
 
   /**
    **/
-  public FreeStyleBuild actions(List<CauseAction> actions) {
+  public FreeStyleBuild actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -119,10 +120,10 @@ public class FreeStyleBuild   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -397,24 +398,24 @@ public class FreeStyleBuild   {
       return false;
     }
     FreeStyleBuild freeStyleBuild = (FreeStyleBuild) o;
-    return Objects.equals(propertyClass, freeStyleBuild.propertyClass) &&
-        Objects.equals(number, freeStyleBuild.number) &&
-        Objects.equals(url, freeStyleBuild.url) &&
-        Objects.equals(actions, freeStyleBuild.actions) &&
-        Objects.equals(building, freeStyleBuild.building) &&
-        Objects.equals(description, freeStyleBuild.description) &&
-        Objects.equals(displayName, freeStyleBuild.displayName) &&
-        Objects.equals(duration, freeStyleBuild.duration) &&
-        Objects.equals(estimatedDuration, freeStyleBuild.estimatedDuration) &&
-        Objects.equals(executor, freeStyleBuild.executor) &&
-        Objects.equals(fullDisplayName, freeStyleBuild.fullDisplayName) &&
-        Objects.equals(id, freeStyleBuild.id) &&
-        Objects.equals(keepLog, freeStyleBuild.keepLog) &&
-        Objects.equals(queueId, freeStyleBuild.queueId) &&
-        Objects.equals(result, freeStyleBuild.result) &&
-        Objects.equals(timestamp, freeStyleBuild.timestamp) &&
-        Objects.equals(builtOn, freeStyleBuild.builtOn) &&
-        Objects.equals(changeSet, freeStyleBuild.changeSet);
+    return Objects.equals(this.propertyClass, freeStyleBuild.propertyClass) &&
+        Objects.equals(this.number, freeStyleBuild.number) &&
+        Objects.equals(this.url, freeStyleBuild.url) &&
+        Objects.equals(this.actions, freeStyleBuild.actions) &&
+        Objects.equals(this.building, freeStyleBuild.building) &&
+        Objects.equals(this.description, freeStyleBuild.description) &&
+        Objects.equals(this.displayName, freeStyleBuild.displayName) &&
+        Objects.equals(this.duration, freeStyleBuild.duration) &&
+        Objects.equals(this.estimatedDuration, freeStyleBuild.estimatedDuration) &&
+        Objects.equals(this.executor, freeStyleBuild.executor) &&
+        Objects.equals(this.fullDisplayName, freeStyleBuild.fullDisplayName) &&
+        Objects.equals(this.id, freeStyleBuild.id) &&
+        Objects.equals(this.keepLog, freeStyleBuild.keepLog) &&
+        Objects.equals(this.queueId, freeStyleBuild.queueId) &&
+        Objects.equals(this.result, freeStyleBuild.result) &&
+        Objects.equals(this.timestamp, freeStyleBuild.timestamp) &&
+        Objects.equals(this.builtOn, freeStyleBuild.builtOn) &&
+        Objects.equals(this.changeSet, freeStyleBuild.changeSet);
   }
 
   @Override

@@ -25,20 +25,20 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ComputerSet(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("busyExecutors") val busyExecutors: kotlin.Int? = null,
+    @get:JsonProperty("busyExecutors") val busyExecutors: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("computer") val computer: kotlin.collections.List<HudsonMasterComputer>? = null,
+    @get:JsonProperty("computer") val computer: kotlin.collections.List<HudsonMasterComputer>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("totalExecutors") val totalExecutors: kotlin.Int? = null
+    @get:JsonProperty("totalExecutors") val totalExecutors: kotlin.Int? = null
 ) {
 
 }

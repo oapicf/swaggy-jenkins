@@ -233,7 +233,7 @@ queue_left_item_t *queue_left_item_parseFromJSON(cJSON *queue_left_itemJSON){
     // queue_left_item->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queue_left_itemJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -299,7 +299,7 @@ queue_left_item_t *queue_left_item_parseFromJSON(cJSON *queue_left_itemJSON){
     // queue_left_item->params
     cJSON *params = cJSON_GetObjectItemCaseSensitive(queue_left_itemJSON, "params");
     if (params) { 
-    if(!cJSON_IsString(params))
+    if(!cJSON_IsString(params) && !cJSON_IsNull(params))
     {
     goto end; //String
     }
@@ -323,7 +323,7 @@ queue_left_item_t *queue_left_item_parseFromJSON(cJSON *queue_left_itemJSON){
     // queue_left_item->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(queue_left_itemJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -332,7 +332,7 @@ queue_left_item_t *queue_left_item_parseFromJSON(cJSON *queue_left_itemJSON){
     // queue_left_item->why
     cJSON *why = cJSON_GetObjectItemCaseSensitive(queue_left_itemJSON, "why");
     if (why) { 
-    if(!cJSON_IsString(why))
+    if(!cJSON_IsString(why) && !cJSON_IsNull(why))
     {
     goto end; //String
     }
@@ -355,17 +355,17 @@ queue_left_item_t *queue_left_item_parseFromJSON(cJSON *queue_left_itemJSON){
 
 
     queue_left_item_local_var = queue_left_item_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         actions ? actionsList : NULL,
         blocked ? blocked->valueint : 0,
         buildable ? buildable->valueint : 0,
         id ? id->valuedouble : 0,
         in_queue_since ? in_queue_since->valuedouble : 0,
-        params ? strdup(params->valuestring) : NULL,
+        params && !cJSON_IsNull(params) ? strdup(params->valuestring) : NULL,
         stuck ? stuck->valueint : 0,
         task ? task_local_nonprim : NULL,
-        url ? strdup(url->valuestring) : NULL,
-        why ? strdup(why->valuestring) : NULL,
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
+        why && !cJSON_IsNull(why) ? strdup(why->valuestring) : NULL,
         cancelled ? cancelled->valueint : 0,
         executable ? executable_local_nonprim : NULL
         );

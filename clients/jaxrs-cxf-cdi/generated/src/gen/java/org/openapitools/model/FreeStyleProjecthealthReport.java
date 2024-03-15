@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -23,7 +24,6 @@ public class FreeStyleProjecthealthReport   {
   private Integer score;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -125,11 +125,11 @@ public class FreeStyleProjecthealthReport   {
       return false;
     }
     FreeStyleProjecthealthReport freeStyleProjecthealthReport = (FreeStyleProjecthealthReport) o;
-    return Objects.equals(description, freeStyleProjecthealthReport.description) &&
-        Objects.equals(iconClassName, freeStyleProjecthealthReport.iconClassName) &&
-        Objects.equals(iconUrl, freeStyleProjecthealthReport.iconUrl) &&
-        Objects.equals(score, freeStyleProjecthealthReport.score) &&
-        Objects.equals(propertyClass, freeStyleProjecthealthReport.propertyClass);
+    return Objects.equals(this.description, freeStyleProjecthealthReport.description) &&
+        Objects.equals(this.iconClassName, freeStyleProjecthealthReport.iconClassName) &&
+        Objects.equals(this.iconUrl, freeStyleProjecthealthReport.iconUrl) &&
+        Objects.equals(this.score, freeStyleProjecthealthReport.score) &&
+        Objects.equals(this.propertyClass, freeStyleProjecthealthReport.propertyClass);
   }
 
   @Override

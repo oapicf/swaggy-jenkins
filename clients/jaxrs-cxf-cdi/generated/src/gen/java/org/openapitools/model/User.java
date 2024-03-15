@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -23,7 +24,6 @@ public class User   {
   private String email;
 
   private String name;
-
 
   /**
    **/
@@ -125,11 +125,11 @@ public class User   {
       return false;
     }
     User user = (User) o;
-    return Objects.equals(propertyClass, user.propertyClass) &&
-        Objects.equals(id, user.id) &&
-        Objects.equals(fullName, user.fullName) &&
-        Objects.equals(email, user.email) &&
-        Objects.equals(name, user.name);
+    return Objects.equals(this.propertyClass, user.propertyClass) &&
+        Objects.equals(this.id, user.id) &&
+        Objects.equals(this.fullName, user.fullName) &&
+        Objects.equals(this.email, user.email) &&
+        Objects.equals(this.name, user.name);
   }
 
   @Override

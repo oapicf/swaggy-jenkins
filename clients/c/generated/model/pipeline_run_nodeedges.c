@@ -69,7 +69,7 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
     // pipeline_run_nodeedges->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeedgesJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
     // pipeline_run_nodeedges->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeedgesJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
 
 
     pipeline_run_nodeedges_local_var = pipeline_run_nodeedges_create (
-        id ? strdup(id->valuestring) : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_run_nodeedges_local_var;

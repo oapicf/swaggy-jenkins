@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -17,7 +18,6 @@ public class ClockDifference   {
   private String propertyClass;
 
   private Integer diff;
-
 
   /**
    **/
@@ -65,8 +65,8 @@ public class ClockDifference   {
       return false;
     }
     ClockDifference clockDifference = (ClockDifference) o;
-    return Objects.equals(propertyClass, clockDifference.propertyClass) &&
-        Objects.equals(diff, clockDifference.diff);
+    return Objects.equals(this.propertyClass, clockDifference.propertyClass) &&
+        Objects.equals(this.diff, clockDifference.diff);
   }
 
   @Override

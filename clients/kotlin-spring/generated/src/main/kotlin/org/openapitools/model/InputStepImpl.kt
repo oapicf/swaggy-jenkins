@@ -28,27 +28,27 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class InputStepImpl(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: InputStepImpllinks? = null,
+    @get:JsonProperty("_links") val links: InputStepImpllinks? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("message") val message: kotlin.String? = null,
+    @get:JsonProperty("message") val message: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("ok") val ok: kotlin.String? = null,
+    @get:JsonProperty("ok") val ok: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("parameters") val parameters: kotlin.collections.List<StringParameterDefinition>? = null,
+    @get:JsonProperty("parameters") val parameters: kotlin.collections.List<StringParameterDefinition>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("submitter") val submitter: kotlin.String? = null
+    @get:JsonProperty("submitter") val submitter: kotlin.String? = null
 ) {
 
 }

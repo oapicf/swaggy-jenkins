@@ -19,25 +19,19 @@ import javax.annotation.Generated;
  * PipelineRunImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunImpllinks {
 
-  @JsonProperty("nodes")
   private Link nodes;
 
-  @JsonProperty("log")
   private Link log;
 
-  @JsonProperty("self")
   private Link self;
 
-  @JsonProperty("actions")
   private Link actions;
 
-  @JsonProperty("steps")
   private Link steps;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineRunImpllinks nodes(Link nodes) {
@@ -50,7 +44,8 @@ public class PipelineRunImpllinks {
    * @return nodes
   */
   @Valid 
-  @Schema(name = "nodes", required = false)
+  @Schema(name = "nodes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("nodes")
   public Link getNodes() {
     return nodes;
   }
@@ -69,7 +64,8 @@ public class PipelineRunImpllinks {
    * @return log
   */
   @Valid 
-  @Schema(name = "log", required = false)
+  @Schema(name = "log", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("log")
   public Link getLog() {
     return log;
   }
@@ -88,7 +84,8 @@ public class PipelineRunImpllinks {
    * @return self
   */
   @Valid 
-  @Schema(name = "self", required = false)
+  @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
@@ -107,7 +104,8 @@ public class PipelineRunImpllinks {
    * @return actions
   */
   @Valid 
-  @Schema(name = "actions", required = false)
+  @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
@@ -126,7 +124,8 @@ public class PipelineRunImpllinks {
    * @return steps
   */
   @Valid 
-  @Schema(name = "steps", required = false)
+  @Schema(name = "steps", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("steps")
   public Link getSteps() {
     return steps;
   }
@@ -145,7 +144,8 @@ public class PipelineRunImpllinks {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

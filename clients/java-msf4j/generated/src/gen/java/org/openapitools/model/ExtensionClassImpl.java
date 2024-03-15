@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
 
 /**
  * ExtensionClassImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -66,7 +67,7 @@ public class ExtensionClassImpl   {
 
   public ExtensionClassImpl addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<>();
+      this.classes = ;
     }
     this.classes.add(classesItem);
     return this;

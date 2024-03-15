@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | [optional] [default to None]
-**size** | **isize** |  | [optional] [default to None]
+**size** | **i32** |  | [optional] [default to None]
 **url** | **String** |  | [optional] [default to None]
 **_class** | **String** |  | [optional] [default to None]
 

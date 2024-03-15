@@ -5,31 +5,26 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class ExtensionClassImpl
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="_links", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\ExtensionClassImpllinks::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\ExtensionClassImpllinks::class})
-     * @var \App\DTO\ExtensionClassImpllinks|null
      */
-    public $_links;
+    public ?\App\DTO\ExtensionClassImpllinks $_links = null;
 
     /**
      * @DTA\Data(field="classes", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":::class})
-     * @var string[]|null
      */
-    public $classes;
+    public ?array $classes = null;
 
 }

@@ -1,7 +1,4 @@
-# coding: utf-8
-
 # flake8: noqa
-from __future__ import absolute_import
 # import models into model package
 from openapi_server.models.all_view import AllView
 from openapi_server.models.branch_impl import BranchImpl

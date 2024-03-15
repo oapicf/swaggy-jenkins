@@ -33,7 +33,7 @@ import org.openapitools.server.api.model.QueueItemImpl
 import org.openapitools.server.api.model.User
 
 class BlueOceanApiVertxProxyHandler(private val vertx: Vertx, private val service: BlueOceanApi, topLevel: Boolean, private val timeoutSeconds: Long) : ProxyHandler() {
-    private val timerID: Long
+    private lateinit var timerID: Long
     private var lastAccessed: Long = 0
     init {
         try {

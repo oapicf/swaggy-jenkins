@@ -32,17 +32,17 @@ get_computer(Ctx, Depth) ->
 -spec get_computer(ctx:ctx(), integer(), maps:map()) -> {ok, openapi_computer_set:openapi_computer_set(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_computer(Ctx, Depth, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/computer/api/json">>],
+    Path = [?BASE_URL, "/computer/api/json"],
     QS = lists:flatten([{<<"depth">>, Depth}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve Jenkins details
@@ -53,17 +53,17 @@ get_jenkins(Ctx) ->
 -spec get_jenkins(ctx:ctx(), maps:map()) -> {ok, openapi_hudson:openapi_hudson(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_jenkins(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/api/json">>],
+    Path = [?BASE_URL, "/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve job details
@@ -74,17 +74,17 @@ get_job(Ctx, Name) ->
 -spec get_job(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_free_style_project:openapi_free_style_project(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_job(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/job/", Name, "/api/json">>],
+    Path = [?BASE_URL, "/job/", Name, "/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve job configuration
@@ -95,17 +95,17 @@ get_job_config(Ctx, Name) ->
 -spec get_job_config(ctx:ctx(), binary(), maps:map()) -> {ok, binary(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_job_config(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/job/", Name, "/config.xml">>],
+    Path = [?BASE_URL, "/job/", Name, "/config.xml"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve job's last build details
@@ -116,17 +116,17 @@ get_job_last_build(Ctx, Name) ->
 -spec get_job_last_build(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_free_style_build:openapi_free_style_build(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_job_last_build(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/job/", Name, "/lastBuild/api/json">>],
+    Path = [?BASE_URL, "/job/", Name, "/lastBuild/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve job's build progressive text output
@@ -137,17 +137,17 @@ get_job_progressive_text(Ctx, Name, Number, Start) ->
 -spec get_job_progressive_text(ctx:ctx(), binary(), binary(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_job_progressive_text(Ctx, Name, Number, Start, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/job/", Name, "/", Number, "/logText/progressiveText">>],
+    Path = [?BASE_URL, "/job/", Name, "/", Number, "/logText/progressiveText"],
     QS = lists:flatten([{<<"start">>, Start}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve queue details
@@ -158,17 +158,17 @@ get_queue(Ctx) ->
 -spec get_queue(ctx:ctx(), maps:map()) -> {ok, openapi_queue:openapi_queue(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_queue(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/queue/api/json">>],
+    Path = [?BASE_URL, "/queue/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve queued item details
@@ -179,17 +179,17 @@ get_queue_item(Ctx, Number) ->
 -spec get_queue_item(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_queue:openapi_queue(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_queue_item(Ctx, Number, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/queue/item/", Number, "/api/json">>],
+    Path = [?BASE_URL, "/queue/item/", Number, "/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve view details
@@ -200,17 +200,17 @@ get_view(Ctx, Name) ->
 -spec get_view(ctx:ctx(), binary(), maps:map()) -> {ok, openapi_list_view:openapi_list_view(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_view(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/view/", Name, "/api/json">>],
+    Path = [?BASE_URL, "/view/", Name, "/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve view configuration
@@ -221,17 +221,17 @@ get_view_config(Ctx, Name) ->
 -spec get_view_config(ctx:ctx(), binary(), maps:map()) -> {ok, binary(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_view_config(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
-    Path = [<<"/view/", Name, "/config.xml">>],
+    Path = [?BASE_URL, "/view/", Name, "/config.xml"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Retrieve Jenkins headers
@@ -242,17 +242,17 @@ head_jenkins(Ctx) ->
 -spec head_jenkins(ctx:ctx(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 head_jenkins(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = head,
-    Path = [<<"/api/json">>],
+    Path = [?BASE_URL, "/api/json"],
     QS = [],
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Create a new job using job configuration, or copied from an existing job
@@ -263,17 +263,17 @@ post_create_item(Ctx, Name) ->
 -spec post_create_item(ctx:ctx(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_create_item(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/createItem">>],
+    Path = [?BASE_URL, "/createItem"],
     QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params(['from', 'mode'], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb', 'Content-Type'], _OptionalParams),
     Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Create a new view using view configuration
@@ -284,17 +284,17 @@ post_create_view(Ctx, Name) ->
 -spec post_create_view(ctx:ctx(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_create_view(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/createView">>],
+    Path = [?BASE_URL, "/createView"],
     QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb', 'Content-Type'], _OptionalParams),
     Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Build a job
@@ -305,17 +305,17 @@ post_job_build(Ctx, Name, Json) ->
 -spec post_job_build(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_job_build(Ctx, Name, Json, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/job/", Name, "/build">>],
+    Path = [?BASE_URL, "/job/", Name, "/build"],
     QS = lists:flatten([{<<"json">>, Json}])++openapi_utils:optional_params(['token'], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Update job configuration
@@ -326,17 +326,17 @@ post_job_config(Ctx, Name, Body) ->
 -spec post_job_config(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_job_config(Ctx, Name, Body, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/job/", Name, "/config.xml">>],
+    Path = [?BASE_URL, "/job/", Name, "/config.xml"],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Delete a job
@@ -347,17 +347,17 @@ post_job_delete(Ctx, Name) ->
 -spec post_job_delete(ctx:ctx(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_job_delete(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/job/", Name, "/doDelete">>],
+    Path = [?BASE_URL, "/job/", Name, "/doDelete"],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Disable a job
@@ -368,17 +368,17 @@ post_job_disable(Ctx, Name) ->
 -spec post_job_disable(ctx:ctx(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_job_disable(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/job/", Name, "/disable">>],
+    Path = [?BASE_URL, "/job/", Name, "/disable"],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Enable a job
@@ -389,17 +389,17 @@ post_job_enable(Ctx, Name) ->
 -spec post_job_enable(ctx:ctx(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_job_enable(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/job/", Name, "/enable">>],
+    Path = [?BASE_URL, "/job/", Name, "/enable"],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Stop a job
@@ -410,17 +410,17 @@ post_job_last_build_stop(Ctx, Name) ->
 -spec post_job_last_build_stop(ctx:ctx(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_job_last_build_stop(Ctx, Name, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/job/", Name, "/lastBuild/stop">>],
+    Path = [?BASE_URL, "/job/", Name, "/lastBuild/stop"],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 %% @doc 
 %% Update view configuration
@@ -431,16 +431,16 @@ post_view_config(Ctx, Name, Body) ->
 -spec post_view_config(ctx:ctx(), binary(), binary(), maps:map()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 post_view_config(Ctx, Name, Body, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
-    Cfg = maps:get(cfg, Optional, application:get_env(kuberl, config, #{})),
+    Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = post,
-    Path = [<<"/view/", Name, "/config.xml">>],
+    Path = [?BASE_URL, "/view/", Name, "/config.xml"],
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = Body,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
-    openapi_utils:request(Ctx, Method, [?BASE_URL, Path], QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
+    openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
 
 

@@ -5,55 +5,47 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class PipelineRunImpllinks
 {
     /**
      * @DTA\Data(field="nodes", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $nodes;
+    public ?\App\DTO\Link $nodes = null;
 
     /**
      * @DTA\Data(field="log", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $log;
+    public ?\App\DTO\Link $log = null;
 
     /**
      * @DTA\Data(field="self", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $self;
+    public ?\App\DTO\Link $self = null;
 
     /**
      * @DTA\Data(field="actions", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $actions;
+    public ?\App\DTO\Link $actions = null;
 
     /**
      * @DTA\Data(field="steps", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $steps;
+    public ?\App\DTO\Link $steps = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

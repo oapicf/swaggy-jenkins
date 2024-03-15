@@ -10,9 +10,9 @@ namespace app\Models;
 class ClassesByClass {
 
     /** @var string[] $classes */
-    private $classes;
+    public $classes = [];
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

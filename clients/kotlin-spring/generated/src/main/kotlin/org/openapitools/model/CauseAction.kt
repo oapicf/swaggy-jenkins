@@ -22,11 +22,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CauseAction(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("causes") val causes: kotlin.collections.List<CauseUserIdCause>? = null
+    @get:JsonProperty("causes") val causes: kotlin.collections.List<CauseUserIdCause>? = null
 ) {
 
 }

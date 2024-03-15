@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
@@ -22,62 +23,44 @@ import javax.annotation.Generated;
  * FreeStyleBuild
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleBuild {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("number")
   private Integer number;
 
-  @JsonProperty("url")
   private String url;
 
-  @JsonProperty("actions")
   @Valid
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions;
 
-  @JsonProperty("building")
   private Boolean building;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("duration")
   private Integer duration;
 
-  @JsonProperty("estimatedDuration")
   private Integer estimatedDuration;
 
-  @JsonProperty("executor")
   private String executor;
 
-  @JsonProperty("fullDisplayName")
   private String fullDisplayName;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("keepLog")
   private Boolean keepLog;
 
-  @JsonProperty("queueId")
   private Integer queueId;
 
-  @JsonProperty("result")
   private String result;
 
-  @JsonProperty("timestamp")
   private Integer timestamp;
 
-  @JsonProperty("builtOn")
   private String builtOn;
 
-  @JsonProperty("changeSet")
   private EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild propertyClass(String propertyClass) {
@@ -90,7 +73,8 @@ public class FreeStyleBuild {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -109,7 +93,8 @@ public class FreeStyleBuild {
    * @return number
   */
   
-  @Schema(name = "number", required = false)
+  @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("number")
   public Integer getNumber() {
     return number;
   }
@@ -128,7 +113,8 @@ public class FreeStyleBuild {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }
@@ -137,7 +123,7 @@ public class FreeStyleBuild {
     this.url = url;
   }
 
-  public FreeStyleBuild actions(List<CauseAction> actions) {
+  public FreeStyleBuild actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -155,12 +141,13 @@ public class FreeStyleBuild {
    * @return actions
   */
   @Valid 
-  @Schema(name = "actions", required = false)
-  public List<CauseAction> getActions() {
+  @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("actions")
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -174,7 +161,8 @@ public class FreeStyleBuild {
    * @return building
   */
   
-  @Schema(name = "building", required = false)
+  @Schema(name = "building", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("building")
   public Boolean getBuilding() {
     return building;
   }
@@ -193,7 +181,8 @@ public class FreeStyleBuild {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -212,7 +201,8 @@ public class FreeStyleBuild {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -231,7 +221,8 @@ public class FreeStyleBuild {
    * @return duration
   */
   
-  @Schema(name = "duration", required = false)
+  @Schema(name = "duration", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("duration")
   public Integer getDuration() {
     return duration;
   }
@@ -250,7 +241,8 @@ public class FreeStyleBuild {
    * @return estimatedDuration
   */
   
-  @Schema(name = "estimatedDuration", required = false)
+  @Schema(name = "estimatedDuration", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("estimatedDuration")
   public Integer getEstimatedDuration() {
     return estimatedDuration;
   }
@@ -269,7 +261,8 @@ public class FreeStyleBuild {
    * @return executor
   */
   
-  @Schema(name = "executor", required = false)
+  @Schema(name = "executor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("executor")
   public String getExecutor() {
     return executor;
   }
@@ -288,7 +281,8 @@ public class FreeStyleBuild {
    * @return fullDisplayName
   */
   
-  @Schema(name = "fullDisplayName", required = false)
+  @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
     return fullDisplayName;
   }
@@ -307,7 +301,8 @@ public class FreeStyleBuild {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -326,7 +321,8 @@ public class FreeStyleBuild {
    * @return keepLog
   */
   
-  @Schema(name = "keepLog", required = false)
+  @Schema(name = "keepLog", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("keepLog")
   public Boolean getKeepLog() {
     return keepLog;
   }
@@ -345,7 +341,8 @@ public class FreeStyleBuild {
    * @return queueId
   */
   
-  @Schema(name = "queueId", required = false)
+  @Schema(name = "queueId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("queueId")
   public Integer getQueueId() {
     return queueId;
   }
@@ -364,7 +361,8 @@ public class FreeStyleBuild {
    * @return result
   */
   
-  @Schema(name = "result", required = false)
+  @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("result")
   public String getResult() {
     return result;
   }
@@ -383,7 +381,8 @@ public class FreeStyleBuild {
    * @return timestamp
   */
   
-  @Schema(name = "timestamp", required = false)
+  @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("timestamp")
   public Integer getTimestamp() {
     return timestamp;
   }
@@ -402,7 +401,8 @@ public class FreeStyleBuild {
    * @return builtOn
   */
   
-  @Schema(name = "builtOn", required = false)
+  @Schema(name = "builtOn", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("builtOn")
   public String getBuiltOn() {
     return builtOn;
   }
@@ -421,7 +421,8 @@ public class FreeStyleBuild {
    * @return changeSet
   */
   @Valid 
-  @Schema(name = "changeSet", required = false)
+  @Schema(name = "changeSet", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("changeSet")
   public EmptyChangeLogSet getChangeSet() {
     return changeSet;
   }

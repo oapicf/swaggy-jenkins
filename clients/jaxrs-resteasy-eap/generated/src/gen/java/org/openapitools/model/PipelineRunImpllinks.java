@@ -8,9 +8,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunImpllinks   {
   
   private Link nodes;
@@ -102,12 +103,12 @@ public class PipelineRunImpllinks   {
       return false;
     }
     PipelineRunImpllinks pipelineRunImpllinks = (PipelineRunImpllinks) o;
-    return Objects.equals(nodes, pipelineRunImpllinks.nodes) &&
-        Objects.equals(log, pipelineRunImpllinks.log) &&
-        Objects.equals(self, pipelineRunImpllinks.self) &&
-        Objects.equals(actions, pipelineRunImpllinks.actions) &&
-        Objects.equals(steps, pipelineRunImpllinks.steps) &&
-        Objects.equals(propertyClass, pipelineRunImpllinks.propertyClass);
+    return Objects.equals(this.nodes, pipelineRunImpllinks.nodes) &&
+        Objects.equals(this.log, pipelineRunImpllinks.log) &&
+        Objects.equals(this.self, pipelineRunImpllinks.self) &&
+        Objects.equals(this.actions, pipelineRunImpllinks.actions) &&
+        Objects.equals(this.steps, pipelineRunImpllinks.steps) &&
+        Objects.equals(this.propertyClass, pipelineRunImpllinks.propertyClass);
   }
 
   @Override

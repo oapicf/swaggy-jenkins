@@ -55,7 +55,7 @@ null_scm_t *null_scm_parseFromJSON(cJSON *null_scmJSON){
     // null_scm->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(null_scmJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ null_scm_t *null_scm_parseFromJSON(cJSON *null_scmJSON){
 
 
     null_scm_local_var = null_scm_create (
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return null_scm_local_var;

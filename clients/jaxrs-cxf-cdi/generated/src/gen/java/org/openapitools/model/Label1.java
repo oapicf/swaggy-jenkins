@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -15,7 +16,6 @@ import java.util.Objects;
 public class Label1   {
   
   private String propertyClass;
-
 
   /**
    **/
@@ -45,7 +45,7 @@ public class Label1   {
       return false;
     }
     Label1 label1 = (Label1) o;
-    return Objects.equals(propertyClass, label1.propertyClass);
+    return Objects.equals(this.propertyClass, label1.propertyClass);
   }
 
   @Override

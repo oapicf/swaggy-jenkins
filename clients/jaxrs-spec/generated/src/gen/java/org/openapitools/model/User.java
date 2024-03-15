@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("User")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class User   {
-  
   private @Valid String propertyClass;
   private @Valid String id;
   private @Valid String fullName;
@@ -43,7 +42,7 @@ public class User   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public User id(String id) {
     this.id = id;
@@ -62,7 +61,7 @@ public class User   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public User fullName(String fullName) {
     this.fullName = fullName;
@@ -81,7 +80,7 @@ public class User   {
     this.fullName = fullName;
   }
 
-/**
+  /**
    **/
   public User email(String email) {
     this.email = email;
@@ -100,7 +99,7 @@ public class User   {
     this.email = email;
   }
 
-/**
+  /**
    **/
   public User name(String name) {
     this.name = name;

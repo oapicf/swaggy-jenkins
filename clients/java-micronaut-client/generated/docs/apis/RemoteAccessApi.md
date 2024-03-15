@@ -54,7 +54,7 @@ Note that the class needs to be annotated with one of Micronaut's [scope annotat
 
 More information can be found inside [Inversion of Control guide section](https://docs.micronaut.io/latest/guide/#ioc).
 
-<a name="getComputer"></a>
+<a id="getComputer"></a>
 # **getComputer**
 ```java
 Mono<ComputerSet> RemoteAccessApi.getComputer(depth)
@@ -80,7 +80,7 @@ Retrieve computer details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getJenkins"></a>
+<a id="getJenkins"></a>
 # **getJenkins**
 ```java
 Mono<Hudson> RemoteAccessApi.getJenkins()
@@ -102,7 +102,7 @@ Retrieve Jenkins details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getJob"></a>
+<a id="getJob"></a>
 # **getJob**
 ```java
 Mono<FreeStyleProject> RemoteAccessApi.getJob(name)
@@ -128,7 +128,7 @@ Retrieve job details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getJobConfig"></a>
+<a id="getJobConfig"></a>
 # **getJobConfig**
 ```java
 Mono<String> RemoteAccessApi.getJobConfig(name)
@@ -154,7 +154,7 @@ Retrieve job configuration
  - **Content-Type**: Not defined
  - **Accept**: `text/xml`
 
-<a name="getJobLastBuild"></a>
+<a id="getJobLastBuild"></a>
 # **getJobLastBuild**
 ```java
 Mono<FreeStyleBuild> RemoteAccessApi.getJobLastBuild(name)
@@ -180,7 +180,7 @@ Retrieve job&#39;s last build details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getJobProgressiveText"></a>
+<a id="getJobProgressiveText"></a>
 # **getJobProgressiveText**
 ```java
 Mono<Void> RemoteAccessApi.getJobProgressiveText(namenumberstart)
@@ -207,7 +207,7 @@ Retrieve job&#39;s build progressive text output
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="getQueue"></a>
+<a id="getQueue"></a>
 # **getQueue**
 ```java
 Mono<Queue> RemoteAccessApi.getQueue()
@@ -229,7 +229,7 @@ Retrieve queue details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getQueueItem"></a>
+<a id="getQueueItem"></a>
 # **getQueueItem**
 ```java
 Mono<Queue> RemoteAccessApi.getQueueItem(number)
@@ -255,7 +255,7 @@ Retrieve queued item details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getView"></a>
+<a id="getView"></a>
 # **getView**
 ```java
 Mono<ListView> RemoteAccessApi.getView(name)
@@ -281,7 +281,7 @@ Retrieve view details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getViewConfig"></a>
+<a id="getViewConfig"></a>
 # **getViewConfig**
 ```java
 Mono<String> RemoteAccessApi.getViewConfig(name)
@@ -307,7 +307,7 @@ Retrieve view configuration
  - **Content-Type**: Not defined
  - **Accept**: `text/xml`
 
-<a name="headJenkins"></a>
+<a id="headJenkins"></a>
 # **headJenkins**
 ```java
 Mono<Void> RemoteAccessApi.headJenkins()
@@ -328,7 +328,7 @@ Retrieve Jenkins headers
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="postCreateItem"></a>
+<a id="postCreateItem"></a>
 # **postCreateItem**
 ```java
 Mono<Void> RemoteAccessApi.postCreateItem(namefrommodejenkinsCrumbcontentType_body)
@@ -358,7 +358,7 @@ Create a new job using job configuration, or copied from an existing job
  - **Content-Type**: `application/json`
  - **Accept**: Not defined
 
-<a name="postCreateView"></a>
+<a id="postCreateView"></a>
 # **postCreateView**
 ```java
 Mono<Void> RemoteAccessApi.postCreateView(namejenkinsCrumbcontentType_body)
@@ -386,7 +386,7 @@ Create a new view using view configuration
  - **Content-Type**: `application/json`
  - **Accept**: Not defined
 
-<a name="postJobBuild"></a>
+<a id="postJobBuild"></a>
 # **postJobBuild**
 ```java
 Mono<Void> RemoteAccessApi.postJobBuild(namejsontokenjenkinsCrumb)
@@ -414,7 +414,7 @@ Build a job
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="postJobConfig"></a>
+<a id="postJobConfig"></a>
 # **postJobConfig**
 ```java
 Mono<Void> RemoteAccessApi.postJobConfig(name_bodyjenkinsCrumb)
@@ -441,7 +441,7 @@ Update job configuration
  - **Content-Type**: `application/json`
  - **Accept**: Not defined
 
-<a name="postJobDelete"></a>
+<a id="postJobDelete"></a>
 # **postJobDelete**
 ```java
 Mono<Void> RemoteAccessApi.postJobDelete(namejenkinsCrumb)
@@ -467,7 +467,7 @@ Delete a job
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="postJobDisable"></a>
+<a id="postJobDisable"></a>
 # **postJobDisable**
 ```java
 Mono<Void> RemoteAccessApi.postJobDisable(namejenkinsCrumb)
@@ -493,7 +493,7 @@ Disable a job
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="postJobEnable"></a>
+<a id="postJobEnable"></a>
 # **postJobEnable**
 ```java
 Mono<Void> RemoteAccessApi.postJobEnable(namejenkinsCrumb)
@@ -519,7 +519,7 @@ Enable a job
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="postJobLastBuildStop"></a>
+<a id="postJobLastBuildStop"></a>
 # **postJobLastBuildStop**
 ```java
 Mono<Void> RemoteAccessApi.postJobLastBuildStop(namejenkinsCrumb)
@@ -545,7 +545,7 @@ Stop a job
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="postViewConfig"></a>
+<a id="postViewConfig"></a>
 # **postViewConfig**
 ```java
 Mono<Void> RemoteAccessApi.postViewConfig(name_bodyjenkinsCrumb)

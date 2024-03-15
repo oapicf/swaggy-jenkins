@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **duration_in_millis** | **int** |  | [optional] 
@@ -17,9 +18,25 @@ Name | Type | Description | Notes
 **state** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 **commit_id** | **str** |  | [optional] 
-**_class** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**var_class** | **str** |  | [optional] 
 
+## Example
+
+```python
+from swaggyjenkins.models.pipeline_branchesitemlatest_run import PipelineBranchesitemlatestRun
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PipelineBranchesitemlatestRun from a JSON string
+pipeline_branchesitemlatest_run_instance = PipelineBranchesitemlatestRun.from_json(json)
+# print the JSON string representation of the object
+print(PipelineBranchesitemlatestRun.to_json())
+
+# convert the object into a dict
+pipeline_branchesitemlatest_run_dict = pipeline_branchesitemlatest_run_instance.to_dict()
+# create an instance of PipelineBranchesitemlatestRun from a dict
+pipeline_branchesitemlatest_run_form_dict = pipeline_branchesitemlatest_run.from_dict(pipeline_branchesitemlatest_run_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

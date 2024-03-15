@@ -15,8 +15,7 @@ class GetQueueItemParameterData
      * @DTA\Data(subset="path", field="number")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $number;
+    public ?string $number = null;
 
 }

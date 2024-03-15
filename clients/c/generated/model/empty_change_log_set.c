@@ -69,7 +69,7 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
     // empty_change_log_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(empty_change_log_setJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
     // empty_change_log_set->kind
     cJSON *kind = cJSON_GetObjectItemCaseSensitive(empty_change_log_setJSON, "kind");
     if (kind) { 
-    if(!cJSON_IsString(kind))
+    if(!cJSON_IsString(kind) && !cJSON_IsNull(kind))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
 
 
     empty_change_log_set_local_var = empty_change_log_set_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        kind ? strdup(kind->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        kind && !cJSON_IsNull(kind) ? strdup(kind->valuestring) : NULL
         );
 
     return empty_change_log_set_local_var;

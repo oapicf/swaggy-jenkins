@@ -9,9 +9,10 @@
 --
 --  Then, you can drop this edit note comment.
 --  ------------ EDIT NOTE ------------
-with {{openApiPackageName}.Servers;
+with Swagger.Servers;
 with .Models;
 with .Skeletons;
+
 package .Servers is
    pragma Warnings (Off, "*use clause for package*");
    use .Models;
@@ -25,7 +26,7 @@ package .Servers is
       (Server : in out Server_Type
        ;
        Result  : out .Models.DefaultCrumbIssuer_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Delete queue item from an organization pipeline queue
@@ -35,7 +36,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Queue : in Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve authenticated user details for an organization
@@ -44,7 +45,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Result  : out .Models.User_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Get a list of class names supported by a given class
@@ -53,7 +54,7 @@ package .Servers is
       (Server : in out Server_Type;
        Class : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve JSON Web Key
@@ -62,7 +63,7 @@ package .Servers is
       (Server : in out Server_Type;
        Key : in Integer;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve JSON Web Token
@@ -72,7 +73,7 @@ package .Servers is
        Expiry_Time_In_Mins : in Swagger.Nullable_Integer;
        Max_Expiry_Time_In_Mins : in Swagger.Nullable_Integer;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve organization details
@@ -81,7 +82,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Result  : out .Models.Organisation_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve all organizations details
@@ -89,8 +90,8 @@ package .Servers is
    procedure Get_Organisations
       (Server : in out Server_Type
        ;
-       Result  : out .Models.Organisation_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve pipeline details for an organization
@@ -100,7 +101,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Result  : out .Models.Pipeline_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve all activities details for an organization pipeline
@@ -109,8 +110,8 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineActivity_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve branch details for an organization pipeline
@@ -121,7 +122,7 @@ package .Servers is
        Pipeline : in Swagger.UString;
        Branch : in Swagger.UString;
        Result  : out .Models.BranchImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve branch run details for an organization pipeline
@@ -133,7 +134,7 @@ package .Servers is
        Branch : in Swagger.UString;
        Run : in Swagger.UString;
        Result  : out .Models.PipelineRun_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve all branches details for an organization pipeline
@@ -143,7 +144,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Result  : out .Models.MultibranchPipeline_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve pipeline folder for an organization
@@ -153,7 +154,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Folder : in Swagger.UString;
        Result  : out .Models.PipelineFolderImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve pipeline details for an organization folder
@@ -164,7 +165,7 @@ package .Servers is
        Pipeline : in Swagger.UString;
        Folder : in Swagger.UString;
        Result  : out .Models.PipelineImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve queue details for an organization pipeline
@@ -173,8 +174,8 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.QueueItemImpl_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve run details for an organization pipeline
@@ -185,7 +186,7 @@ package .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Result  : out .Models.PipelineRun_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Get log for a pipeline run
@@ -198,7 +199,7 @@ package .Servers is
        Start : in Swagger.Nullable_Integer;
        Download : in Swagger.Nullable_Boolean;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve run node details for an organization pipeline
@@ -210,7 +211,7 @@ package .Servers is
        Run : in Swagger.UString;
        Node : in Swagger.UString;
        Result  : out .Models.PipelineRunNode_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve run node details for an organization pipeline
@@ -223,7 +224,7 @@ package .Servers is
        Node : in Swagger.UString;
        Step : in Swagger.UString;
        Result  : out .Models.PipelineStepImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Get log for a pipeline run node step
@@ -236,7 +237,7 @@ package .Servers is
        Node : in Swagger.UString;
        Step : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve run node steps details for an organization pipeline
@@ -247,8 +248,8 @@ package .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Node : in Swagger.UString;
-       Result  : out .Models.PipelineStepImpl_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve run nodes details for an organization pipeline
@@ -258,8 +259,8 @@ package .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
-       Result  : out .Models.PipelineRunNode_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve all runs details for an organization pipeline
@@ -268,8 +269,8 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineRun_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve all pipelines details for an organization
@@ -277,8 +278,8 @@ package .Servers is
    procedure Get_Pipelines
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
-       Result  : out .Models.Pipeline_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM details for an organization
@@ -288,7 +289,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
        Result  : out .Models.GithubScm_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM organization repositories details for an organization
@@ -301,8 +302,8 @@ package .Servers is
        Credential_Id : in Swagger.Nullable_UString;
        Page_Size : in Swagger.Nullable_Integer;
        Page_Number : in Swagger.Nullable_Integer;
-       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM organization repository details for an organization
@@ -314,8 +315,8 @@ package .Servers is
        Scm_Organisation : in Swagger.UString;
        Repository : in Swagger.UString;
        Credential_Id : in Swagger.Nullable_UString;
-       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve SCM organizations details for an organization
@@ -325,8 +326,8 @@ package .Servers is
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
        Credential_Id : in Swagger.Nullable_UString;
-       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve user details for an organization
@@ -336,7 +337,7 @@ package .Servers is
        Organization : in Swagger.UString;
        User : in Swagger.UString;
        Result  : out .Models.User_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve user favorites details for an organization
@@ -344,8 +345,8 @@ package .Servers is
    procedure Get_User_Favorites
       (Server : in out Server_Type;
        User : in Swagger.UString;
-       Result  : out .Models.FavoriteImpl_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve users details for an organization
@@ -354,7 +355,7 @@ package .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Result  : out .Models.User_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Replay an organization pipeline run
@@ -365,7 +366,7 @@ package .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Result  : out .Models.QueueItemImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Start a build for an organization pipeline
@@ -375,7 +376,7 @@ package .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Result  : out .Models.QueueItemImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Favorite/unfavorite a pipeline
@@ -386,7 +387,7 @@ package .Servers is
        Pipeline : in Swagger.UString;
        P_Body : in Boolean;
        Result  : out .Models.FavoriteImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Stop a build of an organization pipeline
@@ -399,7 +400,7 @@ package .Servers is
        Blocking : in Swagger.Nullable_UString;
        Time_Out_In_Secs : in Swagger.Nullable_Integer;
        Result  : out .Models.PipelineRun_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Search for any resource details
@@ -408,7 +409,7 @@ package .Servers is
       (Server : in out Server_Type;
        Q : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Get classes details
@@ -417,7 +418,7 @@ package .Servers is
       (Server : in out Server_Type;
        Q : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve computer details
@@ -426,7 +427,7 @@ package .Servers is
       (Server : in out Server_Type;
        Depth : in Integer;
        Result  : out .Models.ComputerSet_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve Jenkins details
@@ -435,7 +436,7 @@ package .Servers is
       (Server : in out Server_Type
        ;
        Result  : out .Models.Hudson_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve job details
@@ -444,7 +445,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out .Models.FreeStyleProject_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve job configuration
@@ -453,7 +454,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve job's last build details
@@ -462,7 +463,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out .Models.FreeStyleBuild_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve job's build progressive text output
@@ -472,7 +473,7 @@ package .Servers is
        Name : in Swagger.UString;
        Number : in Swagger.UString;
        Start : in Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve queue details
@@ -481,7 +482,7 @@ package .Servers is
       (Server : in out Server_Type
        ;
        Result  : out .Models.Queue_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve queued item details
@@ -490,7 +491,7 @@ package .Servers is
       (Server : in out Server_Type;
        Number : in Swagger.UString;
        Result  : out .Models.Queue_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve view details
@@ -499,7 +500,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out .Models.ListView_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve view configuration
@@ -508,7 +509,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Retrieve Jenkins headers
@@ -516,7 +517,7 @@ package .Servers is
    procedure Head_Jenkins
       (Server : in out Server_Type
        ;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Create a new job using job configuration, or copied from an existing job
@@ -529,7 +530,7 @@ package .Servers is
        Jenkins_Crumb : in Swagger.Nullable_UString;
        Content_Type : in Swagger.Nullable_UString;
        P_Body : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Create a new view using view configuration
@@ -540,7 +541,7 @@ package .Servers is
        Jenkins_Crumb : in Swagger.Nullable_UString;
        Content_Type : in Swagger.Nullable_UString;
        P_Body : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Build a job
@@ -551,7 +552,7 @@ package .Servers is
        Json : in Swagger.UString;
        Token : in Swagger.Nullable_UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Update job configuration
@@ -561,7 +562,7 @@ package .Servers is
        Name : in Swagger.UString;
        P_Body : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Delete a job
@@ -570,7 +571,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Disable a job
@@ -579,7 +580,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Enable a job
@@ -588,7 +589,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Stop a job
@@ -597,7 +598,7 @@ package .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    --  
    --  Update view configuration
@@ -607,7 +608,7 @@ package .Servers is
        Name : in Swagger.UString;
        P_Body : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type);
+       Context : in out Swagger.Servers.Context_Type);
 
    package Server_Impl is
       new .Skeletons.Shared_Instance (Server_Type);

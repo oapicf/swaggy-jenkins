@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -28,10 +30,9 @@ public class InputStepImpl   {
 
   private String ok;
 
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters;
 
   private String submitter;
-
 
   /**
    **/
@@ -125,7 +126,7 @@ public class InputStepImpl   {
 
   /**
    **/
-  public InputStepImpl parameters(List<StringParameterDefinition> parameters) {
+  public InputStepImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -133,10 +134,10 @@ public class InputStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -177,13 +178,13 @@ public class InputStepImpl   {
       return false;
     }
     InputStepImpl inputStepImpl = (InputStepImpl) o;
-    return Objects.equals(propertyClass, inputStepImpl.propertyClass) &&
-        Objects.equals(links, inputStepImpl.links) &&
-        Objects.equals(id, inputStepImpl.id) &&
-        Objects.equals(message, inputStepImpl.message) &&
-        Objects.equals(ok, inputStepImpl.ok) &&
-        Objects.equals(parameters, inputStepImpl.parameters) &&
-        Objects.equals(submitter, inputStepImpl.submitter);
+    return Objects.equals(this.propertyClass, inputStepImpl.propertyClass) &&
+        Objects.equals(this.links, inputStepImpl.links) &&
+        Objects.equals(this.id, inputStepImpl.id) &&
+        Objects.equals(this.message, inputStepImpl.message) &&
+        Objects.equals(this.ok, inputStepImpl.ok) &&
+        Objects.equals(this.parameters, inputStepImpl.parameters) &&
+        Objects.equals(this.submitter, inputStepImpl.submitter);
   }
 
   @Override

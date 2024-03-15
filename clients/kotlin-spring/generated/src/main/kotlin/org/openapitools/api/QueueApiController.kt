@@ -36,7 +36,7 @@ class QueueApiController() {
     @Operation(
         summary = "",
         operationId = "getQueue",
-        description = "Retrieve queue details",
+        description = """Retrieve queue details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved queue details", content = [Content(schema = Schema(implementation = Queue::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -55,7 +55,7 @@ class QueueApiController() {
     @Operation(
         summary = "",
         operationId = "getQueueItem",
-        description = "Retrieve queued item details",
+        description = """Retrieve queued item details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved queued item details", content = [Content(schema = Schema(implementation = Queue::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

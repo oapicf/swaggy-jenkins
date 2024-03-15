@@ -8,9 +8,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassContainerImpl1links   {
   
   private Link self;
@@ -50,8 +51,8 @@ public class ExtensionClassContainerImpl1links   {
       return false;
     }
     ExtensionClassContainerImpl1links extensionClassContainerImpl1links = (ExtensionClassContainerImpl1links) o;
-    return Objects.equals(self, extensionClassContainerImpl1links.self) &&
-        Objects.equals(propertyClass, extensionClassContainerImpl1links.propertyClass);
+    return Objects.equals(this.self, extensionClassContainerImpl1links.self) &&
+        Objects.equals(this.propertyClass, extensionClassContainerImpl1links.propertyClass);
   }
 
   @Override

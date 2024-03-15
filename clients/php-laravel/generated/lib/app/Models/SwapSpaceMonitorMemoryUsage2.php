@@ -10,18 +10,18 @@ namespace app\Models;
 class SwapSpaceMonitorMemoryUsage2 {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $availablePhysicalMemory */
-    private $availablePhysicalMemory;
+    public $availablePhysicalMemory = 0;
 
     /** @var int $availableSwapSpace */
-    private $availableSwapSpace;
+    public $availableSwapSpace = 0;
 
     /** @var int $totalPhysicalMemory */
-    private $totalPhysicalMemory;
+    public $totalPhysicalMemory = 0;
 
     /** @var int $totalSwapSpace */
-    private $totalSwapSpace;
+    public $totalSwapSpace = 0;
 
 }

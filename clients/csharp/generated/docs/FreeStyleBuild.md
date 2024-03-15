@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.FreeStyleBuild
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **Number** | **int** |  | [optional] 
 **Url** | **string** |  | [optional] 
 **Actions** | [**List&lt;CauseAction&gt;**](CauseAction.md) |  | [optional] 
@@ -24,7 +23,5 @@ Name | Type | Description | Notes
 **BuiltOn** | **string** |  | [optional] 
 **ChangeSet** | [**EmptyChangeLogSet**](EmptyChangeLogSet.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

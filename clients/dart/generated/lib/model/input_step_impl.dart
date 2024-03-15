@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -74,13 +74,13 @@ class InputStepImpl {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is InputStepImpl &&
-     other.class_ == class_ &&
-     other.links == links &&
-     other.id == id &&
-     other.message == message &&
-     other.ok == ok &&
-     other.parameters == parameters &&
-     other.submitter == submitter;
+    other.class_ == class_ &&
+    other.links == links &&
+    other.id == id &&
+    other.message == message &&
+    other.ok == ok &&
+    _deepEquality.equals(other.parameters, parameters) &&
+    other.submitter == submitter;
 
   @override
   int get hashCode =>
@@ -97,27 +97,39 @@ class InputStepImpl {
   String toString() => 'InputStepImpl[class_=$class_, links=$links, id=$id, message=$message, ok=$ok, parameters=$parameters, submitter=$submitter]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (message != null) {
-      _json[r'message'] = message;
+    if (this.message != null) {
+      json[r'message'] = this.message;
+    } else {
+      json[r'message'] = null;
     }
-    if (ok != null) {
-      _json[r'ok'] = ok;
+    if (this.ok != null) {
+      json[r'ok'] = this.ok;
+    } else {
+      json[r'ok'] = null;
     }
-      _json[r'parameters'] = parameters;
-    if (submitter != null) {
-      _json[r'submitter'] = submitter;
+      json[r'parameters'] = this.parameters;
+    if (this.submitter != null) {
+      json[r'submitter'] = this.submitter;
+    } else {
+      json[r'submitter'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [InputStepImpl] instance and imports its values from
@@ -144,14 +156,14 @@ class InputStepImpl {
         id: mapValueOfType<String>(json, r'id'),
         message: mapValueOfType<String>(json, r'message'),
         ok: mapValueOfType<String>(json, r'ok'),
-        parameters: StringParameterDefinition.listFromJson(json[r'parameters']) ?? const [],
+        parameters: StringParameterDefinition.listFromJson(json[r'parameters']),
         submitter: mapValueOfType<String>(json, r'submitter'),
       );
     }
     return null;
   }
 
-  static List<InputStepImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<InputStepImpl> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <InputStepImpl>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -182,12 +194,10 @@ class InputStepImpl {
   static Map<String, List<InputStepImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<InputStepImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = InputStepImpl.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = InputStepImpl.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -17,7 +18,6 @@ public class EmptyChangeLogSet   {
   private String propertyClass;
 
   private String kind;
-
 
   /**
    **/
@@ -65,8 +65,8 @@ public class EmptyChangeLogSet   {
       return false;
     }
     EmptyChangeLogSet emptyChangeLogSet = (EmptyChangeLogSet) o;
-    return Objects.equals(propertyClass, emptyChangeLogSet.propertyClass) &&
-        Objects.equals(kind, emptyChangeLogSet.kind);
+    return Objects.equals(this.propertyClass, emptyChangeLogSet.propertyClass) &&
+        Objects.equals(this.kind, emptyChangeLogSet.kind);
   }
 
   @Override

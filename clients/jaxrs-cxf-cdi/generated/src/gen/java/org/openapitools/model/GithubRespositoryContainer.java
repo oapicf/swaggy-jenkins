@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositories;
 import org.openapitools.model.GithubRespositoryContainerlinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,7 +22,6 @@ public class GithubRespositoryContainer   {
   private GithubRespositoryContainerlinks links;
 
   private GithubRepositories repositories;
-
 
   /**
    **/
@@ -87,9 +87,9 @@ public class GithubRespositoryContainer   {
       return false;
     }
     GithubRespositoryContainer githubRespositoryContainer = (GithubRespositoryContainer) o;
-    return Objects.equals(propertyClass, githubRespositoryContainer.propertyClass) &&
-        Objects.equals(links, githubRespositoryContainer.links) &&
-        Objects.equals(repositories, githubRespositoryContainer.repositories);
+    return Objects.equals(this.propertyClass, githubRespositoryContainer.propertyClass) &&
+        Objects.equals(this.links, githubRespositoryContainer.links) &&
+        Objects.equals(this.repositories, githubRespositoryContainer.repositories);
   }
 
   @Override

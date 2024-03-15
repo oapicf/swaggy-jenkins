@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunartifacts;
 import javax.validation.constraints.*;
@@ -18,11 +19,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRun   {
-  
   private @Valid String propertyClass;
-  private @Valid List<PipelineRunartifacts> artifacts = new ArrayList<>();
+  private @Valid List<@Valid PipelineRunartifacts> artifacts;
   private @Valid Integer durationInMillis;
   private @Valid Integer estimatedDurationInMillis;
   private @Valid String enQueueTime;
@@ -56,9 +56,9 @@ public class PipelineRun   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
-  public PipelineRun artifacts(List<PipelineRunartifacts> artifacts) {
+  public PipelineRun artifacts(List<@Valid PipelineRunartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
@@ -71,7 +71,7 @@ public class PipelineRun   {
   }
 
   @JsonProperty("artifacts")
-  public void setArtifacts(List<PipelineRunartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelineRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 
@@ -91,7 +91,7 @@ public class PipelineRun   {
 
     return this;
   }
-/**
+  /**
    **/
   public PipelineRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -110,7 +110,7 @@ public class PipelineRun   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineRun estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -129,7 +129,7 @@ public class PipelineRun   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineRun enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -148,7 +148,7 @@ public class PipelineRun   {
     this.enQueueTime = enQueueTime;
   }
 
-/**
+  /**
    **/
   public PipelineRun endTime(String endTime) {
     this.endTime = endTime;
@@ -167,7 +167,7 @@ public class PipelineRun   {
     this.endTime = endTime;
   }
 
-/**
+  /**
    **/
   public PipelineRun id(String id) {
     this.id = id;
@@ -186,7 +186,7 @@ public class PipelineRun   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineRun organization(String organization) {
     this.organization = organization;
@@ -205,7 +205,7 @@ public class PipelineRun   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineRun pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -224,7 +224,7 @@ public class PipelineRun   {
     this.pipeline = pipeline;
   }
 
-/**
+  /**
    **/
   public PipelineRun result(String result) {
     this.result = result;
@@ -243,7 +243,7 @@ public class PipelineRun   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelineRun runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -262,7 +262,7 @@ public class PipelineRun   {
     this.runSummary = runSummary;
   }
 
-/**
+  /**
    **/
   public PipelineRun startTime(String startTime) {
     this.startTime = startTime;
@@ -281,7 +281,7 @@ public class PipelineRun   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelineRun state(String state) {
     this.state = state;
@@ -300,7 +300,7 @@ public class PipelineRun   {
     this.state = state;
   }
 
-/**
+  /**
    **/
   public PipelineRun type(String type) {
     this.type = type;
@@ -319,7 +319,7 @@ public class PipelineRun   {
     this.type = type;
   }
 
-/**
+  /**
    **/
   public PipelineRun commitId(String commitId) {
     this.commitId = commitId;

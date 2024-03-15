@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.BranchImpllinks;
 import org.openapitools.server.api.model.BranchImplpermissions;
@@ -20,7 +21,7 @@ public class BranchImpl   {
   private String fullName;
   private String name;
   private String organization;
-  private List<StringParameterDefinition> parameters = new ArrayList<>();
+  private List<StringParameterDefinition> parameters;
   private BranchImplpermissions permissions;
   private Integer weatherScore;
   private String pullRequest;

@@ -50,7 +50,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "deletePipelineQueueItem",
-        description = "Delete queue item from an organization pipeline queue",
+        description = """Delete queue item from an organization pipeline queue""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully deleted queue item"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -68,7 +68,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getAuthenticatedUser",
-        description = "Retrieve authenticated user details for an organization",
+        description = """Retrieve authenticated user details for an organization""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved authenticated user details", content = [Content(schema = Schema(implementation = User::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -87,7 +87,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getClasses",
-        description = "Get a list of class names supported by a given class",
+        description = """Get a list of class names supported by a given class""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved class names", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -106,7 +106,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getOrganisation",
-        description = "Retrieve organization details",
+        description = """Retrieve organization details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved pipeline details", content = [Content(schema = Schema(implementation = Organisation::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -126,9 +126,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getOrganisations",
-        description = "Retrieve all organizations details",
+        description = """Retrieve all organizations details""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved pipelines details", content = [Content(schema = Schema(implementation = Organisation::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved pipelines details", content = [Content(array = ArraySchema(schema = Schema(implementation = Organisation::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -145,7 +145,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipeline",
-        description = "Retrieve pipeline details for an organization",
+        description = """Retrieve pipeline details for an organization""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved pipeline details", content = [Content(schema = Schema(implementation = Pipeline::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -165,9 +165,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineActivities",
-        description = "Retrieve all activities details for an organization pipeline",
+        description = """Retrieve all activities details for an organization pipeline""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved all activities details", content = [Content(schema = Schema(implementation = PipelineActivity::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved all activities details", content = [Content(array = ArraySchema(schema = Schema(implementation = PipelineActivity::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -184,7 +184,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineBranch",
-        description = "Retrieve branch details for an organization pipeline",
+        description = """Retrieve branch details for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved branch details", content = [Content(schema = Schema(implementation = BranchImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -203,7 +203,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineBranchRun",
-        description = "Retrieve branch run details for an organization pipeline",
+        description = """Retrieve branch run details for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved run details", content = [Content(schema = Schema(implementation = PipelineRun::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -222,7 +222,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineBranches",
-        description = "Retrieve all branches details for an organization pipeline",
+        description = """Retrieve all branches details for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved all branches details", content = [Content(schema = Schema(implementation = MultibranchPipeline::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -241,7 +241,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineFolder",
-        description = "Retrieve pipeline folder for an organization",
+        description = """Retrieve pipeline folder for an organization""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved folder details", content = [Content(schema = Schema(implementation = PipelineFolderImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -260,7 +260,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineFolderPipeline",
-        description = "Retrieve pipeline details for an organization folder",
+        description = """Retrieve pipeline details for an organization folder""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved pipeline details", content = [Content(schema = Schema(implementation = PipelineImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -279,9 +279,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineQueue",
-        description = "Retrieve queue details for an organization pipeline",
+        description = """Retrieve queue details for an organization pipeline""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved queue details", content = [Content(schema = Schema(implementation = QueueItemImpl::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved queue details", content = [Content(array = ArraySchema(schema = Schema(implementation = QueueItemImpl::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -298,7 +298,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRun",
-        description = "Retrieve run details for an organization pipeline",
+        description = """Retrieve run details for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved run details", content = [Content(schema = Schema(implementation = PipelineRun::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -317,7 +317,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRunLog",
-        description = "Get log for a pipeline run",
+        description = """Get log for a pipeline run""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved pipeline run log", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -336,7 +336,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRunNode",
-        description = "Retrieve run node details for an organization pipeline",
+        description = """Retrieve run node details for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved run node details", content = [Content(schema = Schema(implementation = PipelineRunNode::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -355,7 +355,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRunNodeStep",
-        description = "Retrieve run node details for an organization pipeline",
+        description = """Retrieve run node details for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved run node step details", content = [Content(schema = Schema(implementation = PipelineStepImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -374,7 +374,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRunNodeStepLog",
-        description = "Get log for a pipeline run node step",
+        description = """Get log for a pipeline run node step""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved pipeline run node step log", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -393,9 +393,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRunNodeSteps",
-        description = "Retrieve run node steps details for an organization pipeline",
+        description = """Retrieve run node steps details for an organization pipeline""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved run node steps details", content = [Content(schema = Schema(implementation = PipelineStepImpl::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved run node steps details", content = [Content(array = ArraySchema(schema = Schema(implementation = PipelineStepImpl::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -412,9 +412,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRunNodes",
-        description = "Retrieve run nodes details for an organization pipeline",
+        description = """Retrieve run nodes details for an organization pipeline""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved run nodes details", content = [Content(schema = Schema(implementation = PipelineRunNode::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved run nodes details", content = [Content(array = ArraySchema(schema = Schema(implementation = PipelineRunNode::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -431,9 +431,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelineRuns",
-        description = "Retrieve all runs details for an organization pipeline",
+        description = """Retrieve all runs details for an organization pipeline""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved runs details", content = [Content(schema = Schema(implementation = PipelineRun::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved runs details", content = [Content(array = ArraySchema(schema = Schema(implementation = PipelineRun::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -450,9 +450,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getPipelines",
-        description = "Retrieve all pipelines details for an organization",
+        description = """Retrieve all pipelines details for an organization""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved pipelines details", content = [Content(schema = Schema(implementation = Pipeline::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved pipelines details", content = [Content(array = ArraySchema(schema = Schema(implementation = Pipeline::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -469,7 +469,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getSCM",
-        description = "Retrieve SCM details for an organization",
+        description = """Retrieve SCM details for an organization""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved SCM details", content = [Content(schema = Schema(implementation = GithubScm::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -488,9 +488,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getSCMOrganisationRepositories",
-        description = "Retrieve SCM organization repositories details for an organization",
+        description = """Retrieve SCM organization repositories details for an organization""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved SCM organization repositories details", content = [Content(schema = Schema(implementation = GithubOrganization::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved SCM organization repositories details", content = [Content(array = ArraySchema(schema = Schema(implementation = GithubOrganization::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -507,9 +507,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getSCMOrganisationRepository",
-        description = "Retrieve SCM organization repository details for an organization",
+        description = """Retrieve SCM organization repository details for an organization""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved SCM organizations details", content = [Content(schema = Schema(implementation = GithubOrganization::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved SCM organizations details", content = [Content(array = ArraySchema(schema = Schema(implementation = GithubOrganization::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -526,9 +526,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getSCMOrganisations",
-        description = "Retrieve SCM organizations details for an organization",
+        description = """Retrieve SCM organizations details for an organization""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved SCM organizations details", content = [Content(schema = Schema(implementation = GithubOrganization::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved SCM organizations details", content = [Content(array = ArraySchema(schema = Schema(implementation = GithubOrganization::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -545,7 +545,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getUser",
-        description = "Retrieve user details for an organization",
+        description = """Retrieve user details for an organization""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved users details", content = [Content(schema = Schema(implementation = User::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -564,9 +564,9 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getUserFavorites",
-        description = "Retrieve user favorites details for an organization",
+        description = """Retrieve user favorites details for an organization""",
         responses = [
-            ApiResponse(responseCode = "200", description = "Successfully retrieved users favorites details", content = [Content(schema = Schema(implementation = FavoriteImpl::class))]),
+            ApiResponse(responseCode = "200", description = "Successfully retrieved users favorites details", content = [Content(array = ArraySchema(schema = Schema(implementation = FavoriteImpl::class)))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
             ApiResponse(responseCode = "403", description = "Jenkins requires authentication - please set username and password") ],
         security = [ SecurityRequirement(name = "jenkins_auth") ]
@@ -583,7 +583,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "getUsers",
-        description = "Retrieve users details for an organization",
+        description = """Retrieve users details for an organization""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved users details", content = [Content(schema = Schema(implementation = User::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -602,7 +602,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "postPipelineRun",
-        description = "Replay an organization pipeline run",
+        description = """Replay an organization pipeline run""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully replayed a pipeline run", content = [Content(schema = Schema(implementation = QueueItemImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -621,7 +621,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "postPipelineRuns",
-        description = "Start a build for an organization pipeline",
+        description = """Start a build for an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully started a build", content = [Content(schema = Schema(implementation = QueueItemImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -640,7 +640,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "putPipelineFavorite",
-        description = "Favorite/unfavorite a pipeline",
+        description = """Favorite/unfavorite a pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully favorited/unfavorited a pipeline", content = [Content(schema = Schema(implementation = FavoriteImpl::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -660,7 +660,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "putPipelineRun",
-        description = "Stop a build of an organization pipeline",
+        description = """Stop a build of an organization pipeline""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully stopped a build", content = [Content(schema = Schema(implementation = PipelineRun::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -679,7 +679,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "search",
-        description = "Search for any resource details",
+        description = """Search for any resource details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved search result", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -698,7 +698,7 @@ class BlueApiController() {
     @Operation(
         summary = "",
         operationId = "searchClasses",
-        description = "Get classes details",
+        description = """Get classes details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved search result", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

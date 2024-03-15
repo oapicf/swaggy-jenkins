@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools/Api.BlueOceanApi
+# PSOpenAPITools.PSOpenAPITools\Api.BlueOceanApi
 
 All URIs are relative to *http://localhost*
 
@@ -43,7 +43,7 @@ Method | HTTP request | Description
 [**Search-Classes**](BlueOceanApi.md#Search-Classes) | **GET** /blue/rest/classes/ | 
 
 
-<a name="Invoke-DeletePipelineQueueItem"></a>
+<a id="Invoke-DeletePipelineQueueItem"></a>
 # **Invoke-DeletePipelineQueueItem**
 > void Invoke-DeletePipelineQueueItem<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -97,7 +97,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-AuthenticatedUser"></a>
+<a id="Get-AuthenticatedUser"></a>
 # **Get-AuthenticatedUser**
 > User Get-AuthenticatedUser<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Classes"></a>
+<a id="Get-Classes"></a>
 # **Get-Classes**
 > String Get-Classes<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Class] <String><br>
@@ -193,7 +193,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-JsonWebKey"></a>
+<a id="Get-JsonWebKey"></a>
 # **Get-JsonWebKey**
 > String Get-JsonWebKey<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Key] <Int32><br>
@@ -235,7 +235,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-JsonWebToken"></a>
+<a id="Get-JsonWebToken"></a>
 # **Get-JsonWebToken**
 > String Get-JsonWebToken<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-ExpiryTimeInMins] <System.Nullable[Int32]><br>
@@ -280,7 +280,7 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Organisation"></a>
+<a id="Get-Organisation"></a>
 # **Get-Organisation**
 > Organisation Get-Organisation<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Organisations"></a>
+<a id="Get-Organisations"></a>
 # **Get-Organisations**
 > Organisation[] Get-Organisations<br>
 
@@ -371,7 +371,7 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Pipeline"></a>
+<a id="Get-Pipeline"></a>
 # **Get-Pipeline**
 > Pipeline Get-Pipeline<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -422,7 +422,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineActivities"></a>
+<a id="Get-PipelineActivities"></a>
 # **Get-PipelineActivities**
 > PipelineActivity[] Get-PipelineActivities<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -473,7 +473,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineBranch"></a>
+<a id="Get-PipelineBranch"></a>
 # **Get-PipelineBranch**
 > BranchImpl Get-PipelineBranch<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -527,7 +527,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineBranchRun"></a>
+<a id="Get-PipelineBranchRun"></a>
 # **Get-PipelineBranchRun**
 > PipelineRun Get-PipelineBranchRun<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -584,7 +584,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineBranches"></a>
+<a id="Get-PipelineBranches"></a>
 # **Get-PipelineBranches**
 > MultibranchPipeline Get-PipelineBranches<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -635,7 +635,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineFolder"></a>
+<a id="Get-PipelineFolder"></a>
 # **Get-PipelineFolder**
 > PipelineFolderImpl Get-PipelineFolder<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -686,7 +686,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineFolderPipeline"></a>
+<a id="Get-PipelineFolderPipeline"></a>
 # **Get-PipelineFolderPipeline**
 > PipelineImpl Get-PipelineFolderPipeline<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -740,7 +740,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineQueue"></a>
+<a id="Get-PipelineQueue"></a>
 # **Get-PipelineQueue**
 > QueueItemImpl[] Get-PipelineQueue<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -791,7 +791,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRun"></a>
+<a id="Get-PipelineRun"></a>
 # **Get-PipelineRun**
 > PipelineRun Get-PipelineRun<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -845,7 +845,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRunLog"></a>
+<a id="Get-PipelineRunLog"></a>
 # **Get-PipelineRunLog**
 > String Get-PipelineRunLog<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -905,7 +905,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRunNode"></a>
+<a id="Get-PipelineRunNode"></a>
 # **Get-PipelineRunNode**
 > PipelineRunNode Get-PipelineRunNode<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -962,7 +962,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRunNodeStep"></a>
+<a id="Get-PipelineRunNodeStep"></a>
 # **Get-PipelineRunNodeStep**
 > PipelineStepImpl Get-PipelineRunNodeStep<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1022,7 +1022,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRunNodeStepLog"></a>
+<a id="Get-PipelineRunNodeStepLog"></a>
 # **Get-PipelineRunNodeStepLog**
 > String Get-PipelineRunNodeStepLog<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1082,7 +1082,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRunNodeSteps"></a>
+<a id="Get-PipelineRunNodeSteps"></a>
 # **Get-PipelineRunNodeSteps**
 > PipelineStepImpl[] Get-PipelineRunNodeSteps<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1139,7 +1139,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRunNodes"></a>
+<a id="Get-PipelineRunNodes"></a>
 # **Get-PipelineRunNodes**
 > PipelineRunNode[] Get-PipelineRunNodes<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1193,7 +1193,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-PipelineRuns"></a>
+<a id="Get-PipelineRuns"></a>
 # **Get-PipelineRuns**
 > PipelineRun[] Get-PipelineRuns<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1244,7 +1244,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Pipelines"></a>
+<a id="Get-Pipelines"></a>
 # **Get-Pipelines**
 > Pipeline[] Get-Pipelines<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1292,7 +1292,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SCM"></a>
+<a id="Get-SCM"></a>
 # **Get-SCM**
 > GithubScm Get-SCM<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1343,7 +1343,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SCMOrganisationRepositories"></a>
+<a id="Get-SCMOrganisationRepositories"></a>
 # **Get-SCMOrganisationRepositories**
 > GithubOrganization[] Get-SCMOrganisationRepositories<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1406,7 +1406,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SCMOrganisationRepository"></a>
+<a id="Get-SCMOrganisationRepository"></a>
 # **Get-SCMOrganisationRepository**
 > GithubOrganization[] Get-SCMOrganisationRepository<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1466,7 +1466,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-SCMOrganisations"></a>
+<a id="Get-SCMOrganisations"></a>
 # **Get-SCMOrganisations**
 > GithubOrganization[] Get-SCMOrganisations<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1520,7 +1520,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-User"></a>
+<a id="Get-User"></a>
 # **Get-User**
 > User Get-User<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1571,7 +1571,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-UserFavorites"></a>
+<a id="Get-UserFavorites"></a>
 # **Get-UserFavorites**
 > FavoriteImpl[] Get-UserFavorites<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-User] <String><br>
@@ -1619,7 +1619,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Users"></a>
+<a id="Get-Users"></a>
 # **Get-Users**
 > User Get-Users<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1667,7 +1667,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-PipelineRun"></a>
+<a id="Submit-PipelineRun"></a>
 # **Submit-PipelineRun**
 > QueueItemImpl Submit-PipelineRun<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1721,7 +1721,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-PipelineRuns"></a>
+<a id="Submit-PipelineRuns"></a>
 # **Submit-PipelineRuns**
 > QueueItemImpl Submit-PipelineRuns<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1772,7 +1772,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Send-PipelineFavorite"></a>
+<a id="Send-PipelineFavorite"></a>
 # **Send-PipelineFavorite**
 > FavoriteImpl Send-PipelineFavorite<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1826,7 +1826,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Send-PipelineRun"></a>
+<a id="Send-PipelineRun"></a>
 # **Send-PipelineRun**
 > PipelineRun Send-PipelineRun<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Organization] <String><br>
@@ -1886,7 +1886,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Search-"></a>
+<a id="Search-"></a>
 # **Search-**
 > String Search-<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Q] <String><br>
@@ -1934,7 +1934,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Search-Classes"></a>
+<a id="Search-Classes"></a>
 # **Search-Classes**
 > String Search-Classes<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Q] <String><br>

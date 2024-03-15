@@ -17,6 +17,7 @@ import org.openapitools.models.PipelineRun
 import org.openapitools.models.PipelineRunNode
 import org.openapitools.models.PipelineStepImpl
 import org.openapitools.models.QueueItemImpl
+import scala.collection.immutable.Seq
 import org.openapitools.models.User
 import io.finch.circe._
 import io.circe.generic.semiauto._

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -128,19 +128,19 @@ class BranchImpl {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is BranchImpl &&
-     other.class_ == class_ &&
-     other.displayName == displayName &&
-     other.estimatedDurationInMillis == estimatedDurationInMillis &&
-     other.fullDisplayName == fullDisplayName &&
-     other.fullName == fullName &&
-     other.name == name &&
-     other.organization == organization &&
-     other.parameters == parameters &&
-     other.permissions == permissions &&
-     other.weatherScore == weatherScore &&
-     other.pullRequest == pullRequest &&
-     other.links == links &&
-     other.latestRun == latestRun;
+    other.class_ == class_ &&
+    other.displayName == displayName &&
+    other.estimatedDurationInMillis == estimatedDurationInMillis &&
+    other.fullDisplayName == fullDisplayName &&
+    other.fullName == fullName &&
+    other.name == name &&
+    other.organization == organization &&
+    _deepEquality.equals(other.parameters, parameters) &&
+    other.permissions == permissions &&
+    other.weatherScore == weatherScore &&
+    other.pullRequest == pullRequest &&
+    other.links == links &&
+    other.latestRun == latestRun;
 
   @override
   int get hashCode =>
@@ -163,45 +163,69 @@ class BranchImpl {
   String toString() => 'BranchImpl[class_=$class_, displayName=$displayName, estimatedDurationInMillis=$estimatedDurationInMillis, fullDisplayName=$fullDisplayName, fullName=$fullName, name=$name, organization=$organization, parameters=$parameters, permissions=$permissions, weatherScore=$weatherScore, pullRequest=$pullRequest, links=$links, latestRun=$latestRun]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (estimatedDurationInMillis != null) {
-      _json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
+    if (this.estimatedDurationInMillis != null) {
+      json[r'estimatedDurationInMillis'] = this.estimatedDurationInMillis;
+    } else {
+      json[r'estimatedDurationInMillis'] = null;
     }
-    if (fullDisplayName != null) {
-      _json[r'fullDisplayName'] = fullDisplayName;
+    if (this.fullDisplayName != null) {
+      json[r'fullDisplayName'] = this.fullDisplayName;
+    } else {
+      json[r'fullDisplayName'] = null;
     }
-    if (fullName != null) {
-      _json[r'fullName'] = fullName;
+    if (this.fullName != null) {
+      json[r'fullName'] = this.fullName;
+    } else {
+      json[r'fullName'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (organization != null) {
-      _json[r'organization'] = organization;
+    if (this.organization != null) {
+      json[r'organization'] = this.organization;
+    } else {
+      json[r'organization'] = null;
     }
-      _json[r'parameters'] = parameters;
-    if (permissions != null) {
-      _json[r'permissions'] = permissions;
+      json[r'parameters'] = this.parameters;
+    if (this.permissions != null) {
+      json[r'permissions'] = this.permissions;
+    } else {
+      json[r'permissions'] = null;
     }
-    if (weatherScore != null) {
-      _json[r'weatherScore'] = weatherScore;
+    if (this.weatherScore != null) {
+      json[r'weatherScore'] = this.weatherScore;
+    } else {
+      json[r'weatherScore'] = null;
     }
-    if (pullRequest != null) {
-      _json[r'pullRequest'] = pullRequest;
+    if (this.pullRequest != null) {
+      json[r'pullRequest'] = this.pullRequest;
+    } else {
+      json[r'pullRequest'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-    if (latestRun != null) {
-      _json[r'latestRun'] = latestRun;
+    if (this.latestRun != null) {
+      json[r'latestRun'] = this.latestRun;
+    } else {
+      json[r'latestRun'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [BranchImpl] instance and imports its values from
@@ -230,7 +254,7 @@ class BranchImpl {
         fullName: mapValueOfType<String>(json, r'fullName'),
         name: mapValueOfType<String>(json, r'name'),
         organization: mapValueOfType<String>(json, r'organization'),
-        parameters: StringParameterDefinition.listFromJson(json[r'parameters']) ?? const [],
+        parameters: StringParameterDefinition.listFromJson(json[r'parameters']),
         permissions: BranchImplpermissions.fromJson(json[r'permissions']),
         weatherScore: mapValueOfType<int>(json, r'weatherScore'),
         pullRequest: mapValueOfType<String>(json, r'pullRequest'),
@@ -241,7 +265,7 @@ class BranchImpl {
     return null;
   }
 
-  static List<BranchImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<BranchImpl> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <BranchImpl>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -272,12 +296,10 @@ class BranchImpl {
   static Map<String, List<BranchImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<BranchImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = BranchImpl.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = BranchImpl.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

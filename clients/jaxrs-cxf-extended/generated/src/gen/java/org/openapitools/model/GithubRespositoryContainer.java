@@ -96,6 +96,25 @@ public class GithubRespositoryContainer  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubRespositoryContainer githubRespositoryContainer = (GithubRespositoryContainer) o;
+    return Objects.equals(this.propertyClass, githubRespositoryContainer.propertyClass) &&
+        Objects.equals(this.links, githubRespositoryContainer.links) &&
+        Objects.equals(this.repositories, githubRespositoryContainer.repositories);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, repositories);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubRespositoryContainer {\n");

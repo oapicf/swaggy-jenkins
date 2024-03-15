@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
-**actions** | Option<[**Vec<crate::models::CauseAction>**](CauseAction.md)> |  | [optional]
+**actions** | Option<[**Vec<models::CauseAction>**](CauseAction.md)> |  | [optional]
 **blocked** | Option<**bool**> |  | [optional]
 **buildable** | Option<**bool**> |  | [optional]
 **id** | Option<**i32**> |  | [optional]
 **in_queue_since** | Option<**i32**> |  | [optional]
 **params** | Option<**String**> |  | [optional]
 **stuck** | Option<**bool**> |  | [optional]
-**task** | Option<[**crate::models::FreeStyleProject**](FreeStyleProject.md)> |  | [optional]
+**task** | Option<[**models::FreeStyleProject**](FreeStyleProject.md)> |  | [optional]
 **url** | Option<**String**> |  | [optional]
 **why** | Option<**String**> |  | [optional]
 **buildable_start_milliseconds** | Option<**i32**> |  | [optional]

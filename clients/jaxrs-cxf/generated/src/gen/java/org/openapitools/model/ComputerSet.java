@@ -1,12 +1,14 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -20,7 +22,7 @@ public class ComputerSet  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<HudsonMasterComputer> computer = null;
+  private List<@Valid HudsonMasterComputer> computer;
 
   @ApiModelProperty(value = "")
   private String displayName;
@@ -68,15 +70,15 @@ public class ComputerSet  {
    * @return computer
   **/
   @JsonProperty("computer")
-  public List<HudsonMasterComputer> getComputer() {
+  public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
 
-  public void setComputer(List<HudsonMasterComputer> computer) {
+  public void setComputer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
   }
 
-  public ComputerSet computer(List<HudsonMasterComputer> computer) {
+  public ComputerSet computer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
     return this;
   }
@@ -122,6 +124,26 @@ public class ComputerSet  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ComputerSet computerSet = (ComputerSet) o;
+    return Objects.equals(this.propertyClass, computerSet.propertyClass) &&
+        Objects.equals(this.busyExecutors, computerSet.busyExecutors) &&
+        Objects.equals(this.computer, computerSet.computer) &&
+        Objects.equals(this.displayName, computerSet.displayName) &&
+        Objects.equals(this.totalExecutors, computerSet.totalExecutors);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, busyExecutors, computer, displayName, totalExecutors);
+  }
 
   @Override
   public String toString() {

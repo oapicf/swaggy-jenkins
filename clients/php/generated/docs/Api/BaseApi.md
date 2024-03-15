@@ -1,10 +1,10 @@
 # OpenAPI\Client\BaseApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getCrumb()**](BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json | 
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getCrumb()**](BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json |  |
 
 
 ## `getCrumb()`

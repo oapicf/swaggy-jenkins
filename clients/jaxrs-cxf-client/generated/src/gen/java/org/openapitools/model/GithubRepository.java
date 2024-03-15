@@ -4,6 +4,7 @@ import org.openapitools.model.GithubRepositorylinks;
 import org.openapitools.model.GithubRepositorypermissions;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -176,6 +177,29 @@ public class GithubRepository  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubRepository githubRepository = (GithubRepository) o;
+    return Objects.equals(this.propertyClass, githubRepository.propertyClass) &&
+        Objects.equals(this.links, githubRepository.links) &&
+        Objects.equals(this.defaultBranch, githubRepository.defaultBranch) &&
+        Objects.equals(this.description, githubRepository.description) &&
+        Objects.equals(this.name, githubRepository.name) &&
+        Objects.equals(this.permissions, githubRepository.permissions) &&
+        Objects.equals(this._private, githubRepository._private) &&
+        Objects.equals(this.fullName, githubRepository.fullName);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, defaultBranch, description, name, permissions, _private, fullName);
+  }
 
   @Override
   public String toString() {

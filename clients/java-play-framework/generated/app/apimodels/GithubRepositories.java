@@ -3,16 +3,18 @@ package apimodels;
 import apimodels.GithubRepositorieslinks;
 import apimodels.GithubRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * GithubRepositories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class GithubRepositories   {
   @JsonProperty("_class")
@@ -27,7 +29,7 @@ public class GithubRepositories   {
   @JsonProperty("items")
   @Valid
 
-  private List<GithubRepository> items = null;
+  private List<@Valid GithubRepository> items = null;
 
   @JsonProperty("lastPage")
   
@@ -75,16 +77,16 @@ public class GithubRepositories   {
     this.links = links;
   }
 
-  public GithubRepositories items(List<GithubRepository> items) {
+  public GithubRepositories items(List<@Valid GithubRepository> items) {
     this.items = items;
     return this;
   }
 
   public GithubRepositories addItemsItem(GithubRepository itemsItem) {
-    if (items == null) {
-      items = new ArrayList<>();
+    if (this.items == null) {
+      this.items = new ArrayList<>();
     }
-    items.add(itemsItem);
+    this.items.add(itemsItem);
     return this;
   }
 
@@ -92,11 +94,11 @@ public class GithubRepositories   {
    * Get items
    * @return items
   **/
-  public List<GithubRepository> getItems() {
+  public List<@Valid GithubRepository> getItems() {
     return items;
   }
 
-  public void setItems(List<GithubRepository> items) {
+  public void setItems(List<@Valid GithubRepository> items) {
     this.items = items;
   }
 

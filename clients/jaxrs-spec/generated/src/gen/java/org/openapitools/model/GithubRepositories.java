@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
 import org.openapitools.model.GithubRepository;
@@ -19,12 +20,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepositories")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepositories   {
-  
   private @Valid String propertyClass;
   private @Valid GithubRepositorieslinks links;
-  private @Valid List<GithubRepository> items = new ArrayList<>();
+  private @Valid List<@Valid GithubRepository> items;
   private @Valid Integer lastPage;
   private @Valid Integer nextPage;
   private @Valid Integer pageSize;
@@ -48,7 +48,7 @@ public class GithubRepositories   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public GithubRepositories links(GithubRepositorieslinks links) {
     this.links = links;
@@ -67,9 +67,9 @@ public class GithubRepositories   {
     this.links = links;
   }
 
-/**
+  /**
    **/
-  public GithubRepositories items(List<GithubRepository> items) {
+  public GithubRepositories items(List<@Valid GithubRepository> items) {
     this.items = items;
     return this;
   }
@@ -82,7 +82,7 @@ public class GithubRepositories   {
   }
 
   @JsonProperty("items")
-  public void setItems(List<GithubRepository> items) {
+  public void setItems(List<@Valid GithubRepository> items) {
     this.items = items;
   }
 
@@ -102,7 +102,7 @@ public class GithubRepositories   {
 
     return this;
   }
-/**
+  /**
    **/
   public GithubRepositories lastPage(Integer lastPage) {
     this.lastPage = lastPage;
@@ -121,7 +121,7 @@ public class GithubRepositories   {
     this.lastPage = lastPage;
   }
 
-/**
+  /**
    **/
   public GithubRepositories nextPage(Integer nextPage) {
     this.nextPage = nextPage;
@@ -140,7 +140,7 @@ public class GithubRepositories   {
     this.nextPage = nextPage;
   }
 
-/**
+  /**
    **/
   public GithubRepositories pageSize(Integer pageSize) {
     this.pageSize = pageSize;

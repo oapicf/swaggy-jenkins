@@ -207,13 +207,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Authorization
 
+
 Authentication schemes defined for the API:
 ### jenkins_auth
 
 - **Type**: HTTP basic authentication
 
 ### jwt_auth
-
 
 - **Type**: API key
 - **API key parameter name**: Authorization
@@ -222,5 +222,5 @@ Authentication schemes defined for the API:
 
 ## Author
 
-blah@cliffano.com
+blah+oapicf@cliffano.com
 

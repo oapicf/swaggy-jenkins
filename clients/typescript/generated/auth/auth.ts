@@ -41,8 +41,8 @@ export class JenkinsAuthAuthentication implements SecurityAuthentication {
     }
 
     public applySecurityAuthentication(context: RequestContext) {
-        let comb = this.username + ":" + this.password;
-        context.setHeaderParam("Authorization", "Basic " + btoa(comb));
+        let comb = Buffer.from(this.username + ":" + this.password, 'binary').toString('base64');
+        context.setHeaderParam("Authorization", "Basic " + comb);
     }
 }
 

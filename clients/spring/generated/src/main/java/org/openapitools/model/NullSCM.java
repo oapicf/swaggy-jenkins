@@ -18,10 +18,9 @@ import javax.annotation.Generated;
  * NullSCM
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class NullSCM {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public NullSCM propertyClass(String propertyClass) {
@@ -34,7 +33,8 @@ public class NullSCM {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

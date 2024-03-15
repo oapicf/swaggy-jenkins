@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -62,11 +62,11 @@ class User {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is User &&
-     other.class_ == class_ &&
-     other.id == id &&
-     other.fullName == fullName &&
-     other.email == email &&
-     other.name == name;
+    other.class_ == class_ &&
+    other.id == id &&
+    other.fullName == fullName &&
+    other.email == email &&
+    other.name == name;
 
   @override
   int get hashCode =>
@@ -81,23 +81,33 @@ class User {
   String toString() => 'User[class_=$class_, id=$id, fullName=$fullName, email=$email, name=$name]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (fullName != null) {
-      _json[r'fullName'] = fullName;
+    if (this.fullName != null) {
+      json[r'fullName'] = this.fullName;
+    } else {
+      json[r'fullName'] = null;
     }
-    if (email != null) {
-      _json[r'email'] = email;
+    if (this.email != null) {
+      json[r'email'] = this.email;
+    } else {
+      json[r'email'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [User] instance and imports its values from
@@ -129,7 +139,7 @@ class User {
     return null;
   }
 
-  static List<User>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<User> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <User>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,12 +170,10 @@ class User {
   static Map<String, List<User>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<User>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = User.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = User.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

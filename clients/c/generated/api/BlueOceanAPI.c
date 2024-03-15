@@ -15,7 +15,7 @@
 // Delete queue item from an organization pipeline queue
 //
 void
-BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char * organization , char * pipeline , char * queue )
+BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char *organization, char *pipeline, char *queue)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -105,7 +105,7 @@ end:
 // Retrieve authenticated user details for an organization
 //
 user_t*
-BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char * organization )
+BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char *organization)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -185,7 +185,7 @@ end:
 // Get a list of class names supported by a given class
 //
 char*
-BlueOceanAPI_getClasses(apiClient_t *apiClient, char * _class )
+BlueOceanAPI_getClasses(apiClient_t *apiClient, char *_class)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -259,7 +259,7 @@ end:
 // Retrieve JSON Web Key
 //
 char*
-BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int key )
+BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int *key)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -283,7 +283,7 @@ BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int key )
     snprintf(localVarToReplace_key, sizeOfPathParams_key, "{%s}", "key");
 
     char localVarBuff_key[256];
-    intToStr(localVarBuff_key, key);
+    intToStr(localVarBuff_key, *key);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_key, localVarBuff_key);
 
@@ -337,7 +337,7 @@ end:
 // Retrieve JSON Web Token
 //
 char*
-BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int expiryTimeInMins , int maxExpiryTimeInMins )
+BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int *expiryTimeInMins, int *maxExpiryTimeInMins)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -362,7 +362,7 @@ BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int expiryTimeInMins , int 
     {
         keyQuery_expiryTimeInMins = strdup("expiryTimeInMins");
         valueQuery_expiryTimeInMins = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_expiryTimeInMins, MAX_NUMBER_LENGTH, "%d", expiryTimeInMins);
+        snprintf(valueQuery_expiryTimeInMins, MAX_NUMBER_LENGTH, "%d", *expiryTimeInMins);
         keyPairQuery_expiryTimeInMins = keyValuePair_create(keyQuery_expiryTimeInMins, valueQuery_expiryTimeInMins);
         list_addElement(localVarQueryParameters,keyPairQuery_expiryTimeInMins);
     }
@@ -375,7 +375,7 @@ BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int expiryTimeInMins , int 
     {
         keyQuery_maxExpiryTimeInMins = strdup("maxExpiryTimeInMins");
         valueQuery_maxExpiryTimeInMins = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_maxExpiryTimeInMins, MAX_NUMBER_LENGTH, "%d", maxExpiryTimeInMins);
+        snprintf(valueQuery_maxExpiryTimeInMins, MAX_NUMBER_LENGTH, "%d", *maxExpiryTimeInMins);
         keyPairQuery_maxExpiryTimeInMins = keyValuePair_create(keyQuery_maxExpiryTimeInMins, valueQuery_maxExpiryTimeInMins);
         list_addElement(localVarQueryParameters,keyPairQuery_maxExpiryTimeInMins);
     }
@@ -450,7 +450,7 @@ end:
 // Retrieve organization details
 //
 organisation_t*
-BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char * organization )
+BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char *organization)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -613,7 +613,7 @@ end:
 // Retrieve pipeline details for an organization
 //
 pipeline_t*
-BlueOceanAPI_getPipeline(apiClient_t *apiClient, char * organization , char * pipeline )
+BlueOceanAPI_getPipeline(apiClient_t *apiClient, char *organization, char *pipeline)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -708,7 +708,7 @@ end:
 // Retrieve all activities details for an organization pipeline
 //
 list_t*
-BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char * organization , char * pipeline )
+BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char *organization, char *pipeline)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -809,7 +809,7 @@ end:
 // Retrieve branch details for an organization pipeline
 //
 branch_impl_t*
-BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char * organization , char * pipeline , char * branch )
+BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char *pipeline, char *branch)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -911,7 +911,7 @@ end:
 // Retrieve branch run details for an organization pipeline
 //
 pipeline_run_t*
-BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char * organization , char * pipeline , char * branch , char * run )
+BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, char *pipeline, char *branch, char *run)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1024,7 +1024,7 @@ end:
 // Retrieve all branches details for an organization pipeline
 //
 multibranch_pipeline_t*
-BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char * organization , char * pipeline )
+BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char *organization, char *pipeline)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1115,7 +1115,7 @@ end:
 // Retrieve pipeline folder for an organization
 //
 pipeline_folder_impl_t*
-BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char * organization , char * folder )
+BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char *organization, char *folder)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1206,7 +1206,7 @@ end:
 // Retrieve pipeline details for an organization folder
 //
 pipeline_impl_t*
-BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char * organization , char * pipeline , char * folder )
+BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organization, char *pipeline, char *folder)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1308,7 +1308,7 @@ end:
 // Retrieve queue details for an organization pipeline
 //
 list_t*
-BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char * organization , char * pipeline )
+BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char *organization, char *pipeline)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1409,7 +1409,7 @@ end:
 // Retrieve run details for an organization pipeline
 //
 pipeline_run_t*
-BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char * organization , char * pipeline , char * run )
+BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pipeline, char *run)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1511,7 +1511,7 @@ end:
 // Get log for a pipeline run
 //
 char*
-BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char * organization , char * pipeline , char * run , int start , int download )
+BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char *pipeline, char *run, int *start, int *download)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -1566,7 +1566,7 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char * organization , cha
     {
         keyQuery_start = strdup("start");
         valueQuery_start = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_start, MAX_NUMBER_LENGTH, "%d", start);
+        snprintf(valueQuery_start, MAX_NUMBER_LENGTH, "%d", *start);
         keyPairQuery_start = keyValuePair_create(keyQuery_start, valueQuery_start);
         list_addElement(localVarQueryParameters,keyPairQuery_start);
     }
@@ -1579,7 +1579,7 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char * organization , cha
     {
         keyQuery_download = strdup("download");
         valueQuery_download = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_download, MAX_NUMBER_LENGTH, "%d", download);
+        snprintf(valueQuery_download, MAX_NUMBER_LENGTH, "%d", *download);
         keyPairQuery_download = keyValuePair_create(keyQuery_download, valueQuery_download);
         list_addElement(localVarQueryParameters,keyPairQuery_download);
     }
@@ -1657,7 +1657,7 @@ end:
 // Retrieve run node details for an organization pipeline
 //
 pipeline_run_node_t*
-BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char * organization , char * pipeline , char * run , char * node )
+BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1770,7 +1770,7 @@ end:
 // Retrieve run node details for an organization pipeline
 //
 pipeline_step_impl_t*
-BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char * organization , char * pipeline , char * run , char * node , char * step )
+BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node, char *step)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1894,7 +1894,7 @@ end:
 // Get log for a pipeline run node step
 //
 char*
-BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char * organization , char * pipeline , char * run , char * node , char * step )
+BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node, char *step)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2012,7 +2012,7 @@ end:
 // Retrieve run node steps details for an organization pipeline
 //
 list_t*
-BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char * organization , char * pipeline , char * run , char * node )
+BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2135,7 +2135,7 @@ end:
 // Retrieve run nodes details for an organization pipeline
 //
 list_t*
-BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char * organization , char * pipeline , char * run )
+BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, char *pipeline, char *run)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2247,7 +2247,7 @@ end:
 // Retrieve all runs details for an organization pipeline
 //
 list_t*
-BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char * organization , char * pipeline )
+BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char *organization, char *pipeline)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2348,7 +2348,7 @@ end:
 // Retrieve all pipelines details for an organization
 //
 list_t*
-BlueOceanAPI_getPipelines(apiClient_t *apiClient, char * organization )
+BlueOceanAPI_getPipelines(apiClient_t *apiClient, char *organization)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2438,7 +2438,7 @@ end:
 // Retrieve SCM details for an organization
 //
 github_scm_t*
-BlueOceanAPI_getSCM(apiClient_t *apiClient, char * organization , char * scm )
+BlueOceanAPI_getSCM(apiClient_t *apiClient, char *organization, char *scm)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2529,7 +2529,7 @@ end:
 // Retrieve SCM organization repositories details for an organization
 //
 list_t*
-BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char * organization , char * scm , char * scmOrganisation , char * credentialId , int pageSize , int pageNumber )
+BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organization, char *scm, char *scmOrganisation, char *credentialId, int *pageSize, int *pageNumber)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -2596,7 +2596,7 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char * organ
     {
         keyQuery_pageSize = strdup("pageSize");
         valueQuery_pageSize = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_pageSize, MAX_NUMBER_LENGTH, "%d", pageSize);
+        snprintf(valueQuery_pageSize, MAX_NUMBER_LENGTH, "%d", *pageSize);
         keyPairQuery_pageSize = keyValuePair_create(keyQuery_pageSize, valueQuery_pageSize);
         list_addElement(localVarQueryParameters,keyPairQuery_pageSize);
     }
@@ -2609,7 +2609,7 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char * organ
     {
         keyQuery_pageNumber = strdup("pageNumber");
         valueQuery_pageNumber = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_pageNumber, MAX_NUMBER_LENGTH, "%d", pageNumber);
+        snprintf(valueQuery_pageNumber, MAX_NUMBER_LENGTH, "%d", *pageNumber);
         keyPairQuery_pageNumber = keyValuePair_create(keyQuery_pageNumber, valueQuery_pageNumber);
         list_addElement(localVarQueryParameters,keyPairQuery_pageNumber);
     }
@@ -2715,7 +2715,7 @@ end:
 // Retrieve SCM organization repository details for an organization
 //
 list_t*
-BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char * organization , char * scm , char * scmOrganisation , char * repository , char * credentialId )
+BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organization, char *scm, char *scmOrganisation, char *repository, char *credentialId)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -2862,7 +2862,7 @@ end:
 // Retrieve SCM organizations details for an organization
 //
 list_t*
-BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char * organization , char * scm , char * credentialId )
+BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char *organization, char *scm, char *credentialId)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -2987,7 +2987,7 @@ end:
 // Retrieve user details for an organization
 //
 user_t*
-BlueOceanAPI_getUser(apiClient_t *apiClient, char * organization , char * user )
+BlueOceanAPI_getUser(apiClient_t *apiClient, char *organization, char *user)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3078,7 +3078,7 @@ end:
 // Retrieve user favorites details for an organization
 //
 list_t*
-BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char * user )
+BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char *user)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3168,7 +3168,7 @@ end:
 // Retrieve users details for an organization
 //
 user_t*
-BlueOceanAPI_getUsers(apiClient_t *apiClient, char * organization )
+BlueOceanAPI_getUsers(apiClient_t *apiClient, char *organization)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3248,7 +3248,7 @@ end:
 // Replay an organization pipeline run
 //
 queue_item_impl_t*
-BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char * organization , char * pipeline , char * run )
+BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *pipeline, char *run)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3350,7 +3350,7 @@ end:
 // Start a build for an organization pipeline
 //
 queue_item_impl_t*
-BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char * organization , char * pipeline )
+BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char *organization, char *pipeline)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3441,7 +3441,7 @@ end:
 // Favorite/unfavorite a pipeline
 //
 favorite_impl_t*
-BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization , char * pipeline , int body )
+BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, char *pipeline, int *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -3547,7 +3547,7 @@ end:
 // Stop a build of an organization pipeline
 //
 pipeline_run_t*
-BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char * organization , char * pipeline , char * run , char * blocking , int timeOutInSecs )
+BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *blocking, int *timeOutInSecs)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -3614,7 +3614,7 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char * organization , char *
     {
         keyQuery_timeOutInSecs = strdup("timeOutInSecs");
         valueQuery_timeOutInSecs = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_timeOutInSecs, MAX_NUMBER_LENGTH, "%d", timeOutInSecs);
+        snprintf(valueQuery_timeOutInSecs, MAX_NUMBER_LENGTH, "%d", *timeOutInSecs);
         keyPairQuery_timeOutInSecs = keyValuePair_create(keyQuery_timeOutInSecs, valueQuery_timeOutInSecs);
         list_addElement(localVarQueryParameters,keyPairQuery_timeOutInSecs);
     }
@@ -3698,7 +3698,7 @@ end:
 // Search for any resource details
 //
 char*
-BlueOceanAPI_search(apiClient_t *apiClient, char * q )
+BlueOceanAPI_search(apiClient_t *apiClient, char *q)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -3785,7 +3785,7 @@ end:
 // Get classes details
 //
 char*
-BlueOceanAPI_searchClasses(apiClient_t *apiClient, char * q )
+BlueOceanAPI_searchClasses(apiClient_t *apiClient, char *q)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;

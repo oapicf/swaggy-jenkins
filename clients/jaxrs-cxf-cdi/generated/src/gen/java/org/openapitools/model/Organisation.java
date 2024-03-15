@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -17,7 +18,6 @@ public class Organisation   {
   private String propertyClass;
 
   private String name;
-
 
   /**
    **/
@@ -65,8 +65,8 @@ public class Organisation   {
       return false;
     }
     Organisation organisation = (Organisation) o;
-    return Objects.equals(propertyClass, organisation.propertyClass) &&
-        Objects.equals(name, organisation.name);
+    return Objects.equals(this.propertyClass, organisation.propertyClass) &&
+        Objects.equals(this.name, organisation.name);
   }
 
   @Override

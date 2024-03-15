@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -19,7 +20,6 @@ public class AllView   {
   private String name;
 
   private String url;
-
 
   /**
    **/
@@ -85,9 +85,9 @@ public class AllView   {
       return false;
     }
     AllView allView = (AllView) o;
-    return Objects.equals(propertyClass, allView.propertyClass) &&
-        Objects.equals(name, allView.name) &&
-        Objects.equals(url, allView.url);
+    return Objects.equals(this.propertyClass, allView.propertyClass) &&
+        Objects.equals(this.name, allView.name) &&
+        Objects.equals(this.url, allView.url);
   }
 
   @Override

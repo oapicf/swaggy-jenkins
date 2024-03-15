@@ -1,4 +1,3 @@
-
 # Org.OpenAPITools.Model.FreeStyleProjecthealthReport
 
 ## Properties
@@ -9,9 +8,7 @@ Name | Type | Description | Notes
 **IconClassName** | **string** |  | [optional] 
 **IconUrl** | **string** |  | [optional] 
 **Score** | **int** |  | [optional] 
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

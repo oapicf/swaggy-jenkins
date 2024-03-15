@@ -4,6 +4,7 @@ import org.openapitools.model.ExtensionClassContainerImpl1links;
 import org.openapitools.model.ExtensionClassContainerImpl1map;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -71,6 +72,24 @@ public class ExtensionClassContainerImpl1  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ExtensionClassContainerImpl1 extensionClassContainerImpl1 = (ExtensionClassContainerImpl1) o;
+    return Objects.equals(this.propertyClass, extensionClassContainerImpl1.propertyClass) &&
+        Objects.equals(this.links, extensionClassContainerImpl1.links) &&
+        Objects.equals(this.map, extensionClassContainerImpl1.map);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, map);
+  }
 
   @Override
   public String toString() {

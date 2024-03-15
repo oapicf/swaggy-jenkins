@@ -1010,7 +1010,7 @@ let body:.BlueOceanApiGetPipelineRunLogRequest = {
   run: "run_example",
   // number | Start position of the log (optional)
   start: 1,
-  // boolean | Set to true in order to download the file, otherwise it's passed as a response body (optional)
+  // boolean | Set to true in order to download the file, otherwise it\'s passed as a response body (optional)
   download: true,
 };
 
@@ -1028,7 +1028,7 @@ Name | Type | Description  | Notes
  **pipeline** | [**string**] | Name of the pipeline | defaults to undefined
  **run** | [**string**] | Name of the run | defaults to undefined
  **start** | [**number**] | Start position of the log | (optional) defaults to undefined
- **download** | [**boolean**] | Set to true in order to download the file, otherwise it&#39;s passed as a response body | (optional) defaults to undefined
+ **download** | [**boolean**] | Set to true in order to download the file, otherwise it\&#39;s passed as a response body | (optional) defaults to undefined
 
 
 ### Return type

@@ -119,6 +119,26 @@ public class GithubRepositorypermissions  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubRepositorypermissions githubRepositorypermissions = (GithubRepositorypermissions) o;
+    return Objects.equals(this.admin, githubRepositorypermissions.admin) &&
+        Objects.equals(this.push, githubRepositorypermissions.push) &&
+        Objects.equals(this.pull, githubRepositorypermissions.pull) &&
+        Objects.equals(this.propertyClass, githubRepositorypermissions.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(admin, push, pull, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubRepositorypermissions {\n");

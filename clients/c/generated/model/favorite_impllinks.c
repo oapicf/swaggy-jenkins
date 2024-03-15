@@ -83,7 +83,7 @@ favorite_impllinks_t *favorite_impllinks_parseFromJSON(cJSON *favorite_impllinks
     // favorite_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(favorite_impllinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ favorite_impllinks_t *favorite_impllinks_parseFromJSON(cJSON *favorite_impllinks
 
     favorite_impllinks_local_var = favorite_impllinks_create (
         self ? self_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return favorite_impllinks_local_var;

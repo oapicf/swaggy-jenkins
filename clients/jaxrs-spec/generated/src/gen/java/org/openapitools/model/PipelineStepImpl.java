@@ -17,9 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineStepImpl   {
-  
   private @Valid String propertyClass;
   private @Valid PipelineStepImpllinks links;
   private @Valid String displayName;
@@ -49,7 +48,7 @@ public class PipelineStepImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl links(PipelineStepImpllinks links) {
     this.links = links;
@@ -68,7 +67,7 @@ public class PipelineStepImpl   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -87,7 +86,7 @@ public class PipelineStepImpl   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -106,7 +105,7 @@ public class PipelineStepImpl   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl id(String id) {
     this.id = id;
@@ -125,7 +124,7 @@ public class PipelineStepImpl   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl input(InputStepImpl input) {
     this.input = input;
@@ -144,7 +143,7 @@ public class PipelineStepImpl   {
     this.input = input;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl result(String result) {
     this.result = result;
@@ -163,7 +162,7 @@ public class PipelineStepImpl   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl startTime(String startTime) {
     this.startTime = startTime;
@@ -182,7 +181,7 @@ public class PipelineStepImpl   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelineStepImpl state(String state) {
     this.state = state;

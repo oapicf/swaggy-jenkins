@@ -3,6 +3,7 @@ package org.openapitools.model;
 import org.openapitools.model.PipelinelatestRun;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -175,6 +176,29 @@ public class Pipeline  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Pipeline pipeline = (Pipeline) o;
+    return Objects.equals(this.propertyClass, pipeline.propertyClass) &&
+        Objects.equals(this.organization, pipeline.organization) &&
+        Objects.equals(this.name, pipeline.name) &&
+        Objects.equals(this.displayName, pipeline.displayName) &&
+        Objects.equals(this.fullName, pipeline.fullName) &&
+        Objects.equals(this.weatherScore, pipeline.weatherScore) &&
+        Objects.equals(this.estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, pipeline.latestRun);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, organization, name, displayName, fullName, weatherScore, estimatedDurationInMillis, latestRun);
+  }
 
   @Override
   public String toString() {

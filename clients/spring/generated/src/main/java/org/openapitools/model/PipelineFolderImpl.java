@@ -18,28 +18,21 @@ import javax.annotation.Generated;
  * PipelineFolderImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineFolderImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("fullName")
   private String fullName;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("organization")
   private String organization;
 
-  @JsonProperty("numberOfFolders")
   private Integer numberOfFolders;
 
-  @JsonProperty("numberOfPipelines")
   private Integer numberOfPipelines;
 
   public PipelineFolderImpl propertyClass(String propertyClass) {
@@ -52,7 +45,8 @@ public class PipelineFolderImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -71,7 +65,8 @@ public class PipelineFolderImpl {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -90,7 +85,8 @@ public class PipelineFolderImpl {
    * @return fullName
   */
   
-  @Schema(name = "fullName", required = false)
+  @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
@@ -109,7 +105,8 @@ public class PipelineFolderImpl {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -128,7 +125,8 @@ public class PipelineFolderImpl {
    * @return organization
   */
   
-  @Schema(name = "organization", required = false)
+  @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
@@ -147,7 +145,8 @@ public class PipelineFolderImpl {
    * @return numberOfFolders
   */
   
-  @Schema(name = "numberOfFolders", required = false)
+  @Schema(name = "numberOfFolders", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("numberOfFolders")
   public Integer getNumberOfFolders() {
     return numberOfFolders;
   }
@@ -166,7 +165,8 @@ public class PipelineFolderImpl {
    * @return numberOfPipelines
   */
   
-  @Schema(name = "numberOfPipelines", required = false)
+  @Schema(name = "numberOfPipelines", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("numberOfPipelines")
   public Integer getNumberOfPipelines() {
     return numberOfPipelines;
   }

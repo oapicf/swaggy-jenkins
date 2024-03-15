@@ -83,7 +83,7 @@ github_scmlinks_t *github_scmlinks_parseFromJSON(cJSON *github_scmlinksJSON){
     // github_scmlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_scmlinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ github_scmlinks_t *github_scmlinks_parseFromJSON(cJSON *github_scmlinksJSON){
 
     github_scmlinks_local_var = github_scmlinks_create (
         self ? self_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return github_scmlinks_local_var;

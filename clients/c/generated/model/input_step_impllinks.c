@@ -83,7 +83,7 @@ input_step_impllinks_t *input_step_impllinks_parseFromJSON(cJSON *input_step_imp
     // input_step_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(input_step_impllinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ input_step_impllinks_t *input_step_impllinks_parseFromJSON(cJSON *input_step_imp
 
     input_step_impllinks_local_var = input_step_impllinks_create (
         self ? self_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return input_step_impllinks_local_var;

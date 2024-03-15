@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -80,13 +80,13 @@ class PipelineFolderImpl {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineFolderImpl &&
-     other.class_ == class_ &&
-     other.displayName == displayName &&
-     other.fullName == fullName &&
-     other.name == name &&
-     other.organization == organization &&
-     other.numberOfFolders == numberOfFolders &&
-     other.numberOfPipelines == numberOfPipelines;
+    other.class_ == class_ &&
+    other.displayName == displayName &&
+    other.fullName == fullName &&
+    other.name == name &&
+    other.organization == organization &&
+    other.numberOfFolders == numberOfFolders &&
+    other.numberOfPipelines == numberOfPipelines;
 
   @override
   int get hashCode =>
@@ -103,29 +103,43 @@ class PipelineFolderImpl {
   String toString() => 'PipelineFolderImpl[class_=$class_, displayName=$displayName, fullName=$fullName, name=$name, organization=$organization, numberOfFolders=$numberOfFolders, numberOfPipelines=$numberOfPipelines]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (fullName != null) {
-      _json[r'fullName'] = fullName;
+    if (this.fullName != null) {
+      json[r'fullName'] = this.fullName;
+    } else {
+      json[r'fullName'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (organization != null) {
-      _json[r'organization'] = organization;
+    if (this.organization != null) {
+      json[r'organization'] = this.organization;
+    } else {
+      json[r'organization'] = null;
     }
-    if (numberOfFolders != null) {
-      _json[r'numberOfFolders'] = numberOfFolders;
+    if (this.numberOfFolders != null) {
+      json[r'numberOfFolders'] = this.numberOfFolders;
+    } else {
+      json[r'numberOfFolders'] = null;
     }
-    if (numberOfPipelines != null) {
-      _json[r'numberOfPipelines'] = numberOfPipelines;
+    if (this.numberOfPipelines != null) {
+      json[r'numberOfPipelines'] = this.numberOfPipelines;
+    } else {
+      json[r'numberOfPipelines'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineFolderImpl] instance and imports its values from
@@ -159,7 +173,7 @@ class PipelineFolderImpl {
     return null;
   }
 
-  static List<PipelineFolderImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineFolderImpl> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineFolderImpl>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -190,12 +204,10 @@ class PipelineFolderImpl {
   static Map<String, List<PipelineFolderImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineFolderImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineFolderImpl.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineFolderImpl.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

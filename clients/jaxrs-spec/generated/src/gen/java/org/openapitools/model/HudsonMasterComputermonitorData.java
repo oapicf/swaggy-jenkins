@@ -19,9 +19,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputermonitorData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputermonitorData   {
-  
   private @Valid SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
   private @Valid DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
   private @Valid DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
@@ -49,7 +48,7 @@ public class HudsonMasterComputermonitorData   {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputermonitorData hudsonNodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
     this.hudsonNodeMonitorsTemporarySpaceMonitor = hudsonNodeMonitorsTemporarySpaceMonitor;
@@ -68,7 +67,7 @@ public class HudsonMasterComputermonitorData   {
     this.hudsonNodeMonitorsTemporarySpaceMonitor = hudsonNodeMonitorsTemporarySpaceMonitor;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputermonitorData hudsonNodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
@@ -87,7 +86,7 @@ public class HudsonMasterComputermonitorData   {
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputermonitorData hudsonNodeMonitorsArchitectureMonitor(String hudsonNodeMonitorsArchitectureMonitor) {
     this.hudsonNodeMonitorsArchitectureMonitor = hudsonNodeMonitorsArchitectureMonitor;
@@ -106,7 +105,7 @@ public class HudsonMasterComputermonitorData   {
     this.hudsonNodeMonitorsArchitectureMonitor = hudsonNodeMonitorsArchitectureMonitor;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputermonitorData hudsonNodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
@@ -125,7 +124,7 @@ public class HudsonMasterComputermonitorData   {
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputermonitorData hudsonNodeMonitorsClockMonitor(ClockDifference hudsonNodeMonitorsClockMonitor) {
     this.hudsonNodeMonitorsClockMonitor = hudsonNodeMonitorsClockMonitor;
@@ -144,7 +143,7 @@ public class HudsonMasterComputermonitorData   {
     this.hudsonNodeMonitorsClockMonitor = hudsonNodeMonitorsClockMonitor;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputermonitorData propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

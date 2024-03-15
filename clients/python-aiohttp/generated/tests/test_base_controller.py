@@ -7,6 +7,8 @@ from aiohttp import web
 from openapi_server.models.default_crumb_issuer import DefaultCrumbIssuer
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_crumb(client):
     """Test case for get_crumb
 

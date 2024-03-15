@@ -10,18 +10,18 @@ namespace app\Models;
 class QueueItemImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $expectedBuildNumber */
-    private $expectedBuildNumber;
+    public $expectedBuildNumber = 0;
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $pipeline */
-    private $pipeline;
+    public $pipeline = "";
 
     /** @var int $queuedTime */
-    private $queuedTime;
+    public $queuedTime = 0;
 
 }

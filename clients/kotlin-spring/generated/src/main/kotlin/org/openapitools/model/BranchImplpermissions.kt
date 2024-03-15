@@ -24,19 +24,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class BranchImplpermissions(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("create") val create: kotlin.Boolean? = null,
+    @get:JsonProperty("create") val create: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("read") val read: kotlin.Boolean? = null,
+    @get:JsonProperty("read") val read: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("start") val start: kotlin.Boolean? = null,
+    @get:JsonProperty("start") val start: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("stop") val stop: kotlin.Boolean? = null,
+    @get:JsonProperty("stop") val stop: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

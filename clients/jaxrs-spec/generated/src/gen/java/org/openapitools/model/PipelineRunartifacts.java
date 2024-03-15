@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunartifacts")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunartifacts   {
-  
   private @Valid String name;
   private @Valid Integer size;
   private @Valid String url;
@@ -42,7 +41,7 @@ public class PipelineRunartifacts   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public PipelineRunartifacts size(Integer size) {
     this.size = size;
@@ -61,7 +60,7 @@ public class PipelineRunartifacts   {
     this.size = size;
   }
 
-/**
+  /**
    **/
   public PipelineRunartifacts url(String url) {
     this.url = url;
@@ -80,7 +79,7 @@ public class PipelineRunartifacts   {
     this.url = url;
   }
 
-/**
+  /**
    **/
   public PipelineRunartifacts propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

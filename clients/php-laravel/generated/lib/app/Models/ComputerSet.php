@@ -10,18 +10,18 @@ namespace app\Models;
 class ComputerSet {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $busyExecutors */
-    private $busyExecutors;
+    public $busyExecutors = 0;
 
     /** @var \app\Models\HudsonMasterComputer[] $computer */
-    private $computer;
+    public $computer = [];
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $totalExecutors */
-    private $totalExecutors;
+    public $totalExecutors = 0;
 
 }

@@ -19,7 +19,7 @@ import model.User
 /**
   * Provides a default implementation for [[BlueOceanApi]].
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 class BlueOceanApiImpl extends BlueOceanApi {
   /**
     * @inheritdoc
@@ -36,7 +36,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getAuthenticatedUser(organization: String): User = {
     // TODO: Implement better logic
 
-    User(None, None, None, None, None, Map.empty)
+    User(None, None, None, None, None)
   }
 
   /**
@@ -72,7 +72,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getOrganisation(organization: String): Organisation = {
     // TODO: Implement better logic
 
-    Organisation(None, None, Map.empty)
+    Organisation(None, None)
   }
 
   /**
@@ -90,7 +90,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipeline(organization: String, pipeline: String): Pipeline = {
     // TODO: Implement better logic
 
-    Pipeline(None, None, None, None, None, None, None, None, Map.empty)
+    Pipeline(None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -108,7 +108,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineBranch(organization: String, pipeline: String, branch: String): BranchImpl = {
     // TODO: Implement better logic
 
-    BranchImpl(None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    BranchImpl(None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -117,7 +117,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineBranchRun(organization: String, pipeline: String, branch: String, run: String): PipelineRun = {
     // TODO: Implement better logic
 
-    PipelineRun(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    PipelineRun(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -126,7 +126,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineBranches(organization: String, pipeline: String): MultibranchPipeline = {
     // TODO: Implement better logic
 
-    MultibranchPipeline(None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    MultibranchPipeline(None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -135,7 +135,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineFolder(organization: String, folder: String): PipelineFolderImpl = {
     // TODO: Implement better logic
 
-    PipelineFolderImpl(None, None, None, None, None, None, None, Map.empty)
+    PipelineFolderImpl(None, None, None, None, None, None, None)
   }
 
   /**
@@ -144,7 +144,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineFolderPipeline(organization: String, pipeline: String, folder: String): PipelineImpl = {
     // TODO: Implement better logic
 
-    PipelineImpl(None, None, None, None, None, None, None, None, None, Map.empty)
+    PipelineImpl(None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -162,7 +162,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineRun(organization: String, pipeline: String, run: String): PipelineRun = {
     // TODO: Implement better logic
 
-    PipelineRun(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    PipelineRun(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -180,7 +180,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineRunNode(organization: String, pipeline: String, run: String, node: String): PipelineRunNode = {
     // TODO: Implement better logic
 
-    PipelineRunNode(None, None, None, None, None, None, None, None, Map.empty)
+    PipelineRunNode(None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -189,7 +189,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getPipelineRunNodeStep(organization: String, pipeline: String, run: String, node: String, step: String): PipelineStepImpl = {
     // TODO: Implement better logic
 
-    PipelineStepImpl(None, None, None, None, None, None, None, None, None, Map.empty)
+    PipelineStepImpl(None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -243,7 +243,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getSCM(organization: String, scm: String): GithubScm = {
     // TODO: Implement better logic
 
-    GithubScm(None, None, None, None, None, Map.empty)
+    GithubScm(None, None, None, None, None)
   }
 
   /**
@@ -279,7 +279,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getUser(organization: String, user: String): User = {
     // TODO: Implement better logic
 
-    User(None, None, None, None, None, Map.empty)
+    User(None, None, None, None, None)
   }
 
   /**
@@ -297,7 +297,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def getUsers(organization: String): User = {
     // TODO: Implement better logic
 
-    User(None, None, None, None, None, Map.empty)
+    User(None, None, None, None, None)
   }
 
   /**
@@ -306,7 +306,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def postPipelineRun(organization: String, pipeline: String, run: String): QueueItemImpl = {
     // TODO: Implement better logic
 
-    QueueItemImpl(None, None, None, None, None, Map.empty)
+    QueueItemImpl(None, None, None, None, None)
   }
 
   /**
@@ -315,7 +315,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def postPipelineRuns(organization: String, pipeline: String): QueueItemImpl = {
     // TODO: Implement better logic
 
-    QueueItemImpl(None, None, None, None, None, Map.empty)
+    QueueItemImpl(None, None, None, None, None)
   }
 
   /**
@@ -324,7 +324,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def putPipelineFavorite(organization: String, pipeline: String, body: Boolean): FavoriteImpl = {
     // TODO: Implement better logic
 
-    FavoriteImpl(None, None, None, Map.empty)
+    FavoriteImpl(None, None, None)
   }
 
   /**
@@ -333,7 +333,7 @@ class BlueOceanApiImpl extends BlueOceanApi {
   override def putPipelineRun(organization: String, pipeline: String, run: String, blocking: Option[String], timeOutInSecs: Option[Int]): PipelineRun = {
     // TODO: Implement better logic
 
-    PipelineRun(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    PipelineRun(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**

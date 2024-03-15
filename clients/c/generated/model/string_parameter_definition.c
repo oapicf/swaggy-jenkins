@@ -119,7 +119,7 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
     // string_parameter_definition->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -134,7 +134,7 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
     // string_parameter_definition->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -143,7 +143,7 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
     // string_parameter_definition->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -152,7 +152,7 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
     // string_parameter_definition->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "type");
     if (type) { 
-    if(!cJSON_IsString(type))
+    if(!cJSON_IsString(type) && !cJSON_IsNull(type))
     {
     goto end; //String
     }
@@ -160,11 +160,11 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
 
 
     string_parameter_definition_local_var = string_parameter_definition_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         default_parameter_value ? default_parameter_value_local_nonprim : NULL,
-        description ? strdup(description->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        type ? strdup(type->valuestring) : NULL
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL
         );
 
     return string_parameter_definition_local_var;

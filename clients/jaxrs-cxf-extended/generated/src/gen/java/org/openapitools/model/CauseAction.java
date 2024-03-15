@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseUserIdCause;
 import javax.validation.constraints.*;
@@ -18,7 +19,7 @@ public class CauseAction  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<CauseUserIdCause> causes = null;
+  private List<@Valid CauseUserIdCause> causes;
  /**
   * Get propertyClass
   * @return propertyClass
@@ -48,21 +49,21 @@ public class CauseAction  {
   * @return causes
   */
   @JsonProperty("causes")
-  public List<CauseUserIdCause> getCauses() {
+  public List<@Valid CauseUserIdCause> getCauses() {
     return causes;
   }
 
   /**
    * Sets the <code>causes</code> property.
    */
- public void setCauses(List<CauseUserIdCause> causes) {
+ public void setCauses(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
   }
 
   /**
    * Sets the <code>causes</code> property.
    */
-  public CauseAction causes(List<CauseUserIdCause> causes) {
+  public CauseAction causes(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
     return this;
   }
@@ -75,6 +76,24 @@ public class CauseAction  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CauseAction causeAction = (CauseAction) o;
+    return Objects.equals(this.propertyClass, causeAction.propertyClass) &&
+        Objects.equals(this.causes, causeAction.causes);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, causes);
+  }
 
   @Override
   public String toString() {

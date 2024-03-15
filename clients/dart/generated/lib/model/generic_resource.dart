@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -71,12 +71,12 @@ class GenericResource {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericResource &&
-     other.class_ == class_ &&
-     other.displayName == displayName &&
-     other.durationInMillis == durationInMillis &&
-     other.id == id &&
-     other.result == result &&
-     other.startTime == startTime;
+    other.class_ == class_ &&
+    other.displayName == displayName &&
+    other.durationInMillis == durationInMillis &&
+    other.id == id &&
+    other.result == result &&
+    other.startTime == startTime;
 
   @override
   int get hashCode =>
@@ -92,26 +92,38 @@ class GenericResource {
   String toString() => 'GenericResource[class_=$class_, displayName=$displayName, durationInMillis=$durationInMillis, id=$id, result=$result, startTime=$startTime]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (durationInMillis != null) {
-      _json[r'durationInMillis'] = durationInMillis;
+    if (this.durationInMillis != null) {
+      json[r'durationInMillis'] = this.durationInMillis;
+    } else {
+      json[r'durationInMillis'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (result != null) {
-      _json[r'result'] = result;
+    if (this.result != null) {
+      json[r'result'] = this.result;
+    } else {
+      json[r'result'] = null;
     }
-    if (startTime != null) {
-      _json[r'startTime'] = startTime;
+    if (this.startTime != null) {
+      json[r'startTime'] = this.startTime;
+    } else {
+      json[r'startTime'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GenericResource] instance and imports its values from
@@ -144,7 +156,7 @@ class GenericResource {
     return null;
   }
 
-  static List<GenericResource>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GenericResource> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GenericResource>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -175,12 +187,10 @@ class GenericResource {
   static Map<String, List<GenericResource>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GenericResource>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GenericResource.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GenericResource.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

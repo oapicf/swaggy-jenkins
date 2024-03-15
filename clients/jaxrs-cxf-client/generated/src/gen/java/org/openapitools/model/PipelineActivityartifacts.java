@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -90,6 +91,25 @@ public class PipelineActivityartifacts  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineActivityartifacts pipelineActivityartifacts = (PipelineActivityartifacts) o;
+    return Objects.equals(this.name, pipelineActivityartifacts.name) &&
+        Objects.equals(this.size, pipelineActivityartifacts.size) &&
+        Objects.equals(this.url, pipelineActivityartifacts.url) &&
+        Objects.equals(this.propertyClass, pipelineActivityartifacts.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, size, url, propertyClass);
+  }
 
   @Override
   public String toString() {

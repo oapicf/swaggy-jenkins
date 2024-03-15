@@ -20,16 +20,13 @@ import javax.annotation.Generated;
  * FavoriteImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FavoriteImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private FavoriteImpllinks links;
 
-  @JsonProperty("item")
   private PipelineImpl item;
 
   public FavoriteImpl propertyClass(String propertyClass) {
@@ -42,7 +39,8 @@ public class FavoriteImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -61,7 +59,8 @@ public class FavoriteImpl {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public FavoriteImpllinks getLinks() {
     return links;
   }
@@ -80,7 +79,8 @@ public class FavoriteImpl {
    * @return item
   */
   @Valid 
-  @Schema(name = "item", required = false)
+  @Schema(name = "item", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("item")
   public PipelineImpl getItem() {
     return item;
   }

@@ -28,29 +28,29 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PipelineRunNode(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("edges") val edges: kotlin.collections.List<PipelineRunNodeedges>? = null,
+    @get:JsonProperty("edges") val edges: kotlin.collections.List<PipelineRunNodeedges>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("result") val result: kotlin.String? = null,
+    @get:JsonProperty("result") val result: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("startTime") val startTime: kotlin.String? = null,
+    @get:JsonProperty("startTime") val startTime: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("state") val state: kotlin.String? = null
+    @get:JsonProperty("state") val state: kotlin.String? = null
 ) {
 
 }

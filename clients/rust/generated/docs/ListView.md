@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
-**jobs** | Option<[**Vec<crate::models::FreeStyleProject>**](FreeStyleProject.md)> |  | [optional]
+**jobs** | Option<[**Vec<models::FreeStyleProject>**](FreeStyleProject.md)> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **url** | Option<**String**> |  | [optional]
 

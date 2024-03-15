@@ -149,7 +149,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -158,7 +158,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->sha
     cJSON *sha = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "sha");
     if (sha) { 
-    if(!cJSON_IsString(sha))
+    if(!cJSON_IsString(sha) && !cJSON_IsNull(sha))
     {
     goto end; //String
     }
@@ -167,7 +167,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -176,7 +176,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->repo
     cJSON *repo = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "repo");
     if (repo) { 
-    if(!cJSON_IsString(repo))
+    if(!cJSON_IsString(repo) && !cJSON_IsNull(repo))
     {
     goto end; //String
     }
@@ -194,7 +194,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->owner
     cJSON *owner = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "owner");
     if (owner) { 
-    if(!cJSON_IsString(owner))
+    if(!cJSON_IsString(owner) && !cJSON_IsNull(owner))
     {
     goto end; //String
     }
@@ -203,7 +203,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->path
     cJSON *path = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "path");
     if (path) { 
-    if(!cJSON_IsString(path))
+    if(!cJSON_IsString(path) && !cJSON_IsNull(path))
     {
     goto end; //String
     }
@@ -212,7 +212,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     // github_content->base64_data
     cJSON *base64_data = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "base64Data");
     if (base64_data) { 
-    if(!cJSON_IsString(base64_data))
+    if(!cJSON_IsString(base64_data) && !cJSON_IsNull(base64_data))
     {
     goto end; //String
     }
@@ -220,14 +220,14 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
 
     github_content_local_var = github_content_create (
-        name ? strdup(name->valuestring) : NULL,
-        sha ? strdup(sha->valuestring) : NULL,
-        _class ? strdup(_class->valuestring) : NULL,
-        repo ? strdup(repo->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        sha && !cJSON_IsNull(sha) ? strdup(sha->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        repo && !cJSON_IsNull(repo) ? strdup(repo->valuestring) : NULL,
         size ? size->valuedouble : 0,
-        owner ? strdup(owner->valuestring) : NULL,
-        path ? strdup(path->valuestring) : NULL,
-        base64_data ? strdup(base64_data->valuestring) : NULL
+        owner && !cJSON_IsNull(owner) ? strdup(owner->valuestring) : NULL,
+        path && !cJSON_IsNull(path) ? strdup(path->valuestring) : NULL,
+        base64_data && !cJSON_IsNull(base64_data) ? strdup(base64_data->valuestring) : NULL
         );
 
     return github_content_local_var;

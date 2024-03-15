@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.AllView;
 import org.openapitools.server.api.model.FreeStyleProject;
@@ -14,20 +15,20 @@ import org.openapitools.server.api.model.UnlabeledLoadStatistics;
 public class Hudson   {
   
   private String propertyClass;
-  private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
+  private List<HudsonassignedLabels> assignedLabels;
   private String mode;
   private String nodeDescription;
   private String nodeName;
   private Integer numExecutors;
   private String description;
-  private List<FreeStyleProject> jobs = new ArrayList<>();
+  private List<FreeStyleProject> jobs;
   private AllView primaryView;
   private Boolean quietingDown;
   private Integer slaveAgentPort;
   private UnlabeledLoadStatistics unlabeledLoad;
   private Boolean useCrumbs;
   private Boolean useSecurity;
-  private List<AllView> views = new ArrayList<>();
+  private List<AllView> views;
 
   public Hudson () {
 

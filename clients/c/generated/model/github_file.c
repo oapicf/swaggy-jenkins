@@ -83,7 +83,7 @@ github_file_t *github_file_parseFromJSON(cJSON *github_fileJSON){
     // github_file->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_fileJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ github_file_t *github_file_parseFromJSON(cJSON *github_fileJSON){
 
     github_file_local_var = github_file_create (
         content ? content_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return github_file_local_var;

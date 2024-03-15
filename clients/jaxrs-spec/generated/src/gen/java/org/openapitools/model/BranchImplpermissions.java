@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImplpermissions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImplpermissions   {
-  
   private @Valid Boolean create;
   private @Valid Boolean read;
   private @Valid Boolean start;
@@ -43,7 +42,7 @@ public class BranchImplpermissions   {
     this.create = create;
   }
 
-/**
+  /**
    **/
   public BranchImplpermissions read(Boolean read) {
     this.read = read;
@@ -62,7 +61,7 @@ public class BranchImplpermissions   {
     this.read = read;
   }
 
-/**
+  /**
    **/
   public BranchImplpermissions start(Boolean start) {
     this.start = start;
@@ -81,7 +80,7 @@ public class BranchImplpermissions   {
     this.start = start;
   }
 
-/**
+  /**
    **/
   public BranchImplpermissions stop(Boolean stop) {
     this.stop = stop;
@@ -100,7 +99,7 @@ public class BranchImplpermissions   {
     this.stop = stop;
   }
 
-/**
+  /**
    **/
   public BranchImplpermissions propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

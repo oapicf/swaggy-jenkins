@@ -10,7 +10,6 @@ import io.swagger.v3.oas.models.info.License
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.security.SecurityScheme
 
-@jakarta.annotation.Generated(value = ["org.openapitools.codegen.languages.KotlinSpringServerCodegen"])
 @Configuration
 class SpringDocConfiguration {
 
@@ -23,11 +22,11 @@ class SpringDocConfiguration {
                     .description("Jenkins API clients generated from Swagger / Open API specification")
                     .contact(
                         Contact()
-                            .name("Cliffano Subagio")
-                            .url("http://github.com/oapicf/swaggy-jenkins")
-                            .email("blah@cliffano.com")
+                            .name("OpenAPI Clients Factory")
+                            .url("https://github.com/oapicf/swaggy-jenkins")
+                            .email("blah+oapicf@cliffano.com")
                     )
-                    .version("1.5.1-pre.0")
+                    .version("2.0.1-pre.0")
             )
             .components(
                 Components()

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -62,11 +62,11 @@ class QueueItemImpl {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is QueueItemImpl &&
-     other.class_ == class_ &&
-     other.expectedBuildNumber == expectedBuildNumber &&
-     other.id == id &&
-     other.pipeline == pipeline &&
-     other.queuedTime == queuedTime;
+    other.class_ == class_ &&
+    other.expectedBuildNumber == expectedBuildNumber &&
+    other.id == id &&
+    other.pipeline == pipeline &&
+    other.queuedTime == queuedTime;
 
   @override
   int get hashCode =>
@@ -81,23 +81,33 @@ class QueueItemImpl {
   String toString() => 'QueueItemImpl[class_=$class_, expectedBuildNumber=$expectedBuildNumber, id=$id, pipeline=$pipeline, queuedTime=$queuedTime]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (expectedBuildNumber != null) {
-      _json[r'expectedBuildNumber'] = expectedBuildNumber;
+    if (this.expectedBuildNumber != null) {
+      json[r'expectedBuildNumber'] = this.expectedBuildNumber;
+    } else {
+      json[r'expectedBuildNumber'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (pipeline != null) {
-      _json[r'pipeline'] = pipeline;
+    if (this.pipeline != null) {
+      json[r'pipeline'] = this.pipeline;
+    } else {
+      json[r'pipeline'] = null;
     }
-    if (queuedTime != null) {
-      _json[r'queuedTime'] = queuedTime;
+    if (this.queuedTime != null) {
+      json[r'queuedTime'] = this.queuedTime;
+    } else {
+      json[r'queuedTime'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [QueueItemImpl] instance and imports its values from
@@ -129,7 +139,7 @@ class QueueItemImpl {
     return null;
   }
 
-  static List<QueueItemImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<QueueItemImpl> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <QueueItemImpl>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,12 +170,10 @@ class QueueItemImpl {
   static Map<String, List<QueueItemImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<QueueItemImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = QueueItemImpl.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = QueueItemImpl.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

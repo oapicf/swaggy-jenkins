@@ -18,19 +18,15 @@ import javax.annotation.Generated;
  * PipelineActivityartifacts
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineActivityartifacts {
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("size")
   private Integer size;
 
-  @JsonProperty("url")
   private String url;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineActivityartifacts name(String name) {
@@ -43,7 +39,8 @@ public class PipelineActivityartifacts {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -62,7 +59,8 @@ public class PipelineActivityartifacts {
    * @return size
   */
   
-  @Schema(name = "size", required = false)
+  @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("size")
   public Integer getSize() {
     return size;
   }
@@ -81,7 +79,8 @@ public class PipelineActivityartifacts {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }
@@ -100,7 +99,8 @@ public class PipelineActivityartifacts {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

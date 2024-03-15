@@ -37,7 +37,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "getJob",
-        description = "Retrieve job details",
+        description = """Retrieve job details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved job details", content = [Content(schema = Schema(implementation = FreeStyleProject::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -57,7 +57,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "getJobConfig",
-        description = "Retrieve job configuration",
+        description = """Retrieve job configuration""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved job configuration in config.xml format", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -77,7 +77,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "getJobLastBuild",
-        description = "Retrieve job's last build details",
+        description = """Retrieve job's last build details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved job's last build details", content = [Content(schema = Schema(implementation = FreeStyleBuild::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -97,7 +97,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "getJobProgressiveText",
-        description = "Retrieve job's build progressive text output",
+        description = """Retrieve job's build progressive text output""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved job's build progressive text output"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -116,7 +116,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "postJobBuild",
-        description = "Build a job",
+        description = """Build a job""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully built the job (backward compatibility for older versions of Jenkins)"),
             ApiResponse(responseCode = "201", description = "Successfully built the job"),
@@ -136,7 +136,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "postJobConfig",
-        description = "Update job configuration",
+        description = """Update job configuration""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved job configuration in config.xml format"),
             ApiResponse(responseCode = "400", description = "An error has occurred - error message is embedded inside the HTML response", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
@@ -158,7 +158,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "postJobDelete",
-        description = "Delete a job",
+        description = """Delete a job""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully deleted the job"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -177,7 +177,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "postJobDisable",
-        description = "Disable a job",
+        description = """Disable a job""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully disabled the job"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -196,7 +196,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "postJobEnable",
-        description = "Enable a job",
+        description = """Enable a job""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully enabled the job"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -215,7 +215,7 @@ class JobApiController() {
     @Operation(
         summary = "",
         operationId = "postJobLastBuildStop",
-        description = "Stop a job",
+        description = """Stop a job""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully stopped the job"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

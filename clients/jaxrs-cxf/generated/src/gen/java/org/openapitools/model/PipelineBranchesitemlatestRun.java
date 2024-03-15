@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -302,6 +303,35 @@ public class PipelineBranchesitemlatestRun  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineBranchesitemlatestRun pipelineBranchesitemlatestRun = (PipelineBranchesitemlatestRun) o;
+    return Objects.equals(this.durationInMillis, pipelineBranchesitemlatestRun.durationInMillis) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineBranchesitemlatestRun.estimatedDurationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelineBranchesitemlatestRun.enQueueTime) &&
+        Objects.equals(this.endTime, pipelineBranchesitemlatestRun.endTime) &&
+        Objects.equals(this.id, pipelineBranchesitemlatestRun.id) &&
+        Objects.equals(this.organization, pipelineBranchesitemlatestRun.organization) &&
+        Objects.equals(this.pipeline, pipelineBranchesitemlatestRun.pipeline) &&
+        Objects.equals(this.result, pipelineBranchesitemlatestRun.result) &&
+        Objects.equals(this.runSummary, pipelineBranchesitemlatestRun.runSummary) &&
+        Objects.equals(this.startTime, pipelineBranchesitemlatestRun.startTime) &&
+        Objects.equals(this.state, pipelineBranchesitemlatestRun.state) &&
+        Objects.equals(this.type, pipelineBranchesitemlatestRun.type) &&
+        Objects.equals(this.commitId, pipelineBranchesitemlatestRun.commitId) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitemlatestRun.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(durationInMillis, estimatedDurationInMillis, enQueueTime, endTime, id, organization, pipeline, result, runSummary, startTime, state, type, commitId, propertyClass);
+  }
 
   @Override
   public String toString() {

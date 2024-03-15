@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -38,9 +38,9 @@ class ExtensionClassImpl {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ExtensionClassImpl &&
-     other.class_ == class_ &&
-     other.links == links &&
-     other.classes == classes;
+    other.class_ == class_ &&
+    other.links == links &&
+    _deepEquality.equals(other.classes, classes);
 
   @override
   int get hashCode =>
@@ -53,15 +53,19 @@ class ExtensionClassImpl {
   String toString() => 'ExtensionClassImpl[class_=$class_, links=$links, classes=$classes]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-      _json[r'classes'] = classes;
-    return _json;
+      json[r'classes'] = this.classes;
+    return json;
   }
 
   /// Returns a new [ExtensionClassImpl] instance and imports its values from
@@ -85,15 +89,15 @@ class ExtensionClassImpl {
       return ExtensionClassImpl(
         class_: mapValueOfType<String>(json, r'_class'),
         links: ExtensionClassImpllinks.fromJson(json[r'_links']),
-        classes: json[r'classes'] is List
-            ? (json[r'classes'] as List).cast<String>()
+        classes: json[r'classes'] is Iterable
+            ? (json[r'classes'] as Iterable).cast<String>().toList(growable: false)
             : const [],
       );
     }
     return null;
   }
 
-  static List<ExtensionClassImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ExtensionClassImpl> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ExtensionClassImpl>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -124,12 +128,10 @@ class ExtensionClassImpl {
   static Map<String, List<ExtensionClassImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<ExtensionClassImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = ExtensionClassImpl.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = ExtensionClassImpl.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

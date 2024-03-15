@@ -36,47 +36,47 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class BranchImpl(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("fullDisplayName") val fullDisplayName: kotlin.String? = null,
+    @get:JsonProperty("fullDisplayName") val fullDisplayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("fullName") val fullName: kotlin.String? = null,
+    @get:JsonProperty("fullName") val fullName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("organization") val organization: kotlin.String? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("parameters") val parameters: kotlin.collections.List<StringParameterDefinition>? = null,
+    @get:JsonProperty("organization") val organization: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("permissions") val permissions: BranchImplpermissions? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("weatherScore") val weatherScore: kotlin.Int? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("pullRequest") val pullRequest: kotlin.String? = null,
+    @get:JsonProperty("parameters") val parameters: kotlin.collections.List<StringParameterDefinition>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: BranchImpllinks? = null,
+    @get:JsonProperty("permissions") val permissions: BranchImplpermissions? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("weatherScore") val weatherScore: kotlin.Int? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("pullRequest") val pullRequest: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("latestRun") val latestRun: PipelineRunImpl? = null
+    @get:JsonProperty("_links") val links: BranchImpllinks? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("latestRun") val latestRun: PipelineRunImpl? = null
 ) {
 
 }

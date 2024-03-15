@@ -5,23 +5,19 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class Queue
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="items", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection74::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection74::class})
-     * @var \App\DTO\Collection74|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection11::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection11::class})
      */
-    public $items;
+    public ?\App\DTO\Collection11 $items = null;
 
 }

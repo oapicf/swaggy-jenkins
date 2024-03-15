@@ -10,18 +10,18 @@ namespace app\Models;
 class PipelineImpllinks {
 
     /** @var \app\Models\Link $runs */
-    private $runs;
+    public $runs;
 
     /** @var \app\Models\Link $self */
-    private $self;
+    public $self;
 
     /** @var \app\Models\Link $queue */
-    private $queue;
+    public $queue;
 
     /** @var \app\Models\Link $actions */
-    private $actions;
+    public $actions;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

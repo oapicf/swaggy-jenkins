@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -134,6 +135,27 @@ public class GenericResource  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GenericResource genericResource = (GenericResource) o;
+    return Objects.equals(this.propertyClass, genericResource.propertyClass) &&
+        Objects.equals(this.displayName, genericResource.displayName) &&
+        Objects.equals(this.durationInMillis, genericResource.durationInMillis) &&
+        Objects.equals(this.id, genericResource.id) &&
+        Objects.equals(this.result, genericResource.result) &&
+        Objects.equals(this.startTime, genericResource.startTime);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, displayName, durationInMillis, id, result, startTime);
+  }
 
   @Override
   public String toString() {

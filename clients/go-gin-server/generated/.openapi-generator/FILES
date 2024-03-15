@@ -1,6 +1,7 @@
 .openapi-generator-ignore
 Dockerfile
 api/openapi.yaml
+go.mod
 go/README.md
 go/api_base.go
 go/api_blue_ocean.go

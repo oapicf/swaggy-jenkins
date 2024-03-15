@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AllView;
 import org.openapitools.model.FreeStyleProject;
@@ -21,24 +22,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Hudson")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Hudson   {
-  
   private @Valid String propertyClass;
-  private @Valid List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
+  private @Valid List<@Valid HudsonassignedLabels> assignedLabels;
   private @Valid String mode;
   private @Valid String nodeDescription;
   private @Valid String nodeName;
   private @Valid Integer numExecutors;
   private @Valid String description;
-  private @Valid List<FreeStyleProject> jobs = new ArrayList<>();
+  private @Valid List<@Valid FreeStyleProject> jobs;
   private @Valid AllView primaryView;
   private @Valid Boolean quietingDown;
   private @Valid Integer slaveAgentPort;
   private @Valid UnlabeledLoadStatistics unlabeledLoad;
   private @Valid Boolean useCrumbs;
   private @Valid Boolean useSecurity;
-  private @Valid List<AllView> views = new ArrayList<>();
+  private @Valid List<@Valid AllView> views;
 
   /**
    **/
@@ -59,9 +59,9 @@ public class Hudson   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
-  public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public Hudson assignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
     return this;
   }
@@ -74,7 +74,7 @@ public class Hudson   {
   }
 
   @JsonProperty("assignedLabels")
-  public void setAssignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public void setAssignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
 
@@ -94,7 +94,7 @@ public class Hudson   {
 
     return this;
   }
-/**
+  /**
    **/
   public Hudson mode(String mode) {
     this.mode = mode;
@@ -113,7 +113,7 @@ public class Hudson   {
     this.mode = mode;
   }
 
-/**
+  /**
    **/
   public Hudson nodeDescription(String nodeDescription) {
     this.nodeDescription = nodeDescription;
@@ -132,7 +132,7 @@ public class Hudson   {
     this.nodeDescription = nodeDescription;
   }
 
-/**
+  /**
    **/
   public Hudson nodeName(String nodeName) {
     this.nodeName = nodeName;
@@ -151,7 +151,7 @@ public class Hudson   {
     this.nodeName = nodeName;
   }
 
-/**
+  /**
    **/
   public Hudson numExecutors(Integer numExecutors) {
     this.numExecutors = numExecutors;
@@ -170,7 +170,7 @@ public class Hudson   {
     this.numExecutors = numExecutors;
   }
 
-/**
+  /**
    **/
   public Hudson description(String description) {
     this.description = description;
@@ -189,9 +189,9 @@ public class Hudson   {
     this.description = description;
   }
 
-/**
+  /**
    **/
-  public Hudson jobs(List<FreeStyleProject> jobs) {
+  public Hudson jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
@@ -204,7 +204,7 @@ public class Hudson   {
   }
 
   @JsonProperty("jobs")
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -224,7 +224,7 @@ public class Hudson   {
 
     return this;
   }
-/**
+  /**
    **/
   public Hudson primaryView(AllView primaryView) {
     this.primaryView = primaryView;
@@ -243,7 +243,7 @@ public class Hudson   {
     this.primaryView = primaryView;
   }
 
-/**
+  /**
    **/
   public Hudson quietingDown(Boolean quietingDown) {
     this.quietingDown = quietingDown;
@@ -262,7 +262,7 @@ public class Hudson   {
     this.quietingDown = quietingDown;
   }
 
-/**
+  /**
    **/
   public Hudson slaveAgentPort(Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
@@ -281,7 +281,7 @@ public class Hudson   {
     this.slaveAgentPort = slaveAgentPort;
   }
 
-/**
+  /**
    **/
   public Hudson unlabeledLoad(UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
@@ -300,7 +300,7 @@ public class Hudson   {
     this.unlabeledLoad = unlabeledLoad;
   }
 
-/**
+  /**
    **/
   public Hudson useCrumbs(Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
@@ -319,7 +319,7 @@ public class Hudson   {
     this.useCrumbs = useCrumbs;
   }
 
-/**
+  /**
    **/
   public Hudson useSecurity(Boolean useSecurity) {
     this.useSecurity = useSecurity;
@@ -338,9 +338,9 @@ public class Hudson   {
     this.useSecurity = useSecurity;
   }
 
-/**
+  /**
    **/
-  public Hudson views(List<AllView> views) {
+  public Hudson views(List<@Valid AllView> views) {
     this.views = views;
     return this;
   }
@@ -353,7 +353,7 @@ public class Hudson   {
   }
 
   @JsonProperty("views")
-  public void setViews(List<AllView> views) {
+  public void setViews(List<@Valid AllView> views) {
     this.views = views;
   }
 

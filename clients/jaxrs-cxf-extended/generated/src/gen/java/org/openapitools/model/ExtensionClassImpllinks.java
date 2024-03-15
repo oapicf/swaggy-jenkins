@@ -67,6 +67,24 @@ public class ExtensionClassImpllinks  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ExtensionClassImpllinks extensionClassImpllinks = (ExtensionClassImpllinks) o;
+    return Objects.equals(this.self, extensionClassImpllinks.self) &&
+        Objects.equals(this.propertyClass, extensionClassImpllinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(self, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExtensionClassImpllinks {\n");

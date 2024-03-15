@@ -25,9 +25,9 @@ class HudsonMasterComputer
 
     /**
      * @DTA\Data(field="executors", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection20::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection20::class})
-     * @var \App\DTO\Collection20|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection8::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection8::class})
+     * @var \App\DTO\Collection8|null
      */
     public $executors;
 

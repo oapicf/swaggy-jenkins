@@ -7,15 +7,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
 import org.openapitools.model.PipelineRunImpl;
 import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImpl   {
   
   private String propertyClass;
@@ -25,7 +27,7 @@ public class BranchImpl   {
   private String fullName;
   private String name;
   private String organization;
-  private List<StringParameterDefinition> parameters = new ArrayList<>();
+  private List<@Valid StringParameterDefinition> parameters;
   private BranchImplpermissions permissions;
   private Integer weatherScore;
   private String pullRequest;
@@ -121,10 +123,10 @@ public class BranchImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -198,19 +200,19 @@ public class BranchImpl   {
       return false;
     }
     BranchImpl branchImpl = (BranchImpl) o;
-    return Objects.equals(propertyClass, branchImpl.propertyClass) &&
-        Objects.equals(displayName, branchImpl.displayName) &&
-        Objects.equals(estimatedDurationInMillis, branchImpl.estimatedDurationInMillis) &&
-        Objects.equals(fullDisplayName, branchImpl.fullDisplayName) &&
-        Objects.equals(fullName, branchImpl.fullName) &&
-        Objects.equals(name, branchImpl.name) &&
-        Objects.equals(organization, branchImpl.organization) &&
-        Objects.equals(parameters, branchImpl.parameters) &&
-        Objects.equals(permissions, branchImpl.permissions) &&
-        Objects.equals(weatherScore, branchImpl.weatherScore) &&
-        Objects.equals(pullRequest, branchImpl.pullRequest) &&
-        Objects.equals(links, branchImpl.links) &&
-        Objects.equals(latestRun, branchImpl.latestRun);
+    return Objects.equals(this.propertyClass, branchImpl.propertyClass) &&
+        Objects.equals(this.displayName, branchImpl.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, branchImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.fullDisplayName, branchImpl.fullDisplayName) &&
+        Objects.equals(this.fullName, branchImpl.fullName) &&
+        Objects.equals(this.name, branchImpl.name) &&
+        Objects.equals(this.organization, branchImpl.organization) &&
+        Objects.equals(this.parameters, branchImpl.parameters) &&
+        Objects.equals(this.permissions, branchImpl.permissions) &&
+        Objects.equals(this.weatherScore, branchImpl.weatherScore) &&
+        Objects.equals(this.pullRequest, branchImpl.pullRequest) &&
+        Objects.equals(this.links, branchImpl.links) &&
+        Objects.equals(this.latestRun, branchImpl.latestRun);
   }
 
   @Override

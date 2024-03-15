@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImpllinks   {
   
   private Link self;
@@ -24,6 +26,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
+  @Valid
   public Link getSelf() {
     return self;
   }
@@ -36,6 +39,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
+  @Valid
   public Link getActions() {
     return actions;
   }
@@ -48,6 +52,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("runs")
+  @Valid
   public Link getRuns() {
     return runs;
   }
@@ -60,6 +65,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("queue")
+  @Valid
   public Link getQueue() {
     return queue;
   }
@@ -89,11 +95,11 @@ public class BranchImpllinks   {
       return false;
     }
     BranchImpllinks branchImpllinks = (BranchImpllinks) o;
-    return Objects.equals(self, branchImpllinks.self) &&
-        Objects.equals(actions, branchImpllinks.actions) &&
-        Objects.equals(runs, branchImpllinks.runs) &&
-        Objects.equals(queue, branchImpllinks.queue) &&
-        Objects.equals(propertyClass, branchImpllinks.propertyClass);
+    return Objects.equals(this.self, branchImpllinks.self) &&
+        Objects.equals(this.actions, branchImpllinks.actions) &&
+        Objects.equals(this.runs, branchImpllinks.runs) &&
+        Objects.equals(this.queue, branchImpllinks.queue) &&
+        Objects.equals(this.propertyClass, branchImpllinks.propertyClass);
   }
 
   @Override

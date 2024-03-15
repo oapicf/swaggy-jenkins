@@ -78,7 +78,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_authenticated_user
 
-> crate::models::User get_authenticated_user(organization)
+> models::User get_authenticated_user(organization)
 
 
 Retrieve authenticated user details for an organization
@@ -92,7 +92,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::User**](User.md)
+[**models::User**](User.md)
 
 ### Authorization
 
@@ -199,7 +199,7 @@ No authorization required
 
 ## get_organisation
 
-> crate::models::Organisation get_organisation(organization)
+> models::Organisation get_organisation(organization)
 
 
 Retrieve organization details
@@ -213,7 +213,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Organisation**](Organisation.md)
+[**models::Organisation**](Organisation.md)
 
 ### Authorization
 
@@ -229,7 +229,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_organisations
 
-> Vec<crate::models::Organisation> get_organisations()
+> Vec<models::Organisation> get_organisations()
 
 
 Retrieve all organizations details
@@ -240,7 +240,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::Organisation>**](Organisation.md)
+[**Vec<models::Organisation>**](Organisation.md)
 
 ### Authorization
 
@@ -256,7 +256,7 @@ This endpoint does not need any parameter.
 
 ## get_pipeline
 
-> crate::models::Pipeline get_pipeline(organization, pipeline)
+> models::Pipeline get_pipeline(organization, pipeline)
 
 
 Retrieve pipeline details for an organization
@@ -271,7 +271,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Pipeline**](Pipeline.md)
+[**models::Pipeline**](Pipeline.md)
 
 ### Authorization
 
@@ -287,7 +287,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_activities
 
-> Vec<crate::models::PipelineActivity> get_pipeline_activities(organization, pipeline)
+> Vec<models::PipelineActivity> get_pipeline_activities(organization, pipeline)
 
 
 Retrieve all activities details for an organization pipeline
@@ -302,7 +302,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::PipelineActivity>**](PipelineActivity.md)
+[**Vec<models::PipelineActivity>**](PipelineActivity.md)
 
 ### Authorization
 
@@ -318,7 +318,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_branch
 
-> crate::models::BranchImpl get_pipeline_branch(organization, pipeline, branch)
+> models::BranchImpl get_pipeline_branch(organization, pipeline, branch)
 
 
 Retrieve branch details for an organization pipeline
@@ -334,7 +334,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::BranchImpl**](BranchImpl.md)
+[**models::BranchImpl**](BranchImpl.md)
 
 ### Authorization
 
@@ -350,7 +350,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_branch_run
 
-> crate::models::PipelineRun get_pipeline_branch_run(organization, pipeline, branch, run)
+> models::PipelineRun get_pipeline_branch_run(organization, pipeline, branch, run)
 
 
 Retrieve branch run details for an organization pipeline
@@ -367,7 +367,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineRun**](PipelineRun.md)
+[**models::PipelineRun**](PipelineRun.md)
 
 ### Authorization
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_branches
 
-> crate::models::MultibranchPipeline get_pipeline_branches(organization, pipeline)
+> models::MultibranchPipeline get_pipeline_branches(organization, pipeline)
 
 
 Retrieve all branches details for an organization pipeline
@@ -398,7 +398,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::MultibranchPipeline**](MultibranchPipeline.md)
+[**models::MultibranchPipeline**](MultibranchPipeline.md)
 
 ### Authorization
 
@@ -414,7 +414,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_folder
 
-> crate::models::PipelineFolderImpl get_pipeline_folder(organization, folder)
+> models::PipelineFolderImpl get_pipeline_folder(organization, folder)
 
 
 Retrieve pipeline folder for an organization
@@ -429,7 +429,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineFolderImpl**](PipelineFolderImpl.md)
+[**models::PipelineFolderImpl**](PipelineFolderImpl.md)
 
 ### Authorization
 
@@ -445,7 +445,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_folder_pipeline
 
-> crate::models::PipelineImpl get_pipeline_folder_pipeline(organization, pipeline, folder)
+> models::PipelineImpl get_pipeline_folder_pipeline(organization, pipeline, folder)
 
 
 Retrieve pipeline details for an organization folder
@@ -461,7 +461,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineImpl**](PipelineImpl.md)
+[**models::PipelineImpl**](PipelineImpl.md)
 
 ### Authorization
 
@@ -477,7 +477,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_queue
 
-> Vec<crate::models::QueueItemImpl> get_pipeline_queue(organization, pipeline)
+> Vec<models::QueueItemImpl> get_pipeline_queue(organization, pipeline)
 
 
 Retrieve queue details for an organization pipeline
@@ -492,7 +492,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::QueueItemImpl>**](QueueItemImpl.md)
+[**Vec<models::QueueItemImpl>**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -508,7 +508,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_run
 
-> crate::models::PipelineRun get_pipeline_run(organization, pipeline, run)
+> models::PipelineRun get_pipeline_run(organization, pipeline, run)
 
 
 Retrieve run details for an organization pipeline
@@ -524,7 +524,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineRun**](PipelineRun.md)
+[**models::PipelineRun**](PipelineRun.md)
 
 ### Authorization
 
@@ -574,7 +574,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_run_node
 
-> crate::models::PipelineRunNode get_pipeline_run_node(organization, pipeline, run, node)
+> models::PipelineRunNode get_pipeline_run_node(organization, pipeline, run, node)
 
 
 Retrieve run node details for an organization pipeline
@@ -591,7 +591,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineRunNode**](PipelineRunNode.md)
+[**models::PipelineRunNode**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -607,7 +607,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_run_node_step
 
-> crate::models::PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, run, node, step)
+> models::PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, run, node, step)
 
 
 Retrieve run node details for an organization pipeline
@@ -625,7 +625,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineStepImpl**](PipelineStepImpl.md)
+[**models::PipelineStepImpl**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -675,7 +675,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_run_node_steps
 
-> Vec<crate::models::PipelineStepImpl> get_pipeline_run_node_steps(organization, pipeline, run, node)
+> Vec<models::PipelineStepImpl> get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 Retrieve run node steps details for an organization pipeline
@@ -692,7 +692,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::PipelineStepImpl>**](PipelineStepImpl.md)
+[**Vec<models::PipelineStepImpl>**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -708,7 +708,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_run_nodes
 
-> Vec<crate::models::PipelineRunNode> get_pipeline_run_nodes(organization, pipeline, run)
+> Vec<models::PipelineRunNode> get_pipeline_run_nodes(organization, pipeline, run)
 
 
 Retrieve run nodes details for an organization pipeline
@@ -724,7 +724,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::PipelineRunNode>**](PipelineRunNode.md)
+[**Vec<models::PipelineRunNode>**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -740,7 +740,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipeline_runs
 
-> Vec<crate::models::PipelineRun> get_pipeline_runs(organization, pipeline)
+> Vec<models::PipelineRun> get_pipeline_runs(organization, pipeline)
 
 
 Retrieve all runs details for an organization pipeline
@@ -755,7 +755,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::PipelineRun>**](PipelineRun.md)
+[**Vec<models::PipelineRun>**](PipelineRun.md)
 
 ### Authorization
 
@@ -771,7 +771,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_pipelines
 
-> Vec<crate::models::Pipeline> get_pipelines(organization)
+> Vec<models::Pipeline> get_pipelines(organization)
 
 
 Retrieve all pipelines details for an organization
@@ -785,7 +785,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Pipeline>**](Pipeline.md)
+[**Vec<models::Pipeline>**](Pipeline.md)
 
 ### Authorization
 
@@ -801,7 +801,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_scm
 
-> crate::models::GithubScm get_scm(organization, scm)
+> models::GithubScm get_scm(organization, scm)
 
 
 Retrieve SCM details for an organization
@@ -816,7 +816,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GithubScm**](GithubScm.md)
+[**models::GithubScm**](GithubScm.md)
 
 ### Authorization
 
@@ -832,7 +832,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_scm_organisation_repositories
 
-> Vec<crate::models::GithubOrganization> get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id, page_size, page_number)
+> Vec<models::GithubOrganization> get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id, page_size, page_number)
 
 
 Retrieve SCM organization repositories details for an organization
@@ -851,7 +851,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GithubOrganization>**](GithubOrganization.md)
+[**Vec<models::GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -867,7 +867,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_scm_organisation_repository
 
-> Vec<crate::models::GithubOrganization> get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id)
+> Vec<models::GithubOrganization> get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id)
 
 
 Retrieve SCM organization repository details for an organization
@@ -885,7 +885,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GithubOrganization>**](GithubOrganization.md)
+[**Vec<models::GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -901,7 +901,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_scm_organisations
 
-> Vec<crate::models::GithubOrganization> get_scm_organisations(organization, scm, credential_id)
+> Vec<models::GithubOrganization> get_scm_organisations(organization, scm, credential_id)
 
 
 Retrieve SCM organizations details for an organization
@@ -917,7 +917,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GithubOrganization>**](GithubOrganization.md)
+[**Vec<models::GithubOrganization>**](GithubOrganization.md)
 
 ### Authorization
 
@@ -933,7 +933,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user
 
-> crate::models::User get_user(organization, user)
+> models::User get_user(organization, user)
 
 
 Retrieve user details for an organization
@@ -948,7 +948,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::User**](User.md)
+[**models::User**](User.md)
 
 ### Authorization
 
@@ -964,7 +964,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_favorites
 
-> Vec<crate::models::FavoriteImpl> get_user_favorites(user)
+> Vec<models::FavoriteImpl> get_user_favorites(user)
 
 
 Retrieve user favorites details for an organization
@@ -978,7 +978,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::FavoriteImpl>**](FavoriteImpl.md)
+[**Vec<models::FavoriteImpl>**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -994,7 +994,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_users
 
-> crate::models::User get_users(organization)
+> models::User get_users(organization)
 
 
 Retrieve users details for an organization
@@ -1008,7 +1008,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::User**](User.md)
+[**models::User**](User.md)
 
 ### Authorization
 
@@ -1024,7 +1024,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_pipeline_run
 
-> crate::models::QueueItemImpl post_pipeline_run(organization, pipeline, run)
+> models::QueueItemImpl post_pipeline_run(organization, pipeline, run)
 
 
 Replay an organization pipeline run
@@ -1040,7 +1040,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::QueueItemImpl**](QueueItemImpl.md)
+[**models::QueueItemImpl**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1056,7 +1056,7 @@ Name | Type | Description  | Required | Notes
 
 ## post_pipeline_runs
 
-> crate::models::QueueItemImpl post_pipeline_runs(organization, pipeline)
+> models::QueueItemImpl post_pipeline_runs(organization, pipeline)
 
 
 Start a build for an organization pipeline
@@ -1071,7 +1071,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::QueueItemImpl**](QueueItemImpl.md)
+[**models::QueueItemImpl**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1087,7 +1087,7 @@ Name | Type | Description  | Required | Notes
 
 ## put_pipeline_favorite
 
-> crate::models::FavoriteImpl put_pipeline_favorite(organization, pipeline, body)
+> models::FavoriteImpl put_pipeline_favorite(organization, pipeline, body)
 
 
 Favorite/unfavorite a pipeline
@@ -1103,7 +1103,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FavoriteImpl**](FavoriteImpl.md)
+[**models::FavoriteImpl**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -1119,7 +1119,7 @@ Name | Type | Description  | Required | Notes
 
 ## put_pipeline_run
 
-> crate::models::PipelineRun put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs)
+> models::PipelineRun put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs)
 
 
 Stop a build of an organization pipeline
@@ -1137,7 +1137,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PipelineRun**](PipelineRun.md)
+[**models::PipelineRun**](PipelineRun.md)
 
 ### Authorization
 

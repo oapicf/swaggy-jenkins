@@ -10,21 +10,21 @@ namespace app\Models;
 class GithubRepositories {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\GithubRepositorieslinks $links */
-    private $links;
+    public $links;
 
     /** @var \app\Models\GithubRepository[] $items */
-    private $items;
+    public $items = [];
 
     /** @var int $lastPage */
-    private $lastPage;
+    public $lastPage = 0;
 
     /** @var int $nextPage */
-    private $nextPage;
+    public $nextPage = 0;
 
     /** @var int $pageSize */
-    private $pageSize;
+    public $pageSize = 0;
 
 }

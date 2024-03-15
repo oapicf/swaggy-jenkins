@@ -65,6 +65,24 @@ public class Link  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Link link = (Link) o;
+    return Objects.equals(this.propertyClass, link.propertyClass) &&
+        Objects.equals(this.href, link.href);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, href);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Link {\n");

@@ -501,7 +501,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -510,7 +510,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -519,7 +519,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -528,7 +528,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->color
     cJSON *color = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "color");
     if (color) { 
-    if(!cJSON_IsString(color))
+    if(!cJSON_IsString(color) && !cJSON_IsNull(color))
     {
     goto end; //String
     }
@@ -558,7 +558,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -567,7 +567,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -576,7 +576,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->display_name_or_null
     cJSON *display_name_or_null = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "displayNameOrNull");
     if (display_name_or_null) { 
-    if(!cJSON_IsString(display_name_or_null))
+    if(!cJSON_IsString(display_name_or_null) && !cJSON_IsNull(display_name_or_null))
     {
     goto end; //String
     }
@@ -585,7 +585,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->full_display_name
     cJSON *full_display_name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "fullDisplayName");
     if (full_display_name) { 
-    if(!cJSON_IsString(full_display_name))
+    if(!cJSON_IsString(full_display_name) && !cJSON_IsNull(full_display_name))
     {
     goto end; //String
     }
@@ -594,7 +594,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "fullName");
     if (full_name) { 
-    if(!cJSON_IsString(full_name))
+    if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
     goto end; //String
     }
@@ -690,7 +690,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->last_failed_build
     cJSON *last_failed_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastFailedBuild");
     if (last_failed_build) { 
-    if(!cJSON_IsString(last_failed_build))
+    if(!cJSON_IsString(last_failed_build) && !cJSON_IsNull(last_failed_build))
     {
     goto end; //String
     }
@@ -711,7 +711,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->last_unstable_build
     cJSON *last_unstable_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastUnstableBuild");
     if (last_unstable_build) { 
-    if(!cJSON_IsString(last_unstable_build))
+    if(!cJSON_IsString(last_unstable_build) && !cJSON_IsNull(last_unstable_build))
     {
     goto end; //String
     }
@@ -720,7 +720,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->last_unsuccessful_build
     cJSON *last_unsuccessful_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastUnsuccessfulBuild");
     if (last_unsuccessful_build) { 
-    if(!cJSON_IsString(last_unsuccessful_build))
+    if(!cJSON_IsString(last_unsuccessful_build) && !cJSON_IsNull(last_unsuccessful_build))
     {
     goto end; //String
     }
@@ -738,7 +738,7 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // free_style_project->queue_item
     cJSON *queue_item = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "queueItem");
     if (queue_item) { 
-    if(!cJSON_IsString(queue_item))
+    if(!cJSON_IsString(queue_item) && !cJSON_IsNull(queue_item))
     {
     goto end; //String
     }
@@ -761,16 +761,16 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
 
     free_style_project_local_var = free_style_project_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        url ? strdup(url->valuestring) : NULL,
-        color ? strdup(color->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
+        color && !cJSON_IsNull(color) ? strdup(color->valuestring) : NULL,
         actions ? actionsList : NULL,
-        description ? strdup(description->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
-        display_name_or_null ? strdup(display_name_or_null->valuestring) : NULL,
-        full_display_name ? strdup(full_display_name->valuestring) : NULL,
-        full_name ? strdup(full_name->valuestring) : NULL,
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
+        display_name_or_null && !cJSON_IsNull(display_name_or_null) ? strdup(display_name_or_null->valuestring) : NULL,
+        full_display_name && !cJSON_IsNull(full_display_name) ? strdup(full_display_name->valuestring) : NULL,
+        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
         buildable ? buildable->valueint : 0,
         builds ? buildsList : NULL,
         first_build ? first_build_local_nonprim : NULL,
@@ -779,13 +779,13 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
         keep_dependencies ? keep_dependencies->valueint : 0,
         last_build ? last_build_local_nonprim : NULL,
         last_completed_build ? last_completed_build_local_nonprim : NULL,
-        last_failed_build ? strdup(last_failed_build->valuestring) : NULL,
+        last_failed_build && !cJSON_IsNull(last_failed_build) ? strdup(last_failed_build->valuestring) : NULL,
         last_stable_build ? last_stable_build_local_nonprim : NULL,
         last_successful_build ? last_successful_build_local_nonprim : NULL,
-        last_unstable_build ? strdup(last_unstable_build->valuestring) : NULL,
-        last_unsuccessful_build ? strdup(last_unsuccessful_build->valuestring) : NULL,
+        last_unstable_build && !cJSON_IsNull(last_unstable_build) ? strdup(last_unstable_build->valuestring) : NULL,
+        last_unsuccessful_build && !cJSON_IsNull(last_unsuccessful_build) ? strdup(last_unsuccessful_build->valuestring) : NULL,
         next_build_number ? next_build_number->valuedouble : 0,
-        queue_item ? strdup(queue_item->valuestring) : NULL,
+        queue_item && !cJSON_IsNull(queue_item) ? strdup(queue_item->valuestring) : NULL,
         concurrent_build ? concurrent_build->valueint : 0,
         scm ? scm_local_nonprim : NULL
         );

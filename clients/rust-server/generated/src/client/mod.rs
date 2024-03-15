@@ -61,10 +61,10 @@ use crate::{Api,
      GetPipelineRunNodesResponse,
      GetPipelineRunsResponse,
      GetPipelinesResponse,
-     GetSCMResponse,
-     GetSCMOrganisationRepositoriesResponse,
-     GetSCMOrganisationRepositoryResponse,
-     GetSCMOrganisationsResponse,
+     GetScmResponse,
+     GetScmOrganisationRepositoriesResponse,
+     GetScmOrganisationRepositoryResponse,
+     GetScmOrganisationsResponse,
      GetUserResponse,
      GetUserFavoritesResponse,
      GetUsersResponse,
@@ -110,7 +110,7 @@ fn into_base_path(input: impl TryInto<Uri, Error=hyper::http::uri::InvalidUri>, 
         }
     }
 
-    let host = uri.host().ok_or_else(|| ClientInitError::MissingHost)?;
+    let host = uri.host().ok_or(ClientInitError::MissingHost)?;
     let port = uri.port_u16().map(|x| format!(":{}", x)).unwrap_or_default();
     Ok(format!("{}://{}{}{}", scheme, host, port, uri.path().trim_end_matches('/')))
 }
@@ -249,7 +249,7 @@ impl<C> Client<DropContextService<HyperClient, C>, C> where
             "https" => {
                 let connector = connector.https()
                    .build()
-                   .map_err(|e| ClientInitError::SslError(e))?;
+                   .map_err(ClientInitError::SslError)?;
                 HyperClient::Https(hyper::client::Client::builder().build(connector))
             },
             _ => {
@@ -301,7 +301,7 @@ impl<C> Client<DropContextService<hyper::client::Client<HttpsConnector, Body>, C
         let https_connector = Connector::builder()
             .https()
             .build()
-            .map_err(|e| ClientInitError::SslError(e))?;
+            .map_err(ClientInitError::SslError)?;
         Self::try_new_with_connector(base_path, Some("https"), https_connector)
     }
 
@@ -322,7 +322,7 @@ impl<C> Client<DropContextService<hyper::client::Client<HttpsConnector, Body>, C
             .https()
             .pin_server_certificate(ca_certificate)
             .build()
-            .map_err(|e| ClientInitError::SslError(e))?;
+            .map_err(ClientInitError::SslError)?;
         Self::try_new_with_connector(base_path, Some("https"), https_connector)
     }
 
@@ -350,7 +350,7 @@ impl<C> Client<DropContextService<hyper::client::Client<HttpsConnector, Body>, C
             .pin_server_certificate(ca_certificate)
             .client_authentication(client_key, client_certificate)
             .build()
-            .map_err(|e| ClientInitError::SslError(e))?;
+            .map_err(ClientInitError::SslError)?;
         Self::try_new_with_connector(base_path, Some("https"), https_connector)
     }
 }
@@ -470,16 +470,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -493,7 +495,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -512,13 +514,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetCrumbResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetCrumbResponse::JenkinsRequiresAuthentication
                 )
@@ -582,16 +582,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -605,24 +607,21 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     DeletePipelineQueueItemResponse::SuccessfullyDeletedQueueItem
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     DeletePipelineQueueItemResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     DeletePipelineQueueItemResponse::JenkinsRequiresAuthentication
                 )
@@ -682,16 +681,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -705,7 +706,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -724,13 +725,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetAuthenticatedUserResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetAuthenticatedUserResponse::JenkinsRequiresAuthentication
                 )
@@ -790,16 +789,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -813,7 +814,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -832,13 +833,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetClassesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetClassesResponse::JenkinsRequiresAuthentication
                 )
@@ -898,13 +897,13 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -923,13 +922,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJsonWebKeyResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJsonWebKeyResponse::JenkinsRequiresAuthentication
                 )
@@ -997,13 +994,13 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1022,13 +1019,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJsonWebTokenResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJsonWebTokenResponse::JenkinsRequiresAuthentication
                 )
@@ -1088,16 +1083,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1111,7 +1108,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1130,19 +1127,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetOrganisationResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetOrganisationResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetOrganisationResponse::PipelineCannotBeFoundOnJenkinsInstance
                 )
@@ -1200,16 +1194,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1223,7 +1219,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1242,13 +1238,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetOrganisationsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetOrganisationsResponse::JenkinsRequiresAuthentication
                 )
@@ -1310,16 +1304,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1333,7 +1329,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1352,19 +1348,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineResponse::PipelineCannotBeFoundOnJenkinsInstance
                 )
@@ -1426,16 +1419,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1449,7 +1444,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1468,13 +1463,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineActivitiesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineActivitiesResponse::JenkinsRequiresAuthentication
                 )
@@ -1538,16 +1531,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1561,7 +1556,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1580,13 +1575,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineBranchResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineBranchResponse::JenkinsRequiresAuthentication
                 )
@@ -1652,16 +1645,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1675,7 +1670,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1694,13 +1689,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineBranchRunResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineBranchRunResponse::JenkinsRequiresAuthentication
                 )
@@ -1762,16 +1755,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1785,7 +1780,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1804,13 +1799,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineBranchesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineBranchesResponse::JenkinsRequiresAuthentication
                 )
@@ -1872,16 +1865,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -1895,7 +1890,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -1914,13 +1909,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineFolderResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineFolderResponse::JenkinsRequiresAuthentication
                 )
@@ -1984,16 +1977,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2007,7 +2002,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2026,13 +2021,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineFolderPipelineResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineFolderPipelineResponse::JenkinsRequiresAuthentication
                 )
@@ -2094,16 +2087,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2117,7 +2112,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2136,13 +2131,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineQueueResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineQueueResponse::JenkinsRequiresAuthentication
                 )
@@ -2206,16 +2199,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2229,7 +2224,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2248,13 +2243,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunResponse::JenkinsRequiresAuthentication
                 )
@@ -2328,16 +2321,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2351,7 +2346,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2370,13 +2365,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunLogResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunLogResponse::JenkinsRequiresAuthentication
                 )
@@ -2442,16 +2435,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2465,7 +2460,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2484,13 +2479,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeResponse::JenkinsRequiresAuthentication
                 )
@@ -2558,16 +2551,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2581,7 +2576,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2600,13 +2595,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeStepResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeStepResponse::JenkinsRequiresAuthentication
                 )
@@ -2674,16 +2667,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2697,7 +2692,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2716,13 +2711,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeStepLogResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeStepLogResponse::JenkinsRequiresAuthentication
                 )
@@ -2788,16 +2781,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2811,7 +2806,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2830,13 +2825,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeStepsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodeStepsResponse::JenkinsRequiresAuthentication
                 )
@@ -2900,16 +2893,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -2923,7 +2918,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -2942,13 +2937,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunNodesResponse::JenkinsRequiresAuthentication
                 )
@@ -3010,16 +3003,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3033,7 +3028,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3052,13 +3047,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelineRunsResponse::JenkinsRequiresAuthentication
                 )
@@ -3118,16 +3111,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3141,7 +3136,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3160,13 +3155,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelinesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetPipelinesResponse::JenkinsRequiresAuthentication
                 )
@@ -3195,7 +3188,7 @@ impl<S, C> Api<C> for Client<S, C> where
         &self,
         param_organization: String,
         param_scm: String,
-        context: &C) -> Result<GetSCMResponse, ApiError>
+        context: &C) -> Result<GetScmResponse, ApiError>
     {
         let mut client_service = self.client_service.clone();
         let mut uri = format!(
@@ -3228,16 +3221,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3251,7 +3246,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3265,20 +3260,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 let body = serde_json::from_str::<models::GithubScm>(body).map_err(|e| {
                     ApiError(format!("Response body did not match the schema: {}", e))
                 })?;
-                Ok(GetSCMResponse::SuccessfullyRetrievedSCMDetails
+                Ok(GetScmResponse::SuccessfullyRetrievedSCMDetails
                     (body)
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMResponse::AuthenticationFailed
+                    GetScmResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMResponse::JenkinsRequiresAuthentication
+                    GetScmResponse::JenkinsRequiresAuthentication
                 )
             }
             code => {
@@ -3309,7 +3302,7 @@ impl<S, C> Api<C> for Client<S, C> where
         param_credential_id: Option<String>,
         param_page_size: Option<i32>,
         param_page_number: Option<i32>,
-        context: &C) -> Result<GetSCMOrganisationRepositoriesResponse, ApiError>
+        context: &C) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>
     {
         let mut client_service = self.client_service.clone();
         let mut uri = format!(
@@ -3325,7 +3318,7 @@ impl<S, C> Api<C> for Client<S, C> where
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
             if let Some(param_credential_id) = param_credential_id {
                 query_string.append_pair("credentialId",
-                    &param_credential_id.to_string());
+                    &param_credential_id);
             }
             if let Some(param_page_size) = param_page_size {
                 query_string.append_pair("pageSize",
@@ -3355,16 +3348,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3378,7 +3373,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3392,20 +3387,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 let body = serde_json::from_str::<Vec<models::GithubOrganization>>(body).map_err(|e| {
                     ApiError(format!("Response body did not match the schema: {}", e))
                 })?;
-                Ok(GetSCMOrganisationRepositoriesResponse::SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
+                Ok(GetScmOrganisationRepositoriesResponse::SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
                     (body)
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMOrganisationRepositoriesResponse::AuthenticationFailed
+                    GetScmOrganisationRepositoriesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMOrganisationRepositoriesResponse::JenkinsRequiresAuthentication
+                    GetScmOrganisationRepositoriesResponse::JenkinsRequiresAuthentication
                 )
             }
             code => {
@@ -3435,7 +3428,7 @@ impl<S, C> Api<C> for Client<S, C> where
         param_scm_organisation: String,
         param_repository: String,
         param_credential_id: Option<String>,
-        context: &C) -> Result<GetSCMOrganisationRepositoryResponse, ApiError>
+        context: &C) -> Result<GetScmOrganisationRepositoryResponse, ApiError>
     {
         let mut client_service = self.client_service.clone();
         let mut uri = format!(
@@ -3452,7 +3445,7 @@ impl<S, C> Api<C> for Client<S, C> where
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
             if let Some(param_credential_id) = param_credential_id {
                 query_string.append_pair("credentialId",
-                    &param_credential_id.to_string());
+                    &param_credential_id);
             }
             query_string.finish()
         };
@@ -3474,16 +3467,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3497,7 +3492,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3511,20 +3506,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 let body = serde_json::from_str::<Vec<models::GithubOrganization>>(body).map_err(|e| {
                     ApiError(format!("Response body did not match the schema: {}", e))
                 })?;
-                Ok(GetSCMOrganisationRepositoryResponse::SuccessfullyRetrievedSCMOrganizationsDetails
+                Ok(GetScmOrganisationRepositoryResponse::SuccessfullyRetrievedSCMOrganizationsDetails
                     (body)
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMOrganisationRepositoryResponse::AuthenticationFailed
+                    GetScmOrganisationRepositoryResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMOrganisationRepositoryResponse::JenkinsRequiresAuthentication
+                    GetScmOrganisationRepositoryResponse::JenkinsRequiresAuthentication
                 )
             }
             code => {
@@ -3552,7 +3545,7 @@ impl<S, C> Api<C> for Client<S, C> where
         param_organization: String,
         param_scm: String,
         param_credential_id: Option<String>,
-        context: &C) -> Result<GetSCMOrganisationsResponse, ApiError>
+        context: &C) -> Result<GetScmOrganisationsResponse, ApiError>
     {
         let mut client_service = self.client_service.clone();
         let mut uri = format!(
@@ -3567,7 +3560,7 @@ impl<S, C> Api<C> for Client<S, C> where
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
             if let Some(param_credential_id) = param_credential_id {
                 query_string.append_pair("credentialId",
-                    &param_credential_id.to_string());
+                    &param_credential_id);
             }
             query_string.finish()
         };
@@ -3589,16 +3582,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3612,7 +3607,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3626,20 +3621,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 let body = serde_json::from_str::<Vec<models::GithubOrganization>>(body).map_err(|e| {
                     ApiError(format!("Response body did not match the schema: {}", e))
                 })?;
-                Ok(GetSCMOrganisationsResponse::SuccessfullyRetrievedSCMOrganizationsDetails
+                Ok(GetScmOrganisationsResponse::SuccessfullyRetrievedSCMOrganizationsDetails
                     (body)
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMOrganisationsResponse::AuthenticationFailed
+                    GetScmOrganisationsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
-                    GetSCMOrganisationsResponse::JenkinsRequiresAuthentication
+                    GetScmOrganisationsResponse::JenkinsRequiresAuthentication
                 )
             }
             code => {
@@ -3699,16 +3692,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3722,7 +3717,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3741,13 +3736,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetUserResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetUserResponse::JenkinsRequiresAuthentication
                 )
@@ -3807,16 +3800,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3830,7 +3825,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3849,13 +3844,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetUserFavoritesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetUserFavoritesResponse::JenkinsRequiresAuthentication
                 )
@@ -3915,16 +3908,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -3938,7 +3933,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -3957,13 +3952,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetUsersResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetUsersResponse::JenkinsRequiresAuthentication
                 )
@@ -4027,16 +4020,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4050,7 +4045,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4069,13 +4064,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostPipelineRunResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostPipelineRunResponse::JenkinsRequiresAuthentication
                 )
@@ -4137,16 +4130,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4160,7 +4155,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4179,13 +4174,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostPipelineRunsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostPipelineRunsResponse::JenkinsRequiresAuthentication
                 )
@@ -4256,16 +4249,18 @@ impl<S, C> Api<C> for Client<S, C> where
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create header: {} - {}", header, e)))
         });
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4279,7 +4274,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4298,13 +4293,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PutPipelineFavoriteResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PutPipelineFavoriteResponse::JenkinsRequiresAuthentication
                 )
@@ -4352,7 +4345,7 @@ impl<S, C> Api<C> for Client<S, C> where
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
             if let Some(param_blocking) = param_blocking {
                 query_string.append_pair("blocking",
-                    &param_blocking.to_string());
+                    &param_blocking);
             }
             if let Some(param_time_out_in_secs) = param_time_out_in_secs {
                 query_string.append_pair("timeOutInSecs",
@@ -4378,16 +4371,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4401,7 +4396,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4420,13 +4415,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PutPipelineRunResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PutPipelineRunResponse::JenkinsRequiresAuthentication
                 )
@@ -4466,7 +4459,7 @@ impl<S, C> Api<C> for Client<S, C> where
         let query_string = {
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
                 query_string.append_pair("q",
-                    &param_q.to_string());
+                    &param_q);
             query_string.finish()
         };
         if !query_string.is_empty() {
@@ -4487,16 +4480,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4510,7 +4505,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4529,13 +4524,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     SearchResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     SearchResponse::JenkinsRequiresAuthentication
                 )
@@ -4575,7 +4568,7 @@ impl<S, C> Api<C> for Client<S, C> where
         let query_string = {
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
                 query_string.append_pair("q",
-                    &param_q.to_string());
+                    &param_q);
             query_string.finish()
         };
         if !query_string.is_empty() {
@@ -4596,16 +4589,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4619,7 +4614,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4638,13 +4633,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     SearchClassesResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     SearchClassesResponse::JenkinsRequiresAuthentication
                 )
@@ -4705,16 +4698,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4728,7 +4723,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4747,13 +4742,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetComputerResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetComputerResponse::JenkinsRequiresAuthentication
                 )
@@ -4811,16 +4804,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4834,7 +4829,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4853,13 +4848,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJenkinsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJenkinsResponse::JenkinsRequiresAuthentication
                 )
@@ -4919,16 +4912,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -4942,7 +4937,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -4961,19 +4956,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJobResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJobResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetJobResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -5033,16 +5025,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5056,7 +5050,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5076,19 +5070,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJobConfigResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJobConfigResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetJobConfigResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -5148,16 +5139,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5171,7 +5164,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5190,19 +5183,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJobLastBuildResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJobLastBuildResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetJobLastBuildResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -5246,7 +5236,7 @@ impl<S, C> Api<C> for Client<S, C> where
         let query_string = {
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
                 query_string.append_pair("start",
-                    &param_start.to_string());
+                    &param_start);
             query_string.finish()
         };
         if !query_string.is_empty() {
@@ -5267,16 +5257,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5290,30 +5282,26 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     GetJobProgressiveTextResponse::SuccessfullyRetrievedJob
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetJobProgressiveTextResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetJobProgressiveTextResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetJobProgressiveTextResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -5371,16 +5359,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5394,7 +5384,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5413,13 +5403,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetQueueResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetQueueResponse::JenkinsRequiresAuthentication
                 )
@@ -5479,16 +5467,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5502,7 +5492,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5521,13 +5511,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetQueueItemResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetQueueItemResponse::JenkinsRequiresAuthentication
                 )
@@ -5587,16 +5575,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5610,7 +5600,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5629,19 +5619,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetViewResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetViewResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetViewResponse::ViewCannotBeFoundOnJenkinsInstance
                 )
@@ -5701,16 +5688,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5724,7 +5713,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5744,19 +5733,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     GetViewConfigResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     GetViewConfigResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     GetViewConfigResponse::ViewCannotBeFoundOnJenkinsInstance
                 )
@@ -5814,16 +5800,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5837,7 +5825,7 @@ impl<S, C> Api<C> for Client<S, C> where
             }
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
@@ -5851,13 +5839,11 @@ impl<S, C> Api<C> for Client<S, C> where
                                 return Err(ApiError(format!("Invalid response header x-jenkins for response 200 - {}", e)));
                             },
                         };
-                        let response_x_jenkins = response_x_jenkins.0;
-                        Some(response_x_jenkins)
+                        Some(response_x_jenkins.0)
                         },
                     None => None,
                 };
 
-                let body = response.into_body();
                 Ok(
                     HeadJenkinsResponse::SuccessfullyRetrievedJenkinsHeaders
                     {
@@ -5866,13 +5852,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     HeadJenkinsResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     HeadJenkinsResponse::JenkinsRequiresAuthentication
                 )
@@ -5917,14 +5901,14 @@ impl<S, C> Api<C> for Client<S, C> where
         let query_string = {
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
                 query_string.append_pair("name",
-                    &param_name.to_string());
+                    &param_name);
             if let Some(param_from) = param_from {
                 query_string.append_pair("from",
-                    &param_from.to_string());
+                    &param_from);
             }
             if let Some(param_mode) = param_mode {
                 query_string.append_pair("mode",
-                    &param_mode.to_string());
+                    &param_mode);
             }
             query_string.finish()
         };
@@ -5958,16 +5942,18 @@ impl<S, C> Api<C> for Client<S, C> where
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create header: {} - {}", header, e)))
         });
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -5982,10 +5968,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -5997,10 +5985,12 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
+        #[allow(clippy::single_match)]
         match param_content_type {
             Some(param_content_type) => {
         request.headers_mut().append(
             HeaderName::from_static("content-type"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_content_type.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6012,12 +6002,11 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostCreateItemResponse::SuccessfullyCreatedANewJob
                 )
@@ -6037,13 +6026,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostCreateItemResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostCreateItemResponse::JenkinsRequiresAuthentication
                 )
@@ -6086,7 +6073,7 @@ impl<S, C> Api<C> for Client<S, C> where
         let query_string = {
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
                 query_string.append_pair("name",
-                    &param_name.to_string());
+                    &param_name);
             query_string.finish()
         };
         if !query_string.is_empty() {
@@ -6119,16 +6106,18 @@ impl<S, C> Api<C> for Client<S, C> where
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create header: {} - {}", header, e)))
         });
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6143,10 +6132,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6158,10 +6149,12 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
+        #[allow(clippy::single_match)]
         match param_content_type {
             Some(param_content_type) => {
         request.headers_mut().append(
             HeaderName::from_static("content-type"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_content_type.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6173,12 +6166,11 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostCreateViewResponse::SuccessfullyCreatedTheView
                 )
@@ -6198,13 +6190,11 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostCreateViewResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostCreateViewResponse::JenkinsRequiresAuthentication
                 )
@@ -6248,10 +6238,10 @@ impl<S, C> Api<C> for Client<S, C> where
         let query_string = {
             let mut query_string = form_urlencoded::Serializer::new("".to_owned());
                 query_string.append_pair("json",
-                    &param_json.to_string());
+                    &param_json);
             if let Some(param_token) = param_token {
                 query_string.append_pair("token",
-                    &param_token.to_string());
+                    &param_token);
             }
             query_string.finish()
         };
@@ -6273,16 +6263,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6297,10 +6289,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6312,36 +6306,31 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostJobBuildResponse::SuccessfullyBuiltTheJob
                 )
             }
             201 => {
-                let body = response.into_body();
                 Ok(
                     PostJobBuildResponse::SuccessfullyBuiltTheJob_2
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostJobBuildResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostJobBuildResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostJobBuildResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -6411,16 +6400,18 @@ impl<S, C> Api<C> for Client<S, C> where
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create header: {} - {}", header, e)))
         });
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6435,10 +6426,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6450,12 +6443,11 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostJobConfigResponse::SuccessfullyRetrievedJobConfigurationInConfig
                 )
@@ -6475,19 +6467,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostJobConfigResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostJobConfigResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostJobConfigResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -6548,16 +6537,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6572,10 +6563,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6587,30 +6580,26 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDeleteResponse::SuccessfullyDeletedTheJob
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDeleteResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDeleteResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDeleteResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -6671,16 +6660,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6695,10 +6686,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6710,30 +6703,26 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDisableResponse::SuccessfullyDisabledTheJob
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDisableResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDisableResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostJobDisableResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -6794,16 +6783,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6818,10 +6809,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6833,30 +6826,26 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostJobEnableResponse::SuccessfullyEnabledTheJob
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostJobEnableResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostJobEnableResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostJobEnableResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -6917,16 +6906,18 @@ impl<S, C> Api<C> for Client<S, C> where
                 Err(e) => return Err(ApiError(format!("Unable to create request: {}", e)))
         };
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -6941,10 +6932,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -6956,30 +6949,26 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostJobLastBuildStopResponse::SuccessfullyStoppedTheJob
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostJobLastBuildStopResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostJobLastBuildStopResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostJobLastBuildStopResponse::JobCannotBeFoundOnJenkinsInstance
                 )
@@ -7051,16 +7040,18 @@ impl<S, C> Api<C> for Client<S, C> where
             Err(e) => return Err(ApiError(format!("Unable to create header: {} - {}", header, e)))
         });
 
-        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.clone().to_string().as_str());
+        let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
         request.headers_mut().insert(HeaderName::from_static("x-span-id"), match header {
             Ok(h) => h,
             Err(e) => return Err(ApiError(format!("Unable to create X-Span ID header value: {}", e)))
         });
 
+        #[allow(clippy::collapsible_match)]
         if let Some(auth_data) = Has::<Option<AuthData>>::get(context).as_ref() {
             // Currently only authentication with Basic and Bearer are supported
+            #[allow(clippy::single_match, clippy::match_single_binding)]
             match auth_data {
-                &AuthData::Basic(ref basic_header) => {
+                AuthData::Basic(basic_header) => {
                     let auth = swagger::auth::Header(basic_header.clone());
                     let header = match HeaderValue::from_str(&format!("{}", auth)) {
                         Ok(h) => h,
@@ -7075,10 +7066,12 @@ impl<S, C> Api<C> for Client<S, C> where
         }
 
         // Header parameters
+        #[allow(clippy::single_match)]
         match param_jenkins_crumb {
             Some(param_jenkins_crumb) => {
         request.headers_mut().append(
             HeaderName::from_static("jenkins-crumb"),
+            #[allow(clippy::redundant_clone)]
             match header::IntoHeaderValue(param_jenkins_crumb.clone()).try_into() {
                 Ok(header) => header,
                 Err(e) => {
@@ -7090,12 +7083,11 @@ impl<S, C> Api<C> for Client<S, C> where
             None => {}
         }
 
-        let mut response = client_service.call((request, context.clone()))
+        let response = client_service.call((request, context.clone()))
             .map_err(|e| ApiError(format!("No response received: {}", e))).await?;
 
         match response.status().as_u16() {
             200 => {
-                let body = response.into_body();
                 Ok(
                     PostViewConfigResponse::SuccessfullyUpdatedViewConfiguration
                 )
@@ -7115,19 +7107,16 @@ impl<S, C> Api<C> for Client<S, C> where
                 )
             }
             401 => {
-                let body = response.into_body();
                 Ok(
                     PostViewConfigResponse::AuthenticationFailed
                 )
             }
             403 => {
-                let body = response.into_body();
                 Ok(
                     PostViewConfigResponse::JenkinsRequiresAuthentication
                 )
             }
             404 => {
-                let body = response.into_body();
                 Ok(
                     PostViewConfigResponse::ViewCannotBeFoundOnJenkinsInstance
                 )

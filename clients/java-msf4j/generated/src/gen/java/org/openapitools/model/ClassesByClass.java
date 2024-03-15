@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * ClassesByClass
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ClassesByClass   {
   @JsonProperty("classes")
   private List<String> classes = null;
@@ -26,7 +27,7 @@ public class ClassesByClass   {
 
   public ClassesByClass addClassesItem(String classesItem) {
     if (this.classes == null) {
-      this.classes = new ArrayList<>();
+      this.classes = ;
     }
     this.classes.add(classesItem);
     return this;

@@ -10,24 +10,24 @@ namespace app\Models;
 class HudsonMasterComputermonitorData {
 
     /** @var \app\Models\SwapSpaceMonitorMemoryUsage2 $hudsonNodeMonitorsSwapSpaceMonitor */
-    private $hudsonNodeMonitorsSwapSpaceMonitor;
+    public $hudsonNodeMonitorsSwapSpaceMonitor;
 
     /** @var \app\Models\DiskSpaceMonitorDescriptorDiskSpace $hudsonNodeMonitorsTemporarySpaceMonitor */
-    private $hudsonNodeMonitorsTemporarySpaceMonitor;
+    public $hudsonNodeMonitorsTemporarySpaceMonitor;
 
     /** @var \app\Models\DiskSpaceMonitorDescriptorDiskSpace $hudsonNodeMonitorsDiskSpaceMonitor */
-    private $hudsonNodeMonitorsDiskSpaceMonitor;
+    public $hudsonNodeMonitorsDiskSpaceMonitor;
 
     /** @var string $hudsonNodeMonitorsArchitectureMonitor */
-    private $hudsonNodeMonitorsArchitectureMonitor;
+    public $hudsonNodeMonitorsArchitectureMonitor = "";
 
     /** @var \app\Models\ResponseTimeMonitorData $hudsonNodeMonitorsResponseTimeMonitor */
-    private $hudsonNodeMonitorsResponseTimeMonitor;
+    public $hudsonNodeMonitorsResponseTimeMonitor;
 
     /** @var \app\Models\ClockDifference $hudsonNodeMonitorsClockMonitor */
-    private $hudsonNodeMonitorsClockMonitor;
+    public $hudsonNodeMonitorsClockMonitor;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

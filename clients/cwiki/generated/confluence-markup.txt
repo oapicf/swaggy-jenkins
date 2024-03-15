@@ -2,7 +2,7 @@ h1. Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-*Version:* 1.5.1-pre.0
+*Version:* 2.0.1-pre.0
 
 ----
 

@@ -1,7 +1,9 @@
+.formatter.exs
 .gitignore
 .openapi-generator-ignore
 README.md
 config/config.exs
+config/runtime.exs
 lib/swaggy_jenkins/api/base.ex
 lib/swaggy_jenkins/api/blue_ocean.ex
 lib/swaggy_jenkins/api/remote_access.ex

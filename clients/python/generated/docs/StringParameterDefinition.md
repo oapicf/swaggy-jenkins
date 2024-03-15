@@ -2,15 +2,32 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **str** |  | [optional] 
+**var_class** | **str** |  | [optional] 
 **default_parameter_value** | [**StringParameterValue**](StringParameterValue.md) |  | [optional] 
 **description** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from swaggyjenkins.models.string_parameter_definition import StringParameterDefinition
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of StringParameterDefinition from a JSON string
+string_parameter_definition_instance = StringParameterDefinition.from_json(json)
+# print the JSON string representation of the object
+print(StringParameterDefinition.to_json())
+
+# convert the object into a dict
+string_parameter_definition_dict = string_parameter_definition_instance.to_dict()
+# create an instance of StringParameterDefinition from a dict
+string_parameter_definition_form_dict = string_parameter_definition.from_dict(string_parameter_definition_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

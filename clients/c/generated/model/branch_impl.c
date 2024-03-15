@@ -257,7 +257,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -266,7 +266,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -284,7 +284,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->full_display_name
     cJSON *full_display_name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "fullDisplayName");
     if (full_display_name) { 
-    if(!cJSON_IsString(full_display_name))
+    if(!cJSON_IsString(full_display_name) && !cJSON_IsNull(full_display_name))
     {
     goto end; //String
     }
@@ -293,7 +293,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "fullName");
     if (full_name) { 
-    if(!cJSON_IsString(full_name))
+    if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
     goto end; //String
     }
@@ -302,7 +302,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -311,7 +311,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "organization");
     if (organization) { 
-    if(!cJSON_IsString(organization))
+    if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
     goto end; //String
     }
@@ -356,7 +356,7 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     // branch_impl->pull_request
     cJSON *pull_request = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "pullRequest");
     if (pull_request) { 
-    if(!cJSON_IsString(pull_request))
+    if(!cJSON_IsString(pull_request) && !cJSON_IsNull(pull_request))
     {
     goto end; //String
     }
@@ -376,17 +376,17 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
 
     branch_impl_local_var = branch_impl_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        full_display_name ? strdup(full_display_name->valuestring) : NULL,
-        full_name ? strdup(full_name->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        organization ? strdup(organization->valuestring) : NULL,
+        full_display_name && !cJSON_IsNull(full_display_name) ? strdup(full_display_name->valuestring) : NULL,
+        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
         parameters ? parametersList : NULL,
         permissions ? permissions_local_nonprim : NULL,
         weather_score ? weather_score->valuedouble : 0,
-        pull_request ? strdup(pull_request->valuestring) : NULL,
+        pull_request && !cJSON_IsNull(pull_request) ? strdup(pull_request->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         latest_run ? latest_run_local_nonprim : NULL
         );

@@ -4,9 +4,8 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for PipelineRunNode.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class PipelineRunNode(
   `class`: Option[String],
   displayName: Option[String],
@@ -16,33 +15,9 @@ case class PipelineRunNode(
   result: Option[String],
   startTime: Option[String],
   state: Option[String]
-  additionalProperties: 
 )
 
 object PipelineRunNode {
-  implicit lazy val pipelineRunNodeJsonFormat: Format[PipelineRunNode] = {
-    val realJsonFormat = Json.format[PipelineRunNode]
-    val declaredPropNames = Set("`class`", "displayName", "durationInMillis", "edges", "id", "result", "startTime", "state")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { pipelineRunNode =>
-        val jsObj = realJsonFormat.writes(pipelineRunNode)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val pipelineRunNodeJsonFormat: Format[PipelineRunNode] = Json.format[PipelineRunNode]
 }
 

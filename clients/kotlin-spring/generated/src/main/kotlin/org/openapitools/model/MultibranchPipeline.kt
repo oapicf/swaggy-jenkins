@@ -33,46 +33,46 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class MultibranchPipeline(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("latestRun") val latestRun: kotlin.String? = null,
+    @get:JsonProperty("latestRun") val latestRun: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("organization") val organization: kotlin.String? = null,
+    @get:JsonProperty("organization") val organization: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("weatherScore") val weatherScore: kotlin.Int? = null,
+    @get:JsonProperty("weatherScore") val weatherScore: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("branchNames") val branchNames: kotlin.collections.List<kotlin.String>? = null,
+    @get:JsonProperty("branchNames") val branchNames: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("numberOfFailingBranches") val numberOfFailingBranches: kotlin.Int? = null,
+    @get:JsonProperty("numberOfFailingBranches") val numberOfFailingBranches: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("numberOfFailingPullRequests") val numberOfFailingPullRequests: kotlin.Int? = null,
+    @get:JsonProperty("numberOfFailingPullRequests") val numberOfFailingPullRequests: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("numberOfSuccessfulBranches") val numberOfSuccessfulBranches: kotlin.Int? = null,
+    @get:JsonProperty("numberOfSuccessfulBranches") val numberOfSuccessfulBranches: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("numberOfSuccessfulPullRequests") val numberOfSuccessfulPullRequests: kotlin.Int? = null,
+    @get:JsonProperty("numberOfSuccessfulPullRequests") val numberOfSuccessfulPullRequests: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("totalNumberOfBranches") val totalNumberOfBranches: kotlin.Int? = null,
+    @get:JsonProperty("totalNumberOfBranches") val totalNumberOfBranches: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("totalNumberOfPullRequests") val totalNumberOfPullRequests: kotlin.Int? = null,
+    @get:JsonProperty("totalNumberOfPullRequests") val totalNumberOfPullRequests: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

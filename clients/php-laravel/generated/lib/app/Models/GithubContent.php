@@ -10,27 +10,27 @@ namespace app\Models;
 class GithubContent {
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $sha */
-    private $sha;
+    public $sha = "";
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $repo */
-    private $repo;
+    public $repo = "";
 
     /** @var int $size */
-    private $size;
+    public $size = 0;
 
     /** @var string $owner */
-    private $owner;
+    public $owner = "";
 
     /** @var string $path */
-    private $path;
+    public $path = "";
 
     /** @var string $base64Data */
-    private $base64Data;
+    public $base64Data = "";
 
 }

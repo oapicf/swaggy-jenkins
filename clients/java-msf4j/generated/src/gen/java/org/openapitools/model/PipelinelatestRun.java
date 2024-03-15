@@ -6,16 +6,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelinelatestRunartifacts;
 
 /**
  * PipelinelatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelinelatestRun   {
   @JsonProperty("artifacts")
-  private List<PipelinelatestRunartifacts> artifacts = null;
+  private List<@Valid PipelinelatestRunartifacts> artifacts = null;
 
   @JsonProperty("durationInMillis")
   private Integer durationInMillis;
@@ -59,14 +60,14 @@ public class PipelinelatestRun   {
   @JsonProperty("_class")
   private String propertyClass;
 
-  public PipelinelatestRun artifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public PipelinelatestRun artifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
 
   public PipelinelatestRun addArtifactsItem(PipelinelatestRunartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = new ArrayList<>();
+      this.artifacts = ;
     }
     this.artifacts.add(artifactsItem);
     return this;
@@ -77,11 +78,11 @@ public class PipelinelatestRun   {
    * @return artifacts
   **/
   @ApiModelProperty(value = "")
-  public List<PipelinelatestRunartifacts> getArtifacts() {
+  public List<@Valid PipelinelatestRunartifacts> getArtifacts() {
     return artifacts;
   }
 
-  public void setArtifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 

@@ -67,6 +67,24 @@ public class GithubRepositorieslinks  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubRepositorieslinks githubRepositorieslinks = (GithubRepositorieslinks) o;
+    return Objects.equals(this.self, githubRepositorieslinks.self) &&
+        Objects.equals(this.propertyClass, githubRepositorieslinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(self, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubRepositorieslinks {\n");

@@ -146,6 +146,27 @@ public class BranchImplpermissions  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    BranchImplpermissions branchImplpermissions = (BranchImplpermissions) o;
+    return Objects.equals(this.create, branchImplpermissions.create) &&
+        Objects.equals(this.read, branchImplpermissions.read) &&
+        Objects.equals(this.start, branchImplpermissions.start) &&
+        Objects.equals(this.stop, branchImplpermissions.stop) &&
+        Objects.equals(this.propertyClass, branchImplpermissions.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(create, read, start, stop, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BranchImplpermissions {\n");

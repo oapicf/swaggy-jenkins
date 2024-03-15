@@ -10,24 +10,24 @@ namespace app\Models;
 class InputStepImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\InputStepImpllinks $links */
-    private $links;
+    public $links;
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $message */
-    private $message;
+    public $message = "";
 
     /** @var string $ok */
-    private $ok;
+    public $ok = "";
 
     /** @var \app\Models\StringParameterDefinition[] $parameters */
-    private $parameters;
+    public $parameters = [];
 
     /** @var string $submitter */
-    private $submitter;
+    public $submitter = "";
 
 }

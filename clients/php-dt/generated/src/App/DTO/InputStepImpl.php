@@ -5,59 +5,50 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class InputStepImpl
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="_links", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\InputStepImpllinks::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\InputStepImpllinks::class})
-     * @var \App\DTO\InputStepImpllinks|null
      */
-    public $_links;
+    public ?\App\DTO\InputStepImpllinks $_links = null;
 
     /**
      * @DTA\Data(field="id", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $id;
+    public ?string $id = null;
 
     /**
      * @DTA\Data(field="message", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $message;
+    public ?string $message = null;
 
     /**
      * @DTA\Data(field="ok", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $ok;
+    public ?string $ok = null;
 
     /**
      * @DTA\Data(field="parameters", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection109::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection109::class})
-     * @var \App\DTO\Collection109|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection25::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection25::class})
      */
-    public $parameters;
+    public ?\App\DTO\Collection25 $parameters = null;
 
     /**
      * @DTA\Data(field="submitter", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $submitter;
+    public ?string $submitter = null;
 
 }

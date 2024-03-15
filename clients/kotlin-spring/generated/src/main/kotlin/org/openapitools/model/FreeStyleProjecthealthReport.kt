@@ -24,19 +24,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class FreeStyleProjecthealthReport(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("description") val description: kotlin.String? = null,
+    @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("iconClassName") val iconClassName: kotlin.String? = null,
+    @get:JsonProperty("iconClassName") val iconClassName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("iconUrl") val iconUrl: kotlin.String? = null,
+    @get:JsonProperty("iconUrl") val iconUrl: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("score") val score: kotlin.Int? = null,
+    @get:JsonProperty("score") val score: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

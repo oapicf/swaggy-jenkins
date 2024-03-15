@@ -5,51 +5,43 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class HudsonMasterComputerexecutors
 {
     /**
      * @DTA\Data(field="currentExecutable", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\FreeStyleBuild::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\FreeStyleBuild::class})
-     * @var \App\DTO\FreeStyleBuild|null
      */
-    public $current_executable;
+    public ?\App\DTO\FreeStyleBuild $current_executable = null;
 
     /**
      * @DTA\Data(field="idle", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $idle;
+    public ?bool $idle = null;
 
     /**
      * @DTA\Data(field="likelyStuck", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $likely_stuck;
+    public ?bool $likely_stuck = null;
 
     /**
      * @DTA\Data(field="number", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $number;
+    public ?int $number = null;
 
     /**
      * @DTA\Data(field="progress", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $progress;
+    public ?int $progress = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

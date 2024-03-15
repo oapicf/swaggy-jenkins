@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubScmlinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -24,7 +25,6 @@ public class GithubScm   {
   private String id;
 
   private String uri;
-
 
   /**
    **/
@@ -126,11 +126,11 @@ public class GithubScm   {
       return false;
     }
     GithubScm githubScm = (GithubScm) o;
-    return Objects.equals(propertyClass, githubScm.propertyClass) &&
-        Objects.equals(links, githubScm.links) &&
-        Objects.equals(credentialId, githubScm.credentialId) &&
-        Objects.equals(id, githubScm.id) &&
-        Objects.equals(uri, githubScm.uri);
+    return Objects.equals(this.propertyClass, githubScm.propertyClass) &&
+        Objects.equals(this.links, githubScm.links) &&
+        Objects.equals(this.credentialId, githubScm.credentialId) &&
+        Objects.equals(this.id, githubScm.id) &&
+        Objects.equals(this.uri, githubScm.uri);
   }
 
   @Override

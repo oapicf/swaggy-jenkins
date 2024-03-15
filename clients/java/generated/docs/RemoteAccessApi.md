@@ -26,7 +26,7 @@ All URIs are relative to *http://localhost*
 | [**postViewConfig**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml |  |
 
 
-<a name="getComputer"></a>
+<a id="getComputer"></a>
 # **getComputer**
 > ComputerSet getComputer(depth)
 
@@ -37,12 +37,12 @@ Retrieve computer details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -96,7 +96,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getJenkins"></a>
+<a id="getJenkins"></a>
 # **getJenkins**
 > Hudson getJenkins()
 
@@ -107,12 +107,12 @@ Retrieve Jenkins details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -162,7 +162,7 @@ This endpoint does not need any parameter.
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getJob"></a>
+<a id="getJob"></a>
 # **getJob**
 > FreeStyleProject getJob(name)
 
@@ -173,12 +173,12 @@ Retrieve job details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -233,7 +233,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="getJobConfig"></a>
+<a id="getJobConfig"></a>
 # **getJobConfig**
 > String getJobConfig(name)
 
@@ -244,12 +244,12 @@ Retrieve job configuration
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -304,7 +304,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="getJobLastBuild"></a>
+<a id="getJobLastBuild"></a>
 # **getJobLastBuild**
 > FreeStyleBuild getJobLastBuild(name)
 
@@ -315,12 +315,12 @@ Retrieve job&#39;s last build details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -375,7 +375,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="getJobProgressiveText"></a>
+<a id="getJobProgressiveText"></a>
 # **getJobProgressiveText**
 > getJobProgressiveText(name, number, start)
 
@@ -386,12 +386,12 @@ Retrieve job&#39;s build progressive text output
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -449,7 +449,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="getQueue"></a>
+<a id="getQueue"></a>
 # **getQueue**
 > Queue getQueue()
 
@@ -460,12 +460,12 @@ Retrieve queue details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -515,7 +515,7 @@ This endpoint does not need any parameter.
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getQueueItem"></a>
+<a id="getQueueItem"></a>
 # **getQueueItem**
 > Queue getQueueItem(number)
 
@@ -526,12 +526,12 @@ Retrieve queued item details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -585,7 +585,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getView"></a>
+<a id="getView"></a>
 # **getView**
 > ListView getView(name)
 
@@ -596,12 +596,12 @@ Retrieve view details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -656,7 +656,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | View cannot be found on Jenkins instance |  -  |
 
-<a name="getViewConfig"></a>
+<a id="getViewConfig"></a>
 # **getViewConfig**
 > String getViewConfig(name)
 
@@ -667,12 +667,12 @@ Retrieve view configuration
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -727,7 +727,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | View cannot be found on Jenkins instance |  -  |
 
-<a name="headJenkins"></a>
+<a id="headJenkins"></a>
 # **headJenkins**
 > headJenkins()
 
@@ -738,12 +738,12 @@ Retrieve Jenkins headers
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -792,7 +792,7 @@ null (empty response body)
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="postCreateItem"></a>
+<a id="postCreateItem"></a>
 # **postCreateItem**
 > postCreateItem(name, from, mode, jenkinsCrumb, contentType, body)
 
@@ -803,12 +803,12 @@ Create a new job using job configuration, or copied from an existing job
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -872,7 +872,7 @@ null (empty response body)
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="postCreateView"></a>
+<a id="postCreateView"></a>
 # **postCreateView**
 > postCreateView(name, jenkinsCrumb, contentType, body)
 
@@ -883,12 +883,12 @@ Create a new view using view configuration
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -948,7 +948,7 @@ null (empty response body)
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="postJobBuild"></a>
+<a id="postJobBuild"></a>
 # **postJobBuild**
 > postJobBuild(name, json, token, jenkinsCrumb)
 
@@ -959,12 +959,12 @@ Build a job
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1025,7 +1025,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="postJobConfig"></a>
+<a id="postJobConfig"></a>
 # **postJobConfig**
 > postJobConfig(name, body, jenkinsCrumb)
 
@@ -1036,12 +1036,12 @@ Update job configuration
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1100,7 +1100,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="postJobDelete"></a>
+<a id="postJobDelete"></a>
 # **postJobDelete**
 > postJobDelete(name, jenkinsCrumb)
 
@@ -1111,12 +1111,12 @@ Delete a job
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1172,7 +1172,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="postJobDisable"></a>
+<a id="postJobDisable"></a>
 # **postJobDisable**
 > postJobDisable(name, jenkinsCrumb)
 
@@ -1183,12 +1183,12 @@ Disable a job
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1244,7 +1244,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="postJobEnable"></a>
+<a id="postJobEnable"></a>
 # **postJobEnable**
 > postJobEnable(name, jenkinsCrumb)
 
@@ -1255,12 +1255,12 @@ Enable a job
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1316,7 +1316,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="postJobLastBuildStop"></a>
+<a id="postJobLastBuildStop"></a>
 # **postJobLastBuildStop**
 > postJobLastBuildStop(name, jenkinsCrumb)
 
@@ -1327,12 +1327,12 @@ Stop a job
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1388,7 +1388,7 @@ null (empty response body)
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Job cannot be found on Jenkins instance |  -  |
 
-<a name="postViewConfig"></a>
+<a id="postViewConfig"></a>
 # **postViewConfig**
 > postViewConfig(name, body, jenkinsCrumb)
 
@@ -1399,12 +1399,12 @@ Update view configuration
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.RemoteAccessApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.RemoteAccessApi;
 
 public class Example {
   public static void main(String[] args) {

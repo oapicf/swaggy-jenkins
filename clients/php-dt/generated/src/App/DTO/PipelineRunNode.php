@@ -5,65 +5,55 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class PipelineRunNode
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="displayName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $display_name;
+    public ?string $display_name = null;
 
     /**
      * @DTA\Data(field="durationInMillis", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $duration_in_millis;
+    public ?int $duration_in_millis = null;
 
     /**
      * @DTA\Data(field="edges", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection106::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection106::class})
-     * @var \App\DTO\Collection106|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection23::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection23::class})
      */
-    public $edges;
+    public ?\App\DTO\Collection23 $edges = null;
 
     /**
      * @DTA\Data(field="id", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $id;
+    public ?string $id = null;
 
     /**
      * @DTA\Data(field="result", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $result;
+    public ?string $result = null;
 
     /**
      * @DTA\Data(field="startTime", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $start_time;
+    public ?string $start_time = null;
 
     /**
      * @DTA\Data(field="state", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $state;
+    public ?string $state = null;
 
 }

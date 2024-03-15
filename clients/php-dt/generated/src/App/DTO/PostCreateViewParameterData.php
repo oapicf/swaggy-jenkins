@@ -15,26 +15,23 @@ class PostCreateViewParameterData
      * @DTA\Data(subset="query", field="name")
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * CSRF protection token
      * @DTA\Data(subset="header", field="Jenkins-Crumb", nullable=true)
      * @DTA\Strategy(subset="header", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="header", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $jenkins_crumb;
+    public ?string $jenkins_crumb = null;
 
     /**
      * Content type header application/xml
      * @DTA\Data(subset="header", field="Content-Type", nullable=true)
      * @DTA\Strategy(subset="header", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="header", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $content_type;
+    public ?string $content_type = null;
 
 }

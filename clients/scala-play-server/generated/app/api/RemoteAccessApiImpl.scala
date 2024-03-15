@@ -10,7 +10,7 @@ import model.Queue
 /**
   * Provides a default implementation for [[RemoteAccessApi]].
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 class RemoteAccessApiImpl extends RemoteAccessApi {
   /**
     * @inheritdoc
@@ -18,7 +18,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getComputer(depth: Int): ComputerSet = {
     // TODO: Implement better logic
 
-    ComputerSet(None, None, None, None, None, Map.empty)
+    ComputerSet(None, None, None, None, None)
   }
 
   /**
@@ -27,7 +27,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getJenkins(): Hudson = {
     // TODO: Implement better logic
 
-    Hudson(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    Hudson(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -36,7 +36,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getJob(name: String): FreeStyleProject = {
     // TODO: Implement better logic
 
-    FreeStyleProject(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    FreeStyleProject(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -54,7 +54,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getJobLastBuild(name: String): FreeStyleBuild = {
     // TODO: Implement better logic
 
-    FreeStyleBuild(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, Map.empty)
+    FreeStyleBuild(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
   }
 
   /**
@@ -72,7 +72,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getQueue(): Queue = {
     // TODO: Implement better logic
 
-    Queue(None, None, Map.empty)
+    Queue(None, None)
   }
 
   /**
@@ -81,7 +81,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getQueueItem(number: String): Queue = {
     // TODO: Implement better logic
 
-    Queue(None, None, Map.empty)
+    Queue(None, None)
   }
 
   /**
@@ -90,7 +90,7 @@ class RemoteAccessApiImpl extends RemoteAccessApi {
   override def getView(name: String): ListView = {
     // TODO: Implement better logic
 
-    ListView(None, None, None, None, None, Map.empty)
+    ListView(None, None, None, None, None)
   }
 
   /**

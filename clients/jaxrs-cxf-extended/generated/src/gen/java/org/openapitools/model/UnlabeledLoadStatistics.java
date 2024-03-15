@@ -38,6 +38,23 @@ public class UnlabeledLoadStatistics  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    UnlabeledLoadStatistics unlabeledLoadStatistics = (UnlabeledLoadStatistics) o;
+    return Objects.equals(this.propertyClass, unlabeledLoadStatistics.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UnlabeledLoadStatistics {\n");

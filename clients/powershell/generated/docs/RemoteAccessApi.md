@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools/Api.RemoteAccessApi
+# PSOpenAPITools.PSOpenAPITools\Api.RemoteAccessApi
 
 All URIs are relative to *http://localhost*
 
@@ -26,7 +26,7 @@ Method | HTTP request | Description
 [**Submit-ViewConfig**](RemoteAccessApi.md#Submit-ViewConfig) | **POST** /view/{name}/config.xml | 
 
 
-<a name="Get-Computer"></a>
+<a id="Get-Computer"></a>
 # **Get-Computer**
 > ComputerSet Get-Computer<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Depth] <Int32><br>
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Jenkins"></a>
+<a id="Get-Jenkins"></a>
 # **Get-Jenkins**
 > Hudson Get-Jenkins<br>
 
@@ -117,7 +117,7 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Job"></a>
+<a id="Get-Job"></a>
 # **Get-Job**
 > FreeStyleProject Get-Job<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-JobConfig"></a>
+<a id="Get-JobConfig"></a>
 # **Get-JobConfig**
 > String Get-JobConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-JobLastBuild"></a>
+<a id="Get-JobLastBuild"></a>
 # **Get-JobLastBuild**
 > FreeStyleBuild Get-JobLastBuild<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-JobProgressiveText"></a>
+<a id="Get-JobProgressiveText"></a>
 # **Get-JobProgressiveText**
 > void Get-JobProgressiveText<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -315,7 +315,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-Queue"></a>
+<a id="Get-Queue"></a>
 # **Get-Queue**
 > Queue Get-Queue<br>
 
@@ -358,7 +358,7 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-QueueItem"></a>
+<a id="Get-QueueItem"></a>
 # **Get-QueueItem**
 > Queue Get-QueueItem<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Number] <String><br>
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-View"></a>
+<a id="Get-View"></a>
 # **Get-View**
 > ListView Get-View<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -454,7 +454,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Get-ViewConfig"></a>
+<a id="Get-ViewConfig"></a>
 # **Get-ViewConfig**
 > String Get-ViewConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Invoke-HeadJenkins"></a>
+<a id="Invoke-HeadJenkins"></a>
 # **Invoke-HeadJenkins**
 > void Invoke-HeadJenkins<br>
 
@@ -545,7 +545,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-CreateItem"></a>
+<a id="Submit-CreateItem"></a>
 # **Submit-CreateItem**
 > void Submit-CreateItem<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -608,7 +608,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-CreateView"></a>
+<a id="Submit-CreateView"></a>
 # **Submit-CreateView**
 > void Submit-CreateView<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -665,7 +665,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-JobBuild"></a>
+<a id="Submit-JobBuild"></a>
 # **Submit-JobBuild**
 > void Submit-JobBuild<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -722,7 +722,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-JobConfig"></a>
+<a id="Submit-JobConfig"></a>
 # **Submit-JobConfig**
 > void Submit-JobConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -776,7 +776,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-JobDelete"></a>
+<a id="Submit-JobDelete"></a>
 # **Submit-JobDelete**
 > void Submit-JobDelete<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -827,7 +827,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-JobDisable"></a>
+<a id="Submit-JobDisable"></a>
 # **Submit-JobDisable**
 > void Submit-JobDisable<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -878,7 +878,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-JobEnable"></a>
+<a id="Submit-JobEnable"></a>
 # **Submit-JobEnable**
 > void Submit-JobEnable<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -929,7 +929,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-JobLastBuildStop"></a>
+<a id="Submit-JobLastBuildStop"></a>
 # **Submit-JobLastBuildStop**
 > void Submit-JobLastBuildStop<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>
@@ -980,7 +980,7 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="Submit-ViewConfig"></a>
+<a id="Submit-ViewConfig"></a>
 # **Submit-ViewConfig**
 > void Submit-ViewConfig<br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Name] <String><br>

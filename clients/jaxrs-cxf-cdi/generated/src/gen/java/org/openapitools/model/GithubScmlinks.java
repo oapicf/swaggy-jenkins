@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -18,7 +19,6 @@ public class GithubScmlinks   {
   private Link self;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -66,8 +66,8 @@ public class GithubScmlinks   {
       return false;
     }
     GithubScmlinks githubScmlinks = (GithubScmlinks) o;
-    return Objects.equals(self, githubScmlinks.self) &&
-        Objects.equals(propertyClass, githubScmlinks.propertyClass);
+    return Objects.equals(this.self, githubScmlinks.self) &&
+        Objects.equals(this.propertyClass, githubScmlinks.propertyClass);
   }
 
   @Override

@@ -1,6 +1,5 @@
 package org.openapitools.api;
 
-import org.openapitools.model.*;
 import org.openapitools.api.JwtAuthApiService;
 import org.openapitools.api.factories.JwtAuthApiServiceFactory;
 
@@ -29,7 +28,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2022-06-04T08:09:01.059653Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-15T14:14:47.059425590Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class JwtAuthApi  {
    private final JwtAuthApiService delegate;
 

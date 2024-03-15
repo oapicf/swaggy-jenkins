@@ -10,9 +10,9 @@ namespace app\Models;
 class FavoriteImpllinks {
 
     /** @var \app\Models\Link $self */
-    private $self;
+    public $self;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

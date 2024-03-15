@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("StringParameterValue")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class StringParameterValue   {
-  
   private @Valid String propertyClass;
   private @Valid String name;
   private @Valid String value;
@@ -41,7 +40,7 @@ public class StringParameterValue   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public StringParameterValue name(String name) {
     this.name = name;
@@ -60,7 +59,7 @@ public class StringParameterValue   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public StringParameterValue value(String value) {
     this.value = value;

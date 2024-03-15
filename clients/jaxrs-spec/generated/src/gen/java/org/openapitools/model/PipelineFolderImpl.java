@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineFolderImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineFolderImpl   {
-  
   private @Valid String propertyClass;
   private @Valid String displayName;
   private @Valid String fullName;
@@ -45,7 +44,7 @@ public class PipelineFolderImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public PipelineFolderImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -64,7 +63,7 @@ public class PipelineFolderImpl   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public PipelineFolderImpl fullName(String fullName) {
     this.fullName = fullName;
@@ -83,7 +82,7 @@ public class PipelineFolderImpl   {
     this.fullName = fullName;
   }
 
-/**
+  /**
    **/
   public PipelineFolderImpl name(String name) {
     this.name = name;
@@ -102,7 +101,7 @@ public class PipelineFolderImpl   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public PipelineFolderImpl organization(String organization) {
     this.organization = organization;
@@ -121,7 +120,7 @@ public class PipelineFolderImpl   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineFolderImpl numberOfFolders(Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
@@ -140,7 +139,7 @@ public class PipelineFolderImpl   {
     this.numberOfFolders = numberOfFolders;
   }
 
-/**
+  /**
    **/
   public PipelineFolderImpl numberOfPipelines(Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;

@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
 import org.openapitools.model.GithubRepository;
@@ -23,7 +24,7 @@ public class GithubRepositories  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<GithubRepository> items = null;
+  private List<@Valid GithubRepository> items;
 
   @ApiModelProperty(value = "")
   private Integer lastPage;
@@ -86,21 +87,21 @@ public class GithubRepositories  {
   * @return items
   */
   @JsonProperty("items")
-  public List<GithubRepository> getItems() {
+  public List<@Valid GithubRepository> getItems() {
     return items;
   }
 
   /**
    * Sets the <code>items</code> property.
    */
- public void setItems(List<GithubRepository> items) {
+ public void setItems(List<@Valid GithubRepository> items) {
     this.items = items;
   }
 
   /**
    * Sets the <code>items</code> property.
    */
-  public GithubRepositories items(List<GithubRepository> items) {
+  public GithubRepositories items(List<@Valid GithubRepository> items) {
     this.items = items;
     return this;
   }
@@ -185,6 +186,28 @@ public class GithubRepositories  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubRepositories githubRepositories = (GithubRepositories) o;
+    return Objects.equals(this.propertyClass, githubRepositories.propertyClass) &&
+        Objects.equals(this.links, githubRepositories.links) &&
+        Objects.equals(this.items, githubRepositories.items) &&
+        Objects.equals(this.lastPage, githubRepositories.lastPage) &&
+        Objects.equals(this.nextPage, githubRepositories.nextPage) &&
+        Objects.equals(this.pageSize, githubRepositories.pageSize);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, items, lastPage, nextPage, pageSize);
+  }
 
   @Override
   public String toString() {

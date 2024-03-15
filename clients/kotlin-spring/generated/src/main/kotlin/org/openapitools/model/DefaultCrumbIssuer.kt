@@ -22,13 +22,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class DefaultCrumbIssuer(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("crumb") val crumb: kotlin.String? = null,
+    @get:JsonProperty("crumb") val crumb: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("crumbRequestField") val crumbRequestField: kotlin.String? = null
+    @get:JsonProperty("crumbRequestField") val crumbRequestField: kotlin.String? = null
 ) {
 
 }

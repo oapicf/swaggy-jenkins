@@ -24,15 +24,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class FavoriteImpl(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: FavoriteImpllinks? = null,
+    @get:JsonProperty("_links") val links: FavoriteImpllinks? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("item") val item: PipelineImpl? = null
+    @get:JsonProperty("item") val item: PipelineImpl? = null
 ) {
 
 }

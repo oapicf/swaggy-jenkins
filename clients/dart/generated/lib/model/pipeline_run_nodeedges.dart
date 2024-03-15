@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -35,8 +35,8 @@ class PipelineRunNodeedges {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineRunNodeedges &&
-     other.id == id &&
-     other.class_ == class_;
+    other.id == id &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -48,14 +48,18 @@ class PipelineRunNodeedges {
   String toString() => 'PipelineRunNodeedges[id=$id, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (id != null) {
-      _json[r'id'] = id;
+    final json = <String, dynamic>{};
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineRunNodeedges] instance and imports its values from
@@ -84,7 +88,7 @@ class PipelineRunNodeedges {
     return null;
   }
 
-  static List<PipelineRunNodeedges>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineRunNodeedges> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineRunNodeedges>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -115,12 +119,10 @@ class PipelineRunNodeedges {
   static Map<String, List<PipelineRunNodeedges>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineRunNodeedges>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineRunNodeedges.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineRunNodeedges.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

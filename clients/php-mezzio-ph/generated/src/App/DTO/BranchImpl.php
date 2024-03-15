@@ -60,9 +60,9 @@ class BranchImpl
 
     /**
      * @DTA\Data(field="parameters", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection98::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection98::class})
-     * @var \App\DTO\Collection98|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection19::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection19::class})
+     * @var \App\DTO\Collection19|null
      */
     public $parameters;
 

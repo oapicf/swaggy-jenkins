@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImpllinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImpllinks   {
-  
   private @Valid Link self;
   private @Valid Link actions;
   private @Valid Link runs;
@@ -44,7 +43,7 @@ public class BranchImpllinks   {
     this.self = self;
   }
 
-/**
+  /**
    **/
   public BranchImpllinks actions(Link actions) {
     this.actions = actions;
@@ -63,7 +62,7 @@ public class BranchImpllinks   {
     this.actions = actions;
   }
 
-/**
+  /**
    **/
   public BranchImpllinks runs(Link runs) {
     this.runs = runs;
@@ -82,7 +81,7 @@ public class BranchImpllinks   {
     this.runs = runs;
   }
 
-/**
+  /**
    **/
   public BranchImpllinks queue(Link queue) {
     this.queue = queue;
@@ -101,7 +100,7 @@ public class BranchImpllinks   {
     this.queue = queue;
   }
 
-/**
+  /**
    **/
   public BranchImpllinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

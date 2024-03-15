@@ -1,10 +1,6 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 import unittest
 
 from flask import json
-from six import BytesIO
 
 from openapi_server.models.computer_set import ComputerSet  # noqa: E501
 from openapi_server.models.free_style_build import FreeStyleBuild  # noqa: E501
@@ -251,7 +247,7 @@ class TestRemoteAccessController(BaseTestCase):
 
         
         """
-        query_string = [('json', 'json_example'),
+        query_string = [('json', '_json_example'),
                         ('token', 'token_example')]
         headers = { 
             'jenkins_crumb': 'jenkins_crumb_example',

@@ -10,27 +10,27 @@ namespace app\Models;
 class Pipeline {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $organization */
-    private $organization;
+    public $organization = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var string $fullName */
-    private $fullName;
+    public $fullName = "";
 
     /** @var int $weatherScore */
-    private $weatherScore;
+    public $weatherScore = 0;
 
     /** @var int $estimatedDurationInMillis */
-    private $estimatedDurationInMillis;
+    public $estimatedDurationInMillis = 0;
 
     /** @var \app\Models\PipelinelatestRun $latestRun */
-    private $latestRun;
+    public $latestRun;
 
 }

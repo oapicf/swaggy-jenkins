@@ -1,5 +1,7 @@
 .gitignore
 .openapi-generator-ignore
+CMakeLists.txt
+FindRestbedAndBoost.cmake
 README.md
 api/BaseApi.cpp
 api/BaseApi.h
@@ -168,3 +170,4 @@ model/UnlabeledLoadStatistics.cpp
 model/UnlabeledLoadStatistics.h
 model/User.cpp
 model/User.h
+model/helpers.h

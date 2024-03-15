@@ -47,11 +47,11 @@ test_that("permissions", {
   #expect_equal(model.instance$`permissions`, "EXPECTED_RESULT")
 })
 
-test_that("private", {
-  # tests for the property `private` (character)
+test_that("item_private", {
+  # tests for the property `item_private` (character)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`private`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`item_private`, "EXPECTED_RESULT")
 })
 
 test_that("fullName", {

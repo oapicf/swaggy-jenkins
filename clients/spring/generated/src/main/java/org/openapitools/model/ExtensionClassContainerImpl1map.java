@@ -19,16 +19,13 @@ import javax.annotation.Generated;
  * ExtensionClassContainerImpl1map
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassContainerImpl1map {
 
-  @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
 
-  @JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {
@@ -41,7 +38,8 @@ public class ExtensionClassContainerImpl1map {
    * @return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl
   */
   @Valid 
-  @Schema(name = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl", required = false)
+  @Schema(name = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
   public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   }
@@ -60,7 +58,8 @@ public class ExtensionClassContainerImpl1map {
    * @return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl
   */
   @Valid 
-  @Schema(name = "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl", required = false)
+  @Schema(name = "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
   public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
   }
@@ -79,7 +78,8 @@ public class ExtensionClassContainerImpl1map {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

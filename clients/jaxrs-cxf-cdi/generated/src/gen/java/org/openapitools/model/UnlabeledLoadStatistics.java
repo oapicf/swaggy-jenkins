@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -15,7 +16,6 @@ import java.util.Objects;
 public class UnlabeledLoadStatistics   {
   
   private String propertyClass;
-
 
   /**
    **/
@@ -45,7 +45,7 @@ public class UnlabeledLoadStatistics   {
       return false;
     }
     UnlabeledLoadStatistics unlabeledLoadStatistics = (UnlabeledLoadStatistics) o;
-    return Objects.equals(propertyClass, unlabeledLoadStatistics.propertyClass);
+    return Objects.equals(this.propertyClass, unlabeledLoadStatistics.propertyClass);
   }
 
   @Override

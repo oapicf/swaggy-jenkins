@@ -2,9 +2,6 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
-import { BaseService } from './api/base.service';
-import { BlueOceanService } from './api/blueOcean.service';
-import { RemoteAccessService } from './api/remoteAccess.service';
 
 @NgModule({
   imports:      [],

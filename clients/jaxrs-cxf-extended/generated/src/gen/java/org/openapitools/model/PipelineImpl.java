@@ -256,6 +256,31 @@ public class PipelineImpl  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineImpl pipelineImpl = (PipelineImpl) o;
+    return Objects.equals(this.propertyClass, pipelineImpl.propertyClass) &&
+        Objects.equals(this.displayName, pipelineImpl.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.fullName, pipelineImpl.fullName) &&
+        Objects.equals(this.latestRun, pipelineImpl.latestRun) &&
+        Objects.equals(this.name, pipelineImpl.name) &&
+        Objects.equals(this.organization, pipelineImpl.organization) &&
+        Objects.equals(this.weatherScore, pipelineImpl.weatherScore) &&
+        Objects.equals(this.links, pipelineImpl.links);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, displayName, estimatedDurationInMillis, fullName, latestRun, name, organization, weatherScore, links);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpl {\n");

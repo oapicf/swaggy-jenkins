@@ -2,12 +2,29 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_self** | [**Link**](Link.md) |  | [optional] 
-**_class** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**var_self** | [**Link**](Link.md) |  | [optional] 
+**var_class** | **str** |  | [optional] 
 
+## Example
+
+```python
+from swaggyjenkins.models.github_respository_containerlinks import GithubRespositoryContainerlinks
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of GithubRespositoryContainerlinks from a JSON string
+github_respository_containerlinks_instance = GithubRespositoryContainerlinks.from_json(json)
+# print the JSON string representation of the object
+print(GithubRespositoryContainerlinks.to_json())
+
+# convert the object into a dict
+github_respository_containerlinks_dict = github_respository_containerlinks_instance.to_dict()
+# create an instance of GithubRespositoryContainerlinks from a dict
+github_respository_containerlinks_form_dict = github_respository_containerlinks.from_dict(github_respository_containerlinks_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

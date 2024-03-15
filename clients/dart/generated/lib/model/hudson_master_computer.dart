@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -155,22 +155,22 @@ class HudsonMasterComputer {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HudsonMasterComputer &&
-     other.class_ == class_ &&
-     other.displayName == displayName &&
-     other.executors == executors &&
-     other.icon == icon &&
-     other.iconClassName == iconClassName &&
-     other.idle == idle &&
-     other.jnlpAgent == jnlpAgent &&
-     other.launchSupported == launchSupported &&
-     other.loadStatistics == loadStatistics &&
-     other.manualLaunchAllowed == manualLaunchAllowed &&
-     other.monitorData == monitorData &&
-     other.numExecutors == numExecutors &&
-     other.offline == offline &&
-     other.offlineCause == offlineCause &&
-     other.offlineCauseReason == offlineCauseReason &&
-     other.temporarilyOffline == temporarilyOffline;
+    other.class_ == class_ &&
+    other.displayName == displayName &&
+    _deepEquality.equals(other.executors, executors) &&
+    other.icon == icon &&
+    other.iconClassName == iconClassName &&
+    other.idle == idle &&
+    other.jnlpAgent == jnlpAgent &&
+    other.launchSupported == launchSupported &&
+    other.loadStatistics == loadStatistics &&
+    other.manualLaunchAllowed == manualLaunchAllowed &&
+    other.monitorData == monitorData &&
+    other.numExecutors == numExecutors &&
+    other.offline == offline &&
+    other.offlineCause == offlineCause &&
+    other.offlineCauseReason == offlineCauseReason &&
+    other.temporarilyOffline == temporarilyOffline;
 
   @override
   int get hashCode =>
@@ -196,54 +196,84 @@ class HudsonMasterComputer {
   String toString() => 'HudsonMasterComputer[class_=$class_, displayName=$displayName, executors=$executors, icon=$icon, iconClassName=$iconClassName, idle=$idle, jnlpAgent=$jnlpAgent, launchSupported=$launchSupported, loadStatistics=$loadStatistics, manualLaunchAllowed=$manualLaunchAllowed, monitorData=$monitorData, numExecutors=$numExecutors, offline=$offline, offlineCause=$offlineCause, offlineCauseReason=$offlineCauseReason, temporarilyOffline=$temporarilyOffline]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-      _json[r'executors'] = executors;
-    if (icon != null) {
-      _json[r'icon'] = icon;
+      json[r'executors'] = this.executors;
+    if (this.icon != null) {
+      json[r'icon'] = this.icon;
+    } else {
+      json[r'icon'] = null;
     }
-    if (iconClassName != null) {
-      _json[r'iconClassName'] = iconClassName;
+    if (this.iconClassName != null) {
+      json[r'iconClassName'] = this.iconClassName;
+    } else {
+      json[r'iconClassName'] = null;
     }
-    if (idle != null) {
-      _json[r'idle'] = idle;
+    if (this.idle != null) {
+      json[r'idle'] = this.idle;
+    } else {
+      json[r'idle'] = null;
     }
-    if (jnlpAgent != null) {
-      _json[r'jnlpAgent'] = jnlpAgent;
+    if (this.jnlpAgent != null) {
+      json[r'jnlpAgent'] = this.jnlpAgent;
+    } else {
+      json[r'jnlpAgent'] = null;
     }
-    if (launchSupported != null) {
-      _json[r'launchSupported'] = launchSupported;
+    if (this.launchSupported != null) {
+      json[r'launchSupported'] = this.launchSupported;
+    } else {
+      json[r'launchSupported'] = null;
     }
-    if (loadStatistics != null) {
-      _json[r'loadStatistics'] = loadStatistics;
+    if (this.loadStatistics != null) {
+      json[r'loadStatistics'] = this.loadStatistics;
+    } else {
+      json[r'loadStatistics'] = null;
     }
-    if (manualLaunchAllowed != null) {
-      _json[r'manualLaunchAllowed'] = manualLaunchAllowed;
+    if (this.manualLaunchAllowed != null) {
+      json[r'manualLaunchAllowed'] = this.manualLaunchAllowed;
+    } else {
+      json[r'manualLaunchAllowed'] = null;
     }
-    if (monitorData != null) {
-      _json[r'monitorData'] = monitorData;
+    if (this.monitorData != null) {
+      json[r'monitorData'] = this.monitorData;
+    } else {
+      json[r'monitorData'] = null;
     }
-    if (numExecutors != null) {
-      _json[r'numExecutors'] = numExecutors;
+    if (this.numExecutors != null) {
+      json[r'numExecutors'] = this.numExecutors;
+    } else {
+      json[r'numExecutors'] = null;
     }
-    if (offline != null) {
-      _json[r'offline'] = offline;
+    if (this.offline != null) {
+      json[r'offline'] = this.offline;
+    } else {
+      json[r'offline'] = null;
     }
-    if (offlineCause != null) {
-      _json[r'offlineCause'] = offlineCause;
+    if (this.offlineCause != null) {
+      json[r'offlineCause'] = this.offlineCause;
+    } else {
+      json[r'offlineCause'] = null;
     }
-    if (offlineCauseReason != null) {
-      _json[r'offlineCauseReason'] = offlineCauseReason;
+    if (this.offlineCauseReason != null) {
+      json[r'offlineCauseReason'] = this.offlineCauseReason;
+    } else {
+      json[r'offlineCauseReason'] = null;
     }
-    if (temporarilyOffline != null) {
-      _json[r'temporarilyOffline'] = temporarilyOffline;
+    if (this.temporarilyOffline != null) {
+      json[r'temporarilyOffline'] = this.temporarilyOffline;
+    } else {
+      json[r'temporarilyOffline'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [HudsonMasterComputer] instance and imports its values from
@@ -267,7 +297,7 @@ class HudsonMasterComputer {
       return HudsonMasterComputer(
         class_: mapValueOfType<String>(json, r'_class'),
         displayName: mapValueOfType<String>(json, r'displayName'),
-        executors: HudsonMasterComputerexecutors.listFromJson(json[r'executors']) ?? const [],
+        executors: HudsonMasterComputerexecutors.listFromJson(json[r'executors']),
         icon: mapValueOfType<String>(json, r'icon'),
         iconClassName: mapValueOfType<String>(json, r'iconClassName'),
         idle: mapValueOfType<bool>(json, r'idle'),
@@ -286,7 +316,7 @@ class HudsonMasterComputer {
     return null;
   }
 
-  static List<HudsonMasterComputer>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<HudsonMasterComputer> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <HudsonMasterComputer>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -317,12 +347,10 @@ class HudsonMasterComputer {
   static Map<String, List<HudsonMasterComputer>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<HudsonMasterComputer>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = HudsonMasterComputer.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = HudsonMasterComputer.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

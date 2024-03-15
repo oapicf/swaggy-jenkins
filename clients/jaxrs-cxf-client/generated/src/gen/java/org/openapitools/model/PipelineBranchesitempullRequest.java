@@ -3,6 +3,7 @@ package org.openapitools.model;
 import org.openapitools.model.PipelineBranchesitempullRequestlinks;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -133,6 +134,27 @@ public class PipelineBranchesitempullRequest  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineBranchesitempullRequest pipelineBranchesitempullRequest = (PipelineBranchesitempullRequest) o;
+    return Objects.equals(this.links, pipelineBranchesitempullRequest.links) &&
+        Objects.equals(this.author, pipelineBranchesitempullRequest.author) &&
+        Objects.equals(this.id, pipelineBranchesitempullRequest.id) &&
+        Objects.equals(this.title, pipelineBranchesitempullRequest.title) &&
+        Objects.equals(this.url, pipelineBranchesitempullRequest.url) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitempullRequest.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(links, author, id, title, url, propertyClass);
+  }
 
   @Override
   public String toString() {

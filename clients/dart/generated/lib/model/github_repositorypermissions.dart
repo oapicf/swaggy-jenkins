@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -53,10 +53,10 @@ class GithubRepositorypermissions {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GithubRepositorypermissions &&
-     other.admin == admin &&
-     other.push == push &&
-     other.pull == pull &&
-     other.class_ == class_;
+    other.admin == admin &&
+    other.push == push &&
+    other.pull == pull &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -70,20 +70,28 @@ class GithubRepositorypermissions {
   String toString() => 'GithubRepositorypermissions[admin=$admin, push=$push, pull=$pull, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (admin != null) {
-      _json[r'admin'] = admin;
+    final json = <String, dynamic>{};
+    if (this.admin != null) {
+      json[r'admin'] = this.admin;
+    } else {
+      json[r'admin'] = null;
     }
-    if (push != null) {
-      _json[r'push'] = push;
+    if (this.push != null) {
+      json[r'push'] = this.push;
+    } else {
+      json[r'push'] = null;
     }
-    if (pull != null) {
-      _json[r'pull'] = pull;
+    if (this.pull != null) {
+      json[r'pull'] = this.pull;
+    } else {
+      json[r'pull'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GithubRepositorypermissions] instance and imports its values from
@@ -114,7 +122,7 @@ class GithubRepositorypermissions {
     return null;
   }
 
-  static List<GithubRepositorypermissions>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GithubRepositorypermissions> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GithubRepositorypermissions>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,12 +153,10 @@ class GithubRepositorypermissions {
   static Map<String, List<GithubRepositorypermissions>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GithubRepositorypermissions>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GithubRepositorypermissions.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GithubRepositorypermissions.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

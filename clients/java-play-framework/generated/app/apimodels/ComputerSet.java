@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.HudsonMasterComputer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * ComputerSet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ComputerSet   {
   @JsonProperty("_class")
@@ -25,7 +27,7 @@ public class ComputerSet   {
   @JsonProperty("computer")
   @Valid
 
-  private List<HudsonMasterComputer> computer = null;
+  private List<@Valid HudsonMasterComputer> computer = null;
 
   @JsonProperty("displayName")
   
@@ -69,16 +71,16 @@ public class ComputerSet   {
     this.busyExecutors = busyExecutors;
   }
 
-  public ComputerSet computer(List<HudsonMasterComputer> computer) {
+  public ComputerSet computer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
     return this;
   }
 
   public ComputerSet addComputerItem(HudsonMasterComputer computerItem) {
-    if (computer == null) {
-      computer = new ArrayList<>();
+    if (this.computer == null) {
+      this.computer = new ArrayList<>();
     }
-    computer.add(computerItem);
+    this.computer.add(computerItem);
     return this;
   }
 
@@ -86,11 +88,11 @@ public class ComputerSet   {
    * Get computer
    * @return computer
   **/
-  public List<HudsonMasterComputer> getComputer() {
+  public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
 
-  public void setComputer(List<HudsonMasterComputer> computer) {
+  public void setComputer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
   }
 

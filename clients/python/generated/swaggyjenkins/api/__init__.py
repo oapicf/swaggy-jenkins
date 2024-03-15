@@ -1,3 +1,7 @@
-# do not import all apis into this module because that uses a lot of memory and stack frames
-# if you need the ability to import all apis from one package, import them with
-# from swaggyjenkins.apis import BaseApi
+# flake8: noqa
+
+# import apis into api package
+from swaggyjenkins.api.base_api import BaseApi
+from swaggyjenkins.api.blue_ocean_api import BlueOceanApi
+from swaggyjenkins.api.remote_access_api import RemoteAccessApi
+

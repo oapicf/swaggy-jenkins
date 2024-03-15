@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitemlatestRun   {
   
   private Integer durationInMillis;
@@ -205,20 +207,20 @@ public class PipelineBranchesitemlatestRun   {
       return false;
     }
     PipelineBranchesitemlatestRun pipelineBranchesitemlatestRun = (PipelineBranchesitemlatestRun) o;
-    return Objects.equals(durationInMillis, pipelineBranchesitemlatestRun.durationInMillis) &&
-        Objects.equals(estimatedDurationInMillis, pipelineBranchesitemlatestRun.estimatedDurationInMillis) &&
-        Objects.equals(enQueueTime, pipelineBranchesitemlatestRun.enQueueTime) &&
-        Objects.equals(endTime, pipelineBranchesitemlatestRun.endTime) &&
-        Objects.equals(id, pipelineBranchesitemlatestRun.id) &&
-        Objects.equals(organization, pipelineBranchesitemlatestRun.organization) &&
-        Objects.equals(pipeline, pipelineBranchesitemlatestRun.pipeline) &&
-        Objects.equals(result, pipelineBranchesitemlatestRun.result) &&
-        Objects.equals(runSummary, pipelineBranchesitemlatestRun.runSummary) &&
-        Objects.equals(startTime, pipelineBranchesitemlatestRun.startTime) &&
-        Objects.equals(state, pipelineBranchesitemlatestRun.state) &&
-        Objects.equals(type, pipelineBranchesitemlatestRun.type) &&
-        Objects.equals(commitId, pipelineBranchesitemlatestRun.commitId) &&
-        Objects.equals(propertyClass, pipelineBranchesitemlatestRun.propertyClass);
+    return Objects.equals(this.durationInMillis, pipelineBranchesitemlatestRun.durationInMillis) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineBranchesitemlatestRun.estimatedDurationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelineBranchesitemlatestRun.enQueueTime) &&
+        Objects.equals(this.endTime, pipelineBranchesitemlatestRun.endTime) &&
+        Objects.equals(this.id, pipelineBranchesitemlatestRun.id) &&
+        Objects.equals(this.organization, pipelineBranchesitemlatestRun.organization) &&
+        Objects.equals(this.pipeline, pipelineBranchesitemlatestRun.pipeline) &&
+        Objects.equals(this.result, pipelineBranchesitemlatestRun.result) &&
+        Objects.equals(this.runSummary, pipelineBranchesitemlatestRun.runSummary) &&
+        Objects.equals(this.startTime, pipelineBranchesitemlatestRun.startTime) &&
+        Objects.equals(this.state, pipelineBranchesitemlatestRun.state) &&
+        Objects.equals(this.type, pipelineBranchesitemlatestRun.type) &&
+        Objects.equals(this.commitId, pipelineBranchesitemlatestRun.commitId) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitemlatestRun.propertyClass);
   }
 
   @Override

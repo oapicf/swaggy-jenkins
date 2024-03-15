@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
@@ -18,12 +19,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ListView")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListView   {
-  
   private @Valid String propertyClass;
   private @Valid String description;
-  private @Valid List<FreeStyleProject> jobs = new ArrayList<>();
+  private @Valid List<@Valid FreeStyleProject> jobs;
   private @Valid String name;
   private @Valid String url;
 
@@ -46,7 +46,7 @@ public class ListView   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public ListView description(String description) {
     this.description = description;
@@ -65,9 +65,9 @@ public class ListView   {
     this.description = description;
   }
 
-/**
+  /**
    **/
-  public ListView jobs(List<FreeStyleProject> jobs) {
+  public ListView jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
@@ -80,7 +80,7 @@ public class ListView   {
   }
 
   @JsonProperty("jobs")
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -100,7 +100,7 @@ public class ListView   {
 
     return this;
   }
-/**
+  /**
    **/
   public ListView name(String name) {
     this.name = name;
@@ -119,7 +119,7 @@ public class ListView   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public ListView url(String url) {
     this.url = url;

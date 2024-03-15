@@ -12,11 +12,11 @@ test_that("runs", {
   #expect_equal(model.instance$`runs`, "EXPECTED_RESULT")
 })
 
-test_that("self", {
-  # tests for the property `self` (Link)
+test_that("item_self", {
+  # tests for the property `item_self` (Link)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`self`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`item_self`, "EXPECTED_RESULT")
 })
 
 test_that("queue", {

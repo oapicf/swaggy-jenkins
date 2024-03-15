@@ -17,9 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepository")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepository   {
-  
   private @Valid String propertyClass;
   private @Valid GithubRepositorylinks links;
   private @Valid String defaultBranch;
@@ -48,7 +47,7 @@ public class GithubRepository   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public GithubRepository links(GithubRepositorylinks links) {
     this.links = links;
@@ -67,7 +66,7 @@ public class GithubRepository   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public GithubRepository defaultBranch(String defaultBranch) {
     this.defaultBranch = defaultBranch;
@@ -86,7 +85,7 @@ public class GithubRepository   {
     this.defaultBranch = defaultBranch;
   }
 
-/**
+  /**
    **/
   public GithubRepository description(String description) {
     this.description = description;
@@ -105,7 +104,7 @@ public class GithubRepository   {
     this.description = description;
   }
 
-/**
+  /**
    **/
   public GithubRepository name(String name) {
     this.name = name;
@@ -124,7 +123,7 @@ public class GithubRepository   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public GithubRepository permissions(GithubRepositorypermissions permissions) {
     this.permissions = permissions;
@@ -143,7 +142,7 @@ public class GithubRepository   {
     this.permissions = permissions;
   }
 
-/**
+  /**
    **/
   public GithubRepository _private(Boolean _private) {
     this._private = _private;
@@ -162,7 +161,7 @@ public class GithubRepository   {
     this._private = _private;
   }
 
-/**
+  /**
    **/
   public GithubRepository fullName(String fullName) {
     this.fullName = fullName;

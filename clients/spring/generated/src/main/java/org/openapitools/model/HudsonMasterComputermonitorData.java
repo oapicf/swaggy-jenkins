@@ -22,28 +22,21 @@ import javax.annotation.Generated;
  * HudsonMasterComputermonitorData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputermonitorData {
 
-  @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
   private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
-  @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
   private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
-  @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
   private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
-  @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
   private String hudsonNodeMonitorsArchitectureMonitor;
 
-  @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
   private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
-  @JsonProperty("hudson.node_monitors.ClockMonitor")
   private ClockDifference hudsonNodeMonitorsClockMonitor;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
@@ -56,7 +49,8 @@ public class HudsonMasterComputermonitorData {
    * @return hudsonNodeMonitorsSwapSpaceMonitor
   */
   @Valid 
-  @Schema(name = "hudson.node_monitors.SwapSpaceMonitor", required = false)
+  @Schema(name = "hudson.node_monitors.SwapSpaceMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
   public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
@@ -75,7 +69,8 @@ public class HudsonMasterComputermonitorData {
    * @return hudsonNodeMonitorsTemporarySpaceMonitor
   */
   @Valid 
-  @Schema(name = "hudson.node_monitors.TemporarySpaceMonitor", required = false)
+  @Schema(name = "hudson.node_monitors.TemporarySpaceMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
@@ -94,7 +89,8 @@ public class HudsonMasterComputermonitorData {
    * @return hudsonNodeMonitorsDiskSpaceMonitor
   */
   @Valid 
-  @Schema(name = "hudson.node_monitors.DiskSpaceMonitor", required = false)
+  @Schema(name = "hudson.node_monitors.DiskSpaceMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
@@ -113,7 +109,8 @@ public class HudsonMasterComputermonitorData {
    * @return hudsonNodeMonitorsArchitectureMonitor
   */
   
-  @Schema(name = "hudson.node_monitors.ArchitectureMonitor", required = false)
+  @Schema(name = "hudson.node_monitors.ArchitectureMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
   public String getHudsonNodeMonitorsArchitectureMonitor() {
     return hudsonNodeMonitorsArchitectureMonitor;
   }
@@ -132,7 +129,8 @@ public class HudsonMasterComputermonitorData {
    * @return hudsonNodeMonitorsResponseTimeMonitor
   */
   @Valid 
-  @Schema(name = "hudson.node_monitors.ResponseTimeMonitor", required = false)
+  @Schema(name = "hudson.node_monitors.ResponseTimeMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
   public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
@@ -151,7 +149,8 @@ public class HudsonMasterComputermonitorData {
    * @return hudsonNodeMonitorsClockMonitor
   */
   @Valid 
-  @Schema(name = "hudson.node_monitors.ClockMonitor", required = false)
+  @Schema(name = "hudson.node_monitors.ClockMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("hudson.node_monitors.ClockMonitor")
   public ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
   }
@@ -170,7 +169,8 @@ public class HudsonMasterComputermonitorData {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

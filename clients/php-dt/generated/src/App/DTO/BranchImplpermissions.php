@@ -5,43 +5,36 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class BranchImplpermissions
 {
     /**
      * @DTA\Data(field="create", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $create;
+    public ?bool $create = null;
 
     /**
      * @DTA\Data(field="read", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $read;
+    public ?bool $read = null;
 
     /**
      * @DTA\Data(field="start", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $start;
+    public ?bool $start = null;
 
     /**
      * @DTA\Data(field="stop", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $stop;
+    public ?bool $stop = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

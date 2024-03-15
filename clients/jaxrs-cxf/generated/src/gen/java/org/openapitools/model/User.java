@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -113,6 +114,26 @@ public class User  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    User user = (User) o;
+    return Objects.equals(this.propertyClass, user.propertyClass) &&
+        Objects.equals(this.id, user.id) &&
+        Objects.equals(this.fullName, user.fullName) &&
+        Objects.equals(this.email, user.email) &&
+        Objects.equals(this.name, user.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, id, fullName, email, name);
+  }
 
   @Override
   public String toString() {

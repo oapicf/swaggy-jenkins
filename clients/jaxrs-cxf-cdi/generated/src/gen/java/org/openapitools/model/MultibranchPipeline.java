@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -28,7 +30,7 @@ public class MultibranchPipeline   {
 
   private Integer weatherScore;
 
-  private List<String> branchNames = null;
+  private List<String> branchNames;
 
   private Integer numberOfFailingBranches;
 
@@ -43,7 +45,6 @@ public class MultibranchPipeline   {
   private Integer totalNumberOfPullRequests;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -315,20 +316,20 @@ public class MultibranchPipeline   {
       return false;
     }
     MultibranchPipeline multibranchPipeline = (MultibranchPipeline) o;
-    return Objects.equals(displayName, multibranchPipeline.displayName) &&
-        Objects.equals(estimatedDurationInMillis, multibranchPipeline.estimatedDurationInMillis) &&
-        Objects.equals(latestRun, multibranchPipeline.latestRun) &&
-        Objects.equals(name, multibranchPipeline.name) &&
-        Objects.equals(organization, multibranchPipeline.organization) &&
-        Objects.equals(weatherScore, multibranchPipeline.weatherScore) &&
-        Objects.equals(branchNames, multibranchPipeline.branchNames) &&
-        Objects.equals(numberOfFailingBranches, multibranchPipeline.numberOfFailingBranches) &&
-        Objects.equals(numberOfFailingPullRequests, multibranchPipeline.numberOfFailingPullRequests) &&
-        Objects.equals(numberOfSuccessfulBranches, multibranchPipeline.numberOfSuccessfulBranches) &&
-        Objects.equals(numberOfSuccessfulPullRequests, multibranchPipeline.numberOfSuccessfulPullRequests) &&
-        Objects.equals(totalNumberOfBranches, multibranchPipeline.totalNumberOfBranches) &&
-        Objects.equals(totalNumberOfPullRequests, multibranchPipeline.totalNumberOfPullRequests) &&
-        Objects.equals(propertyClass, multibranchPipeline.propertyClass);
+    return Objects.equals(this.displayName, multibranchPipeline.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, multibranchPipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, multibranchPipeline.latestRun) &&
+        Objects.equals(this.name, multibranchPipeline.name) &&
+        Objects.equals(this.organization, multibranchPipeline.organization) &&
+        Objects.equals(this.weatherScore, multibranchPipeline.weatherScore) &&
+        Objects.equals(this.branchNames, multibranchPipeline.branchNames) &&
+        Objects.equals(this.numberOfFailingBranches, multibranchPipeline.numberOfFailingBranches) &&
+        Objects.equals(this.numberOfFailingPullRequests, multibranchPipeline.numberOfFailingPullRequests) &&
+        Objects.equals(this.numberOfSuccessfulBranches, multibranchPipeline.numberOfSuccessfulBranches) &&
+        Objects.equals(this.numberOfSuccessfulPullRequests, multibranchPipeline.numberOfSuccessfulPullRequests) &&
+        Objects.equals(this.totalNumberOfBranches, multibranchPipeline.totalNumberOfBranches) &&
+        Objects.equals(this.totalNumberOfPullRequests, multibranchPipeline.totalNumberOfPullRequests) &&
+        Objects.equals(this.propertyClass, multibranchPipeline.propertyClass);
   }
 
   @Override

@@ -24,19 +24,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class QueueItemImpl(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("expectedBuildNumber") val expectedBuildNumber: kotlin.Int? = null,
+    @get:JsonProperty("expectedBuildNumber") val expectedBuildNumber: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("pipeline") val pipeline: kotlin.String? = null,
+    @get:JsonProperty("pipeline") val pipeline: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("queuedTime") val queuedTime: kotlin.Int? = null
+    @get:JsonProperty("queuedTime") val queuedTime: kotlin.Int? = null
 ) {
 
 }

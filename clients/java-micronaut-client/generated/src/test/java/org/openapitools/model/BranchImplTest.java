@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
@@ -9,7 +10,6 @@ import org.openapitools.model.StringParameterDefinition;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-
 
 /**
  * Model tests for BranchImpl

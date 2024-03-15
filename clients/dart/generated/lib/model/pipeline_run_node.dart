@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -83,14 +83,14 @@ class PipelineRunNode {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineRunNode &&
-     other.class_ == class_ &&
-     other.displayName == displayName &&
-     other.durationInMillis == durationInMillis &&
-     other.edges == edges &&
-     other.id == id &&
-     other.result == result &&
-     other.startTime == startTime &&
-     other.state == state;
+    other.class_ == class_ &&
+    other.displayName == displayName &&
+    other.durationInMillis == durationInMillis &&
+    _deepEquality.equals(other.edges, edges) &&
+    other.id == id &&
+    other.result == result &&
+    other.startTime == startTime &&
+    other.state == state;
 
   @override
   int get hashCode =>
@@ -108,30 +108,44 @@ class PipelineRunNode {
   String toString() => 'PipelineRunNode[class_=$class_, displayName=$displayName, durationInMillis=$durationInMillis, edges=$edges, id=$id, result=$result, startTime=$startTime, state=$state]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (durationInMillis != null) {
-      _json[r'durationInMillis'] = durationInMillis;
+    if (this.durationInMillis != null) {
+      json[r'durationInMillis'] = this.durationInMillis;
+    } else {
+      json[r'durationInMillis'] = null;
     }
-      _json[r'edges'] = edges;
-    if (id != null) {
-      _json[r'id'] = id;
+      json[r'edges'] = this.edges;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (result != null) {
-      _json[r'result'] = result;
+    if (this.result != null) {
+      json[r'result'] = this.result;
+    } else {
+      json[r'result'] = null;
     }
-    if (startTime != null) {
-      _json[r'startTime'] = startTime;
+    if (this.startTime != null) {
+      json[r'startTime'] = this.startTime;
+    } else {
+      json[r'startTime'] = null;
     }
-    if (state != null) {
-      _json[r'state'] = state;
+    if (this.state != null) {
+      json[r'state'] = this.state;
+    } else {
+      json[r'state'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineRunNode] instance and imports its values from
@@ -156,7 +170,7 @@ class PipelineRunNode {
         class_: mapValueOfType<String>(json, r'_class'),
         displayName: mapValueOfType<String>(json, r'displayName'),
         durationInMillis: mapValueOfType<int>(json, r'durationInMillis'),
-        edges: PipelineRunNodeedges.listFromJson(json[r'edges']) ?? const [],
+        edges: PipelineRunNodeedges.listFromJson(json[r'edges']),
         id: mapValueOfType<String>(json, r'id'),
         result: mapValueOfType<String>(json, r'result'),
         startTime: mapValueOfType<String>(json, r'startTime'),
@@ -166,7 +180,7 @@ class PipelineRunNode {
     return null;
   }
 
-  static List<PipelineRunNode>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineRunNode> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineRunNode>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -197,12 +211,10 @@ class PipelineRunNode {
   static Map<String, List<PipelineRunNode>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineRunNode>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineRunNode.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineRunNode.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

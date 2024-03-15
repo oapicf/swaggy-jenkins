@@ -5,7 +5,7 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from app.openapi_server.models.base_model_ import Model
+from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.cause_action import CauseAction  # noqa: F401,E501
 from app.openapi_server.models.empty_change_log_set import EmptyChangeLogSet  # noqa: F401,E501
 from openapi_server import util

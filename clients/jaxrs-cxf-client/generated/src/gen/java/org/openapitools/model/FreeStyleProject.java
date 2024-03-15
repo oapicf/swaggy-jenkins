@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
@@ -8,6 +9,7 @@ import org.openapitools.model.FreeStyleProjecthealthReport;
 import org.openapitools.model.NullSCM;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -26,7 +28,7 @@ public class FreeStyleProject  {
   private String color;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProjectactions> actions = null;
+  private List<FreeStyleProjectactions> actions;
 
   @ApiModelProperty(value = "")
   private String description;
@@ -47,13 +49,13 @@ public class FreeStyleProject  {
   private Boolean buildable;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleBuild> builds = null;
+  private List<FreeStyleBuild> builds;
 
   @ApiModelProperty(value = "")
   private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProjecthealthReport> healthReport = null;
+  private List<FreeStyleProjecthealthReport> healthReport;
 
   @ApiModelProperty(value = "")
   private Boolean inQueue;
@@ -594,6 +596,48 @@ public class FreeStyleProject  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FreeStyleProject freeStyleProject = (FreeStyleProject) o;
+    return Objects.equals(this.propertyClass, freeStyleProject.propertyClass) &&
+        Objects.equals(this.name, freeStyleProject.name) &&
+        Objects.equals(this.url, freeStyleProject.url) &&
+        Objects.equals(this.color, freeStyleProject.color) &&
+        Objects.equals(this.actions, freeStyleProject.actions) &&
+        Objects.equals(this.description, freeStyleProject.description) &&
+        Objects.equals(this.displayName, freeStyleProject.displayName) &&
+        Objects.equals(this.displayNameOrNull, freeStyleProject.displayNameOrNull) &&
+        Objects.equals(this.fullDisplayName, freeStyleProject.fullDisplayName) &&
+        Objects.equals(this.fullName, freeStyleProject.fullName) &&
+        Objects.equals(this.buildable, freeStyleProject.buildable) &&
+        Objects.equals(this.builds, freeStyleProject.builds) &&
+        Objects.equals(this.firstBuild, freeStyleProject.firstBuild) &&
+        Objects.equals(this.healthReport, freeStyleProject.healthReport) &&
+        Objects.equals(this.inQueue, freeStyleProject.inQueue) &&
+        Objects.equals(this.keepDependencies, freeStyleProject.keepDependencies) &&
+        Objects.equals(this.lastBuild, freeStyleProject.lastBuild) &&
+        Objects.equals(this.lastCompletedBuild, freeStyleProject.lastCompletedBuild) &&
+        Objects.equals(this.lastFailedBuild, freeStyleProject.lastFailedBuild) &&
+        Objects.equals(this.lastStableBuild, freeStyleProject.lastStableBuild) &&
+        Objects.equals(this.lastSuccessfulBuild, freeStyleProject.lastSuccessfulBuild) &&
+        Objects.equals(this.lastUnstableBuild, freeStyleProject.lastUnstableBuild) &&
+        Objects.equals(this.lastUnsuccessfulBuild, freeStyleProject.lastUnsuccessfulBuild) &&
+        Objects.equals(this.nextBuildNumber, freeStyleProject.nextBuildNumber) &&
+        Objects.equals(this.queueItem, freeStyleProject.queueItem) &&
+        Objects.equals(this.concurrentBuild, freeStyleProject.concurrentBuild) &&
+        Objects.equals(this.scm, freeStyleProject.scm);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, name, url, color, actions, description, displayName, displayNameOrNull, fullDisplayName, fullName, buildable, builds, firstBuild, healthReport, inQueue, keepDependencies, lastBuild, lastCompletedBuild, lastFailedBuild, lastStableBuild, lastSuccessfulBuild, lastUnstableBuild, lastUnsuccessfulBuild, nextBuildNumber, queueItem, concurrentBuild, scm);
+  }
 
   @Override
   public String toString() {

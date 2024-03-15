@@ -1,103 +1,97 @@
+# coding: utf-8
+
 # flake8: noqa
+"""
+    Swaggy Jenkins
 
-# import all models into this package
-# if you have many models here with many references from one model to another this may
-# raise a RecursionError
-# to avoid this, import only the models that you directly need like:
-# from from swaggyjenkins.model.pet import Pet
-# or import this package, but before doing it, use:
-# import sys
-# sys.setrecursionlimit(n)
+    Jenkins API clients generated from Swagger / Open API specification
 
-from swaggyjenkins.model.all_view import AllView
-from swaggyjenkins.model.branch_impl import BranchImpl
-from swaggyjenkins.model.branch_impllinks import BranchImpllinks
-from swaggyjenkins.model.branch_implpermissions import BranchImplpermissions
-from swaggyjenkins.model.cause_action import CauseAction
-from swaggyjenkins.model.cause_user_id_cause import CauseUserIdCause
-from swaggyjenkins.model.classes_by_class import ClassesByClass
-from swaggyjenkins.model.clock_difference import ClockDifference
-from swaggyjenkins.model.computer_set import ComputerSet
-from swaggyjenkins.model.default_crumb_issuer import DefaultCrumbIssuer
-from swaggyjenkins.model.disk_space_monitor_descriptor_disk_space import DiskSpaceMonitorDescriptorDiskSpace
-from swaggyjenkins.model.empty_change_log_set import EmptyChangeLogSet
-from swaggyjenkins.model.extension_class_container_impl1 import ExtensionClassContainerImpl1
-from swaggyjenkins.model.extension_class_container_impl1links import ExtensionClassContainerImpl1links
-from swaggyjenkins.model.extension_class_container_impl1map import ExtensionClassContainerImpl1map
-from swaggyjenkins.model.extension_class_impl import ExtensionClassImpl
-from swaggyjenkins.model.extension_class_impllinks import ExtensionClassImpllinks
-from swaggyjenkins.model.favorite_impl import FavoriteImpl
-from swaggyjenkins.model.favorite_impllinks import FavoriteImpllinks
-from swaggyjenkins.model.free_style_build import FreeStyleBuild
-from swaggyjenkins.model.free_style_project import FreeStyleProject
-from swaggyjenkins.model.free_style_projectactions import FreeStyleProjectactions
-from swaggyjenkins.model.free_style_projecthealth_report import FreeStyleProjecthealthReport
-from swaggyjenkins.model.generic_resource import GenericResource
-from swaggyjenkins.model.github_content import GithubContent
-from swaggyjenkins.model.github_file import GithubFile
-from swaggyjenkins.model.github_organization import GithubOrganization
-from swaggyjenkins.model.github_organizationlinks import GithubOrganizationlinks
-from swaggyjenkins.model.github_repositories import GithubRepositories
-from swaggyjenkins.model.github_repositorieslinks import GithubRepositorieslinks
-from swaggyjenkins.model.github_repository import GithubRepository
-from swaggyjenkins.model.github_repositorylinks import GithubRepositorylinks
-from swaggyjenkins.model.github_repositorypermissions import GithubRepositorypermissions
-from swaggyjenkins.model.github_respository_container import GithubRespositoryContainer
-from swaggyjenkins.model.github_respository_containerlinks import GithubRespositoryContainerlinks
-from swaggyjenkins.model.github_scm import GithubScm
-from swaggyjenkins.model.github_scmlinks import GithubScmlinks
-from swaggyjenkins.model.hudson import Hudson
-from swaggyjenkins.model.hudson_master_computer import HudsonMasterComputer
-from swaggyjenkins.model.hudson_master_computerexecutors import HudsonMasterComputerexecutors
-from swaggyjenkins.model.hudson_master_computermonitor_data import HudsonMasterComputermonitorData
-from swaggyjenkins.model.hudsonassigned_labels import HudsonassignedLabels
-from swaggyjenkins.model.input_step_impl import InputStepImpl
-from swaggyjenkins.model.input_step_impllinks import InputStepImpllinks
-from swaggyjenkins.model.label1 import Label1
-from swaggyjenkins.model.link import Link
-from swaggyjenkins.model.list_view import ListView
-from swaggyjenkins.model.multibranch_pipeline import MultibranchPipeline
-from swaggyjenkins.model.null_scm import NullSCM
-from swaggyjenkins.model.organisation import Organisation
-from swaggyjenkins.model.organisations import Organisations
-from swaggyjenkins.model.pipeline import Pipeline
-from swaggyjenkins.model.pipeline_activities import PipelineActivities
-from swaggyjenkins.model.pipeline_activity import PipelineActivity
-from swaggyjenkins.model.pipeline_activityartifacts import PipelineActivityartifacts
-from swaggyjenkins.model.pipeline_branches import PipelineBranches
-from swaggyjenkins.model.pipeline_branchesitem import PipelineBranchesitem
-from swaggyjenkins.model.pipeline_branchesitemlatest_run import PipelineBranchesitemlatestRun
-from swaggyjenkins.model.pipeline_branchesitempull_request import PipelineBranchesitempullRequest
-from swaggyjenkins.model.pipeline_branchesitempull_requestlinks import PipelineBranchesitempullRequestlinks
-from swaggyjenkins.model.pipeline_folder_impl import PipelineFolderImpl
-from swaggyjenkins.model.pipeline_impl import PipelineImpl
-from swaggyjenkins.model.pipeline_impllinks import PipelineImpllinks
-from swaggyjenkins.model.pipeline_queue import PipelineQueue
-from swaggyjenkins.model.pipeline_run import PipelineRun
-from swaggyjenkins.model.pipeline_run_impl import PipelineRunImpl
-from swaggyjenkins.model.pipeline_run_impllinks import PipelineRunImpllinks
-from swaggyjenkins.model.pipeline_run_node import PipelineRunNode
-from swaggyjenkins.model.pipeline_run_node_steps import PipelineRunNodeSteps
-from swaggyjenkins.model.pipeline_run_nodeedges import PipelineRunNodeedges
-from swaggyjenkins.model.pipeline_run_nodes import PipelineRunNodes
-from swaggyjenkins.model.pipeline_run_steps import PipelineRunSteps
-from swaggyjenkins.model.pipeline_runartifacts import PipelineRunartifacts
-from swaggyjenkins.model.pipeline_runs import PipelineRuns
-from swaggyjenkins.model.pipeline_step_impl import PipelineStepImpl
-from swaggyjenkins.model.pipeline_step_impllinks import PipelineStepImpllinks
-from swaggyjenkins.model.pipelinelatest_run import PipelinelatestRun
-from swaggyjenkins.model.pipelinelatest_runartifacts import PipelinelatestRunartifacts
-from swaggyjenkins.model.pipelines import Pipelines
-from swaggyjenkins.model.queue import Queue
-from swaggyjenkins.model.queue_blocked_item import QueueBlockedItem
-from swaggyjenkins.model.queue_item_impl import QueueItemImpl
-from swaggyjenkins.model.queue_left_item import QueueLeftItem
-from swaggyjenkins.model.response_time_monitor_data import ResponseTimeMonitorData
-from swaggyjenkins.model.scm_organisations import ScmOrganisations
-from swaggyjenkins.model.string_parameter_definition import StringParameterDefinition
-from swaggyjenkins.model.string_parameter_value import StringParameterValue
-from swaggyjenkins.model.swap_space_monitor_memory_usage2 import SwapSpaceMonitorMemoryUsage2
-from swaggyjenkins.model.unlabeled_load_statistics import UnlabeledLoadStatistics
-from swaggyjenkins.model.user import User
-from swaggyjenkins.model.user_favorites import UserFavorites
-from swaggyjenkins.model.users import Users
+    The version of the OpenAPI document: 2.0.1-pre.0
+    Contact: blah+oapicf@cliffano.com
+    Generated by OpenAPI Generator (https://openapi-generator.tech)
+
+    Do not edit the class manually.
+"""  # noqa: E501
+
+
+# import models into model package
+from swaggyjenkins.models.all_view import AllView
+from swaggyjenkins.models.branch_impl import BranchImpl
+from swaggyjenkins.models.branch_impllinks import BranchImpllinks
+from swaggyjenkins.models.branch_implpermissions import BranchImplpermissions
+from swaggyjenkins.models.cause_action import CauseAction
+from swaggyjenkins.models.cause_user_id_cause import CauseUserIdCause
+from swaggyjenkins.models.classes_by_class import ClassesByClass
+from swaggyjenkins.models.clock_difference import ClockDifference
+from swaggyjenkins.models.computer_set import ComputerSet
+from swaggyjenkins.models.default_crumb_issuer import DefaultCrumbIssuer
+from swaggyjenkins.models.disk_space_monitor_descriptor_disk_space import DiskSpaceMonitorDescriptorDiskSpace
+from swaggyjenkins.models.empty_change_log_set import EmptyChangeLogSet
+from swaggyjenkins.models.extension_class_container_impl1 import ExtensionClassContainerImpl1
+from swaggyjenkins.models.extension_class_container_impl1links import ExtensionClassContainerImpl1links
+from swaggyjenkins.models.extension_class_container_impl1map import ExtensionClassContainerImpl1map
+from swaggyjenkins.models.extension_class_impl import ExtensionClassImpl
+from swaggyjenkins.models.extension_class_impllinks import ExtensionClassImpllinks
+from swaggyjenkins.models.favorite_impl import FavoriteImpl
+from swaggyjenkins.models.favorite_impllinks import FavoriteImpllinks
+from swaggyjenkins.models.free_style_build import FreeStyleBuild
+from swaggyjenkins.models.free_style_project import FreeStyleProject
+from swaggyjenkins.models.free_style_projectactions import FreeStyleProjectactions
+from swaggyjenkins.models.free_style_projecthealth_report import FreeStyleProjecthealthReport
+from swaggyjenkins.models.generic_resource import GenericResource
+from swaggyjenkins.models.github_content import GithubContent
+from swaggyjenkins.models.github_file import GithubFile
+from swaggyjenkins.models.github_organization import GithubOrganization
+from swaggyjenkins.models.github_organizationlinks import GithubOrganizationlinks
+from swaggyjenkins.models.github_repositories import GithubRepositories
+from swaggyjenkins.models.github_repositorieslinks import GithubRepositorieslinks
+from swaggyjenkins.models.github_repository import GithubRepository
+from swaggyjenkins.models.github_repositorylinks import GithubRepositorylinks
+from swaggyjenkins.models.github_repositorypermissions import GithubRepositorypermissions
+from swaggyjenkins.models.github_respository_container import GithubRespositoryContainer
+from swaggyjenkins.models.github_respository_containerlinks import GithubRespositoryContainerlinks
+from swaggyjenkins.models.github_scm import GithubScm
+from swaggyjenkins.models.github_scmlinks import GithubScmlinks
+from swaggyjenkins.models.hudson import Hudson
+from swaggyjenkins.models.hudson_master_computer import HudsonMasterComputer
+from swaggyjenkins.models.hudson_master_computerexecutors import HudsonMasterComputerexecutors
+from swaggyjenkins.models.hudson_master_computermonitor_data import HudsonMasterComputermonitorData
+from swaggyjenkins.models.hudsonassigned_labels import HudsonassignedLabels
+from swaggyjenkins.models.input_step_impl import InputStepImpl
+from swaggyjenkins.models.input_step_impllinks import InputStepImpllinks
+from swaggyjenkins.models.label1 import Label1
+from swaggyjenkins.models.link import Link
+from swaggyjenkins.models.list_view import ListView
+from swaggyjenkins.models.multibranch_pipeline import MultibranchPipeline
+from swaggyjenkins.models.null_scm import NullSCM
+from swaggyjenkins.models.organisation import Organisation
+from swaggyjenkins.models.pipeline import Pipeline
+from swaggyjenkins.models.pipeline_activity import PipelineActivity
+from swaggyjenkins.models.pipeline_activityartifacts import PipelineActivityartifacts
+from swaggyjenkins.models.pipeline_branchesitem import PipelineBranchesitem
+from swaggyjenkins.models.pipeline_branchesitemlatest_run import PipelineBranchesitemlatestRun
+from swaggyjenkins.models.pipeline_branchesitempull_request import PipelineBranchesitempullRequest
+from swaggyjenkins.models.pipeline_branchesitempull_requestlinks import PipelineBranchesitempullRequestlinks
+from swaggyjenkins.models.pipeline_folder_impl import PipelineFolderImpl
+from swaggyjenkins.models.pipeline_impl import PipelineImpl
+from swaggyjenkins.models.pipeline_impllinks import PipelineImpllinks
+from swaggyjenkins.models.pipeline_run import PipelineRun
+from swaggyjenkins.models.pipeline_run_impl import PipelineRunImpl
+from swaggyjenkins.models.pipeline_run_impllinks import PipelineRunImpllinks
+from swaggyjenkins.models.pipeline_run_node import PipelineRunNode
+from swaggyjenkins.models.pipeline_run_nodeedges import PipelineRunNodeedges
+from swaggyjenkins.models.pipeline_runartifacts import PipelineRunartifacts
+from swaggyjenkins.models.pipeline_step_impl import PipelineStepImpl
+from swaggyjenkins.models.pipeline_step_impllinks import PipelineStepImpllinks
+from swaggyjenkins.models.pipelinelatest_run import PipelinelatestRun
+from swaggyjenkins.models.pipelinelatest_runartifacts import PipelinelatestRunartifacts
+from swaggyjenkins.models.queue import Queue
+from swaggyjenkins.models.queue_blocked_item import QueueBlockedItem
+from swaggyjenkins.models.queue_item_impl import QueueItemImpl
+from swaggyjenkins.models.queue_left_item import QueueLeftItem
+from swaggyjenkins.models.response_time_monitor_data import ResponseTimeMonitorData
+from swaggyjenkins.models.string_parameter_definition import StringParameterDefinition
+from swaggyjenkins.models.string_parameter_value import StringParameterValue
+from swaggyjenkins.models.swap_space_monitor_memory_usage2 import SwapSpaceMonitorMemoryUsage2
+from swaggyjenkins.models.unlabeled_load_statistics import UnlabeledLoadStatistics
+from swaggyjenkins.models.user import User

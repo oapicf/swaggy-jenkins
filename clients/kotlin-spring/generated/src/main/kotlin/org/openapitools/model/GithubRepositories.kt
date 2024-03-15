@@ -27,24 +27,24 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubRepositories(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: GithubRepositorieslinks? = null,
+    @get:JsonProperty("_links") val links: GithubRepositorieslinks? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("items") val items: kotlin.collections.List<GithubRepository>? = null,
+    @get:JsonProperty("items") val items: kotlin.collections.List<GithubRepository>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("lastPage") val lastPage: kotlin.Int? = null,
+    @get:JsonProperty("lastPage") val lastPage: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("nextPage") val nextPage: kotlin.Int? = null,
+    @get:JsonProperty("nextPage") val nextPage: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("pageSize") val pageSize: kotlin.Int? = null
+    @get:JsonProperty("pageSize") val pageSize: kotlin.Int? = null
 ) {
 
 }

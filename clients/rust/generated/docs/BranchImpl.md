@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **full_name** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **organization** | Option<**String**> |  | [optional]
-**parameters** | Option<[**Vec<crate::models::StringParameterDefinition>**](StringParameterDefinition.md)> |  | [optional]
-**permissions** | Option<[**crate::models::BranchImplpermissions**](BranchImplpermissions.md)> |  | [optional]
+**parameters** | Option<[**Vec<models::StringParameterDefinition>**](StringParameterDefinition.md)> |  | [optional]
+**permissions** | Option<[**models::BranchImplpermissions**](BranchImplpermissions.md)> |  | [optional]
 **weather_score** | Option<**i32**> |  | [optional]
 **pull_request** | Option<**String**> |  | [optional]
-**_links** | Option<[**crate::models::BranchImpllinks**](BranchImpllinks.md)> |  | [optional]
-**latest_run** | Option<[**crate::models::PipelineRunImpl**](PipelineRunImpl.md)> |  | [optional]
+**_links** | Option<[**models::BranchImpllinks**](BranchImpllinks.md)> |  | [optional]
+**latest_run** | Option<[**models::PipelineRunImpl**](PipelineRunImpl.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

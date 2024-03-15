@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -53,10 +53,10 @@ class DiskSpaceMonitorDescriptorDiskSpace {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is DiskSpaceMonitorDescriptorDiskSpace &&
-     other.class_ == class_ &&
-     other.timestamp == timestamp &&
-     other.path == path &&
-     other.size == size;
+    other.class_ == class_ &&
+    other.timestamp == timestamp &&
+    other.path == path &&
+    other.size == size;
 
   @override
   int get hashCode =>
@@ -70,20 +70,28 @@ class DiskSpaceMonitorDescriptorDiskSpace {
   String toString() => 'DiskSpaceMonitorDescriptorDiskSpace[class_=$class_, timestamp=$timestamp, path=$path, size=$size]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (timestamp != null) {
-      _json[r'timestamp'] = timestamp;
+    if (this.timestamp != null) {
+      json[r'timestamp'] = this.timestamp;
+    } else {
+      json[r'timestamp'] = null;
     }
-    if (path != null) {
-      _json[r'path'] = path;
+    if (this.path != null) {
+      json[r'path'] = this.path;
+    } else {
+      json[r'path'] = null;
     }
-    if (size != null) {
-      _json[r'size'] = size;
+    if (this.size != null) {
+      json[r'size'] = this.size;
+    } else {
+      json[r'size'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [DiskSpaceMonitorDescriptorDiskSpace] instance and imports its values from
@@ -114,7 +122,7 @@ class DiskSpaceMonitorDescriptorDiskSpace {
     return null;
   }
 
-  static List<DiskSpaceMonitorDescriptorDiskSpace>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<DiskSpaceMonitorDescriptorDiskSpace> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <DiskSpaceMonitorDescriptorDiskSpace>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,12 +153,10 @@ class DiskSpaceMonitorDescriptorDiskSpace {
   static Map<String, List<DiskSpaceMonitorDescriptorDiskSpace>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<DiskSpaceMonitorDescriptorDiskSpace>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = DiskSpaceMonitorDescriptorDiskSpace.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = DiskSpaceMonitorDescriptorDiskSpace.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -10,9 +10,9 @@ namespace app\Models;
 class PipelineRunNodeedges {
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

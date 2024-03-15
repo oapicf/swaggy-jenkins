@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 from typing import List, Dict, Type
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.input_step_impl import InputStepImpl
 from openapi_server.models.pipeline_step_impllinks import PipelineStepImpllinks
 from openapi_server import util

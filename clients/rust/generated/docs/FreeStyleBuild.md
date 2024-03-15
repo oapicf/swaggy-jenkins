@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **_class** | Option<**String**> |  | [optional]
 **number** | Option<**i32**> |  | [optional]
 **url** | Option<**String**> |  | [optional]
-**actions** | Option<[**Vec<crate::models::CauseAction>**](CauseAction.md)> |  | [optional]
+**actions** | Option<[**Vec<models::CauseAction>**](CauseAction.md)> |  | [optional]
 **building** | Option<**bool**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **result** | Option<**String**> |  | [optional]
 **timestamp** | Option<**i32**> |  | [optional]
 **built_on** | Option<**String**> |  | [optional]
-**change_set** | Option<[**crate::models::EmptyChangeLogSet**](EmptyChangeLogSet.md)> |  | [optional]
+**change_set** | Option<[**models::EmptyChangeLogSet**](EmptyChangeLogSet.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

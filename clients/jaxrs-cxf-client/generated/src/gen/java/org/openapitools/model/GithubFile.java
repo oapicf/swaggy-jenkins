@@ -3,6 +3,7 @@ package org.openapitools.model;
 import org.openapitools.model.GithubContent;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -49,6 +50,23 @@ public class GithubFile  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubFile githubFile = (GithubFile) o;
+    return Objects.equals(this.content, githubFile.content) &&
+        Objects.equals(this.propertyClass, githubFile.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(content, propertyClass);
+  }
 
   @Override
   public String toString() {

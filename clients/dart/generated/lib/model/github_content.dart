@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -89,14 +89,14 @@ class GithubContent {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GithubContent &&
-     other.name == name &&
-     other.sha == sha &&
-     other.class_ == class_ &&
-     other.repo == repo &&
-     other.size == size &&
-     other.owner == owner &&
-     other.path == path &&
-     other.base64Data == base64Data;
+    other.name == name &&
+    other.sha == sha &&
+    other.class_ == class_ &&
+    other.repo == repo &&
+    other.size == size &&
+    other.owner == owner &&
+    other.path == path &&
+    other.base64Data == base64Data;
 
   @override
   int get hashCode =>
@@ -114,32 +114,48 @@ class GithubContent {
   String toString() => 'GithubContent[name=$name, sha=$sha, class_=$class_, repo=$repo, size=$size, owner=$owner, path=$path, base64Data=$base64Data]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (name != null) {
-      _json[r'name'] = name;
+    final json = <String, dynamic>{};
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (sha != null) {
-      _json[r'sha'] = sha;
+    if (this.sha != null) {
+      json[r'sha'] = this.sha;
+    } else {
+      json[r'sha'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (repo != null) {
-      _json[r'repo'] = repo;
+    if (this.repo != null) {
+      json[r'repo'] = this.repo;
+    } else {
+      json[r'repo'] = null;
     }
-    if (size != null) {
-      _json[r'size'] = size;
+    if (this.size != null) {
+      json[r'size'] = this.size;
+    } else {
+      json[r'size'] = null;
     }
-    if (owner != null) {
-      _json[r'owner'] = owner;
+    if (this.owner != null) {
+      json[r'owner'] = this.owner;
+    } else {
+      json[r'owner'] = null;
     }
-    if (path != null) {
-      _json[r'path'] = path;
+    if (this.path != null) {
+      json[r'path'] = this.path;
+    } else {
+      json[r'path'] = null;
     }
-    if (base64Data != null) {
-      _json[r'base64Data'] = base64Data;
+    if (this.base64Data != null) {
+      json[r'base64Data'] = this.base64Data;
+    } else {
+      json[r'base64Data'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GithubContent] instance and imports its values from
@@ -174,7 +190,7 @@ class GithubContent {
     return null;
   }
 
-  static List<GithubContent>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GithubContent> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GithubContent>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -205,12 +221,10 @@ class GithubContent {
   static Map<String, List<GithubContent>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GithubContent>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GithubContent.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GithubContent.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

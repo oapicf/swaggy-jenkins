@@ -35,7 +35,7 @@ class CreateItemApiController() {
     @Operation(
         summary = "",
         operationId = "postCreateItem",
-        description = "Create a new job using job configuration, or copied from an existing job",
+        description = """Create a new job using job configuration, or copied from an existing job""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully created a new job"),
             ApiResponse(responseCode = "400", description = "An error has occurred - error message is embedded inside the HTML response", content = [Content(schema = Schema(implementation = kotlin.String::class))]),

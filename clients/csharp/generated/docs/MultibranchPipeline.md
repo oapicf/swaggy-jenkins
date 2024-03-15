@@ -1,4 +1,3 @@
-
 # Org.OpenAPITools.Model.MultibranchPipeline
 
 ## Properties
@@ -18,9 +17,7 @@ Name | Type | Description | Notes
 **NumberOfSuccessfulPullRequests** | **int** |  | [optional] 
 **TotalNumberOfBranches** | **int** |  | [optional] 
 **TotalNumberOfPullRequests** | **int** |  | [optional] 
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

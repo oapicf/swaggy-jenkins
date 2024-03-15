@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
@@ -20,12 +21,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputer")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputer   {
-  
   private @Valid String propertyClass;
   private @Valid String displayName;
-  private @Valid List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
+  private @Valid List<@Valid HudsonMasterComputerexecutors> executors;
   private @Valid String icon;
   private @Valid String iconClassName;
   private @Valid Boolean idle;
@@ -59,7 +59,7 @@ public class HudsonMasterComputer   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer displayName(String displayName) {
     this.displayName = displayName;
@@ -78,9 +78,9 @@ public class HudsonMasterComputer   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
-  public HudsonMasterComputer executors(List<HudsonMasterComputerexecutors> executors) {
+  public HudsonMasterComputer executors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
     return this;
   }
@@ -93,7 +93,7 @@ public class HudsonMasterComputer   {
   }
 
   @JsonProperty("executors")
-  public void setExecutors(List<HudsonMasterComputerexecutors> executors) {
+  public void setExecutors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
   }
 
@@ -113,7 +113,7 @@ public class HudsonMasterComputer   {
 
     return this;
   }
-/**
+  /**
    **/
   public HudsonMasterComputer icon(String icon) {
     this.icon = icon;
@@ -132,7 +132,7 @@ public class HudsonMasterComputer   {
     this.icon = icon;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer iconClassName(String iconClassName) {
     this.iconClassName = iconClassName;
@@ -151,7 +151,7 @@ public class HudsonMasterComputer   {
     this.iconClassName = iconClassName;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer idle(Boolean idle) {
     this.idle = idle;
@@ -170,7 +170,7 @@ public class HudsonMasterComputer   {
     this.idle = idle;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer jnlpAgent(Boolean jnlpAgent) {
     this.jnlpAgent = jnlpAgent;
@@ -189,7 +189,7 @@ public class HudsonMasterComputer   {
     this.jnlpAgent = jnlpAgent;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer launchSupported(Boolean launchSupported) {
     this.launchSupported = launchSupported;
@@ -208,7 +208,7 @@ public class HudsonMasterComputer   {
     this.launchSupported = launchSupported;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer loadStatistics(Label1 loadStatistics) {
     this.loadStatistics = loadStatistics;
@@ -227,7 +227,7 @@ public class HudsonMasterComputer   {
     this.loadStatistics = loadStatistics;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer manualLaunchAllowed(Boolean manualLaunchAllowed) {
     this.manualLaunchAllowed = manualLaunchAllowed;
@@ -246,7 +246,7 @@ public class HudsonMasterComputer   {
     this.manualLaunchAllowed = manualLaunchAllowed;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer monitorData(HudsonMasterComputermonitorData monitorData) {
     this.monitorData = monitorData;
@@ -265,7 +265,7 @@ public class HudsonMasterComputer   {
     this.monitorData = monitorData;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer numExecutors(Integer numExecutors) {
     this.numExecutors = numExecutors;
@@ -284,7 +284,7 @@ public class HudsonMasterComputer   {
     this.numExecutors = numExecutors;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer offline(Boolean offline) {
     this.offline = offline;
@@ -303,7 +303,7 @@ public class HudsonMasterComputer   {
     this.offline = offline;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer offlineCause(String offlineCause) {
     this.offlineCause = offlineCause;
@@ -322,7 +322,7 @@ public class HudsonMasterComputer   {
     this.offlineCause = offlineCause;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer offlineCauseReason(String offlineCauseReason) {
     this.offlineCauseReason = offlineCauseReason;
@@ -341,7 +341,7 @@ public class HudsonMasterComputer   {
     this.offlineCauseReason = offlineCauseReason;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputer temporarilyOffline(Boolean temporarilyOffline) {
     this.temporarilyOffline = temporarilyOffline;

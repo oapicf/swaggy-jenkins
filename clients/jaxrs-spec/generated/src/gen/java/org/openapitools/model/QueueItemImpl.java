@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("QueueItemImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class QueueItemImpl   {
-  
   private @Valid String propertyClass;
   private @Valid Integer expectedBuildNumber;
   private @Valid String id;
@@ -43,7 +42,7 @@ public class QueueItemImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public QueueItemImpl expectedBuildNumber(Integer expectedBuildNumber) {
     this.expectedBuildNumber = expectedBuildNumber;
@@ -62,7 +61,7 @@ public class QueueItemImpl   {
     this.expectedBuildNumber = expectedBuildNumber;
   }
 
-/**
+  /**
    **/
   public QueueItemImpl id(String id) {
     this.id = id;
@@ -81,7 +80,7 @@ public class QueueItemImpl   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public QueueItemImpl pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -100,7 +99,7 @@ public class QueueItemImpl   {
     this.pipeline = pipeline;
   }
 
-/**
+  /**
    **/
   public QueueItemImpl queuedTime(Integer queuedTime) {
     this.queuedTime = queuedTime;

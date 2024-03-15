@@ -5,136 +5,116 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class FreeStyleBuild
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="number", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $number;
+    public ?int $number = null;
 
     /**
      * @DTA\Data(field="url", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $url;
+    public ?string $url = null;
 
     /**
      * @DTA\Data(field="actions", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection89::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection89::class})
-     * @var \App\DTO\Collection89|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection3::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection3::class})
      */
-    public $actions;
+    public ?\App\DTO\Collection3 $actions = null;
 
     /**
      * @DTA\Data(field="building", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $building;
+    public ?bool $building = null;
 
     /**
      * @DTA\Data(field="description", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $description;
+    public ?string $description = null;
 
     /**
      * @DTA\Data(field="displayName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $display_name;
+    public ?string $display_name = null;
 
     /**
      * @DTA\Data(field="duration", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $duration;
+    public ?int $duration = null;
 
     /**
      * @DTA\Data(field="estimatedDuration", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $estimated_duration;
+    public ?int $estimated_duration = null;
 
     /**
      * @DTA\Data(field="executor", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $executor;
+    public ?string $executor = null;
 
     /**
      * @DTA\Data(field="fullDisplayName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $full_display_name;
+    public ?string $full_display_name = null;
 
     /**
      * @DTA\Data(field="id", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $id;
+    public ?string $id = null;
 
     /**
      * @DTA\Data(field="keepLog", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $keep_log;
+    public ?bool $keep_log = null;
 
     /**
      * @DTA\Data(field="queueId", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $queue_id;
+    public ?int $queue_id = null;
 
     /**
      * @DTA\Data(field="result", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $result;
+    public ?string $result = null;
 
     /**
      * @DTA\Data(field="timestamp", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $timestamp;
+    public ?int $timestamp = null;
 
     /**
      * @DTA\Data(field="builtOn", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $built_on;
+    public ?string $built_on = null;
 
     /**
      * @DTA\Data(field="changeSet", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\EmptyChangeLogSet::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\EmptyChangeLogSet::class})
-     * @var \App\DTO\EmptyChangeLogSet|null
      */
-    public $change_set;
+    public ?\App\DTO\EmptyChangeLogSet $change_set = null;
 
 }

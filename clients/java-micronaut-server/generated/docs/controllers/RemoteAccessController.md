@@ -27,7 +27,7 @@ Method | HTTP request | Description
 [**postJobLastBuildStop**](#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
 [**postViewConfig**](#postViewConfig) | **POST** /view/{name}/config.xml | 
 
-<a name="getComputer"></a>
+<a id="getComputer"></a>
 # **getComputer**
 ```java
 Mono<ComputerSet> RemoteAccessController.getComputer(depth)
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getJenkins"></a>
+<a id="getJenkins"></a>
 # **getJenkins**
 ```java
 Mono<Hudson> RemoteAccessController.getJenkins()
@@ -73,7 +73,7 @@ Retrieve Jenkins details
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getJob"></a>
+<a id="getJob"></a>
 # **getJob**
 ```java
 Mono<FreeStyleProject> RemoteAccessController.getJob(name)
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getJobConfig"></a>
+<a id="getJobConfig"></a>
 # **getJobConfig**
 ```java
 Mono<String> RemoteAccessController.getJobConfig(name)
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `text/xml`
 
-<a name="getJobLastBuild"></a>
+<a id="getJobLastBuild"></a>
 # **getJobLastBuild**
 ```java
 Mono<FreeStyleBuild> RemoteAccessController.getJobLastBuild(name)
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getJobProgressiveText"></a>
+<a id="getJobProgressiveText"></a>
 # **getJobProgressiveText**
 ```java
 Mono<Object> RemoteAccessController.getJobProgressiveText(namenumberstart)
@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="getQueue"></a>
+<a id="getQueue"></a>
 # **getQueue**
 ```java
 Mono<Queue> RemoteAccessController.getQueue()
@@ -194,7 +194,7 @@ Retrieve queue details
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getQueueItem"></a>
+<a id="getQueueItem"></a>
 # **getQueueItem**
 ```java
 Mono<Queue> RemoteAccessController.getQueueItem(number)
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getView"></a>
+<a id="getView"></a>
 # **getView**
 ```java
 Mono<ListView> RemoteAccessController.getView(name)
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `application/json`
 
-<a name="getViewConfig"></a>
+<a id="getViewConfig"></a>
 # **getViewConfig**
 ```java
 Mono<String> RemoteAccessController.getViewConfig(name)
@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: `text/xml`
 
-<a name="headJenkins"></a>
+<a id="headJenkins"></a>
 # **headJenkins**
 ```java
 Mono<Object> RemoteAccessController.headJenkins()
@@ -288,7 +288,7 @@ Retrieve Jenkins headers
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="postCreateItem"></a>
+<a id="postCreateItem"></a>
 # **postCreateItem**
 ```java
 Mono<Object> RemoteAccessController.postCreateItem(namefrommodejenkinsCrumbcontentType_body)
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: `application/json`
  - **Produces Content-Type**: Not defined
 
-<a name="postCreateView"></a>
+<a id="postCreateView"></a>
 # **postCreateView**
 ```java
 Mono<Object> RemoteAccessController.postCreateView(namejenkinsCrumbcontentType_body)
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: `application/json`
  - **Produces Content-Type**: Not defined
 
-<a name="postJobBuild"></a>
+<a id="postJobBuild"></a>
 # **postJobBuild**
 ```java
 Mono<Object> RemoteAccessController.postJobBuild(namejsontokenjenkinsCrumb)
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="postJobConfig"></a>
+<a id="postJobConfig"></a>
 # **postJobConfig**
 ```java
 Mono<Object> RemoteAccessController.postJobConfig(name_bodyjenkinsCrumb)
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: `application/json`
  - **Produces Content-Type**: Not defined
 
-<a name="postJobDelete"></a>
+<a id="postJobDelete"></a>
 # **postJobDelete**
 ```java
 Mono<Object> RemoteAccessController.postJobDelete(namejenkinsCrumb)
@@ -417,7 +417,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="postJobDisable"></a>
+<a id="postJobDisable"></a>
 # **postJobDisable**
 ```java
 Mono<Object> RemoteAccessController.postJobDisable(namejenkinsCrumb)
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="postJobEnable"></a>
+<a id="postJobEnable"></a>
 # **postJobEnable**
 ```java
 Mono<Object> RemoteAccessController.postJobEnable(namejenkinsCrumb)
@@ -465,7 +465,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="postJobLastBuildStop"></a>
+<a id="postJobLastBuildStop"></a>
 # **postJobLastBuildStop**
 ```java
 Mono<Object> RemoteAccessController.postJobLastBuildStop(namejenkinsCrumb)
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
  - **Accepts Content-Type**: Not defined
  - **Produces Content-Type**: Not defined
 
-<a name="postViewConfig"></a>
+<a id="postViewConfig"></a>
 # **postViewConfig**
 ```java
 Mono<Object> RemoteAccessController.postViewConfig(name_bodyjenkinsCrumb)

@@ -10,18 +10,18 @@ namespace app\Models;
 class GithubScm {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\GithubScmlinks $links */
-    private $links;
+    public $links;
 
     /** @var string $credentialId */
-    private $credentialId;
+    public $credentialId = "";
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $uri */
-    private $uri;
+    public $uri = "";
 
 }

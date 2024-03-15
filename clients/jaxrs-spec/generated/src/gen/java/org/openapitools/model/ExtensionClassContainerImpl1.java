@@ -17,9 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ExtensionClassContainerImpl1")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassContainerImpl1   {
-  
   private @Valid String propertyClass;
   private @Valid ExtensionClassContainerImpl1links links;
   private @Valid ExtensionClassContainerImpl1map map;
@@ -43,7 +42,7 @@ public class ExtensionClassContainerImpl1   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public ExtensionClassContainerImpl1 links(ExtensionClassContainerImpl1links links) {
     this.links = links;
@@ -62,7 +61,7 @@ public class ExtensionClassContainerImpl1   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public ExtensionClassContainerImpl1 map(ExtensionClassContainerImpl1map map) {
     this.map = map;

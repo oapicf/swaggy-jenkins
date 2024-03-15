@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 from typing import List, Dict, Type
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.hudson_master_computerexecutors import HudsonMasterComputerexecutors
 from openapi_server.models.hudson_master_computermonitor_data import HudsonMasterComputermonitorData
 from openapi_server.models.label1 import Label1

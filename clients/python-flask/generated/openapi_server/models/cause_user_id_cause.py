@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -58,7 +55,7 @@ class CauseUserIdCause(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this CauseUserIdCause.
 
 
@@ -68,7 +65,7 @@ class CauseUserIdCause(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this CauseUserIdCause.
 
 
@@ -79,7 +76,7 @@ class CauseUserIdCause(Model):
         self.__class = _class
 
     @property
-    def short_description(self):
+    def short_description(self) -> str:
         """Gets the short_description of this CauseUserIdCause.
 
 
@@ -89,7 +86,7 @@ class CauseUserIdCause(Model):
         return self._short_description
 
     @short_description.setter
-    def short_description(self, short_description):
+    def short_description(self, short_description: str):
         """Sets the short_description of this CauseUserIdCause.
 
 
@@ -100,7 +97,7 @@ class CauseUserIdCause(Model):
         self._short_description = short_description
 
     @property
-    def user_id(self):
+    def user_id(self) -> str:
         """Gets the user_id of this CauseUserIdCause.
 
 
@@ -110,7 +107,7 @@ class CauseUserIdCause(Model):
         return self._user_id
 
     @user_id.setter
-    def user_id(self, user_id):
+    def user_id(self, user_id: str):
         """Sets the user_id of this CauseUserIdCause.
 
 
@@ -121,7 +118,7 @@ class CauseUserIdCause(Model):
         self._user_id = user_id
 
     @property
-    def user_name(self):
+    def user_name(self) -> str:
         """Gets the user_name of this CauseUserIdCause.
 
 
@@ -131,7 +128,7 @@ class CauseUserIdCause(Model):
         return self._user_name
 
     @user_name.setter
-    def user_name(self, user_name):
+    def user_name(self, user_name: str):
         """Sets the user_name of this CauseUserIdCause.
 
 

@@ -10,24 +10,24 @@ namespace app\Models;
 class PipelineFolderImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var string $fullName */
-    private $fullName;
+    public $fullName = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $organization */
-    private $organization;
+    public $organization = "";
 
     /** @var int $numberOfFolders */
-    private $numberOfFolders;
+    public $numberOfFolders = 0;
 
     /** @var int $numberOfPipelines */
-    private $numberOfPipelines;
+    public $numberOfPipelines = 0;
 
 }

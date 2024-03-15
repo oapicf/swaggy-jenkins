@@ -121,7 +121,7 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
     // computer_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -160,7 +160,7 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
     // computer_set->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -177,10 +177,10 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
 
     computer_set_local_var = computer_set_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         busy_executors ? busy_executors->valuedouble : 0,
         computer ? computerList : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         total_executors ? total_executors->valuedouble : 0
         );
 

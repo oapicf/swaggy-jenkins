@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubScmlinks   {
   
   private Link self;
@@ -21,6 +23,7 @@ public class GithubScmlinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
+  @Valid
   public Link getSelf() {
     return self;
   }
@@ -50,8 +53,8 @@ public class GithubScmlinks   {
       return false;
     }
     GithubScmlinks githubScmlinks = (GithubScmlinks) o;
-    return Objects.equals(self, githubScmlinks.self) &&
-        Objects.equals(propertyClass, githubScmlinks.propertyClass);
+    return Objects.equals(this.self, githubScmlinks.self) &&
+        Objects.equals(this.propertyClass, githubScmlinks.propertyClass);
   }
 
   @Override

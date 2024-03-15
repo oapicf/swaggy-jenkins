@@ -10,12 +10,12 @@ namespace app\Models;
 class AllView {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
 }

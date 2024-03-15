@@ -167,7 +167,7 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
     // pipeline_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_implJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -176,7 +176,7 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
     // pipeline_impl->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_implJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -194,7 +194,7 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
     // pipeline_impl->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(pipeline_implJSON, "fullName");
     if (full_name) { 
-    if(!cJSON_IsString(full_name))
+    if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
     goto end; //String
     }
@@ -203,7 +203,7 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
     // pipeline_impl->latest_run
     cJSON *latest_run = cJSON_GetObjectItemCaseSensitive(pipeline_implJSON, "latestRun");
     if (latest_run) { 
-    if(!cJSON_IsString(latest_run))
+    if(!cJSON_IsString(latest_run) && !cJSON_IsNull(latest_run))
     {
     goto end; //String
     }
@@ -212,7 +212,7 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
     // pipeline_impl->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipeline_implJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -221,7 +221,7 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
     // pipeline_impl->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipeline_implJSON, "organization");
     if (organization) { 
-    if(!cJSON_IsString(organization))
+    if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
     goto end; //String
     }
@@ -244,13 +244,13 @@ pipeline_impl_t *pipeline_impl_parseFromJSON(cJSON *pipeline_implJSON){
 
 
     pipeline_impl_local_var = pipeline_impl_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        full_name ? strdup(full_name->valuestring) : NULL,
-        latest_run ? strdup(latest_run->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        organization ? strdup(organization->valuestring) : NULL,
+        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
+        latest_run && !cJSON_IsNull(latest_run) ? strdup(latest_run->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
         weather_score ? weather_score->valuedouble : 0,
         _links ? _links_local_nonprim : NULL
         );

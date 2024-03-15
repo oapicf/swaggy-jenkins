@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Label1   {
   
   private String propertyClass;
@@ -36,7 +37,7 @@ public class Label1   {
       return false;
     }
     Label1 label1 = (Label1) o;
-    return Objects.equals(propertyClass, label1.propertyClass);
+    return Objects.equals(this.propertyClass, label1.propertyClass);
   }
 
   @Override

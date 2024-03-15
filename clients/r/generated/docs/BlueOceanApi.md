@@ -54,15 +54,16 @@ Delete queue item from an organization pipeline queue
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.queue <- 'queue_example' # character | Name of the queue item
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_queue <- "queue_example" # character | Name of the queue item
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-api.instance$DeletePipelineQueueItem(var.organization, var.pipeline, var.queue)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+api_instance$DeletePipelineQueueItem(var_organization, var_pipeline, var_queue)
 ```
 
 ### Parameters
@@ -104,13 +105,16 @@ Retrieve authenticated user details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetAuthenticatedUser(var.organization)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetAuthenticatedUser(var_organizationdata_file = "result.txt")
+result <- api_instance$GetAuthenticatedUser(var_organization)
 dput(result)
 ```
 
@@ -151,13 +155,16 @@ Get a list of class names supported by a given class
 ```R
 library(openapi)
 
-var.class <- 'class_example' # character | Name of the class
+# prepare function argument(s)
+var_class <- "class_example" # character | Name of the class
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetClasses(var.class)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetClasses(var_classdata_file = "result.txt")
+result <- api_instance$GetClasses(var_class)
 dput(result)
 ```
 
@@ -198,10 +205,13 @@ Retrieve JSON Web Key
 ```R
 library(openapi)
 
-var.key <- 56 # integer | Key ID received as part of JWT header field kid
+# prepare function argument(s)
+var_key <- 56 # integer | Key ID received as part of JWT header field kid
 
-api.instance <- BlueOceanApi$new()
-result <- api.instance$GetJsonWebKey(var.key)
+api_instance <- BlueOceanApi$new()
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetJsonWebKey(var_keydata_file = "result.txt")
+result <- api_instance$GetJsonWebKey(var_key)
 dput(result)
 ```
 
@@ -232,7 +242,7 @@ No authorization required
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetJsonWebToken**
-> character GetJsonWebToken(expiry_time_in_mins=var.expiry_time_in_mins, max_expiry_time_in_mins=var.max_expiry_time_in_mins)
+> character GetJsonWebToken(expiry_time_in_mins = var.expiry_time_in_mins, max_expiry_time_in_mins = var.max_expiry_time_in_mins)
 
 
 
@@ -242,11 +252,14 @@ Retrieve JSON Web Token
 ```R
 library(openapi)
 
-var.expiry_time_in_mins <- 56 # integer | Token expiry time in minutes, default: 30 minutes
-var.max_expiry_time_in_mins <- 56 # integer | Maximum token expiry time in minutes, default: 480 minutes
+# prepare function argument(s)
+var_expiry_time_in_mins <- 56 # integer | Token expiry time in minutes, default: 30 minutes (Optional)
+var_max_expiry_time_in_mins <- 56 # integer | Maximum token expiry time in minutes, default: 480 minutes (Optional)
 
-api.instance <- BlueOceanApi$new()
-result <- api.instance$GetJsonWebToken(expiry_time_in_mins=var.expiry_time_in_mins, max_expiry_time_in_mins=var.max_expiry_time_in_mins)
+api_instance <- BlueOceanApi$new()
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetJsonWebToken(expiry_time_in_mins = var_expiry_time_in_mins, max_expiry_time_in_mins = var_max_expiry_time_in_minsdata_file = "result.txt")
+result <- api_instance$GetJsonWebToken(expiry_time_in_mins = var_expiry_time_in_mins, max_expiry_time_in_mins = var_max_expiry_time_in_mins)
 dput(result)
 ```
 
@@ -288,13 +301,16 @@ Retrieve organization details
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetOrganisation(var.organization)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetOrganisation(var_organizationdata_file = "result.txt")
+result <- api_instance$GetOrganisation(var_organization)
 dput(result)
 ```
 
@@ -337,11 +353,13 @@ Retrieve all organizations details
 library(openapi)
 
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetOrganisations()
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetOrganisations(data_file = "result.txt")
+result <- api_instance$GetOrganisations()
 dput(result)
 ```
 
@@ -379,14 +397,17 @@ Retrieve pipeline details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipeline(var.organization, var.pipeline)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipeline(var_organization, var_pipelinedata_file = "result.txt")
+result <- api_instance$GetPipeline(var_organization, var_pipeline)
 dput(result)
 ```
 
@@ -429,14 +450,17 @@ Retrieve all activities details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineActivities(var.organization, var.pipeline)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineActivities(var_organization, var_pipelinedata_file = "result.txt")
+result <- api_instance$GetPipelineActivities(var_organization, var_pipeline)
 dput(result)
 ```
 
@@ -478,15 +502,18 @@ Retrieve branch details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.branch <- 'branch_example' # character | Name of the branch
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_branch <- "branch_example" # character | Name of the branch
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineBranch(var.organization, var.pipeline, var.branch)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineBranch(var_organization, var_pipeline, var_branchdata_file = "result.txt")
+result <- api_instance$GetPipelineBranch(var_organization, var_pipeline, var_branch)
 dput(result)
 ```
 
@@ -529,16 +556,19 @@ Retrieve branch run details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.branch <- 'branch_example' # character | Name of the branch
-var.run <- 'run_example' # character | Name of the run
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_branch <- "branch_example" # character | Name of the branch
+var_run <- "run_example" # character | Name of the run
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineBranchRun(var.organization, var.pipeline, var.branch, var.run)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineBranchRun(var_organization, var_pipeline, var_branch, var_rundata_file = "result.txt")
+result <- api_instance$GetPipelineBranchRun(var_organization, var_pipeline, var_branch, var_run)
 dput(result)
 ```
 
@@ -582,14 +612,17 @@ Retrieve all branches details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineBranches(var.organization, var.pipeline)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineBranches(var_organization, var_pipelinedata_file = "result.txt")
+result <- api_instance$GetPipelineBranches(var_organization, var_pipeline)
 dput(result)
 ```
 
@@ -631,14 +664,17 @@ Retrieve pipeline folder for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.folder <- 'folder_example' # character | Name of the folder
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_folder <- "folder_example" # character | Name of the folder
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineFolder(var.organization, var.folder)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineFolder(var_organization, var_folderdata_file = "result.txt")
+result <- api_instance$GetPipelineFolder(var_organization, var_folder)
 dput(result)
 ```
 
@@ -680,15 +716,18 @@ Retrieve pipeline details for an organization folder
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.folder <- 'folder_example' # character | Name of the folder
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_folder <- "folder_example" # character | Name of the folder
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineFolderPipeline(var.organization, var.pipeline, var.folder)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineFolderPipeline(var_organization, var_pipeline, var_folderdata_file = "result.txt")
+result <- api_instance$GetPipelineFolderPipeline(var_organization, var_pipeline, var_folder)
 dput(result)
 ```
 
@@ -731,14 +770,17 @@ Retrieve queue details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineQueue(var.organization, var.pipeline)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineQueue(var_organization, var_pipelinedata_file = "result.txt")
+result <- api_instance$GetPipelineQueue(var_organization, var_pipeline)
 dput(result)
 ```
 
@@ -780,15 +822,18 @@ Retrieve run details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRun(var.organization, var.pipeline, var.run)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRun(var_organization, var_pipeline, var_rundata_file = "result.txt")
+result <- api_instance$GetPipelineRun(var_organization, var_pipeline, var_run)
 dput(result)
 ```
 
@@ -821,7 +866,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetPipelineRunLog**
-> character GetPipelineRunLog(organization, pipeline, run, start=var.start, download=var.download)
+> character GetPipelineRunLog(organization, pipeline, run, start = var.start, download = var.download)
 
 
 
@@ -831,17 +876,20 @@ Get log for a pipeline run
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
-var.start <- 56 # integer | Start position of the log
-var.download <- 'download_example' # character | Set to true in order to download the file, otherwise it's passed as a response body
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
+var_start <- 56 # integer | Start position of the log (Optional)
+var_download <- "download_example" # character | Set to true in order to download the file, otherwise it's passed as a response body (Optional)
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRunLog(var.organization, var.pipeline, var.run, start=var.start, download=var.download)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRunLog(var_organization, var_pipeline, var_run, start = var_start, download = var_downloaddata_file = "result.txt")
+result <- api_instance$GetPipelineRunLog(var_organization, var_pipeline, var_run, start = var_start, download = var_download)
 dput(result)
 ```
 
@@ -886,16 +934,19 @@ Retrieve run node details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
-var.node <- 'node_example' # character | Name of the node
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
+var_node <- "node_example" # character | Name of the node
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRunNode(var.organization, var.pipeline, var.run, var.node)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRunNode(var_organization, var_pipeline, var_run, var_nodedata_file = "result.txt")
+result <- api_instance$GetPipelineRunNode(var_organization, var_pipeline, var_run, var_node)
 dput(result)
 ```
 
@@ -939,17 +990,20 @@ Retrieve run node details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
-var.node <- 'node_example' # character | Name of the node
-var.step <- 'step_example' # character | Name of the step
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
+var_node <- "node_example" # character | Name of the node
+var_step <- "step_example" # character | Name of the step
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRunNodeStep(var.organization, var.pipeline, var.run, var.node, var.step)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRunNodeStep(var_organization, var_pipeline, var_run, var_node, var_stepdata_file = "result.txt")
+result <- api_instance$GetPipelineRunNodeStep(var_organization, var_pipeline, var_run, var_node, var_step)
 dput(result)
 ```
 
@@ -994,17 +1048,20 @@ Get log for a pipeline run node step
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
-var.node <- 'node_example' # character | Name of the node
-var.step <- 'step_example' # character | Name of the step
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
+var_node <- "node_example" # character | Name of the node
+var_step <- "step_example" # character | Name of the step
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRunNodeStepLog(var.organization, var.pipeline, var.run, var.node, var.step)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRunNodeStepLog(var_organization, var_pipeline, var_run, var_node, var_stepdata_file = "result.txt")
+result <- api_instance$GetPipelineRunNodeStepLog(var_organization, var_pipeline, var_run, var_node, var_step)
 dput(result)
 ```
 
@@ -1049,16 +1106,19 @@ Retrieve run node steps details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
-var.node <- 'node_example' # character | Name of the node
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
+var_node <- "node_example" # character | Name of the node
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRunNodeSteps(var.organization, var.pipeline, var.run, var.node)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRunNodeSteps(var_organization, var_pipeline, var_run, var_nodedata_file = "result.txt")
+result <- api_instance$GetPipelineRunNodeSteps(var_organization, var_pipeline, var_run, var_node)
 dput(result)
 ```
 
@@ -1102,15 +1162,18 @@ Retrieve run nodes details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRunNodes(var.organization, var.pipeline, var.run)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRunNodes(var_organization, var_pipeline, var_rundata_file = "result.txt")
+result <- api_instance$GetPipelineRunNodes(var_organization, var_pipeline, var_run)
 dput(result)
 ```
 
@@ -1153,14 +1216,17 @@ Retrieve all runs details for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelineRuns(var.organization, var.pipeline)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelineRuns(var_organization, var_pipelinedata_file = "result.txt")
+result <- api_instance$GetPipelineRuns(var_organization, var_pipeline)
 dput(result)
 ```
 
@@ -1202,13 +1268,16 @@ Retrieve all pipelines details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetPipelines(var.organization)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetPipelines(var_organizationdata_file = "result.txt")
+result <- api_instance$GetPipelines(var_organization)
 dput(result)
 ```
 
@@ -1249,14 +1318,17 @@ Retrieve SCM details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.scm <- 'scm_example' # character | Name of SCM
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_scm <- "scm_example" # character | Name of SCM
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCM(var.organization, var.scm)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetSCM(var_organization, var_scmdata_file = "result.txt")
+result <- api_instance$GetSCM(var_organization, var_scm)
 dput(result)
 ```
 
@@ -1288,7 +1360,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetSCMOrganisationRepositories**
-> array[GithubOrganization] GetSCMOrganisationRepositories(organization, scm, scm_organisation, credential_id=var.credential_id, page_size=var.page_size, page_number=var.page_number)
+> array[GithubOrganization] GetSCMOrganisationRepositories(organization, scm, scm_organisation, credential_id = var.credential_id, page_size = var.page_size, page_number = var.page_number)
 
 
 
@@ -1298,18 +1370,21 @@ Retrieve SCM organization repositories details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.scm <- 'scm_example' # character | Name of SCM
-var.scm_organisation <- 'scm_organisation_example' # character | Name of the SCM organization
-var.credential_id <- 'credential_id_example' # character | Credential ID
-var.page_size <- 56 # integer | Number of items in a page
-var.page_number <- 56 # integer | Page number
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_scm <- "scm_example" # character | Name of SCM
+var_scm_organisation <- "scm_organisation_example" # character | Name of the SCM organization
+var_credential_id <- "credential_id_example" # character | Credential ID (Optional)
+var_page_size <- 56 # integer | Number of items in a page (Optional)
+var_page_number <- 56 # integer | Page number (Optional)
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCMOrganisationRepositories(var.organization, var.scm, var.scm_organisation, credential_id=var.credential_id, page_size=var.page_size, page_number=var.page_number)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetSCMOrganisationRepositories(var_organization, var_scm, var_scm_organisation, credential_id = var_credential_id, page_size = var_page_size, page_number = var_page_numberdata_file = "result.txt")
+result <- api_instance$GetSCMOrganisationRepositories(var_organization, var_scm, var_scm_organisation, credential_id = var_credential_id, page_size = var_page_size, page_number = var_page_number)
 dput(result)
 ```
 
@@ -1345,7 +1420,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetSCMOrganisationRepository**
-> array[GithubOrganization] GetSCMOrganisationRepository(organization, scm, scm_organisation, repository, credential_id=var.credential_id)
+> array[GithubOrganization] GetSCMOrganisationRepository(organization, scm, scm_organisation, repository, credential_id = var.credential_id)
 
 
 
@@ -1355,17 +1430,20 @@ Retrieve SCM organization repository details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.scm <- 'scm_example' # character | Name of SCM
-var.scm_organisation <- 'scm_organisation_example' # character | Name of the SCM organization
-var.repository <- 'repository_example' # character | Name of the SCM repository
-var.credential_id <- 'credential_id_example' # character | Credential ID
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_scm <- "scm_example" # character | Name of SCM
+var_scm_organisation <- "scm_organisation_example" # character | Name of the SCM organization
+var_repository <- "repository_example" # character | Name of the SCM repository
+var_credential_id <- "credential_id_example" # character | Credential ID (Optional)
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCMOrganisationRepository(var.organization, var.scm, var.scm_organisation, var.repository, credential_id=var.credential_id)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetSCMOrganisationRepository(var_organization, var_scm, var_scm_organisation, var_repository, credential_id = var_credential_iddata_file = "result.txt")
+result <- api_instance$GetSCMOrganisationRepository(var_organization, var_scm, var_scm_organisation, var_repository, credential_id = var_credential_id)
 dput(result)
 ```
 
@@ -1400,7 +1478,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **GetSCMOrganisations**
-> array[GithubOrganization] GetSCMOrganisations(organization, scm, credential_id=var.credential_id)
+> array[GithubOrganization] GetSCMOrganisations(organization, scm, credential_id = var.credential_id)
 
 
 
@@ -1410,15 +1488,18 @@ Retrieve SCM organizations details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.scm <- 'scm_example' # character | Name of SCM
-var.credential_id <- 'credential_id_example' # character | Credential ID
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_scm <- "scm_example" # character | Name of SCM
+var_credential_id <- "credential_id_example" # character | Credential ID (Optional)
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetSCMOrganisations(var.organization, var.scm, credential_id=var.credential_id)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetSCMOrganisations(var_organization, var_scm, credential_id = var_credential_iddata_file = "result.txt")
+result <- api_instance$GetSCMOrganisations(var_organization, var_scm, credential_id = var_credential_id)
 dput(result)
 ```
 
@@ -1461,14 +1542,17 @@ Retrieve user details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.user <- 'user_example' # character | Name of the user
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_user <- "user_example" # character | Name of the user
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetUser(var.organization, var.user)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetUser(var_organization, var_userdata_file = "result.txt")
+result <- api_instance$GetUser(var_organization, var_user)
 dput(result)
 ```
 
@@ -1510,13 +1594,16 @@ Retrieve user favorites details for an organization
 ```R
 library(openapi)
 
-var.user <- 'user_example' # character | Name of the user
+# prepare function argument(s)
+var_user <- "user_example" # character | Name of the user
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetUserFavorites(var.user)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetUserFavorites(var_userdata_file = "result.txt")
+result <- api_instance$GetUserFavorites(var_user)
 dput(result)
 ```
 
@@ -1557,13 +1644,16 @@ Retrieve users details for an organization
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetUsers(var.organization)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetUsers(var_organizationdata_file = "result.txt")
+result <- api_instance$GetUsers(var_organization)
 dput(result)
 ```
 
@@ -1604,15 +1694,18 @@ Replay an organization pipeline run
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$PostPipelineRun(var.organization, var.pipeline, var.run)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$PostPipelineRun(var_organization, var_pipeline, var_rundata_file = "result.txt")
+result <- api_instance$PostPipelineRun(var_organization, var_pipeline, var_run)
 dput(result)
 ```
 
@@ -1655,14 +1748,17 @@ Start a build for an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$PostPipelineRuns(var.organization, var.pipeline)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$PostPipelineRuns(var_organization, var_pipelinedata_file = "result.txt")
+result <- api_instance$PostPipelineRuns(var_organization, var_pipeline)
 dput(result)
 ```
 
@@ -1704,15 +1800,18 @@ Favorite/unfavorite a pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.body <- 'body_example' # character | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_body <- "body_example" # character | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$PutPipelineFavorite(var.organization, var.pipeline, var.body)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$PutPipelineFavorite(var_organization, var_pipeline, var_bodydata_file = "result.txt")
+result <- api_instance$PutPipelineFavorite(var_organization, var_pipeline, var_body)
 dput(result)
 ```
 
@@ -1745,7 +1844,7 @@ Name | Type | Description  | Notes
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
 # **PutPipelineRun**
-> PipelineRun PutPipelineRun(organization, pipeline, run, blocking=var.blocking, time_out_in_secs=var.time_out_in_secs)
+> PipelineRun PutPipelineRun(organization, pipeline, run, blocking = var.blocking, time_out_in_secs = var.time_out_in_secs)
 
 
 
@@ -1755,17 +1854,20 @@ Stop a build of an organization pipeline
 ```R
 library(openapi)
 
-var.organization <- 'organization_example' # character | Name of the organization
-var.pipeline <- 'pipeline_example' # character | Name of the pipeline
-var.run <- 'run_example' # character | Name of the run
-var.blocking <- 'blocking_example' # character | Set to true to make blocking stop, default: false
-var.time_out_in_secs <- 56 # integer | Timeout in seconds, default: 10 seconds
+# prepare function argument(s)
+var_organization <- "organization_example" # character | Name of the organization
+var_pipeline <- "pipeline_example" # character | Name of the pipeline
+var_run <- "run_example" # character | Name of the run
+var_blocking <- "blocking_example" # character | Set to true to make blocking stop, default: false (Optional)
+var_time_out_in_secs <- 56 # integer | Timeout in seconds, default: 10 seconds (Optional)
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$PutPipelineRun(var.organization, var.pipeline, var.run, blocking=var.blocking, time_out_in_secs=var.time_out_in_secs)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$PutPipelineRun(var_organization, var_pipeline, var_run, blocking = var_blocking, time_out_in_secs = var_time_out_in_secsdata_file = "result.txt")
+result <- api_instance$PutPipelineRun(var_organization, var_pipeline, var_run, blocking = var_blocking, time_out_in_secs = var_time_out_in_secs)
 dput(result)
 ```
 
@@ -1810,13 +1912,16 @@ Search for any resource details
 ```R
 library(openapi)
 
-var.q <- 'q_example' # character | Query string
+# prepare function argument(s)
+var_q <- "q_example" # character | Query string
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$Search(var.q)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$Search(var_qdata_file = "result.txt")
+result <- api_instance$Search(var_q)
 dput(result)
 ```
 
@@ -1857,13 +1962,16 @@ Get classes details
 ```R
 library(openapi)
 
-var.q <- 'q_example' # character | Query string containing an array of class names
+# prepare function argument(s)
+var_q <- "q_example" # character | Query string containing an array of class names
 
-api.instance <- BlueOceanApi$new()
+api_instance <- BlueOceanApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$SearchClasses(var.q)
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$SearchClasses(var_qdata_file = "result.txt")
+result <- api_instance$SearchClasses(var_q)
 dput(result)
 ```
 

@@ -22,13 +22,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class StringParameterValue(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("value") val `value`: kotlin.String? = null
+    @get:JsonProperty("value") val `value`: kotlin.String? = null
 ) {
 
 }

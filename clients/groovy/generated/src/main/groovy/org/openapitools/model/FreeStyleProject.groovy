@@ -4,7 +4,7 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
 import org.openapitools.model.FreeStyleProjecthealthReport;
@@ -21,7 +21,7 @@ class FreeStyleProject {
     
     String color
     
-    List<FreeStyleProjectactions> actions = new ArrayList<>()
+    List<FreeStyleProjectactions> actions
     
     String description
     
@@ -35,11 +35,11 @@ class FreeStyleProject {
     
     Boolean buildable
     
-    List<FreeStyleBuild> builds = new ArrayList<>()
+    List<FreeStyleBuild> builds
     
     FreeStyleBuild firstBuild
     
-    List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>()
+    List<FreeStyleProjecthealthReport> healthReport
     
     Boolean inQueue
     

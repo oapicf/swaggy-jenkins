@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -53,10 +53,10 @@ class CauseUserIdCause {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CauseUserIdCause &&
-     other.class_ == class_ &&
-     other.shortDescription == shortDescription &&
-     other.userId == userId &&
-     other.userName == userName;
+    other.class_ == class_ &&
+    other.shortDescription == shortDescription &&
+    other.userId == userId &&
+    other.userName == userName;
 
   @override
   int get hashCode =>
@@ -70,20 +70,28 @@ class CauseUserIdCause {
   String toString() => 'CauseUserIdCause[class_=$class_, shortDescription=$shortDescription, userId=$userId, userName=$userName]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (shortDescription != null) {
-      _json[r'shortDescription'] = shortDescription;
+    if (this.shortDescription != null) {
+      json[r'shortDescription'] = this.shortDescription;
+    } else {
+      json[r'shortDescription'] = null;
     }
-    if (userId != null) {
-      _json[r'userId'] = userId;
+    if (this.userId != null) {
+      json[r'userId'] = this.userId;
+    } else {
+      json[r'userId'] = null;
     }
-    if (userName != null) {
-      _json[r'userName'] = userName;
+    if (this.userName != null) {
+      json[r'userName'] = this.userName;
+    } else {
+      json[r'userName'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [CauseUserIdCause] instance and imports its values from
@@ -114,7 +122,7 @@ class CauseUserIdCause {
     return null;
   }
 
-  static List<CauseUserIdCause>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CauseUserIdCause> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CauseUserIdCause>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,12 +153,10 @@ class CauseUserIdCause {
   static Map<String, List<CauseUserIdCause>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<CauseUserIdCause>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = CauseUserIdCause.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = CauseUserIdCause.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

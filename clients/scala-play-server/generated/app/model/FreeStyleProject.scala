@@ -4,9 +4,8 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for FreeStyleProject.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class FreeStyleProject(
   `class`: Option[String],
   name: Option[String],
@@ -35,33 +34,9 @@ case class FreeStyleProject(
   queueItem: Option[String],
   concurrentBuild: Option[Boolean],
   scm: Option[NullSCM]
-  additionalProperties: 
 )
 
 object FreeStyleProject {
-  implicit lazy val freeStyleProjectJsonFormat: Format[FreeStyleProject] = {
-    val realJsonFormat = Json.format[FreeStyleProject]
-    val declaredPropNames = Set("`class`", "name", "url", "color", "actions", "description", "displayName", "displayNameOrNull", "fullDisplayName", "fullName", "buildable", "builds", "firstBuild", "healthReport", "inQueue", "keepDependencies", "lastBuild", "lastCompletedBuild", "lastFailedBuild", "lastStableBuild", "lastSuccessfulBuild", "lastUnstableBuild", "lastUnsuccessfulBuild", "nextBuildNumber", "queueItem", "concurrentBuild", "scm")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { freeStyleProject =>
-        val jsObj = realJsonFormat.writes(freeStyleProject)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val freeStyleProjectJsonFormat: Format[FreeStyleProject] = Json.format[FreeStyleProject]
 }
 

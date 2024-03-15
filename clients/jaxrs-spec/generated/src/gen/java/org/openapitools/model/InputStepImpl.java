@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
@@ -19,15 +20,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("InputStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class InputStepImpl   {
-  
   private @Valid String propertyClass;
   private @Valid InputStepImpllinks links;
   private @Valid String id;
   private @Valid String message;
   private @Valid String ok;
-  private @Valid List<StringParameterDefinition> parameters = new ArrayList<>();
+  private @Valid List<@Valid StringParameterDefinition> parameters;
   private @Valid String submitter;
 
   /**
@@ -49,7 +49,7 @@ public class InputStepImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public InputStepImpl links(InputStepImpllinks links) {
     this.links = links;
@@ -68,7 +68,7 @@ public class InputStepImpl   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public InputStepImpl id(String id) {
     this.id = id;
@@ -87,7 +87,7 @@ public class InputStepImpl   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public InputStepImpl message(String message) {
     this.message = message;
@@ -106,7 +106,7 @@ public class InputStepImpl   {
     this.message = message;
   }
 
-/**
+  /**
    **/
   public InputStepImpl ok(String ok) {
     this.ok = ok;
@@ -125,9 +125,9 @@ public class InputStepImpl   {
     this.ok = ok;
   }
 
-/**
+  /**
    **/
-  public InputStepImpl parameters(List<StringParameterDefinition> parameters) {
+  public InputStepImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -140,7 +140,7 @@ public class InputStepImpl   {
   }
 
   @JsonProperty("parameters")
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -160,7 +160,7 @@ public class InputStepImpl   {
 
     return this;
   }
-/**
+  /**
    **/
   public InputStepImpl submitter(String submitter) {
     this.submitter = submitter;

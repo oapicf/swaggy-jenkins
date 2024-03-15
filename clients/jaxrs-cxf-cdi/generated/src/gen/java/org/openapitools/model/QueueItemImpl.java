@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -23,7 +24,6 @@ public class QueueItemImpl   {
   private String pipeline;
 
   private Integer queuedTime;
-
 
   /**
    **/
@@ -125,11 +125,11 @@ public class QueueItemImpl   {
       return false;
     }
     QueueItemImpl queueItemImpl = (QueueItemImpl) o;
-    return Objects.equals(propertyClass, queueItemImpl.propertyClass) &&
-        Objects.equals(expectedBuildNumber, queueItemImpl.expectedBuildNumber) &&
-        Objects.equals(id, queueItemImpl.id) &&
-        Objects.equals(pipeline, queueItemImpl.pipeline) &&
-        Objects.equals(queuedTime, queueItemImpl.queuedTime);
+    return Objects.equals(this.propertyClass, queueItemImpl.propertyClass) &&
+        Objects.equals(this.expectedBuildNumber, queueItemImpl.expectedBuildNumber) &&
+        Objects.equals(this.id, queueItemImpl.id) &&
+        Objects.equals(this.pipeline, queueItemImpl.pipeline) &&
+        Objects.equals(this.queuedTime, queueItemImpl.queuedTime);
   }
 
   @Override

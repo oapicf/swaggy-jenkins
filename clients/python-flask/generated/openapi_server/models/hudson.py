@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.all_view import AllView
 from openapi_server.models.free_style_project import FreeStyleProject
 from openapi_server.models.hudsonassigned_labels import HudsonassignedLabels
@@ -121,7 +118,7 @@ class Hudson(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this Hudson.
 
 
@@ -131,7 +128,7 @@ class Hudson(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this Hudson.
 
 
@@ -142,7 +139,7 @@ class Hudson(Model):
         self.__class = _class
 
     @property
-    def assigned_labels(self):
+    def assigned_labels(self) -> List[HudsonassignedLabels]:
         """Gets the assigned_labels of this Hudson.
 
 
@@ -152,7 +149,7 @@ class Hudson(Model):
         return self._assigned_labels
 
     @assigned_labels.setter
-    def assigned_labels(self, assigned_labels):
+    def assigned_labels(self, assigned_labels: List[HudsonassignedLabels]):
         """Sets the assigned_labels of this Hudson.
 
 
@@ -163,7 +160,7 @@ class Hudson(Model):
         self._assigned_labels = assigned_labels
 
     @property
-    def mode(self):
+    def mode(self) -> str:
         """Gets the mode of this Hudson.
 
 
@@ -173,7 +170,7 @@ class Hudson(Model):
         return self._mode
 
     @mode.setter
-    def mode(self, mode):
+    def mode(self, mode: str):
         """Sets the mode of this Hudson.
 
 
@@ -184,7 +181,7 @@ class Hudson(Model):
         self._mode = mode
 
     @property
-    def node_description(self):
+    def node_description(self) -> str:
         """Gets the node_description of this Hudson.
 
 
@@ -194,7 +191,7 @@ class Hudson(Model):
         return self._node_description
 
     @node_description.setter
-    def node_description(self, node_description):
+    def node_description(self, node_description: str):
         """Sets the node_description of this Hudson.
 
 
@@ -205,7 +202,7 @@ class Hudson(Model):
         self._node_description = node_description
 
     @property
-    def node_name(self):
+    def node_name(self) -> str:
         """Gets the node_name of this Hudson.
 
 
@@ -215,7 +212,7 @@ class Hudson(Model):
         return self._node_name
 
     @node_name.setter
-    def node_name(self, node_name):
+    def node_name(self, node_name: str):
         """Sets the node_name of this Hudson.
 
 
@@ -226,7 +223,7 @@ class Hudson(Model):
         self._node_name = node_name
 
     @property
-    def num_executors(self):
+    def num_executors(self) -> int:
         """Gets the num_executors of this Hudson.
 
 
@@ -236,7 +233,7 @@ class Hudson(Model):
         return self._num_executors
 
     @num_executors.setter
-    def num_executors(self, num_executors):
+    def num_executors(self, num_executors: int):
         """Sets the num_executors of this Hudson.
 
 
@@ -247,7 +244,7 @@ class Hudson(Model):
         self._num_executors = num_executors
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this Hudson.
 
 
@@ -257,7 +254,7 @@ class Hudson(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this Hudson.
 
 
@@ -268,7 +265,7 @@ class Hudson(Model):
         self._description = description
 
     @property
-    def jobs(self):
+    def jobs(self) -> List[FreeStyleProject]:
         """Gets the jobs of this Hudson.
 
 
@@ -278,7 +275,7 @@ class Hudson(Model):
         return self._jobs
 
     @jobs.setter
-    def jobs(self, jobs):
+    def jobs(self, jobs: List[FreeStyleProject]):
         """Sets the jobs of this Hudson.
 
 
@@ -289,7 +286,7 @@ class Hudson(Model):
         self._jobs = jobs
 
     @property
-    def primary_view(self):
+    def primary_view(self) -> AllView:
         """Gets the primary_view of this Hudson.
 
 
@@ -299,7 +296,7 @@ class Hudson(Model):
         return self._primary_view
 
     @primary_view.setter
-    def primary_view(self, primary_view):
+    def primary_view(self, primary_view: AllView):
         """Sets the primary_view of this Hudson.
 
 
@@ -310,7 +307,7 @@ class Hudson(Model):
         self._primary_view = primary_view
 
     @property
-    def quieting_down(self):
+    def quieting_down(self) -> bool:
         """Gets the quieting_down of this Hudson.
 
 
@@ -320,7 +317,7 @@ class Hudson(Model):
         return self._quieting_down
 
     @quieting_down.setter
-    def quieting_down(self, quieting_down):
+    def quieting_down(self, quieting_down: bool):
         """Sets the quieting_down of this Hudson.
 
 
@@ -331,7 +328,7 @@ class Hudson(Model):
         self._quieting_down = quieting_down
 
     @property
-    def slave_agent_port(self):
+    def slave_agent_port(self) -> int:
         """Gets the slave_agent_port of this Hudson.
 
 
@@ -341,7 +338,7 @@ class Hudson(Model):
         return self._slave_agent_port
 
     @slave_agent_port.setter
-    def slave_agent_port(self, slave_agent_port):
+    def slave_agent_port(self, slave_agent_port: int):
         """Sets the slave_agent_port of this Hudson.
 
 
@@ -352,7 +349,7 @@ class Hudson(Model):
         self._slave_agent_port = slave_agent_port
 
     @property
-    def unlabeled_load(self):
+    def unlabeled_load(self) -> UnlabeledLoadStatistics:
         """Gets the unlabeled_load of this Hudson.
 
 
@@ -362,7 +359,7 @@ class Hudson(Model):
         return self._unlabeled_load
 
     @unlabeled_load.setter
-    def unlabeled_load(self, unlabeled_load):
+    def unlabeled_load(self, unlabeled_load: UnlabeledLoadStatistics):
         """Sets the unlabeled_load of this Hudson.
 
 
@@ -373,7 +370,7 @@ class Hudson(Model):
         self._unlabeled_load = unlabeled_load
 
     @property
-    def use_crumbs(self):
+    def use_crumbs(self) -> bool:
         """Gets the use_crumbs of this Hudson.
 
 
@@ -383,7 +380,7 @@ class Hudson(Model):
         return self._use_crumbs
 
     @use_crumbs.setter
-    def use_crumbs(self, use_crumbs):
+    def use_crumbs(self, use_crumbs: bool):
         """Sets the use_crumbs of this Hudson.
 
 
@@ -394,7 +391,7 @@ class Hudson(Model):
         self._use_crumbs = use_crumbs
 
     @property
-    def use_security(self):
+    def use_security(self) -> bool:
         """Gets the use_security of this Hudson.
 
 
@@ -404,7 +401,7 @@ class Hudson(Model):
         return self._use_security
 
     @use_security.setter
-    def use_security(self, use_security):
+    def use_security(self, use_security: bool):
         """Sets the use_security of this Hudson.
 
 
@@ -415,7 +412,7 @@ class Hudson(Model):
         self._use_security = use_security
 
     @property
-    def views(self):
+    def views(self) -> List[AllView]:
         """Gets the views of this Hudson.
 
 
@@ -425,7 +422,7 @@ class Hudson(Model):
         return self._views
 
     @views.setter
-    def views(self, views):
+    def views(self, views: List[AllView]):
         """Sets the views of this Hudson.
 
 

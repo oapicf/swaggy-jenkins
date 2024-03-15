@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.input_step_impl import InputStepImpl
 from openapi_server.models.pipeline_step_impllinks import PipelineStepImpllinks
 from openapi_server import util
@@ -87,7 +84,7 @@ class PipelineStepImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineStepImpl.
 
 
@@ -97,7 +94,7 @@ class PipelineStepImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineStepImpl.
 
 
@@ -108,7 +105,7 @@ class PipelineStepImpl(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> PipelineStepImpllinks:
         """Gets the links of this PipelineStepImpl.
 
 
@@ -118,7 +115,7 @@ class PipelineStepImpl(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: PipelineStepImpllinks):
         """Sets the links of this PipelineStepImpl.
 
 
@@ -129,7 +126,7 @@ class PipelineStepImpl(Model):
         self._links = links
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this PipelineStepImpl.
 
 
@@ -139,7 +136,7 @@ class PipelineStepImpl(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this PipelineStepImpl.
 
 
@@ -150,7 +147,7 @@ class PipelineStepImpl(Model):
         self._display_name = display_name
 
     @property
-    def duration_in_millis(self):
+    def duration_in_millis(self) -> int:
         """Gets the duration_in_millis of this PipelineStepImpl.
 
 
@@ -160,7 +157,7 @@ class PipelineStepImpl(Model):
         return self._duration_in_millis
 
     @duration_in_millis.setter
-    def duration_in_millis(self, duration_in_millis):
+    def duration_in_millis(self, duration_in_millis: int):
         """Sets the duration_in_millis of this PipelineStepImpl.
 
 
@@ -171,7 +168,7 @@ class PipelineStepImpl(Model):
         self._duration_in_millis = duration_in_millis
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this PipelineStepImpl.
 
 
@@ -181,7 +178,7 @@ class PipelineStepImpl(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this PipelineStepImpl.
 
 
@@ -192,7 +189,7 @@ class PipelineStepImpl(Model):
         self._id = id
 
     @property
-    def input(self):
+    def input(self) -> InputStepImpl:
         """Gets the input of this PipelineStepImpl.
 
 
@@ -202,7 +199,7 @@ class PipelineStepImpl(Model):
         return self._input
 
     @input.setter
-    def input(self, input):
+    def input(self, input: InputStepImpl):
         """Sets the input of this PipelineStepImpl.
 
 
@@ -213,7 +210,7 @@ class PipelineStepImpl(Model):
         self._input = input
 
     @property
-    def result(self):
+    def result(self) -> str:
         """Gets the result of this PipelineStepImpl.
 
 
@@ -223,7 +220,7 @@ class PipelineStepImpl(Model):
         return self._result
 
     @result.setter
-    def result(self, result):
+    def result(self, result: str):
         """Sets the result of this PipelineStepImpl.
 
 
@@ -234,7 +231,7 @@ class PipelineStepImpl(Model):
         self._result = result
 
     @property
-    def start_time(self):
+    def start_time(self) -> str:
         """Gets the start_time of this PipelineStepImpl.
 
 
@@ -244,7 +241,7 @@ class PipelineStepImpl(Model):
         return self._start_time
 
     @start_time.setter
-    def start_time(self, start_time):
+    def start_time(self, start_time: str):
         """Sets the start_time of this PipelineStepImpl.
 
 
@@ -255,7 +252,7 @@ class PipelineStepImpl(Model):
         self._start_time = start_time
 
     @property
-    def state(self):
+    def state(self) -> str:
         """Gets the state of this PipelineStepImpl.
 
 
@@ -265,7 +262,7 @@ class PipelineStepImpl(Model):
         return self._state
 
     @state.setter
-    def state(self, state):
+    def state(self, state: str):
         """Sets the state of this PipelineStepImpl.
 
 

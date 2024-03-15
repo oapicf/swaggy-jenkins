@@ -8,6 +8,7 @@
 # ! openapi-generator (https://openapi-generator.tech)
 # ! FROM OPENAPI SPECIFICATION IN JSON.
 # !
+# ! Generator version: 7.4.0
 # !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -18,7 +19,7 @@
 # 
 #
 # CONTACT:
-# blah@cliffano.com
+# blah+oapicf@cliffano.com
 #
 # MORE INFORMATION:
 # 
@@ -666,20 +667,24 @@ header_arguments_to_curl() {
 #
 ##############################################################################
 body_parameters_to_json() {
-    local body_json="-d '{"
-    local count=0
-    for key in "${!body_parameters[@]}"; do
-        if [[ $((count++)) -gt 0 ]]; then
-            body_json+=", "
-        fi
-        body_json+="\"${key}\": ${body_parameters[${key}]}"
-    done
-    body_json+="}'"
-
-    if [[ "${#body_parameters[@]}" -eq 0 ]]; then
-        echo ""
+    if [[ $RAW_BODY == "1" ]]; then
+        echo "-d '${body_parameters["RAW_BODY"]}'"
     else
-        echo "${body_json}"
+        local body_json="-d '{"
+        local count=0
+        for key in "${!body_parameters[@]}"; do
+            if [[ $((count++)) -gt 0 ]]; then
+                body_json+=", "
+            fi
+            body_json+="\"${key}\": ${body_parameters[${key}]}"
+        done
+        body_json+="}'"
+
+        if [[ "${#body_parameters[@]}" -eq 0 ]]; then
+            echo ""
+        else
+            echo "${body_json}"
+        fi
     fi
 }
 
@@ -879,7 +884,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.5.1-pre.0)${OFF}
+${BOLD}${WHITE}Swaggy Jenkins command line client (API version 2.0.1-pre.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -1014,10 +1019,10 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://localhost')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 1.5.1-pre.0)${OFF}"
+    echo -e "${BOLD}${WHITE}Swaggy Jenkins command line client (API version 2.0.1-pre.0)${OFF}"
     echo ""
     echo -e "License: "
-    echo -e "Contact: blah@cliffano.com"
+    echo -e "Contact: blah+oapicf@cliffano.com"
     echo ""
 read -r -d '' appdescription <<EOF
 
@@ -1034,7 +1039,7 @@ echo "$appdescription" | paste -sd' ' | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}Swaggy Jenkins command line client (API version 1.5.1-pre.0)${OFF}"
+    echo -e "${BOLD}Swaggy Jenkins command line client (API version 2.0.1-pre.0)${OFF}"
     echo ""
 }
 
@@ -5030,6 +5035,16 @@ case $key in
     if [[ "$operation" ]]; then
         IFS='==' read -r body_key sep body_value <<< "$key"
         body_parameters[${body_key}]="\"${body_value}\""
+    fi
+    ;;
+    --body=*)
+    # Parse value of body as argument and convert it into only
+    # the raw body content
+    if [[ "$operation" ]]; then
+        IFS='--body=' read -r body_value <<< "$key"
+        body_value=${body_value##--body=}
+        body_parameters["RAW_BODY"]="${body_value}"
+        RAW_BODY=1
     fi
     ;;
     *:=*)

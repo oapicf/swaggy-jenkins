@@ -89,7 +89,7 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
     // disk_space_monitor_descriptor_disk_space->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -107,7 +107,7 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
     // disk_space_monitor_descriptor_disk_space->path
     cJSON *path = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "path");
     if (path) { 
-    if(!cJSON_IsString(path))
+    if(!cJSON_IsString(path) && !cJSON_IsNull(path))
     {
     goto end; //String
     }
@@ -124,9 +124,9 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
 
 
     disk_space_monitor_descriptor_disk_space_local_var = disk_space_monitor_descriptor_disk_space_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         timestamp ? timestamp->valuedouble : 0,
-        path ? strdup(path->valuestring) : NULL,
+        path && !cJSON_IsNull(path) ? strdup(path->valuestring) : NULL,
         size ? size->valuedouble : 0
         );
 

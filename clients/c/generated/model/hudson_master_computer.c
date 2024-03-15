@@ -271,7 +271,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     // hudson_master_computer->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -280,7 +280,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     // hudson_master_computer->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -310,7 +310,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     // hudson_master_computer->icon
     cJSON *icon = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "icon");
     if (icon) { 
-    if(!cJSON_IsString(icon))
+    if(!cJSON_IsString(icon) && !cJSON_IsNull(icon))
     {
     goto end; //String
     }
@@ -319,7 +319,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     // hudson_master_computer->icon_class_name
     cJSON *icon_class_name = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "iconClassName");
     if (icon_class_name) { 
-    if(!cJSON_IsString(icon_class_name))
+    if(!cJSON_IsString(icon_class_name) && !cJSON_IsNull(icon_class_name))
     {
     goto end; //String
     }
@@ -394,7 +394,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     // hudson_master_computer->offline_cause
     cJSON *offline_cause = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "offlineCause");
     if (offline_cause) { 
-    if(!cJSON_IsString(offline_cause))
+    if(!cJSON_IsString(offline_cause) && !cJSON_IsNull(offline_cause))
     {
     goto end; //String
     }
@@ -403,7 +403,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     // hudson_master_computer->offline_cause_reason
     cJSON *offline_cause_reason = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "offlineCauseReason");
     if (offline_cause_reason) { 
-    if(!cJSON_IsString(offline_cause_reason))
+    if(!cJSON_IsString(offline_cause_reason) && !cJSON_IsNull(offline_cause_reason))
     {
     goto end; //String
     }
@@ -420,11 +420,11 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
 
     hudson_master_computer_local_var = hudson_master_computer_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         executors ? executorsList : NULL,
-        icon ? strdup(icon->valuestring) : NULL,
-        icon_class_name ? strdup(icon_class_name->valuestring) : NULL,
+        icon && !cJSON_IsNull(icon) ? strdup(icon->valuestring) : NULL,
+        icon_class_name && !cJSON_IsNull(icon_class_name) ? strdup(icon_class_name->valuestring) : NULL,
         idle ? idle->valueint : 0,
         jnlp_agent ? jnlp_agent->valueint : 0,
         launch_supported ? launch_supported->valueint : 0,
@@ -433,8 +433,8 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
         monitor_data ? monitor_data_local_nonprim : NULL,
         num_executors ? num_executors->valuedouble : 0,
         offline ? offline->valueint : 0,
-        offline_cause ? strdup(offline_cause->valuestring) : NULL,
-        offline_cause_reason ? strdup(offline_cause_reason->valuestring) : NULL,
+        offline_cause && !cJSON_IsNull(offline_cause) ? strdup(offline_cause->valuestring) : NULL,
+        offline_cause_reason && !cJSON_IsNull(offline_cause_reason) ? strdup(offline_cause_reason->valuestring) : NULL,
         temporarily_offline ? temporarily_offline->valueint : 0
         );
 

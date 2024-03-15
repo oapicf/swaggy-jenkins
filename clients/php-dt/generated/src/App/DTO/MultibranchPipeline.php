@@ -5,107 +5,91 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class MultibranchPipeline
 {
     /**
      * @DTA\Data(field="displayName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $display_name;
+    public ?string $display_name = null;
 
     /**
      * @DTA\Data(field="estimatedDurationInMillis", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $estimated_duration_in_millis;
+    public ?int $estimated_duration_in_millis = null;
 
     /**
      * @DTA\Data(field="latestRun", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $latest_run;
+    public ?string $latest_run = null;
 
     /**
      * @DTA\Data(field="name", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * @DTA\Data(field="organization", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * @DTA\Data(field="weatherScore", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $weather_score;
+    public ?int $weather_score = null;
 
     /**
      * @DTA\Data(field="branchNames", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection97::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection97::class})
-     * @var \App\DTO\Collection97|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection18::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection18::class})
      */
-    public $branch_names;
+    public ?\App\DTO\Collection18 $branch_names = null;
 
     /**
      * @DTA\Data(field="numberOfFailingBranches", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $number_of_failing_branches;
+    public ?int $number_of_failing_branches = null;
 
     /**
      * @DTA\Data(field="numberOfFailingPullRequests", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $number_of_failing_pull_requests;
+    public ?int $number_of_failing_pull_requests = null;
 
     /**
      * @DTA\Data(field="numberOfSuccessfulBranches", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $number_of_successful_branches;
+    public ?int $number_of_successful_branches = null;
 
     /**
      * @DTA\Data(field="numberOfSuccessfulPullRequests", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $number_of_successful_pull_requests;
+    public ?int $number_of_successful_pull_requests = null;
 
     /**
      * @DTA\Data(field="totalNumberOfBranches", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $total_number_of_branches;
+    public ?int $total_number_of_branches = null;
 
     /**
      * @DTA\Data(field="totalNumberOfPullRequests", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $total_number_of_pull_requests;
+    public ?int $total_number_of_pull_requests = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

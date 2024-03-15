@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -13,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ClassesByClass  {
   
   @ApiModelProperty(value = "")
-  private List<String> classes = null;
+  private List<String> classes;
 
   @ApiModelProperty(value = "")
   private String propertyClass;
@@ -73,6 +74,24 @@ public class ClassesByClass  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ClassesByClass classesByClass = (ClassesByClass) o;
+    return Objects.equals(this.classes, classesByClass.classes) &&
+        Objects.equals(this.propertyClass, classesByClass.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(classes, propertyClass);
+  }
 
   @Override
   public String toString() {

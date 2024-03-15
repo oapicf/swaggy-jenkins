@@ -10,30 +10,30 @@ namespace app\Models;
 class PipelineBranchesitem {
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $estimatedDurationInMillis */
-    private $estimatedDurationInMillis;
+    public $estimatedDurationInMillis = 0;
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var int $weatherScore */
-    private $weatherScore;
+    public $weatherScore = 0;
 
     /** @var \app\Models\PipelineBranchesitemlatestRun $latestRun */
-    private $latestRun;
+    public $latestRun;
 
     /** @var string $organization */
-    private $organization;
+    public $organization = "";
 
     /** @var \app\Models\PipelineBranchesitempullRequest $pullRequest */
-    private $pullRequest;
+    public $pullRequest;
 
     /** @var int $totalNumberOfPullRequests */
-    private $totalNumberOfPullRequests;
+    public $totalNumberOfPullRequests = 0;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

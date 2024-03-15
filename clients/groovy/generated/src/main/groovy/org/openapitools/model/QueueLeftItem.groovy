@@ -4,7 +4,7 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProject;
@@ -14,7 +14,7 @@ class QueueLeftItem {
     
     String propertyClass
     
-    List<CauseAction> actions = new ArrayList<>()
+    List<CauseAction> actions
     
     Boolean blocked
     

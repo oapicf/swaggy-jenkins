@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_links** | Option<[**crate::models::PipelineBranchesitempullRequestlinks**](PipelineBranchesitempullRequestlinks.md)> |  | [optional]
+**_links** | Option<[**models::PipelineBranchesitempullRequestlinks**](PipelineBranchesitempullRequestlinks.md)> |  | [optional]
 **author** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **title** | Option<**String**> |  | [optional]

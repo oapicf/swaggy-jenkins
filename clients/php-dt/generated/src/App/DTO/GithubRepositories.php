@@ -5,52 +5,44 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class GithubRepositories
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="_links", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\GithubRepositorieslinks::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\GithubRepositorieslinks::class})
-     * @var \App\DTO\GithubRepositorieslinks|null
      */
-    public $_links;
+    public ?\App\DTO\GithubRepositorieslinks $_links = null;
 
     /**
      * @DTA\Data(field="items", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":::class})
-     * @var \App\DTO\GithubRepository[]|null
      */
-    public $items;
+    public ?array $items = null;
 
     /**
      * @DTA\Data(field="lastPage", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $last_page;
+    public ?int $last_page = null;
 
     /**
      * @DTA\Data(field="nextPage", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $next_page;
+    public ?int $next_page = null;
 
     /**
      * @DTA\Data(field="pageSize", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $page_size;
+    public ?int $page_size = null;
 
 }

@@ -10,12 +10,12 @@ namespace app\Models;
 class StringParameterValue {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $value */
-    private $value;
+    public $value = "";
 
 }

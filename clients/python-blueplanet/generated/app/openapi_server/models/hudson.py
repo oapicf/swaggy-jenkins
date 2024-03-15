@@ -5,7 +5,7 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from app.openapi_server.models.base_model_ import Model
+from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.all_view import AllView  # noqa: F401,E501
 from app.openapi_server.models.free_style_project import FreeStyleProject  # noqa: F401,E501
 from app.openapi_server.models.hudsonassigned_labels import HudsonassignedLabels  # noqa: F401,E501

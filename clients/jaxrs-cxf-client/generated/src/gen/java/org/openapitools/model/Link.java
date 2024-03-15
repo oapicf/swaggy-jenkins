@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -48,6 +49,23 @@ public class Link  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Link link = (Link) o;
+    return Objects.equals(this.propertyClass, link.propertyClass) &&
+        Objects.equals(this.href, link.href);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, href);
+  }
 
   @Override
   public String toString() {

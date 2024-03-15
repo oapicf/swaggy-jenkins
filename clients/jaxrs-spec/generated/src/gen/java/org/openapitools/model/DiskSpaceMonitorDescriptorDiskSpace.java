@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("DiskSpaceMonitorDescriptorDiskSpace")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
-  
   private @Valid String propertyClass;
   private @Valid Integer timestamp;
   private @Valid String path;
@@ -42,7 +41,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public DiskSpaceMonitorDescriptorDiskSpace timestamp(Integer timestamp) {
     this.timestamp = timestamp;
@@ -61,7 +60,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     this.timestamp = timestamp;
   }
 
-/**
+  /**
    **/
   public DiskSpaceMonitorDescriptorDiskSpace path(String path) {
     this.path = path;
@@ -80,7 +79,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     this.path = path;
   }
 
-/**
+  /**
    **/
   public DiskSpaceMonitorDescriptorDiskSpace size(Integer size) {
     this.size = size;

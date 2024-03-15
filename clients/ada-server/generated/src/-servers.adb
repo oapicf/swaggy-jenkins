@@ -19,7 +19,7 @@ package body .Servers is
       (Server : in out Server_Type
        ;
        Result  : out .Models.DefaultCrumbIssuer_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Crumb;
@@ -32,7 +32,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Queue : in Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Delete_Pipeline_Queue_Item;
@@ -44,7 +44,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Result  : out .Models.User_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Authenticated_User;
@@ -56,7 +56,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Class : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Classes;
@@ -68,7 +68,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Key : in Integer;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Json_Web_Key;
@@ -81,7 +81,7 @@ package body .Servers is
        Expiry_Time_In_Mins : in Swagger.Nullable_Integer;
        Max_Expiry_Time_In_Mins : in Swagger.Nullable_Integer;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Json_Web_Token;
@@ -93,7 +93,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Result  : out .Models.Organisation_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Organisation;
@@ -104,8 +104,8 @@ package body .Servers is
    procedure Get_Organisations
       (Server : in out Server_Type
        ;
-       Result  : out .Models.Organisation_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Organisations;
@@ -118,7 +118,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Result  : out .Models.Pipeline_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline;
@@ -130,8 +130,8 @@ package body .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineActivity_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Activities;
@@ -145,7 +145,7 @@ package body .Servers is
        Pipeline : in Swagger.UString;
        Branch : in Swagger.UString;
        Result  : out .Models.BranchImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Branch;
@@ -160,7 +160,7 @@ package body .Servers is
        Branch : in Swagger.UString;
        Run : in Swagger.UString;
        Result  : out .Models.PipelineRun_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Branch_Run;
@@ -173,7 +173,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Result  : out .Models.MultibranchPipeline_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Branches;
@@ -186,7 +186,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        Folder : in Swagger.UString;
        Result  : out .Models.PipelineFolderImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Folder;
@@ -200,7 +200,7 @@ package body .Servers is
        Pipeline : in Swagger.UString;
        Folder : in Swagger.UString;
        Result  : out .Models.PipelineImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Folder_Pipeline;
@@ -212,8 +212,8 @@ package body .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.QueueItemImpl_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Queue;
@@ -227,7 +227,7 @@ package body .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Result  : out .Models.PipelineRun_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run;
@@ -243,7 +243,7 @@ package body .Servers is
        Start : in Swagger.Nullable_Integer;
        Download : in Swagger.Nullable_Boolean;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run_Log;
@@ -258,7 +258,7 @@ package body .Servers is
        Run : in Swagger.UString;
        Node : in Swagger.UString;
        Result  : out .Models.PipelineRunNode_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run_Node;
@@ -274,7 +274,7 @@ package body .Servers is
        Node : in Swagger.UString;
        Step : in Swagger.UString;
        Result  : out .Models.PipelineStepImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run_Node_Step;
@@ -290,7 +290,7 @@ package body .Servers is
        Node : in Swagger.UString;
        Step : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run_Node_Step_Log;
@@ -304,8 +304,8 @@ package body .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Node : in Swagger.UString;
-       Result  : out .Models.PipelineStepImpl_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run_Node_Steps;
@@ -318,8 +318,8 @@ package body .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
-       Result  : out .Models.PipelineRunNode_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Run_Nodes;
@@ -331,8 +331,8 @@ package body .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
-       Result  : out .Models.PipelineRun_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipeline_Runs;
@@ -343,8 +343,8 @@ package body .Servers is
    procedure Get_Pipelines
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
-       Result  : out .Models.Pipeline_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Pipelines;
@@ -357,7 +357,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
        Result  : out .Models.GithubScm_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_SCM;
@@ -373,8 +373,8 @@ package body .Servers is
        Credential_Id : in Swagger.Nullable_UString;
        Page_Size : in Swagger.Nullable_Integer;
        Page_Number : in Swagger.Nullable_Integer;
-       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_SCMOrganisation_Repositories;
@@ -389,8 +389,8 @@ package body .Servers is
        Scm_Organisation : in Swagger.UString;
        Repository : in Swagger.UString;
        Credential_Id : in Swagger.Nullable_UString;
-       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_SCMOrganisation_Repository;
@@ -403,8 +403,8 @@ package body .Servers is
        Organization : in Swagger.UString;
        Scm : in Swagger.UString;
        Credential_Id : in Swagger.Nullable_UString;
-       Result  : out .Models.GithubOrganization_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_SCMOrganisations;
@@ -417,7 +417,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        User : in Swagger.UString;
        Result  : out .Models.User_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_User;
@@ -428,8 +428,8 @@ package body .Servers is
    procedure Get_User_Favorites
       (Server : in out Server_Type;
        User : in Swagger.UString;
-       Result  : out .Models.FavoriteImpl_Type_Vectors.Vector;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Result  : out ;
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_User_Favorites;
@@ -441,7 +441,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Organization : in Swagger.UString;
        Result  : out .Models.User_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Users;
@@ -455,7 +455,7 @@ package body .Servers is
        Pipeline : in Swagger.UString;
        Run : in Swagger.UString;
        Result  : out .Models.QueueItemImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Pipeline_Run;
@@ -468,7 +468,7 @@ package body .Servers is
        Organization : in Swagger.UString;
        Pipeline : in Swagger.UString;
        Result  : out .Models.QueueItemImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Pipeline_Runs;
@@ -482,7 +482,7 @@ package body .Servers is
        Pipeline : in Swagger.UString;
        P_Body : in Boolean;
        Result  : out .Models.FavoriteImpl_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Put_Pipeline_Favorite;
@@ -498,7 +498,7 @@ package body .Servers is
        Blocking : in Swagger.Nullable_UString;
        Time_Out_In_Secs : in Swagger.Nullable_Integer;
        Result  : out .Models.PipelineRun_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Put_Pipeline_Run;
@@ -510,7 +510,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Q : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Search;
@@ -522,7 +522,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Q : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Search_Classes;
@@ -534,7 +534,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Depth : in Integer;
        Result  : out .Models.ComputerSet_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Computer;
@@ -546,7 +546,7 @@ package body .Servers is
       (Server : in out Server_Type
        ;
        Result  : out .Models.Hudson_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Jenkins;
@@ -558,7 +558,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out .Models.FreeStyleProject_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Job;
@@ -570,7 +570,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Job_Config;
@@ -582,7 +582,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out .Models.FreeStyleBuild_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Job_Last_Build;
@@ -595,7 +595,7 @@ package body .Servers is
        Name : in Swagger.UString;
        Number : in Swagger.UString;
        Start : in Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Job_Progressive_Text;
@@ -607,7 +607,7 @@ package body .Servers is
       (Server : in out Server_Type
        ;
        Result  : out .Models.Queue_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Queue;
@@ -619,7 +619,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Number : in Swagger.UString;
        Result  : out .Models.Queue_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_Queue_Item;
@@ -631,7 +631,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out .Models.ListView_Type;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_View;
@@ -643,7 +643,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Result  : out Swagger.UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Get_View_Config;
@@ -654,7 +654,7 @@ package body .Servers is
    procedure Head_Jenkins
       (Server : in out Server_Type
        ;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Head_Jenkins;
@@ -670,7 +670,7 @@ package body .Servers is
        Jenkins_Crumb : in Swagger.Nullable_UString;
        Content_Type : in Swagger.Nullable_UString;
        P_Body : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Create_Item;
@@ -684,7 +684,7 @@ package body .Servers is
        Jenkins_Crumb : in Swagger.Nullable_UString;
        Content_Type : in Swagger.Nullable_UString;
        P_Body : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Create_View;
@@ -698,7 +698,7 @@ package body .Servers is
        Json : in Swagger.UString;
        Token : in Swagger.Nullable_UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Job_Build;
@@ -711,7 +711,7 @@ package body .Servers is
        Name : in Swagger.UString;
        P_Body : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Job_Config;
@@ -723,7 +723,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Job_Delete;
@@ -735,7 +735,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Job_Disable;
@@ -747,7 +747,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Job_Enable;
@@ -759,7 +759,7 @@ package body .Servers is
       (Server : in out Server_Type;
        Name : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_Job_Last_Build_Stop;
@@ -772,7 +772,7 @@ package body .Servers is
        Name : in Swagger.UString;
        P_Body : in Swagger.UString;
        Jenkins_Crumb : in Swagger.Nullable_UString;
-       Context : in out {{openApiPackageName}.Servers.Context_Type) is
+       Context : in out Swagger.Servers.Context_Type) is
    begin
       null;
    end Post_View_Config;

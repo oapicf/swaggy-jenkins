@@ -119,7 +119,7 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
     // github_scm->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_scmJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -134,7 +134,7 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
     // github_scm->credential_id
     cJSON *credential_id = cJSON_GetObjectItemCaseSensitive(github_scmJSON, "credentialId");
     if (credential_id) { 
-    if(!cJSON_IsString(credential_id))
+    if(!cJSON_IsString(credential_id) && !cJSON_IsNull(credential_id))
     {
     goto end; //String
     }
@@ -143,7 +143,7 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
     // github_scm->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(github_scmJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -152,7 +152,7 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
     // github_scm->uri
     cJSON *uri = cJSON_GetObjectItemCaseSensitive(github_scmJSON, "uri");
     if (uri) { 
-    if(!cJSON_IsString(uri))
+    if(!cJSON_IsString(uri) && !cJSON_IsNull(uri))
     {
     goto end; //String
     }
@@ -160,11 +160,11 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
 
 
     github_scm_local_var = github_scm_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
-        credential_id ? strdup(credential_id->valuestring) : NULL,
-        id ? strdup(id->valuestring) : NULL,
-        uri ? strdup(uri->valuestring) : NULL
+        credential_id && !cJSON_IsNull(credential_id) ? strdup(credential_id->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        uri && !cJSON_IsNull(uri) ? strdup(uri->valuestring) : NULL
         );
 
     return github_scm_local_var;

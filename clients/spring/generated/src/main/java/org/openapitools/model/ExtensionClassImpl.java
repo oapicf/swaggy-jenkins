@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,18 +22,15 @@ import javax.annotation.Generated;
  * ExtensionClassImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private ExtensionClassImpllinks links;
 
-  @JsonProperty("classes")
   @Valid
-  private List<String> classes = null;
+  private List<String> classes;
 
   public ExtensionClassImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -44,7 +42,8 @@ public class ExtensionClassImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -63,7 +62,8 @@ public class ExtensionClassImpl {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public ExtensionClassImpllinks getLinks() {
     return links;
   }
@@ -90,7 +90,8 @@ public class ExtensionClassImpl {
    * @return classes
   */
   
-  @Schema(name = "classes", required = false)
+  @Schema(name = "classes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("classes")
   public List<String> getClasses() {
     return classes;
   }

@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepositorypermissions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepositorypermissions   {
-  
   private @Valid Boolean admin;
   private @Valid Boolean push;
   private @Valid Boolean pull;
@@ -42,7 +41,7 @@ public class GithubRepositorypermissions   {
     this.admin = admin;
   }
 
-/**
+  /**
    **/
   public GithubRepositorypermissions push(Boolean push) {
     this.push = push;
@@ -61,7 +60,7 @@ public class GithubRepositorypermissions   {
     this.push = push;
   }
 
-/**
+  /**
    **/
   public GithubRepositorypermissions pull(Boolean pull) {
     this.pull = pull;
@@ -80,7 +79,7 @@ public class GithubRepositorypermissions   {
     this.pull = pull;
   }
 
-/**
+  /**
    **/
   public GithubRepositorypermissions propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

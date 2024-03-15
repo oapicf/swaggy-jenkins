@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.PipelineRunartifacts;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * PipelineRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRun   {
   @JsonProperty("_class")
@@ -21,7 +23,7 @@ public class PipelineRun   {
   @JsonProperty("artifacts")
   @Valid
 
-  private List<PipelineRunartifacts> artifacts = null;
+  private List<@Valid PipelineRunartifacts> artifacts = null;
 
   @JsonProperty("durationInMillis")
   
@@ -92,16 +94,16 @@ public class PipelineRun   {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineRun artifacts(List<PipelineRunartifacts> artifacts) {
+  public PipelineRun artifacts(List<@Valid PipelineRunartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
 
   public PipelineRun addArtifactsItem(PipelineRunartifacts artifactsItem) {
-    if (artifacts == null) {
-      artifacts = new ArrayList<>();
+    if (this.artifacts == null) {
+      this.artifacts = new ArrayList<>();
     }
-    artifacts.add(artifactsItem);
+    this.artifacts.add(artifactsItem);
     return this;
   }
 
@@ -109,11 +111,11 @@ public class PipelineRun   {
    * Get artifacts
    * @return artifacts
   **/
-  public List<PipelineRunartifacts> getArtifacts() {
+  public List<@Valid PipelineRunartifacts> getArtifacts() {
     return artifacts;
   }
 
-  public void setArtifacts(List<PipelineRunartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelineRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 

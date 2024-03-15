@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.hudson_master_computerexecutors import HudsonMasterComputerexecutors
 from openapi_server.models.hudson_master_computermonitor_data import HudsonMasterComputermonitorData
 from openapi_server.models.label1 import Label1
@@ -124,7 +121,7 @@ class HudsonMasterComputer(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this HudsonMasterComputer.
 
 
@@ -134,7 +131,7 @@ class HudsonMasterComputer(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this HudsonMasterComputer.
 
 
@@ -145,7 +142,7 @@ class HudsonMasterComputer(Model):
         self.__class = _class
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this HudsonMasterComputer.
 
 
@@ -155,7 +152,7 @@ class HudsonMasterComputer(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this HudsonMasterComputer.
 
 
@@ -166,7 +163,7 @@ class HudsonMasterComputer(Model):
         self._display_name = display_name
 
     @property
-    def executors(self):
+    def executors(self) -> List[HudsonMasterComputerexecutors]:
         """Gets the executors of this HudsonMasterComputer.
 
 
@@ -176,7 +173,7 @@ class HudsonMasterComputer(Model):
         return self._executors
 
     @executors.setter
-    def executors(self, executors):
+    def executors(self, executors: List[HudsonMasterComputerexecutors]):
         """Sets the executors of this HudsonMasterComputer.
 
 
@@ -187,7 +184,7 @@ class HudsonMasterComputer(Model):
         self._executors = executors
 
     @property
-    def icon(self):
+    def icon(self) -> str:
         """Gets the icon of this HudsonMasterComputer.
 
 
@@ -197,7 +194,7 @@ class HudsonMasterComputer(Model):
         return self._icon
 
     @icon.setter
-    def icon(self, icon):
+    def icon(self, icon: str):
         """Sets the icon of this HudsonMasterComputer.
 
 
@@ -208,7 +205,7 @@ class HudsonMasterComputer(Model):
         self._icon = icon
 
     @property
-    def icon_class_name(self):
+    def icon_class_name(self) -> str:
         """Gets the icon_class_name of this HudsonMasterComputer.
 
 
@@ -218,7 +215,7 @@ class HudsonMasterComputer(Model):
         return self._icon_class_name
 
     @icon_class_name.setter
-    def icon_class_name(self, icon_class_name):
+    def icon_class_name(self, icon_class_name: str):
         """Sets the icon_class_name of this HudsonMasterComputer.
 
 
@@ -229,7 +226,7 @@ class HudsonMasterComputer(Model):
         self._icon_class_name = icon_class_name
 
     @property
-    def idle(self):
+    def idle(self) -> bool:
         """Gets the idle of this HudsonMasterComputer.
 
 
@@ -239,7 +236,7 @@ class HudsonMasterComputer(Model):
         return self._idle
 
     @idle.setter
-    def idle(self, idle):
+    def idle(self, idle: bool):
         """Sets the idle of this HudsonMasterComputer.
 
 
@@ -250,7 +247,7 @@ class HudsonMasterComputer(Model):
         self._idle = idle
 
     @property
-    def jnlp_agent(self):
+    def jnlp_agent(self) -> bool:
         """Gets the jnlp_agent of this HudsonMasterComputer.
 
 
@@ -260,7 +257,7 @@ class HudsonMasterComputer(Model):
         return self._jnlp_agent
 
     @jnlp_agent.setter
-    def jnlp_agent(self, jnlp_agent):
+    def jnlp_agent(self, jnlp_agent: bool):
         """Sets the jnlp_agent of this HudsonMasterComputer.
 
 
@@ -271,7 +268,7 @@ class HudsonMasterComputer(Model):
         self._jnlp_agent = jnlp_agent
 
     @property
-    def launch_supported(self):
+    def launch_supported(self) -> bool:
         """Gets the launch_supported of this HudsonMasterComputer.
 
 
@@ -281,7 +278,7 @@ class HudsonMasterComputer(Model):
         return self._launch_supported
 
     @launch_supported.setter
-    def launch_supported(self, launch_supported):
+    def launch_supported(self, launch_supported: bool):
         """Sets the launch_supported of this HudsonMasterComputer.
 
 
@@ -292,7 +289,7 @@ class HudsonMasterComputer(Model):
         self._launch_supported = launch_supported
 
     @property
-    def load_statistics(self):
+    def load_statistics(self) -> Label1:
         """Gets the load_statistics of this HudsonMasterComputer.
 
 
@@ -302,7 +299,7 @@ class HudsonMasterComputer(Model):
         return self._load_statistics
 
     @load_statistics.setter
-    def load_statistics(self, load_statistics):
+    def load_statistics(self, load_statistics: Label1):
         """Sets the load_statistics of this HudsonMasterComputer.
 
 
@@ -313,7 +310,7 @@ class HudsonMasterComputer(Model):
         self._load_statistics = load_statistics
 
     @property
-    def manual_launch_allowed(self):
+    def manual_launch_allowed(self) -> bool:
         """Gets the manual_launch_allowed of this HudsonMasterComputer.
 
 
@@ -323,7 +320,7 @@ class HudsonMasterComputer(Model):
         return self._manual_launch_allowed
 
     @manual_launch_allowed.setter
-    def manual_launch_allowed(self, manual_launch_allowed):
+    def manual_launch_allowed(self, manual_launch_allowed: bool):
         """Sets the manual_launch_allowed of this HudsonMasterComputer.
 
 
@@ -334,7 +331,7 @@ class HudsonMasterComputer(Model):
         self._manual_launch_allowed = manual_launch_allowed
 
     @property
-    def monitor_data(self):
+    def monitor_data(self) -> HudsonMasterComputermonitorData:
         """Gets the monitor_data of this HudsonMasterComputer.
 
 
@@ -344,7 +341,7 @@ class HudsonMasterComputer(Model):
         return self._monitor_data
 
     @monitor_data.setter
-    def monitor_data(self, monitor_data):
+    def monitor_data(self, monitor_data: HudsonMasterComputermonitorData):
         """Sets the monitor_data of this HudsonMasterComputer.
 
 
@@ -355,7 +352,7 @@ class HudsonMasterComputer(Model):
         self._monitor_data = monitor_data
 
     @property
-    def num_executors(self):
+    def num_executors(self) -> int:
         """Gets the num_executors of this HudsonMasterComputer.
 
 
@@ -365,7 +362,7 @@ class HudsonMasterComputer(Model):
         return self._num_executors
 
     @num_executors.setter
-    def num_executors(self, num_executors):
+    def num_executors(self, num_executors: int):
         """Sets the num_executors of this HudsonMasterComputer.
 
 
@@ -376,7 +373,7 @@ class HudsonMasterComputer(Model):
         self._num_executors = num_executors
 
     @property
-    def offline(self):
+    def offline(self) -> bool:
         """Gets the offline of this HudsonMasterComputer.
 
 
@@ -386,7 +383,7 @@ class HudsonMasterComputer(Model):
         return self._offline
 
     @offline.setter
-    def offline(self, offline):
+    def offline(self, offline: bool):
         """Sets the offline of this HudsonMasterComputer.
 
 
@@ -397,7 +394,7 @@ class HudsonMasterComputer(Model):
         self._offline = offline
 
     @property
-    def offline_cause(self):
+    def offline_cause(self) -> str:
         """Gets the offline_cause of this HudsonMasterComputer.
 
 
@@ -407,7 +404,7 @@ class HudsonMasterComputer(Model):
         return self._offline_cause
 
     @offline_cause.setter
-    def offline_cause(self, offline_cause):
+    def offline_cause(self, offline_cause: str):
         """Sets the offline_cause of this HudsonMasterComputer.
 
 
@@ -418,7 +415,7 @@ class HudsonMasterComputer(Model):
         self._offline_cause = offline_cause
 
     @property
-    def offline_cause_reason(self):
+    def offline_cause_reason(self) -> str:
         """Gets the offline_cause_reason of this HudsonMasterComputer.
 
 
@@ -428,7 +425,7 @@ class HudsonMasterComputer(Model):
         return self._offline_cause_reason
 
     @offline_cause_reason.setter
-    def offline_cause_reason(self, offline_cause_reason):
+    def offline_cause_reason(self, offline_cause_reason: str):
         """Sets the offline_cause_reason of this HudsonMasterComputer.
 
 
@@ -439,7 +436,7 @@ class HudsonMasterComputer(Model):
         self._offline_cause_reason = offline_cause_reason
 
     @property
-    def temporarily_offline(self):
+    def temporarily_offline(self) -> bool:
         """Gets the temporarily_offline of this HudsonMasterComputer.
 
 
@@ -449,7 +446,7 @@ class HudsonMasterComputer(Model):
         return self._temporarily_offline
 
     @temporarily_offline.setter
-    def temporarily_offline(self, temporarily_offline):
+    def temporarily_offline(self, temporarily_offline: bool):
         """Sets the temporarily_offline of this HudsonMasterComputer.
 
 

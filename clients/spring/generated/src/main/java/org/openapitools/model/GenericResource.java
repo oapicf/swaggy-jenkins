@@ -18,25 +18,19 @@ import javax.annotation.Generated;
  * GenericResource
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GenericResource {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("durationInMillis")
   private Integer durationInMillis;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("result")
   private String result;
 
-  @JsonProperty("startTime")
   private String startTime;
 
   public GenericResource propertyClass(String propertyClass) {
@@ -49,7 +43,8 @@ public class GenericResource {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -68,7 +63,8 @@ public class GenericResource {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -87,7 +83,8 @@ public class GenericResource {
    * @return durationInMillis
   */
   
-  @Schema(name = "durationInMillis", required = false)
+  @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -106,7 +103,8 @@ public class GenericResource {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -125,7 +123,8 @@ public class GenericResource {
    * @return result
   */
   
-  @Schema(name = "result", required = false)
+  @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("result")
   public String getResult() {
     return result;
   }
@@ -144,7 +143,8 @@ public class GenericResource {
    * @return startTime
   */
   
-  @Schema(name = "startTime", required = false)
+  @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }

@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.FreeStyleProject
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **Url** | **string** |  | [optional] 
 **Color** | **string** |  | [optional] 
@@ -33,7 +32,5 @@ Name | Type | Description | Notes
 **ConcurrentBuild** | **bool** |  | [optional] 
 **Scm** | [**NullSCM**](NullSCM.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

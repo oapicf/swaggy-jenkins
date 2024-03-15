@@ -19,7 +19,7 @@ setup(
     name=NAME,
     version=VERSION,
     description="Swaggy Jenkins",
-    author_email="blah@cliffano.com",
+    author_email="blah+oapicf@cliffano.com",
     url="",
     keywords=["Swagger", "Swaggy Jenkins"],
     install_requires=REQUIRES,

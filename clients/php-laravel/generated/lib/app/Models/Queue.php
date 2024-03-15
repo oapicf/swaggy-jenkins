@@ -10,9 +10,9 @@ namespace app\Models;
 class Queue {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\QueueBlockedItem[] $items */
-    private $items;
+    public $items = [];
 
 }

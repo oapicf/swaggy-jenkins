@@ -18,9 +18,9 @@ class PipelineActivity
 
     /**
      * @DTA\Data(field="artifacts", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection95::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection95::class})
-     * @var \App\DTO\Collection95|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection16::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection16::class})
+     * @var \App\DTO\Collection16|null
      */
     public $artifacts;
 

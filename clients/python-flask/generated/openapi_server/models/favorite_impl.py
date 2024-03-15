@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.favorite_impllinks import FavoriteImpllinks
 from openapi_server.models.pipeline_impl import PipelineImpl
 from openapi_server import util
@@ -57,7 +54,7 @@ class FavoriteImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this FavoriteImpl.
 
 
@@ -67,7 +64,7 @@ class FavoriteImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this FavoriteImpl.
 
 
@@ -78,7 +75,7 @@ class FavoriteImpl(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> FavoriteImpllinks:
         """Gets the links of this FavoriteImpl.
 
 
@@ -88,7 +85,7 @@ class FavoriteImpl(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: FavoriteImpllinks):
         """Sets the links of this FavoriteImpl.
 
 
@@ -99,7 +96,7 @@ class FavoriteImpl(Model):
         self._links = links
 
     @property
-    def item(self):
+    def item(self) -> PipelineImpl:
         """Gets the item of this FavoriteImpl.
 
 
@@ -109,7 +106,7 @@ class FavoriteImpl(Model):
         return self._item
 
     @item.setter
-    def item(self, item):
+    def item(self, item: PipelineImpl):
         """Sets the item of this FavoriteImpl.
 
 

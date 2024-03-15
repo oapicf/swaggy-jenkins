@@ -2,14 +2,12 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**GetCrumb**](BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**GetCrumb**](BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json |  |
 
-
-
-## GetCrumb
-
+<a id="getcrumb"></a>
+# **GetCrumb**
 > DefaultCrumbIssuer GetCrumb ()
 
 
@@ -17,7 +15,6 @@ Method | HTTP request | Description
 Retrieve CSRF protection token
 
 ### Example
-
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,22 +28,23 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "http://localhost";
+            Configuration config = new Configuration();
+            config.BasePath = "http://localhost";
             // Configure HTTP basic authorization: jenkins_auth
-            Configuration.Default.Username = "YOUR_USERNAME";
-            Configuration.Default.Password = "YOUR_PASSWORD";
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
 
-            var apiInstance = new BaseApi(Configuration.Default);
+            var apiInstance = new BaseApi(config);
 
             try
             {
                 DefaultCrumbIssuer result = apiInstance.GetCrumb();
                 Debug.WriteLine(result);
             }
-            catch (ApiException e)
+            catch (ApiException  e)
             {
-                Debug.Print("Exception when calling BaseApi.GetCrumb: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print("Exception when calling BaseApi.GetCrumb: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
         }
@@ -54,10 +52,27 @@ namespace Example
 }
 ```
 
+#### Using the GetCrumbWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    ApiResponse<DefaultCrumbIssuer> response = apiInstance.GetCrumbWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling BaseApi.GetCrumbWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
 ### Parameters
-
 This endpoint does not need any parameter.
-
 ### Return type
 
 [**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
@@ -68,8 +83,8 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -79,8 +94,5 @@ This endpoint does not need any parameter.
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-[[Back to top]](#)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

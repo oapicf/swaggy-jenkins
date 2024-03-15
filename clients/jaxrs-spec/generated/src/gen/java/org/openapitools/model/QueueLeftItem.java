@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleBuild;
@@ -20,11 +21,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("QueueLeftItem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class QueueLeftItem   {
-  
   private @Valid String propertyClass;
-  private @Valid List<CauseAction> actions = new ArrayList<>();
+  private @Valid List<@Valid CauseAction> actions;
   private @Valid Boolean blocked;
   private @Valid Boolean buildable;
   private @Valid Integer id;
@@ -56,9 +56,9 @@ public class QueueLeftItem   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
-  public QueueLeftItem actions(List<CauseAction> actions) {
+  public QueueLeftItem actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -71,7 +71,7 @@ public class QueueLeftItem   {
   }
 
   @JsonProperty("actions")
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -91,7 +91,7 @@ public class QueueLeftItem   {
 
     return this;
   }
-/**
+  /**
    **/
   public QueueLeftItem blocked(Boolean blocked) {
     this.blocked = blocked;
@@ -110,7 +110,7 @@ public class QueueLeftItem   {
     this.blocked = blocked;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem buildable(Boolean buildable) {
     this.buildable = buildable;
@@ -129,7 +129,7 @@ public class QueueLeftItem   {
     this.buildable = buildable;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem id(Integer id) {
     this.id = id;
@@ -148,7 +148,7 @@ public class QueueLeftItem   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem inQueueSince(Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
@@ -167,7 +167,7 @@ public class QueueLeftItem   {
     this.inQueueSince = inQueueSince;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem params(String params) {
     this.params = params;
@@ -186,7 +186,7 @@ public class QueueLeftItem   {
     this.params = params;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem stuck(Boolean stuck) {
     this.stuck = stuck;
@@ -205,7 +205,7 @@ public class QueueLeftItem   {
     this.stuck = stuck;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem task(FreeStyleProject task) {
     this.task = task;
@@ -224,7 +224,7 @@ public class QueueLeftItem   {
     this.task = task;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem url(String url) {
     this.url = url;
@@ -243,7 +243,7 @@ public class QueueLeftItem   {
     this.url = url;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem why(String why) {
     this.why = why;
@@ -262,7 +262,7 @@ public class QueueLeftItem   {
     this.why = why;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem cancelled(Boolean cancelled) {
     this.cancelled = cancelled;
@@ -281,7 +281,7 @@ public class QueueLeftItem   {
     this.cancelled = cancelled;
   }
 
-/**
+  /**
    **/
   public QueueLeftItem executable(FreeStyleBuild executable) {
     this.executable = executable;

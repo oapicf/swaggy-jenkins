@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
 import org.openapitools.model.FreeStyleProjecthealthReport;
 import org.openapitools.model.NullSCM;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -28,7 +30,7 @@ public class FreeStyleProject   {
 
   private String color;
 
-  private List<FreeStyleProjectactions> actions = null;
+  private List<@Valid FreeStyleProjectactions> actions;
 
   private String description;
 
@@ -42,11 +44,11 @@ public class FreeStyleProject   {
 
   private Boolean buildable;
 
-  private List<FreeStyleBuild> builds = null;
+  private List<@Valid FreeStyleBuild> builds;
 
   private FreeStyleBuild firstBuild;
 
-  private List<FreeStyleProjecthealthReport> healthReport = null;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport;
 
   private Boolean inQueue;
 
@@ -73,7 +75,6 @@ public class FreeStyleProject   {
   private Boolean concurrentBuild;
 
   private NullSCM scm;
-
 
   /**
    **/
@@ -149,7 +150,7 @@ public class FreeStyleProject   {
 
   /**
    **/
-  public FreeStyleProject actions(List<FreeStyleProjectactions> actions) {
+  public FreeStyleProject actions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
     return this;
   }
@@ -157,10 +158,10 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<FreeStyleProjectactions> getActions() {
+  public List<@Valid FreeStyleProjectactions> getActions() {
     return actions;
   }
-  public void setActions(List<FreeStyleProjectactions> actions) {
+  public void setActions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
   }
 
@@ -283,7 +284,7 @@ public class FreeStyleProject   {
 
   /**
    **/
-  public FreeStyleProject builds(List<FreeStyleBuild> builds) {
+  public FreeStyleProject builds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
     return this;
   }
@@ -291,10 +292,10 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("builds")
-  public List<FreeStyleBuild> getBuilds() {
+  public List<@Valid FreeStyleBuild> getBuilds() {
     return builds;
   }
-  public void setBuilds(List<FreeStyleBuild> builds) {
+  public void setBuilds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
   }
 
@@ -327,7 +328,7 @@ public class FreeStyleProject   {
 
   /**
    **/
-  public FreeStyleProject healthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public FreeStyleProject healthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
     return this;
   }
@@ -335,10 +336,10 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("healthReport")
-  public List<FreeStyleProjecthealthReport> getHealthReport() {
+  public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
-  public void setHealthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public void setHealthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
   }
 
@@ -595,33 +596,33 @@ public class FreeStyleProject   {
       return false;
     }
     FreeStyleProject freeStyleProject = (FreeStyleProject) o;
-    return Objects.equals(propertyClass, freeStyleProject.propertyClass) &&
-        Objects.equals(name, freeStyleProject.name) &&
-        Objects.equals(url, freeStyleProject.url) &&
-        Objects.equals(color, freeStyleProject.color) &&
-        Objects.equals(actions, freeStyleProject.actions) &&
-        Objects.equals(description, freeStyleProject.description) &&
-        Objects.equals(displayName, freeStyleProject.displayName) &&
-        Objects.equals(displayNameOrNull, freeStyleProject.displayNameOrNull) &&
-        Objects.equals(fullDisplayName, freeStyleProject.fullDisplayName) &&
-        Objects.equals(fullName, freeStyleProject.fullName) &&
-        Objects.equals(buildable, freeStyleProject.buildable) &&
-        Objects.equals(builds, freeStyleProject.builds) &&
-        Objects.equals(firstBuild, freeStyleProject.firstBuild) &&
-        Objects.equals(healthReport, freeStyleProject.healthReport) &&
-        Objects.equals(inQueue, freeStyleProject.inQueue) &&
-        Objects.equals(keepDependencies, freeStyleProject.keepDependencies) &&
-        Objects.equals(lastBuild, freeStyleProject.lastBuild) &&
-        Objects.equals(lastCompletedBuild, freeStyleProject.lastCompletedBuild) &&
-        Objects.equals(lastFailedBuild, freeStyleProject.lastFailedBuild) &&
-        Objects.equals(lastStableBuild, freeStyleProject.lastStableBuild) &&
-        Objects.equals(lastSuccessfulBuild, freeStyleProject.lastSuccessfulBuild) &&
-        Objects.equals(lastUnstableBuild, freeStyleProject.lastUnstableBuild) &&
-        Objects.equals(lastUnsuccessfulBuild, freeStyleProject.lastUnsuccessfulBuild) &&
-        Objects.equals(nextBuildNumber, freeStyleProject.nextBuildNumber) &&
-        Objects.equals(queueItem, freeStyleProject.queueItem) &&
-        Objects.equals(concurrentBuild, freeStyleProject.concurrentBuild) &&
-        Objects.equals(scm, freeStyleProject.scm);
+    return Objects.equals(this.propertyClass, freeStyleProject.propertyClass) &&
+        Objects.equals(this.name, freeStyleProject.name) &&
+        Objects.equals(this.url, freeStyleProject.url) &&
+        Objects.equals(this.color, freeStyleProject.color) &&
+        Objects.equals(this.actions, freeStyleProject.actions) &&
+        Objects.equals(this.description, freeStyleProject.description) &&
+        Objects.equals(this.displayName, freeStyleProject.displayName) &&
+        Objects.equals(this.displayNameOrNull, freeStyleProject.displayNameOrNull) &&
+        Objects.equals(this.fullDisplayName, freeStyleProject.fullDisplayName) &&
+        Objects.equals(this.fullName, freeStyleProject.fullName) &&
+        Objects.equals(this.buildable, freeStyleProject.buildable) &&
+        Objects.equals(this.builds, freeStyleProject.builds) &&
+        Objects.equals(this.firstBuild, freeStyleProject.firstBuild) &&
+        Objects.equals(this.healthReport, freeStyleProject.healthReport) &&
+        Objects.equals(this.inQueue, freeStyleProject.inQueue) &&
+        Objects.equals(this.keepDependencies, freeStyleProject.keepDependencies) &&
+        Objects.equals(this.lastBuild, freeStyleProject.lastBuild) &&
+        Objects.equals(this.lastCompletedBuild, freeStyleProject.lastCompletedBuild) &&
+        Objects.equals(this.lastFailedBuild, freeStyleProject.lastFailedBuild) &&
+        Objects.equals(this.lastStableBuild, freeStyleProject.lastStableBuild) &&
+        Objects.equals(this.lastSuccessfulBuild, freeStyleProject.lastSuccessfulBuild) &&
+        Objects.equals(this.lastUnstableBuild, freeStyleProject.lastUnstableBuild) &&
+        Objects.equals(this.lastUnsuccessfulBuild, freeStyleProject.lastUnsuccessfulBuild) &&
+        Objects.equals(this.nextBuildNumber, freeStyleProject.nextBuildNumber) &&
+        Objects.equals(this.queueItem, freeStyleProject.queueItem) &&
+        Objects.equals(this.concurrentBuild, freeStyleProject.concurrentBuild) &&
+        Objects.equals(this.scm, freeStyleProject.scm);
   }
 
   @Override

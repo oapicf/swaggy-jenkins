@@ -180,15 +180,15 @@ async def post_create_view(request: web.Request, name, jenkins_crumb=None, conte
     return web.Response(status=200)
 
 
-async def post_job_build(request: web.Request, name, json, token=None, jenkins_crumb=None) -> web.Response:
+async def post_job_build(request: web.Request, name, _json, token=None, jenkins_crumb=None) -> web.Response:
     """post_job_build
 
     Build a job
 
     :param name: Name of the job
     :type name: str
-    :param json: 
-    :type json: str
+    :param _json: 
+    :type _json: str
     :param token: 
     :type token: str
     :param jenkins_crumb: CSRF protection token

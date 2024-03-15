@@ -111,7 +111,7 @@ github_organizationlinks_t *github_organizationlinks_parseFromJSON(cJSON *github
     // github_organizationlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_organizationlinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -121,7 +121,7 @@ github_organizationlinks_t *github_organizationlinks_parseFromJSON(cJSON *github
     github_organizationlinks_local_var = github_organizationlinks_create (
         repositories ? repositories_local_nonprim : NULL,
         self ? self_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return github_organizationlinks_local_var;

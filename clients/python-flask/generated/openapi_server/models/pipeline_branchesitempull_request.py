@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pipeline_branchesitempull_requestlinks import PipelineBranchesitempullRequestlinks
 from openapi_server import util
 
@@ -70,7 +67,7 @@ class PipelineBranchesitempullRequest(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def links(self):
+    def links(self) -> PipelineBranchesitempullRequestlinks:
         """Gets the links of this PipelineBranchesitempullRequest.
 
 
@@ -80,7 +77,7 @@ class PipelineBranchesitempullRequest(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: PipelineBranchesitempullRequestlinks):
         """Sets the links of this PipelineBranchesitempullRequest.
 
 
@@ -91,7 +88,7 @@ class PipelineBranchesitempullRequest(Model):
         self._links = links
 
     @property
-    def author(self):
+    def author(self) -> str:
         """Gets the author of this PipelineBranchesitempullRequest.
 
 
@@ -101,7 +98,7 @@ class PipelineBranchesitempullRequest(Model):
         return self._author
 
     @author.setter
-    def author(self, author):
+    def author(self, author: str):
         """Sets the author of this PipelineBranchesitempullRequest.
 
 
@@ -112,7 +109,7 @@ class PipelineBranchesitempullRequest(Model):
         self._author = author
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this PipelineBranchesitempullRequest.
 
 
@@ -122,7 +119,7 @@ class PipelineBranchesitempullRequest(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this PipelineBranchesitempullRequest.
 
 
@@ -133,7 +130,7 @@ class PipelineBranchesitempullRequest(Model):
         self._id = id
 
     @property
-    def title(self):
+    def title(self) -> str:
         """Gets the title of this PipelineBranchesitempullRequest.
 
 
@@ -143,7 +140,7 @@ class PipelineBranchesitempullRequest(Model):
         return self._title
 
     @title.setter
-    def title(self, title):
+    def title(self, title: str):
         """Sets the title of this PipelineBranchesitempullRequest.
 
 
@@ -154,7 +151,7 @@ class PipelineBranchesitempullRequest(Model):
         self._title = title
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Gets the url of this PipelineBranchesitempullRequest.
 
 
@@ -164,7 +161,7 @@ class PipelineBranchesitempullRequest(Model):
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url: str):
         """Sets the url of this PipelineBranchesitempullRequest.
 
 
@@ -175,7 +172,7 @@ class PipelineBranchesitempullRequest(Model):
         self._url = url
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineBranchesitempullRequest.
 
 
@@ -185,7 +182,7 @@ class PipelineBranchesitempullRequest(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineBranchesitempullRequest.
 
 

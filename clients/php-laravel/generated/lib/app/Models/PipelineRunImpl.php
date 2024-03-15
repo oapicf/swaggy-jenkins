@@ -10,48 +10,48 @@ namespace app\Models;
 class PipelineRunImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\PipelineRunImpllinks $links */
-    private $links;
+    public $links;
 
     /** @var int $durationInMillis */
-    private $durationInMillis;
+    public $durationInMillis = 0;
 
     /** @var string $enQueueTime */
-    private $enQueueTime;
+    public $enQueueTime = "";
 
     /** @var string $endTime */
-    private $endTime;
+    public $endTime = "";
 
     /** @var int $estimatedDurationInMillis */
-    private $estimatedDurationInMillis;
+    public $estimatedDurationInMillis = 0;
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $organization */
-    private $organization;
+    public $organization = "";
 
     /** @var string $pipeline */
-    private $pipeline;
+    public $pipeline = "";
 
     /** @var string $result */
-    private $result;
+    public $result = "";
 
     /** @var string $runSummary */
-    private $runSummary;
+    public $runSummary = "";
 
     /** @var string $startTime */
-    private $startTime;
+    public $startTime = "";
 
     /** @var string $state */
-    private $state;
+    public $state = "";
 
     /** @var string $type */
-    private $type;
+    public $type = "";
 
     /** @var string $commitId */
-    private $commitId;
+    public $commitId = "";
 
 }

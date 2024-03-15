@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineImpl   {
-  
   private @Valid String propertyClass;
   private @Valid String displayName;
   private @Valid Integer estimatedDurationInMillis;
@@ -48,7 +47,7 @@ public class PipelineImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public PipelineImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -67,7 +66,7 @@ public class PipelineImpl   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public PipelineImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -86,7 +85,7 @@ public class PipelineImpl   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineImpl fullName(String fullName) {
     this.fullName = fullName;
@@ -105,7 +104,7 @@ public class PipelineImpl   {
     this.fullName = fullName;
   }
 
-/**
+  /**
    **/
   public PipelineImpl latestRun(String latestRun) {
     this.latestRun = latestRun;
@@ -124,7 +123,7 @@ public class PipelineImpl   {
     this.latestRun = latestRun;
   }
 
-/**
+  /**
    **/
   public PipelineImpl name(String name) {
     this.name = name;
@@ -143,7 +142,7 @@ public class PipelineImpl   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public PipelineImpl organization(String organization) {
     this.organization = organization;
@@ -162,7 +161,7 @@ public class PipelineImpl   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineImpl weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -181,7 +180,7 @@ public class PipelineImpl   {
     this.weatherScore = weatherScore;
   }
 
-/**
+  /**
    **/
   public PipelineImpl links(PipelineImpllinks links) {
     this.links = links;

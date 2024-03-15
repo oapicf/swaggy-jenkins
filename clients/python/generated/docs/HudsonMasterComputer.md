@@ -2,11 +2,12 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **str** |  | [optional] 
+**var_class** | **str** |  | [optional] 
 **display_name** | **str** |  | [optional] 
-**executors** | [**[HudsonMasterComputerexecutors]**](HudsonMasterComputerexecutors.md) |  | [optional] 
+**executors** | [**List[HudsonMasterComputerexecutors]**](HudsonMasterComputerexecutors.md) |  | [optional] 
 **icon** | **str** |  | [optional] 
 **icon_class_name** | **str** |  | [optional] 
 **idle** | **bool** |  | [optional] 
@@ -20,8 +21,24 @@ Name | Type | Description | Notes
 **offline_cause** | **str** |  | [optional] 
 **offline_cause_reason** | **str** |  | [optional] 
 **temporarily_offline** | **bool** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from swaggyjenkins.models.hudson_master_computer import HudsonMasterComputer
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of HudsonMasterComputer from a JSON string
+hudson_master_computer_instance = HudsonMasterComputer.from_json(json)
+# print the JSON string representation of the object
+print(HudsonMasterComputer.to_json())
+
+# convert the object into a dict
+hudson_master_computer_dict = hudson_master_computer_instance.to_dict()
+# create an instance of HudsonMasterComputer from a dict
+hudson_master_computer_form_dict = hudson_master_computer.from_dict(hudson_master_computer_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

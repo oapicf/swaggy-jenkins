@@ -13,9 +13,12 @@ import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
+/**
+* Represents a collection of functions to interact with the API endpoints.
+*/
 @Path("/api/json")
 @Api(description = "the api API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ApiApi {
 
     @GET

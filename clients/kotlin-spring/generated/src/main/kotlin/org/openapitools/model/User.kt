@@ -24,19 +24,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class User(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("fullName") val fullName: kotlin.String? = null,
+    @get:JsonProperty("fullName") val fullName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("email") val email: kotlin.String? = null,
+    @get:JsonProperty("email") val email: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null
+    @get:JsonProperty("name") val name: kotlin.String? = null
 ) {
 
 }

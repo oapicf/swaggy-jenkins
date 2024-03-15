@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class StringParameterValue   {
   
   private String propertyClass;
@@ -62,9 +64,9 @@ public class StringParameterValue   {
       return false;
     }
     StringParameterValue stringParameterValue = (StringParameterValue) o;
-    return Objects.equals(propertyClass, stringParameterValue.propertyClass) &&
-        Objects.equals(name, stringParameterValue.name) &&
-        Objects.equals(value, stringParameterValue.value);
+    return Objects.equals(this.propertyClass, stringParameterValue.propertyClass) &&
+        Objects.equals(this.name, stringParameterValue.name) &&
+        Objects.equals(this.value, stringParameterValue.value);
   }
 
   @Override

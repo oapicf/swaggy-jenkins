@@ -15,8 +15,7 @@ class GetUserFavoritesParameterData
      * @DTA\Data(subset="path", field="user")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $user;
+    public ?string $user = null;
 
 }

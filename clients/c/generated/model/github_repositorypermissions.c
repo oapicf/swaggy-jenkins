@@ -112,7 +112,7 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
     // github_repositorypermissions->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositorypermissionsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -123,7 +123,7 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
         admin ? admin->valueint : 0,
         push ? push->valueint : 0,
         pull ? pull->valueint : 0,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return github_repositorypermissions_local_var;

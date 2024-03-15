@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -18,7 +19,6 @@ public class ExtensionClassImpllinks   {
   private Link self;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -66,8 +66,8 @@ public class ExtensionClassImpllinks   {
       return false;
     }
     ExtensionClassImpllinks extensionClassImpllinks = (ExtensionClassImpllinks) o;
-    return Objects.equals(self, extensionClassImpllinks.self) &&
-        Objects.equals(propertyClass, extensionClassImpllinks.propertyClass);
+    return Objects.equals(this.self, extensionClassImpllinks.self) &&
+        Objects.equals(this.propertyClass, extensionClassImpllinks.propertyClass);
   }
 
   @Override

@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class EmptyChangeLogSet   {
   
   private String propertyClass;
@@ -49,8 +50,8 @@ public class EmptyChangeLogSet   {
       return false;
     }
     EmptyChangeLogSet emptyChangeLogSet = (EmptyChangeLogSet) o;
-    return Objects.equals(propertyClass, emptyChangeLogSet.propertyClass) &&
-        Objects.equals(kind, emptyChangeLogSet.kind);
+    return Objects.equals(this.propertyClass, emptyChangeLogSet.propertyClass) &&
+        Objects.equals(this.kind, emptyChangeLogSet.kind);
   }
 
   @Override

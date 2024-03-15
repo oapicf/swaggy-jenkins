@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 
 from flask import json
-from six import BytesIO
+from io import BytesIO
 
 from app.openapi_server.models.branch_impl import BranchImpl  # noqa: E501
 from app.openapi_server.models.favorite_impl import FavoriteImpl  # noqa: E501

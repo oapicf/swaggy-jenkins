@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.QueueBlockedItem;
 import javax.validation.constraints.*;
@@ -18,11 +19,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Queue")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Queue   {
-  
   private @Valid String propertyClass;
-  private @Valid List<QueueBlockedItem> items = new ArrayList<>();
+  private @Valid List<@Valid QueueBlockedItem> items;
 
   /**
    **/
@@ -43,9 +43,9 @@ public class Queue   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
-  public Queue items(List<QueueBlockedItem> items) {
+  public Queue items(List<@Valid QueueBlockedItem> items) {
     this.items = items;
     return this;
   }
@@ -58,7 +58,7 @@ public class Queue   {
   }
 
   @JsonProperty("items")
-  public void setItems(List<QueueBlockedItem> items) {
+  public void setItems(List<@Valid QueueBlockedItem> items) {
     this.items = items;
   }
 

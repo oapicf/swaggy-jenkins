@@ -23,16 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubRepositorypermissions(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("admin") val admin: kotlin.Boolean? = null,
+    @get:JsonProperty("admin") val admin: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("push") val push: kotlin.Boolean? = null,
+    @get:JsonProperty("push") val push: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("pull") val pull: kotlin.Boolean? = null,
+    @get:JsonProperty("pull") val pull: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

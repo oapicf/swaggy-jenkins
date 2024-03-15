@@ -3,8 +3,8 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 1.5.1-pre.0
- * Maintained by: blah@cliffano.com
+ * OpenAPI document version: 2.0.1-pre.0
+ * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
  */

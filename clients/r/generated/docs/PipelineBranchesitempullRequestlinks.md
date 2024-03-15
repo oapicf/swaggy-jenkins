@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**self** | **character** |  | [optional] 
+**item_self** | **character** |  | [optional] 
 **_class** | **character** |  | [optional] 
 
 

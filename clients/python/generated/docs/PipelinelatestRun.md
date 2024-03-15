@@ -2,9 +2,10 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**artifacts** | [**[PipelinelatestRunartifacts]**](PipelinelatestRunartifacts.md) |  | [optional] 
+**artifacts** | [**List[PipelinelatestRunartifacts]**](PipelinelatestRunartifacts.md) |  | [optional] 
 **duration_in_millis** | **int** |  | [optional] 
 **estimated_duration_in_millis** | **int** |  | [optional] 
 **en_queue_time** | **str** |  | [optional] 
@@ -18,9 +19,25 @@ Name | Type | Description | Notes
 **state** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 **commit_id** | **str** |  | [optional] 
-**_class** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**var_class** | **str** |  | [optional] 
 
+## Example
+
+```python
+from swaggyjenkins.models.pipelinelatest_run import PipelinelatestRun
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PipelinelatestRun from a JSON string
+pipelinelatest_run_instance = PipelinelatestRun.from_json(json)
+# print the JSON string representation of the object
+print(PipelinelatestRun.to_json())
+
+# convert the object into a dict
+pipelinelatest_run_dict = pipelinelatest_run_instance.to_dict()
+# create an instance of PipelinelatestRun from a dict
+pipelinelatest_run_form_dict = pipelinelatest_run.from_dict(pipelinelatest_run_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

@@ -20,7 +20,7 @@ import model.PipelineStepImpl
 import model.QueueItemImpl
 import model.User
 
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Singleton
 class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanApi) extends AbstractController(cc) {
   /**
@@ -87,8 +87,10 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
     def executeApi(): String = {
       val expiryTimeInMins = request.getQueryString("expiryTimeInMins")
         .map(value => value.toInt)
+        
       val maxExpiryTimeInMins = request.getQueryString("maxExpiryTimeInMins")
         .map(value => value.toInt)
+        
       api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
     }
 
@@ -274,8 +276,10 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
     def executeApi(): String = {
       val start = request.getQueryString("start")
         .map(value => value.toInt)
+        
       val download = request.getQueryString("download")
         .map(value => value.toBoolean)
+        
       api.getPipelineRunLog(organization, pipeline, run, start, download)
     }
 
@@ -426,8 +430,10 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
         
       val pageSize = request.getQueryString("pageSize")
         .map(value => value.toInt)
+        
       val pageNumber = request.getQueryString("pageNumber")
         .map(value => value.toInt)
+        
       api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
     }
 
@@ -576,6 +582,7 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
         
       val timeOutInSecs = request.getQueryString("timeOutInSecs")
         .map(value => value.toInt)
+        
       api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
     }
 
@@ -593,6 +600,7 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("q", "query string")
         }
+        
       api.search(q)
     }
 
@@ -610,6 +618,7 @@ class BlueOceanApiController @Inject()(cc: ControllerComponents, api: BlueOceanA
         .getOrElse {
           throw new OpenApiExceptions.MissingRequiredParameterException("q", "query string")
         }
+        
       api.searchClasses(q)
     }
 

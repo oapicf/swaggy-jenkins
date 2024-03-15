@@ -5,16 +5,18 @@ import apimodels.BranchImplpermissions;
 import apimodels.PipelineRunImpl;
 import apimodels.StringParameterDefinition;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * BranchImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class BranchImpl   {
   @JsonProperty("_class")
@@ -48,7 +50,7 @@ public class BranchImpl   {
   @JsonProperty("parameters")
   @Valid
 
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters = null;
 
   @JsonProperty("permissions")
   @Valid
@@ -192,16 +194,16 @@ public class BranchImpl   {
     this.organization = organization;
   }
 
-  public BranchImpl parameters(List<StringParameterDefinition> parameters) {
+  public BranchImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
 
   public BranchImpl addParametersItem(StringParameterDefinition parametersItem) {
-    if (parameters == null) {
-      parameters = new ArrayList<>();
+    if (this.parameters == null) {
+      this.parameters = new ArrayList<>();
     }
-    parameters.add(parametersItem);
+    this.parameters.add(parametersItem);
     return this;
   }
 
@@ -209,11 +211,11 @@ public class BranchImpl   {
    * Get parameters
    * @return parameters
   **/
-  public List<StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 

@@ -1,46 +1,46 @@
-# \BlueOceanApi
+# \BlueOceanAPI
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePipelineQueueItem**](BlueOceanApi.md#DeletePipelineQueueItem) | **Delete** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-[**GetAuthenticatedUser**](BlueOceanApi.md#GetAuthenticatedUser) | **Get** /blue/rest/organizations/{organization}/user/ | 
-[**GetClasses**](BlueOceanApi.md#GetClasses) | **Get** /blue/rest/classes/{class} | 
-[**GetJsonWebKey**](BlueOceanApi.md#GetJsonWebKey) | **Get** /jwt-auth/jwks/{key} | 
-[**GetJsonWebToken**](BlueOceanApi.md#GetJsonWebToken) | **Get** /jwt-auth/token | 
-[**GetOrganisation**](BlueOceanApi.md#GetOrganisation) | **Get** /blue/rest/organizations/{organization} | 
-[**GetOrganisations**](BlueOceanApi.md#GetOrganisations) | **Get** /blue/rest/organizations/ | 
-[**GetPipeline**](BlueOceanApi.md#GetPipeline) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-[**GetPipelineActivities**](BlueOceanApi.md#GetPipelineActivities) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-[**GetPipelineBranch**](BlueOceanApi.md#GetPipelineBranch) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-[**GetPipelineBranchRun**](BlueOceanApi.md#GetPipelineBranchRun) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-[**GetPipelineBranches**](BlueOceanApi.md#GetPipelineBranches) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-[**GetPipelineFolder**](BlueOceanApi.md#GetPipelineFolder) | **Get** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-[**GetPipelineFolderPipeline**](BlueOceanApi.md#GetPipelineFolderPipeline) | **Get** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-[**GetPipelineQueue**](BlueOceanApi.md#GetPipelineQueue) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-[**GetPipelineRun**](BlueOceanApi.md#GetPipelineRun) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-[**GetPipelineRunLog**](BlueOceanApi.md#GetPipelineRunLog) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-[**GetPipelineRunNode**](BlueOceanApi.md#GetPipelineRunNode) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-[**GetPipelineRunNodeStep**](BlueOceanApi.md#GetPipelineRunNodeStep) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-[**GetPipelineRunNodeStepLog**](BlueOceanApi.md#GetPipelineRunNodeStepLog) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-[**GetPipelineRunNodeSteps**](BlueOceanApi.md#GetPipelineRunNodeSteps) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-[**GetPipelineRunNodes**](BlueOceanApi.md#GetPipelineRunNodes) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-[**GetPipelineRuns**](BlueOceanApi.md#GetPipelineRuns) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**GetPipelines**](BlueOceanApi.md#GetPipelines) | **Get** /blue/rest/organizations/{organization}/pipelines/ | 
-[**GetSCM**](BlueOceanApi.md#GetSCM) | **Get** /blue/rest/organizations/{organization}/scm/{scm} | 
-[**GetSCMOrganisationRepositories**](BlueOceanApi.md#GetSCMOrganisationRepositories) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-[**GetSCMOrganisationRepository**](BlueOceanApi.md#GetSCMOrganisationRepository) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-[**GetSCMOrganisations**](BlueOceanApi.md#GetSCMOrganisations) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-[**GetUser**](BlueOceanApi.md#GetUser) | **Get** /blue/rest/organizations/{organization}/users/{user} | 
-[**GetUserFavorites**](BlueOceanApi.md#GetUserFavorites) | **Get** /blue/rest/users/{user}/favorites | 
-[**GetUsers**](BlueOceanApi.md#GetUsers) | **Get** /blue/rest/organizations/{organization}/users/ | 
-[**PostPipelineRun**](BlueOceanApi.md#PostPipelineRun) | **Post** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-[**PostPipelineRuns**](BlueOceanApi.md#PostPipelineRuns) | **Post** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**PutPipelineFavorite**](BlueOceanApi.md#PutPipelineFavorite) | **Put** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-[**PutPipelineRun**](BlueOceanApi.md#PutPipelineRun) | **Put** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-[**Search**](BlueOceanApi.md#Search) | **Get** /blue/rest/search/ | 
-[**SearchClasses**](BlueOceanApi.md#SearchClasses) | **Get** /blue/rest/classes/ | 
+[**DeletePipelineQueueItem**](BlueOceanAPI.md#DeletePipelineQueueItem) | **Delete** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
+[**GetAuthenticatedUser**](BlueOceanAPI.md#GetAuthenticatedUser) | **Get** /blue/rest/organizations/{organization}/user/ | 
+[**GetClasses**](BlueOceanAPI.md#GetClasses) | **Get** /blue/rest/classes/{class} | 
+[**GetJsonWebKey**](BlueOceanAPI.md#GetJsonWebKey) | **Get** /jwt-auth/jwks/{key} | 
+[**GetJsonWebToken**](BlueOceanAPI.md#GetJsonWebToken) | **Get** /jwt-auth/token | 
+[**GetOrganisation**](BlueOceanAPI.md#GetOrganisation) | **Get** /blue/rest/organizations/{organization} | 
+[**GetOrganisations**](BlueOceanAPI.md#GetOrganisations) | **Get** /blue/rest/organizations/ | 
+[**GetPipeline**](BlueOceanAPI.md#GetPipeline) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
+[**GetPipelineActivities**](BlueOceanAPI.md#GetPipelineActivities) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
+[**GetPipelineBranch**](BlueOceanAPI.md#GetPipelineBranch) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
+[**GetPipelineBranchRun**](BlueOceanAPI.md#GetPipelineBranchRun) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
+[**GetPipelineBranches**](BlueOceanAPI.md#GetPipelineBranches) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
+[**GetPipelineFolder**](BlueOceanAPI.md#GetPipelineFolder) | **Get** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
+[**GetPipelineFolderPipeline**](BlueOceanAPI.md#GetPipelineFolderPipeline) | **Get** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
+[**GetPipelineQueue**](BlueOceanAPI.md#GetPipelineQueue) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
+[**GetPipelineRun**](BlueOceanAPI.md#GetPipelineRun) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
+[**GetPipelineRunLog**](BlueOceanAPI.md#GetPipelineRunLog) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
+[**GetPipelineRunNode**](BlueOceanAPI.md#GetPipelineRunNode) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
+[**GetPipelineRunNodeStep**](BlueOceanAPI.md#GetPipelineRunNodeStep) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
+[**GetPipelineRunNodeStepLog**](BlueOceanAPI.md#GetPipelineRunNodeStepLog) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
+[**GetPipelineRunNodeSteps**](BlueOceanAPI.md#GetPipelineRunNodeSteps) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
+[**GetPipelineRunNodes**](BlueOceanAPI.md#GetPipelineRunNodes) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
+[**GetPipelineRuns**](BlueOceanAPI.md#GetPipelineRuns) | **Get** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**GetPipelines**](BlueOceanAPI.md#GetPipelines) | **Get** /blue/rest/organizations/{organization}/pipelines/ | 
+[**GetSCM**](BlueOceanAPI.md#GetSCM) | **Get** /blue/rest/organizations/{organization}/scm/{scm} | 
+[**GetSCMOrganisationRepositories**](BlueOceanAPI.md#GetSCMOrganisationRepositories) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
+[**GetSCMOrganisationRepository**](BlueOceanAPI.md#GetSCMOrganisationRepository) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
+[**GetSCMOrganisations**](BlueOceanAPI.md#GetSCMOrganisations) | **Get** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
+[**GetUser**](BlueOceanAPI.md#GetUser) | **Get** /blue/rest/organizations/{organization}/users/{user} | 
+[**GetUserFavorites**](BlueOceanAPI.md#GetUserFavorites) | **Get** /blue/rest/users/{user}/favorites | 
+[**GetUsers**](BlueOceanAPI.md#GetUsers) | **Get** /blue/rest/organizations/{organization}/users/ | 
+[**PostPipelineRun**](BlueOceanAPI.md#PostPipelineRun) | **Post** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
+[**PostPipelineRuns**](BlueOceanAPI.md#PostPipelineRuns) | **Post** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
+[**PutPipelineFavorite**](BlueOceanAPI.md#PutPipelineFavorite) | **Put** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
+[**PutPipelineRun**](BlueOceanAPI.md#PutPipelineRun) | **Put** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
+[**Search**](BlueOceanAPI.md#Search) | **Get** /blue/rest/search/ | 
+[**SearchClasses**](BlueOceanAPI.md#SearchClasses) | **Get** /blue/rest/classes/ | 
 
 
 
@@ -58,24 +58,24 @@ Method | HTTP request | Description
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    queue := "queue_example" // string | Name of the queue item
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	queue := "queue_example" // string | Name of the queue item
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.DeletePipelineQueueItem(context.Background(), organization, pipeline, queue).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.DeletePipelineQueueItem``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.BlueOceanAPI.DeletePipelineQueueItem(context.Background(), organization, pipeline, queue).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.DeletePipelineQueueItem``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -132,24 +132,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
+	organization := "organization_example" // string | Name of the organization
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetAuthenticatedUser(context.Background(), organization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetAuthenticatedUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAuthenticatedUser`: User
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetAuthenticatedUser`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetAuthenticatedUser(context.Background(), organization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetAuthenticatedUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAuthenticatedUser`: User
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetAuthenticatedUser`: %v\n", resp)
 }
 ```
 
@@ -202,24 +202,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    class := "class_example" // string | Name of the class
+	class := "class_example" // string | Name of the class
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetClasses(context.Background(), class).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetClasses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetClasses`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetClasses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetClasses(context.Background(), class).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetClasses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetClasses`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetClasses`: %v\n", resp)
 }
 ```
 
@@ -272,24 +272,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    key := int32(56) // int32 | Key ID received as part of JWT header field kid
+	key := int32(56) // int32 | Key ID received as part of JWT header field kid
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetJsonWebKey(context.Background(), key).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetJsonWebKey``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetJsonWebKey`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetJsonWebKey`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetJsonWebKey(context.Background(), key).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetJsonWebKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJsonWebKey`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetJsonWebKey`: %v\n", resp)
 }
 ```
 
@@ -342,25 +342,25 @@ No authorization required
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    expiryTimeInMins := int32(56) // int32 | Token expiry time in minutes, default: 30 minutes (optional)
-    maxExpiryTimeInMins := int32(56) // int32 | Maximum token expiry time in minutes, default: 480 minutes (optional)
+	expiryTimeInMins := int32(56) // int32 | Token expiry time in minutes, default: 30 minutes (optional)
+	maxExpiryTimeInMins := int32(56) // int32 | Maximum token expiry time in minutes, default: 480 minutes (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetJsonWebToken(context.Background()).ExpiryTimeInMins(expiryTimeInMins).MaxExpiryTimeInMins(maxExpiryTimeInMins).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetJsonWebToken``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetJsonWebToken`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetJsonWebToken`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetJsonWebToken(context.Background()).ExpiryTimeInMins(expiryTimeInMins).MaxExpiryTimeInMins(maxExpiryTimeInMins).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetJsonWebToken``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJsonWebToken`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetJsonWebToken`: %v\n", resp)
 }
 ```
 
@@ -410,24 +410,24 @@ No authorization required
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
+	organization := "organization_example" // string | Name of the organization
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetOrganisation(context.Background(), organization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetOrganisation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrganisation`: Organisation
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetOrganisation`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetOrganisation(context.Background(), organization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetOrganisation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrganisation`: Organisation
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetOrganisation`: %v\n", resp)
 }
 ```
 
@@ -480,23 +480,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetOrganisations(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetOrganisations``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrganisations`: []Organisation
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetOrganisations`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetOrganisations(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetOrganisations``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrganisations`: []Organisation
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetOrganisations`: %v\n", resp)
 }
 ```
 
@@ -541,25 +541,25 @@ Other parameters are passed through a pointer to a apiGetOrganisationsRequest st
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipeline(context.Background(), organization, pipeline).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipeline``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipeline`: Pipeline
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipeline`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipeline(context.Background(), organization, pipeline).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipeline``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipeline`: Pipeline
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipeline`: %v\n", resp)
 }
 ```
 
@@ -614,25 +614,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineActivities(context.Background(), organization, pipeline).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineActivities``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineActivities`: []PipelineActivity
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineActivities`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineActivities(context.Background(), organization, pipeline).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineActivities``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineActivities`: []PipelineActivity
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineActivities`: %v\n", resp)
 }
 ```
 
@@ -687,26 +687,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    branch := "branch_example" // string | Name of the branch
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	branch := "branch_example" // string | Name of the branch
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineBranch(context.Background(), organization, pipeline, branch).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineBranch``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineBranch`: BranchImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineBranch`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineBranch(context.Background(), organization, pipeline, branch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineBranch``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineBranch`: BranchImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineBranch`: %v\n", resp)
 }
 ```
 
@@ -763,27 +763,27 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    branch := "branch_example" // string | Name of the branch
-    run := "run_example" // string | Name of the run
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	branch := "branch_example" // string | Name of the branch
+	run := "run_example" // string | Name of the run
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineBranchRun(context.Background(), organization, pipeline, branch, run).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineBranchRun``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineBranchRun`: PipelineRun
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineBranchRun`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineBranchRun(context.Background(), organization, pipeline, branch, run).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineBranchRun``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineBranchRun`: PipelineRun
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineBranchRun`: %v\n", resp)
 }
 ```
 
@@ -842,25 +842,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineBranches(context.Background(), organization, pipeline).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineBranches``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineBranches`: MultibranchPipeline
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineBranches`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineBranches(context.Background(), organization, pipeline).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineBranches``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineBranches`: MultibranchPipeline
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineBranches`: %v\n", resp)
 }
 ```
 
@@ -915,25 +915,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    folder := "folder_example" // string | Name of the folder
+	organization := "organization_example" // string | Name of the organization
+	folder := "folder_example" // string | Name of the folder
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineFolder(context.Background(), organization, folder).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineFolder``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineFolder`: PipelineFolderImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineFolder`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineFolder(context.Background(), organization, folder).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineFolder``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineFolder`: PipelineFolderImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineFolder`: %v\n", resp)
 }
 ```
 
@@ -988,26 +988,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    folder := "folder_example" // string | Name of the folder
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	folder := "folder_example" // string | Name of the folder
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineFolderPipeline(context.Background(), organization, pipeline, folder).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineFolderPipeline``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineFolderPipeline`: PipelineImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineFolderPipeline`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineFolderPipeline(context.Background(), organization, pipeline, folder).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineFolderPipeline``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineFolderPipeline`: PipelineImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineFolderPipeline`: %v\n", resp)
 }
 ```
 
@@ -1064,25 +1064,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineQueue(context.Background(), organization, pipeline).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineQueue``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineQueue`: []QueueItemImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineQueue`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineQueue(context.Background(), organization, pipeline).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineQueue``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineQueue`: []QueueItemImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineQueue`: %v\n", resp)
 }
 ```
 
@@ -1137,26 +1137,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRun(context.Background(), organization, pipeline, run).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRun``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRun`: PipelineRun
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRun`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRun(context.Background(), organization, pipeline, run).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRun``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRun`: PipelineRun
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRun`: %v\n", resp)
 }
 ```
 
@@ -1213,28 +1213,28 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
-    start := int32(56) // int32 | Start position of the log (optional)
-    download := true // bool | Set to true in order to download the file, otherwise it's passed as a response body (optional)
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
+	start := int32(56) // int32 | Start position of the log (optional)
+	download := true // bool | Set to true in order to download the file, otherwise it's passed as a response body (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRunLog(context.Background(), organization, pipeline, run).Start(start).Download(download).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRunLog``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRunLog`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRunLog`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRunLog(context.Background(), organization, pipeline, run).Start(start).Download(download).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRunLog``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRunLog`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRunLog`: %v\n", resp)
 }
 ```
 
@@ -1293,27 +1293,27 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
-    node := "node_example" // string | Name of the node
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
+	node := "node_example" // string | Name of the node
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRunNode(context.Background(), organization, pipeline, run, node).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRunNode``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRunNode`: PipelineRunNode
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRunNode`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRunNode(context.Background(), organization, pipeline, run, node).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRunNode``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRunNode`: PipelineRunNode
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRunNode`: %v\n", resp)
 }
 ```
 
@@ -1372,28 +1372,28 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
-    node := "node_example" // string | Name of the node
-    step := "step_example" // string | Name of the step
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
+	node := "node_example" // string | Name of the node
+	step := "step_example" // string | Name of the step
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRunNodeStep(context.Background(), organization, pipeline, run, node, step).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRunNodeStep``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRunNodeStep`: PipelineStepImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRunNodeStep`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRunNodeStep(context.Background(), organization, pipeline, run, node, step).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRunNodeStep``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRunNodeStep`: PipelineStepImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRunNodeStep`: %v\n", resp)
 }
 ```
 
@@ -1454,28 +1454,28 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
-    node := "node_example" // string | Name of the node
-    step := "step_example" // string | Name of the step
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
+	node := "node_example" // string | Name of the node
+	step := "step_example" // string | Name of the step
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRunNodeStepLog(context.Background(), organization, pipeline, run, node, step).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRunNodeStepLog``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRunNodeStepLog`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRunNodeStepLog`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRunNodeStepLog(context.Background(), organization, pipeline, run, node, step).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRunNodeStepLog``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRunNodeStepLog`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRunNodeStepLog`: %v\n", resp)
 }
 ```
 
@@ -1536,27 +1536,27 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
-    node := "node_example" // string | Name of the node
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
+	node := "node_example" // string | Name of the node
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRunNodeSteps(context.Background(), organization, pipeline, run, node).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRunNodeSteps``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRunNodeSteps`: []PipelineStepImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRunNodeSteps`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRunNodeSteps(context.Background(), organization, pipeline, run, node).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRunNodeSteps``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRunNodeSteps`: []PipelineStepImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRunNodeSteps`: %v\n", resp)
 }
 ```
 
@@ -1615,26 +1615,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRunNodes(context.Background(), organization, pipeline, run).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRunNodes``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRunNodes`: []PipelineRunNode
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRunNodes`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRunNodes(context.Background(), organization, pipeline, run).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRunNodes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRunNodes`: []PipelineRunNode
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRunNodes`: %v\n", resp)
 }
 ```
 
@@ -1691,25 +1691,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelineRuns(context.Background(), organization, pipeline).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelineRuns``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelineRuns`: []PipelineRun
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelineRuns`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelineRuns(context.Background(), organization, pipeline).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelineRuns``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelineRuns`: []PipelineRun
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelineRuns`: %v\n", resp)
 }
 ```
 
@@ -1764,24 +1764,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
+	organization := "organization_example" // string | Name of the organization
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetPipelines(context.Background(), organization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetPipelines``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPipelines`: []Pipeline
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetPipelines`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetPipelines(context.Background(), organization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetPipelines``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPipelines`: []Pipeline
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetPipelines`: %v\n", resp)
 }
 ```
 
@@ -1834,25 +1834,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    scm := "scm_example" // string | Name of SCM
+	organization := "organization_example" // string | Name of the organization
+	scm := "scm_example" // string | Name of SCM
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetSCM(context.Background(), organization, scm).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetSCM``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSCM`: GithubScm
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetSCM`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetSCM(context.Background(), organization, scm).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetSCM``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSCM`: GithubScm
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetSCM`: %v\n", resp)
 }
 ```
 
@@ -1907,29 +1907,29 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    scm := "scm_example" // string | Name of SCM
-    scmOrganisation := "scmOrganisation_example" // string | Name of the SCM organization
-    credentialId := "credentialId_example" // string | Credential ID (optional)
-    pageSize := int32(56) // int32 | Number of items in a page (optional)
-    pageNumber := int32(56) // int32 | Page number (optional)
+	organization := "organization_example" // string | Name of the organization
+	scm := "scm_example" // string | Name of SCM
+	scmOrganisation := "scmOrganisation_example" // string | Name of the SCM organization
+	credentialId := "credentialId_example" // string | Credential ID (optional)
+	pageSize := int32(56) // int32 | Number of items in a page (optional)
+	pageNumber := int32(56) // int32 | Page number (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetSCMOrganisationRepositories(context.Background(), organization, scm, scmOrganisation).CredentialId(credentialId).PageSize(pageSize).PageNumber(pageNumber).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetSCMOrganisationRepositories``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSCMOrganisationRepositories`: []GithubOrganization
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetSCMOrganisationRepositories`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetSCMOrganisationRepositories(context.Background(), organization, scm, scmOrganisation).CredentialId(credentialId).PageSize(pageSize).PageNumber(pageNumber).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetSCMOrganisationRepositories``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSCMOrganisationRepositories`: []GithubOrganization
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetSCMOrganisationRepositories`: %v\n", resp)
 }
 ```
 
@@ -1989,28 +1989,28 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    scm := "scm_example" // string | Name of SCM
-    scmOrganisation := "scmOrganisation_example" // string | Name of the SCM organization
-    repository := "repository_example" // string | Name of the SCM repository
-    credentialId := "credentialId_example" // string | Credential ID (optional)
+	organization := "organization_example" // string | Name of the organization
+	scm := "scm_example" // string | Name of SCM
+	scmOrganisation := "scmOrganisation_example" // string | Name of the SCM organization
+	repository := "repository_example" // string | Name of the SCM repository
+	credentialId := "credentialId_example" // string | Credential ID (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetSCMOrganisationRepository(context.Background(), organization, scm, scmOrganisation, repository).CredentialId(credentialId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetSCMOrganisationRepository``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSCMOrganisationRepository`: []GithubOrganization
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetSCMOrganisationRepository`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetSCMOrganisationRepository(context.Background(), organization, scm, scmOrganisation, repository).CredentialId(credentialId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetSCMOrganisationRepository``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSCMOrganisationRepository`: []GithubOrganization
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetSCMOrganisationRepository`: %v\n", resp)
 }
 ```
 
@@ -2070,26 +2070,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    scm := "scm_example" // string | Name of SCM
-    credentialId := "credentialId_example" // string | Credential ID (optional)
+	organization := "organization_example" // string | Name of the organization
+	scm := "scm_example" // string | Name of SCM
+	credentialId := "credentialId_example" // string | Credential ID (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetSCMOrganisations(context.Background(), organization, scm).CredentialId(credentialId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetSCMOrganisations``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSCMOrganisations`: []GithubOrganization
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetSCMOrganisations`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetSCMOrganisations(context.Background(), organization, scm).CredentialId(credentialId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetSCMOrganisations``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSCMOrganisations`: []GithubOrganization
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetSCMOrganisations`: %v\n", resp)
 }
 ```
 
@@ -2145,25 +2145,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    user := "user_example" // string | Name of the user
+	organization := "organization_example" // string | Name of the organization
+	user := "user_example" // string | Name of the user
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetUser(context.Background(), organization, user).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetUser`: User
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetUser`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetUser(context.Background(), organization, user).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetUser``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetUser`: User
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetUser`: %v\n", resp)
 }
 ```
 
@@ -2218,24 +2218,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    user := "user_example" // string | Name of the user
+	user := "user_example" // string | Name of the user
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetUserFavorites(context.Background(), user).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetUserFavorites``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetUserFavorites`: []FavoriteImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetUserFavorites`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetUserFavorites(context.Background(), user).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetUserFavorites``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetUserFavorites`: []FavoriteImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetUserFavorites`: %v\n", resp)
 }
 ```
 
@@ -2288,24 +2288,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
+	organization := "organization_example" // string | Name of the organization
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.GetUsers(context.Background(), organization).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.GetUsers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetUsers`: User
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.GetUsers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.GetUsers(context.Background(), organization).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.GetUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetUsers`: User
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.GetUsers`: %v\n", resp)
 }
 ```
 
@@ -2358,26 +2358,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.PostPipelineRun(context.Background(), organization, pipeline, run).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.PostPipelineRun``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPipelineRun`: QueueItemImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.PostPipelineRun`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.PostPipelineRun(context.Background(), organization, pipeline, run).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.PostPipelineRun``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPipelineRun`: QueueItemImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.PostPipelineRun`: %v\n", resp)
 }
 ```
 
@@ -2434,25 +2434,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.PostPipelineRuns(context.Background(), organization, pipeline).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.PostPipelineRuns``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPipelineRuns`: QueueItemImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.PostPipelineRuns`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.PostPipelineRuns(context.Background(), organization, pipeline).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.PostPipelineRuns``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPipelineRuns`: QueueItemImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.PostPipelineRuns`: %v\n", resp)
 }
 ```
 
@@ -2507,26 +2507,26 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    body := true // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	body := true // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.PutPipelineFavorite(context.Background(), organization, pipeline).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.PutPipelineFavorite``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPipelineFavorite`: FavoriteImpl
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.PutPipelineFavorite`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.PutPipelineFavorite(context.Background(), organization, pipeline).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.PutPipelineFavorite``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPipelineFavorite`: FavoriteImpl
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.PutPipelineFavorite`: %v\n", resp)
 }
 ```
 
@@ -2582,28 +2582,28 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    organization := "organization_example" // string | Name of the organization
-    pipeline := "pipeline_example" // string | Name of the pipeline
-    run := "run_example" // string | Name of the run
-    blocking := "blocking_example" // string | Set to true to make blocking stop, default: false (optional)
-    timeOutInSecs := int32(56) // int32 | Timeout in seconds, default: 10 seconds (optional)
+	organization := "organization_example" // string | Name of the organization
+	pipeline := "pipeline_example" // string | Name of the pipeline
+	run := "run_example" // string | Name of the run
+	blocking := "blocking_example" // string | Set to true to make blocking stop, default: false (optional)
+	timeOutInSecs := int32(56) // int32 | Timeout in seconds, default: 10 seconds (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.PutPipelineRun(context.Background(), organization, pipeline, run).Blocking(blocking).TimeOutInSecs(timeOutInSecs).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.PutPipelineRun``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPipelineRun`: PipelineRun
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.PutPipelineRun`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.PutPipelineRun(context.Background(), organization, pipeline, run).Blocking(blocking).TimeOutInSecs(timeOutInSecs).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.PutPipelineRun``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPipelineRun`: PipelineRun
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.PutPipelineRun`: %v\n", resp)
 }
 ```
 
@@ -2662,24 +2662,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    q := "q_example" // string | Query string
+	q := "q_example" // string | Query string
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.Search(context.Background()).Q(q).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.Search``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `Search`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.Search`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.Search(context.Background()).Q(q).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.Search``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `Search`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.Search`: %v\n", resp)
 }
 ```
 
@@ -2728,24 +2728,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    q := "q_example" // string | Query string containing an array of class names
+	q := "q_example" // string | Query string containing an array of class names
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlueOceanApi.SearchClasses(context.Background()).Q(q).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanApi.SearchClasses``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SearchClasses`: string
-    fmt.Fprintf(os.Stdout, "Response from `BlueOceanApi.SearchClasses`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlueOceanAPI.SearchClasses(context.Background()).Q(q).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlueOceanAPI.SearchClasses``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SearchClasses`: string
+	fmt.Fprintf(os.Stdout, "Response from `BlueOceanAPI.SearchClasses`: %v\n", resp)
 }
 ```
 

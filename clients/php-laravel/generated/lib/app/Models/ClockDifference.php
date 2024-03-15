@@ -10,9 +10,9 @@ namespace app\Models;
 class ClockDifference {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $diff */
-    private $diff;
+    public $diff = 0;
 
 }

@@ -75,7 +75,7 @@ response_time_monitor_data_t *response_time_monitor_data_parseFromJSON(cJSON *re
     // response_time_monitor_data->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(response_time_monitor_dataJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -101,7 +101,7 @@ response_time_monitor_data_t *response_time_monitor_data_parseFromJSON(cJSON *re
 
 
     response_time_monitor_data_local_var = response_time_monitor_data_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         timestamp ? timestamp->valuedouble : 0,
         average ? average->valuedouble : 0
         );

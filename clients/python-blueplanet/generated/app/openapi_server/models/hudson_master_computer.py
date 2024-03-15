@@ -5,7 +5,7 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from app.openapi_server.models.base_model_ import Model
+from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.hudson_master_computerexecutors import HudsonMasterComputerexecutors  # noqa: F401,E501
 from app.openapi_server.models.hudson_master_computermonitor_data import HudsonMasterComputermonitorData  # noqa: F401,E501
 from app.openapi_server.models.label1 import Label1  # noqa: F401,E501

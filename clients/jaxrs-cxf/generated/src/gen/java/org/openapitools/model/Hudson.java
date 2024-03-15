@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AllView;
 import org.openapitools.model.FreeStyleProject;
@@ -10,6 +11,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -20,7 +22,7 @@ public class Hudson  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<HudsonassignedLabels> assignedLabels = null;
+  private List<@Valid HudsonassignedLabels> assignedLabels;
 
   @ApiModelProperty(value = "")
   private String mode;
@@ -39,7 +41,7 @@ public class Hudson  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs;
 
   @ApiModelProperty(value = "")
   @Valid
@@ -63,7 +65,7 @@ public class Hudson  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<AllView> views = null;
+  private List<@Valid AllView> views;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -87,15 +89,15 @@ public class Hudson  {
    * @return assignedLabels
   **/
   @JsonProperty("assignedLabels")
-  public List<HudsonassignedLabels> getAssignedLabels() {
+  public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
 
-  public void setAssignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public void setAssignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
 
-  public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public Hudson assignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
     return this;
   }
@@ -200,15 +202,15 @@ public class Hudson  {
    * @return jobs
   **/
   @JsonProperty("jobs")
-  public List<FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
-  public Hudson jobs(List<FreeStyleProject> jobs) {
+  public Hudson jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
@@ -331,15 +333,15 @@ public class Hudson  {
    * @return views
   **/
   @JsonProperty("views")
-  public List<AllView> getViews() {
+  public List<@Valid AllView> getViews() {
     return views;
   }
 
-  public void setViews(List<AllView> views) {
+  public void setViews(List<@Valid AllView> views) {
     this.views = views;
   }
 
-  public Hudson views(List<AllView> views) {
+  public Hudson views(List<@Valid AllView> views) {
     this.views = views;
     return this;
   }
@@ -349,6 +351,36 @@ public class Hudson  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Hudson hudson = (Hudson) o;
+    return Objects.equals(this.propertyClass, hudson.propertyClass) &&
+        Objects.equals(this.assignedLabels, hudson.assignedLabels) &&
+        Objects.equals(this.mode, hudson.mode) &&
+        Objects.equals(this.nodeDescription, hudson.nodeDescription) &&
+        Objects.equals(this.nodeName, hudson.nodeName) &&
+        Objects.equals(this.numExecutors, hudson.numExecutors) &&
+        Objects.equals(this.description, hudson.description) &&
+        Objects.equals(this.jobs, hudson.jobs) &&
+        Objects.equals(this.primaryView, hudson.primaryView) &&
+        Objects.equals(this.quietingDown, hudson.quietingDown) &&
+        Objects.equals(this.slaveAgentPort, hudson.slaveAgentPort) &&
+        Objects.equals(this.unlabeledLoad, hudson.unlabeledLoad) &&
+        Objects.equals(this.useCrumbs, hudson.useCrumbs) &&
+        Objects.equals(this.useSecurity, hudson.useSecurity) &&
+        Objects.equals(this.views, hudson.views);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, assignedLabels, mode, nodeDescription, nodeName, numExecutors, description, jobs, primaryView, quietingDown, slaveAgentPort, unlabeledLoad, useCrumbs, useSecurity, views);
+  }
 
   @Override
   public String toString() {

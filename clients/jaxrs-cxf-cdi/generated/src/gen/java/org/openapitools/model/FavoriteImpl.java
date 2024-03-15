@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FavoriteImpllinks;
 import org.openapitools.model.PipelineImpl;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,7 +22,6 @@ public class FavoriteImpl   {
   private FavoriteImpllinks links;
 
   private PipelineImpl item;
-
 
   /**
    **/
@@ -87,9 +87,9 @@ public class FavoriteImpl   {
       return false;
     }
     FavoriteImpl favoriteImpl = (FavoriteImpl) o;
-    return Objects.equals(propertyClass, favoriteImpl.propertyClass) &&
-        Objects.equals(links, favoriteImpl.links) &&
-        Objects.equals(item, favoriteImpl.item);
+    return Objects.equals(this.propertyClass, favoriteImpl.propertyClass) &&
+        Objects.equals(this.links, favoriteImpl.links) &&
+        Objects.equals(this.item, favoriteImpl.item);
   }
 
   @Override

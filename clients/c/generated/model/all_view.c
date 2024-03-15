@@ -83,7 +83,7 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
     // all_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
     // all_view->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -101,7 +101,7 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
     // all_view->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -109,9 +109,9 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
 
 
     all_view_local_var = all_view_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        url ? strdup(url->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL
         );
 
     return all_view_local_var;

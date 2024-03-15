@@ -10,27 +10,27 @@ namespace app\Models;
 class PipelineRunNode {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $durationInMillis */
-    private $durationInMillis;
+    public $durationInMillis = 0;
 
     /** @var \app\Models\PipelineRunNodeedges[] $edges */
-    private $edges;
+    public $edges = [];
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $result */
-    private $result;
+    public $result = "";
 
     /** @var string $startTime */
-    private $startTime;
+    public $startTime = "";
 
     /** @var string $state */
-    private $state;
+    public $state = "";
 
 }

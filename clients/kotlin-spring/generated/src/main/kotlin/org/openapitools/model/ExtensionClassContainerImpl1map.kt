@@ -24,14 +24,14 @@ data class ExtensionClassContainerImpl1map(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl") val ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl: ExtensionClassImpl? = null,
+    @get:JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl") val ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl: ExtensionClassImpl? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl") val ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl: ExtensionClassImpl? = null,
+    @get:JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl") val ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl: ExtensionClassImpl? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

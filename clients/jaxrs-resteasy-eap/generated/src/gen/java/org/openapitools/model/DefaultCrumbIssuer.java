@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DefaultCrumbIssuer   {
   
   private String propertyClass;
@@ -62,9 +63,9 @@ public class DefaultCrumbIssuer   {
       return false;
     }
     DefaultCrumbIssuer defaultCrumbIssuer = (DefaultCrumbIssuer) o;
-    return Objects.equals(propertyClass, defaultCrumbIssuer.propertyClass) &&
-        Objects.equals(crumb, defaultCrumbIssuer.crumb) &&
-        Objects.equals(crumbRequestField, defaultCrumbIssuer.crumbRequestField);
+    return Objects.equals(this.propertyClass, defaultCrumbIssuer.propertyClass) &&
+        Objects.equals(this.crumb, defaultCrumbIssuer.crumb) &&
+        Objects.equals(this.crumbRequestField, defaultCrumbIssuer.crumbRequestField);
   }
 
   @Override

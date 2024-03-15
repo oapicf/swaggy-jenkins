@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,8 +23,7 @@ public class ExtensionClassImpl   {
 
   private ExtensionClassImpllinks links;
 
-  private List<String> classes = null;
-
+  private List<String> classes;
 
   /**
    **/
@@ -96,9 +97,9 @@ public class ExtensionClassImpl   {
       return false;
     }
     ExtensionClassImpl extensionClassImpl = (ExtensionClassImpl) o;
-    return Objects.equals(propertyClass, extensionClassImpl.propertyClass) &&
-        Objects.equals(links, extensionClassImpl.links) &&
-        Objects.equals(classes, extensionClassImpl.classes);
+    return Objects.equals(this.propertyClass, extensionClassImpl.propertyClass) &&
+        Objects.equals(this.links, extensionClassImpl.links) &&
+        Objects.equals(this.classes, extensionClassImpl.classes);
   }
 
   @Override

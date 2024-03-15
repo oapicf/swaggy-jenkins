@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
@@ -21,9 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImpl   {
-  
   private @Valid String propertyClass;
   private @Valid String displayName;
   private @Valid Integer estimatedDurationInMillis;
@@ -31,7 +31,7 @@ public class BranchImpl   {
   private @Valid String fullName;
   private @Valid String name;
   private @Valid String organization;
-  private @Valid List<StringParameterDefinition> parameters = new ArrayList<>();
+  private @Valid List<@Valid StringParameterDefinition> parameters;
   private @Valid BranchImplpermissions permissions;
   private @Valid Integer weatherScore;
   private @Valid String pullRequest;
@@ -57,7 +57,7 @@ public class BranchImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public BranchImpl displayName(String displayName) {
     this.displayName = displayName;
@@ -76,7 +76,7 @@ public class BranchImpl   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public BranchImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -95,7 +95,7 @@ public class BranchImpl   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public BranchImpl fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
@@ -114,7 +114,7 @@ public class BranchImpl   {
     this.fullDisplayName = fullDisplayName;
   }
 
-/**
+  /**
    **/
   public BranchImpl fullName(String fullName) {
     this.fullName = fullName;
@@ -133,7 +133,7 @@ public class BranchImpl   {
     this.fullName = fullName;
   }
 
-/**
+  /**
    **/
   public BranchImpl name(String name) {
     this.name = name;
@@ -152,7 +152,7 @@ public class BranchImpl   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public BranchImpl organization(String organization) {
     this.organization = organization;
@@ -171,9 +171,9 @@ public class BranchImpl   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
-  public BranchImpl parameters(List<StringParameterDefinition> parameters) {
+  public BranchImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -186,7 +186,7 @@ public class BranchImpl   {
   }
 
   @JsonProperty("parameters")
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -206,7 +206,7 @@ public class BranchImpl   {
 
     return this;
   }
-/**
+  /**
    **/
   public BranchImpl permissions(BranchImplpermissions permissions) {
     this.permissions = permissions;
@@ -225,7 +225,7 @@ public class BranchImpl   {
     this.permissions = permissions;
   }
 
-/**
+  /**
    **/
   public BranchImpl weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -244,7 +244,7 @@ public class BranchImpl   {
     this.weatherScore = weatherScore;
   }
 
-/**
+  /**
    **/
   public BranchImpl pullRequest(String pullRequest) {
     this.pullRequest = pullRequest;
@@ -263,7 +263,7 @@ public class BranchImpl   {
     this.pullRequest = pullRequest;
   }
 
-/**
+  /**
    **/
   public BranchImpl links(BranchImpllinks links) {
     this.links = links;
@@ -282,7 +282,7 @@ public class BranchImpl   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public BranchImpl latestRun(PipelineRunImpl latestRun) {
     this.latestRun = latestRun;

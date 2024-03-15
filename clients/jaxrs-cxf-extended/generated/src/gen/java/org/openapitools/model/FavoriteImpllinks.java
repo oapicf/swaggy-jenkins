@@ -67,6 +67,24 @@ public class FavoriteImpllinks  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FavoriteImpllinks favoriteImpllinks = (FavoriteImpllinks) o;
+    return Objects.equals(this.self, favoriteImpllinks.self) &&
+        Objects.equals(this.propertyClass, favoriteImpllinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(self, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FavoriteImpllinks {\n");

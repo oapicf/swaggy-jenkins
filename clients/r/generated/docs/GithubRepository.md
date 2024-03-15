@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **description** | **character** |  | [optional] 
 **name** | **character** |  | [optional] 
 **permissions** | [**GithubRepositorypermissions**](GithubRepositorypermissions.md) |  | [optional] 
-**private** | **character** |  | [optional] 
+**item_private** | **character** |  | [optional] 
 **fullName** | **character** |  | [optional] 
 
 

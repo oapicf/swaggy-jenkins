@@ -271,11 +271,11 @@ class RemoteAccessApiSimulation extends Simulation {
         .feed(postCreateItemHEADERFeeder)
         .exec(http("postCreateItem")
         .httpRequest("POST","/createItem")
-        .queryParam("name","${name}")
-        .queryParam("from","${from}")
         .queryParam("mode","${mode}")
-        .header("Content-Type","${Content-Type}")
+        .queryParam("from","${from}")
+        .queryParam("name","${name}")
         .header("Jenkins-Crumb","${Jenkins-Crumb}")
+        .header("Content-Type","${Content-Type}")
 )
 
     // Run scnpostCreateItem with warm up and reach a constant rate for entire duration
@@ -292,8 +292,8 @@ class RemoteAccessApiSimulation extends Simulation {
         .exec(http("postCreateView")
         .httpRequest("POST","/createView")
         .queryParam("name","${name}")
-        .header("Content-Type","${Content-Type}")
         .header("Jenkins-Crumb","${Jenkins-Crumb}")
+        .header("Content-Type","${Content-Type}")
 )
 
     // Run scnpostCreateView with warm up and reach a constant rate for entire duration
@@ -310,8 +310,8 @@ class RemoteAccessApiSimulation extends Simulation {
         .feed(postJobBuildPATHFeeder)
         .exec(http("postJobBuild")
         .httpRequest("POST","/job/${name}/build")
-        .queryParam("json","${json}")
         .queryParam("token","${token}")
+        .queryParam("json","${json}")
         .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 

@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunNodeedges;
 import javax.validation.constraints.*;
@@ -24,7 +25,7 @@ public class PipelineRunNode  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<PipelineRunNodeedges> edges = null;
+  private List<@Valid PipelineRunNodeedges> edges;
 
   @ApiModelProperty(value = "")
   private String id;
@@ -114,21 +115,21 @@ public class PipelineRunNode  {
   * @return edges
   */
   @JsonProperty("edges")
-  public List<PipelineRunNodeedges> getEdges() {
+  public List<@Valid PipelineRunNodeedges> getEdges() {
     return edges;
   }
 
   /**
    * Sets the <code>edges</code> property.
    */
- public void setEdges(List<PipelineRunNodeedges> edges) {
+ public void setEdges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
   }
 
   /**
    * Sets the <code>edges</code> property.
    */
-  public PipelineRunNode edges(List<PipelineRunNodeedges> edges) {
+  public PipelineRunNode edges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
     return this;
   }
@@ -237,6 +238,30 @@ public class PipelineRunNode  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineRunNode pipelineRunNode = (PipelineRunNode) o;
+    return Objects.equals(this.propertyClass, pipelineRunNode.propertyClass) &&
+        Objects.equals(this.displayName, pipelineRunNode.displayName) &&
+        Objects.equals(this.durationInMillis, pipelineRunNode.durationInMillis) &&
+        Objects.equals(this.edges, pipelineRunNode.edges) &&
+        Objects.equals(this.id, pipelineRunNode.id) &&
+        Objects.equals(this.result, pipelineRunNode.result) &&
+        Objects.equals(this.startTime, pipelineRunNode.startTime) &&
+        Objects.equals(this.state, pipelineRunNode.state);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, displayName, durationInMillis, edges, id, result, startTime, state);
+  }
 
   @Override
   public String toString() {

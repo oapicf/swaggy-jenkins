@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleBuild;
@@ -14,13 +15,13 @@ import org.openapitools.model.FreeStyleProject;
 /**
  * QueueLeftItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class QueueLeftItem   {
   @JsonProperty("_class")
   private String propertyClass;
 
   @JsonProperty("actions")
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions = null;
 
   @JsonProperty("blocked")
   private Boolean blocked;
@@ -73,14 +74,14 @@ public class QueueLeftItem   {
     this.propertyClass = propertyClass;
   }
 
-  public QueueLeftItem actions(List<CauseAction> actions) {
+  public QueueLeftItem actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
 
   public QueueLeftItem addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<>();
+      this.actions = ;
     }
     this.actions.add(actionsItem);
     return this;
@@ -91,11 +92,11 @@ public class QueueLeftItem   {
    * @return actions
   **/
   @ApiModelProperty(value = "")
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 

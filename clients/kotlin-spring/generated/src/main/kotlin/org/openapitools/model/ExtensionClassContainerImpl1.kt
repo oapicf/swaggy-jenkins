@@ -24,15 +24,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ExtensionClassContainerImpl1(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: ExtensionClassContainerImpl1links? = null,
+    @get:JsonProperty("_links") val links: ExtensionClassContainerImpl1links? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("map") val map: ExtensionClassContainerImpl1map? = null
+    @get:JsonProperty("map") val map: ExtensionClassContainerImpl1map? = null
 ) {
 
 }

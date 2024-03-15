@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubScmlinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubScm   {
   
   private String propertyClass;
@@ -36,6 +38,7 @@ public class GithubScm   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
+  @Valid
   public GithubScmlinks getLinks() {
     return links;
   }
@@ -89,11 +92,11 @@ public class GithubScm   {
       return false;
     }
     GithubScm githubScm = (GithubScm) o;
-    return Objects.equals(propertyClass, githubScm.propertyClass) &&
-        Objects.equals(links, githubScm.links) &&
-        Objects.equals(credentialId, githubScm.credentialId) &&
-        Objects.equals(id, githubScm.id) &&
-        Objects.equals(uri, githubScm.uri);
+    return Objects.equals(this.propertyClass, githubScm.propertyClass) &&
+        Objects.equals(this.links, githubScm.links) &&
+        Objects.equals(this.credentialId, githubScm.credentialId) &&
+        Objects.equals(this.id, githubScm.id) &&
+        Objects.equals(this.uri, githubScm.uri);
   }
 
   @Override

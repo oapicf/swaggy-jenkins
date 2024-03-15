@@ -31,29 +31,29 @@ data class HudsonMasterComputermonitorData(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("hudson.node_monitors.SwapSpaceMonitor") val hudsonNodeMonitorsSwapSpaceMonitor: SwapSpaceMonitorMemoryUsage2? = null,
+    @get:JsonProperty("hudson.node_monitors.SwapSpaceMonitor") val hudsonNodeMonitorsSwapSpaceMonitor: SwapSpaceMonitorMemoryUsage2? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("hudson.node_monitors.TemporarySpaceMonitor") val hudsonNodeMonitorsTemporarySpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace? = null,
+    @get:JsonProperty("hudson.node_monitors.TemporarySpaceMonitor") val hudsonNodeMonitorsTemporarySpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("hudson.node_monitors.DiskSpaceMonitor") val hudsonNodeMonitorsDiskSpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace? = null,
+    @get:JsonProperty("hudson.node_monitors.DiskSpaceMonitor") val hudsonNodeMonitorsDiskSpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("hudson.node_monitors.ArchitectureMonitor") val hudsonNodeMonitorsArchitectureMonitor: kotlin.String? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("hudson.node_monitors.ResponseTimeMonitor") val hudsonNodeMonitorsResponseTimeMonitor: ResponseTimeMonitorData? = null,
+    @get:JsonProperty("hudson.node_monitors.ArchitectureMonitor") val hudsonNodeMonitorsArchitectureMonitor: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("hudson.node_monitors.ClockMonitor") val hudsonNodeMonitorsClockMonitor: ClockDifference? = null,
+    @get:JsonProperty("hudson.node_monitors.ResponseTimeMonitor") val hudsonNodeMonitorsResponseTimeMonitor: ResponseTimeMonitorData? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("hudson.node_monitors.ClockMonitor") val hudsonNodeMonitorsClockMonitor: ClockDifference? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

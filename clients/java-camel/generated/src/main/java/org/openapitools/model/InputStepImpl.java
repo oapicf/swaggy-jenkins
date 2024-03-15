@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
@@ -22,29 +23,22 @@ import javax.annotation.Generated;
  * InputStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class InputStepImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private InputStepImpllinks links;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("message")
   private String message;
 
-  @JsonProperty("ok")
   private String ok;
 
-  @JsonProperty("parameters")
   @Valid
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters;
 
-  @JsonProperty("submitter")
   private String submitter;
 
   public InputStepImpl propertyClass(String propertyClass) {
@@ -57,7 +51,8 @@ public class InputStepImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -76,7 +71,8 @@ public class InputStepImpl {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public InputStepImpllinks getLinks() {
     return links;
   }
@@ -95,7 +91,8 @@ public class InputStepImpl {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -114,7 +111,8 @@ public class InputStepImpl {
    * @return message
   */
   
-  @Schema(name = "message", required = false)
+  @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("message")
   public String getMessage() {
     return message;
   }
@@ -133,7 +131,8 @@ public class InputStepImpl {
    * @return ok
   */
   
-  @Schema(name = "ok", required = false)
+  @Schema(name = "ok", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("ok")
   public String getOk() {
     return ok;
   }
@@ -142,7 +141,7 @@ public class InputStepImpl {
     this.ok = ok;
   }
 
-  public InputStepImpl parameters(List<StringParameterDefinition> parameters) {
+  public InputStepImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -160,12 +159,13 @@ public class InputStepImpl {
    * @return parameters
   */
   @Valid 
-  @Schema(name = "parameters", required = false)
-  public List<StringParameterDefinition> getParameters() {
+  @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("parameters")
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -179,7 +179,8 @@ public class InputStepImpl {
    * @return submitter
   */
   
-  @Schema(name = "submitter", required = false)
+  @Schema(name = "submitter", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("submitter")
   public String getSubmitter() {
     return submitter;
   }

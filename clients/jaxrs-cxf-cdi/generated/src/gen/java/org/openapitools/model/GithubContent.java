@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -29,7 +30,6 @@ public class GithubContent   {
   private String path;
 
   private String base64Data;
-
 
   /**
    **/
@@ -185,14 +185,14 @@ public class GithubContent   {
       return false;
     }
     GithubContent githubContent = (GithubContent) o;
-    return Objects.equals(name, githubContent.name) &&
-        Objects.equals(sha, githubContent.sha) &&
-        Objects.equals(propertyClass, githubContent.propertyClass) &&
-        Objects.equals(repo, githubContent.repo) &&
-        Objects.equals(size, githubContent.size) &&
-        Objects.equals(owner, githubContent.owner) &&
-        Objects.equals(path, githubContent.path) &&
-        Objects.equals(base64Data, githubContent.base64Data);
+    return Objects.equals(this.name, githubContent.name) &&
+        Objects.equals(this.sha, githubContent.sha) &&
+        Objects.equals(this.propertyClass, githubContent.propertyClass) &&
+        Objects.equals(this.repo, githubContent.repo) &&
+        Objects.equals(this.size, githubContent.size) &&
+        Objects.equals(this.owner, githubContent.owner) &&
+        Objects.equals(this.path, githubContent.path) &&
+        Objects.equals(this.base64Data, githubContent.base64Data);
   }
 
   @Override

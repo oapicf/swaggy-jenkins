@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 from typing import List, Dict, Type
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.github_repositories import GithubRepositories
 from openapi_server.models.github_respository_containerlinks import GithubRespositoryContainerlinks
 from openapi_server import util

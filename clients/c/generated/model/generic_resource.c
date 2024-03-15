@@ -121,7 +121,7 @@ generic_resource_t *generic_resource_parseFromJSON(cJSON *generic_resourceJSON){
     // generic_resource->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(generic_resourceJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -130,7 +130,7 @@ generic_resource_t *generic_resource_parseFromJSON(cJSON *generic_resourceJSON){
     // generic_resource->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(generic_resourceJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -148,7 +148,7 @@ generic_resource_t *generic_resource_parseFromJSON(cJSON *generic_resourceJSON){
     // generic_resource->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(generic_resourceJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -157,7 +157,7 @@ generic_resource_t *generic_resource_parseFromJSON(cJSON *generic_resourceJSON){
     // generic_resource->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(generic_resourceJSON, "result");
     if (result) { 
-    if(!cJSON_IsString(result))
+    if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
     goto end; //String
     }
@@ -166,7 +166,7 @@ generic_resource_t *generic_resource_parseFromJSON(cJSON *generic_resourceJSON){
     // generic_resource->start_time
     cJSON *start_time = cJSON_GetObjectItemCaseSensitive(generic_resourceJSON, "startTime");
     if (start_time) { 
-    if(!cJSON_IsString(start_time))
+    if(!cJSON_IsString(start_time) && !cJSON_IsNull(start_time))
     {
     goto end; //String
     }
@@ -174,12 +174,12 @@ generic_resource_t *generic_resource_parseFromJSON(cJSON *generic_resourceJSON){
 
 
     generic_resource_local_var = generic_resource_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         duration_in_millis ? duration_in_millis->valuedouble : 0,
-        id ? strdup(id->valuestring) : NULL,
-        result ? strdup(result->valuestring) : NULL,
-        start_time ? strdup(start_time->valuestring) : NULL
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
+        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL
         );
 
     return generic_resource_local_var;

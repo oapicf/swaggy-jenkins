@@ -29,30 +29,30 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubRepository(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: GithubRepositorylinks? = null,
+    @get:JsonProperty("_links") val links: GithubRepositorylinks? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("defaultBranch") val defaultBranch: kotlin.String? = null,
+    @get:JsonProperty("defaultBranch") val defaultBranch: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("description") val description: kotlin.String? = null,
+    @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("permissions") val permissions: GithubRepositorypermissions? = null,
+    @get:JsonProperty("permissions") val permissions: GithubRepositorypermissions? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("private") val `private`: kotlin.Boolean? = null,
+    @get:JsonProperty("private") val `private`: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("fullName") val fullName: kotlin.String? = null
+    @get:JsonProperty("fullName") val fullName: kotlin.String? = null
 ) {
 
 }

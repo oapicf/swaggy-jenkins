@@ -1,12 +1,14 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -20,7 +22,7 @@ public class ListView  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs;
 
   @ApiModelProperty(value = "")
   private String name;
@@ -68,15 +70,15 @@ public class ListView  {
    * @return jobs
   **/
   @JsonProperty("jobs")
-  public List<FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
-  public ListView jobs(List<FreeStyleProject> jobs) {
+  public ListView jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
@@ -122,6 +124,26 @@ public class ListView  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ListView listView = (ListView) o;
+    return Objects.equals(this.propertyClass, listView.propertyClass) &&
+        Objects.equals(this.description, listView.description) &&
+        Objects.equals(this.jobs, listView.jobs) &&
+        Objects.equals(this.name, listView.name) &&
+        Objects.equals(this.url, listView.url);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, description, jobs, name, url);
+  }
 
   @Override
   public String toString() {

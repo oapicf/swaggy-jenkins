@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 import javax.validation.constraints.*;
@@ -18,12 +19,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ComputerSet")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ComputerSet   {
-  
   private @Valid String propertyClass;
   private @Valid Integer busyExecutors;
-  private @Valid List<HudsonMasterComputer> computer = new ArrayList<>();
+  private @Valid List<@Valid HudsonMasterComputer> computer;
   private @Valid String displayName;
   private @Valid Integer totalExecutors;
 
@@ -46,7 +46,7 @@ public class ComputerSet   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public ComputerSet busyExecutors(Integer busyExecutors) {
     this.busyExecutors = busyExecutors;
@@ -65,9 +65,9 @@ public class ComputerSet   {
     this.busyExecutors = busyExecutors;
   }
 
-/**
+  /**
    **/
-  public ComputerSet computer(List<HudsonMasterComputer> computer) {
+  public ComputerSet computer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
     return this;
   }
@@ -80,7 +80,7 @@ public class ComputerSet   {
   }
 
   @JsonProperty("computer")
-  public void setComputer(List<HudsonMasterComputer> computer) {
+  public void setComputer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
   }
 
@@ -100,7 +100,7 @@ public class ComputerSet   {
 
     return this;
   }
-/**
+  /**
    **/
   public ComputerSet displayName(String displayName) {
     this.displayName = displayName;
@@ -119,7 +119,7 @@ public class ComputerSet   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public ComputerSet totalExecutors(Integer totalExecutors) {
     this.totalExecutors = totalExecutors;

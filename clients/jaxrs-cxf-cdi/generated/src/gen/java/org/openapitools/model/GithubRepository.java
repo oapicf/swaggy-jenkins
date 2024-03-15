@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositorylinks;
 import org.openapitools.model.GithubRepositorypermissions;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -31,7 +32,6 @@ public class GithubRepository   {
   private Boolean _private;
 
   private String fullName;
-
 
   /**
    **/
@@ -187,14 +187,14 @@ public class GithubRepository   {
       return false;
     }
     GithubRepository githubRepository = (GithubRepository) o;
-    return Objects.equals(propertyClass, githubRepository.propertyClass) &&
-        Objects.equals(links, githubRepository.links) &&
-        Objects.equals(defaultBranch, githubRepository.defaultBranch) &&
-        Objects.equals(description, githubRepository.description) &&
-        Objects.equals(name, githubRepository.name) &&
-        Objects.equals(permissions, githubRepository.permissions) &&
-        Objects.equals(_private, githubRepository._private) &&
-        Objects.equals(fullName, githubRepository.fullName);
+    return Objects.equals(this.propertyClass, githubRepository.propertyClass) &&
+        Objects.equals(this.links, githubRepository.links) &&
+        Objects.equals(this.defaultBranch, githubRepository.defaultBranch) &&
+        Objects.equals(this.description, githubRepository.description) &&
+        Objects.equals(this.name, githubRepository.name) &&
+        Objects.equals(this.permissions, githubRepository.permissions) &&
+        Objects.equals(this._private, githubRepository._private) &&
+        Objects.equals(this.fullName, githubRepository.fullName);
   }
 
   @Override

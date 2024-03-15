@@ -131,7 +131,7 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     // pipeline_folder_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_folder_implJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -140,7 +140,7 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     // pipeline_folder_impl->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_folder_implJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -149,7 +149,7 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     // pipeline_folder_impl->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(pipeline_folder_implJSON, "fullName");
     if (full_name) { 
-    if(!cJSON_IsString(full_name))
+    if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
     goto end; //String
     }
@@ -158,7 +158,7 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     // pipeline_folder_impl->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipeline_folder_implJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -167,7 +167,7 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     // pipeline_folder_impl->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipeline_folder_implJSON, "organization");
     if (organization) { 
-    if(!cJSON_IsString(organization))
+    if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
     goto end; //String
     }
@@ -193,11 +193,11 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
 
 
     pipeline_folder_impl_local_var = pipeline_folder_impl_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
-        full_name ? strdup(full_name->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        organization ? strdup(organization->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
+        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
         number_of_folders ? number_of_folders->valuedouble : 0,
         number_of_pipelines ? number_of_pipelines->valuedouble : 0
         );

@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.PipelineActivityartifacts;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * PipelineActivity
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineActivity   {
   @JsonProperty("_class")
@@ -21,7 +23,7 @@ public class PipelineActivity   {
   @JsonProperty("artifacts")
   @Valid
 
-  private List<PipelineActivityartifacts> artifacts = null;
+  private List<@Valid PipelineActivityartifacts> artifacts = null;
 
   @JsonProperty("durationInMillis")
   
@@ -92,16 +94,16 @@ public class PipelineActivity   {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineActivity artifacts(List<PipelineActivityartifacts> artifacts) {
+  public PipelineActivity artifacts(List<@Valid PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
 
   public PipelineActivity addArtifactsItem(PipelineActivityartifacts artifactsItem) {
-    if (artifacts == null) {
-      artifacts = new ArrayList<>();
+    if (this.artifacts == null) {
+      this.artifacts = new ArrayList<>();
     }
-    artifacts.add(artifactsItem);
+    this.artifacts.add(artifactsItem);
     return this;
   }
 
@@ -109,11 +111,11 @@ public class PipelineActivity   {
    * Get artifacts
    * @return artifacts
   **/
-  public List<PipelineActivityartifacts> getArtifacts() {
+  public List<@Valid PipelineActivityartifacts> getArtifacts() {
     return artifacts;
   }
 
-  public void setArtifacts(List<PipelineActivityartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 

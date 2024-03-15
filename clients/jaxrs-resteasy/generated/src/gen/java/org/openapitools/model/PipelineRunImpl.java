@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineRunImpllinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunImpl   {
   
   private String propertyClass;
@@ -46,6 +48,7 @@ public class PipelineRunImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
+  @Valid
   public PipelineRunImpllinks getLinks() {
     return links;
   }
@@ -219,21 +222,21 @@ public class PipelineRunImpl   {
       return false;
     }
     PipelineRunImpl pipelineRunImpl = (PipelineRunImpl) o;
-    return Objects.equals(propertyClass, pipelineRunImpl.propertyClass) &&
-        Objects.equals(links, pipelineRunImpl.links) &&
-        Objects.equals(durationInMillis, pipelineRunImpl.durationInMillis) &&
-        Objects.equals(enQueueTime, pipelineRunImpl.enQueueTime) &&
-        Objects.equals(endTime, pipelineRunImpl.endTime) &&
-        Objects.equals(estimatedDurationInMillis, pipelineRunImpl.estimatedDurationInMillis) &&
-        Objects.equals(id, pipelineRunImpl.id) &&
-        Objects.equals(organization, pipelineRunImpl.organization) &&
-        Objects.equals(pipeline, pipelineRunImpl.pipeline) &&
-        Objects.equals(result, pipelineRunImpl.result) &&
-        Objects.equals(runSummary, pipelineRunImpl.runSummary) &&
-        Objects.equals(startTime, pipelineRunImpl.startTime) &&
-        Objects.equals(state, pipelineRunImpl.state) &&
-        Objects.equals(type, pipelineRunImpl.type) &&
-        Objects.equals(commitId, pipelineRunImpl.commitId);
+    return Objects.equals(this.propertyClass, pipelineRunImpl.propertyClass) &&
+        Objects.equals(this.links, pipelineRunImpl.links) &&
+        Objects.equals(this.durationInMillis, pipelineRunImpl.durationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelineRunImpl.enQueueTime) &&
+        Objects.equals(this.endTime, pipelineRunImpl.endTime) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineRunImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.id, pipelineRunImpl.id) &&
+        Objects.equals(this.organization, pipelineRunImpl.organization) &&
+        Objects.equals(this.pipeline, pipelineRunImpl.pipeline) &&
+        Objects.equals(this.result, pipelineRunImpl.result) &&
+        Objects.equals(this.runSummary, pipelineRunImpl.runSummary) &&
+        Objects.equals(this.startTime, pipelineRunImpl.startTime) &&
+        Objects.equals(this.state, pipelineRunImpl.state) &&
+        Objects.equals(this.type, pipelineRunImpl.type) &&
+        Objects.equals(this.commitId, pipelineRunImpl.commitId);
   }
 
   @Override

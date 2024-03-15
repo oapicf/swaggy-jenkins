@@ -93,7 +93,7 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
     // pipeline_activityartifacts->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipeline_activityartifactsJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -111,7 +111,7 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
     // pipeline_activityartifacts->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(pipeline_activityartifactsJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -120,7 +120,7 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
     // pipeline_activityartifacts->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_activityartifactsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -128,10 +128,10 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
 
 
     pipeline_activityartifacts_local_var = pipeline_activityartifacts_create (
-        name ? strdup(name->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         size ? size->valuedouble : 0,
-        url ? strdup(url->valuestring) : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_activityartifacts_local_var;

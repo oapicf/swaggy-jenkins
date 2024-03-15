@@ -99,7 +99,7 @@ github_respository_container_t *github_respository_container_parseFromJSON(cJSON
     // github_respository_container->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_respository_containerJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -119,7 +119,7 @@ github_respository_container_t *github_respository_container_parseFromJSON(cJSON
 
 
     github_respository_container_local_var = github_respository_container_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         repositories ? repositories_local_nonprim : NULL
         );

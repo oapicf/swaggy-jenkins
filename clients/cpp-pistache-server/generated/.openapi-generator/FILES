@@ -1,6 +1,7 @@
 .openapi-generator-ignore
 CMakeLists.txt
 README.md
+api/ApiBase.h
 api/BaseApi.cpp
 api/BaseApi.h
 api/BlueOceanApi.cpp

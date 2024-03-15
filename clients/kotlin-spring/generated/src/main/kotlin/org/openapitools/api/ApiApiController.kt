@@ -36,7 +36,7 @@ class ApiApiController() {
     @Operation(
         summary = "",
         operationId = "getJenkins",
-        description = "Retrieve Jenkins details",
+        description = """Retrieve Jenkins details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved Jenkins details", content = [Content(schema = Schema(implementation = Hudson::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -55,7 +55,7 @@ class ApiApiController() {
     @Operation(
         summary = "",
         operationId = "headJenkins",
-        description = "Retrieve Jenkins headers",
+        description = """Retrieve Jenkins headers""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved Jenkins headers"),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

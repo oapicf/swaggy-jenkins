@@ -55,7 +55,7 @@ label1_t *label1_parseFromJSON(cJSON *label1JSON){
     // label1->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(label1JSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ label1_t *label1_parseFromJSON(cJSON *label1JSON){
 
 
     label1_local_var = label1_create (
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return label1_local_var;

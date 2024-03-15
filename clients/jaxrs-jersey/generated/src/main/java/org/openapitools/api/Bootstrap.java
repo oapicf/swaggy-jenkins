@@ -18,7 +18,7 @@ public class Bootstrap extends HttpServlet {
       .description("Jenkins API clients generated from Swagger / Open API specification")
       .termsOfService("")
       .contact(new Contact()
-        .email("blah@cliffano.com"))
+        .email("blah+oapicf@cliffano.com"))
       .license(new License()
         .name("")
         .url("http://unlicense.org"));

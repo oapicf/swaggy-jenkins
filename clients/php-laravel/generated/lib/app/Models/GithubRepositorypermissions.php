@@ -10,15 +10,15 @@ namespace app\Models;
 class GithubRepositorypermissions {
 
     /** @var bool $admin */
-    private $admin;
+    public $admin = false;
 
     /** @var bool $push */
-    private $push;
+    public $push = false;
 
     /** @var bool $pull */
-    private $pull;
+    public $pull = false;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

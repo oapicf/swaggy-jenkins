@@ -103,7 +103,7 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
     // queue_item_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -121,7 +121,7 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
     // queue_item_impl->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -130,7 +130,7 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
     // queue_item_impl->pipeline
     cJSON *pipeline = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "pipeline");
     if (pipeline) { 
-    if(!cJSON_IsString(pipeline))
+    if(!cJSON_IsString(pipeline) && !cJSON_IsNull(pipeline))
     {
     goto end; //String
     }
@@ -147,10 +147,10 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
 
     queue_item_impl_local_var = queue_item_impl_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         expected_build_number ? expected_build_number->valuedouble : 0,
-        id ? strdup(id->valuestring) : NULL,
-        pipeline ? strdup(pipeline->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        pipeline && !cJSON_IsNull(pipeline) ? strdup(pipeline->valuestring) : NULL,
         queued_time ? queued_time->valuedouble : 0
         );
 

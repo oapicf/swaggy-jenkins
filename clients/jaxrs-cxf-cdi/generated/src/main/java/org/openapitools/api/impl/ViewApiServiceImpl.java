@@ -11,12 +11,15 @@ import java.util.List;
 
 import java.io.InputStream;
 
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2022-06-04T08:08:57.311218Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2024-03-15T14:14:28.646664125Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ViewApiServiceImpl implements ViewApiService {
       @Override
       public Response getView(String name, SecurityContext securityContext) {

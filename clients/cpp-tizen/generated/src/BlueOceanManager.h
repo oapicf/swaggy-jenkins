@@ -20,6 +20,7 @@
 #include "PipelineStepImpl.h"
 #include "QueueItemImpl.h"
 #include "User.h"
+#include <list>
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints

@@ -55,10 +55,10 @@ Delete queue item from an organization pipeline queue
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -72,33 +72,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    queue = "queue_example" # str | Name of the queue item
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    queue = 'queue_example' # str | Name of the queue item
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.delete_pipeline_queue_item(organization, pipeline, queue)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->delete_pipeline_queue_item: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **queue** | **str**| Name of the queue item |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **queue** | **str**| Name of the queue item | 
 
 ### Return type
 
@@ -112,7 +113,6 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
-
 
 ### HTTP response details
 
@@ -136,11 +136,11 @@ Retrieve authenticated user details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.user import User
+from swaggyjenkins.models.user import User
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -154,30 +154,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_authenticated_user(organization)
+        print("The response of BlueOceanApi->get_authenticated_user:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_authenticated_user: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
+ **organization** | **str**| Name of the organization | 
 
 ### Return type
 
@@ -192,7 +194,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -204,7 +205,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_classes**
-> str get_classes(_class)
+> str get_classes(var_class)
 
 
 
@@ -215,10 +216,10 @@ Get a list of class names supported by a given class
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -232,30 +233,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    _class = "class_example" # str | Name of the class
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    var_class = 'var_class_example' # str | Name of the class
 
-    # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.get_classes(_class)
+        api_response = api_instance.get_classes(var_class)
+        print("The response of BlueOceanApi->get_classes:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_classes: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **_class** | **str**| Name of the class |
+ **var_class** | **str**| Name of the class | 
 
 ### Return type
 
@@ -269,7 +272,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -292,10 +294,10 @@ Retrieve JSON Web Key
 
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -304,25 +306,27 @@ configuration = swaggyjenkins.Configuration(
 
 
 # Enter a context with an instance of the API client
-with swaggyjenkins.ApiClient() as api_client:
+with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    key = 1 # int | Key ID received as part of JWT header field kid
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    key = 56 # int | Key ID received as part of JWT header field kid
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_json_web_key(key)
+        print("The response of BlueOceanApi->get_json_web_key:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_json_web_key: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key** | **int**| Key ID received as part of JWT header field kid |
+ **key** | **int**| Key ID received as part of JWT header field kid | 
 
 ### Return type
 
@@ -336,7 +340,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -349,7 +352,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_json_web_token**
-> str get_json_web_token()
+> str get_json_web_token(expiry_time_in_mins=expiry_time_in_mins, max_expiry_time_in_mins=max_expiry_time_in_mins)
 
 
 
@@ -359,10 +362,10 @@ Retrieve JSON Web Token
 
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -371,28 +374,29 @@ configuration = swaggyjenkins.Configuration(
 
 
 # Enter a context with an instance of the API client
-with swaggyjenkins.ApiClient() as api_client:
+with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    expiry_time_in_mins = 1 # int | Token expiry time in minutes, default: 30 minutes (optional)
-    max_expiry_time_in_mins = 1 # int | Maximum token expiry time in minutes, default: 480 minutes (optional)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    expiry_time_in_mins = 56 # int | Token expiry time in minutes, default: 30 minutes (optional)
+    max_expiry_time_in_mins = 56 # int | Maximum token expiry time in minutes, default: 480 minutes (optional)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_json_web_token(expiry_time_in_mins=expiry_time_in_mins, max_expiry_time_in_mins=max_expiry_time_in_mins)
+        print("The response of BlueOceanApi->get_json_web_token:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_json_web_token: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expiry_time_in_mins** | **int**| Token expiry time in minutes, default: 30 minutes | [optional]
- **max_expiry_time_in_mins** | **int**| Maximum token expiry time in minutes, default: 480 minutes | [optional]
+ **expiry_time_in_mins** | **int**| Token expiry time in minutes, default: 30 minutes | [optional] 
+ **max_expiry_time_in_mins** | **int**| Maximum token expiry time in minutes, default: 480 minutes | [optional] 
 
 ### Return type
 
@@ -406,7 +410,6 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -430,11 +433,11 @@ Retrieve organization details
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.organisation import Organisation
+from swaggyjenkins.models.organisation import Organisation
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -448,30 +451,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_organisation(organization)
+        print("The response of BlueOceanApi->get_organisation:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_organisation: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
+ **organization** | **str**| Name of the organization | 
 
 ### Return type
 
@@ -486,7 +491,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -499,7 +503,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_organisations**
-> Organisations get_organisations()
+> List[Organisation] get_organisations()
 
 
 
@@ -510,11 +514,11 @@ Retrieve all organizations details
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.organisations import Organisations
+from swaggyjenkins.models.organisation import Organisation
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -528,30 +532,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         api_response = api_instance.get_organisations()
+        print("The response of BlueOceanApi->get_organisations:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_organisations: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**Organisations**](Organisations.md)
+[**List[Organisation]**](Organisation.md)
 
 ### Authorization
 
@@ -561,7 +567,6 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -585,11 +590,11 @@ Retrieve pipeline details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline import Pipeline
+from swaggyjenkins.models.pipeline import Pipeline
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -603,32 +608,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline(organization, pipeline)
+        print("The response of BlueOceanApi->get_pipeline:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
 
 ### Return type
 
@@ -643,7 +650,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -656,7 +662,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_activities**
-> PipelineActivities get_pipeline_activities(organization, pipeline)
+> List[PipelineActivity] get_pipeline_activities(organization, pipeline)
 
 
 
@@ -667,11 +673,11 @@ Retrieve all activities details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_activities import PipelineActivities
+from swaggyjenkins.models.pipeline_activity import PipelineActivity
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -685,36 +691,38 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_activities(organization, pipeline)
+        print("The response of BlueOceanApi->get_pipeline_activities:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_activities: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
 
 ### Return type
 
-[**PipelineActivities**](PipelineActivities.md)
+[**List[PipelineActivity]**](PipelineActivity.md)
 
 ### Authorization
 
@@ -724,7 +732,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -748,11 +755,11 @@ Retrieve branch details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.branch_impl import BranchImpl
+from swaggyjenkins.models.branch_impl import BranchImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -766,34 +773,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    branch = "branch_example" # str | Name of the branch
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    branch = 'branch_example' # str | Name of the branch
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_branch(organization, pipeline, branch)
+        print("The response of BlueOceanApi->get_pipeline_branch:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_branch: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **branch** | **str**| Name of the branch |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **branch** | **str**| Name of the branch | 
 
 ### Return type
 
@@ -807,7 +816,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -831,11 +839,11 @@ Retrieve branch run details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_run import PipelineRun
+from swaggyjenkins.models.pipeline_run import PipelineRun
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -849,36 +857,38 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    branch = "branch_example" # str | Name of the branch
-    run = "run_example" # str | Name of the run
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    branch = 'branch_example' # str | Name of the branch
+    run = 'run_example' # str | Name of the run
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_branch_run(organization, pipeline, branch, run)
+        print("The response of BlueOceanApi->get_pipeline_branch_run:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_branch_run: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **branch** | **str**| Name of the branch |
- **run** | **str**| Name of the run |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **branch** | **str**| Name of the branch | 
+ **run** | **str**| Name of the run | 
 
 ### Return type
 
@@ -892,7 +902,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -916,11 +925,11 @@ Retrieve all branches details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.multibranch_pipeline import MultibranchPipeline
+from swaggyjenkins.models.multibranch_pipeline import MultibranchPipeline
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -934,32 +943,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_branches(organization, pipeline)
+        print("The response of BlueOceanApi->get_pipeline_branches:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_branches: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
 
 ### Return type
 
@@ -973,7 +984,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -997,11 +1007,11 @@ Retrieve pipeline folder for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_folder_impl import PipelineFolderImpl
+from swaggyjenkins.models.pipeline_folder_impl import PipelineFolderImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1015,32 +1025,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    folder = "folder_example" # str | Name of the folder
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    folder = 'folder_example' # str | Name of the folder
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_folder(organization, folder)
+        print("The response of BlueOceanApi->get_pipeline_folder:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_folder: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **folder** | **str**| Name of the folder |
+ **organization** | **str**| Name of the organization | 
+ **folder** | **str**| Name of the folder | 
 
 ### Return type
 
@@ -1054,7 +1066,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1078,11 +1089,11 @@ Retrieve pipeline details for an organization folder
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_impl import PipelineImpl
+from swaggyjenkins.models.pipeline_impl import PipelineImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1096,34 +1107,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    folder = "folder_example" # str | Name of the folder
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    folder = 'folder_example' # str | Name of the folder
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_folder_pipeline(organization, pipeline, folder)
+        print("The response of BlueOceanApi->get_pipeline_folder_pipeline:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_folder_pipeline: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **folder** | **str**| Name of the folder |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **folder** | **str**| Name of the folder | 
 
 ### Return type
 
@@ -1138,7 +1151,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1150,7 +1162,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_queue**
-> PipelineQueue get_pipeline_queue(organization, pipeline)
+> List[QueueItemImpl] get_pipeline_queue(organization, pipeline)
 
 
 
@@ -1161,11 +1173,11 @@ Retrieve queue details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_queue import PipelineQueue
+from swaggyjenkins.models.queue_item_impl import QueueItemImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1179,36 +1191,38 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_queue(organization, pipeline)
+        print("The response of BlueOceanApi->get_pipeline_queue:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_queue: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
 
 ### Return type
 
-[**PipelineQueue**](PipelineQueue.md)
+[**List[QueueItemImpl]**](QueueItemImpl.md)
 
 ### Authorization
 
@@ -1218,7 +1232,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1242,11 +1255,11 @@ Retrieve run details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_run import PipelineRun
+from swaggyjenkins.models.pipeline_run import PipelineRun
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1260,34 +1273,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_run(organization, pipeline, run)
+        print("The response of BlueOceanApi->get_pipeline_run:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
 
 ### Return type
 
@@ -1302,7 +1317,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1314,7 +1328,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_run_log**
-> str get_pipeline_run_log(organization, pipeline, run)
+> str get_pipeline_run_log(organization, pipeline, run, start=start, download=download)
 
 
 
@@ -1325,10 +1339,10 @@ Get log for a pipeline run
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1342,46 +1356,40 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
-    start = 1 # int | Start position of the log (optional)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
+    start = 56 # int | Start position of the log (optional)
     download = True # bool | Set to true in order to download the file, otherwise it's passed as a response body (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_pipeline_run_log(organization, pipeline, run)
-        pprint(api_response)
-    except swaggyjenkins.ApiException as e:
-        print("Exception when calling BlueOceanApi->get_pipeline_run_log: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_pipeline_run_log(organization, pipeline, run, start=start, download=download)
+        print("The response of BlueOceanApi->get_pipeline_run_log:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run_log: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
- **start** | **int**| Start position of the log | [optional]
- **download** | **bool**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional]
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
+ **start** | **int**| Start position of the log | [optional] 
+ **download** | **bool**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] 
 
 ### Return type
 
@@ -1395,7 +1403,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1419,11 +1426,11 @@ Retrieve run node details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_run_node import PipelineRunNode
+from swaggyjenkins.models.pipeline_run_node import PipelineRunNode
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1437,36 +1444,38 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
-    node = "node_example" # str | Name of the node
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
+    node = 'node_example' # str | Name of the node
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_run_node(organization, pipeline, run, node)
+        print("The response of BlueOceanApi->get_pipeline_run_node:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run_node: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
- **node** | **str**| Name of the node |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
+ **node** | **str**| Name of the node | 
 
 ### Return type
 
@@ -1480,7 +1489,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1504,11 +1512,11 @@ Retrieve run node details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_step_impl import PipelineStepImpl
+from swaggyjenkins.models.pipeline_step_impl import PipelineStepImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1522,38 +1530,40 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
-    node = "node_example" # str | Name of the node
-    step = "step_example" # str | Name of the step
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
+    node = 'node_example' # str | Name of the node
+    step = 'step_example' # str | Name of the step
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_run_node_step(organization, pipeline, run, node, step)
+        print("The response of BlueOceanApi->get_pipeline_run_node_step:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run_node_step: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
- **node** | **str**| Name of the node |
- **step** | **str**| Name of the step |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
+ **node** | **str**| Name of the node | 
+ **step** | **str**| Name of the step | 
 
 ### Return type
 
@@ -1567,7 +1577,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1591,10 +1600,10 @@ Get log for a pipeline run node step
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1608,38 +1617,40 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
-    node = "node_example" # str | Name of the node
-    step = "step_example" # str | Name of the step
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
+    node = 'node_example' # str | Name of the node
+    step = 'step_example' # str | Name of the step
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
+        print("The response of BlueOceanApi->get_pipeline_run_node_step_log:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run_node_step_log: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
- **node** | **str**| Name of the node |
- **step** | **str**| Name of the step |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
+ **node** | **str**| Name of the node | 
+ **step** | **str**| Name of the step | 
 
 ### Return type
 
@@ -1654,7 +1665,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -1666,7 +1676,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_run_node_steps**
-> PipelineRunNodeSteps get_pipeline_run_node_steps(organization, pipeline, run, node)
+> List[PipelineStepImpl] get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 
@@ -1677,11 +1687,11 @@ Retrieve run node steps details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_run_node_steps import PipelineRunNodeSteps
+from swaggyjenkins.models.pipeline_step_impl import PipelineStepImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1695,40 +1705,42 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
-    node = "node_example" # str | Name of the node
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
+    node = 'node_example' # str | Name of the node
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_run_node_steps(organization, pipeline, run, node)
+        print("The response of BlueOceanApi->get_pipeline_run_node_steps:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run_node_steps: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
- **node** | **str**| Name of the node |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
+ **node** | **str**| Name of the node | 
 
 ### Return type
 
-[**PipelineRunNodeSteps**](PipelineRunNodeSteps.md)
+[**List[PipelineStepImpl]**](PipelineStepImpl.md)
 
 ### Authorization
 
@@ -1738,7 +1750,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1751,7 +1762,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_run_nodes**
-> PipelineRunNodes get_pipeline_run_nodes(organization, pipeline, run)
+> List[PipelineRunNode] get_pipeline_run_nodes(organization, pipeline, run)
 
 
 
@@ -1762,11 +1773,11 @@ Retrieve run nodes details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_run_nodes import PipelineRunNodes
+from swaggyjenkins.models.pipeline_run_node import PipelineRunNode
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1780,38 +1791,40 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_run_nodes(organization, pipeline, run)
+        print("The response of BlueOceanApi->get_pipeline_run_nodes:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_run_nodes: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
 
 ### Return type
 
-[**PipelineRunNodes**](PipelineRunNodes.md)
+[**List[PipelineRunNode]**](PipelineRunNode.md)
 
 ### Authorization
 
@@ -1821,7 +1834,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1834,7 +1846,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline_runs**
-> PipelineRuns get_pipeline_runs(organization, pipeline)
+> List[PipelineRun] get_pipeline_runs(organization, pipeline)
 
 
 
@@ -1845,11 +1857,11 @@ Retrieve all runs details for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_runs import PipelineRuns
+from swaggyjenkins.models.pipeline_run import PipelineRun
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1863,36 +1875,38 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipeline_runs(organization, pipeline)
+        print("The response of BlueOceanApi->get_pipeline_runs:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipeline_runs: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
 
 ### Return type
 
-[**PipelineRuns**](PipelineRuns.md)
+[**List[PipelineRun]**](PipelineRun.md)
 
 ### Authorization
 
@@ -1902,7 +1916,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -1915,7 +1928,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipelines**
-> Pipelines get_pipelines(organization)
+> List[Pipeline] get_pipelines(organization)
 
 
 
@@ -1926,11 +1939,11 @@ Retrieve all pipelines details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipelines import Pipelines
+from swaggyjenkins.models.pipeline import Pipeline
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -1944,34 +1957,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_pipelines(organization)
+        print("The response of BlueOceanApi->get_pipelines:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_pipelines: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
+ **organization** | **str**| Name of the organization | 
 
 ### Return type
 
-[**Pipelines**](Pipelines.md)
+[**List[Pipeline]**](Pipeline.md)
 
 ### Authorization
 
@@ -1981,7 +1996,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2005,11 +2019,11 @@ Retrieve SCM details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.github_scm import GithubScm
+from swaggyjenkins.models.github_scm import GithubScm
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2023,32 +2037,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    scm = "scm_example" # str | Name of SCM
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    scm = 'scm_example' # str | Name of SCM
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_scm(organization, scm)
+        print("The response of BlueOceanApi->get_scm:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_scm: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **scm** | **str**| Name of SCM |
+ **organization** | **str**| Name of the organization | 
+ **scm** | **str**| Name of SCM | 
 
 ### Return type
 
@@ -2063,7 +2079,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -2075,7 +2090,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scm_organisation_repositories**
-> ScmOrganisations get_scm_organisation_repositories(organization, scm, scm_organisation)
+> List[GithubOrganization] get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id=credential_id, page_size=page_size, page_number=page_number)
 
 
 
@@ -2086,11 +2101,11 @@ Retrieve SCM organization repositories details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.scm_organisations import ScmOrganisations
+from swaggyjenkins.models.github_organization import GithubOrganization
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2104,52 +2119,46 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    scm = "scm_example" # str | Name of SCM
-    scm_organisation = "scmOrganisation_example" # str | Name of the SCM organization
-    credential_id = "credentialId_example" # str | Credential ID (optional)
-    page_size = 1 # int | Number of items in a page (optional)
-    page_number = 1 # int | Page number (optional)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    scm = 'scm_example' # str | Name of SCM
+    scm_organisation = 'scm_organisation_example' # str | Name of the SCM organization
+    credential_id = 'credential_id_example' # str | Credential ID (optional)
+    page_size = 56 # int | Number of items in a page (optional)
+    page_number = 56 # int | Page number (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_scm_organisation_repositories(organization, scm, scm_organisation)
-        pprint(api_response)
-    except swaggyjenkins.ApiException as e:
-        print("Exception when calling BlueOceanApi->get_scm_organisation_repositories: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id=credential_id, page_size=page_size, page_number=page_number)
+        print("The response of BlueOceanApi->get_scm_organisation_repositories:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_scm_organisation_repositories: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **scm** | **str**| Name of SCM |
- **scm_organisation** | **str**| Name of the SCM organization |
- **credential_id** | **str**| Credential ID | [optional]
- **page_size** | **int**| Number of items in a page | [optional]
- **page_number** | **int**| Page number | [optional]
+ **organization** | **str**| Name of the organization | 
+ **scm** | **str**| Name of SCM | 
+ **scm_organisation** | **str**| Name of the SCM organization | 
+ **credential_id** | **str**| Credential ID | [optional] 
+ **page_size** | **int**| Number of items in a page | [optional] 
+ **page_number** | **int**| Page number | [optional] 
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -2159,7 +2168,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2172,7 +2180,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scm_organisation_repository**
-> ScmOrganisations get_scm_organisation_repository(organization, scm, scm_organisation, repository)
+> List[GithubOrganization] get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id=credential_id)
 
 
 
@@ -2183,11 +2191,11 @@ Retrieve SCM organization repository details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.scm_organisations import ScmOrganisations
+from swaggyjenkins.models.github_organization import GithubOrganization
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2201,50 +2209,44 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    scm = "scm_example" # str | Name of SCM
-    scm_organisation = "scmOrganisation_example" # str | Name of the SCM organization
-    repository = "repository_example" # str | Name of the SCM repository
-    credential_id = "credentialId_example" # str | Credential ID (optional)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    scm = 'scm_example' # str | Name of SCM
+    scm_organisation = 'scm_organisation_example' # str | Name of the SCM organization
+    repository = 'repository_example' # str | Name of the SCM repository
+    credential_id = 'credential_id_example' # str | Credential ID (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_scm_organisation_repository(organization, scm, scm_organisation, repository)
-        pprint(api_response)
-    except swaggyjenkins.ApiException as e:
-        print("Exception when calling BlueOceanApi->get_scm_organisation_repository: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id=credential_id)
+        print("The response of BlueOceanApi->get_scm_organisation_repository:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_scm_organisation_repository: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **scm** | **str**| Name of SCM |
- **scm_organisation** | **str**| Name of the SCM organization |
- **repository** | **str**| Name of the SCM repository |
- **credential_id** | **str**| Credential ID | [optional]
+ **organization** | **str**| Name of the organization | 
+ **scm** | **str**| Name of SCM | 
+ **scm_organisation** | **str**| Name of the SCM organization | 
+ **repository** | **str**| Name of the SCM repository | 
+ **credential_id** | **str**| Credential ID | [optional] 
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -2254,7 +2256,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2267,7 +2268,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_scm_organisations**
-> ScmOrganisations get_scm_organisations(organization, scm)
+> List[GithubOrganization] get_scm_organisations(organization, scm, credential_id=credential_id)
 
 
 
@@ -2278,11 +2279,11 @@ Retrieve SCM organizations details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.scm_organisations import ScmOrganisations
+from swaggyjenkins.models.github_organization import GithubOrganization
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2296,46 +2297,40 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    scm = "scm_example" # str | Name of SCM
-    credential_id = "credentialId_example" # str | Credential ID (optional)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    scm = 'scm_example' # str | Name of SCM
+    credential_id = 'credential_id_example' # str | Credential ID (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_scm_organisations(organization, scm)
-        pprint(api_response)
-    except swaggyjenkins.ApiException as e:
-        print("Exception when calling BlueOceanApi->get_scm_organisations: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.get_scm_organisations(organization, scm, credential_id=credential_id)
+        print("The response of BlueOceanApi->get_scm_organisations:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_scm_organisations: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **scm** | **str**| Name of SCM |
- **credential_id** | **str**| Credential ID | [optional]
+ **organization** | **str**| Name of the organization | 
+ **scm** | **str**| Name of SCM | 
+ **credential_id** | **str**| Credential ID | [optional] 
 
 ### Return type
 
-[**ScmOrganisations**](ScmOrganisations.md)
+[**List[GithubOrganization]**](GithubOrganization.md)
 
 ### Authorization
 
@@ -2345,7 +2340,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2369,11 +2363,11 @@ Retrieve user details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.user import User
+from swaggyjenkins.models.user import User
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2387,32 +2381,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    user = "user_example" # str | Name of the user
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    user = 'user_example' # str | Name of the user
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_user(organization, user)
+        print("The response of BlueOceanApi->get_user:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_user: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **user** | **str**| Name of the user |
+ **organization** | **str**| Name of the organization | 
+ **user** | **str**| Name of the user | 
 
 ### Return type
 
@@ -2427,7 +2423,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -2439,7 +2434,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_user_favorites**
-> UserFavorites get_user_favorites(user)
+> List[FavoriteImpl] get_user_favorites(user)
 
 
 
@@ -2450,11 +2445,11 @@ Retrieve user favorites details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.user_favorites import UserFavorites
+from swaggyjenkins.models.favorite_impl import FavoriteImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2468,34 +2463,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    user = "user_example" # str | Name of the user
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    user = 'user_example' # str | Name of the user
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_user_favorites(user)
+        print("The response of BlueOceanApi->get_user_favorites:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_user_favorites: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str**| Name of the user |
+ **user** | **str**| Name of the user | 
 
 ### Return type
 
-[**UserFavorites**](UserFavorites.md)
+[**List[FavoriteImpl]**](FavoriteImpl.md)
 
 ### Authorization
 
@@ -2505,7 +2502,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2529,11 +2525,11 @@ Retrieve users details for an organization
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.user import User
+from swaggyjenkins.models.user import User
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2547,30 +2543,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_users(organization)
+        print("The response of BlueOceanApi->get_users:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->get_users: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
+ **organization** | **str**| Name of the organization | 
 
 ### Return type
 
@@ -2584,7 +2582,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2608,11 +2605,11 @@ Replay an organization pipeline run
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.queue_item_impl import QueueItemImpl
+from swaggyjenkins.models.queue_item_impl import QueueItemImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2626,34 +2623,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.post_pipeline_run(organization, pipeline, run)
+        print("The response of BlueOceanApi->post_pipeline_run:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->post_pipeline_run: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
 
 ### Return type
 
@@ -2667,7 +2666,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2691,11 +2689,11 @@ Start a build for an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.queue_item_impl import QueueItemImpl
+from swaggyjenkins.models.queue_item_impl import QueueItemImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2709,32 +2707,34 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.post_pipeline_runs(organization, pipeline)
+        print("The response of BlueOceanApi->post_pipeline_runs:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->post_pipeline_runs: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
 
 ### Return type
 
@@ -2748,7 +2748,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2772,11 +2771,11 @@ Favorite/unfavorite a pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.favorite_impl import FavoriteImpl
+from swaggyjenkins.models.favorite_impl import FavoriteImpl
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2790,34 +2789,36 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
     body = True # bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.put_pipeline_favorite(organization, pipeline, body)
+        print("The response of BlueOceanApi->put_pipeline_favorite:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->put_pipeline_favorite: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **body** | **bool**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -2832,7 +2833,6 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
 
 | Status code | Description | Response headers |
@@ -2844,7 +2844,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_pipeline_run**
-> PipelineRun put_pipeline_run(organization, pipeline, run)
+> PipelineRun put_pipeline_run(organization, pipeline, run, blocking=blocking, time_out_in_secs=time_out_in_secs)
 
 
 
@@ -2855,11 +2855,11 @@ Stop a build of an organization pipeline
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
-from swaggyjenkins.model.pipeline_run import PipelineRun
+from swaggyjenkins.models.pipeline_run import PipelineRun
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2873,46 +2873,40 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    organization = "organization_example" # str | Name of the organization
-    pipeline = "pipeline_example" # str | Name of the pipeline
-    run = "run_example" # str | Name of the run
-    blocking = "blocking_example" # str | Set to true to make blocking stop, default: false (optional)
-    time_out_in_secs = 1 # int | Timeout in seconds, default: 10 seconds (optional)
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    organization = 'organization_example' # str | Name of the organization
+    pipeline = 'pipeline_example' # str | Name of the pipeline
+    run = 'run_example' # str | Name of the run
+    blocking = 'blocking_example' # str | Set to true to make blocking stop, default: false (optional)
+    time_out_in_secs = 56 # int | Timeout in seconds, default: 10 seconds (optional)
 
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.put_pipeline_run(organization, pipeline, run)
-        pprint(api_response)
-    except swaggyjenkins.ApiException as e:
-        print("Exception when calling BlueOceanApi->put_pipeline_run: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         api_response = api_instance.put_pipeline_run(organization, pipeline, run, blocking=blocking, time_out_in_secs=time_out_in_secs)
+        print("The response of BlueOceanApi->put_pipeline_run:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->put_pipeline_run: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization** | **str**| Name of the organization |
- **pipeline** | **str**| Name of the pipeline |
- **run** | **str**| Name of the run |
- **blocking** | **str**| Set to true to make blocking stop, default: false | [optional]
- **time_out_in_secs** | **int**| Timeout in seconds, default: 10 seconds | [optional]
+ **organization** | **str**| Name of the organization | 
+ **pipeline** | **str**| Name of the pipeline | 
+ **run** | **str**| Name of the run | 
+ **blocking** | **str**| Set to true to make blocking stop, default: false | [optional] 
+ **time_out_in_secs** | **int**| Timeout in seconds, default: 10 seconds | [optional] 
 
 ### Return type
 
@@ -2926,7 +2920,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -2950,10 +2943,10 @@ Search for any resource details
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -2967,30 +2960,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    q = "q_example" # str | Query string
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    q = 'q_example' # str | Query string
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.search(q)
+        print("The response of BlueOceanApi->search:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->search: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **str**| Query string |
+ **q** | **str**| Query string | 
 
 ### Return type
 
@@ -3004,7 +2999,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 
@@ -3028,10 +3022,10 @@ Get classes details
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import blue_ocean_api
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -3045,30 +3039,32 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = blue_ocean_api.BlueOceanApi(api_client)
-    q = "q_example" # str | Query string containing an array of class names
+    api_instance = swaggyjenkins.BlueOceanApi(api_client)
+    q = 'q_example' # str | Query string containing an array of class names
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.search_classes(q)
+        print("The response of BlueOceanApi->search_classes:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BlueOceanApi->search_classes: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **q** | **str**| Query string containing an array of class names |
+ **q** | **str**| Query string containing an array of class names | 
 
 ### Return type
 
@@ -3082,7 +3078,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 

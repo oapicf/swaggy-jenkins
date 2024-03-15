@@ -24,19 +24,19 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class SwapSpaceMonitorMemoryUsage2(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("availablePhysicalMemory") val availablePhysicalMemory: kotlin.Int? = null,
+    @get:JsonProperty("availablePhysicalMemory") val availablePhysicalMemory: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("availableSwapSpace") val availableSwapSpace: kotlin.Int? = null,
+    @get:JsonProperty("availableSwapSpace") val availableSwapSpace: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("totalPhysicalMemory") val totalPhysicalMemory: kotlin.Int? = null,
+    @get:JsonProperty("totalPhysicalMemory") val totalPhysicalMemory: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("totalSwapSpace") val totalSwapSpace: kotlin.Int? = null
+    @get:JsonProperty("totalSwapSpace") val totalSwapSpace: kotlin.Int? = null
 ) {
 
 }

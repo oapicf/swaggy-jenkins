@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.QueueBlockedItem;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,15 +22,13 @@ import javax.annotation.Generated;
  * Queue
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Queue {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("items")
   @Valid
-  private List<QueueBlockedItem> items = null;
+  private List<@Valid QueueBlockedItem> items;
 
   public Queue propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -41,7 +40,8 @@ public class Queue {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -50,7 +50,7 @@ public class Queue {
     this.propertyClass = propertyClass;
   }
 
-  public Queue items(List<QueueBlockedItem> items) {
+  public Queue items(List<@Valid QueueBlockedItem> items) {
     this.items = items;
     return this;
   }
@@ -68,12 +68,13 @@ public class Queue {
    * @return items
   */
   @Valid 
-  @Schema(name = "items", required = false)
-  public List<QueueBlockedItem> getItems() {
+  @Schema(name = "items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("items")
+  public List<@Valid QueueBlockedItem> getItems() {
     return items;
   }
 
-  public void setItems(List<QueueBlockedItem> items) {
+  public void setItems(List<@Valid QueueBlockedItem> items) {
     this.items = items;
   }
 

@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pipeline_runartifacts import PipelineRunartifacts
 from openapi_server import util
 
@@ -115,7 +112,7 @@ class PipelineRun(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineRun.
 
 
@@ -125,7 +122,7 @@ class PipelineRun(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineRun.
 
 
@@ -136,7 +133,7 @@ class PipelineRun(Model):
         self.__class = _class
 
     @property
-    def artifacts(self):
+    def artifacts(self) -> List[PipelineRunartifacts]:
         """Gets the artifacts of this PipelineRun.
 
 
@@ -146,7 +143,7 @@ class PipelineRun(Model):
         return self._artifacts
 
     @artifacts.setter
-    def artifacts(self, artifacts):
+    def artifacts(self, artifacts: List[PipelineRunartifacts]):
         """Sets the artifacts of this PipelineRun.
 
 
@@ -157,7 +154,7 @@ class PipelineRun(Model):
         self._artifacts = artifacts
 
     @property
-    def duration_in_millis(self):
+    def duration_in_millis(self) -> int:
         """Gets the duration_in_millis of this PipelineRun.
 
 
@@ -167,7 +164,7 @@ class PipelineRun(Model):
         return self._duration_in_millis
 
     @duration_in_millis.setter
-    def duration_in_millis(self, duration_in_millis):
+    def duration_in_millis(self, duration_in_millis: int):
         """Sets the duration_in_millis of this PipelineRun.
 
 
@@ -178,7 +175,7 @@ class PipelineRun(Model):
         self._duration_in_millis = duration_in_millis
 
     @property
-    def estimated_duration_in_millis(self):
+    def estimated_duration_in_millis(self) -> int:
         """Gets the estimated_duration_in_millis of this PipelineRun.
 
 
@@ -188,7 +185,7 @@ class PipelineRun(Model):
         return self._estimated_duration_in_millis
 
     @estimated_duration_in_millis.setter
-    def estimated_duration_in_millis(self, estimated_duration_in_millis):
+    def estimated_duration_in_millis(self, estimated_duration_in_millis: int):
         """Sets the estimated_duration_in_millis of this PipelineRun.
 
 
@@ -199,7 +196,7 @@ class PipelineRun(Model):
         self._estimated_duration_in_millis = estimated_duration_in_millis
 
     @property
-    def en_queue_time(self):
+    def en_queue_time(self) -> str:
         """Gets the en_queue_time of this PipelineRun.
 
 
@@ -209,7 +206,7 @@ class PipelineRun(Model):
         return self._en_queue_time
 
     @en_queue_time.setter
-    def en_queue_time(self, en_queue_time):
+    def en_queue_time(self, en_queue_time: str):
         """Sets the en_queue_time of this PipelineRun.
 
 
@@ -220,7 +217,7 @@ class PipelineRun(Model):
         self._en_queue_time = en_queue_time
 
     @property
-    def end_time(self):
+    def end_time(self) -> str:
         """Gets the end_time of this PipelineRun.
 
 
@@ -230,7 +227,7 @@ class PipelineRun(Model):
         return self._end_time
 
     @end_time.setter
-    def end_time(self, end_time):
+    def end_time(self, end_time: str):
         """Sets the end_time of this PipelineRun.
 
 
@@ -241,7 +238,7 @@ class PipelineRun(Model):
         self._end_time = end_time
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this PipelineRun.
 
 
@@ -251,7 +248,7 @@ class PipelineRun(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this PipelineRun.
 
 
@@ -262,7 +259,7 @@ class PipelineRun(Model):
         self._id = id
 
     @property
-    def organization(self):
+    def organization(self) -> str:
         """Gets the organization of this PipelineRun.
 
 
@@ -272,7 +269,7 @@ class PipelineRun(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization):
+    def organization(self, organization: str):
         """Sets the organization of this PipelineRun.
 
 
@@ -283,7 +280,7 @@ class PipelineRun(Model):
         self._organization = organization
 
     @property
-    def pipeline(self):
+    def pipeline(self) -> str:
         """Gets the pipeline of this PipelineRun.
 
 
@@ -293,7 +290,7 @@ class PipelineRun(Model):
         return self._pipeline
 
     @pipeline.setter
-    def pipeline(self, pipeline):
+    def pipeline(self, pipeline: str):
         """Sets the pipeline of this PipelineRun.
 
 
@@ -304,7 +301,7 @@ class PipelineRun(Model):
         self._pipeline = pipeline
 
     @property
-    def result(self):
+    def result(self) -> str:
         """Gets the result of this PipelineRun.
 
 
@@ -314,7 +311,7 @@ class PipelineRun(Model):
         return self._result
 
     @result.setter
-    def result(self, result):
+    def result(self, result: str):
         """Sets the result of this PipelineRun.
 
 
@@ -325,7 +322,7 @@ class PipelineRun(Model):
         self._result = result
 
     @property
-    def run_summary(self):
+    def run_summary(self) -> str:
         """Gets the run_summary of this PipelineRun.
 
 
@@ -335,7 +332,7 @@ class PipelineRun(Model):
         return self._run_summary
 
     @run_summary.setter
-    def run_summary(self, run_summary):
+    def run_summary(self, run_summary: str):
         """Sets the run_summary of this PipelineRun.
 
 
@@ -346,7 +343,7 @@ class PipelineRun(Model):
         self._run_summary = run_summary
 
     @property
-    def start_time(self):
+    def start_time(self) -> str:
         """Gets the start_time of this PipelineRun.
 
 
@@ -356,7 +353,7 @@ class PipelineRun(Model):
         return self._start_time
 
     @start_time.setter
-    def start_time(self, start_time):
+    def start_time(self, start_time: str):
         """Sets the start_time of this PipelineRun.
 
 
@@ -367,7 +364,7 @@ class PipelineRun(Model):
         self._start_time = start_time
 
     @property
-    def state(self):
+    def state(self) -> str:
         """Gets the state of this PipelineRun.
 
 
@@ -377,7 +374,7 @@ class PipelineRun(Model):
         return self._state
 
     @state.setter
-    def state(self, state):
+    def state(self, state: str):
         """Sets the state of this PipelineRun.
 
 
@@ -388,7 +385,7 @@ class PipelineRun(Model):
         self._state = state
 
     @property
-    def type(self):
+    def type(self) -> str:
         """Gets the type of this PipelineRun.
 
 
@@ -398,7 +395,7 @@ class PipelineRun(Model):
         return self._type
 
     @type.setter
-    def type(self, type):
+    def type(self, type: str):
         """Sets the type of this PipelineRun.
 
 
@@ -409,7 +406,7 @@ class PipelineRun(Model):
         self._type = type
 
     @property
-    def commit_id(self):
+    def commit_id(self) -> str:
         """Gets the commit_id of this PipelineRun.
 
 
@@ -419,7 +416,7 @@ class PipelineRun(Model):
         return self._commit_id
 
     @commit_id.setter
-    def commit_id(self, commit_id):
+    def commit_id(self, commit_id: str):
         """Sets the commit_id of this PipelineRun.
 
 

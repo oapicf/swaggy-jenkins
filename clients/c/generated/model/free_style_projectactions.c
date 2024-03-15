@@ -55,7 +55,7 @@ free_style_projectactions_t *free_style_projectactions_parseFromJSON(cJSON *free
     // free_style_projectactions->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_projectactionsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ free_style_projectactions_t *free_style_projectactions_parseFromJSON(cJSON *free
 
 
     free_style_projectactions_local_var = free_style_projectactions_create (
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return free_style_projectactions_local_var;

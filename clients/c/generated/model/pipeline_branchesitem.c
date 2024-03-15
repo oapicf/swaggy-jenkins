@@ -171,7 +171,7 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     // pipeline_branchesitem->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -189,7 +189,7 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     // pipeline_branchesitem->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -213,7 +213,7 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     // pipeline_branchesitem->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemJSON, "organization");
     if (organization) { 
-    if(!cJSON_IsString(organization))
+    if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
     goto end; //String
     }
@@ -237,7 +237,7 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     // pipeline_branchesitem->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -245,15 +245,15 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
 
 
     pipeline_branchesitem_local_var = pipeline_branchesitem_create (
-        display_name ? strdup(display_name->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        name ? strdup(name->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         weather_score ? weather_score->valuedouble : 0,
         latest_run ? latest_run_local_nonprim : NULL,
-        organization ? strdup(organization->valuestring) : NULL,
+        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
         pull_request ? pull_request_local_nonprim : NULL,
         total_number_of_pull_requests ? total_number_of_pull_requests->valuedouble : 0,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_branchesitem_local_var;

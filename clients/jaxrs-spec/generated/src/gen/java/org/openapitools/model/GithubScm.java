@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubScm")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubScm   {
-  
   private @Valid String propertyClass;
   private @Valid GithubScmlinks links;
   private @Valid String credentialId;
@@ -44,7 +43,7 @@ public class GithubScm   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public GithubScm links(GithubScmlinks links) {
     this.links = links;
@@ -63,7 +62,7 @@ public class GithubScm   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public GithubScm credentialId(String credentialId) {
     this.credentialId = credentialId;
@@ -82,7 +81,7 @@ public class GithubScm   {
     this.credentialId = credentialId;
   }
 
-/**
+  /**
    **/
   public GithubScm id(String id) {
     this.id = id;
@@ -101,7 +100,7 @@ public class GithubScm   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public GithubScm uri(String uri) {
     this.uri = uri;

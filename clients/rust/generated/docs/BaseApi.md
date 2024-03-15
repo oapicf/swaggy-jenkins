@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## get_crumb
 
-> crate::models::DefaultCrumbIssuer get_crumb()
+> models::DefaultCrumbIssuer get_crumb()
 
 
 Retrieve CSRF protection token
@@ -21,7 +21,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
+[**models::DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
 
 ### Authorization
 

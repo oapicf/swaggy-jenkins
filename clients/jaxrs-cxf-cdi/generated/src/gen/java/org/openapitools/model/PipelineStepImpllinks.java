@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -20,7 +21,6 @@ public class PipelineStepImpllinks   {
   private Link actions;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -86,9 +86,9 @@ public class PipelineStepImpllinks   {
       return false;
     }
     PipelineStepImpllinks pipelineStepImpllinks = (PipelineStepImpllinks) o;
-    return Objects.equals(self, pipelineStepImpllinks.self) &&
-        Objects.equals(actions, pipelineStepImpllinks.actions) &&
-        Objects.equals(propertyClass, pipelineStepImpllinks.propertyClass);
+    return Objects.equals(this.self, pipelineStepImpllinks.self) &&
+        Objects.equals(this.actions, pipelineStepImpllinks.actions) &&
+        Objects.equals(this.propertyClass, pipelineStepImpllinks.propertyClass);
   }
 
   @Override

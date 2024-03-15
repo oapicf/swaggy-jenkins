@@ -5,16 +5,18 @@ import apimodels.FreeStyleProject;
 import apimodels.HudsonassignedLabels;
 import apimodels.UnlabeledLoadStatistics;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * Hudson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Hudson   {
   @JsonProperty("_class")
@@ -24,7 +26,7 @@ public class Hudson   {
   @JsonProperty("assignedLabels")
   @Valid
 
-  private List<HudsonassignedLabels> assignedLabels = null;
+  private List<@Valid HudsonassignedLabels> assignedLabels = null;
 
   @JsonProperty("mode")
   
@@ -49,7 +51,7 @@ public class Hudson   {
   @JsonProperty("jobs")
   @Valid
 
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs = null;
 
   @JsonProperty("primaryView")
   @Valid
@@ -80,7 +82,7 @@ public class Hudson   {
   @JsonProperty("views")
   @Valid
 
-  private List<AllView> views = null;
+  private List<@Valid AllView> views = null;
 
   public Hudson propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -99,16 +101,16 @@ public class Hudson   {
     this.propertyClass = propertyClass;
   }
 
-  public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public Hudson assignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
     return this;
   }
 
   public Hudson addAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
-    if (assignedLabels == null) {
-      assignedLabels = new ArrayList<>();
+    if (this.assignedLabels == null) {
+      this.assignedLabels = new ArrayList<>();
     }
-    assignedLabels.add(assignedLabelsItem);
+    this.assignedLabels.add(assignedLabelsItem);
     return this;
   }
 
@@ -116,11 +118,11 @@ public class Hudson   {
    * Get assignedLabels
    * @return assignedLabels
   **/
-  public List<HudsonassignedLabels> getAssignedLabels() {
+  public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
 
-  public void setAssignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public void setAssignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
 
@@ -209,16 +211,16 @@ public class Hudson   {
     this.description = description;
   }
 
-  public Hudson jobs(List<FreeStyleProject> jobs) {
+  public Hudson jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
 
   public Hudson addJobsItem(FreeStyleProject jobsItem) {
-    if (jobs == null) {
-      jobs = new ArrayList<>();
+    if (this.jobs == null) {
+      this.jobs = new ArrayList<>();
     }
-    jobs.add(jobsItem);
+    this.jobs.add(jobsItem);
     return this;
   }
 
@@ -226,11 +228,11 @@ public class Hudson   {
    * Get jobs
    * @return jobs
   **/
-  public List<FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -336,16 +338,16 @@ public class Hudson   {
     this.useSecurity = useSecurity;
   }
 
-  public Hudson views(List<AllView> views) {
+  public Hudson views(List<@Valid AllView> views) {
     this.views = views;
     return this;
   }
 
   public Hudson addViewsItem(AllView viewsItem) {
-    if (views == null) {
-      views = new ArrayList<>();
+    if (this.views == null) {
+      this.views = new ArrayList<>();
     }
-    views.add(viewsItem);
+    this.views.add(viewsItem);
     return this;
   }
 
@@ -353,11 +355,11 @@ public class Hudson   {
    * Get views
    * @return views
   **/
-  public List<AllView> getViews() {
+  public List<@Valid AllView> getViews() {
     return views;
   }
 
-  public void setViews(List<AllView> views) {
+  public void setViews(List<@Valid AllView> views) {
     this.views = views;
   }
 

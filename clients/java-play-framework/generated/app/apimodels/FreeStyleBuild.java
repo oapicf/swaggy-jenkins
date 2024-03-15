@@ -3,16 +3,18 @@ package apimodels;
 import apimodels.CauseAction;
 import apimodels.EmptyChangeLogSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * FreeStyleBuild
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class FreeStyleBuild   {
   @JsonProperty("_class")
@@ -30,7 +32,7 @@ public class FreeStyleBuild   {
   @JsonProperty("actions")
   @Valid
 
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions = null;
 
   @JsonProperty("building")
   
@@ -140,16 +142,16 @@ public class FreeStyleBuild   {
     this.url = url;
   }
 
-  public FreeStyleBuild actions(List<CauseAction> actions) {
+  public FreeStyleBuild actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
 
   public FreeStyleBuild addActionsItem(CauseAction actionsItem) {
-    if (actions == null) {
-      actions = new ArrayList<>();
+    if (this.actions == null) {
+      this.actions = new ArrayList<>();
     }
-    actions.add(actionsItem);
+    this.actions.add(actionsItem);
     return this;
   }
 
@@ -157,11 +159,11 @@ public class FreeStyleBuild   {
    * Get actions
    * @return actions
   **/
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 

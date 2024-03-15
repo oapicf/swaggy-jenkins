@@ -10,6 +10,6 @@ namespace app\Models;
 class UnlabeledLoadStatistics {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

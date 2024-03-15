@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -58,7 +55,7 @@ class GithubRepositorypermissions(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def admin(self):
+    def admin(self) -> bool:
         """Gets the admin of this GithubRepositorypermissions.
 
 
@@ -68,7 +65,7 @@ class GithubRepositorypermissions(Model):
         return self._admin
 
     @admin.setter
-    def admin(self, admin):
+    def admin(self, admin: bool):
         """Sets the admin of this GithubRepositorypermissions.
 
 
@@ -79,7 +76,7 @@ class GithubRepositorypermissions(Model):
         self._admin = admin
 
     @property
-    def push(self):
+    def push(self) -> bool:
         """Gets the push of this GithubRepositorypermissions.
 
 
@@ -89,7 +86,7 @@ class GithubRepositorypermissions(Model):
         return self._push
 
     @push.setter
-    def push(self, push):
+    def push(self, push: bool):
         """Sets the push of this GithubRepositorypermissions.
 
 
@@ -100,7 +97,7 @@ class GithubRepositorypermissions(Model):
         self._push = push
 
     @property
-    def pull(self):
+    def pull(self) -> bool:
         """Gets the pull of this GithubRepositorypermissions.
 
 
@@ -110,7 +107,7 @@ class GithubRepositorypermissions(Model):
         return self._pull
 
     @pull.setter
-    def pull(self, pull):
+    def pull(self, pull: bool):
         """Sets the pull of this GithubRepositorypermissions.
 
 
@@ -121,7 +118,7 @@ class GithubRepositorypermissions(Model):
         self._pull = pull
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubRepositorypermissions.
 
 
@@ -131,7 +128,7 @@ class GithubRepositorypermissions(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubRepositorypermissions.
 
 

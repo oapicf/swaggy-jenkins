@@ -7,16 +7,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseUserIdCause;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CauseAction   {
   
   private String propertyClass;
-  private List<CauseUserIdCause> causes = new ArrayList<>();
+  private List<@Valid CauseUserIdCause> causes;
 
   /**
    **/
@@ -35,10 +37,10 @@ public class CauseAction   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("causes")
-  public List<CauseUserIdCause> getCauses() {
+  public List<@Valid CauseUserIdCause> getCauses() {
     return causes;
   }
-  public void setCauses(List<CauseUserIdCause> causes) {
+  public void setCauses(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
   }
 
@@ -52,8 +54,8 @@ public class CauseAction   {
       return false;
     }
     CauseAction causeAction = (CauseAction) o;
-    return Objects.equals(propertyClass, causeAction.propertyClass) &&
-        Objects.equals(causes, causeAction.causes);
+    return Objects.equals(this.propertyClass, causeAction.propertyClass) &&
+        Objects.equals(this.causes, causeAction.causes);
   }
 
   @Override

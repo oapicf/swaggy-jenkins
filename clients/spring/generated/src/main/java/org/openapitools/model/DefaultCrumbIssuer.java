@@ -18,16 +18,13 @@ import javax.annotation.Generated;
  * DefaultCrumbIssuer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DefaultCrumbIssuer {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("crumb")
   private String crumb;
 
-  @JsonProperty("crumbRequestField")
   private String crumbRequestField;
 
   public DefaultCrumbIssuer propertyClass(String propertyClass) {
@@ -40,7 +37,8 @@ public class DefaultCrumbIssuer {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -59,7 +57,8 @@ public class DefaultCrumbIssuer {
    * @return crumb
   */
   
-  @Schema(name = "crumb", required = false)
+  @Schema(name = "crumb", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("crumb")
   public String getCrumb() {
     return crumb;
   }
@@ -78,7 +77,8 @@ public class DefaultCrumbIssuer {
    * @return crumbRequestField
   */
   
-  @Schema(name = "crumbRequestField", required = false)
+  @Schema(name = "crumbRequestField", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("crumbRequestField")
   public String getCrumbRequestField() {
     return crumbRequestField;
   }

@@ -3,6 +3,7 @@ package org.openapitools.model;
 import org.openapitools.model.GithubOrganizationlinks;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -91,6 +92,25 @@ public class GithubOrganization  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubOrganization githubOrganization = (GithubOrganization) o;
+    return Objects.equals(this.propertyClass, githubOrganization.propertyClass) &&
+        Objects.equals(this.links, githubOrganization.links) &&
+        Objects.equals(this.jenkinsOrganizationPipeline, githubOrganization.jenkinsOrganizationPipeline) &&
+        Objects.equals(this.name, githubOrganization.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, jenkinsOrganizationPipeline, name);
+  }
 
   @Override
   public String toString() {

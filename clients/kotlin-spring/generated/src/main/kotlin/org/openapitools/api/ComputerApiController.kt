@@ -36,7 +36,7 @@ class ComputerApiController() {
     @Operation(
         summary = "",
         operationId = "getComputer",
-        description = "Retrieve computer details",
+        description = """Retrieve computer details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved computer details", content = [Content(schema = Schema(implementation = ComputerSet::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

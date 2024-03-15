@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineFolderImpl   {
   
   private String propertyClass;
@@ -114,13 +115,13 @@ public class PipelineFolderImpl   {
       return false;
     }
     PipelineFolderImpl pipelineFolderImpl = (PipelineFolderImpl) o;
-    return Objects.equals(propertyClass, pipelineFolderImpl.propertyClass) &&
-        Objects.equals(displayName, pipelineFolderImpl.displayName) &&
-        Objects.equals(fullName, pipelineFolderImpl.fullName) &&
-        Objects.equals(name, pipelineFolderImpl.name) &&
-        Objects.equals(organization, pipelineFolderImpl.organization) &&
-        Objects.equals(numberOfFolders, pipelineFolderImpl.numberOfFolders) &&
-        Objects.equals(numberOfPipelines, pipelineFolderImpl.numberOfPipelines);
+    return Objects.equals(this.propertyClass, pipelineFolderImpl.propertyClass) &&
+        Objects.equals(this.displayName, pipelineFolderImpl.displayName) &&
+        Objects.equals(this.fullName, pipelineFolderImpl.fullName) &&
+        Objects.equals(this.name, pipelineFolderImpl.name) &&
+        Objects.equals(this.organization, pipelineFolderImpl.organization) &&
+        Objects.equals(this.numberOfFolders, pipelineFolderImpl.numberOfFolders) &&
+        Objects.equals(this.numberOfPipelines, pipelineFolderImpl.numberOfPipelines);
   }
 
   @Override

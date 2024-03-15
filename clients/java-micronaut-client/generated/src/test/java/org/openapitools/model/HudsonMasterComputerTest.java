@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
@@ -8,7 +9,6 @@ import org.openapitools.model.Label1;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-
 
 /**
  * Model tests for HudsonMasterComputer

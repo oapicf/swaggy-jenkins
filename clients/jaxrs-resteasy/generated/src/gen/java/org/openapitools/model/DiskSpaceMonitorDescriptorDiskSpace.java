@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   
   private String propertyClass;
@@ -75,10 +77,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
       return false;
     }
     DiskSpaceMonitorDescriptorDiskSpace diskSpaceMonitorDescriptorDiskSpace = (DiskSpaceMonitorDescriptorDiskSpace) o;
-    return Objects.equals(propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
-        Objects.equals(timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
-        Objects.equals(path, diskSpaceMonitorDescriptorDiskSpace.path) &&
-        Objects.equals(size, diskSpaceMonitorDescriptorDiskSpace.size);
+    return Objects.equals(this.propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
+        Objects.equals(this.timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
+        Objects.equals(this.path, diskSpaceMonitorDescriptorDiskSpace.path) &&
+        Objects.equals(this.size, diskSpaceMonitorDescriptorDiskSpace.size);
   }
 
   @Override

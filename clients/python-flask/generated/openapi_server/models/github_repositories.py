@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.github_repositorieslinks import GithubRepositorieslinks
 from openapi_server.models.github_repository import GithubRepository
 from openapi_server import util
@@ -72,7 +69,7 @@ class GithubRepositories(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubRepositories.
 
 
@@ -82,7 +79,7 @@ class GithubRepositories(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubRepositories.
 
 
@@ -93,7 +90,7 @@ class GithubRepositories(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> GithubRepositorieslinks:
         """Gets the links of this GithubRepositories.
 
 
@@ -103,7 +100,7 @@ class GithubRepositories(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: GithubRepositorieslinks):
         """Sets the links of this GithubRepositories.
 
 
@@ -114,7 +111,7 @@ class GithubRepositories(Model):
         self._links = links
 
     @property
-    def items(self):
+    def items(self) -> List[GithubRepository]:
         """Gets the items of this GithubRepositories.
 
 
@@ -124,7 +121,7 @@ class GithubRepositories(Model):
         return self._items
 
     @items.setter
-    def items(self, items):
+    def items(self, items: List[GithubRepository]):
         """Sets the items of this GithubRepositories.
 
 
@@ -135,7 +132,7 @@ class GithubRepositories(Model):
         self._items = items
 
     @property
-    def last_page(self):
+    def last_page(self) -> int:
         """Gets the last_page of this GithubRepositories.
 
 
@@ -145,7 +142,7 @@ class GithubRepositories(Model):
         return self._last_page
 
     @last_page.setter
-    def last_page(self, last_page):
+    def last_page(self, last_page: int):
         """Sets the last_page of this GithubRepositories.
 
 
@@ -156,7 +153,7 @@ class GithubRepositories(Model):
         self._last_page = last_page
 
     @property
-    def next_page(self):
+    def next_page(self) -> int:
         """Gets the next_page of this GithubRepositories.
 
 
@@ -166,7 +163,7 @@ class GithubRepositories(Model):
         return self._next_page
 
     @next_page.setter
-    def next_page(self, next_page):
+    def next_page(self, next_page: int):
         """Sets the next_page of this GithubRepositories.
 
 
@@ -177,7 +174,7 @@ class GithubRepositories(Model):
         self._next_page = next_page
 
     @property
-    def page_size(self):
+    def page_size(self) -> int:
         """Gets the page_size of this GithubRepositories.
 
 
@@ -187,7 +184,7 @@ class GithubRepositories(Model):
         return self._page_size
 
     @page_size.setter
-    def page_size(self, page_size):
+    def page_size(self, page_size: int):
         """Sets the page_size of this GithubRepositories.
 
 

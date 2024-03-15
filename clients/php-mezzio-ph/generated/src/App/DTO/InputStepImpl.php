@@ -47,9 +47,9 @@ class InputStepImpl
 
     /**
      * @DTA\Data(field="parameters", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection109::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection109::class})
-     * @var \App\DTO\Collection109|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection25::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection25::class})
+     * @var \App\DTO\Collection25|null
      */
     public $parameters;
 

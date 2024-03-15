@@ -4,41 +4,16 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for DiskSpaceMonitorDescriptorDiskSpace.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class DiskSpaceMonitorDescriptorDiskSpace(
   `class`: Option[String],
   timestamp: Option[Int],
   path: Option[String],
   size: Option[Int]
-  additionalProperties: 
 )
 
 object DiskSpaceMonitorDescriptorDiskSpace {
-  implicit lazy val diskSpaceMonitorDescriptorDiskSpaceJsonFormat: Format[DiskSpaceMonitorDescriptorDiskSpace] = {
-    val realJsonFormat = Json.format[DiskSpaceMonitorDescriptorDiskSpace]
-    val declaredPropNames = Set("`class`", "timestamp", "path", "size")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { diskSpaceMonitorDescriptorDiskSpace =>
-        val jsObj = realJsonFormat.writes(diskSpaceMonitorDescriptorDiskSpace)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val diskSpaceMonitorDescriptorDiskSpaceJsonFormat: Format[DiskSpaceMonitorDescriptorDiskSpace] = Json.format[DiskSpaceMonitorDescriptorDiskSpace]
 }
 

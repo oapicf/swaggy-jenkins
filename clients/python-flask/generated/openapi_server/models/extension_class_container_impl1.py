@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.extension_class_container_impl1links import ExtensionClassContainerImpl1links
 from openapi_server.models.extension_class_container_impl1map import ExtensionClassContainerImpl1map
 from openapi_server import util
@@ -57,7 +54,7 @@ class ExtensionClassContainerImpl1(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this ExtensionClassContainerImpl1.
 
 
@@ -67,7 +64,7 @@ class ExtensionClassContainerImpl1(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this ExtensionClassContainerImpl1.
 
 
@@ -78,7 +75,7 @@ class ExtensionClassContainerImpl1(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> ExtensionClassContainerImpl1links:
         """Gets the links of this ExtensionClassContainerImpl1.
 
 
@@ -88,7 +85,7 @@ class ExtensionClassContainerImpl1(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: ExtensionClassContainerImpl1links):
         """Sets the links of this ExtensionClassContainerImpl1.
 
 
@@ -99,7 +96,7 @@ class ExtensionClassContainerImpl1(Model):
         self._links = links
 
     @property
-    def map(self):
+    def map(self) -> ExtensionClassContainerImpl1map:
         """Gets the map of this ExtensionClassContainerImpl1.
 
 
@@ -109,7 +106,7 @@ class ExtensionClassContainerImpl1(Model):
         return self._map
 
     @map.setter
-    def map(self, map):
+    def map(self, map: ExtensionClassContainerImpl1map):
         """Sets the map of this ExtensionClassContainerImpl1.
 
 

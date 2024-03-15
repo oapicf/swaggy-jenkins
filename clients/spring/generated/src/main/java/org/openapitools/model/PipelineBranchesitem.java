@@ -20,34 +20,25 @@ import javax.annotation.Generated;
  * PipelineBranchesitem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitem {
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("estimatedDurationInMillis")
   private Integer estimatedDurationInMillis;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("weatherScore")
   private Integer weatherScore;
 
-  @JsonProperty("latestRun")
   private PipelineBranchesitemlatestRun latestRun;
 
-  @JsonProperty("organization")
   private String organization;
 
-  @JsonProperty("pullRequest")
   private PipelineBranchesitempullRequest pullRequest;
 
-  @JsonProperty("totalNumberOfPullRequests")
   private Integer totalNumberOfPullRequests;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineBranchesitem displayName(String displayName) {
@@ -60,7 +51,8 @@ public class PipelineBranchesitem {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -79,7 +71,8 @@ public class PipelineBranchesitem {
    * @return estimatedDurationInMillis
   */
   
-  @Schema(name = "estimatedDurationInMillis", required = false)
+  @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -98,7 +91,8 @@ public class PipelineBranchesitem {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -117,7 +111,8 @@ public class PipelineBranchesitem {
    * @return weatherScore
   */
   
-  @Schema(name = "weatherScore", required = false)
+  @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -136,7 +131,8 @@ public class PipelineBranchesitem {
    * @return latestRun
   */
   @Valid 
-  @Schema(name = "latestRun", required = false)
+  @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("latestRun")
   public PipelineBranchesitemlatestRun getLatestRun() {
     return latestRun;
   }
@@ -155,7 +151,8 @@ public class PipelineBranchesitem {
    * @return organization
   */
   
-  @Schema(name = "organization", required = false)
+  @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
@@ -174,7 +171,8 @@ public class PipelineBranchesitem {
    * @return pullRequest
   */
   @Valid 
-  @Schema(name = "pullRequest", required = false)
+  @Schema(name = "pullRequest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pullRequest")
   public PipelineBranchesitempullRequest getPullRequest() {
     return pullRequest;
   }
@@ -193,7 +191,8 @@ public class PipelineBranchesitem {
    * @return totalNumberOfPullRequests
   */
   
-  @Schema(name = "totalNumberOfPullRequests", required = false)
+  @Schema(name = "totalNumberOfPullRequests", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("totalNumberOfPullRequests")
   public Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
   }
@@ -212,7 +211,8 @@ public class PipelineBranchesitem {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

@@ -4,6 +4,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -92,6 +93,25 @@ public class PipelineRunartifacts  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineRunartifacts pipelineRunartifacts = (PipelineRunartifacts) o;
+    return Objects.equals(this.name, pipelineRunartifacts.name) &&
+        Objects.equals(this.size, pipelineRunartifacts.size) &&
+        Objects.equals(this.url, pipelineRunartifacts.url) &&
+        Objects.equals(this.propertyClass, pipelineRunartifacts.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, size, url, propertyClass);
+  }
 
   @Override
   public String toString() {

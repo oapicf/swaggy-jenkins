@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.vertxweb.server.model.HudsonMasterComputerexecutors;
 import org.openapitools.vertxweb.server.model.HudsonMasterComputermonitorData;
@@ -14,7 +15,7 @@ public class HudsonMasterComputer   {
   
   private String propertyClass;
   private String displayName;
-  private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
+  private List<HudsonMasterComputerexecutors> executors;
   private String icon;
   private String iconClassName;
   private Boolean idle;

@@ -87,7 +87,7 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
     // cause_action->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(cause_actionJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -116,7 +116,7 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
 
     cause_action_local_var = cause_action_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         causes ? causesList : NULL
         );
 

@@ -9,9 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ExtensionClassContainerImpl1links;
 import org.openapitools.model.ExtensionClassContainerImpl1map;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassContainerImpl1   {
   
   private String propertyClass;
@@ -64,9 +65,9 @@ public class ExtensionClassContainerImpl1   {
       return false;
     }
     ExtensionClassContainerImpl1 extensionClassContainerImpl1 = (ExtensionClassContainerImpl1) o;
-    return Objects.equals(propertyClass, extensionClassContainerImpl1.propertyClass) &&
-        Objects.equals(links, extensionClassContainerImpl1.links) &&
-        Objects.equals(map, extensionClassContainerImpl1.map);
+    return Objects.equals(this.propertyClass, extensionClassContainerImpl1.propertyClass) &&
+        Objects.equals(this.links, extensionClassContainerImpl1.links) &&
+        Objects.equals(this.map, extensionClassContainerImpl1.map);
   }
 
   @Override

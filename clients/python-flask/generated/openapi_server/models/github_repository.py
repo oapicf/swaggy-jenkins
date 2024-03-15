@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.github_repositorylinks import GithubRepositorylinks
 from openapi_server.models.github_repositorypermissions import GithubRepositorypermissions
 from openapi_server import util
@@ -82,7 +79,7 @@ class GithubRepository(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubRepository.
 
 
@@ -92,7 +89,7 @@ class GithubRepository(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubRepository.
 
 
@@ -103,7 +100,7 @@ class GithubRepository(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> GithubRepositorylinks:
         """Gets the links of this GithubRepository.
 
 
@@ -113,7 +110,7 @@ class GithubRepository(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: GithubRepositorylinks):
         """Sets the links of this GithubRepository.
 
 
@@ -124,7 +121,7 @@ class GithubRepository(Model):
         self._links = links
 
     @property
-    def default_branch(self):
+    def default_branch(self) -> str:
         """Gets the default_branch of this GithubRepository.
 
 
@@ -134,7 +131,7 @@ class GithubRepository(Model):
         return self._default_branch
 
     @default_branch.setter
-    def default_branch(self, default_branch):
+    def default_branch(self, default_branch: str):
         """Sets the default_branch of this GithubRepository.
 
 
@@ -145,7 +142,7 @@ class GithubRepository(Model):
         self._default_branch = default_branch
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this GithubRepository.
 
 
@@ -155,7 +152,7 @@ class GithubRepository(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this GithubRepository.
 
 
@@ -166,7 +163,7 @@ class GithubRepository(Model):
         self._description = description
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this GithubRepository.
 
 
@@ -176,7 +173,7 @@ class GithubRepository(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this GithubRepository.
 
 
@@ -187,7 +184,7 @@ class GithubRepository(Model):
         self._name = name
 
     @property
-    def permissions(self):
+    def permissions(self) -> GithubRepositorypermissions:
         """Gets the permissions of this GithubRepository.
 
 
@@ -197,7 +194,7 @@ class GithubRepository(Model):
         return self._permissions
 
     @permissions.setter
-    def permissions(self, permissions):
+    def permissions(self, permissions: GithubRepositorypermissions):
         """Sets the permissions of this GithubRepository.
 
 
@@ -208,7 +205,7 @@ class GithubRepository(Model):
         self._permissions = permissions
 
     @property
-    def private(self):
+    def private(self) -> bool:
         """Gets the private of this GithubRepository.
 
 
@@ -218,7 +215,7 @@ class GithubRepository(Model):
         return self._private
 
     @private.setter
-    def private(self, private):
+    def private(self, private: bool):
         """Sets the private of this GithubRepository.
 
 
@@ -229,7 +226,7 @@ class GithubRepository(Model):
         self._private = private
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         """Gets the full_name of this GithubRepository.
 
 
@@ -239,7 +236,7 @@ class GithubRepository(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name):
+    def full_name(self, full_name: str):
         """Sets the full_name of this GithubRepository.
 
 

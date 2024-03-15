@@ -18,19 +18,15 @@ import javax.annotation.Generated;
  * GithubRepositorypermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepositorypermissions {
 
-  @JsonProperty("admin")
   private Boolean admin;
 
-  @JsonProperty("push")
   private Boolean push;
 
-  @JsonProperty("pull")
   private Boolean pull;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public GithubRepositorypermissions admin(Boolean admin) {
@@ -43,7 +39,8 @@ public class GithubRepositorypermissions {
    * @return admin
   */
   
-  @Schema(name = "admin", required = false)
+  @Schema(name = "admin", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("admin")
   public Boolean getAdmin() {
     return admin;
   }
@@ -62,7 +59,8 @@ public class GithubRepositorypermissions {
    * @return push
   */
   
-  @Schema(name = "push", required = false)
+  @Schema(name = "push", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("push")
   public Boolean getPush() {
     return push;
   }
@@ -81,7 +79,8 @@ public class GithubRepositorypermissions {
    * @return pull
   */
   
-  @Schema(name = "pull", required = false)
+  @Schema(name = "pull", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pull")
   public Boolean getPull() {
     return pull;
   }
@@ -100,7 +99,8 @@ public class GithubRepositorypermissions {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

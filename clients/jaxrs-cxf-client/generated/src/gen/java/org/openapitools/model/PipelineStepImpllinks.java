@@ -3,6 +3,7 @@ package org.openapitools.model;
 import org.openapitools.model.Link;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -70,6 +71,24 @@ public class PipelineStepImpllinks  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineStepImpllinks pipelineStepImpllinks = (PipelineStepImpllinks) o;
+    return Objects.equals(this.self, pipelineStepImpllinks.self) &&
+        Objects.equals(this.actions, pipelineStepImpllinks.actions) &&
+        Objects.equals(this.propertyClass, pipelineStepImpllinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(self, actions, propertyClass);
+  }
 
   @Override
   public String toString() {

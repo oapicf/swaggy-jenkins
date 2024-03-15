@@ -103,7 +103,7 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
     // classes_by_class->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(classes_by_classJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -112,7 +112,7 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
 
     classes_by_class_local_var = classes_by_class_create (
         classes ? classesList : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return classes_by_class_local_var;

@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -78,7 +75,7 @@ class GithubContent(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this GithubContent.
 
 
@@ -88,7 +85,7 @@ class GithubContent(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this GithubContent.
 
 
@@ -99,7 +96,7 @@ class GithubContent(Model):
         self._name = name
 
     @property
-    def sha(self):
+    def sha(self) -> str:
         """Gets the sha of this GithubContent.
 
 
@@ -109,7 +106,7 @@ class GithubContent(Model):
         return self._sha
 
     @sha.setter
-    def sha(self, sha):
+    def sha(self, sha: str):
         """Sets the sha of this GithubContent.
 
 
@@ -120,7 +117,7 @@ class GithubContent(Model):
         self._sha = sha
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubContent.
 
 
@@ -130,7 +127,7 @@ class GithubContent(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubContent.
 
 
@@ -141,7 +138,7 @@ class GithubContent(Model):
         self.__class = _class
 
     @property
-    def repo(self):
+    def repo(self) -> str:
         """Gets the repo of this GithubContent.
 
 
@@ -151,7 +148,7 @@ class GithubContent(Model):
         return self._repo
 
     @repo.setter
-    def repo(self, repo):
+    def repo(self, repo: str):
         """Sets the repo of this GithubContent.
 
 
@@ -162,7 +159,7 @@ class GithubContent(Model):
         self._repo = repo
 
     @property
-    def size(self):
+    def size(self) -> int:
         """Gets the size of this GithubContent.
 
 
@@ -172,7 +169,7 @@ class GithubContent(Model):
         return self._size
 
     @size.setter
-    def size(self, size):
+    def size(self, size: int):
         """Sets the size of this GithubContent.
 
 
@@ -183,7 +180,7 @@ class GithubContent(Model):
         self._size = size
 
     @property
-    def owner(self):
+    def owner(self) -> str:
         """Gets the owner of this GithubContent.
 
 
@@ -193,7 +190,7 @@ class GithubContent(Model):
         return self._owner
 
     @owner.setter
-    def owner(self, owner):
+    def owner(self, owner: str):
         """Sets the owner of this GithubContent.
 
 
@@ -204,7 +201,7 @@ class GithubContent(Model):
         self._owner = owner
 
     @property
-    def path(self):
+    def path(self) -> str:
         """Gets the path of this GithubContent.
 
 
@@ -214,7 +211,7 @@ class GithubContent(Model):
         return self._path
 
     @path.setter
-    def path(self, path):
+    def path(self, path: str):
         """Sets the path of this GithubContent.
 
 
@@ -225,7 +222,7 @@ class GithubContent(Model):
         self._path = path
 
     @property
-    def base64_data(self):
+    def base64_data(self) -> str:
         """Gets the base64_data of this GithubContent.
 
 
@@ -235,7 +232,7 @@ class GithubContent(Model):
         return self._base64_data
 
     @base64_data.setter
-    def base64_data(self, base64_data):
+    def base64_data(self, base64_data: str):
         """Sets the base64_data of this GithubContent.
 
 

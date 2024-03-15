@@ -14,5 +14,5 @@
 
   {maintainers, []},
   {licenses, []},
-  {links, ["http://github.com/oapicf/swaggy-jenkins"]}
+  {links, ["https://github.com/oapicf/swaggy-jenkins"]}
 ]}.

@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.Hudson
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **AssignedLabels** | [**List&lt;HudsonassignedLabels&gt;**](HudsonassignedLabels.md) |  | [optional] 
 **Mode** | **string** |  | [optional] 
 **NodeDescription** | **string** |  | [optional] 
@@ -21,7 +20,5 @@ Name | Type | Description | Notes
 **UseSecurity** | **bool** |  | [optional] 
 **Views** | [**List&lt;AllView&gt;**](AllView.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

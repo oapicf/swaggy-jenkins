@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("DefaultCrumbIssuer")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DefaultCrumbIssuer   {
-  
   private @Valid String propertyClass;
   private @Valid String crumb;
   private @Valid String crumbRequestField;
@@ -41,7 +40,7 @@ public class DefaultCrumbIssuer   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public DefaultCrumbIssuer crumb(String crumb) {
     this.crumb = crumb;
@@ -60,7 +59,7 @@ public class DefaultCrumbIssuer   {
     this.crumb = crumb;
   }
 
-/**
+  /**
    **/
   public DefaultCrumbIssuer crumbRequestField(String crumbRequestField) {
     this.crumbRequestField = crumbRequestField;

@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * MultibranchPipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
   private String displayName;
@@ -170,7 +171,7 @@ public class MultibranchPipeline   {
 
   public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
     if (this.branchNames == null) {
-      this.branchNames = new ArrayList<>();
+      this.branchNames = ;
     }
     this.branchNames.add(branchNamesItem);
     return this;

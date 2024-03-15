@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -242,33 +242,33 @@ class FreeStyleProject {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FreeStyleProject &&
-     other.class_ == class_ &&
-     other.name == name &&
-     other.url == url &&
-     other.color == color &&
-     other.actions == actions &&
-     other.description == description &&
-     other.displayName == displayName &&
-     other.displayNameOrNull == displayNameOrNull &&
-     other.fullDisplayName == fullDisplayName &&
-     other.fullName == fullName &&
-     other.buildable == buildable &&
-     other.builds == builds &&
-     other.firstBuild == firstBuild &&
-     other.healthReport == healthReport &&
-     other.inQueue == inQueue &&
-     other.keepDependencies == keepDependencies &&
-     other.lastBuild == lastBuild &&
-     other.lastCompletedBuild == lastCompletedBuild &&
-     other.lastFailedBuild == lastFailedBuild &&
-     other.lastStableBuild == lastStableBuild &&
-     other.lastSuccessfulBuild == lastSuccessfulBuild &&
-     other.lastUnstableBuild == lastUnstableBuild &&
-     other.lastUnsuccessfulBuild == lastUnsuccessfulBuild &&
-     other.nextBuildNumber == nextBuildNumber &&
-     other.queueItem == queueItem &&
-     other.concurrentBuild == concurrentBuild &&
-     other.scm == scm;
+    other.class_ == class_ &&
+    other.name == name &&
+    other.url == url &&
+    other.color == color &&
+    _deepEquality.equals(other.actions, actions) &&
+    other.description == description &&
+    other.displayName == displayName &&
+    other.displayNameOrNull == displayNameOrNull &&
+    other.fullDisplayName == fullDisplayName &&
+    other.fullName == fullName &&
+    other.buildable == buildable &&
+    _deepEquality.equals(other.builds, builds) &&
+    other.firstBuild == firstBuild &&
+    _deepEquality.equals(other.healthReport, healthReport) &&
+    other.inQueue == inQueue &&
+    other.keepDependencies == keepDependencies &&
+    other.lastBuild == lastBuild &&
+    other.lastCompletedBuild == lastCompletedBuild &&
+    other.lastFailedBuild == lastFailedBuild &&
+    other.lastStableBuild == lastStableBuild &&
+    other.lastSuccessfulBuild == lastSuccessfulBuild &&
+    other.lastUnstableBuild == lastUnstableBuild &&
+    other.lastUnsuccessfulBuild == lastUnsuccessfulBuild &&
+    other.nextBuildNumber == nextBuildNumber &&
+    other.queueItem == queueItem &&
+    other.concurrentBuild == concurrentBuild &&
+    other.scm == scm;
 
   @override
   int get hashCode =>
@@ -305,83 +305,131 @@ class FreeStyleProject {
   String toString() => 'FreeStyleProject[class_=$class_, name=$name, url=$url, color=$color, actions=$actions, description=$description, displayName=$displayName, displayNameOrNull=$displayNameOrNull, fullDisplayName=$fullDisplayName, fullName=$fullName, buildable=$buildable, builds=$builds, firstBuild=$firstBuild, healthReport=$healthReport, inQueue=$inQueue, keepDependencies=$keepDependencies, lastBuild=$lastBuild, lastCompletedBuild=$lastCompletedBuild, lastFailedBuild=$lastFailedBuild, lastStableBuild=$lastStableBuild, lastSuccessfulBuild=$lastSuccessfulBuild, lastUnstableBuild=$lastUnstableBuild, lastUnsuccessfulBuild=$lastUnsuccessfulBuild, nextBuildNumber=$nextBuildNumber, queueItem=$queueItem, concurrentBuild=$concurrentBuild, scm=$scm]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (url != null) {
-      _json[r'url'] = url;
+    if (this.url != null) {
+      json[r'url'] = this.url;
+    } else {
+      json[r'url'] = null;
     }
-    if (color != null) {
-      _json[r'color'] = color;
+    if (this.color != null) {
+      json[r'color'] = this.color;
+    } else {
+      json[r'color'] = null;
     }
-      _json[r'actions'] = actions;
-    if (description != null) {
-      _json[r'description'] = description;
+      json[r'actions'] = this.actions;
+    if (this.description != null) {
+      json[r'description'] = this.description;
+    } else {
+      json[r'description'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (displayNameOrNull != null) {
-      _json[r'displayNameOrNull'] = displayNameOrNull;
+    if (this.displayNameOrNull != null) {
+      json[r'displayNameOrNull'] = this.displayNameOrNull;
+    } else {
+      json[r'displayNameOrNull'] = null;
     }
-    if (fullDisplayName != null) {
-      _json[r'fullDisplayName'] = fullDisplayName;
+    if (this.fullDisplayName != null) {
+      json[r'fullDisplayName'] = this.fullDisplayName;
+    } else {
+      json[r'fullDisplayName'] = null;
     }
-    if (fullName != null) {
-      _json[r'fullName'] = fullName;
+    if (this.fullName != null) {
+      json[r'fullName'] = this.fullName;
+    } else {
+      json[r'fullName'] = null;
     }
-    if (buildable != null) {
-      _json[r'buildable'] = buildable;
+    if (this.buildable != null) {
+      json[r'buildable'] = this.buildable;
+    } else {
+      json[r'buildable'] = null;
     }
-      _json[r'builds'] = builds;
-    if (firstBuild != null) {
-      _json[r'firstBuild'] = firstBuild;
+      json[r'builds'] = this.builds;
+    if (this.firstBuild != null) {
+      json[r'firstBuild'] = this.firstBuild;
+    } else {
+      json[r'firstBuild'] = null;
     }
-      _json[r'healthReport'] = healthReport;
-    if (inQueue != null) {
-      _json[r'inQueue'] = inQueue;
+      json[r'healthReport'] = this.healthReport;
+    if (this.inQueue != null) {
+      json[r'inQueue'] = this.inQueue;
+    } else {
+      json[r'inQueue'] = null;
     }
-    if (keepDependencies != null) {
-      _json[r'keepDependencies'] = keepDependencies;
+    if (this.keepDependencies != null) {
+      json[r'keepDependencies'] = this.keepDependencies;
+    } else {
+      json[r'keepDependencies'] = null;
     }
-    if (lastBuild != null) {
-      _json[r'lastBuild'] = lastBuild;
+    if (this.lastBuild != null) {
+      json[r'lastBuild'] = this.lastBuild;
+    } else {
+      json[r'lastBuild'] = null;
     }
-    if (lastCompletedBuild != null) {
-      _json[r'lastCompletedBuild'] = lastCompletedBuild;
+    if (this.lastCompletedBuild != null) {
+      json[r'lastCompletedBuild'] = this.lastCompletedBuild;
+    } else {
+      json[r'lastCompletedBuild'] = null;
     }
-    if (lastFailedBuild != null) {
-      _json[r'lastFailedBuild'] = lastFailedBuild;
+    if (this.lastFailedBuild != null) {
+      json[r'lastFailedBuild'] = this.lastFailedBuild;
+    } else {
+      json[r'lastFailedBuild'] = null;
     }
-    if (lastStableBuild != null) {
-      _json[r'lastStableBuild'] = lastStableBuild;
+    if (this.lastStableBuild != null) {
+      json[r'lastStableBuild'] = this.lastStableBuild;
+    } else {
+      json[r'lastStableBuild'] = null;
     }
-    if (lastSuccessfulBuild != null) {
-      _json[r'lastSuccessfulBuild'] = lastSuccessfulBuild;
+    if (this.lastSuccessfulBuild != null) {
+      json[r'lastSuccessfulBuild'] = this.lastSuccessfulBuild;
+    } else {
+      json[r'lastSuccessfulBuild'] = null;
     }
-    if (lastUnstableBuild != null) {
-      _json[r'lastUnstableBuild'] = lastUnstableBuild;
+    if (this.lastUnstableBuild != null) {
+      json[r'lastUnstableBuild'] = this.lastUnstableBuild;
+    } else {
+      json[r'lastUnstableBuild'] = null;
     }
-    if (lastUnsuccessfulBuild != null) {
-      _json[r'lastUnsuccessfulBuild'] = lastUnsuccessfulBuild;
+    if (this.lastUnsuccessfulBuild != null) {
+      json[r'lastUnsuccessfulBuild'] = this.lastUnsuccessfulBuild;
+    } else {
+      json[r'lastUnsuccessfulBuild'] = null;
     }
-    if (nextBuildNumber != null) {
-      _json[r'nextBuildNumber'] = nextBuildNumber;
+    if (this.nextBuildNumber != null) {
+      json[r'nextBuildNumber'] = this.nextBuildNumber;
+    } else {
+      json[r'nextBuildNumber'] = null;
     }
-    if (queueItem != null) {
-      _json[r'queueItem'] = queueItem;
+    if (this.queueItem != null) {
+      json[r'queueItem'] = this.queueItem;
+    } else {
+      json[r'queueItem'] = null;
     }
-    if (concurrentBuild != null) {
-      _json[r'concurrentBuild'] = concurrentBuild;
+    if (this.concurrentBuild != null) {
+      json[r'concurrentBuild'] = this.concurrentBuild;
+    } else {
+      json[r'concurrentBuild'] = null;
     }
-    if (scm != null) {
-      _json[r'scm'] = scm;
+    if (this.scm != null) {
+      json[r'scm'] = this.scm;
+    } else {
+      json[r'scm'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [FreeStyleProject] instance and imports its values from
@@ -407,16 +455,16 @@ class FreeStyleProject {
         name: mapValueOfType<String>(json, r'name'),
         url: mapValueOfType<String>(json, r'url'),
         color: mapValueOfType<String>(json, r'color'),
-        actions: FreeStyleProjectactions.listFromJson(json[r'actions']) ?? const [],
+        actions: FreeStyleProjectactions.listFromJson(json[r'actions']),
         description: mapValueOfType<String>(json, r'description'),
         displayName: mapValueOfType<String>(json, r'displayName'),
         displayNameOrNull: mapValueOfType<String>(json, r'displayNameOrNull'),
         fullDisplayName: mapValueOfType<String>(json, r'fullDisplayName'),
         fullName: mapValueOfType<String>(json, r'fullName'),
         buildable: mapValueOfType<bool>(json, r'buildable'),
-        builds: FreeStyleBuild.listFromJson(json[r'builds']) ?? const [],
+        builds: FreeStyleBuild.listFromJson(json[r'builds']),
         firstBuild: FreeStyleBuild.fromJson(json[r'firstBuild']),
-        healthReport: FreeStyleProjecthealthReport.listFromJson(json[r'healthReport']) ?? const [],
+        healthReport: FreeStyleProjecthealthReport.listFromJson(json[r'healthReport']),
         inQueue: mapValueOfType<bool>(json, r'inQueue'),
         keepDependencies: mapValueOfType<bool>(json, r'keepDependencies'),
         lastBuild: FreeStyleBuild.fromJson(json[r'lastBuild']),
@@ -435,7 +483,7 @@ class FreeStyleProject {
     return null;
   }
 
-  static List<FreeStyleProject>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<FreeStyleProject> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FreeStyleProject>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -466,12 +514,10 @@ class FreeStyleProject {
   static Map<String, List<FreeStyleProject>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<FreeStyleProject>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = FreeStyleProject.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = FreeStyleProject.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

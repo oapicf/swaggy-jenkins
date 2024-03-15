@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -71,12 +71,12 @@ class PipelineBranchesitempullRequest {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineBranchesitempullRequest &&
-     other.links == links &&
-     other.author == author &&
-     other.id == id &&
-     other.title == title &&
-     other.url == url &&
-     other.class_ == class_;
+    other.links == links &&
+    other.author == author &&
+    other.id == id &&
+    other.title == title &&
+    other.url == url &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -92,26 +92,38 @@ class PipelineBranchesitempullRequest {
   String toString() => 'PipelineBranchesitempullRequest[links=$links, author=$author, id=$id, title=$title, url=$url, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (links != null) {
-      _json[r'_links'] = links;
+    final json = <String, dynamic>{};
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-    if (author != null) {
-      _json[r'author'] = author;
+    if (this.author != null) {
+      json[r'author'] = this.author;
+    } else {
+      json[r'author'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (title != null) {
-      _json[r'title'] = title;
+    if (this.title != null) {
+      json[r'title'] = this.title;
+    } else {
+      json[r'title'] = null;
     }
-    if (url != null) {
-      _json[r'url'] = url;
+    if (this.url != null) {
+      json[r'url'] = this.url;
+    } else {
+      json[r'url'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineBranchesitempullRequest] instance and imports its values from
@@ -144,7 +156,7 @@ class PipelineBranchesitempullRequest {
     return null;
   }
 
-  static List<PipelineBranchesitempullRequest>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineBranchesitempullRequest> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineBranchesitempullRequest>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -175,12 +187,10 @@ class PipelineBranchesitempullRequest {
   static Map<String, List<PipelineBranchesitempullRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineBranchesitempullRequest>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineBranchesitempullRequest.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineBranchesitempullRequest.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

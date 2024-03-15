@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
-**_links** | Option<[**crate::models::PipelineStepImpllinks**](PipelineStepImpllinks.md)> |  | [optional]
+**_links** | Option<[**models::PipelineStepImpllinks**](PipelineStepImpllinks.md)> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **duration_in_millis** | Option<**i32**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
-**input** | Option<[**crate::models::InputStepImpl**](InputStepImpl.md)> |  | [optional]
+**input** | Option<[**models::InputStepImpl**](InputStepImpl.md)> |  | [optional]
 **result** | Option<**String**> |  | [optional]
 **start_time** | Option<**String**> |  | [optional]
 **state** | Option<**String**> |  | [optional]

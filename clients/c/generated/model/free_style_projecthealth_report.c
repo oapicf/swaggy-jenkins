@@ -107,7 +107,7 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
     // free_style_projecthealth_report->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -116,7 +116,7 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
     // free_style_projecthealth_report->icon_class_name
     cJSON *icon_class_name = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "iconClassName");
     if (icon_class_name) { 
-    if(!cJSON_IsString(icon_class_name))
+    if(!cJSON_IsString(icon_class_name) && !cJSON_IsNull(icon_class_name))
     {
     goto end; //String
     }
@@ -125,7 +125,7 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
     // free_style_projecthealth_report->icon_url
     cJSON *icon_url = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "iconUrl");
     if (icon_url) { 
-    if(!cJSON_IsString(icon_url))
+    if(!cJSON_IsString(icon_url) && !cJSON_IsNull(icon_url))
     {
     goto end; //String
     }
@@ -143,7 +143,7 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
     // free_style_projecthealth_report->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -151,11 +151,11 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
 
 
     free_style_projecthealth_report_local_var = free_style_projecthealth_report_create (
-        description ? strdup(description->valuestring) : NULL,
-        icon_class_name ? strdup(icon_class_name->valuestring) : NULL,
-        icon_url ? strdup(icon_url->valuestring) : NULL,
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        icon_class_name && !cJSON_IsNull(icon_class_name) ? strdup(icon_class_name->valuestring) : NULL,
+        icon_url && !cJSON_IsNull(icon_url) ? strdup(icon_url->valuestring) : NULL,
         score ? score->valuedouble : 0,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return free_style_projecthealth_report_local_var;

@@ -4,9 +4,8 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for Hudson.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class Hudson(
   `class`: Option[String],
   assignedLabels: Option[List[HudsonassignedLabels]],
@@ -23,33 +22,9 @@ case class Hudson(
   useCrumbs: Option[Boolean],
   useSecurity: Option[Boolean],
   views: Option[List[AllView]]
-  additionalProperties: 
 )
 
 object Hudson {
-  implicit lazy val hudsonJsonFormat: Format[Hudson] = {
-    val realJsonFormat = Json.format[Hudson]
-    val declaredPropNames = Set("`class`", "assignedLabels", "mode", "nodeDescription", "nodeName", "numExecutors", "description", "jobs", "primaryView", "quietingDown", "slaveAgentPort", "unlabeledLoad", "useCrumbs", "useSecurity", "views")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { hudson =>
-        val jsObj = realJsonFormat.writes(hudson)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val hudsonJsonFormat: Format[Hudson] = Json.format[Hudson]
 }
 

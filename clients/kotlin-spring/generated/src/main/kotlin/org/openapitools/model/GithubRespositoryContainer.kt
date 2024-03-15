@@ -24,15 +24,15 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubRespositoryContainer(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: GithubRespositoryContainerlinks? = null,
+    @get:JsonProperty("_links") val links: GithubRespositoryContainerlinks? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("repositories") val repositories: GithubRepositories? = null
+    @get:JsonProperty("repositories") val repositories: GithubRepositories? = null
 ) {
 
 }

@@ -7,17 +7,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ComputerSet   {
   
   private String propertyClass;
   private Integer busyExecutors;
-  private List<HudsonMasterComputer> computer = new ArrayList<>();
+  private List<@Valid HudsonMasterComputer> computer;
   private String displayName;
   private Integer totalExecutors;
 
@@ -50,10 +53,11 @@ public class ComputerSet   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("computer")
-  public List<HudsonMasterComputer> getComputer() {
+  @Valid
+  public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
-  public void setComputer(List<HudsonMasterComputer> computer) {
+  public void setComputer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
   }
 
@@ -91,11 +95,11 @@ public class ComputerSet   {
       return false;
     }
     ComputerSet computerSet = (ComputerSet) o;
-    return Objects.equals(propertyClass, computerSet.propertyClass) &&
-        Objects.equals(busyExecutors, computerSet.busyExecutors) &&
-        Objects.equals(computer, computerSet.computer) &&
-        Objects.equals(displayName, computerSet.displayName) &&
-        Objects.equals(totalExecutors, computerSet.totalExecutors);
+    return Objects.equals(this.propertyClass, computerSet.propertyClass) &&
+        Objects.equals(this.busyExecutors, computerSet.busyExecutors) &&
+        Objects.equals(this.computer, computerSet.computer) &&
+        Objects.equals(this.displayName, computerSet.displayName) &&
+        Objects.equals(this.totalExecutors, computerSet.totalExecutors);
   }
 
   @Override

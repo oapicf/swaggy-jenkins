@@ -10,15 +10,15 @@ namespace app\Models;
 class CauseUserIdCause {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $shortDescription */
-    private $shortDescription;
+    public $shortDescription = "";
 
     /** @var string $userId */
-    private $userId;
+    public $userId = "";
 
     /** @var string $userName */
-    private $userName;
+    public $userName = "";
 
 }

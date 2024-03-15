@@ -18,22 +18,17 @@ import javax.annotation.Generated;
  * User
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class User {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("fullName")
   private String fullName;
 
-  @JsonProperty("email")
   private String email;
 
-  @JsonProperty("name")
   private String name;
 
   public User propertyClass(String propertyClass) {
@@ -46,7 +41,8 @@ public class User {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -65,7 +61,8 @@ public class User {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -84,7 +81,8 @@ public class User {
    * @return fullName
   */
   
-  @Schema(name = "fullName", required = false)
+  @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
@@ -103,7 +101,8 @@ public class User {
    * @return email
   */
   
-  @Schema(name = "email", required = false)
+  @Schema(name = "email", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("email")
   public String getEmail() {
     return email;
   }
@@ -122,7 +121,8 @@ public class User {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }

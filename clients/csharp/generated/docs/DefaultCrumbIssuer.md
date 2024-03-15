@@ -1,15 +1,12 @@
-
 # Org.OpenAPITools.Model.DefaultCrumbIssuer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **Crumb** | **string** |  | [optional] 
 **CrumbRequestField** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

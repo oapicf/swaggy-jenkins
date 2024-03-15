@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -71,12 +71,12 @@ class HudsonMasterComputerexecutors {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HudsonMasterComputerexecutors &&
-     other.currentExecutable == currentExecutable &&
-     other.idle == idle &&
-     other.likelyStuck == likelyStuck &&
-     other.number == number &&
-     other.progress == progress &&
-     other.class_ == class_;
+    other.currentExecutable == currentExecutable &&
+    other.idle == idle &&
+    other.likelyStuck == likelyStuck &&
+    other.number == number &&
+    other.progress == progress &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -92,26 +92,38 @@ class HudsonMasterComputerexecutors {
   String toString() => 'HudsonMasterComputerexecutors[currentExecutable=$currentExecutable, idle=$idle, likelyStuck=$likelyStuck, number=$number, progress=$progress, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (currentExecutable != null) {
-      _json[r'currentExecutable'] = currentExecutable;
+    final json = <String, dynamic>{};
+    if (this.currentExecutable != null) {
+      json[r'currentExecutable'] = this.currentExecutable;
+    } else {
+      json[r'currentExecutable'] = null;
     }
-    if (idle != null) {
-      _json[r'idle'] = idle;
+    if (this.idle != null) {
+      json[r'idle'] = this.idle;
+    } else {
+      json[r'idle'] = null;
     }
-    if (likelyStuck != null) {
-      _json[r'likelyStuck'] = likelyStuck;
+    if (this.likelyStuck != null) {
+      json[r'likelyStuck'] = this.likelyStuck;
+    } else {
+      json[r'likelyStuck'] = null;
     }
-    if (number != null) {
-      _json[r'number'] = number;
+    if (this.number != null) {
+      json[r'number'] = this.number;
+    } else {
+      json[r'number'] = null;
     }
-    if (progress != null) {
-      _json[r'progress'] = progress;
+    if (this.progress != null) {
+      json[r'progress'] = this.progress;
+    } else {
+      json[r'progress'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [HudsonMasterComputerexecutors] instance and imports its values from
@@ -144,7 +156,7 @@ class HudsonMasterComputerexecutors {
     return null;
   }
 
-  static List<HudsonMasterComputerexecutors>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<HudsonMasterComputerexecutors> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <HudsonMasterComputerexecutors>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -175,12 +187,10 @@ class HudsonMasterComputerexecutors {
   static Map<String, List<HudsonMasterComputerexecutors>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<HudsonMasterComputerexecutors>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = HudsonMasterComputerexecutors.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = HudsonMasterComputerexecutors.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

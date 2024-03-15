@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.CauseUserIdCause;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * CauseAction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class CauseAction   {
   @JsonProperty("_class")
@@ -21,7 +23,7 @@ public class CauseAction   {
   @JsonProperty("causes")
   @Valid
 
-  private List<CauseUserIdCause> causes = null;
+  private List<@Valid CauseUserIdCause> causes = null;
 
   public CauseAction propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,16 +42,16 @@ public class CauseAction   {
     this.propertyClass = propertyClass;
   }
 
-  public CauseAction causes(List<CauseUserIdCause> causes) {
+  public CauseAction causes(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
     return this;
   }
 
   public CauseAction addCausesItem(CauseUserIdCause causesItem) {
-    if (causes == null) {
-      causes = new ArrayList<>();
+    if (this.causes == null) {
+      this.causes = new ArrayList<>();
     }
-    causes.add(causesItem);
+    this.causes.add(causesItem);
     return this;
   }
 
@@ -57,11 +59,11 @@ public class CauseAction   {
    * Get causes
    * @return causes
   **/
-  public List<CauseUserIdCause> getCauses() {
+  public List<@Valid CauseUserIdCause> getCauses() {
     return causes;
   }
 
-  public void setCauses(List<CauseUserIdCause> causes) {
+  public void setCauses(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
   }
 

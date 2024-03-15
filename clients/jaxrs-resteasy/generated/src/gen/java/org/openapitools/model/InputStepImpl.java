@@ -7,13 +7,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class InputStepImpl   {
   
   private String propertyClass;
@@ -21,7 +24,7 @@ public class InputStepImpl   {
   private String id;
   private String message;
   private String ok;
-  private List<StringParameterDefinition> parameters = new ArrayList<>();
+  private List<@Valid StringParameterDefinition> parameters;
   private String submitter;
 
   /**
@@ -41,6 +44,7 @@ public class InputStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
+  @Valid
   public InputStepImpllinks getLinks() {
     return links;
   }
@@ -89,10 +93,11 @@ public class InputStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  @Valid
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -118,13 +123,13 @@ public class InputStepImpl   {
       return false;
     }
     InputStepImpl inputStepImpl = (InputStepImpl) o;
-    return Objects.equals(propertyClass, inputStepImpl.propertyClass) &&
-        Objects.equals(links, inputStepImpl.links) &&
-        Objects.equals(id, inputStepImpl.id) &&
-        Objects.equals(message, inputStepImpl.message) &&
-        Objects.equals(ok, inputStepImpl.ok) &&
-        Objects.equals(parameters, inputStepImpl.parameters) &&
-        Objects.equals(submitter, inputStepImpl.submitter);
+    return Objects.equals(this.propertyClass, inputStepImpl.propertyClass) &&
+        Objects.equals(this.links, inputStepImpl.links) &&
+        Objects.equals(this.id, inputStepImpl.id) &&
+        Objects.equals(this.message, inputStepImpl.message) &&
+        Objects.equals(this.ok, inputStepImpl.ok) &&
+        Objects.equals(this.parameters, inputStepImpl.parameters) &&
+        Objects.equals(this.submitter, inputStepImpl.submitter);
   }
 
   @Override

@@ -2,22 +2,24 @@ package apimodels;
 
 import apimodels.PipelinelatestRunartifacts;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * PipelinelatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelinelatestRun   {
   @JsonProperty("artifacts")
   @Valid
 
-  private List<PipelinelatestRunartifacts> artifacts = null;
+  private List<@Valid PipelinelatestRunartifacts> artifacts = null;
 
   @JsonProperty("durationInMillis")
   
@@ -75,16 +77,16 @@ public class PipelinelatestRun   {
   
   private String propertyClass;
 
-  public PipelinelatestRun artifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public PipelinelatestRun artifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
 
   public PipelinelatestRun addArtifactsItem(PipelinelatestRunartifacts artifactsItem) {
-    if (artifacts == null) {
-      artifacts = new ArrayList<>();
+    if (this.artifacts == null) {
+      this.artifacts = new ArrayList<>();
     }
-    artifacts.add(artifactsItem);
+    this.artifacts.add(artifactsItem);
     return this;
   }
 
@@ -92,11 +94,11 @@ public class PipelinelatestRun   {
    * Get artifacts
    * @return artifacts
   **/
-  public List<PipelinelatestRunartifacts> getArtifacts() {
+  public List<@Valid PipelinelatestRunartifacts> getArtifacts() {
     return artifacts;
   }
 
-  public void setArtifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 

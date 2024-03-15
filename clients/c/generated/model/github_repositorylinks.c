@@ -83,7 +83,7 @@ github_repositorylinks_t *github_repositorylinks_parseFromJSON(cJSON *github_rep
     // github_repositorylinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositorylinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ github_repositorylinks_t *github_repositorylinks_parseFromJSON(cJSON *github_rep
 
     github_repositorylinks_local_var = github_repositorylinks_create (
         self ? self_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return github_repositorylinks_local_var;

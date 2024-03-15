@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GenericResource   {
   
   private String propertyClass;
@@ -101,12 +102,12 @@ public class GenericResource   {
       return false;
     }
     GenericResource genericResource = (GenericResource) o;
-    return Objects.equals(propertyClass, genericResource.propertyClass) &&
-        Objects.equals(displayName, genericResource.displayName) &&
-        Objects.equals(durationInMillis, genericResource.durationInMillis) &&
-        Objects.equals(id, genericResource.id) &&
-        Objects.equals(result, genericResource.result) &&
-        Objects.equals(startTime, genericResource.startTime);
+    return Objects.equals(this.propertyClass, genericResource.propertyClass) &&
+        Objects.equals(this.displayName, genericResource.displayName) &&
+        Objects.equals(this.durationInMillis, genericResource.durationInMillis) &&
+        Objects.equals(this.id, genericResource.id) &&
+        Objects.equals(this.result, genericResource.result) &&
+        Objects.equals(this.startTime, genericResource.startTime);
   }
 
   @Override

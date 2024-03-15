@@ -418,6 +418,37 @@ public class PipelineRunImpl  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineRunImpl pipelineRunImpl = (PipelineRunImpl) o;
+    return Objects.equals(this.propertyClass, pipelineRunImpl.propertyClass) &&
+        Objects.equals(this.links, pipelineRunImpl.links) &&
+        Objects.equals(this.durationInMillis, pipelineRunImpl.durationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelineRunImpl.enQueueTime) &&
+        Objects.equals(this.endTime, pipelineRunImpl.endTime) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineRunImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.id, pipelineRunImpl.id) &&
+        Objects.equals(this.organization, pipelineRunImpl.organization) &&
+        Objects.equals(this.pipeline, pipelineRunImpl.pipeline) &&
+        Objects.equals(this.result, pipelineRunImpl.result) &&
+        Objects.equals(this.runSummary, pipelineRunImpl.runSummary) &&
+        Objects.equals(this.startTime, pipelineRunImpl.startTime) &&
+        Objects.equals(this.state, pipelineRunImpl.state) &&
+        Objects.equals(this.type, pipelineRunImpl.type) &&
+        Objects.equals(this.commitId, pipelineRunImpl.commitId);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, durationInMillis, enQueueTime, endTime, estimatedDurationInMillis, id, organization, pipeline, result, runSummary, startTime, state, type, commitId);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineRunImpl {\n");

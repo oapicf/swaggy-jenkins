@@ -10,12 +10,12 @@ namespace app\Models;
 class PipelineStepImpllinks {
 
     /** @var \app\Models\Link $self */
-    private $self;
+    public $self;
 
     /** @var \app\Models\Link $actions */
-    private $actions;
+    public $actions;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

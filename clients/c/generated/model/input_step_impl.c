@@ -165,7 +165,7 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
     // input_step_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -180,7 +180,7 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
     // input_step_impl->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -189,7 +189,7 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
     // input_step_impl->message
     cJSON *message = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "message");
     if (message) { 
-    if(!cJSON_IsString(message))
+    if(!cJSON_IsString(message) && !cJSON_IsNull(message))
     {
     goto end; //String
     }
@@ -198,7 +198,7 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
     // input_step_impl->ok
     cJSON *ok = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "ok");
     if (ok) { 
-    if(!cJSON_IsString(ok))
+    if(!cJSON_IsString(ok) && !cJSON_IsNull(ok))
     {
     goto end; //String
     }
@@ -228,7 +228,7 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
     // input_step_impl->submitter
     cJSON *submitter = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "submitter");
     if (submitter) { 
-    if(!cJSON_IsString(submitter))
+    if(!cJSON_IsString(submitter) && !cJSON_IsNull(submitter))
     {
     goto end; //String
     }
@@ -236,13 +236,13 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
 
 
     input_step_impl_local_var = input_step_impl_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
-        id ? strdup(id->valuestring) : NULL,
-        message ? strdup(message->valuestring) : NULL,
-        ok ? strdup(ok->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        message && !cJSON_IsNull(message) ? strdup(message->valuestring) : NULL,
+        ok && !cJSON_IsNull(ok) ? strdup(ok->valuestring) : NULL,
         parameters ? parametersList : NULL,
-        submitter ? strdup(submitter->valuestring) : NULL
+        submitter && !cJSON_IsNull(submitter) ? strdup(submitter->valuestring) : NULL
         );
 
     return input_step_impl_local_var;

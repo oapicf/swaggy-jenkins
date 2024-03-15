@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunImpl   {
-  
   private @Valid String propertyClass;
   private @Valid PipelineRunImpllinks links;
   private @Valid Integer durationInMillis;
@@ -54,7 +53,7 @@ public class PipelineRunImpl   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl links(PipelineRunImpllinks links) {
     this.links = links;
@@ -73,7 +72,7 @@ public class PipelineRunImpl   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -92,7 +91,7 @@ public class PipelineRunImpl   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -111,7 +110,7 @@ public class PipelineRunImpl   {
     this.enQueueTime = enQueueTime;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl endTime(String endTime) {
     this.endTime = endTime;
@@ -130,7 +129,7 @@ public class PipelineRunImpl   {
     this.endTime = endTime;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -149,7 +148,7 @@ public class PipelineRunImpl   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl id(String id) {
     this.id = id;
@@ -168,7 +167,7 @@ public class PipelineRunImpl   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl organization(String organization) {
     this.organization = organization;
@@ -187,7 +186,7 @@ public class PipelineRunImpl   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -206,7 +205,7 @@ public class PipelineRunImpl   {
     this.pipeline = pipeline;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl result(String result) {
     this.result = result;
@@ -225,7 +224,7 @@ public class PipelineRunImpl   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -244,7 +243,7 @@ public class PipelineRunImpl   {
     this.runSummary = runSummary;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl startTime(String startTime) {
     this.startTime = startTime;
@@ -263,7 +262,7 @@ public class PipelineRunImpl   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl state(String state) {
     this.state = state;
@@ -282,7 +281,7 @@ public class PipelineRunImpl   {
     this.state = state;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl type(String type) {
     this.type = type;
@@ -301,7 +300,7 @@ public class PipelineRunImpl   {
     this.type = type;
   }
 
-/**
+  /**
    **/
   public PipelineRunImpl commitId(String commitId) {
     this.commitId = commitId;

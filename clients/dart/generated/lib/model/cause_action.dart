@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -29,8 +29,8 @@ class CauseAction {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is CauseAction &&
-     other.class_ == class_ &&
-     other.causes == causes;
+    other.class_ == class_ &&
+    _deepEquality.equals(other.causes, causes);
 
   @override
   int get hashCode =>
@@ -42,12 +42,14 @@ class CauseAction {
   String toString() => 'CauseAction[class_=$class_, causes=$causes]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-      _json[r'causes'] = causes;
-    return _json;
+      json[r'causes'] = this.causes;
+    return json;
   }
 
   /// Returns a new [CauseAction] instance and imports its values from
@@ -70,13 +72,13 @@ class CauseAction {
 
       return CauseAction(
         class_: mapValueOfType<String>(json, r'_class'),
-        causes: CauseUserIdCause.listFromJson(json[r'causes']) ?? const [],
+        causes: CauseUserIdCause.listFromJson(json[r'causes']),
       );
     }
     return null;
   }
 
-  static List<CauseAction>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<CauseAction> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <CauseAction>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -107,12 +109,10 @@ class CauseAction {
   static Map<String, List<CauseAction>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<CauseAction>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = CauseAction.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = CauseAction.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

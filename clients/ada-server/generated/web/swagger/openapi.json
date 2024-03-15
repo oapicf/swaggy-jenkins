@@ -2,13 +2,13 @@
   "openapi" : "3.0.0",
   "info" : {
     "contact" : {
-      "email" : "blah@cliffano.com",
-      "name" : "Cliffano Subagio",
-      "url" : "http://github.com/oapicf/swaggy-jenkins"
+      "email" : "blah+oapicf@cliffano.com",
+      "name" : "OpenAPI Clients Factory",
+      "url" : "https://github.com/oapicf/swaggy-jenkins"
     },
     "description" : "Jenkins API clients generated from Swagger / Open API specification",
     "title" : "Swaggy Jenkins",
-    "version" : "1.5.1-pre.0"
+    "version" : "2.0.1-pre.0"
   },
   "servers" : [ {
     "url" : "/"

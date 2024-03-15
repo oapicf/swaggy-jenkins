@@ -5,51 +5,43 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class PipelineBranchesitempullRequest
 {
     /**
      * @DTA\Data(field="_links", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\PipelineBranchesitempullRequestlinks::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\PipelineBranchesitempullRequestlinks::class})
-     * @var \App\DTO\PipelineBranchesitempullRequestlinks|null
      */
-    public $_links;
+    public ?\App\DTO\PipelineBranchesitempullRequestlinks $_links = null;
 
     /**
      * @DTA\Data(field="author", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $author;
+    public ?string $author = null;
 
     /**
      * @DTA\Data(field="id", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $id;
+    public ?string $id = null;
 
     /**
      * @DTA\Data(field="title", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $title;
+    public ?string $title = null;
 
     /**
      * @DTA\Data(field="url", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $url;
+    public ?string $url = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

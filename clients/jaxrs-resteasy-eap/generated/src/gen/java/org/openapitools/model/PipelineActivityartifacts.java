@@ -7,9 +7,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineActivityartifacts   {
   
   private String name;
@@ -75,10 +76,10 @@ public class PipelineActivityartifacts   {
       return false;
     }
     PipelineActivityartifacts pipelineActivityartifacts = (PipelineActivityartifacts) o;
-    return Objects.equals(name, pipelineActivityartifacts.name) &&
-        Objects.equals(size, pipelineActivityartifacts.size) &&
-        Objects.equals(url, pipelineActivityartifacts.url) &&
-        Objects.equals(propertyClass, pipelineActivityartifacts.propertyClass);
+    return Objects.equals(this.name, pipelineActivityartifacts.name) &&
+        Objects.equals(this.size, pipelineActivityartifacts.size) &&
+        Objects.equals(this.url, pipelineActivityartifacts.url) &&
+        Objects.equals(this.propertyClass, pipelineActivityartifacts.propertyClass);
   }
 
   @Override

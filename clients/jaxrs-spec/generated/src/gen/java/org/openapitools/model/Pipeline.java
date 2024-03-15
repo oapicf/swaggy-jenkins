@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Pipeline")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Pipeline   {
-  
   private @Valid String propertyClass;
   private @Valid String organization;
   private @Valid String name;
@@ -47,7 +46,7 @@ public class Pipeline   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public Pipeline organization(String organization) {
     this.organization = organization;
@@ -66,7 +65,7 @@ public class Pipeline   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public Pipeline name(String name) {
     this.name = name;
@@ -85,7 +84,7 @@ public class Pipeline   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public Pipeline displayName(String displayName) {
     this.displayName = displayName;
@@ -104,7 +103,7 @@ public class Pipeline   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public Pipeline fullName(String fullName) {
     this.fullName = fullName;
@@ -123,7 +122,7 @@ public class Pipeline   {
     this.fullName = fullName;
   }
 
-/**
+  /**
    **/
   public Pipeline weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -142,7 +141,7 @@ public class Pipeline   {
     this.weatherScore = weatherScore;
   }
 
-/**
+  /**
    **/
   public Pipeline estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -161,7 +160,7 @@ public class Pipeline   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public Pipeline latestRun(PipelinelatestRun latestRun) {
     this.latestRun = latestRun;

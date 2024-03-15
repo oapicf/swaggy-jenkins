@@ -1,5 +1,4 @@
-import { ResponseContext, RequestContext, HttpFile } from '../http/http';
-import * as models from '../models/all';
+import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
 import { Configuration} from '../configuration'
 
 import { AllView } from '../models/AllView';
@@ -94,6 +93,14 @@ export class ObjectBaseApi {
 
     public constructor(configuration: Configuration, requestFactory?: BaseApiRequestFactory, responseProcessor?: BaseApiResponseProcessor) {
         this.api = new ObservableBaseApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Retrieve CSRF protection token
+     * @param param the request object
+     */
+    public getCrumbWithHttpInfo(param: BaseApiGetCrumbRequest = {}, options?: Configuration): Promise<HttpInfo<DefaultCrumbIssuer>> {
+        return this.api.getCrumbWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -375,7 +382,7 @@ export interface BlueOceanApiGetPipelineRunLogRequest {
      */
     start?: number
     /**
-     * Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     * Set to true in order to download the file, otherwise it\&#39;s passed as a response body
      * @type boolean
      * @memberof BlueOceanApigetPipelineRunLog
      */
@@ -807,8 +814,24 @@ export class ObjectBlueOceanApi {
      * Delete queue item from an organization pipeline queue
      * @param param the request object
      */
+    public deletePipelineQueueItemWithHttpInfo(param: BlueOceanApiDeletePipelineQueueItemRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.deletePipelineQueueItemWithHttpInfo(param.organization, param.pipeline, param.queue,  options).toPromise();
+    }
+
+    /**
+     * Delete queue item from an organization pipeline queue
+     * @param param the request object
+     */
     public deletePipelineQueueItem(param: BlueOceanApiDeletePipelineQueueItemRequest, options?: Configuration): Promise<void> {
         return this.api.deletePipelineQueueItem(param.organization, param.pipeline, param.queue,  options).toPromise();
+    }
+
+    /**
+     * Retrieve authenticated user details for an organization
+     * @param param the request object
+     */
+    public getAuthenticatedUserWithHttpInfo(param: BlueOceanApiGetAuthenticatedUserRequest, options?: Configuration): Promise<HttpInfo<User>> {
+        return this.api.getAuthenticatedUserWithHttpInfo(param.organization,  options).toPromise();
     }
 
     /**
@@ -823,8 +846,24 @@ export class ObjectBlueOceanApi {
      * Get a list of class names supported by a given class
      * @param param the request object
      */
+    public getClassesWithHttpInfo(param: BlueOceanApiGetClassesRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getClassesWithHttpInfo(param._class,  options).toPromise();
+    }
+
+    /**
+     * Get a list of class names supported by a given class
+     * @param param the request object
+     */
     public getClasses(param: BlueOceanApiGetClassesRequest, options?: Configuration): Promise<string> {
         return this.api.getClasses(param._class,  options).toPromise();
+    }
+
+    /**
+     * Retrieve JSON Web Key
+     * @param param the request object
+     */
+    public getJsonWebKeyWithHttpInfo(param: BlueOceanApiGetJsonWebKeyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getJsonWebKeyWithHttpInfo(param.key,  options).toPromise();
     }
 
     /**
@@ -839,8 +878,24 @@ export class ObjectBlueOceanApi {
      * Retrieve JSON Web Token
      * @param param the request object
      */
+    public getJsonWebTokenWithHttpInfo(param: BlueOceanApiGetJsonWebTokenRequest = {}, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getJsonWebTokenWithHttpInfo(param.expiryTimeInMins, param.maxExpiryTimeInMins,  options).toPromise();
+    }
+
+    /**
+     * Retrieve JSON Web Token
+     * @param param the request object
+     */
     public getJsonWebToken(param: BlueOceanApiGetJsonWebTokenRequest = {}, options?: Configuration): Promise<string> {
         return this.api.getJsonWebToken(param.expiryTimeInMins, param.maxExpiryTimeInMins,  options).toPromise();
+    }
+
+    /**
+     * Retrieve organization details
+     * @param param the request object
+     */
+    public getOrganisationWithHttpInfo(param: BlueOceanApiGetOrganisationRequest, options?: Configuration): Promise<HttpInfo<Organisation>> {
+        return this.api.getOrganisationWithHttpInfo(param.organization,  options).toPromise();
     }
 
     /**
@@ -855,8 +910,24 @@ export class ObjectBlueOceanApi {
      * Retrieve all organizations details
      * @param param the request object
      */
+    public getOrganisationsWithHttpInfo(param: BlueOceanApiGetOrganisationsRequest = {}, options?: Configuration): Promise<HttpInfo<Array<Organisation>>> {
+        return this.api.getOrganisationsWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * Retrieve all organizations details
+     * @param param the request object
+     */
     public getOrganisations(param: BlueOceanApiGetOrganisationsRequest = {}, options?: Configuration): Promise<Array<Organisation>> {
         return this.api.getOrganisations( options).toPromise();
+    }
+
+    /**
+     * Retrieve pipeline details for an organization
+     * @param param the request object
+     */
+    public getPipelineWithHttpInfo(param: BlueOceanApiGetPipelineRequest, options?: Configuration): Promise<HttpInfo<Pipeline>> {
+        return this.api.getPipelineWithHttpInfo(param.organization, param.pipeline,  options).toPromise();
     }
 
     /**
@@ -871,8 +942,24 @@ export class ObjectBlueOceanApi {
      * Retrieve all activities details for an organization pipeline
      * @param param the request object
      */
+    public getPipelineActivitiesWithHttpInfo(param: BlueOceanApiGetPipelineActivitiesRequest, options?: Configuration): Promise<HttpInfo<Array<PipelineActivity>>> {
+        return this.api.getPipelineActivitiesWithHttpInfo(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Retrieve all activities details for an organization pipeline
+     * @param param the request object
+     */
     public getPipelineActivities(param: BlueOceanApiGetPipelineActivitiesRequest, options?: Configuration): Promise<Array<PipelineActivity>> {
         return this.api.getPipelineActivities(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Retrieve branch details for an organization pipeline
+     * @param param the request object
+     */
+    public getPipelineBranchWithHttpInfo(param: BlueOceanApiGetPipelineBranchRequest, options?: Configuration): Promise<HttpInfo<BranchImpl>> {
+        return this.api.getPipelineBranchWithHttpInfo(param.organization, param.pipeline, param.branch,  options).toPromise();
     }
 
     /**
@@ -887,8 +974,24 @@ export class ObjectBlueOceanApi {
      * Retrieve branch run details for an organization pipeline
      * @param param the request object
      */
+    public getPipelineBranchRunWithHttpInfo(param: BlueOceanApiGetPipelineBranchRunRequest, options?: Configuration): Promise<HttpInfo<PipelineRun>> {
+        return this.api.getPipelineBranchRunWithHttpInfo(param.organization, param.pipeline, param.branch, param.run,  options).toPromise();
+    }
+
+    /**
+     * Retrieve branch run details for an organization pipeline
+     * @param param the request object
+     */
     public getPipelineBranchRun(param: BlueOceanApiGetPipelineBranchRunRequest, options?: Configuration): Promise<PipelineRun> {
         return this.api.getPipelineBranchRun(param.organization, param.pipeline, param.branch, param.run,  options).toPromise();
+    }
+
+    /**
+     * Retrieve all branches details for an organization pipeline
+     * @param param the request object
+     */
+    public getPipelineBranchesWithHttpInfo(param: BlueOceanApiGetPipelineBranchesRequest, options?: Configuration): Promise<HttpInfo<MultibranchPipeline>> {
+        return this.api.getPipelineBranchesWithHttpInfo(param.organization, param.pipeline,  options).toPromise();
     }
 
     /**
@@ -903,8 +1006,24 @@ export class ObjectBlueOceanApi {
      * Retrieve pipeline folder for an organization
      * @param param the request object
      */
+    public getPipelineFolderWithHttpInfo(param: BlueOceanApiGetPipelineFolderRequest, options?: Configuration): Promise<HttpInfo<PipelineFolderImpl>> {
+        return this.api.getPipelineFolderWithHttpInfo(param.organization, param.folder,  options).toPromise();
+    }
+
+    /**
+     * Retrieve pipeline folder for an organization
+     * @param param the request object
+     */
     public getPipelineFolder(param: BlueOceanApiGetPipelineFolderRequest, options?: Configuration): Promise<PipelineFolderImpl> {
         return this.api.getPipelineFolder(param.organization, param.folder,  options).toPromise();
+    }
+
+    /**
+     * Retrieve pipeline details for an organization folder
+     * @param param the request object
+     */
+    public getPipelineFolderPipelineWithHttpInfo(param: BlueOceanApiGetPipelineFolderPipelineRequest, options?: Configuration): Promise<HttpInfo<PipelineImpl>> {
+        return this.api.getPipelineFolderPipelineWithHttpInfo(param.organization, param.pipeline, param.folder,  options).toPromise();
     }
 
     /**
@@ -919,8 +1038,24 @@ export class ObjectBlueOceanApi {
      * Retrieve queue details for an organization pipeline
      * @param param the request object
      */
+    public getPipelineQueueWithHttpInfo(param: BlueOceanApiGetPipelineQueueRequest, options?: Configuration): Promise<HttpInfo<Array<QueueItemImpl>>> {
+        return this.api.getPipelineQueueWithHttpInfo(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Retrieve queue details for an organization pipeline
+     * @param param the request object
+     */
     public getPipelineQueue(param: BlueOceanApiGetPipelineQueueRequest, options?: Configuration): Promise<Array<QueueItemImpl>> {
         return this.api.getPipelineQueue(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Retrieve run details for an organization pipeline
+     * @param param the request object
+     */
+    public getPipelineRunWithHttpInfo(param: BlueOceanApiGetPipelineRunRequest, options?: Configuration): Promise<HttpInfo<PipelineRun>> {
+        return this.api.getPipelineRunWithHttpInfo(param.organization, param.pipeline, param.run,  options).toPromise();
     }
 
     /**
@@ -935,8 +1070,24 @@ export class ObjectBlueOceanApi {
      * Get log for a pipeline run
      * @param param the request object
      */
+    public getPipelineRunLogWithHttpInfo(param: BlueOceanApiGetPipelineRunLogRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getPipelineRunLogWithHttpInfo(param.organization, param.pipeline, param.run, param.start, param.download,  options).toPromise();
+    }
+
+    /**
+     * Get log for a pipeline run
+     * @param param the request object
+     */
     public getPipelineRunLog(param: BlueOceanApiGetPipelineRunLogRequest, options?: Configuration): Promise<string> {
         return this.api.getPipelineRunLog(param.organization, param.pipeline, param.run, param.start, param.download,  options).toPromise();
+    }
+
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param param the request object
+     */
+    public getPipelineRunNodeWithHttpInfo(param: BlueOceanApiGetPipelineRunNodeRequest, options?: Configuration): Promise<HttpInfo<PipelineRunNode>> {
+        return this.api.getPipelineRunNodeWithHttpInfo(param.organization, param.pipeline, param.run, param.node,  options).toPromise();
     }
 
     /**
@@ -951,8 +1102,24 @@ export class ObjectBlueOceanApi {
      * Retrieve run node details for an organization pipeline
      * @param param the request object
      */
+    public getPipelineRunNodeStepWithHttpInfo(param: BlueOceanApiGetPipelineRunNodeStepRequest, options?: Configuration): Promise<HttpInfo<PipelineStepImpl>> {
+        return this.api.getPipelineRunNodeStepWithHttpInfo(param.organization, param.pipeline, param.run, param.node, param.step,  options).toPromise();
+    }
+
+    /**
+     * Retrieve run node details for an organization pipeline
+     * @param param the request object
+     */
     public getPipelineRunNodeStep(param: BlueOceanApiGetPipelineRunNodeStepRequest, options?: Configuration): Promise<PipelineStepImpl> {
         return this.api.getPipelineRunNodeStep(param.organization, param.pipeline, param.run, param.node, param.step,  options).toPromise();
+    }
+
+    /**
+     * Get log for a pipeline run node step
+     * @param param the request object
+     */
+    public getPipelineRunNodeStepLogWithHttpInfo(param: BlueOceanApiGetPipelineRunNodeStepLogRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getPipelineRunNodeStepLogWithHttpInfo(param.organization, param.pipeline, param.run, param.node, param.step,  options).toPromise();
     }
 
     /**
@@ -967,8 +1134,24 @@ export class ObjectBlueOceanApi {
      * Retrieve run node steps details for an organization pipeline
      * @param param the request object
      */
+    public getPipelineRunNodeStepsWithHttpInfo(param: BlueOceanApiGetPipelineRunNodeStepsRequest, options?: Configuration): Promise<HttpInfo<Array<PipelineStepImpl>>> {
+        return this.api.getPipelineRunNodeStepsWithHttpInfo(param.organization, param.pipeline, param.run, param.node,  options).toPromise();
+    }
+
+    /**
+     * Retrieve run node steps details for an organization pipeline
+     * @param param the request object
+     */
     public getPipelineRunNodeSteps(param: BlueOceanApiGetPipelineRunNodeStepsRequest, options?: Configuration): Promise<Array<PipelineStepImpl>> {
         return this.api.getPipelineRunNodeSteps(param.organization, param.pipeline, param.run, param.node,  options).toPromise();
+    }
+
+    /**
+     * Retrieve run nodes details for an organization pipeline
+     * @param param the request object
+     */
+    public getPipelineRunNodesWithHttpInfo(param: BlueOceanApiGetPipelineRunNodesRequest, options?: Configuration): Promise<HttpInfo<Array<PipelineRunNode>>> {
+        return this.api.getPipelineRunNodesWithHttpInfo(param.organization, param.pipeline, param.run,  options).toPromise();
     }
 
     /**
@@ -983,8 +1166,24 @@ export class ObjectBlueOceanApi {
      * Retrieve all runs details for an organization pipeline
      * @param param the request object
      */
+    public getPipelineRunsWithHttpInfo(param: BlueOceanApiGetPipelineRunsRequest, options?: Configuration): Promise<HttpInfo<Array<PipelineRun>>> {
+        return this.api.getPipelineRunsWithHttpInfo(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Retrieve all runs details for an organization pipeline
+     * @param param the request object
+     */
     public getPipelineRuns(param: BlueOceanApiGetPipelineRunsRequest, options?: Configuration): Promise<Array<PipelineRun>> {
         return this.api.getPipelineRuns(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Retrieve all pipelines details for an organization
+     * @param param the request object
+     */
+    public getPipelinesWithHttpInfo(param: BlueOceanApiGetPipelinesRequest, options?: Configuration): Promise<HttpInfo<Array<Pipeline>>> {
+        return this.api.getPipelinesWithHttpInfo(param.organization,  options).toPromise();
     }
 
     /**
@@ -999,8 +1198,24 @@ export class ObjectBlueOceanApi {
      * Retrieve SCM details for an organization
      * @param param the request object
      */
+    public getSCMWithHttpInfo(param: BlueOceanApiGetSCMRequest, options?: Configuration): Promise<HttpInfo<GithubScm>> {
+        return this.api.getSCMWithHttpInfo(param.organization, param.scm,  options).toPromise();
+    }
+
+    /**
+     * Retrieve SCM details for an organization
+     * @param param the request object
+     */
     public getSCM(param: BlueOceanApiGetSCMRequest, options?: Configuration): Promise<GithubScm> {
         return this.api.getSCM(param.organization, param.scm,  options).toPromise();
+    }
+
+    /**
+     * Retrieve SCM organization repositories details for an organization
+     * @param param the request object
+     */
+    public getSCMOrganisationRepositoriesWithHttpInfo(param: BlueOceanApiGetSCMOrganisationRepositoriesRequest, options?: Configuration): Promise<HttpInfo<Array<GithubOrganization>>> {
+        return this.api.getSCMOrganisationRepositoriesWithHttpInfo(param.organization, param.scm, param.scmOrganisation, param.credentialId, param.pageSize, param.pageNumber,  options).toPromise();
     }
 
     /**
@@ -1015,8 +1230,24 @@ export class ObjectBlueOceanApi {
      * Retrieve SCM organization repository details for an organization
      * @param param the request object
      */
+    public getSCMOrganisationRepositoryWithHttpInfo(param: BlueOceanApiGetSCMOrganisationRepositoryRequest, options?: Configuration): Promise<HttpInfo<Array<GithubOrganization>>> {
+        return this.api.getSCMOrganisationRepositoryWithHttpInfo(param.organization, param.scm, param.scmOrganisation, param.repository, param.credentialId,  options).toPromise();
+    }
+
+    /**
+     * Retrieve SCM organization repository details for an organization
+     * @param param the request object
+     */
     public getSCMOrganisationRepository(param: BlueOceanApiGetSCMOrganisationRepositoryRequest, options?: Configuration): Promise<Array<GithubOrganization>> {
         return this.api.getSCMOrganisationRepository(param.organization, param.scm, param.scmOrganisation, param.repository, param.credentialId,  options).toPromise();
+    }
+
+    /**
+     * Retrieve SCM organizations details for an organization
+     * @param param the request object
+     */
+    public getSCMOrganisationsWithHttpInfo(param: BlueOceanApiGetSCMOrganisationsRequest, options?: Configuration): Promise<HttpInfo<Array<GithubOrganization>>> {
+        return this.api.getSCMOrganisationsWithHttpInfo(param.organization, param.scm, param.credentialId,  options).toPromise();
     }
 
     /**
@@ -1031,8 +1262,24 @@ export class ObjectBlueOceanApi {
      * Retrieve user details for an organization
      * @param param the request object
      */
+    public getUserWithHttpInfo(param: BlueOceanApiGetUserRequest, options?: Configuration): Promise<HttpInfo<User>> {
+        return this.api.getUserWithHttpInfo(param.organization, param.user,  options).toPromise();
+    }
+
+    /**
+     * Retrieve user details for an organization
+     * @param param the request object
+     */
     public getUser(param: BlueOceanApiGetUserRequest, options?: Configuration): Promise<User> {
         return this.api.getUser(param.organization, param.user,  options).toPromise();
+    }
+
+    /**
+     * Retrieve user favorites details for an organization
+     * @param param the request object
+     */
+    public getUserFavoritesWithHttpInfo(param: BlueOceanApiGetUserFavoritesRequest, options?: Configuration): Promise<HttpInfo<Array<FavoriteImpl>>> {
+        return this.api.getUserFavoritesWithHttpInfo(param.user,  options).toPromise();
     }
 
     /**
@@ -1047,8 +1294,24 @@ export class ObjectBlueOceanApi {
      * Retrieve users details for an organization
      * @param param the request object
      */
+    public getUsersWithHttpInfo(param: BlueOceanApiGetUsersRequest, options?: Configuration): Promise<HttpInfo<User>> {
+        return this.api.getUsersWithHttpInfo(param.organization,  options).toPromise();
+    }
+
+    /**
+     * Retrieve users details for an organization
+     * @param param the request object
+     */
     public getUsers(param: BlueOceanApiGetUsersRequest, options?: Configuration): Promise<User> {
         return this.api.getUsers(param.organization,  options).toPromise();
+    }
+
+    /**
+     * Replay an organization pipeline run
+     * @param param the request object
+     */
+    public postPipelineRunWithHttpInfo(param: BlueOceanApiPostPipelineRunRequest, options?: Configuration): Promise<HttpInfo<QueueItemImpl>> {
+        return this.api.postPipelineRunWithHttpInfo(param.organization, param.pipeline, param.run,  options).toPromise();
     }
 
     /**
@@ -1063,8 +1326,24 @@ export class ObjectBlueOceanApi {
      * Start a build for an organization pipeline
      * @param param the request object
      */
+    public postPipelineRunsWithHttpInfo(param: BlueOceanApiPostPipelineRunsRequest, options?: Configuration): Promise<HttpInfo<QueueItemImpl>> {
+        return this.api.postPipelineRunsWithHttpInfo(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Start a build for an organization pipeline
+     * @param param the request object
+     */
     public postPipelineRuns(param: BlueOceanApiPostPipelineRunsRequest, options?: Configuration): Promise<QueueItemImpl> {
         return this.api.postPipelineRuns(param.organization, param.pipeline,  options).toPromise();
+    }
+
+    /**
+     * Favorite/unfavorite a pipeline
+     * @param param the request object
+     */
+    public putPipelineFavoriteWithHttpInfo(param: BlueOceanApiPutPipelineFavoriteRequest, options?: Configuration): Promise<HttpInfo<FavoriteImpl>> {
+        return this.api.putPipelineFavoriteWithHttpInfo(param.organization, param.pipeline, param.body,  options).toPromise();
     }
 
     /**
@@ -1079,6 +1358,14 @@ export class ObjectBlueOceanApi {
      * Stop a build of an organization pipeline
      * @param param the request object
      */
+    public putPipelineRunWithHttpInfo(param: BlueOceanApiPutPipelineRunRequest, options?: Configuration): Promise<HttpInfo<PipelineRun>> {
+        return this.api.putPipelineRunWithHttpInfo(param.organization, param.pipeline, param.run, param.blocking, param.timeOutInSecs,  options).toPromise();
+    }
+
+    /**
+     * Stop a build of an organization pipeline
+     * @param param the request object
+     */
     public putPipelineRun(param: BlueOceanApiPutPipelineRunRequest, options?: Configuration): Promise<PipelineRun> {
         return this.api.putPipelineRun(param.organization, param.pipeline, param.run, param.blocking, param.timeOutInSecs,  options).toPromise();
     }
@@ -1087,8 +1374,24 @@ export class ObjectBlueOceanApi {
      * Search for any resource details
      * @param param the request object
      */
+    public searchWithHttpInfo(param: BlueOceanApiSearchRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.searchWithHttpInfo(param.q,  options).toPromise();
+    }
+
+    /**
+     * Search for any resource details
+     * @param param the request object
+     */
     public search(param: BlueOceanApiSearchRequest, options?: Configuration): Promise<string> {
         return this.api.search(param.q,  options).toPromise();
+    }
+
+    /**
+     * Get classes details
+     * @param param the request object
+     */
+    public searchClassesWithHttpInfo(param: BlueOceanApiSearchClassesRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.searchClassesWithHttpInfo(param.q,  options).toPromise();
     }
 
     /**
@@ -1211,7 +1514,7 @@ export interface RemoteAccessApiPostCreateItemRequest {
      */
     _from?: string
     /**
-     * Set to &#39;copy&#39; for copying an existing job
+     * Set to \&#39;copy\&#39; for copying an existing job
      * @type string
      * @memberof RemoteAccessApipostCreateItem
      */
@@ -1403,8 +1706,24 @@ export class ObjectRemoteAccessApi {
      * Retrieve computer details
      * @param param the request object
      */
+    public getComputerWithHttpInfo(param: RemoteAccessApiGetComputerRequest, options?: Configuration): Promise<HttpInfo<ComputerSet>> {
+        return this.api.getComputerWithHttpInfo(param.depth,  options).toPromise();
+    }
+
+    /**
+     * Retrieve computer details
+     * @param param the request object
+     */
     public getComputer(param: RemoteAccessApiGetComputerRequest, options?: Configuration): Promise<ComputerSet> {
         return this.api.getComputer(param.depth,  options).toPromise();
+    }
+
+    /**
+     * Retrieve Jenkins details
+     * @param param the request object
+     */
+    public getJenkinsWithHttpInfo(param: RemoteAccessApiGetJenkinsRequest = {}, options?: Configuration): Promise<HttpInfo<Hudson>> {
+        return this.api.getJenkinsWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -1419,8 +1738,24 @@ export class ObjectRemoteAccessApi {
      * Retrieve job details
      * @param param the request object
      */
+    public getJobWithHttpInfo(param: RemoteAccessApiGetJobRequest, options?: Configuration): Promise<HttpInfo<FreeStyleProject>> {
+        return this.api.getJobWithHttpInfo(param.name,  options).toPromise();
+    }
+
+    /**
+     * Retrieve job details
+     * @param param the request object
+     */
     public getJob(param: RemoteAccessApiGetJobRequest, options?: Configuration): Promise<FreeStyleProject> {
         return this.api.getJob(param.name,  options).toPromise();
+    }
+
+    /**
+     * Retrieve job configuration
+     * @param param the request object
+     */
+    public getJobConfigWithHttpInfo(param: RemoteAccessApiGetJobConfigRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getJobConfigWithHttpInfo(param.name,  options).toPromise();
     }
 
     /**
@@ -1432,7 +1767,15 @@ export class ObjectRemoteAccessApi {
     }
 
     /**
-     * Retrieve job's last build details
+     * Retrieve job\'s last build details
+     * @param param the request object
+     */
+    public getJobLastBuildWithHttpInfo(param: RemoteAccessApiGetJobLastBuildRequest, options?: Configuration): Promise<HttpInfo<FreeStyleBuild>> {
+        return this.api.getJobLastBuildWithHttpInfo(param.name,  options).toPromise();
+    }
+
+    /**
+     * Retrieve job\'s last build details
      * @param param the request object
      */
     public getJobLastBuild(param: RemoteAccessApiGetJobLastBuildRequest, options?: Configuration): Promise<FreeStyleBuild> {
@@ -1440,11 +1783,27 @@ export class ObjectRemoteAccessApi {
     }
 
     /**
-     * Retrieve job's build progressive text output
+     * Retrieve job\'s build progressive text output
+     * @param param the request object
+     */
+    public getJobProgressiveTextWithHttpInfo(param: RemoteAccessApiGetJobProgressiveTextRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.getJobProgressiveTextWithHttpInfo(param.name, param.number, param.start,  options).toPromise();
+    }
+
+    /**
+     * Retrieve job\'s build progressive text output
      * @param param the request object
      */
     public getJobProgressiveText(param: RemoteAccessApiGetJobProgressiveTextRequest, options?: Configuration): Promise<void> {
         return this.api.getJobProgressiveText(param.name, param.number, param.start,  options).toPromise();
+    }
+
+    /**
+     * Retrieve queue details
+     * @param param the request object
+     */
+    public getQueueWithHttpInfo(param: RemoteAccessApiGetQueueRequest = {}, options?: Configuration): Promise<HttpInfo<Queue>> {
+        return this.api.getQueueWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -1459,8 +1818,24 @@ export class ObjectRemoteAccessApi {
      * Retrieve queued item details
      * @param param the request object
      */
+    public getQueueItemWithHttpInfo(param: RemoteAccessApiGetQueueItemRequest, options?: Configuration): Promise<HttpInfo<Queue>> {
+        return this.api.getQueueItemWithHttpInfo(param.number,  options).toPromise();
+    }
+
+    /**
+     * Retrieve queued item details
+     * @param param the request object
+     */
     public getQueueItem(param: RemoteAccessApiGetQueueItemRequest, options?: Configuration): Promise<Queue> {
         return this.api.getQueueItem(param.number,  options).toPromise();
+    }
+
+    /**
+     * Retrieve view details
+     * @param param the request object
+     */
+    public getViewWithHttpInfo(param: RemoteAccessApiGetViewRequest, options?: Configuration): Promise<HttpInfo<ListView>> {
+        return this.api.getViewWithHttpInfo(param.name,  options).toPromise();
     }
 
     /**
@@ -1475,8 +1850,24 @@ export class ObjectRemoteAccessApi {
      * Retrieve view configuration
      * @param param the request object
      */
+    public getViewConfigWithHttpInfo(param: RemoteAccessApiGetViewConfigRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getViewConfigWithHttpInfo(param.name,  options).toPromise();
+    }
+
+    /**
+     * Retrieve view configuration
+     * @param param the request object
+     */
     public getViewConfig(param: RemoteAccessApiGetViewConfigRequest, options?: Configuration): Promise<string> {
         return this.api.getViewConfig(param.name,  options).toPromise();
+    }
+
+    /**
+     * Retrieve Jenkins headers
+     * @param param the request object
+     */
+    public headJenkinsWithHttpInfo(param: RemoteAccessApiHeadJenkinsRequest = {}, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.headJenkinsWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -1491,8 +1882,24 @@ export class ObjectRemoteAccessApi {
      * Create a new job using job configuration, or copied from an existing job
      * @param param the request object
      */
+    public postCreateItemWithHttpInfo(param: RemoteAccessApiPostCreateItemRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postCreateItemWithHttpInfo(param.name, param._from, param.mode, param.jenkinsCrumb, param.contentType, param.body,  options).toPromise();
+    }
+
+    /**
+     * Create a new job using job configuration, or copied from an existing job
+     * @param param the request object
+     */
     public postCreateItem(param: RemoteAccessApiPostCreateItemRequest, options?: Configuration): Promise<void> {
         return this.api.postCreateItem(param.name, param._from, param.mode, param.jenkinsCrumb, param.contentType, param.body,  options).toPromise();
+    }
+
+    /**
+     * Create a new view using view configuration
+     * @param param the request object
+     */
+    public postCreateViewWithHttpInfo(param: RemoteAccessApiPostCreateViewRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postCreateViewWithHttpInfo(param.name, param.jenkinsCrumb, param.contentType, param.body,  options).toPromise();
     }
 
     /**
@@ -1507,8 +1914,24 @@ export class ObjectRemoteAccessApi {
      * Build a job
      * @param param the request object
      */
+    public postJobBuildWithHttpInfo(param: RemoteAccessApiPostJobBuildRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postJobBuildWithHttpInfo(param.name, param.json, param.token, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Build a job
+     * @param param the request object
+     */
     public postJobBuild(param: RemoteAccessApiPostJobBuildRequest, options?: Configuration): Promise<void> {
         return this.api.postJobBuild(param.name, param.json, param.token, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Update job configuration
+     * @param param the request object
+     */
+    public postJobConfigWithHttpInfo(param: RemoteAccessApiPostJobConfigRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postJobConfigWithHttpInfo(param.name, param.body, param.jenkinsCrumb,  options).toPromise();
     }
 
     /**
@@ -1523,8 +1946,24 @@ export class ObjectRemoteAccessApi {
      * Delete a job
      * @param param the request object
      */
+    public postJobDeleteWithHttpInfo(param: RemoteAccessApiPostJobDeleteRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postJobDeleteWithHttpInfo(param.name, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Delete a job
+     * @param param the request object
+     */
     public postJobDelete(param: RemoteAccessApiPostJobDeleteRequest, options?: Configuration): Promise<void> {
         return this.api.postJobDelete(param.name, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Disable a job
+     * @param param the request object
+     */
+    public postJobDisableWithHttpInfo(param: RemoteAccessApiPostJobDisableRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postJobDisableWithHttpInfo(param.name, param.jenkinsCrumb,  options).toPromise();
     }
 
     /**
@@ -1539,6 +1978,14 @@ export class ObjectRemoteAccessApi {
      * Enable a job
      * @param param the request object
      */
+    public postJobEnableWithHttpInfo(param: RemoteAccessApiPostJobEnableRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postJobEnableWithHttpInfo(param.name, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Enable a job
+     * @param param the request object
+     */
     public postJobEnable(param: RemoteAccessApiPostJobEnableRequest, options?: Configuration): Promise<void> {
         return this.api.postJobEnable(param.name, param.jenkinsCrumb,  options).toPromise();
     }
@@ -1547,8 +1994,24 @@ export class ObjectRemoteAccessApi {
      * Stop a job
      * @param param the request object
      */
+    public postJobLastBuildStopWithHttpInfo(param: RemoteAccessApiPostJobLastBuildStopRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postJobLastBuildStopWithHttpInfo(param.name, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Stop a job
+     * @param param the request object
+     */
     public postJobLastBuildStop(param: RemoteAccessApiPostJobLastBuildStopRequest, options?: Configuration): Promise<void> {
         return this.api.postJobLastBuildStop(param.name, param.jenkinsCrumb,  options).toPromise();
+    }
+
+    /**
+     * Update view configuration
+     * @param param the request object
+     */
+    public postViewConfigWithHttpInfo(param: RemoteAccessApiPostViewConfigRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.postViewConfigWithHttpInfo(param.name, param.body, param.jenkinsCrumb,  options).toPromise();
     }
 
     /**

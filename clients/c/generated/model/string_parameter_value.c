@@ -83,7 +83,7 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
     // string_parameter_value->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
     // string_parameter_value->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -101,7 +101,7 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
     // string_parameter_value->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "value");
     if (value) { 
-    if(!cJSON_IsString(value))
+    if(!cJSON_IsString(value) && !cJSON_IsNull(value))
     {
     goto end; //String
     }
@@ -109,9 +109,9 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
 
 
     string_parameter_value_local_var = string_parameter_value_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        value ? strdup(value->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL
         );
 
     return string_parameter_value_local_var;

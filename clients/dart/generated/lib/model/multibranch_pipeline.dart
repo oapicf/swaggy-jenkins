@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -137,20 +137,20 @@ class MultibranchPipeline {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MultibranchPipeline &&
-     other.displayName == displayName &&
-     other.estimatedDurationInMillis == estimatedDurationInMillis &&
-     other.latestRun == latestRun &&
-     other.name == name &&
-     other.organization == organization &&
-     other.weatherScore == weatherScore &&
-     other.branchNames == branchNames &&
-     other.numberOfFailingBranches == numberOfFailingBranches &&
-     other.numberOfFailingPullRequests == numberOfFailingPullRequests &&
-     other.numberOfSuccessfulBranches == numberOfSuccessfulBranches &&
-     other.numberOfSuccessfulPullRequests == numberOfSuccessfulPullRequests &&
-     other.totalNumberOfBranches == totalNumberOfBranches &&
-     other.totalNumberOfPullRequests == totalNumberOfPullRequests &&
-     other.class_ == class_;
+    other.displayName == displayName &&
+    other.estimatedDurationInMillis == estimatedDurationInMillis &&
+    other.latestRun == latestRun &&
+    other.name == name &&
+    other.organization == organization &&
+    other.weatherScore == weatherScore &&
+    _deepEquality.equals(other.branchNames, branchNames) &&
+    other.numberOfFailingBranches == numberOfFailingBranches &&
+    other.numberOfFailingPullRequests == numberOfFailingPullRequests &&
+    other.numberOfSuccessfulBranches == numberOfSuccessfulBranches &&
+    other.numberOfSuccessfulPullRequests == numberOfSuccessfulPullRequests &&
+    other.totalNumberOfBranches == totalNumberOfBranches &&
+    other.totalNumberOfPullRequests == totalNumberOfPullRequests &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -174,48 +174,74 @@ class MultibranchPipeline {
   String toString() => 'MultibranchPipeline[displayName=$displayName, estimatedDurationInMillis=$estimatedDurationInMillis, latestRun=$latestRun, name=$name, organization=$organization, weatherScore=$weatherScore, branchNames=$branchNames, numberOfFailingBranches=$numberOfFailingBranches, numberOfFailingPullRequests=$numberOfFailingPullRequests, numberOfSuccessfulBranches=$numberOfSuccessfulBranches, numberOfSuccessfulPullRequests=$numberOfSuccessfulPullRequests, totalNumberOfBranches=$totalNumberOfBranches, totalNumberOfPullRequests=$totalNumberOfPullRequests, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    final json = <String, dynamic>{};
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (estimatedDurationInMillis != null) {
-      _json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
+    if (this.estimatedDurationInMillis != null) {
+      json[r'estimatedDurationInMillis'] = this.estimatedDurationInMillis;
+    } else {
+      json[r'estimatedDurationInMillis'] = null;
     }
-    if (latestRun != null) {
-      _json[r'latestRun'] = latestRun;
+    if (this.latestRun != null) {
+      json[r'latestRun'] = this.latestRun;
+    } else {
+      json[r'latestRun'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (organization != null) {
-      _json[r'organization'] = organization;
+    if (this.organization != null) {
+      json[r'organization'] = this.organization;
+    } else {
+      json[r'organization'] = null;
     }
-    if (weatherScore != null) {
-      _json[r'weatherScore'] = weatherScore;
+    if (this.weatherScore != null) {
+      json[r'weatherScore'] = this.weatherScore;
+    } else {
+      json[r'weatherScore'] = null;
     }
-      _json[r'branchNames'] = branchNames;
-    if (numberOfFailingBranches != null) {
-      _json[r'numberOfFailingBranches'] = numberOfFailingBranches;
+      json[r'branchNames'] = this.branchNames;
+    if (this.numberOfFailingBranches != null) {
+      json[r'numberOfFailingBranches'] = this.numberOfFailingBranches;
+    } else {
+      json[r'numberOfFailingBranches'] = null;
     }
-    if (numberOfFailingPullRequests != null) {
-      _json[r'numberOfFailingPullRequests'] = numberOfFailingPullRequests;
+    if (this.numberOfFailingPullRequests != null) {
+      json[r'numberOfFailingPullRequests'] = this.numberOfFailingPullRequests;
+    } else {
+      json[r'numberOfFailingPullRequests'] = null;
     }
-    if (numberOfSuccessfulBranches != null) {
-      _json[r'numberOfSuccessfulBranches'] = numberOfSuccessfulBranches;
+    if (this.numberOfSuccessfulBranches != null) {
+      json[r'numberOfSuccessfulBranches'] = this.numberOfSuccessfulBranches;
+    } else {
+      json[r'numberOfSuccessfulBranches'] = null;
     }
-    if (numberOfSuccessfulPullRequests != null) {
-      _json[r'numberOfSuccessfulPullRequests'] = numberOfSuccessfulPullRequests;
+    if (this.numberOfSuccessfulPullRequests != null) {
+      json[r'numberOfSuccessfulPullRequests'] = this.numberOfSuccessfulPullRequests;
+    } else {
+      json[r'numberOfSuccessfulPullRequests'] = null;
     }
-    if (totalNumberOfBranches != null) {
-      _json[r'totalNumberOfBranches'] = totalNumberOfBranches;
+    if (this.totalNumberOfBranches != null) {
+      json[r'totalNumberOfBranches'] = this.totalNumberOfBranches;
+    } else {
+      json[r'totalNumberOfBranches'] = null;
     }
-    if (totalNumberOfPullRequests != null) {
-      _json[r'totalNumberOfPullRequests'] = totalNumberOfPullRequests;
+    if (this.totalNumberOfPullRequests != null) {
+      json[r'totalNumberOfPullRequests'] = this.totalNumberOfPullRequests;
+    } else {
+      json[r'totalNumberOfPullRequests'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [MultibranchPipeline] instance and imports its values from
@@ -243,8 +269,8 @@ class MultibranchPipeline {
         name: mapValueOfType<String>(json, r'name'),
         organization: mapValueOfType<String>(json, r'organization'),
         weatherScore: mapValueOfType<int>(json, r'weatherScore'),
-        branchNames: json[r'branchNames'] is List
-            ? (json[r'branchNames'] as List).cast<String>()
+        branchNames: json[r'branchNames'] is Iterable
+            ? (json[r'branchNames'] as Iterable).cast<String>().toList(growable: false)
             : const [],
         numberOfFailingBranches: mapValueOfType<int>(json, r'numberOfFailingBranches'),
         numberOfFailingPullRequests: mapValueOfType<int>(json, r'numberOfFailingPullRequests'),
@@ -258,7 +284,7 @@ class MultibranchPipeline {
     return null;
   }
 
-  static List<MultibranchPipeline>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<MultibranchPipeline> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MultibranchPipeline>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -289,12 +315,10 @@ class MultibranchPipeline {
   static Map<String, List<MultibranchPipeline>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<MultibranchPipeline>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = MultibranchPipeline.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = MultibranchPipeline.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

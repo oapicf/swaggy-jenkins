@@ -7,18 +7,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class QueueLeftItem   {
   
   private String propertyClass;
-  private List<CauseAction> actions = new ArrayList<>();
+  private List<@Valid CauseAction> actions;
   private Boolean blocked;
   private Boolean buildable;
   private Integer id;
@@ -48,10 +50,10 @@ public class QueueLeftItem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -197,19 +199,19 @@ public class QueueLeftItem   {
       return false;
     }
     QueueLeftItem queueLeftItem = (QueueLeftItem) o;
-    return Objects.equals(propertyClass, queueLeftItem.propertyClass) &&
-        Objects.equals(actions, queueLeftItem.actions) &&
-        Objects.equals(blocked, queueLeftItem.blocked) &&
-        Objects.equals(buildable, queueLeftItem.buildable) &&
-        Objects.equals(id, queueLeftItem.id) &&
-        Objects.equals(inQueueSince, queueLeftItem.inQueueSince) &&
-        Objects.equals(params, queueLeftItem.params) &&
-        Objects.equals(stuck, queueLeftItem.stuck) &&
-        Objects.equals(task, queueLeftItem.task) &&
-        Objects.equals(url, queueLeftItem.url) &&
-        Objects.equals(why, queueLeftItem.why) &&
-        Objects.equals(cancelled, queueLeftItem.cancelled) &&
-        Objects.equals(executable, queueLeftItem.executable);
+    return Objects.equals(this.propertyClass, queueLeftItem.propertyClass) &&
+        Objects.equals(this.actions, queueLeftItem.actions) &&
+        Objects.equals(this.blocked, queueLeftItem.blocked) &&
+        Objects.equals(this.buildable, queueLeftItem.buildable) &&
+        Objects.equals(this.id, queueLeftItem.id) &&
+        Objects.equals(this.inQueueSince, queueLeftItem.inQueueSince) &&
+        Objects.equals(this.params, queueLeftItem.params) &&
+        Objects.equals(this.stuck, queueLeftItem.stuck) &&
+        Objects.equals(this.task, queueLeftItem.task) &&
+        Objects.equals(this.url, queueLeftItem.url) &&
+        Objects.equals(this.why, queueLeftItem.why) &&
+        Objects.equals(this.cancelled, queueLeftItem.cancelled) &&
+        Objects.equals(this.executable, queueLeftItem.executable);
   }
 
   @Override

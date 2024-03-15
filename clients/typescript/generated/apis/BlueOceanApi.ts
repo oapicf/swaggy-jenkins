@@ -1,7 +1,7 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError} from './baseapi';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {canConsumeForm, isCodeInRange} from '../util';
@@ -741,7 +741,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
      * @param pipeline Name of the pipeline
      * @param run Name of the run
      * @param start Start position of the log
-     * @param download Set to true in order to download the file, otherwise it&#39;s passed as a response body
+     * @param download Set to true in order to download the file, otherwise it\&#39;s passed as a response body
      */
     public async getPipelineRunLog(organization: string, pipeline: string, run: string, start?: number, download?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -1876,10 +1876,10 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to deletePipelineQueueItem
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePipelineQueueItem(response: ResponseContext): Promise<void > {
+     public async deletePipelineQueueItemWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1894,7 +1894,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1907,14 +1907,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getAuthenticatedUser
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAuthenticatedUser(response: ResponseContext): Promise<User > {
+     public async getAuthenticatedUserWithHttpInfo(response: ResponseContext): Promise<HttpInfo<User >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: User = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "User", ""
             ) as User;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1929,7 +1929,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "User", ""
             ) as User;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1942,14 +1942,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getClasses
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getClasses(response: ResponseContext): Promise<string > {
+     public async getClassesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1964,7 +1964,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1977,14 +1977,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getJsonWebKey
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJsonWebKey(response: ResponseContext): Promise<string > {
+     public async getJsonWebKeyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1999,7 +1999,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2012,14 +2012,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getJsonWebToken
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJsonWebToken(response: ResponseContext): Promise<string > {
+     public async getJsonWebTokenWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2034,7 +2034,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2047,14 +2047,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getOrganisation
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getOrganisation(response: ResponseContext): Promise<Organisation > {
+     public async getOrganisationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Organisation >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Organisation = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Organisation", ""
             ) as Organisation;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2072,7 +2072,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Organisation", ""
             ) as Organisation;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2085,14 +2085,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getOrganisations
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getOrganisations(response: ResponseContext): Promise<Array<Organisation> > {
+     public async getOrganisationsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Organisation> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<Organisation> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<Organisation>", ""
             ) as Array<Organisation>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2107,7 +2107,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<Organisation>", ""
             ) as Array<Organisation>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2120,14 +2120,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipeline
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipeline(response: ResponseContext): Promise<Pipeline > {
+     public async getPipelineWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Pipeline >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Pipeline = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Pipeline", ""
             ) as Pipeline;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2145,7 +2145,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Pipeline", ""
             ) as Pipeline;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2158,14 +2158,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineActivities
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineActivities(response: ResponseContext): Promise<Array<PipelineActivity> > {
+     public async getPipelineActivitiesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PipelineActivity> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<PipelineActivity> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineActivity>", ""
             ) as Array<PipelineActivity>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2180,7 +2180,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineActivity>", ""
             ) as Array<PipelineActivity>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2193,14 +2193,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineBranch
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineBranch(response: ResponseContext): Promise<BranchImpl > {
+     public async getPipelineBranchWithHttpInfo(response: ResponseContext): Promise<HttpInfo<BranchImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: BranchImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "BranchImpl", ""
             ) as BranchImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2215,7 +2215,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "BranchImpl", ""
             ) as BranchImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2228,14 +2228,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineBranchRun
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineBranchRun(response: ResponseContext): Promise<PipelineRun > {
+     public async getPipelineBranchRunWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineRun >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineRun = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRun", ""
             ) as PipelineRun;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2250,7 +2250,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRun", ""
             ) as PipelineRun;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2263,14 +2263,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineBranches
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineBranches(response: ResponseContext): Promise<MultibranchPipeline > {
+     public async getPipelineBranchesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<MultibranchPipeline >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: MultibranchPipeline = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MultibranchPipeline", ""
             ) as MultibranchPipeline;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2285,7 +2285,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "MultibranchPipeline", ""
             ) as MultibranchPipeline;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2298,14 +2298,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineFolder
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineFolder(response: ResponseContext): Promise<PipelineFolderImpl > {
+     public async getPipelineFolderWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineFolderImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineFolderImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineFolderImpl", ""
             ) as PipelineFolderImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2320,7 +2320,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineFolderImpl", ""
             ) as PipelineFolderImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2333,14 +2333,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineFolderPipeline
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineFolderPipeline(response: ResponseContext): Promise<PipelineImpl > {
+     public async getPipelineFolderPipelineWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineImpl", ""
             ) as PipelineImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2355,7 +2355,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineImpl", ""
             ) as PipelineImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2368,14 +2368,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineQueue
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineQueue(response: ResponseContext): Promise<Array<QueueItemImpl> > {
+     public async getPipelineQueueWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<QueueItemImpl> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<QueueItemImpl> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<QueueItemImpl>", ""
             ) as Array<QueueItemImpl>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2390,7 +2390,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<QueueItemImpl>", ""
             ) as Array<QueueItemImpl>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2403,14 +2403,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRun
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRun(response: ResponseContext): Promise<PipelineRun > {
+     public async getPipelineRunWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineRun >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineRun = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRun", ""
             ) as PipelineRun;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2425,7 +2425,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRun", ""
             ) as PipelineRun;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2438,14 +2438,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRunLog
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRunLog(response: ResponseContext): Promise<string > {
+     public async getPipelineRunLogWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2460,7 +2460,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2473,14 +2473,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRunNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRunNode(response: ResponseContext): Promise<PipelineRunNode > {
+     public async getPipelineRunNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineRunNode >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineRunNode = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRunNode", ""
             ) as PipelineRunNode;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2495,7 +2495,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRunNode", ""
             ) as PipelineRunNode;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2508,14 +2508,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRunNodeStep
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRunNodeStep(response: ResponseContext): Promise<PipelineStepImpl > {
+     public async getPipelineRunNodeStepWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineStepImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineStepImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineStepImpl", ""
             ) as PipelineStepImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2530,7 +2530,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineStepImpl", ""
             ) as PipelineStepImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2543,14 +2543,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRunNodeStepLog
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRunNodeStepLog(response: ResponseContext): Promise<string > {
+     public async getPipelineRunNodeStepLogWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2565,7 +2565,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2578,14 +2578,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRunNodeSteps
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRunNodeSteps(response: ResponseContext): Promise<Array<PipelineStepImpl> > {
+     public async getPipelineRunNodeStepsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PipelineStepImpl> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<PipelineStepImpl> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineStepImpl>", ""
             ) as Array<PipelineStepImpl>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2600,7 +2600,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineStepImpl>", ""
             ) as Array<PipelineStepImpl>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2613,14 +2613,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRunNodes
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRunNodes(response: ResponseContext): Promise<Array<PipelineRunNode> > {
+     public async getPipelineRunNodesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PipelineRunNode> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<PipelineRunNode> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineRunNode>", ""
             ) as Array<PipelineRunNode>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2635,7 +2635,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineRunNode>", ""
             ) as Array<PipelineRunNode>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2648,14 +2648,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelineRuns
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelineRuns(response: ResponseContext): Promise<Array<PipelineRun> > {
+     public async getPipelineRunsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<PipelineRun> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<PipelineRun> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineRun>", ""
             ) as Array<PipelineRun>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2670,7 +2670,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<PipelineRun>", ""
             ) as Array<PipelineRun>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2683,14 +2683,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getPipelines
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getPipelines(response: ResponseContext): Promise<Array<Pipeline> > {
+     public async getPipelinesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Pipeline> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<Pipeline> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<Pipeline>", ""
             ) as Array<Pipeline>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2705,7 +2705,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<Pipeline>", ""
             ) as Array<Pipeline>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2718,14 +2718,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getSCM
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getSCM(response: ResponseContext): Promise<GithubScm > {
+     public async getSCMWithHttpInfo(response: ResponseContext): Promise<HttpInfo<GithubScm >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: GithubScm = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GithubScm", ""
             ) as GithubScm;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2740,7 +2740,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "GithubScm", ""
             ) as GithubScm;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2753,14 +2753,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getSCMOrganisationRepositories
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getSCMOrganisationRepositories(response: ResponseContext): Promise<Array<GithubOrganization> > {
+     public async getSCMOrganisationRepositoriesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<GithubOrganization> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<GithubOrganization> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GithubOrganization>", ""
             ) as Array<GithubOrganization>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2775,7 +2775,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GithubOrganization>", ""
             ) as Array<GithubOrganization>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2788,14 +2788,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getSCMOrganisationRepository
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getSCMOrganisationRepository(response: ResponseContext): Promise<Array<GithubOrganization> > {
+     public async getSCMOrganisationRepositoryWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<GithubOrganization> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<GithubOrganization> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GithubOrganization>", ""
             ) as Array<GithubOrganization>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2810,7 +2810,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GithubOrganization>", ""
             ) as Array<GithubOrganization>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2823,14 +2823,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getSCMOrganisations
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getSCMOrganisations(response: ResponseContext): Promise<Array<GithubOrganization> > {
+     public async getSCMOrganisationsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<GithubOrganization> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<GithubOrganization> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GithubOrganization>", ""
             ) as Array<GithubOrganization>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2845,7 +2845,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<GithubOrganization>", ""
             ) as Array<GithubOrganization>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2858,14 +2858,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getUser
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getUser(response: ResponseContext): Promise<User > {
+     public async getUserWithHttpInfo(response: ResponseContext): Promise<HttpInfo<User >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: User = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "User", ""
             ) as User;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2880,7 +2880,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "User", ""
             ) as User;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2893,14 +2893,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getUserFavorites
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getUserFavorites(response: ResponseContext): Promise<Array<FavoriteImpl> > {
+     public async getUserFavoritesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<FavoriteImpl> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<FavoriteImpl> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<FavoriteImpl>", ""
             ) as Array<FavoriteImpl>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2915,7 +2915,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Array<FavoriteImpl>", ""
             ) as Array<FavoriteImpl>;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2928,14 +2928,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to getUsers
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getUsers(response: ResponseContext): Promise<User > {
+     public async getUsersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<User >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: User = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "User", ""
             ) as User;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2950,7 +2950,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "User", ""
             ) as User;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2963,14 +2963,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to postPipelineRun
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postPipelineRun(response: ResponseContext): Promise<QueueItemImpl > {
+     public async postPipelineRunWithHttpInfo(response: ResponseContext): Promise<HttpInfo<QueueItemImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: QueueItemImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "QueueItemImpl", ""
             ) as QueueItemImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -2985,7 +2985,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "QueueItemImpl", ""
             ) as QueueItemImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2998,14 +2998,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to postPipelineRuns
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postPipelineRuns(response: ResponseContext): Promise<QueueItemImpl > {
+     public async postPipelineRunsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<QueueItemImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: QueueItemImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "QueueItemImpl", ""
             ) as QueueItemImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -3020,7 +3020,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "QueueItemImpl", ""
             ) as QueueItemImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3033,14 +3033,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to putPipelineFavorite
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async putPipelineFavorite(response: ResponseContext): Promise<FavoriteImpl > {
+     public async putPipelineFavoriteWithHttpInfo(response: ResponseContext): Promise<HttpInfo<FavoriteImpl >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: FavoriteImpl = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "FavoriteImpl", ""
             ) as FavoriteImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -3055,7 +3055,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "FavoriteImpl", ""
             ) as FavoriteImpl;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3068,14 +3068,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to putPipelineRun
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async putPipelineRun(response: ResponseContext): Promise<PipelineRun > {
+     public async putPipelineRunWithHttpInfo(response: ResponseContext): Promise<HttpInfo<PipelineRun >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: PipelineRun = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRun", ""
             ) as PipelineRun;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -3090,7 +3090,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "PipelineRun", ""
             ) as PipelineRun;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3103,14 +3103,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to search
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async search(response: ResponseContext): Promise<string > {
+     public async searchWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -3125,7 +3125,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3138,14 +3138,14 @@ export class BlueOceanApiResponseProcessor {
      * @params response Response returned by the server for a request to searchClasses
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async searchClasses(response: ResponseContext): Promise<string > {
+     public async searchClassesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -3160,7 +3160,7 @@ export class BlueOceanApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

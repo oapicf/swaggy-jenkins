@@ -91,4 +91,5 @@ model/stringParameterValue.ts
 model/swapSpaceMonitorMemoryUsage2.ts
 model/unlabeledLoadStatistics.ts
 model/user.ts
+param.ts
 variables.ts

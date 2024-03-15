@@ -15,8 +15,7 @@ class GetComputerParameterData
      * @DTA\Data(subset="query", field="depth")
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $depth;
+    public ?int $depth = null;
 
 }

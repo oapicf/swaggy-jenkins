@@ -10,12 +10,12 @@ namespace app\Models;
 class GithubRespositoryContainer {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\GithubRespositoryContainerlinks $links */
-    private $links;
+    public $links;
 
     /** @var \app\Models\GithubRepositories $repositories */
-    private $repositories;
+    public $repositories;
 
 }

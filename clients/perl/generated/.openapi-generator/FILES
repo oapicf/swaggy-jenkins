@@ -3,6 +3,7 @@
 .travis.yml
 README.md
 bin/autodoc
+cpanfile
 docs/AllView.md
 docs/BaseApi.md
 docs/BlueOceanApi.md

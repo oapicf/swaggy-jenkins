@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.InputStepImpl;
 import org.openapitools.model.PipelineStepImpllinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -33,7 +34,6 @@ public class PipelineStepImpl   {
   private String startTime;
 
   private String state;
-
 
   /**
    **/
@@ -207,15 +207,15 @@ public class PipelineStepImpl   {
       return false;
     }
     PipelineStepImpl pipelineStepImpl = (PipelineStepImpl) o;
-    return Objects.equals(propertyClass, pipelineStepImpl.propertyClass) &&
-        Objects.equals(links, pipelineStepImpl.links) &&
-        Objects.equals(displayName, pipelineStepImpl.displayName) &&
-        Objects.equals(durationInMillis, pipelineStepImpl.durationInMillis) &&
-        Objects.equals(id, pipelineStepImpl.id) &&
-        Objects.equals(input, pipelineStepImpl.input) &&
-        Objects.equals(result, pipelineStepImpl.result) &&
-        Objects.equals(startTime, pipelineStepImpl.startTime) &&
-        Objects.equals(state, pipelineStepImpl.state);
+    return Objects.equals(this.propertyClass, pipelineStepImpl.propertyClass) &&
+        Objects.equals(this.links, pipelineStepImpl.links) &&
+        Objects.equals(this.displayName, pipelineStepImpl.displayName) &&
+        Objects.equals(this.durationInMillis, pipelineStepImpl.durationInMillis) &&
+        Objects.equals(this.id, pipelineStepImpl.id) &&
+        Objects.equals(this.input, pipelineStepImpl.input) &&
+        Objects.equals(this.result, pipelineStepImpl.result) &&
+        Objects.equals(this.startTime, pipelineStepImpl.startTime) &&
+        Objects.equals(this.state, pipelineStepImpl.state);
   }
 
   @Override

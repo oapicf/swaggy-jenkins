@@ -69,7 +69,7 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
     // pipeline_branchesitempull_requestlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestlinksJSON, "self");
     if (self) { 
-    if(!cJSON_IsString(self))
+    if(!cJSON_IsString(self) && !cJSON_IsNull(self))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
     // pipeline_branchesitempull_requestlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestlinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
 
 
     pipeline_branchesitempull_requestlinks_local_var = pipeline_branchesitempull_requestlinks_create (
-        self ? strdup(self->valuestring) : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        self && !cJSON_IsNull(self) ? strdup(self->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_branchesitempull_requestlinks_local_var;

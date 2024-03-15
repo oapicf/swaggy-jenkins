@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleBuild;
@@ -23,47 +24,34 @@ import javax.annotation.Generated;
  * QueueLeftItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class QueueLeftItem {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("actions")
   @Valid
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions;
 
-  @JsonProperty("blocked")
   private Boolean blocked;
 
-  @JsonProperty("buildable")
   private Boolean buildable;
 
-  @JsonProperty("id")
   private Integer id;
 
-  @JsonProperty("inQueueSince")
   private Integer inQueueSince;
 
-  @JsonProperty("params")
   private String params;
 
-  @JsonProperty("stuck")
   private Boolean stuck;
 
-  @JsonProperty("task")
   private FreeStyleProject task;
 
-  @JsonProperty("url")
   private String url;
 
-  @JsonProperty("why")
   private String why;
 
-  @JsonProperty("cancelled")
   private Boolean cancelled;
 
-  @JsonProperty("executable")
   private FreeStyleBuild executable;
 
   public QueueLeftItem propertyClass(String propertyClass) {
@@ -76,7 +64,8 @@ public class QueueLeftItem {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -85,7 +74,7 @@ public class QueueLeftItem {
     this.propertyClass = propertyClass;
   }
 
-  public QueueLeftItem actions(List<CauseAction> actions) {
+  public QueueLeftItem actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -103,12 +92,13 @@ public class QueueLeftItem {
    * @return actions
   */
   @Valid 
-  @Schema(name = "actions", required = false)
-  public List<CauseAction> getActions() {
+  @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("actions")
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -122,7 +112,8 @@ public class QueueLeftItem {
    * @return blocked
   */
   
-  @Schema(name = "blocked", required = false)
+  @Schema(name = "blocked", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("blocked")
   public Boolean getBlocked() {
     return blocked;
   }
@@ -141,7 +132,8 @@ public class QueueLeftItem {
    * @return buildable
   */
   
-  @Schema(name = "buildable", required = false)
+  @Schema(name = "buildable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("buildable")
   public Boolean getBuildable() {
     return buildable;
   }
@@ -160,7 +152,8 @@ public class QueueLeftItem {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public Integer getId() {
     return id;
   }
@@ -179,7 +172,8 @@ public class QueueLeftItem {
    * @return inQueueSince
   */
   
-  @Schema(name = "inQueueSince", required = false)
+  @Schema(name = "inQueueSince", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("inQueueSince")
   public Integer getInQueueSince() {
     return inQueueSince;
   }
@@ -198,7 +192,8 @@ public class QueueLeftItem {
    * @return params
   */
   
-  @Schema(name = "params", required = false)
+  @Schema(name = "params", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("params")
   public String getParams() {
     return params;
   }
@@ -217,7 +212,8 @@ public class QueueLeftItem {
    * @return stuck
   */
   
-  @Schema(name = "stuck", required = false)
+  @Schema(name = "stuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("stuck")
   public Boolean getStuck() {
     return stuck;
   }
@@ -236,7 +232,8 @@ public class QueueLeftItem {
    * @return task
   */
   @Valid 
-  @Schema(name = "task", required = false)
+  @Schema(name = "task", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("task")
   public FreeStyleProject getTask() {
     return task;
   }
@@ -255,7 +252,8 @@ public class QueueLeftItem {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }
@@ -274,7 +272,8 @@ public class QueueLeftItem {
    * @return why
   */
   
-  @Schema(name = "why", required = false)
+  @Schema(name = "why", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("why")
   public String getWhy() {
     return why;
   }
@@ -293,7 +292,8 @@ public class QueueLeftItem {
    * @return cancelled
   */
   
-  @Schema(name = "cancelled", required = false)
+  @Schema(name = "cancelled", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("cancelled")
   public Boolean getCancelled() {
     return cancelled;
   }
@@ -312,7 +312,8 @@ public class QueueLeftItem {
    * @return executable
   */
   @Valid 
-  @Schema(name = "executable", required = false)
+  @Schema(name = "executable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("executable")
   public FreeStyleBuild getExecutable() {
     return executable;
   }

@@ -38,55 +38,55 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class HudsonMasterComputer(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("executors") val executors: kotlin.collections.List<HudsonMasterComputerexecutors>? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("icon") val icon: kotlin.String? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("iconClassName") val iconClassName: kotlin.String? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("idle") val idle: kotlin.Boolean? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("jnlpAgent") val jnlpAgent: kotlin.Boolean? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("launchSupported") val launchSupported: kotlin.Boolean? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("loadStatistics") val loadStatistics: Label1? = null,
+    @get:JsonProperty("executors") val executors: kotlin.collections.List<HudsonMasterComputerexecutors>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("manualLaunchAllowed") val manualLaunchAllowed: kotlin.Boolean? = null,
+    @get:JsonProperty("icon") val icon: kotlin.String? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("iconClassName") val iconClassName: kotlin.String? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("idle") val idle: kotlin.Boolean? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("jnlpAgent") val jnlpAgent: kotlin.Boolean? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("launchSupported") val launchSupported: kotlin.Boolean? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("monitorData") val monitorData: HudsonMasterComputermonitorData? = null,
+    @get:JsonProperty("loadStatistics") val loadStatistics: Label1? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("numExecutors") val numExecutors: kotlin.Int? = null,
+    @get:JsonProperty("manualLaunchAllowed") val manualLaunchAllowed: kotlin.Boolean? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("monitorData") val monitorData: HudsonMasterComputermonitorData? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("offline") val offline: kotlin.Boolean? = null,
+    @get:JsonProperty("numExecutors") val numExecutors: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("offlineCause") val offlineCause: kotlin.String? = null,
+    @get:JsonProperty("offline") val offline: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("offlineCauseReason") val offlineCauseReason: kotlin.String? = null,
+    @get:JsonProperty("offlineCause") val offlineCause: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("temporarilyOffline") val temporarilyOffline: kotlin.Boolean? = null
+    @get:JsonProperty("offlineCauseReason") val offlineCauseReason: kotlin.String? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("temporarilyOffline") val temporarilyOffline: kotlin.Boolean? = null
 ) {
 
 }

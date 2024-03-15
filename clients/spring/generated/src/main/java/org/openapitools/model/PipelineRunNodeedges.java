@@ -18,13 +18,11 @@ import javax.annotation.Generated;
  * PipelineRunNodeedges
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunNodeedges {
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineRunNodeedges id(String id) {
@@ -37,7 +35,8 @@ public class PipelineRunNodeedges {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -56,7 +55,8 @@ public class PipelineRunNodeedges {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AllView;
 import org.openapitools.model.FreeStyleProject;
@@ -24,56 +25,41 @@ import javax.annotation.Generated;
  * Hudson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Hudson {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("assignedLabels")
   @Valid
-  private List<HudsonassignedLabels> assignedLabels = null;
+  private List<@Valid HudsonassignedLabels> assignedLabels;
 
-  @JsonProperty("mode")
   private String mode;
 
-  @JsonProperty("nodeDescription")
   private String nodeDescription;
 
-  @JsonProperty("nodeName")
   private String nodeName;
 
-  @JsonProperty("numExecutors")
   private Integer numExecutors;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("jobs")
   @Valid
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs;
 
-  @JsonProperty("primaryView")
   private AllView primaryView;
 
-  @JsonProperty("quietingDown")
   private Boolean quietingDown;
 
-  @JsonProperty("slaveAgentPort")
   private Integer slaveAgentPort;
 
-  @JsonProperty("unlabeledLoad")
   private UnlabeledLoadStatistics unlabeledLoad;
 
-  @JsonProperty("useCrumbs")
   private Boolean useCrumbs;
 
-  @JsonProperty("useSecurity")
   private Boolean useSecurity;
 
-  @JsonProperty("views")
   @Valid
-  private List<AllView> views = null;
+  private List<@Valid AllView> views;
 
   public Hudson propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -85,7 +71,8 @@ public class Hudson {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -94,7 +81,7 @@ public class Hudson {
     this.propertyClass = propertyClass;
   }
 
-  public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public Hudson assignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
     return this;
   }
@@ -112,12 +99,13 @@ public class Hudson {
    * @return assignedLabels
   */
   @Valid 
-  @Schema(name = "assignedLabels", required = false)
-  public List<HudsonassignedLabels> getAssignedLabels() {
+  @Schema(name = "assignedLabels", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("assignedLabels")
+  public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
 
-  public void setAssignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public void setAssignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
 
@@ -131,7 +119,8 @@ public class Hudson {
    * @return mode
   */
   
-  @Schema(name = "mode", required = false)
+  @Schema(name = "mode", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("mode")
   public String getMode() {
     return mode;
   }
@@ -150,7 +139,8 @@ public class Hudson {
    * @return nodeDescription
   */
   
-  @Schema(name = "nodeDescription", required = false)
+  @Schema(name = "nodeDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("nodeDescription")
   public String getNodeDescription() {
     return nodeDescription;
   }
@@ -169,7 +159,8 @@ public class Hudson {
    * @return nodeName
   */
   
-  @Schema(name = "nodeName", required = false)
+  @Schema(name = "nodeName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("nodeName")
   public String getNodeName() {
     return nodeName;
   }
@@ -188,7 +179,8 @@ public class Hudson {
    * @return numExecutors
   */
   
-  @Schema(name = "numExecutors", required = false)
+  @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("numExecutors")
   public Integer getNumExecutors() {
     return numExecutors;
   }
@@ -207,7 +199,8 @@ public class Hudson {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -216,7 +209,7 @@ public class Hudson {
     this.description = description;
   }
 
-  public Hudson jobs(List<FreeStyleProject> jobs) {
+  public Hudson jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
@@ -234,12 +227,13 @@ public class Hudson {
    * @return jobs
   */
   @Valid 
-  @Schema(name = "jobs", required = false)
-  public List<FreeStyleProject> getJobs() {
+  @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("jobs")
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -253,7 +247,8 @@ public class Hudson {
    * @return primaryView
   */
   @Valid 
-  @Schema(name = "primaryView", required = false)
+  @Schema(name = "primaryView", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("primaryView")
   public AllView getPrimaryView() {
     return primaryView;
   }
@@ -272,7 +267,8 @@ public class Hudson {
    * @return quietingDown
   */
   
-  @Schema(name = "quietingDown", required = false)
+  @Schema(name = "quietingDown", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("quietingDown")
   public Boolean getQuietingDown() {
     return quietingDown;
   }
@@ -291,7 +287,8 @@ public class Hudson {
    * @return slaveAgentPort
   */
   
-  @Schema(name = "slaveAgentPort", required = false)
+  @Schema(name = "slaveAgentPort", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("slaveAgentPort")
   public Integer getSlaveAgentPort() {
     return slaveAgentPort;
   }
@@ -310,7 +307,8 @@ public class Hudson {
    * @return unlabeledLoad
   */
   @Valid 
-  @Schema(name = "unlabeledLoad", required = false)
+  @Schema(name = "unlabeledLoad", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("unlabeledLoad")
   public UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
   }
@@ -329,7 +327,8 @@ public class Hudson {
    * @return useCrumbs
   */
   
-  @Schema(name = "useCrumbs", required = false)
+  @Schema(name = "useCrumbs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("useCrumbs")
   public Boolean getUseCrumbs() {
     return useCrumbs;
   }
@@ -348,7 +347,8 @@ public class Hudson {
    * @return useSecurity
   */
   
-  @Schema(name = "useSecurity", required = false)
+  @Schema(name = "useSecurity", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("useSecurity")
   public Boolean getUseSecurity() {
     return useSecurity;
   }
@@ -357,7 +357,7 @@ public class Hudson {
     this.useSecurity = useSecurity;
   }
 
-  public Hudson views(List<AllView> views) {
+  public Hudson views(List<@Valid AllView> views) {
     this.views = views;
     return this;
   }
@@ -375,12 +375,13 @@ public class Hudson {
    * @return views
   */
   @Valid 
-  @Schema(name = "views", required = false)
-  public List<AllView> getViews() {
+  @Schema(name = "views", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("views")
+  public List<@Valid AllView> getViews() {
     return views;
   }
 
-  public void setViews(List<AllView> views) {
+  public void setViews(List<@Valid AllView> views) {
     this.views = views;
   }
 

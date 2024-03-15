@@ -35,7 +35,7 @@ class JwtAuthApiController() {
     @Operation(
         summary = "",
         operationId = "getJsonWebKey",
-        description = "Retrieve JSON Web Key",
+        description = """Retrieve JSON Web Key""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved JWT token", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -53,7 +53,7 @@ class JwtAuthApiController() {
     @Operation(
         summary = "",
         operationId = "getJsonWebToken",
-        description = "Retrieve JSON Web Token",
+        description = """Retrieve JSON Web Token""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved JWT token", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

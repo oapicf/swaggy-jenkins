@@ -1,10 +1,12 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunartifacts;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -14,7 +16,7 @@ public class PipelineRun  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<PipelineRunartifacts> artifacts = null;
+  private List<PipelineRunartifacts> artifacts;
 
   @ApiModelProperty(value = "")
   private Integer durationInMillis;
@@ -329,6 +331,36 @@ public class PipelineRun  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineRun pipelineRun = (PipelineRun) o;
+    return Objects.equals(this.propertyClass, pipelineRun.propertyClass) &&
+        Objects.equals(this.artifacts, pipelineRun.artifacts) &&
+        Objects.equals(this.durationInMillis, pipelineRun.durationInMillis) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineRun.estimatedDurationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelineRun.enQueueTime) &&
+        Objects.equals(this.endTime, pipelineRun.endTime) &&
+        Objects.equals(this.id, pipelineRun.id) &&
+        Objects.equals(this.organization, pipelineRun.organization) &&
+        Objects.equals(this.pipeline, pipelineRun.pipeline) &&
+        Objects.equals(this.result, pipelineRun.result) &&
+        Objects.equals(this.runSummary, pipelineRun.runSummary) &&
+        Objects.equals(this.startTime, pipelineRun.startTime) &&
+        Objects.equals(this.state, pipelineRun.state) &&
+        Objects.equals(this.type, pipelineRun.type) &&
+        Objects.equals(this.commitId, pipelineRun.commitId);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, artifacts, durationInMillis, estimatedDurationInMillis, enQueueTime, endTime, id, organization, pipeline, result, runSummary, startTime, state, type, commitId);
+  }
 
   @Override
   public String toString() {

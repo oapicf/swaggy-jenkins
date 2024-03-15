@@ -30,10 +30,10 @@ use openapi_client::{Api, ApiNoContext, Client, ContextWrapperExt, models,
                       GetPipelineRunNodesResponse,
                       GetPipelineRunsResponse,
                       GetPipelinesResponse,
-                      GetSCMResponse,
-                      GetSCMOrganisationRepositoriesResponse,
-                      GetSCMOrganisationRepositoryResponse,
-                      GetSCMOrganisationsResponse,
+                      GetScmResponse,
+                      GetScmOrganisationRepositoriesResponse,
+                      GetScmOrganisationRepositoryResponse,
+                      GetScmOrganisationsResponse,
                       GetUserResponse,
                       GetUserFavoritesResponse,
                       GetUsersResponse,
@@ -109,10 +109,10 @@ fn main() {
                 "GetPipelineRunNodes",
                 "GetPipelineRuns",
                 "GetPipelines",
-                "GetSCM",
-                "GetSCMOrganisationRepositories",
-                "GetSCMOrganisationRepository",
-                "GetSCMOrganisations",
+                "GetScm",
+                "GetScmOrganisationRepositories",
+                "GetScmOrganisationRepository",
+                "GetScmOrganisations",
                 "GetUser",
                 "GetUserFavorites",
                 "GetUsers",
@@ -371,14 +371,14 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetSCM") => {
+        Some("GetScm") => {
             let result = rt.block_on(client.get_scm(
                   "organization_example".to_string(),
                   "scm_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetSCMOrganisationRepositories") => {
+        Some("GetScmOrganisationRepositories") => {
             let result = rt.block_on(client.get_scm_organisation_repositories(
                   "organization_example".to_string(),
                   "scm_example".to_string(),
@@ -389,7 +389,7 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetSCMOrganisationRepository") => {
+        Some("GetScmOrganisationRepository") => {
             let result = rt.block_on(client.get_scm_organisation_repository(
                   "organization_example".to_string(),
                   "scm_example".to_string(),
@@ -399,7 +399,7 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetSCMOrganisations") => {
+        Some("GetScmOrganisations") => {
             let result = rt.block_on(client.get_scm_organisations(
                   "organization_example".to_string(),
                   "scm_example".to_string(),

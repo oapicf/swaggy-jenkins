@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pipeline_run_nodeedges import PipelineRunNodeedges
 from openapi_server import util
 
@@ -80,7 +77,7 @@ class PipelineRunNode(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineRunNode.
 
 
@@ -90,7 +87,7 @@ class PipelineRunNode(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineRunNode.
 
 
@@ -101,7 +98,7 @@ class PipelineRunNode(Model):
         self.__class = _class
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this PipelineRunNode.
 
 
@@ -111,7 +108,7 @@ class PipelineRunNode(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this PipelineRunNode.
 
 
@@ -122,7 +119,7 @@ class PipelineRunNode(Model):
         self._display_name = display_name
 
     @property
-    def duration_in_millis(self):
+    def duration_in_millis(self) -> int:
         """Gets the duration_in_millis of this PipelineRunNode.
 
 
@@ -132,7 +129,7 @@ class PipelineRunNode(Model):
         return self._duration_in_millis
 
     @duration_in_millis.setter
-    def duration_in_millis(self, duration_in_millis):
+    def duration_in_millis(self, duration_in_millis: int):
         """Sets the duration_in_millis of this PipelineRunNode.
 
 
@@ -143,7 +140,7 @@ class PipelineRunNode(Model):
         self._duration_in_millis = duration_in_millis
 
     @property
-    def edges(self):
+    def edges(self) -> List[PipelineRunNodeedges]:
         """Gets the edges of this PipelineRunNode.
 
 
@@ -153,7 +150,7 @@ class PipelineRunNode(Model):
         return self._edges
 
     @edges.setter
-    def edges(self, edges):
+    def edges(self, edges: List[PipelineRunNodeedges]):
         """Sets the edges of this PipelineRunNode.
 
 
@@ -164,7 +161,7 @@ class PipelineRunNode(Model):
         self._edges = edges
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this PipelineRunNode.
 
 
@@ -174,7 +171,7 @@ class PipelineRunNode(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this PipelineRunNode.
 
 
@@ -185,7 +182,7 @@ class PipelineRunNode(Model):
         self._id = id
 
     @property
-    def result(self):
+    def result(self) -> str:
         """Gets the result of this PipelineRunNode.
 
 
@@ -195,7 +192,7 @@ class PipelineRunNode(Model):
         return self._result
 
     @result.setter
-    def result(self, result):
+    def result(self, result: str):
         """Sets the result of this PipelineRunNode.
 
 
@@ -206,7 +203,7 @@ class PipelineRunNode(Model):
         self._result = result
 
     @property
-    def start_time(self):
+    def start_time(self) -> str:
         """Gets the start_time of this PipelineRunNode.
 
 
@@ -216,7 +213,7 @@ class PipelineRunNode(Model):
         return self._start_time
 
     @start_time.setter
-    def start_time(self, start_time):
+    def start_time(self, start_time: str):
         """Sets the start_time of this PipelineRunNode.
 
 
@@ -227,7 +224,7 @@ class PipelineRunNode(Model):
         self._start_time = start_time
 
     @property
-    def state(self):
+    def state(self) -> str:
         """Gets the state of this PipelineRunNode.
 
 
@@ -237,7 +234,7 @@ class PipelineRunNode(Model):
         return self._state
 
     @state.setter
-    def state(self, state):
+    def state(self, state: str):
         """Sets the state of this PipelineRunNode.
 
 

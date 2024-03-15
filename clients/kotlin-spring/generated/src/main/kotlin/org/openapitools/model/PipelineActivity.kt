@@ -35,50 +35,50 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PipelineActivity(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("artifacts") val artifacts: kotlin.collections.List<PipelineActivityartifacts>? = null,
+    @get:JsonProperty("artifacts") val artifacts: kotlin.collections.List<PipelineActivityartifacts>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("enQueueTime") val enQueueTime: kotlin.String? = null,
+    @get:JsonProperty("enQueueTime") val enQueueTime: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("endTime") val endTime: kotlin.String? = null,
+    @get:JsonProperty("endTime") val endTime: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("organization") val organization: kotlin.String? = null,
+    @get:JsonProperty("organization") val organization: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("pipeline") val pipeline: kotlin.String? = null,
+    @get:JsonProperty("pipeline") val pipeline: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("result") val result: kotlin.String? = null,
+    @get:JsonProperty("result") val result: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("runSummary") val runSummary: kotlin.String? = null,
+    @get:JsonProperty("runSummary") val runSummary: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("startTime") val startTime: kotlin.String? = null,
+    @get:JsonProperty("startTime") val startTime: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("state") val state: kotlin.String? = null,
+    @get:JsonProperty("state") val state: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("type") val type: kotlin.String? = null,
+    @get:JsonProperty("type") val type: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("commitId") val commitId: kotlin.String? = null
+    @get:JsonProperty("commitId") val commitId: kotlin.String? = null
 ) {
 
 }

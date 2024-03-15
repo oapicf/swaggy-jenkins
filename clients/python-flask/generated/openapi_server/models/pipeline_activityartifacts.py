@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -58,7 +55,7 @@ class PipelineActivityartifacts(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this PipelineActivityartifacts.
 
 
@@ -68,7 +65,7 @@ class PipelineActivityartifacts(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this PipelineActivityartifacts.
 
 
@@ -79,7 +76,7 @@ class PipelineActivityartifacts(Model):
         self._name = name
 
     @property
-    def size(self):
+    def size(self) -> int:
         """Gets the size of this PipelineActivityartifacts.
 
 
@@ -89,7 +86,7 @@ class PipelineActivityartifacts(Model):
         return self._size
 
     @size.setter
-    def size(self, size):
+    def size(self, size: int):
         """Sets the size of this PipelineActivityartifacts.
 
 
@@ -100,7 +97,7 @@ class PipelineActivityartifacts(Model):
         self._size = size
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Gets the url of this PipelineActivityartifacts.
 
 
@@ -110,7 +107,7 @@ class PipelineActivityartifacts(Model):
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url: str):
         """Sets the url of this PipelineActivityartifacts.
 
 
@@ -121,7 +118,7 @@ class PipelineActivityartifacts(Model):
         self._url = url
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineActivityartifacts.
 
 
@@ -131,7 +128,7 @@ class PipelineActivityartifacts(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineActivityartifacts.
 
 

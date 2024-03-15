@@ -5,37 +5,31 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class GithubOrganization
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="_links", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\GithubOrganizationlinks::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\GithubOrganizationlinks::class})
-     * @var \App\DTO\GithubOrganizationlinks|null
      */
-    public $_links;
+    public ?\App\DTO\GithubOrganizationlinks $_links = null;
 
     /**
      * @DTA\Data(field="jenkinsOrganizationPipeline", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $jenkins_organization_pipeline;
+    public ?bool $jenkins_organization_pipeline = null;
 
     /**
      * @DTA\Data(field="name", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $name;
+    public ?string $name = null;
 
 }

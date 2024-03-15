@@ -43,7 +43,7 @@ Method | HTTP request | Description
 [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
 
 
-<a name="deletePipelineQueueItem"></a>
+<a id="deletePipelineQueueItem"></a>
 # **deletePipelineQueueItem**
 > deletePipelineQueueItem(organization, pipeline, queue)
 
@@ -96,7 +96,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="getAuthenticatedUser"></a>
+<a id="getAuthenticatedUser"></a>
 # **getAuthenticatedUser**
 > User getAuthenticatedUser(organization)
 
@@ -146,7 +146,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getClasses"></a>
+<a id="getClasses"></a>
 # **getClasses**
 > kotlin.String getClasses(propertyClass)
 
@@ -196,7 +196,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getJsonWebKey"></a>
+<a id="getJsonWebKey"></a>
 # **getJsonWebKey**
 > kotlin.String getJsonWebKey(key)
 
@@ -243,7 +243,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getJsonWebToken"></a>
+<a id="getJsonWebToken"></a>
 # **getJsonWebToken**
 > kotlin.String getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
 
@@ -292,7 +292,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getOrganisation"></a>
+<a id="getOrganisation"></a>
 # **getOrganisation**
 > Organisation getOrganisation(organization)
 
@@ -342,7 +342,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getOrganisations"></a>
+<a id="getOrganisations"></a>
 # **getOrganisations**
 > kotlin.collections.List&lt;Organisation&gt; getOrganisations()
 
@@ -388,7 +388,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipeline"></a>
+<a id="getPipeline"></a>
 # **getPipeline**
 > Pipeline getPipeline(organization, pipeline)
 
@@ -440,7 +440,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineActivities"></a>
+<a id="getPipelineActivities"></a>
 # **getPipelineActivities**
 > kotlin.collections.List&lt;PipelineActivity&gt; getPipelineActivities(organization, pipeline)
 
@@ -492,7 +492,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineBranch"></a>
+<a id="getPipelineBranch"></a>
 # **getPipelineBranch**
 > BranchImpl getPipelineBranch(organization, pipeline, branch)
 
@@ -546,7 +546,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineBranchRun"></a>
+<a id="getPipelineBranchRun"></a>
 # **getPipelineBranchRun**
 > PipelineRun getPipelineBranchRun(organization, pipeline, branch, run)
 
@@ -602,7 +602,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineBranches"></a>
+<a id="getPipelineBranches"></a>
 # **getPipelineBranches**
 > MultibranchPipeline getPipelineBranches(organization, pipeline)
 
@@ -654,7 +654,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineFolder"></a>
+<a id="getPipelineFolder"></a>
 # **getPipelineFolder**
 > PipelineFolderImpl getPipelineFolder(organization, folder)
 
@@ -706,7 +706,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineFolderPipeline"></a>
+<a id="getPipelineFolderPipeline"></a>
 # **getPipelineFolderPipeline**
 > PipelineImpl getPipelineFolderPipeline(organization, pipeline, folder)
 
@@ -760,7 +760,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineQueue"></a>
+<a id="getPipelineQueue"></a>
 # **getPipelineQueue**
 > kotlin.collections.List&lt;QueueItemImpl&gt; getPipelineQueue(organization, pipeline)
 
@@ -812,7 +812,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRun"></a>
+<a id="getPipelineRun"></a>
 # **getPipelineRun**
 > PipelineRun getPipelineRun(organization, pipeline, run)
 
@@ -866,7 +866,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRunLog"></a>
+<a id="getPipelineRunLog"></a>
 # **getPipelineRunLog**
 > kotlin.String getPipelineRunLog(organization, pipeline, run, start, download)
 
@@ -924,7 +924,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRunNode"></a>
+<a id="getPipelineRunNode"></a>
 # **getPipelineRunNode**
 > PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
 
@@ -980,7 +980,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRunNodeStep"></a>
+<a id="getPipelineRunNodeStep"></a>
 # **getPipelineRunNodeStep**
 > PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
 
@@ -1038,7 +1038,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRunNodeStepLog"></a>
+<a id="getPipelineRunNodeStepLog"></a>
 # **getPipelineRunNodeStepLog**
 > kotlin.String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
 
@@ -1096,7 +1096,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRunNodeSteps"></a>
+<a id="getPipelineRunNodeSteps"></a>
 # **getPipelineRunNodeSteps**
 > kotlin.collections.List&lt;PipelineStepImpl&gt; getPipelineRunNodeSteps(organization, pipeline, run, node)
 
@@ -1152,7 +1152,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRunNodes"></a>
+<a id="getPipelineRunNodes"></a>
 # **getPipelineRunNodes**
 > kotlin.collections.List&lt;PipelineRunNode&gt; getPipelineRunNodes(organization, pipeline, run)
 
@@ -1206,7 +1206,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelineRuns"></a>
+<a id="getPipelineRuns"></a>
 # **getPipelineRuns**
 > kotlin.collections.List&lt;PipelineRun&gt; getPipelineRuns(organization, pipeline)
 
@@ -1258,7 +1258,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPipelines"></a>
+<a id="getPipelines"></a>
 # **getPipelines**
 > kotlin.collections.List&lt;Pipeline&gt; getPipelines(organization)
 
@@ -1308,7 +1308,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getSCM"></a>
+<a id="getSCM"></a>
 # **getSCM**
 > GithubScm getSCM(organization, scm)
 
@@ -1360,7 +1360,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getSCMOrganisationRepositories"></a>
+<a id="getSCMOrganisationRepositories"></a>
 # **getSCMOrganisationRepositories**
 > kotlin.collections.List&lt;GithubOrganization&gt; getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
 
@@ -1420,7 +1420,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getSCMOrganisationRepository"></a>
+<a id="getSCMOrganisationRepository"></a>
 # **getSCMOrganisationRepository**
 > kotlin.collections.List&lt;GithubOrganization&gt; getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
 
@@ -1478,7 +1478,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getSCMOrganisations"></a>
+<a id="getSCMOrganisations"></a>
 # **getSCMOrganisations**
 > kotlin.collections.List&lt;GithubOrganization&gt; getSCMOrganisations(organization, scm, credentialId)
 
@@ -1532,7 +1532,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getUser"></a>
+<a id="getUser"></a>
 # **getUser**
 > User getUser(organization, user)
 
@@ -1584,7 +1584,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getUserFavorites"></a>
+<a id="getUserFavorites"></a>
 # **getUserFavorites**
 > kotlin.collections.List&lt;FavoriteImpl&gt; getUserFavorites(user)
 
@@ -1634,7 +1634,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getUsers"></a>
+<a id="getUsers"></a>
 # **getUsers**
 > User getUsers(organization)
 
@@ -1684,7 +1684,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="postPipelineRun"></a>
+<a id="postPipelineRun"></a>
 # **postPipelineRun**
 > QueueItemImpl postPipelineRun(organization, pipeline, run)
 
@@ -1738,7 +1738,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="postPipelineRuns"></a>
+<a id="postPipelineRuns"></a>
 # **postPipelineRuns**
 > QueueItemImpl postPipelineRuns(organization, pipeline)
 
@@ -1790,7 +1790,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="putPipelineFavorite"></a>
+<a id="putPipelineFavorite"></a>
 # **putPipelineFavorite**
 > FavoriteImpl putPipelineFavorite(organization, pipeline, body)
 
@@ -1844,7 +1844,7 @@ Configure jenkins_auth:
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="putPipelineRun"></a>
+<a id="putPipelineRun"></a>
 # **putPipelineRun**
 > PipelineRun putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
 
@@ -1902,7 +1902,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="search"></a>
+<a id="search"></a>
 # **search**
 > kotlin.String search(q)
 
@@ -1952,7 +1952,7 @@ Configure jenkins_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="searchClasses"></a>
+<a id="searchClasses"></a>
 # **searchClasses**
 > kotlin.String searchClasses(q)
 

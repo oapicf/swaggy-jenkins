@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubContent")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubContent   {
-  
   private @Valid String name;
   private @Valid String sha;
   private @Valid String propertyClass;
@@ -46,7 +45,7 @@ public class GithubContent   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public GithubContent sha(String sha) {
     this.sha = sha;
@@ -65,7 +64,7 @@ public class GithubContent   {
     this.sha = sha;
   }
 
-/**
+  /**
    **/
   public GithubContent propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -84,7 +83,7 @@ public class GithubContent   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public GithubContent repo(String repo) {
     this.repo = repo;
@@ -103,7 +102,7 @@ public class GithubContent   {
     this.repo = repo;
   }
 
-/**
+  /**
    **/
   public GithubContent size(Integer size) {
     this.size = size;
@@ -122,7 +121,7 @@ public class GithubContent   {
     this.size = size;
   }
 
-/**
+  /**
    **/
   public GithubContent owner(String owner) {
     this.owner = owner;
@@ -141,7 +140,7 @@ public class GithubContent   {
     this.owner = owner;
   }
 
-/**
+  /**
    **/
   public GithubContent path(String path) {
     this.path = path;
@@ -160,7 +159,7 @@ public class GithubContent   {
     this.path = path;
   }
 
-/**
+  /**
    **/
   public GithubContent base64Data(String base64Data) {
     this.base64Data = base64Data;

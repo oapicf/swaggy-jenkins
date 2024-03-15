@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -174,6 +175,29 @@ public class GithubContent  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubContent githubContent = (GithubContent) o;
+    return Objects.equals(this.name, githubContent.name) &&
+        Objects.equals(this.sha, githubContent.sha) &&
+        Objects.equals(this.propertyClass, githubContent.propertyClass) &&
+        Objects.equals(this.repo, githubContent.repo) &&
+        Objects.equals(this.size, githubContent.size) &&
+        Objects.equals(this.owner, githubContent.owner) &&
+        Objects.equals(this.path, githubContent.path) &&
+        Objects.equals(this.base64Data, githubContent.base64Data);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, sha, propertyClass, repo, size, owner, path, base64Data);
+  }
 
   @Override
   public String toString() {

@@ -69,7 +69,7 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
     // organisation->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(organisationJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
     // organisation->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(organisationJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
 
 
     organisation_local_var = organisation_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
         );
 
     return organisation_local_var;

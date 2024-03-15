@@ -25,8 +25,8 @@ app/openapi_server/encoder.py
 app/openapi_server/models/__init__.py
 app/openapi_server/models/__init__.py
 app/openapi_server/models/all_view.py
-app/openapi_server/models/base_model_.py
-app/openapi_server/models/base_model_.py
+app/openapi_server/models/base_model.py
+app/openapi_server/models/base_model.py
 app/openapi_server/models/branch_impl.py
 app/openapi_server/models/branch_impllinks.py
 app/openapi_server/models/branch_implpermissions.py

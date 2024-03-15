@@ -22,11 +22,11 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Queue(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("items") val items: kotlin.collections.List<QueueBlockedItem>? = null
+    @get:JsonProperty("items") val items: kotlin.collections.List<QueueBlockedItem>? = null
 ) {
 
 }

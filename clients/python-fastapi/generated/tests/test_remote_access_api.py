@@ -20,12 +20,13 @@ def test_get_computer(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/computer/api/json",
-        headers=headers,
-        params=params,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/computer/api/json",
+    #    headers=headers,
+    #    params=params,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -40,11 +41,12 @@ def test_get_jenkins(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/api/json",
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/api/json",
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -59,11 +61,12 @@ def test_get_job(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/job/{name}/api/json".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/job/{name}/api/json".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -78,11 +81,12 @@ def test_get_job_config(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/job/{name}/config.xml".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/job/{name}/config.xml".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -97,11 +101,12 @@ def test_get_job_last_build(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/job/{name}/lastBuild/api/json".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/job/{name}/lastBuild/api/json".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -116,12 +121,13 @@ def test_get_job_progressive_text(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/job/{name}/{number}/logText/progressiveText".format(name='name_example', number='number_example'),
-        headers=headers,
-        params=params,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/job/{name}/{number}/logText/progressiveText".format(name='name_example', number='number_example'),
+    #    headers=headers,
+    #    params=params,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -136,11 +142,12 @@ def test_get_queue(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/queue/api/json",
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/queue/api/json",
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -155,11 +162,12 @@ def test_get_queue_item(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/queue/item/{number}/api/json".format(number='number_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/queue/item/{number}/api/json".format(number='number_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -174,11 +182,12 @@ def test_get_view(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/view/{name}/api/json".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/view/{name}/api/json".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -193,11 +202,12 @@ def test_get_view_config(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "GET",
-        "/view/{name}/config.xml".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/view/{name}/config.xml".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -212,11 +222,12 @@ def test_head_jenkins(client: TestClient):
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "HEAD",
-        "/api/json",
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "HEAD",
+    #    "/api/json",
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -234,13 +245,14 @@ def test_post_create_item(client: TestClient):
         "content_type": 'content_type_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/createItem",
-        headers=headers,
-        json=body,
-        params=params,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/createItem",
+    #    headers=headers,
+    #    json=body,
+    #    params=params,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -258,13 +270,14 @@ def test_post_create_view(client: TestClient):
         "content_type": 'content_type_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/createView",
-        headers=headers,
-        json=body,
-        params=params,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/createView",
+    #    headers=headers,
+    #    json=body,
+    #    params=params,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -275,17 +288,18 @@ def test_post_job_build(client: TestClient):
 
     
     """
-    params = [("json", 'json_example'),     ("token", 'token_example')]
+    params = [("_json", '_json_example'),     ("token", 'token_example')]
     headers = {
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/job/{name}/build".format(name='name_example'),
-        headers=headers,
-        params=params,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/build".format(name='name_example'),
+    #    headers=headers,
+    #    params=params,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -302,12 +316,13 @@ def test_post_job_config(client: TestClient):
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/job/{name}/config.xml".format(name='name_example'),
-        headers=headers,
-        json=body,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/config.xml".format(name='name_example'),
+    #    headers=headers,
+    #    json=body,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -323,11 +338,12 @@ def test_post_job_delete(client: TestClient):
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/job/{name}/doDelete".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/doDelete".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -343,11 +359,12 @@ def test_post_job_disable(client: TestClient):
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/job/{name}/disable".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/disable".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -363,11 +380,12 @@ def test_post_job_enable(client: TestClient):
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/job/{name}/enable".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/enable".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -383,11 +401,12 @@ def test_post_job_last_build_stop(client: TestClient):
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/job/{name}/lastBuild/stop".format(name='name_example'),
-        headers=headers,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/lastBuild/stop".format(name='name_example'),
+    #    headers=headers,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
@@ -404,12 +423,13 @@ def test_post_view_config(client: TestClient):
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
-    response = client.request(
-        "POST",
-        "/view/{name}/config.xml".format(name='name_example'),
-        headers=headers,
-        json=body,
-    )
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/view/{name}/config.xml".format(name='name_example'),
+    #    headers=headers,
+    #    json=body,
+    #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200

@@ -1,5 +1,5 @@
 {
-    "name": "GIT_USER_ID/GIT_REPO_ID",
+    "name": "oapicf/swaggy-jenkins",
     "description": "",
     "keywords": [
         "framework",
@@ -11,11 +11,11 @@
         "sdk",
         "api"
     ],
-    "homepage": "http://openapi-generator.tech",
+    "homepage": "https://openapi-generator.tech",
     "license": "unlicense",
     "authors": [
         {
-            "name": "OpenAPI-Generator contributors",
+            "name": "OpenAPI",
             "homepage": "https://openapi-generator.tech"
         }
     ],

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -27,6 +28,22 @@ public class FreeStyleProjectactions  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FreeStyleProjectactions freeStyleProjectactions = (FreeStyleProjectactions) o;
+    return Objects.equals(this.propertyClass, freeStyleProjectactions.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass);
+  }
 
   @Override
   public String toString() {

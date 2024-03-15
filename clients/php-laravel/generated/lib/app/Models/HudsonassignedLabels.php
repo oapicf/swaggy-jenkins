@@ -10,6 +10,6 @@ namespace app\Models;
 class HudsonassignedLabels {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.FreeStyleProject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * ListView
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ListView   {
   @JsonProperty("_class")
@@ -25,7 +27,7 @@ public class ListView   {
   @JsonProperty("jobs")
   @Valid
 
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs = null;
 
   @JsonProperty("name")
   
@@ -69,16 +71,16 @@ public class ListView   {
     this.description = description;
   }
 
-  public ListView jobs(List<FreeStyleProject> jobs) {
+  public ListView jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
 
   public ListView addJobsItem(FreeStyleProject jobsItem) {
-    if (jobs == null) {
-      jobs = new ArrayList<>();
+    if (this.jobs == null) {
+      this.jobs = new ArrayList<>();
     }
-    jobs.add(jobsItem);
+    this.jobs.add(jobsItem);
     return this;
   }
 
@@ -86,11 +88,11 @@ public class ListView   {
    * Get jobs
    * @return jobs
   **/
-  public List<FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 

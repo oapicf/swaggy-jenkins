@@ -5,6 +5,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -115,6 +116,26 @@ public class StringParameterDefinition  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    StringParameterDefinition stringParameterDefinition = (StringParameterDefinition) o;
+    return Objects.equals(this.propertyClass, stringParameterDefinition.propertyClass) &&
+        Objects.equals(this.defaultParameterValue, stringParameterDefinition.defaultParameterValue) &&
+        Objects.equals(this.description, stringParameterDefinition.description) &&
+        Objects.equals(this.name, stringParameterDefinition.name) &&
+        Objects.equals(this.type, stringParameterDefinition.type);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, defaultParameterValue, description, name, type);
+  }
 
   @Override
   public String toString() {

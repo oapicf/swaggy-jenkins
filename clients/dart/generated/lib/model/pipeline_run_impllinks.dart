@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -71,12 +71,12 @@ class PipelineRunImpllinks {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineRunImpllinks &&
-     other.nodes == nodes &&
-     other.log == log &&
-     other.self == self &&
-     other.actions == actions &&
-     other.steps == steps &&
-     other.class_ == class_;
+    other.nodes == nodes &&
+    other.log == log &&
+    other.self == self &&
+    other.actions == actions &&
+    other.steps == steps &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -92,26 +92,38 @@ class PipelineRunImpllinks {
   String toString() => 'PipelineRunImpllinks[nodes=$nodes, log=$log, self=$self, actions=$actions, steps=$steps, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (nodes != null) {
-      _json[r'nodes'] = nodes;
+    final json = <String, dynamic>{};
+    if (this.nodes != null) {
+      json[r'nodes'] = this.nodes;
+    } else {
+      json[r'nodes'] = null;
     }
-    if (log != null) {
-      _json[r'log'] = log;
+    if (this.log != null) {
+      json[r'log'] = this.log;
+    } else {
+      json[r'log'] = null;
     }
-    if (self != null) {
-      _json[r'self'] = self;
+    if (this.self != null) {
+      json[r'self'] = this.self;
+    } else {
+      json[r'self'] = null;
     }
-    if (actions != null) {
-      _json[r'actions'] = actions;
+    if (this.actions != null) {
+      json[r'actions'] = this.actions;
+    } else {
+      json[r'actions'] = null;
     }
-    if (steps != null) {
-      _json[r'steps'] = steps;
+    if (this.steps != null) {
+      json[r'steps'] = this.steps;
+    } else {
+      json[r'steps'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineRunImpllinks] instance and imports its values from
@@ -144,7 +156,7 @@ class PipelineRunImpllinks {
     return null;
   }
 
-  static List<PipelineRunImpllinks>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineRunImpllinks> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineRunImpllinks>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -175,12 +187,10 @@ class PipelineRunImpllinks {
   static Map<String, List<PipelineRunImpllinks>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineRunImpllinks>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineRunImpllinks.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineRunImpllinks.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

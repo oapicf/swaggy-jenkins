@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.PipelineRunartifacts;
 
@@ -11,7 +12,7 @@ import org.openapitools.server.api.model.PipelineRunartifacts;
 public class PipelineRun   {
   
   private String propertyClass;
-  private List<PipelineRunartifacts> artifacts = new ArrayList<>();
+  private List<PipelineRunartifacts> artifacts;
   private Integer durationInMillis;
   private Integer estimatedDurationInMillis;
   private String enQueueTime;

@@ -4,7 +4,7 @@ from datetime import date, datetime
 
 from typing import List, Dict, Type
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.clock_difference import ClockDifference
 from openapi_server.models.disk_space_monitor_descriptor_disk_space import DiskSpaceMonitorDescriptorDiskSpace
 from openapi_server.models.response_time_monitor_data import ResponseTimeMonitorData

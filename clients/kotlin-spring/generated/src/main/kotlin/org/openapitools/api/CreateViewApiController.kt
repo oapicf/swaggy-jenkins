@@ -35,7 +35,7 @@ class CreateViewApiController() {
     @Operation(
         summary = "",
         operationId = "postCreateView",
-        description = "Create a new view using view configuration",
+        description = """Create a new view using view configuration""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully created the view"),
             ApiResponse(responseCode = "400", description = "An error has occurred - error message is embedded inside the HTML response", content = [Content(schema = Schema(implementation = kotlin.String::class))]),

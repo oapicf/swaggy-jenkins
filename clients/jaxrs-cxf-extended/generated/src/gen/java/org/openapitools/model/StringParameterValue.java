@@ -92,6 +92,25 @@ public class StringParameterValue  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    StringParameterValue stringParameterValue = (StringParameterValue) o;
+    return Objects.equals(this.propertyClass, stringParameterValue.propertyClass) &&
+        Objects.equals(this.name, stringParameterValue.name) &&
+        Objects.equals(this.value, stringParameterValue.value);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, name, value);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class StringParameterValue {\n");

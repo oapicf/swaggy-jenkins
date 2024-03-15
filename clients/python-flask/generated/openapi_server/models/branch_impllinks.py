@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.link import Link
 from openapi_server import util
 
@@ -65,7 +62,7 @@ class BranchImpllinks(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _self(self):
+    def _self(self) -> Link:
         """Gets the _self of this BranchImpllinks.
 
 
@@ -75,7 +72,7 @@ class BranchImpllinks(Model):
         return self.__self
 
     @_self.setter
-    def _self(self, _self):
+    def _self(self, _self: Link):
         """Sets the _self of this BranchImpllinks.
 
 
@@ -86,7 +83,7 @@ class BranchImpllinks(Model):
         self.__self = _self
 
     @property
-    def actions(self):
+    def actions(self) -> Link:
         """Gets the actions of this BranchImpllinks.
 
 
@@ -96,7 +93,7 @@ class BranchImpllinks(Model):
         return self._actions
 
     @actions.setter
-    def actions(self, actions):
+    def actions(self, actions: Link):
         """Sets the actions of this BranchImpllinks.
 
 
@@ -107,7 +104,7 @@ class BranchImpllinks(Model):
         self._actions = actions
 
     @property
-    def runs(self):
+    def runs(self) -> Link:
         """Gets the runs of this BranchImpllinks.
 
 
@@ -117,7 +114,7 @@ class BranchImpllinks(Model):
         return self._runs
 
     @runs.setter
-    def runs(self, runs):
+    def runs(self, runs: Link):
         """Sets the runs of this BranchImpllinks.
 
 
@@ -128,7 +125,7 @@ class BranchImpllinks(Model):
         self._runs = runs
 
     @property
-    def queue(self):
+    def queue(self) -> Link:
         """Gets the queue of this BranchImpllinks.
 
 
@@ -138,7 +135,7 @@ class BranchImpllinks(Model):
         return self._queue
 
     @queue.setter
-    def queue(self, queue):
+    def queue(self, queue: Link):
         """Sets the queue of this BranchImpllinks.
 
 
@@ -149,7 +146,7 @@ class BranchImpllinks(Model):
         self._queue = queue
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this BranchImpllinks.
 
 
@@ -159,7 +156,7 @@ class BranchImpllinks(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this BranchImpllinks.
 
 

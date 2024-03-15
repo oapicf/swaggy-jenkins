@@ -10,9 +10,9 @@ namespace app\Models;
 class GithubFile {
 
     /** @var \app\Models\GithubContent $content */
-    private $content;
+    public $content;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

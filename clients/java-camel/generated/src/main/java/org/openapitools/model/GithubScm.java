@@ -19,22 +19,17 @@ import javax.annotation.Generated;
  * GithubScm
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubScm {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private GithubScmlinks links;
 
-  @JsonProperty("credentialId")
   private String credentialId;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("uri")
   private String uri;
 
   public GithubScm propertyClass(String propertyClass) {
@@ -47,7 +42,8 @@ public class GithubScm {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -66,7 +62,8 @@ public class GithubScm {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public GithubScmlinks getLinks() {
     return links;
   }
@@ -85,7 +82,8 @@ public class GithubScm {
    * @return credentialId
   */
   
-  @Schema(name = "credentialId", required = false)
+  @Schema(name = "credentialId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("credentialId")
   public String getCredentialId() {
     return credentialId;
   }
@@ -104,7 +102,8 @@ public class GithubScm {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -123,7 +122,8 @@ public class GithubScm {
    * @return uri
   */
   
-  @Schema(name = "uri", required = false)
+  @Schema(name = "uri", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("uri")
   public String getUri() {
     return uri;
   }

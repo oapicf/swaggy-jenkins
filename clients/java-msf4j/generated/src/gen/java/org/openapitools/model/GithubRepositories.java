@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
 import org.openapitools.model.GithubRepository;
@@ -13,7 +14,7 @@ import org.openapitools.model.GithubRepository;
 /**
  * GithubRepositories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepositories   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -22,7 +23,7 @@ public class GithubRepositories   {
   private GithubRepositorieslinks links;
 
   @JsonProperty("items")
-  private List<GithubRepository> items = null;
+  private List<@Valid GithubRepository> items = null;
 
   @JsonProperty("lastPage")
   private Integer lastPage;
@@ -69,14 +70,14 @@ public class GithubRepositories   {
     this.links = links;
   }
 
-  public GithubRepositories items(List<GithubRepository> items) {
+  public GithubRepositories items(List<@Valid GithubRepository> items) {
     this.items = items;
     return this;
   }
 
   public GithubRepositories addItemsItem(GithubRepository itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<>();
+      this.items = ;
     }
     this.items.add(itemsItem);
     return this;
@@ -87,11 +88,11 @@ public class GithubRepositories   {
    * @return items
   **/
   @ApiModelProperty(value = "")
-  public List<GithubRepository> getItems() {
+  public List<@Valid GithubRepository> getItems() {
     return items;
   }
 
-  public void setItems(List<GithubRepository> items) {
+  public void setItems(List<@Valid GithubRepository> items) {
     this.items = items;
   }
 

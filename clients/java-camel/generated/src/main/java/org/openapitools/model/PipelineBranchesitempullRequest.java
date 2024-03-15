@@ -19,25 +19,19 @@ import javax.annotation.Generated;
  * PipelineBranchesitempullRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitempullRequest {
 
-  @JsonProperty("_links")
   private PipelineBranchesitempullRequestlinks links;
 
-  @JsonProperty("author")
   private String author;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("title")
   private String title;
 
-  @JsonProperty("url")
   private String url;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineBranchesitempullRequest links(PipelineBranchesitempullRequestlinks links) {
@@ -50,7 +44,8 @@ public class PipelineBranchesitempullRequest {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public PipelineBranchesitempullRequestlinks getLinks() {
     return links;
   }
@@ -69,7 +64,8 @@ public class PipelineBranchesitempullRequest {
    * @return author
   */
   
-  @Schema(name = "author", required = false)
+  @Schema(name = "author", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("author")
   public String getAuthor() {
     return author;
   }
@@ -88,7 +84,8 @@ public class PipelineBranchesitempullRequest {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -107,7 +104,8 @@ public class PipelineBranchesitempullRequest {
    * @return title
   */
   
-  @Schema(name = "title", required = false)
+  @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("title")
   public String getTitle() {
     return title;
   }
@@ -126,7 +124,8 @@ public class PipelineBranchesitempullRequest {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }
@@ -145,7 +144,8 @@ public class PipelineBranchesitempullRequest {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

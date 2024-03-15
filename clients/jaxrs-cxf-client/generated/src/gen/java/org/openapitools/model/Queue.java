@@ -1,10 +1,12 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.QueueBlockedItem;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -14,7 +16,7 @@ public class Queue  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<QueueBlockedItem> items = null;
+  private List<QueueBlockedItem> items;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -56,6 +58,23 @@ public class Queue  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Queue queue = (Queue) o;
+    return Objects.equals(this.propertyClass, queue.propertyClass) &&
+        Objects.equals(this.items, queue.items);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, items);
+  }
 
   @Override
   public String toString() {

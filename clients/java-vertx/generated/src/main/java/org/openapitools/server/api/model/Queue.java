@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.QueueBlockedItem;
 
@@ -11,7 +12,7 @@ import org.openapitools.server.api.model.QueueBlockedItem;
 public class Queue   {
   
   private String propertyClass;
-  private List<QueueBlockedItem> items = new ArrayList<>();
+  private List<QueueBlockedItem> items;
 
   public Queue () {
 

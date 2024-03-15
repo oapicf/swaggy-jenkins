@@ -139,7 +139,7 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
     // github_repositories->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -201,7 +201,7 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
 
     github_repositories_local_var = github_repositories_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         items ? itemsList : NULL,
         last_page ? last_page->valuedouble : 0,

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -53,10 +53,10 @@ class PipelineRunartifacts {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineRunartifacts &&
-     other.name == name &&
-     other.size == size &&
-     other.url == url &&
-     other.class_ == class_;
+    other.name == name &&
+    other.size == size &&
+    other.url == url &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -70,20 +70,28 @@ class PipelineRunartifacts {
   String toString() => 'PipelineRunartifacts[name=$name, size=$size, url=$url, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (name != null) {
-      _json[r'name'] = name;
+    final json = <String, dynamic>{};
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (size != null) {
-      _json[r'size'] = size;
+    if (this.size != null) {
+      json[r'size'] = this.size;
+    } else {
+      json[r'size'] = null;
     }
-    if (url != null) {
-      _json[r'url'] = url;
+    if (this.url != null) {
+      json[r'url'] = this.url;
+    } else {
+      json[r'url'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineRunartifacts] instance and imports its values from
@@ -114,7 +122,7 @@ class PipelineRunartifacts {
     return null;
   }
 
-  static List<PipelineRunartifacts>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineRunartifacts> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineRunartifacts>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -145,12 +153,10 @@ class PipelineRunartifacts {
   static Map<String, List<PipelineRunartifacts>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineRunartifacts>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineRunartifacts.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineRunartifacts.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

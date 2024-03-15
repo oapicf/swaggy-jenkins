@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -405,7 +405,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<Organisation>') as List)
         .cast<Organisation>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -532,7 +532,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<PipelineActivity>') as List)
         .cast<PipelineActivity>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -935,7 +935,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<QueueItemImpl>') as List)
         .cast<QueueItemImpl>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1413,7 +1413,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<PipelineStepImpl>') as List)
         .cast<PipelineStepImpl>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1485,7 +1485,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<PipelineRunNode>') as List)
         .cast<PipelineRunNode>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1550,7 +1550,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<PipelineRun>') as List)
         .cast<PipelineRun>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1608,7 +1608,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<Pipeline>') as List)
         .cast<Pipeline>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1770,7 +1770,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<GithubOrganization>') as List)
         .cast<GithubOrganization>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1859,7 +1859,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<GithubOrganization>') as List)
         .cast<GithubOrganization>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -1934,7 +1934,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<GithubOrganization>') as List)
         .cast<GithubOrganization>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;
@@ -2054,7 +2054,7 @@ class BlueOceanApi {
       final responseBody = await _decodeBodyBytes(response);
       return (await apiClient.deserializeAsync(responseBody, 'List<FavoriteImpl>') as List)
         .cast<FavoriteImpl>()
-        .toList();
+        .toList(growable: false);
 
     }
     return null;

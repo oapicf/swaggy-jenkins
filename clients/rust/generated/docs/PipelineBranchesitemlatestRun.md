@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **run_summary** | Option<**String**> |  | [optional]
 **start_time** | Option<**String**> |  | [optional]
 **state** | Option<**String**> |  | [optional]
-**_type** | Option<**String**> |  | [optional]
+**r#type** | Option<**String**> |  | [optional]
 **commit_id** | Option<**String**> |  | [optional]
 **_class** | Option<**String**> |  | [optional]
 

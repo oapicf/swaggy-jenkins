@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.clock_difference import ClockDifference
 from openapi_server.models.disk_space_monitor_descriptor_disk_space import DiskSpaceMonitorDescriptorDiskSpace
 from openapi_server.models.response_time_monitor_data import ResponseTimeMonitorData
@@ -81,7 +78,7 @@ class HudsonMasterComputermonitorData(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def hudson_node_monitors_swap_space_monitor(self):
+    def hudson_node_monitors_swap_space_monitor(self) -> SwapSpaceMonitorMemoryUsage2:
         """Gets the hudson_node_monitors_swap_space_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -91,7 +88,7 @@ class HudsonMasterComputermonitorData(Model):
         return self._hudson_node_monitors_swap_space_monitor
 
     @hudson_node_monitors_swap_space_monitor.setter
-    def hudson_node_monitors_swap_space_monitor(self, hudson_node_monitors_swap_space_monitor):
+    def hudson_node_monitors_swap_space_monitor(self, hudson_node_monitors_swap_space_monitor: SwapSpaceMonitorMemoryUsage2):
         """Sets the hudson_node_monitors_swap_space_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -102,7 +99,7 @@ class HudsonMasterComputermonitorData(Model):
         self._hudson_node_monitors_swap_space_monitor = hudson_node_monitors_swap_space_monitor
 
     @property
-    def hudson_node_monitors_temporary_space_monitor(self):
+    def hudson_node_monitors_temporary_space_monitor(self) -> DiskSpaceMonitorDescriptorDiskSpace:
         """Gets the hudson_node_monitors_temporary_space_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -112,7 +109,7 @@ class HudsonMasterComputermonitorData(Model):
         return self._hudson_node_monitors_temporary_space_monitor
 
     @hudson_node_monitors_temporary_space_monitor.setter
-    def hudson_node_monitors_temporary_space_monitor(self, hudson_node_monitors_temporary_space_monitor):
+    def hudson_node_monitors_temporary_space_monitor(self, hudson_node_monitors_temporary_space_monitor: DiskSpaceMonitorDescriptorDiskSpace):
         """Sets the hudson_node_monitors_temporary_space_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -123,7 +120,7 @@ class HudsonMasterComputermonitorData(Model):
         self._hudson_node_monitors_temporary_space_monitor = hudson_node_monitors_temporary_space_monitor
 
     @property
-    def hudson_node_monitors_disk_space_monitor(self):
+    def hudson_node_monitors_disk_space_monitor(self) -> DiskSpaceMonitorDescriptorDiskSpace:
         """Gets the hudson_node_monitors_disk_space_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -133,7 +130,7 @@ class HudsonMasterComputermonitorData(Model):
         return self._hudson_node_monitors_disk_space_monitor
 
     @hudson_node_monitors_disk_space_monitor.setter
-    def hudson_node_monitors_disk_space_monitor(self, hudson_node_monitors_disk_space_monitor):
+    def hudson_node_monitors_disk_space_monitor(self, hudson_node_monitors_disk_space_monitor: DiskSpaceMonitorDescriptorDiskSpace):
         """Sets the hudson_node_monitors_disk_space_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -144,7 +141,7 @@ class HudsonMasterComputermonitorData(Model):
         self._hudson_node_monitors_disk_space_monitor = hudson_node_monitors_disk_space_monitor
 
     @property
-    def hudson_node_monitors_architecture_monitor(self):
+    def hudson_node_monitors_architecture_monitor(self) -> str:
         """Gets the hudson_node_monitors_architecture_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -154,7 +151,7 @@ class HudsonMasterComputermonitorData(Model):
         return self._hudson_node_monitors_architecture_monitor
 
     @hudson_node_monitors_architecture_monitor.setter
-    def hudson_node_monitors_architecture_monitor(self, hudson_node_monitors_architecture_monitor):
+    def hudson_node_monitors_architecture_monitor(self, hudson_node_monitors_architecture_monitor: str):
         """Sets the hudson_node_monitors_architecture_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -165,7 +162,7 @@ class HudsonMasterComputermonitorData(Model):
         self._hudson_node_monitors_architecture_monitor = hudson_node_monitors_architecture_monitor
 
     @property
-    def hudson_node_monitors_response_time_monitor(self):
+    def hudson_node_monitors_response_time_monitor(self) -> ResponseTimeMonitorData:
         """Gets the hudson_node_monitors_response_time_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -175,7 +172,7 @@ class HudsonMasterComputermonitorData(Model):
         return self._hudson_node_monitors_response_time_monitor
 
     @hudson_node_monitors_response_time_monitor.setter
-    def hudson_node_monitors_response_time_monitor(self, hudson_node_monitors_response_time_monitor):
+    def hudson_node_monitors_response_time_monitor(self, hudson_node_monitors_response_time_monitor: ResponseTimeMonitorData):
         """Sets the hudson_node_monitors_response_time_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -186,7 +183,7 @@ class HudsonMasterComputermonitorData(Model):
         self._hudson_node_monitors_response_time_monitor = hudson_node_monitors_response_time_monitor
 
     @property
-    def hudson_node_monitors_clock_monitor(self):
+    def hudson_node_monitors_clock_monitor(self) -> ClockDifference:
         """Gets the hudson_node_monitors_clock_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -196,7 +193,7 @@ class HudsonMasterComputermonitorData(Model):
         return self._hudson_node_monitors_clock_monitor
 
     @hudson_node_monitors_clock_monitor.setter
-    def hudson_node_monitors_clock_monitor(self, hudson_node_monitors_clock_monitor):
+    def hudson_node_monitors_clock_monitor(self, hudson_node_monitors_clock_monitor: ClockDifference):
         """Sets the hudson_node_monitors_clock_monitor of this HudsonMasterComputermonitorData.
 
 
@@ -207,7 +204,7 @@ class HudsonMasterComputermonitorData(Model):
         self._hudson_node_monitors_clock_monitor = hudson_node_monitors_clock_monitor
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this HudsonMasterComputermonitorData.
 
 
@@ -217,7 +214,7 @@ class HudsonMasterComputermonitorData(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this HudsonMasterComputermonitorData.
 
 

@@ -1,4 +1,5 @@
 {
+    "name": "oapicf/swaggy-jenkins",
     "description": "Jenkins API clients generated from Swagger / Open API specification",
     "keywords": [
         "openapitools",
@@ -13,7 +14,7 @@
     "license": "unlicense",
     "authors": [
         {
-            "name": "OpenAPI-Generator contributors",
+            "name": "OpenAPI",
             "homepage": "https://openapi-generator.tech"
         }
     ],

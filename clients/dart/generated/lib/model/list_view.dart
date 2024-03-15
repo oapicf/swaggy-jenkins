@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -56,11 +56,11 @@ class ListView {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ListView &&
-     other.class_ == class_ &&
-     other.description == description &&
-     other.jobs == jobs &&
-     other.name == name &&
-     other.url == url;
+    other.class_ == class_ &&
+    other.description == description &&
+    _deepEquality.equals(other.jobs, jobs) &&
+    other.name == name &&
+    other.url == url;
 
   @override
   int get hashCode =>
@@ -75,21 +75,29 @@ class ListView {
   String toString() => 'ListView[class_=$class_, description=$description, jobs=$jobs, name=$name, url=$url]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (description != null) {
-      _json[r'description'] = description;
+    if (this.description != null) {
+      json[r'description'] = this.description;
+    } else {
+      json[r'description'] = null;
     }
-      _json[r'jobs'] = jobs;
-    if (name != null) {
-      _json[r'name'] = name;
+      json[r'jobs'] = this.jobs;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (url != null) {
-      _json[r'url'] = url;
+    if (this.url != null) {
+      json[r'url'] = this.url;
+    } else {
+      json[r'url'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [ListView] instance and imports its values from
@@ -113,7 +121,7 @@ class ListView {
       return ListView(
         class_: mapValueOfType<String>(json, r'_class'),
         description: mapValueOfType<String>(json, r'description'),
-        jobs: FreeStyleProject.listFromJson(json[r'jobs']) ?? const [],
+        jobs: FreeStyleProject.listFromJson(json[r'jobs']),
         name: mapValueOfType<String>(json, r'name'),
         url: mapValueOfType<String>(json, r'url'),
       );
@@ -121,7 +129,7 @@ class ListView {
     return null;
   }
 
-  static List<ListView>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ListView> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ListView>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -152,12 +160,10 @@ class ListView {
   static Map<String, List<ListView>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<ListView>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = ListView.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = ListView.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

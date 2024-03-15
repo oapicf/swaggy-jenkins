@@ -95,7 +95,7 @@ swap_space_monitor_memory_usage2_t *swap_space_monitor_memory_usage2_parseFromJS
     // swap_space_monitor_memory_usage2->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(swap_space_monitor_memory_usage2JSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -139,7 +139,7 @@ swap_space_monitor_memory_usage2_t *swap_space_monitor_memory_usage2_parseFromJS
 
 
     swap_space_monitor_memory_usage2_local_var = swap_space_monitor_memory_usage2_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         available_physical_memory ? available_physical_memory->valuedouble : 0,
         available_swap_space ? available_swap_space->valuedouble : 0,
         total_physical_memory ? total_physical_memory->valuedouble : 0,

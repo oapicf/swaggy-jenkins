@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
 import org.openapitools.model.GithubRepository;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -22,14 +24,13 @@ public class GithubRepositories   {
 
   private GithubRepositorieslinks links;
 
-  private List<GithubRepository> items = null;
+  private List<@Valid GithubRepository> items;
 
   private Integer lastPage;
 
   private Integer nextPage;
 
   private Integer pageSize;
-
 
   /**
    **/
@@ -69,7 +70,7 @@ public class GithubRepositories   {
 
   /**
    **/
-  public GithubRepositories items(List<GithubRepository> items) {
+  public GithubRepositories items(List<@Valid GithubRepository> items) {
     this.items = items;
     return this;
   }
@@ -77,10 +78,10 @@ public class GithubRepositories   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("items")
-  public List<GithubRepository> getItems() {
+  public List<@Valid GithubRepository> getItems() {
     return items;
   }
-  public void setItems(List<GithubRepository> items) {
+  public void setItems(List<@Valid GithubRepository> items) {
     this.items = items;
   }
 
@@ -157,12 +158,12 @@ public class GithubRepositories   {
       return false;
     }
     GithubRepositories githubRepositories = (GithubRepositories) o;
-    return Objects.equals(propertyClass, githubRepositories.propertyClass) &&
-        Objects.equals(links, githubRepositories.links) &&
-        Objects.equals(items, githubRepositories.items) &&
-        Objects.equals(lastPage, githubRepositories.lastPage) &&
-        Objects.equals(nextPage, githubRepositories.nextPage) &&
-        Objects.equals(pageSize, githubRepositories.pageSize);
+    return Objects.equals(this.propertyClass, githubRepositories.propertyClass) &&
+        Objects.equals(this.links, githubRepositories.links) &&
+        Objects.equals(this.items, githubRepositories.items) &&
+        Objects.equals(this.lastPage, githubRepositories.lastPage) &&
+        Objects.equals(this.nextPage, githubRepositories.nextPage) &&
+        Objects.equals(this.pageSize, githubRepositories.pageSize);
   }
 
   @Override

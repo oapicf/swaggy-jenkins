@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelinelatestRunartifacts;
 import javax.validation.constraints.*;
@@ -18,10 +19,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelinelatestRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelinelatestRun   {
-  
-  private @Valid List<PipelinelatestRunartifacts> artifacts = new ArrayList<>();
+  private @Valid List<@Valid PipelinelatestRunartifacts> artifacts;
   private @Valid Integer durationInMillis;
   private @Valid Integer estimatedDurationInMillis;
   private @Valid String enQueueTime;
@@ -39,7 +39,7 @@ public class PipelinelatestRun   {
 
   /**
    **/
-  public PipelinelatestRun artifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public PipelinelatestRun artifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
@@ -52,7 +52,7 @@ public class PipelinelatestRun   {
   }
 
   @JsonProperty("artifacts")
-  public void setArtifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 
@@ -72,7 +72,7 @@ public class PipelinelatestRun   {
 
     return this;
   }
-/**
+  /**
    **/
   public PipelinelatestRun durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -91,7 +91,7 @@ public class PipelinelatestRun   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -110,7 +110,7 @@ public class PipelinelatestRun   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -129,7 +129,7 @@ public class PipelinelatestRun   {
     this.enQueueTime = enQueueTime;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun endTime(String endTime) {
     this.endTime = endTime;
@@ -148,7 +148,7 @@ public class PipelinelatestRun   {
     this.endTime = endTime;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun id(String id) {
     this.id = id;
@@ -167,7 +167,7 @@ public class PipelinelatestRun   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun organization(String organization) {
     this.organization = organization;
@@ -186,7 +186,7 @@ public class PipelinelatestRun   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -205,7 +205,7 @@ public class PipelinelatestRun   {
     this.pipeline = pipeline;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun result(String result) {
     this.result = result;
@@ -224,7 +224,7 @@ public class PipelinelatestRun   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -243,7 +243,7 @@ public class PipelinelatestRun   {
     this.runSummary = runSummary;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun startTime(String startTime) {
     this.startTime = startTime;
@@ -262,7 +262,7 @@ public class PipelinelatestRun   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun state(String state) {
     this.state = state;
@@ -281,7 +281,7 @@ public class PipelinelatestRun   {
     this.state = state;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun type(String type) {
     this.type = type;
@@ -300,7 +300,7 @@ public class PipelinelatestRun   {
     this.type = type;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun commitId(String commitId) {
     this.commitId = commitId;
@@ -319,7 +319,7 @@ public class PipelinelatestRun   {
     this.commitId = commitId;
   }
 
-/**
+  /**
    **/
   public PipelinelatestRun propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

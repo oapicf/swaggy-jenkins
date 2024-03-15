@@ -5,114 +5,97 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class PipelinelatestRun
 {
     /**
      * @DTA\Data(field="artifacts", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection94::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection94::class})
-     * @var \App\DTO\Collection94|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection14::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection14::class})
      */
-    public $artifacts;
+    public ?\App\DTO\Collection14 $artifacts = null;
 
     /**
      * @DTA\Data(field="durationInMillis", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $duration_in_millis;
+    public ?int $duration_in_millis = null;
 
     /**
      * @DTA\Data(field="estimatedDurationInMillis", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $estimated_duration_in_millis;
+    public ?int $estimated_duration_in_millis = null;
 
     /**
      * @DTA\Data(field="enQueueTime", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $en_queue_time;
+    public ?string $en_queue_time = null;
 
     /**
      * @DTA\Data(field="endTime", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $end_time;
+    public ?string $end_time = null;
 
     /**
      * @DTA\Data(field="id", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $id;
+    public ?string $id = null;
 
     /**
      * @DTA\Data(field="organization", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * @DTA\Data(field="pipeline", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $pipeline;
+    public ?string $pipeline = null;
 
     /**
      * @DTA\Data(field="result", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $result;
+    public ?string $result = null;
 
     /**
      * @DTA\Data(field="runSummary", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $run_summary;
+    public ?string $run_summary = null;
 
     /**
      * @DTA\Data(field="startTime", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $start_time;
+    public ?string $start_time = null;
 
     /**
      * @DTA\Data(field="state", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $state;
+    public ?string $state = null;
 
     /**
      * @DTA\Data(field="type", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $type;
+    public ?string $type = null;
 
     /**
      * @DTA\Data(field="commitId", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $commit_id;
+    public ?string $commit_id = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

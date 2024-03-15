@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineImpllinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -32,7 +33,6 @@ public class PipelineImpl   {
   private Integer weatherScore;
 
   private PipelineImpllinks links;
-
 
   /**
    **/
@@ -206,15 +206,15 @@ public class PipelineImpl   {
       return false;
     }
     PipelineImpl pipelineImpl = (PipelineImpl) o;
-    return Objects.equals(propertyClass, pipelineImpl.propertyClass) &&
-        Objects.equals(displayName, pipelineImpl.displayName) &&
-        Objects.equals(estimatedDurationInMillis, pipelineImpl.estimatedDurationInMillis) &&
-        Objects.equals(fullName, pipelineImpl.fullName) &&
-        Objects.equals(latestRun, pipelineImpl.latestRun) &&
-        Objects.equals(name, pipelineImpl.name) &&
-        Objects.equals(organization, pipelineImpl.organization) &&
-        Objects.equals(weatherScore, pipelineImpl.weatherScore) &&
-        Objects.equals(links, pipelineImpl.links);
+    return Objects.equals(this.propertyClass, pipelineImpl.propertyClass) &&
+        Objects.equals(this.displayName, pipelineImpl.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.fullName, pipelineImpl.fullName) &&
+        Objects.equals(this.latestRun, pipelineImpl.latestRun) &&
+        Objects.equals(this.name, pipelineImpl.name) &&
+        Objects.equals(this.organization, pipelineImpl.organization) &&
+        Objects.equals(this.weatherScore, pipelineImpl.weatherScore) &&
+        Objects.equals(this.links, pipelineImpl.links);
   }
 
   @Override

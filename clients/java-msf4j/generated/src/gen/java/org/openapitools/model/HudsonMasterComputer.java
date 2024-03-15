@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
@@ -14,7 +15,7 @@ import org.openapitools.model.Label1;
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputer   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -23,7 +24,7 @@ public class HudsonMasterComputer   {
   private String displayName;
 
   @JsonProperty("executors")
-  private List<HudsonMasterComputerexecutors> executors = null;
+  private List<@Valid HudsonMasterComputerexecutors> executors = null;
 
   @JsonProperty("icon")
   private String icon;
@@ -100,14 +101,14 @@ public class HudsonMasterComputer   {
     this.displayName = displayName;
   }
 
-  public HudsonMasterComputer executors(List<HudsonMasterComputerexecutors> executors) {
+  public HudsonMasterComputer executors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
     return this;
   }
 
   public HudsonMasterComputer addExecutorsItem(HudsonMasterComputerexecutors executorsItem) {
     if (this.executors == null) {
-      this.executors = new ArrayList<>();
+      this.executors = ;
     }
     this.executors.add(executorsItem);
     return this;
@@ -118,11 +119,11 @@ public class HudsonMasterComputer   {
    * @return executors
   **/
   @ApiModelProperty(value = "")
-  public List<HudsonMasterComputerexecutors> getExecutors() {
+  public List<@Valid HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
 
-  public void setExecutors(List<HudsonMasterComputerexecutors> executors) {
+  public void setExecutors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
   }
 

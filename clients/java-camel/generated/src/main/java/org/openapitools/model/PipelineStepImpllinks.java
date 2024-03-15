@@ -19,16 +19,13 @@ import javax.annotation.Generated;
  * PipelineStepImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineStepImpllinks {
 
-  @JsonProperty("self")
   private Link self;
 
-  @JsonProperty("actions")
   private Link actions;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineStepImpllinks self(Link self) {
@@ -41,7 +38,8 @@ public class PipelineStepImpllinks {
    * @return self
   */
   @Valid 
-  @Schema(name = "self", required = false)
+  @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("self")
   public Link getSelf() {
     return self;
   }
@@ -60,7 +58,8 @@ public class PipelineStepImpllinks {
    * @return actions
   */
   @Valid 
-  @Schema(name = "actions", required = false)
+  @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
@@ -79,7 +78,8 @@ public class PipelineStepImpllinks {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

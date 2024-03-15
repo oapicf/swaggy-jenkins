@@ -15,8 +15,7 @@ class GetJsonWebKeyParameterData
      * @DTA\Data(subset="path", field="key")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $key;
+    public ?int $key = null;
 
 }

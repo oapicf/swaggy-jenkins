@@ -10,21 +10,21 @@ namespace app\Models;
 class PipelineBranchesitempullRequest {
 
     /** @var \app\Models\PipelineBranchesitempullRequestlinks $links */
-    private $links;
+    public $links;
 
     /** @var string $author */
-    private $author;
+    public $author = "";
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $title */
-    private $title;
+    public $title = "";
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

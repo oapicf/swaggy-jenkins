@@ -1,4 +1,6 @@
 #![allow(missing_docs, trivial_casts, unused_variables, unused_mut, unused_imports, unused_extern_crates, non_camel_case_types)]
+#![allow(unused_imports, unused_attributes)]
+#![allow(clippy::derive_partial_eq_without_eq, clippy::disallowed_names)]
 
 use async_trait::async_trait;
 use futures::Stream;
@@ -9,8 +11,8 @@ use serde::{Serialize, Deserialize};
 
 type ServiceError = Box<dyn Error + Send + Sync + 'static>;
 
-pub const BASE_PATH: &'static str = "";
-pub const API_VERSION: &'static str = "1.5.1-pre.0";
+pub const BASE_PATH: &str = "";
+pub const API_VERSION: &str = "2.0.1-pre.0";
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
@@ -369,7 +371,7 @@ pub enum GetPipelinesResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetSCMResponse {
+pub enum GetScmResponse {
     /// Successfully retrieved SCM details
     SuccessfullyRetrievedSCMDetails
     (models::GithubScm)
@@ -383,7 +385,7 @@ pub enum GetSCMResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetSCMOrganisationRepositoriesResponse {
+pub enum GetScmOrganisationRepositoriesResponse {
     /// Successfully retrieved SCM organization repositories details
     SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
     (Vec<models::GithubOrganization>)
@@ -397,7 +399,7 @@ pub enum GetSCMOrganisationRepositoriesResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetSCMOrganisationRepositoryResponse {
+pub enum GetScmOrganisationRepositoryResponse {
     /// Successfully retrieved SCM organizations details
     SuccessfullyRetrievedSCMOrganizationsDetails
     (Vec<models::GithubOrganization>)
@@ -411,7 +413,7 @@ pub enum GetSCMOrganisationRepositoryResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetSCMOrganisationsResponse {
+pub enum GetScmOrganisationsResponse {
     /// Successfully retrieved SCM organizations details
     SuccessfullyRetrievedSCMOrganizationsDetails
     (Vec<models::GithubOrganization>)
@@ -884,6 +886,7 @@ pub enum PostViewConfigResponse {
 
 /// API
 #[async_trait]
+#[allow(clippy::too_many_arguments, clippy::ptr_arg)]
 pub trait Api<C: Send + Sync> {
     fn poll_ready(&self, _cx: &mut Context) -> Poll<Result<(), Box<dyn Error + Send + Sync + 'static>>> {
         Poll::Ready(Ok(()))
@@ -1054,7 +1057,7 @@ pub trait Api<C: Send + Sync> {
         &self,
         organization: String,
         scm: String,
-        context: &C) -> Result<GetSCMResponse, ApiError>;
+        context: &C) -> Result<GetScmResponse, ApiError>;
 
     async fn get_scm_organisation_repositories(
         &self,
@@ -1064,7 +1067,7 @@ pub trait Api<C: Send + Sync> {
         credential_id: Option<String>,
         page_size: Option<i32>,
         page_number: Option<i32>,
-        context: &C) -> Result<GetSCMOrganisationRepositoriesResponse, ApiError>;
+        context: &C) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>;
 
     async fn get_scm_organisation_repository(
         &self,
@@ -1073,14 +1076,14 @@ pub trait Api<C: Send + Sync> {
         scm_organisation: String,
         repository: String,
         credential_id: Option<String>,
-        context: &C) -> Result<GetSCMOrganisationRepositoryResponse, ApiError>;
+        context: &C) -> Result<GetScmOrganisationRepositoryResponse, ApiError>;
 
     async fn get_scm_organisations(
         &self,
         organization: String,
         scm: String,
         credential_id: Option<String>,
-        context: &C) -> Result<GetSCMOrganisationsResponse, ApiError>;
+        context: &C) -> Result<GetScmOrganisationsResponse, ApiError>;
 
     async fn get_user(
         &self,
@@ -1259,6 +1262,7 @@ pub trait Api<C: Send + Sync> {
 
 /// API where `Context` isn't passed on every API call
 #[async_trait]
+#[allow(clippy::too_many_arguments, clippy::ptr_arg)]
 pub trait ApiNoContext<C: Send + Sync> {
 
     fn poll_ready(&self, _cx: &mut Context) -> Poll<Result<(), Box<dyn Error + Send + Sync + 'static>>>;
@@ -1430,7 +1434,7 @@ pub trait ApiNoContext<C: Send + Sync> {
         &self,
         organization: String,
         scm: String,
-        ) -> Result<GetSCMResponse, ApiError>;
+        ) -> Result<GetScmResponse, ApiError>;
 
     async fn get_scm_organisation_repositories(
         &self,
@@ -1440,7 +1444,7 @@ pub trait ApiNoContext<C: Send + Sync> {
         credential_id: Option<String>,
         page_size: Option<i32>,
         page_number: Option<i32>,
-        ) -> Result<GetSCMOrganisationRepositoriesResponse, ApiError>;
+        ) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>;
 
     async fn get_scm_organisation_repository(
         &self,
@@ -1449,14 +1453,14 @@ pub trait ApiNoContext<C: Send + Sync> {
         scm_organisation: String,
         repository: String,
         credential_id: Option<String>,
-        ) -> Result<GetSCMOrganisationRepositoryResponse, ApiError>;
+        ) -> Result<GetScmOrganisationRepositoryResponse, ApiError>;
 
     async fn get_scm_organisations(
         &self,
         organization: String,
         scm: String,
         credential_id: Option<String>,
-        ) -> Result<GetSCMOrganisationsResponse, ApiError>;
+        ) -> Result<GetScmOrganisationsResponse, ApiError>;
 
     async fn get_user(
         &self,
@@ -1637,7 +1641,7 @@ pub trait ApiNoContext<C: Send + Sync> {
 pub trait ContextWrapperExt<C: Send + Sync> where Self: Sized
 {
     /// Binds this API to a context.
-    fn with_context(self: Self, context: C) -> ContextWrapper<Self, C>;
+    fn with_context(self, context: C) -> ContextWrapper<Self, C>;
 }
 
 impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ContextWrapperExt<C> for T {
@@ -1921,7 +1925,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         &self,
         organization: String,
         scm: String,
-        ) -> Result<GetSCMResponse, ApiError>
+        ) -> Result<GetScmResponse, ApiError>
     {
         let context = self.context().clone();
         self.api().get_scm(organization, scm, &context).await
@@ -1935,7 +1939,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         credential_id: Option<String>,
         page_size: Option<i32>,
         page_number: Option<i32>,
-        ) -> Result<GetSCMOrganisationRepositoriesResponse, ApiError>
+        ) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>
     {
         let context = self.context().clone();
         self.api().get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id, page_size, page_number, &context).await
@@ -1948,7 +1952,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         scm_organisation: String,
         repository: String,
         credential_id: Option<String>,
-        ) -> Result<GetSCMOrganisationRepositoryResponse, ApiError>
+        ) -> Result<GetScmOrganisationRepositoryResponse, ApiError>
     {
         let context = self.context().clone();
         self.api().get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id, &context).await
@@ -1959,7 +1963,7 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         organization: String,
         scm: String,
         credential_id: Option<String>,
-        ) -> Result<GetSCMOrganisationsResponse, ApiError>
+        ) -> Result<GetScmOrganisationsResponse, ApiError>
     {
         let context = self.context().clone();
         self.api().get_scm_organisations(organization, scm, credential_id, &context).await

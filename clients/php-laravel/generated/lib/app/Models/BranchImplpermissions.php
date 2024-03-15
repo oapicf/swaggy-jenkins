@@ -10,18 +10,18 @@ namespace app\Models;
 class BranchImplpermissions {
 
     /** @var bool $create */
-    private $create;
+    public $create = false;
 
     /** @var bool $read */
-    private $read;
+    public $read = false;
 
     /** @var bool $start */
-    private $start;
+    public $start = false;
 
     /** @var bool $stop */
-    private $stop;
+    public $stop = false;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

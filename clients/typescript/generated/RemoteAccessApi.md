@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 # **getJobLastBuild**
 > FreeStyleBuild getJobLastBuild()
 
-Retrieve job's last build details
+Retrieve job\'s last build details
 
 ### Example
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successfully retrieved job&#39;s last build details |  -  |
+**200** | Successfully retrieved job\&#39;s last build details |  -  |
 **401** | Authentication failed - incorrect username and/or password |  -  |
 **403** | Jenkins requires authentication - please set username and password |  -  |
 **404** | Job cannot be found on Jenkins instance |  -  |
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 # **getJobProgressiveText**
 > void getJobProgressiveText()
 
-Retrieve job's build progressive text output
+Retrieve job\'s build progressive text output
 
 ### Example
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successfully retrieved job&#39;s build progressive text output |  -  |
+**200** | Successfully retrieved job\&#39;s build progressive text output |  -  |
 **401** | Authentication failed - incorrect username and/or password |  -  |
 **403** | Jenkins requires authentication - please set username and password |  -  |
 **404** | Job cannot be found on Jenkins instance |  -  |
@@ -656,7 +656,7 @@ let body:.RemoteAccessApiPostCreateItemRequest = {
   name: "name_example",
   // string | Existing job to copy from (optional)
   _from: "from_example",
-  // string | Set to 'copy' for copying an existing job (optional)
+  // string | Set to \'copy\' for copying an existing job (optional)
   mode: "mode_example",
   // string | CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
@@ -679,7 +679,7 @@ Name | Type | Description  | Notes
  **body** | **string**| Job configuration in config.xml format |
  **name** | [**string**] | Name of the new job | defaults to undefined
  **_from** | [**string**] | Existing job to copy from | (optional) defaults to undefined
- **mode** | [**string**] | Set to &#39;copy&#39; for copying an existing job | (optional) defaults to undefined
+ **mode** | [**string**] | Set to \&#39;copy\&#39; for copying an existing job | (optional) defaults to undefined
  **jenkinsCrumb** | [**string**] | CSRF protection token | (optional) defaults to undefined
  **contentType** | [**string**] | Content type header application/xml | (optional) defaults to undefined
 

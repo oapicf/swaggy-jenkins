@@ -18,16 +18,13 @@ import javax.annotation.Generated;
  * AllView
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class AllView {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("url")
   private String url;
 
   public AllView propertyClass(String propertyClass) {
@@ -40,7 +37,8 @@ public class AllView {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -59,7 +57,8 @@ public class AllView {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -78,7 +77,8 @@ public class AllView {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }

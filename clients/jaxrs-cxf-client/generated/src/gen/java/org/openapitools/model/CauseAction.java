@@ -1,10 +1,12 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseUserIdCause;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -14,7 +16,7 @@ public class CauseAction  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<CauseUserIdCause> causes = null;
+  private List<CauseUserIdCause> causes;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -56,6 +58,23 @@ public class CauseAction  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    CauseAction causeAction = (CauseAction) o;
+    return Objects.equals(this.propertyClass, causeAction.propertyClass) &&
+        Objects.equals(this.causes, causeAction.causes);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, causes);
+  }
 
   @Override
   public String toString() {

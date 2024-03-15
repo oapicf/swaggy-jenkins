@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
 import org.openapitools.model.GithubRepository;
@@ -22,26 +23,20 @@ import javax.annotation.Generated;
  * GithubRepositories
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepositories {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private GithubRepositorieslinks links;
 
-  @JsonProperty("items")
   @Valid
-  private List<GithubRepository> items = null;
+  private List<@Valid GithubRepository> items;
 
-  @JsonProperty("lastPage")
   private Integer lastPage;
 
-  @JsonProperty("nextPage")
   private Integer nextPage;
 
-  @JsonProperty("pageSize")
   private Integer pageSize;
 
   public GithubRepositories propertyClass(String propertyClass) {
@@ -54,7 +49,8 @@ public class GithubRepositories {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -73,7 +69,8 @@ public class GithubRepositories {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public GithubRepositorieslinks getLinks() {
     return links;
   }
@@ -82,7 +79,7 @@ public class GithubRepositories {
     this.links = links;
   }
 
-  public GithubRepositories items(List<GithubRepository> items) {
+  public GithubRepositories items(List<@Valid GithubRepository> items) {
     this.items = items;
     return this;
   }
@@ -100,12 +97,13 @@ public class GithubRepositories {
    * @return items
   */
   @Valid 
-  @Schema(name = "items", required = false)
-  public List<GithubRepository> getItems() {
+  @Schema(name = "items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("items")
+  public List<@Valid GithubRepository> getItems() {
     return items;
   }
 
-  public void setItems(List<GithubRepository> items) {
+  public void setItems(List<@Valid GithubRepository> items) {
     this.items = items;
   }
 
@@ -119,7 +117,8 @@ public class GithubRepositories {
    * @return lastPage
   */
   
-  @Schema(name = "lastPage", required = false)
+  @Schema(name = "lastPage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastPage")
   public Integer getLastPage() {
     return lastPage;
   }
@@ -138,7 +137,8 @@ public class GithubRepositories {
    * @return nextPage
   */
   
-  @Schema(name = "nextPage", required = false)
+  @Schema(name = "nextPage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("nextPage")
   public Integer getNextPage() {
     return nextPage;
   }
@@ -157,7 +157,8 @@ public class GithubRepositories {
    * @return pageSize
   */
   
-  @Schema(name = "pageSize", required = false)
+  @Schema(name = "pageSize", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pageSize")
   public Integer getPageSize() {
     return pageSize;
   }

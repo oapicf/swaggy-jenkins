@@ -25,22 +25,22 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GenericResource(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("result") val result: kotlin.String? = null,
+    @get:JsonProperty("result") val result: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("startTime") val startTime: kotlin.String? = null
+    @get:JsonProperty("startTime") val startTime: kotlin.String? = null
 ) {
 
 }

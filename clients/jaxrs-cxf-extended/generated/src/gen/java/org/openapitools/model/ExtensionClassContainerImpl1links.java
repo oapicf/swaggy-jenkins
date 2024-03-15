@@ -67,6 +67,24 @@ public class ExtensionClassContainerImpl1links  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ExtensionClassContainerImpl1links extensionClassContainerImpl1links = (ExtensionClassContainerImpl1links) o;
+    return Objects.equals(this.self, extensionClassContainerImpl1links.self) &&
+        Objects.equals(this.propertyClass, extensionClassContainerImpl1links.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(self, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExtensionClassContainerImpl1links {\n");

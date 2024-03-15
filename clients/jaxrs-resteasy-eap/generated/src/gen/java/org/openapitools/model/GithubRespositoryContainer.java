@@ -9,9 +9,10 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubRepositories;
 import org.openapitools.model.GithubRespositoryContainerlinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRespositoryContainer   {
   
   private String propertyClass;
@@ -64,9 +65,9 @@ public class GithubRespositoryContainer   {
       return false;
     }
     GithubRespositoryContainer githubRespositoryContainer = (GithubRespositoryContainer) o;
-    return Objects.equals(propertyClass, githubRespositoryContainer.propertyClass) &&
-        Objects.equals(links, githubRespositoryContainer.links) &&
-        Objects.equals(repositories, githubRespositoryContainer.repositories);
+    return Objects.equals(this.propertyClass, githubRespositoryContainer.propertyClass) &&
+        Objects.equals(this.links, githubRespositoryContainer.links) &&
+        Objects.equals(this.repositories, githubRespositoryContainer.repositories);
   }
 
   @Override

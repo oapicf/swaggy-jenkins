@@ -47,7 +47,7 @@ Method | HTTP request | Description
 ```c
 // Delete queue item from an organization pipeline queue
 //
-void BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char * organization, char * pipeline, char * queue);
+void BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char *organization, char *pipeline, char *queue);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ void
 ```c
 // Retrieve authenticated user details for an organization
 //
-user_t* BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char * organization);
+user_t* BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char *organization);
 ```
 
 ### Parameters
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 ```c
 // Get a list of class names supported by a given class
 //
-char* BlueOceanAPI_getClasses(apiClient_t *apiClient, char * _class);
+char* BlueOceanAPI_getClasses(apiClient_t *apiClient, char *_class);
 ```
 
 ### Parameters
@@ -136,14 +136,14 @@ char*
 ```c
 // Retrieve JSON Web Key
 //
-char* BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int key);
+char* BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int *key);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**key** | **int** | Key ID received as part of JWT header field kid | 
+**key** | **int \*** | Key ID received as part of JWT header field kid | 
 
 ### Return type
 
@@ -166,15 +166,15 @@ No authorization required
 ```c
 // Retrieve JSON Web Token
 //
-char* BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int expiryTimeInMins, int maxExpiryTimeInMins);
+char* BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int *expiryTimeInMins, int *maxExpiryTimeInMins);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**expiryTimeInMins** | **int** | Token expiry time in minutes, default: 30 minutes | [optional] 
-**maxExpiryTimeInMins** | **int** | Maximum token expiry time in minutes, default: 480 minutes | [optional] 
+**expiryTimeInMins** | **int \*** | Token expiry time in minutes, default: 30 minutes | [optional] 
+**maxExpiryTimeInMins** | **int \*** | Maximum token expiry time in minutes, default: 480 minutes | [optional] 
 
 ### Return type
 
@@ -197,7 +197,7 @@ No authorization required
 ```c
 // Retrieve organization details
 //
-organisation_t* BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char * organization);
+organisation_t* BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char *organization);
 ```
 
 ### Parameters
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve pipeline details for an organization
 //
-pipeline_t* BlueOceanAPI_getPipeline(apiClient_t *apiClient, char * organization, char * pipeline);
+pipeline_t* BlueOceanAPI_getPipeline(apiClient_t *apiClient, char *organization, char *pipeline);
 ```
 
 ### Parameters
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve all activities details for an organization pipeline
 //
-list_t* BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char * organization, char * pipeline);
+list_t* BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char *organization, char *pipeline);
 ```
 
 ### Parameters
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve branch details for an organization pipeline
 //
-branch_impl_t* BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char * organization, char * pipeline, char * branch);
+branch_impl_t* BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char *pipeline, char *branch);
 ```
 
 ### Parameters
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve branch run details for an organization pipeline
 //
-pipeline_run_t* BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char * organization, char * pipeline, char * branch, char * run);
+pipeline_run_t* BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, char *pipeline, char *branch, char *run);
 ```
 
 ### Parameters
@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve all branches details for an organization pipeline
 //
-multibranch_pipeline_t* BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char * organization, char * pipeline);
+multibranch_pipeline_t* BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char *organization, char *pipeline);
 ```
 
 ### Parameters
@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve pipeline folder for an organization
 //
-pipeline_folder_impl_t* BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char * organization, char * folder);
+pipeline_folder_impl_t* BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char *organization, char *folder);
 ```
 
 ### Parameters
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve pipeline details for an organization folder
 //
-pipeline_impl_t* BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char * organization, char * pipeline, char * folder);
+pipeline_impl_t* BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organization, char *pipeline, char *folder);
 ```
 
 ### Parameters
@@ -468,7 +468,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve queue details for an organization pipeline
 //
-list_t* BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char * organization, char * pipeline);
+list_t* BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char *organization, char *pipeline);
 ```
 
 ### Parameters
@@ -498,7 +498,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve run details for an organization pipeline
 //
-pipeline_run_t* BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char * organization, char * pipeline, char * run);
+pipeline_run_t* BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pipeline, char *run);
 ```
 
 ### Parameters
@@ -529,7 +529,7 @@ Name | Type | Description  | Notes
 ```c
 // Get log for a pipeline run
 //
-char* BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char * organization, char * pipeline, char * run, int start, int download);
+char* BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char *pipeline, char *run, int *start, int *download);
 ```
 
 ### Parameters
@@ -539,8 +539,8 @@ Name | Type | Description  | Notes
 **organization** | **char \*** | Name of the organization | 
 **pipeline** | **char \*** | Name of the pipeline | 
 **run** | **char \*** | Name of the run | 
-**start** | **int** | Start position of the log | [optional] 
-**download** | **int** | Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] 
+**start** | **int \*** | Start position of the log | [optional] 
+**download** | **int \*** | Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] 
 
 ### Return type
 
@@ -563,7 +563,7 @@ char*
 ```c
 // Retrieve run node details for an organization pipeline
 //
-pipeline_run_node_t* BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char * organization, char * pipeline, char * run, char * node);
+pipeline_run_node_t* BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node);
 ```
 
 ### Parameters
@@ -595,7 +595,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve run node details for an organization pipeline
 //
-pipeline_step_impl_t* BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char * organization, char * pipeline, char * run, char * node, char * step);
+pipeline_step_impl_t* BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node, char *step);
 ```
 
 ### Parameters
@@ -628,7 +628,7 @@ Name | Type | Description  | Notes
 ```c
 // Get log for a pipeline run node step
 //
-char* BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char * organization, char * pipeline, char * run, char * node, char * step);
+char* BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node, char *step);
 ```
 
 ### Parameters
@@ -662,7 +662,7 @@ char*
 ```c
 // Retrieve run node steps details for an organization pipeline
 //
-list_t* BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char * organization, char * pipeline, char * run, char * node);
+list_t* BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *node);
 ```
 
 ### Parameters
@@ -694,7 +694,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve run nodes details for an organization pipeline
 //
-list_t* BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char * organization, char * pipeline, char * run);
+list_t* BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, char *pipeline, char *run);
 ```
 
 ### Parameters
@@ -725,7 +725,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve all runs details for an organization pipeline
 //
-list_t* BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char * organization, char * pipeline);
+list_t* BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char *organization, char *pipeline);
 ```
 
 ### Parameters
@@ -755,7 +755,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve all pipelines details for an organization
 //
-list_t* BlueOceanAPI_getPipelines(apiClient_t *apiClient, char * organization);
+list_t* BlueOceanAPI_getPipelines(apiClient_t *apiClient, char *organization);
 ```
 
 ### Parameters
@@ -784,7 +784,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve SCM details for an organization
 //
-github_scm_t* BlueOceanAPI_getSCM(apiClient_t *apiClient, char * organization, char * scm);
+github_scm_t* BlueOceanAPI_getSCM(apiClient_t *apiClient, char *organization, char *scm);
 ```
 
 ### Parameters
@@ -814,7 +814,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve SCM organization repositories details for an organization
 //
-list_t* BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char * organization, char * scm, char * scmOrganisation, char * credentialId, int pageSize, int pageNumber);
+list_t* BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organization, char *scm, char *scmOrganisation, char *credentialId, int *pageSize, int *pageNumber);
 ```
 
 ### Parameters
@@ -825,8 +825,8 @@ Name | Type | Description  | Notes
 **scm** | **char \*** | Name of SCM | 
 **scmOrganisation** | **char \*** | Name of the SCM organization | 
 **credentialId** | **char \*** | Credential ID | [optional] 
-**pageSize** | **int** | Number of items in a page | [optional] 
-**pageNumber** | **int** | Page number | [optional] 
+**pageSize** | **int \*** | Number of items in a page | [optional] 
+**pageNumber** | **int \*** | Page number | [optional] 
 
 ### Return type
 
@@ -848,7 +848,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve SCM organization repository details for an organization
 //
-list_t* BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char * organization, char * scm, char * scmOrganisation, char * repository, char * credentialId);
+list_t* BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organization, char *scm, char *scmOrganisation, char *repository, char *credentialId);
 ```
 
 ### Parameters
@@ -881,7 +881,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve SCM organizations details for an organization
 //
-list_t* BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char * organization, char * scm, char * credentialId);
+list_t* BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char *organization, char *scm, char *credentialId);
 ```
 
 ### Parameters
@@ -912,7 +912,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve user details for an organization
 //
-user_t* BlueOceanAPI_getUser(apiClient_t *apiClient, char * organization, char * user);
+user_t* BlueOceanAPI_getUser(apiClient_t *apiClient, char *organization, char *user);
 ```
 
 ### Parameters
@@ -942,7 +942,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve user favorites details for an organization
 //
-list_t* BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char * user);
+list_t* BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char *user);
 ```
 
 ### Parameters
@@ -971,7 +971,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve users details for an organization
 //
-user_t* BlueOceanAPI_getUsers(apiClient_t *apiClient, char * organization);
+user_t* BlueOceanAPI_getUsers(apiClient_t *apiClient, char *organization);
 ```
 
 ### Parameters
@@ -1000,7 +1000,7 @@ Name | Type | Description  | Notes
 ```c
 // Replay an organization pipeline run
 //
-queue_item_impl_t* BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char * organization, char * pipeline, char * run);
+queue_item_impl_t* BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *pipeline, char *run);
 ```
 
 ### Parameters
@@ -1031,7 +1031,7 @@ Name | Type | Description  | Notes
 ```c
 // Start a build for an organization pipeline
 //
-queue_item_impl_t* BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char * organization, char * pipeline);
+queue_item_impl_t* BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char *organization, char *pipeline);
 ```
 
 ### Parameters
@@ -1061,7 +1061,7 @@ Name | Type | Description  | Notes
 ```c
 // Favorite/unfavorite a pipeline
 //
-favorite_impl_t* BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char * organization, char * pipeline, int body);
+favorite_impl_t* BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, char *pipeline, int *body);
 ```
 
 ### Parameters
@@ -1070,7 +1070,7 @@ Name | Type | Description  | Notes
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **organization** | **char \*** | Name of the organization | 
 **pipeline** | **char \*** | Name of the pipeline | 
-**body** | **int** | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
+**body** | **int \*** | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | 
 
 ### Return type
 
@@ -1092,7 +1092,7 @@ Name | Type | Description  | Notes
 ```c
 // Stop a build of an organization pipeline
 //
-pipeline_run_t* BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char * organization, char * pipeline, char * run, char * blocking, int timeOutInSecs);
+pipeline_run_t* BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pipeline, char *run, char *blocking, int *timeOutInSecs);
 ```
 
 ### Parameters
@@ -1103,7 +1103,7 @@ Name | Type | Description  | Notes
 **pipeline** | **char \*** | Name of the pipeline | 
 **run** | **char \*** | Name of the run | 
 **blocking** | **char \*** | Set to true to make blocking stop, default: false | [optional] 
-**timeOutInSecs** | **int** | Timeout in seconds, default: 10 seconds | [optional] 
+**timeOutInSecs** | **int \*** | Timeout in seconds, default: 10 seconds | [optional] 
 
 ### Return type
 
@@ -1125,7 +1125,7 @@ Name | Type | Description  | Notes
 ```c
 // Search for any resource details
 //
-char* BlueOceanAPI_search(apiClient_t *apiClient, char * q);
+char* BlueOceanAPI_search(apiClient_t *apiClient, char *q);
 ```
 
 ### Parameters
@@ -1155,7 +1155,7 @@ char*
 ```c
 // Get classes details
 //
-char* BlueOceanAPI_searchClasses(apiClient_t *apiClient, char * q);
+char* BlueOceanAPI_searchClasses(apiClient_t *apiClient, char *q);
 ```
 
 ### Parameters

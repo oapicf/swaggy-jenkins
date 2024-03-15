@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server.models.free_style_projectactions import FreeStyleProjectactions
 from openapi_server.models.free_style_projecthealth_report import FreeStyleProjecthealthReport
@@ -181,7 +178,7 @@ class FreeStyleProject(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this FreeStyleProject.
 
 
@@ -191,7 +188,7 @@ class FreeStyleProject(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this FreeStyleProject.
 
 
@@ -202,7 +199,7 @@ class FreeStyleProject(Model):
         self.__class = _class
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this FreeStyleProject.
 
 
@@ -212,7 +209,7 @@ class FreeStyleProject(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this FreeStyleProject.
 
 
@@ -223,7 +220,7 @@ class FreeStyleProject(Model):
         self._name = name
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Gets the url of this FreeStyleProject.
 
 
@@ -233,7 +230,7 @@ class FreeStyleProject(Model):
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url: str):
         """Sets the url of this FreeStyleProject.
 
 
@@ -244,7 +241,7 @@ class FreeStyleProject(Model):
         self._url = url
 
     @property
-    def color(self):
+    def color(self) -> str:
         """Gets the color of this FreeStyleProject.
 
 
@@ -254,7 +251,7 @@ class FreeStyleProject(Model):
         return self._color
 
     @color.setter
-    def color(self, color):
+    def color(self, color: str):
         """Sets the color of this FreeStyleProject.
 
 
@@ -265,7 +262,7 @@ class FreeStyleProject(Model):
         self._color = color
 
     @property
-    def actions(self):
+    def actions(self) -> List[FreeStyleProjectactions]:
         """Gets the actions of this FreeStyleProject.
 
 
@@ -275,7 +272,7 @@ class FreeStyleProject(Model):
         return self._actions
 
     @actions.setter
-    def actions(self, actions):
+    def actions(self, actions: List[FreeStyleProjectactions]):
         """Sets the actions of this FreeStyleProject.
 
 
@@ -286,7 +283,7 @@ class FreeStyleProject(Model):
         self._actions = actions
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this FreeStyleProject.
 
 
@@ -296,7 +293,7 @@ class FreeStyleProject(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this FreeStyleProject.
 
 
@@ -307,7 +304,7 @@ class FreeStyleProject(Model):
         self._description = description
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this FreeStyleProject.
 
 
@@ -317,7 +314,7 @@ class FreeStyleProject(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this FreeStyleProject.
 
 
@@ -328,7 +325,7 @@ class FreeStyleProject(Model):
         self._display_name = display_name
 
     @property
-    def display_name_or_null(self):
+    def display_name_or_null(self) -> str:
         """Gets the display_name_or_null of this FreeStyleProject.
 
 
@@ -338,7 +335,7 @@ class FreeStyleProject(Model):
         return self._display_name_or_null
 
     @display_name_or_null.setter
-    def display_name_or_null(self, display_name_or_null):
+    def display_name_or_null(self, display_name_or_null: str):
         """Sets the display_name_or_null of this FreeStyleProject.
 
 
@@ -349,7 +346,7 @@ class FreeStyleProject(Model):
         self._display_name_or_null = display_name_or_null
 
     @property
-    def full_display_name(self):
+    def full_display_name(self) -> str:
         """Gets the full_display_name of this FreeStyleProject.
 
 
@@ -359,7 +356,7 @@ class FreeStyleProject(Model):
         return self._full_display_name
 
     @full_display_name.setter
-    def full_display_name(self, full_display_name):
+    def full_display_name(self, full_display_name: str):
         """Sets the full_display_name of this FreeStyleProject.
 
 
@@ -370,7 +367,7 @@ class FreeStyleProject(Model):
         self._full_display_name = full_display_name
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         """Gets the full_name of this FreeStyleProject.
 
 
@@ -380,7 +377,7 @@ class FreeStyleProject(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name):
+    def full_name(self, full_name: str):
         """Sets the full_name of this FreeStyleProject.
 
 
@@ -391,7 +388,7 @@ class FreeStyleProject(Model):
         self._full_name = full_name
 
     @property
-    def buildable(self):
+    def buildable(self) -> bool:
         """Gets the buildable of this FreeStyleProject.
 
 
@@ -401,7 +398,7 @@ class FreeStyleProject(Model):
         return self._buildable
 
     @buildable.setter
-    def buildable(self, buildable):
+    def buildable(self, buildable: bool):
         """Sets the buildable of this FreeStyleProject.
 
 
@@ -412,7 +409,7 @@ class FreeStyleProject(Model):
         self._buildable = buildable
 
     @property
-    def builds(self):
+    def builds(self) -> List[FreeStyleBuild]:
         """Gets the builds of this FreeStyleProject.
 
 
@@ -422,7 +419,7 @@ class FreeStyleProject(Model):
         return self._builds
 
     @builds.setter
-    def builds(self, builds):
+    def builds(self, builds: List[FreeStyleBuild]):
         """Sets the builds of this FreeStyleProject.
 
 
@@ -433,7 +430,7 @@ class FreeStyleProject(Model):
         self._builds = builds
 
     @property
-    def first_build(self):
+    def first_build(self) -> FreeStyleBuild:
         """Gets the first_build of this FreeStyleProject.
 
 
@@ -443,7 +440,7 @@ class FreeStyleProject(Model):
         return self._first_build
 
     @first_build.setter
-    def first_build(self, first_build):
+    def first_build(self, first_build: FreeStyleBuild):
         """Sets the first_build of this FreeStyleProject.
 
 
@@ -454,7 +451,7 @@ class FreeStyleProject(Model):
         self._first_build = first_build
 
     @property
-    def health_report(self):
+    def health_report(self) -> List[FreeStyleProjecthealthReport]:
         """Gets the health_report of this FreeStyleProject.
 
 
@@ -464,7 +461,7 @@ class FreeStyleProject(Model):
         return self._health_report
 
     @health_report.setter
-    def health_report(self, health_report):
+    def health_report(self, health_report: List[FreeStyleProjecthealthReport]):
         """Sets the health_report of this FreeStyleProject.
 
 
@@ -475,7 +472,7 @@ class FreeStyleProject(Model):
         self._health_report = health_report
 
     @property
-    def in_queue(self):
+    def in_queue(self) -> bool:
         """Gets the in_queue of this FreeStyleProject.
 
 
@@ -485,7 +482,7 @@ class FreeStyleProject(Model):
         return self._in_queue
 
     @in_queue.setter
-    def in_queue(self, in_queue):
+    def in_queue(self, in_queue: bool):
         """Sets the in_queue of this FreeStyleProject.
 
 
@@ -496,7 +493,7 @@ class FreeStyleProject(Model):
         self._in_queue = in_queue
 
     @property
-    def keep_dependencies(self):
+    def keep_dependencies(self) -> bool:
         """Gets the keep_dependencies of this FreeStyleProject.
 
 
@@ -506,7 +503,7 @@ class FreeStyleProject(Model):
         return self._keep_dependencies
 
     @keep_dependencies.setter
-    def keep_dependencies(self, keep_dependencies):
+    def keep_dependencies(self, keep_dependencies: bool):
         """Sets the keep_dependencies of this FreeStyleProject.
 
 
@@ -517,7 +514,7 @@ class FreeStyleProject(Model):
         self._keep_dependencies = keep_dependencies
 
     @property
-    def last_build(self):
+    def last_build(self) -> FreeStyleBuild:
         """Gets the last_build of this FreeStyleProject.
 
 
@@ -527,7 +524,7 @@ class FreeStyleProject(Model):
         return self._last_build
 
     @last_build.setter
-    def last_build(self, last_build):
+    def last_build(self, last_build: FreeStyleBuild):
         """Sets the last_build of this FreeStyleProject.
 
 
@@ -538,7 +535,7 @@ class FreeStyleProject(Model):
         self._last_build = last_build
 
     @property
-    def last_completed_build(self):
+    def last_completed_build(self) -> FreeStyleBuild:
         """Gets the last_completed_build of this FreeStyleProject.
 
 
@@ -548,7 +545,7 @@ class FreeStyleProject(Model):
         return self._last_completed_build
 
     @last_completed_build.setter
-    def last_completed_build(self, last_completed_build):
+    def last_completed_build(self, last_completed_build: FreeStyleBuild):
         """Sets the last_completed_build of this FreeStyleProject.
 
 
@@ -559,7 +556,7 @@ class FreeStyleProject(Model):
         self._last_completed_build = last_completed_build
 
     @property
-    def last_failed_build(self):
+    def last_failed_build(self) -> str:
         """Gets the last_failed_build of this FreeStyleProject.
 
 
@@ -569,7 +566,7 @@ class FreeStyleProject(Model):
         return self._last_failed_build
 
     @last_failed_build.setter
-    def last_failed_build(self, last_failed_build):
+    def last_failed_build(self, last_failed_build: str):
         """Sets the last_failed_build of this FreeStyleProject.
 
 
@@ -580,7 +577,7 @@ class FreeStyleProject(Model):
         self._last_failed_build = last_failed_build
 
     @property
-    def last_stable_build(self):
+    def last_stable_build(self) -> FreeStyleBuild:
         """Gets the last_stable_build of this FreeStyleProject.
 
 
@@ -590,7 +587,7 @@ class FreeStyleProject(Model):
         return self._last_stable_build
 
     @last_stable_build.setter
-    def last_stable_build(self, last_stable_build):
+    def last_stable_build(self, last_stable_build: FreeStyleBuild):
         """Sets the last_stable_build of this FreeStyleProject.
 
 
@@ -601,7 +598,7 @@ class FreeStyleProject(Model):
         self._last_stable_build = last_stable_build
 
     @property
-    def last_successful_build(self):
+    def last_successful_build(self) -> FreeStyleBuild:
         """Gets the last_successful_build of this FreeStyleProject.
 
 
@@ -611,7 +608,7 @@ class FreeStyleProject(Model):
         return self._last_successful_build
 
     @last_successful_build.setter
-    def last_successful_build(self, last_successful_build):
+    def last_successful_build(self, last_successful_build: FreeStyleBuild):
         """Sets the last_successful_build of this FreeStyleProject.
 
 
@@ -622,7 +619,7 @@ class FreeStyleProject(Model):
         self._last_successful_build = last_successful_build
 
     @property
-    def last_unstable_build(self):
+    def last_unstable_build(self) -> str:
         """Gets the last_unstable_build of this FreeStyleProject.
 
 
@@ -632,7 +629,7 @@ class FreeStyleProject(Model):
         return self._last_unstable_build
 
     @last_unstable_build.setter
-    def last_unstable_build(self, last_unstable_build):
+    def last_unstable_build(self, last_unstable_build: str):
         """Sets the last_unstable_build of this FreeStyleProject.
 
 
@@ -643,7 +640,7 @@ class FreeStyleProject(Model):
         self._last_unstable_build = last_unstable_build
 
     @property
-    def last_unsuccessful_build(self):
+    def last_unsuccessful_build(self) -> str:
         """Gets the last_unsuccessful_build of this FreeStyleProject.
 
 
@@ -653,7 +650,7 @@ class FreeStyleProject(Model):
         return self._last_unsuccessful_build
 
     @last_unsuccessful_build.setter
-    def last_unsuccessful_build(self, last_unsuccessful_build):
+    def last_unsuccessful_build(self, last_unsuccessful_build: str):
         """Sets the last_unsuccessful_build of this FreeStyleProject.
 
 
@@ -664,7 +661,7 @@ class FreeStyleProject(Model):
         self._last_unsuccessful_build = last_unsuccessful_build
 
     @property
-    def next_build_number(self):
+    def next_build_number(self) -> int:
         """Gets the next_build_number of this FreeStyleProject.
 
 
@@ -674,7 +671,7 @@ class FreeStyleProject(Model):
         return self._next_build_number
 
     @next_build_number.setter
-    def next_build_number(self, next_build_number):
+    def next_build_number(self, next_build_number: int):
         """Sets the next_build_number of this FreeStyleProject.
 
 
@@ -685,7 +682,7 @@ class FreeStyleProject(Model):
         self._next_build_number = next_build_number
 
     @property
-    def queue_item(self):
+    def queue_item(self) -> str:
         """Gets the queue_item of this FreeStyleProject.
 
 
@@ -695,7 +692,7 @@ class FreeStyleProject(Model):
         return self._queue_item
 
     @queue_item.setter
-    def queue_item(self, queue_item):
+    def queue_item(self, queue_item: str):
         """Sets the queue_item of this FreeStyleProject.
 
 
@@ -706,7 +703,7 @@ class FreeStyleProject(Model):
         self._queue_item = queue_item
 
     @property
-    def concurrent_build(self):
+    def concurrent_build(self) -> bool:
         """Gets the concurrent_build of this FreeStyleProject.
 
 
@@ -716,7 +713,7 @@ class FreeStyleProject(Model):
         return self._concurrent_build
 
     @concurrent_build.setter
-    def concurrent_build(self, concurrent_build):
+    def concurrent_build(self, concurrent_build: bool):
         """Sets the concurrent_build of this FreeStyleProject.
 
 
@@ -727,7 +724,7 @@ class FreeStyleProject(Model):
         self._concurrent_build = concurrent_build
 
     @property
-    def scm(self):
+    def scm(self) -> NullSCM:
         """Gets the scm of this FreeStyleProject.
 
 
@@ -737,7 +734,7 @@ class FreeStyleProject(Model):
         return self._scm
 
     @scm.setter
-    def scm(self, scm):
+    def scm(self, scm: NullSCM):
         """Sets the scm of this FreeStyleProject.
 
 

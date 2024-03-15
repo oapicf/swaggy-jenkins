@@ -92,6 +92,25 @@ public class ResponseTimeMonitorData  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ResponseTimeMonitorData responseTimeMonitorData = (ResponseTimeMonitorData) o;
+    return Objects.equals(this.propertyClass, responseTimeMonitorData.propertyClass) &&
+        Objects.equals(this.timestamp, responseTimeMonitorData.timestamp) &&
+        Objects.equals(this.average, responseTimeMonitorData.average);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, timestamp, average);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResponseTimeMonitorData {\n");

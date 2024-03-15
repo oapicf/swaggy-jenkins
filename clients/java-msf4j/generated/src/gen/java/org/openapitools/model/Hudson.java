@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AllView;
 import org.openapitools.model.FreeStyleProject;
@@ -15,13 +16,13 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 /**
  * Hudson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Hudson   {
   @JsonProperty("_class")
   private String propertyClass;
 
   @JsonProperty("assignedLabels")
-  private List<HudsonassignedLabels> assignedLabels = null;
+  private List<@Valid HudsonassignedLabels> assignedLabels = null;
 
   @JsonProperty("mode")
   private String mode;
@@ -39,7 +40,7 @@ public class Hudson   {
   private String description;
 
   @JsonProperty("jobs")
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs = null;
 
   @JsonProperty("primaryView")
   private AllView primaryView;
@@ -60,7 +61,7 @@ public class Hudson   {
   private Boolean useSecurity;
 
   @JsonProperty("views")
-  private List<AllView> views = null;
+  private List<@Valid AllView> views = null;
 
   public Hudson propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -80,14 +81,14 @@ public class Hudson   {
     this.propertyClass = propertyClass;
   }
 
-  public Hudson assignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public Hudson assignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
     return this;
   }
 
   public Hudson addAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
     if (this.assignedLabels == null) {
-      this.assignedLabels = new ArrayList<>();
+      this.assignedLabels = ;
     }
     this.assignedLabels.add(assignedLabelsItem);
     return this;
@@ -98,11 +99,11 @@ public class Hudson   {
    * @return assignedLabels
   **/
   @ApiModelProperty(value = "")
-  public List<HudsonassignedLabels> getAssignedLabels() {
+  public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
 
-  public void setAssignedLabels(List<HudsonassignedLabels> assignedLabels) {
+  public void setAssignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
 
@@ -196,14 +197,14 @@ public class Hudson   {
     this.description = description;
   }
 
-  public Hudson jobs(List<FreeStyleProject> jobs) {
+  public Hudson jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
 
   public Hudson addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<>();
+      this.jobs = ;
     }
     this.jobs.add(jobsItem);
     return this;
@@ -214,11 +215,11 @@ public class Hudson   {
    * @return jobs
   **/
   @ApiModelProperty(value = "")
-  public List<FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -330,14 +331,14 @@ public class Hudson   {
     this.useSecurity = useSecurity;
   }
 
-  public Hudson views(List<AllView> views) {
+  public Hudson views(List<@Valid AllView> views) {
     this.views = views;
     return this;
   }
 
   public Hudson addViewsItem(AllView viewsItem) {
     if (this.views == null) {
-      this.views = new ArrayList<>();
+      this.views = ;
     }
     this.views.add(viewsItem);
     return this;
@@ -348,11 +349,11 @@ public class Hudson   {
    * @return views
   **/
   @ApiModelProperty(value = "")
-  public List<AllView> getViews() {
+  public List<@Valid AllView> getViews() {
     return views;
   }
 
-  public void setViews(List<AllView> views) {
+  public void setViews(List<@Valid AllView> views) {
     this.views = views;
   }
 

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
@@ -24,91 +25,64 @@ import javax.annotation.Generated;
  * FreeStyleProject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleProject {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("url")
   private String url;
 
-  @JsonProperty("color")
   private String color;
 
-  @JsonProperty("actions")
   @Valid
-  private List<FreeStyleProjectactions> actions = null;
+  private List<@Valid FreeStyleProjectactions> actions;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("displayNameOrNull")
   private String displayNameOrNull;
 
-  @JsonProperty("fullDisplayName")
   private String fullDisplayName;
 
-  @JsonProperty("fullName")
   private String fullName;
 
-  @JsonProperty("buildable")
   private Boolean buildable;
 
-  @JsonProperty("builds")
   @Valid
-  private List<FreeStyleBuild> builds = null;
+  private List<@Valid FreeStyleBuild> builds;
 
-  @JsonProperty("firstBuild")
   private FreeStyleBuild firstBuild;
 
-  @JsonProperty("healthReport")
   @Valid
-  private List<FreeStyleProjecthealthReport> healthReport = null;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport;
 
-  @JsonProperty("inQueue")
   private Boolean inQueue;
 
-  @JsonProperty("keepDependencies")
   private Boolean keepDependencies;
 
-  @JsonProperty("lastBuild")
   private FreeStyleBuild lastBuild;
 
-  @JsonProperty("lastCompletedBuild")
   private FreeStyleBuild lastCompletedBuild;
 
-  @JsonProperty("lastFailedBuild")
   private String lastFailedBuild;
 
-  @JsonProperty("lastStableBuild")
   private FreeStyleBuild lastStableBuild;
 
-  @JsonProperty("lastSuccessfulBuild")
   private FreeStyleBuild lastSuccessfulBuild;
 
-  @JsonProperty("lastUnstableBuild")
   private String lastUnstableBuild;
 
-  @JsonProperty("lastUnsuccessfulBuild")
   private String lastUnsuccessfulBuild;
 
-  @JsonProperty("nextBuildNumber")
   private Integer nextBuildNumber;
 
-  @JsonProperty("queueItem")
   private String queueItem;
 
-  @JsonProperty("concurrentBuild")
   private Boolean concurrentBuild;
 
-  @JsonProperty("scm")
   private NullSCM scm;
 
   public FreeStyleProject propertyClass(String propertyClass) {
@@ -121,7 +95,8 @@ public class FreeStyleProject {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -140,7 +115,8 @@ public class FreeStyleProject {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -159,7 +135,8 @@ public class FreeStyleProject {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }
@@ -178,7 +155,8 @@ public class FreeStyleProject {
    * @return color
   */
   
-  @Schema(name = "color", required = false)
+  @Schema(name = "color", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("color")
   public String getColor() {
     return color;
   }
@@ -187,7 +165,7 @@ public class FreeStyleProject {
     this.color = color;
   }
 
-  public FreeStyleProject actions(List<FreeStyleProjectactions> actions) {
+  public FreeStyleProject actions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
     return this;
   }
@@ -205,12 +183,13 @@ public class FreeStyleProject {
    * @return actions
   */
   @Valid 
-  @Schema(name = "actions", required = false)
-  public List<FreeStyleProjectactions> getActions() {
+  @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("actions")
+  public List<@Valid FreeStyleProjectactions> getActions() {
     return actions;
   }
 
-  public void setActions(List<FreeStyleProjectactions> actions) {
+  public void setActions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
   }
 
@@ -224,7 +203,8 @@ public class FreeStyleProject {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -243,7 +223,8 @@ public class FreeStyleProject {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -262,7 +243,8 @@ public class FreeStyleProject {
    * @return displayNameOrNull
   */
   
-  @Schema(name = "displayNameOrNull", required = false)
+  @Schema(name = "displayNameOrNull", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayNameOrNull")
   public String getDisplayNameOrNull() {
     return displayNameOrNull;
   }
@@ -281,7 +263,8 @@ public class FreeStyleProject {
    * @return fullDisplayName
   */
   
-  @Schema(name = "fullDisplayName", required = false)
+  @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
     return fullDisplayName;
   }
@@ -300,7 +283,8 @@ public class FreeStyleProject {
    * @return fullName
   */
   
-  @Schema(name = "fullName", required = false)
+  @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
@@ -319,7 +303,8 @@ public class FreeStyleProject {
    * @return buildable
   */
   
-  @Schema(name = "buildable", required = false)
+  @Schema(name = "buildable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("buildable")
   public Boolean getBuildable() {
     return buildable;
   }
@@ -328,7 +313,7 @@ public class FreeStyleProject {
     this.buildable = buildable;
   }
 
-  public FreeStyleProject builds(List<FreeStyleBuild> builds) {
+  public FreeStyleProject builds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
     return this;
   }
@@ -346,12 +331,13 @@ public class FreeStyleProject {
    * @return builds
   */
   @Valid 
-  @Schema(name = "builds", required = false)
-  public List<FreeStyleBuild> getBuilds() {
+  @Schema(name = "builds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("builds")
+  public List<@Valid FreeStyleBuild> getBuilds() {
     return builds;
   }
 
-  public void setBuilds(List<FreeStyleBuild> builds) {
+  public void setBuilds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
   }
 
@@ -365,7 +351,8 @@ public class FreeStyleProject {
    * @return firstBuild
   */
   @Valid 
-  @Schema(name = "firstBuild", required = false)
+  @Schema(name = "firstBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("firstBuild")
   public FreeStyleBuild getFirstBuild() {
     return firstBuild;
   }
@@ -374,7 +361,7 @@ public class FreeStyleProject {
     this.firstBuild = firstBuild;
   }
 
-  public FreeStyleProject healthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public FreeStyleProject healthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
     return this;
   }
@@ -392,12 +379,13 @@ public class FreeStyleProject {
    * @return healthReport
   */
   @Valid 
-  @Schema(name = "healthReport", required = false)
-  public List<FreeStyleProjecthealthReport> getHealthReport() {
+  @Schema(name = "healthReport", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("healthReport")
+  public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
 
-  public void setHealthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public void setHealthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
   }
 
@@ -411,7 +399,8 @@ public class FreeStyleProject {
    * @return inQueue
   */
   
-  @Schema(name = "inQueue", required = false)
+  @Schema(name = "inQueue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("inQueue")
   public Boolean getInQueue() {
     return inQueue;
   }
@@ -430,7 +419,8 @@ public class FreeStyleProject {
    * @return keepDependencies
   */
   
-  @Schema(name = "keepDependencies", required = false)
+  @Schema(name = "keepDependencies", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("keepDependencies")
   public Boolean getKeepDependencies() {
     return keepDependencies;
   }
@@ -449,7 +439,8 @@ public class FreeStyleProject {
    * @return lastBuild
   */
   @Valid 
-  @Schema(name = "lastBuild", required = false)
+  @Schema(name = "lastBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastBuild")
   public FreeStyleBuild getLastBuild() {
     return lastBuild;
   }
@@ -468,7 +459,8 @@ public class FreeStyleProject {
    * @return lastCompletedBuild
   */
   @Valid 
-  @Schema(name = "lastCompletedBuild", required = false)
+  @Schema(name = "lastCompletedBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastCompletedBuild")
   public FreeStyleBuild getLastCompletedBuild() {
     return lastCompletedBuild;
   }
@@ -487,7 +479,8 @@ public class FreeStyleProject {
    * @return lastFailedBuild
   */
   
-  @Schema(name = "lastFailedBuild", required = false)
+  @Schema(name = "lastFailedBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastFailedBuild")
   public String getLastFailedBuild() {
     return lastFailedBuild;
   }
@@ -506,7 +499,8 @@ public class FreeStyleProject {
    * @return lastStableBuild
   */
   @Valid 
-  @Schema(name = "lastStableBuild", required = false)
+  @Schema(name = "lastStableBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastStableBuild")
   public FreeStyleBuild getLastStableBuild() {
     return lastStableBuild;
   }
@@ -525,7 +519,8 @@ public class FreeStyleProject {
    * @return lastSuccessfulBuild
   */
   @Valid 
-  @Schema(name = "lastSuccessfulBuild", required = false)
+  @Schema(name = "lastSuccessfulBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastSuccessfulBuild")
   public FreeStyleBuild getLastSuccessfulBuild() {
     return lastSuccessfulBuild;
   }
@@ -544,7 +539,8 @@ public class FreeStyleProject {
    * @return lastUnstableBuild
   */
   
-  @Schema(name = "lastUnstableBuild", required = false)
+  @Schema(name = "lastUnstableBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastUnstableBuild")
   public String getLastUnstableBuild() {
     return lastUnstableBuild;
   }
@@ -563,7 +559,8 @@ public class FreeStyleProject {
    * @return lastUnsuccessfulBuild
   */
   
-  @Schema(name = "lastUnsuccessfulBuild", required = false)
+  @Schema(name = "lastUnsuccessfulBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("lastUnsuccessfulBuild")
   public String getLastUnsuccessfulBuild() {
     return lastUnsuccessfulBuild;
   }
@@ -582,7 +579,8 @@ public class FreeStyleProject {
    * @return nextBuildNumber
   */
   
-  @Schema(name = "nextBuildNumber", required = false)
+  @Schema(name = "nextBuildNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("nextBuildNumber")
   public Integer getNextBuildNumber() {
     return nextBuildNumber;
   }
@@ -601,7 +599,8 @@ public class FreeStyleProject {
    * @return queueItem
   */
   
-  @Schema(name = "queueItem", required = false)
+  @Schema(name = "queueItem", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("queueItem")
   public String getQueueItem() {
     return queueItem;
   }
@@ -620,7 +619,8 @@ public class FreeStyleProject {
    * @return concurrentBuild
   */
   
-  @Schema(name = "concurrentBuild", required = false)
+  @Schema(name = "concurrentBuild", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("concurrentBuild")
   public Boolean getConcurrentBuild() {
     return concurrentBuild;
   }
@@ -639,7 +639,8 @@ public class FreeStyleProject {
    * @return scm
   */
   @Valid 
-  @Schema(name = "scm", required = false)
+  @Schema(name = "scm", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("scm")
   public NullSCM getScm() {
     return scm;
   }

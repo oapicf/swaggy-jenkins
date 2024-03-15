@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.PipelineActivity
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **Artifacts** | [**List&lt;PipelineActivityartifacts&gt;**](PipelineActivityartifacts.md) |  | [optional] 
 **DurationInMillis** | **int** |  | [optional] 
 **EstimatedDurationInMillis** | **int** |  | [optional] 
@@ -21,7 +20,5 @@ Name | Type | Description | Notes
 **Type** | **string** |  | [optional] 
 **CommitId** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

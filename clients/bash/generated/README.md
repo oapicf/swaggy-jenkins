@@ -252,6 +252,7 @@ Class | Method | HTTP request | Description
 
 ## jenkins_auth
 
+
 - **Type**: HTTP basic authentication
 
 ## jwt_auth

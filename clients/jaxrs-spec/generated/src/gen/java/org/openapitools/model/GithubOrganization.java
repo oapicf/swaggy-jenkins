@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubOrganization")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubOrganization   {
-  
   private @Valid String propertyClass;
   private @Valid GithubOrganizationlinks links;
   private @Valid Boolean jenkinsOrganizationPipeline;
@@ -43,7 +42,7 @@ public class GithubOrganization   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public GithubOrganization links(GithubOrganizationlinks links) {
     this.links = links;
@@ -62,7 +61,7 @@ public class GithubOrganization   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public GithubOrganization jenkinsOrganizationPipeline(Boolean jenkinsOrganizationPipeline) {
     this.jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
@@ -81,7 +80,7 @@ public class GithubOrganization   {
     this.jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
   }
 
-/**
+  /**
    **/
   public GithubOrganization name(String name) {
     this.name = name;

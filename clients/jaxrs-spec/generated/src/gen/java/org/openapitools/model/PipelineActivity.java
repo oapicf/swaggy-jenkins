@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineActivityartifacts;
 import javax.validation.constraints.*;
@@ -18,11 +19,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineActivity")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineActivity   {
-  
   private @Valid String propertyClass;
-  private @Valid List<PipelineActivityartifacts> artifacts = new ArrayList<>();
+  private @Valid List<@Valid PipelineActivityartifacts> artifacts;
   private @Valid Integer durationInMillis;
   private @Valid Integer estimatedDurationInMillis;
   private @Valid String enQueueTime;
@@ -56,9 +56,9 @@ public class PipelineActivity   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
-  public PipelineActivity artifacts(List<PipelineActivityartifacts> artifacts) {
+  public PipelineActivity artifacts(List<@Valid PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
@@ -71,7 +71,7 @@ public class PipelineActivity   {
   }
 
   @JsonProperty("artifacts")
-  public void setArtifacts(List<PipelineActivityartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelineActivityartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 
@@ -91,7 +91,7 @@ public class PipelineActivity   {
 
     return this;
   }
-/**
+  /**
    **/
   public PipelineActivity durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -110,7 +110,7 @@ public class PipelineActivity   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineActivity estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -129,7 +129,7 @@ public class PipelineActivity   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineActivity enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -148,7 +148,7 @@ public class PipelineActivity   {
     this.enQueueTime = enQueueTime;
   }
 
-/**
+  /**
    **/
   public PipelineActivity endTime(String endTime) {
     this.endTime = endTime;
@@ -167,7 +167,7 @@ public class PipelineActivity   {
     this.endTime = endTime;
   }
 
-/**
+  /**
    **/
   public PipelineActivity id(String id) {
     this.id = id;
@@ -186,7 +186,7 @@ public class PipelineActivity   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineActivity organization(String organization) {
     this.organization = organization;
@@ -205,7 +205,7 @@ public class PipelineActivity   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineActivity pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -224,7 +224,7 @@ public class PipelineActivity   {
     this.pipeline = pipeline;
   }
 
-/**
+  /**
    **/
   public PipelineActivity result(String result) {
     this.result = result;
@@ -243,7 +243,7 @@ public class PipelineActivity   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelineActivity runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -262,7 +262,7 @@ public class PipelineActivity   {
     this.runSummary = runSummary;
   }
 
-/**
+  /**
    **/
   public PipelineActivity startTime(String startTime) {
     this.startTime = startTime;
@@ -281,7 +281,7 @@ public class PipelineActivity   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelineActivity state(String state) {
     this.state = state;
@@ -300,7 +300,7 @@ public class PipelineActivity   {
     this.state = state;
   }
 
-/**
+  /**
    **/
   public PipelineActivity type(String type) {
     this.type = type;
@@ -319,7 +319,7 @@ public class PipelineActivity   {
     this.type = type;
   }
 
-/**
+  /**
    **/
   public PipelineActivity commitId(String commitId) {
     this.commitId = commitId;

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunNodeedges;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,32 +22,24 @@ import javax.annotation.Generated;
  * PipelineRunNode
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunNode {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("durationInMillis")
   private Integer durationInMillis;
 
-  @JsonProperty("edges")
   @Valid
-  private List<PipelineRunNodeedges> edges = null;
+  private List<@Valid PipelineRunNodeedges> edges;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("result")
   private String result;
 
-  @JsonProperty("startTime")
   private String startTime;
 
-  @JsonProperty("state")
   private String state;
 
   public PipelineRunNode propertyClass(String propertyClass) {
@@ -59,7 +52,8 @@ public class PipelineRunNode {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -78,7 +72,8 @@ public class PipelineRunNode {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -97,7 +92,8 @@ public class PipelineRunNode {
    * @return durationInMillis
   */
   
-  @Schema(name = "durationInMillis", required = false)
+  @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -106,7 +102,7 @@ public class PipelineRunNode {
     this.durationInMillis = durationInMillis;
   }
 
-  public PipelineRunNode edges(List<PipelineRunNodeedges> edges) {
+  public PipelineRunNode edges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
     return this;
   }
@@ -124,12 +120,13 @@ public class PipelineRunNode {
    * @return edges
   */
   @Valid 
-  @Schema(name = "edges", required = false)
-  public List<PipelineRunNodeedges> getEdges() {
+  @Schema(name = "edges", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("edges")
+  public List<@Valid PipelineRunNodeedges> getEdges() {
     return edges;
   }
 
-  public void setEdges(List<PipelineRunNodeedges> edges) {
+  public void setEdges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
   }
 
@@ -143,7 +140,8 @@ public class PipelineRunNode {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -162,7 +160,8 @@ public class PipelineRunNode {
    * @return result
   */
   
-  @Schema(name = "result", required = false)
+  @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("result")
   public String getResult() {
     return result;
   }
@@ -181,7 +180,8 @@ public class PipelineRunNode {
    * @return startTime
   */
   
-  @Schema(name = "startTime", required = false)
+  @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }
@@ -200,7 +200,8 @@ public class PipelineRunNode {
    * @return state
   */
   
-  @Schema(name = "state", required = false)
+  @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("state")
   public String getState() {
     return state;
   }

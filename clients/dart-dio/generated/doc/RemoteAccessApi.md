@@ -51,7 +51,7 @@ final int depth = 56; // int | Recursion depth in response model
 try {
     final response = api.getComputer(depth);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getComputer: $e\n');
 }
 ```
@@ -96,7 +96,7 @@ final api = Openapi().getRemoteAccessApi();
 try {
     final response = api.getJenkins();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getJenkins: $e\n');
 }
 ```
@@ -139,7 +139,7 @@ final String name = name_example; // String | Name of the job
 try {
     final response = api.getJob(name);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getJob: $e\n');
 }
 ```
@@ -185,7 +185,7 @@ final String name = name_example; // String | Name of the job
 try {
     final response = api.getJobConfig(name);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getJobConfig: $e\n');
 }
 ```
@@ -231,7 +231,7 @@ final String name = name_example; // String | Name of the job
 try {
     final response = api.getJobLastBuild(name);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getJobLastBuild: $e\n');
 }
 ```
@@ -278,7 +278,7 @@ final String start = start_example; // String | Starting point of progressive te
 
 try {
     api.getJobProgressiveText(name, number, start);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getJobProgressiveText: $e\n');
 }
 ```
@@ -325,7 +325,7 @@ final api = Openapi().getRemoteAccessApi();
 try {
     final response = api.getQueue();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getQueue: $e\n');
 }
 ```
@@ -368,7 +368,7 @@ final String number = number_example; // String | Queue number
 try {
     final response = api.getQueueItem(number);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getQueueItem: $e\n');
 }
 ```
@@ -414,7 +414,7 @@ final String name = name_example; // String | Name of the view
 try {
     final response = api.getView(name);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getView: $e\n');
 }
 ```
@@ -460,7 +460,7 @@ final String name = name_example; // String | Name of the view
 try {
     final response = api.getViewConfig(name);
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->getViewConfig: $e\n');
 }
 ```
@@ -504,7 +504,7 @@ final api = Openapi().getRemoteAccessApi();
 
 try {
     api.headJenkins();
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->headJenkins: $e\n');
 }
 ```
@@ -551,7 +551,7 @@ final String body = body_example; // String | Job configuration in config.xml fo
 
 try {
     api.postCreateItem(name, from, mode, jenkinsCrumb, contentType, body);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postCreateItem: $e\n');
 }
 ```
@@ -604,7 +604,7 @@ final String body = body_example; // String | View configuration in config.xml f
 
 try {
     api.postCreateView(name, jenkinsCrumb, contentType, body);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postCreateView: $e\n');
 }
 ```
@@ -655,7 +655,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postJobBuild(name, json, token, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postJobBuild: $e\n');
 }
 ```
@@ -705,7 +705,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postJobConfig(name, body, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postJobConfig: $e\n');
 }
 ```
@@ -753,7 +753,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postJobDelete(name, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postJobDelete: $e\n');
 }
 ```
@@ -800,7 +800,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postJobDisable(name, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postJobDisable: $e\n');
 }
 ```
@@ -847,7 +847,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postJobEnable(name, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postJobEnable: $e\n');
 }
 ```
@@ -894,7 +894,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postJobLastBuildStop(name, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postJobLastBuildStop: $e\n');
 }
 ```
@@ -942,7 +942,7 @@ final String jenkinsCrumb = jenkinsCrumb_example; // String | CSRF protection to
 
 try {
     api.postViewConfig(name, body, jenkinsCrumb);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling RemoteAccessApi->postViewConfig: $e\n');
 }
 ```

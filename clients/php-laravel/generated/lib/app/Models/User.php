@@ -10,18 +10,18 @@ namespace app\Models;
 class User {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $fullName */
-    private $fullName;
+    public $fullName = "";
 
     /** @var string $email */
-    private $email;
+    public $email = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
 }

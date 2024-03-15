@@ -175,6 +175,28 @@ public class HudsonMasterComputerexecutors  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    HudsonMasterComputerexecutors hudsonMasterComputerexecutors = (HudsonMasterComputerexecutors) o;
+    return Objects.equals(this.currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
+        Objects.equals(this.idle, hudsonMasterComputerexecutors.idle) &&
+        Objects.equals(this.likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
+        Objects.equals(this.number, hudsonMasterComputerexecutors.number) &&
+        Objects.equals(this.progress, hudsonMasterComputerexecutors.progress) &&
+        Objects.equals(this.propertyClass, hudsonMasterComputerexecutors.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(currentExecutable, idle, likelyStuck, number, progress, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HudsonMasterComputerexecutors {\n");

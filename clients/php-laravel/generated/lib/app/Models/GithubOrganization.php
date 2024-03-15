@@ -10,15 +10,15 @@ namespace app\Models;
 class GithubOrganization {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\GithubOrganizationlinks $links */
-    private $links;
+    public $links;
 
     /** @var bool $jenkinsOrganizationPipeline */
-    private $jenkinsOrganizationPipeline;
+    public $jenkinsOrganizationPipeline = false;
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
 }

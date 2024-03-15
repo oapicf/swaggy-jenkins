@@ -139,7 +139,7 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     // pipeline_branchesitempull_request->author
     cJSON *author = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "author");
     if (author) { 
-    if(!cJSON_IsString(author))
+    if(!cJSON_IsString(author) && !cJSON_IsNull(author))
     {
     goto end; //String
     }
@@ -148,7 +148,7 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     // pipeline_branchesitempull_request->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -157,7 +157,7 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     // pipeline_branchesitempull_request->title
     cJSON *title = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "title");
     if (title) { 
-    if(!cJSON_IsString(title))
+    if(!cJSON_IsString(title) && !cJSON_IsNull(title))
     {
     goto end; //String
     }
@@ -166,7 +166,7 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     // pipeline_branchesitempull_request->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -175,7 +175,7 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     // pipeline_branchesitempull_request->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -184,11 +184,11 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
 
     pipeline_branchesitempull_request_local_var = pipeline_branchesitempull_request_create (
         _links ? _links_local_nonprim : NULL,
-        author ? strdup(author->valuestring) : NULL,
-        id ? strdup(id->valuestring) : NULL,
-        title ? strdup(title->valuestring) : NULL,
-        url ? strdup(url->valuestring) : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        author && !cJSON_IsNull(author) ? strdup(author->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        title && !cJSON_IsNull(title) ? strdup(title->valuestring) : NULL,
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_branchesitempull_request_local_var;

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -134,21 +134,21 @@ class Hudson {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Hudson &&
-     other.class_ == class_ &&
-     other.assignedLabels == assignedLabels &&
-     other.mode == mode &&
-     other.nodeDescription == nodeDescription &&
-     other.nodeName == nodeName &&
-     other.numExecutors == numExecutors &&
-     other.description == description &&
-     other.jobs == jobs &&
-     other.primaryView == primaryView &&
-     other.quietingDown == quietingDown &&
-     other.slaveAgentPort == slaveAgentPort &&
-     other.unlabeledLoad == unlabeledLoad &&
-     other.useCrumbs == useCrumbs &&
-     other.useSecurity == useSecurity &&
-     other.views == views;
+    other.class_ == class_ &&
+    _deepEquality.equals(other.assignedLabels, assignedLabels) &&
+    other.mode == mode &&
+    other.nodeDescription == nodeDescription &&
+    other.nodeName == nodeName &&
+    other.numExecutors == numExecutors &&
+    other.description == description &&
+    _deepEquality.equals(other.jobs, jobs) &&
+    other.primaryView == primaryView &&
+    other.quietingDown == quietingDown &&
+    other.slaveAgentPort == slaveAgentPort &&
+    other.unlabeledLoad == unlabeledLoad &&
+    other.useCrumbs == useCrumbs &&
+    other.useSecurity == useSecurity &&
+    _deepEquality.equals(other.views, views);
 
   @override
   int get hashCode =>
@@ -173,47 +173,71 @@ class Hudson {
   String toString() => 'Hudson[class_=$class_, assignedLabels=$assignedLabels, mode=$mode, nodeDescription=$nodeDescription, nodeName=$nodeName, numExecutors=$numExecutors, description=$description, jobs=$jobs, primaryView=$primaryView, quietingDown=$quietingDown, slaveAgentPort=$slaveAgentPort, unlabeledLoad=$unlabeledLoad, useCrumbs=$useCrumbs, useSecurity=$useSecurity, views=$views]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-      _json[r'assignedLabels'] = assignedLabels;
-    if (mode != null) {
-      _json[r'mode'] = mode;
+      json[r'assignedLabels'] = this.assignedLabels;
+    if (this.mode != null) {
+      json[r'mode'] = this.mode;
+    } else {
+      json[r'mode'] = null;
     }
-    if (nodeDescription != null) {
-      _json[r'nodeDescription'] = nodeDescription;
+    if (this.nodeDescription != null) {
+      json[r'nodeDescription'] = this.nodeDescription;
+    } else {
+      json[r'nodeDescription'] = null;
     }
-    if (nodeName != null) {
-      _json[r'nodeName'] = nodeName;
+    if (this.nodeName != null) {
+      json[r'nodeName'] = this.nodeName;
+    } else {
+      json[r'nodeName'] = null;
     }
-    if (numExecutors != null) {
-      _json[r'numExecutors'] = numExecutors;
+    if (this.numExecutors != null) {
+      json[r'numExecutors'] = this.numExecutors;
+    } else {
+      json[r'numExecutors'] = null;
     }
-    if (description != null) {
-      _json[r'description'] = description;
+    if (this.description != null) {
+      json[r'description'] = this.description;
+    } else {
+      json[r'description'] = null;
     }
-      _json[r'jobs'] = jobs;
-    if (primaryView != null) {
-      _json[r'primaryView'] = primaryView;
+      json[r'jobs'] = this.jobs;
+    if (this.primaryView != null) {
+      json[r'primaryView'] = this.primaryView;
+    } else {
+      json[r'primaryView'] = null;
     }
-    if (quietingDown != null) {
-      _json[r'quietingDown'] = quietingDown;
+    if (this.quietingDown != null) {
+      json[r'quietingDown'] = this.quietingDown;
+    } else {
+      json[r'quietingDown'] = null;
     }
-    if (slaveAgentPort != null) {
-      _json[r'slaveAgentPort'] = slaveAgentPort;
+    if (this.slaveAgentPort != null) {
+      json[r'slaveAgentPort'] = this.slaveAgentPort;
+    } else {
+      json[r'slaveAgentPort'] = null;
     }
-    if (unlabeledLoad != null) {
-      _json[r'unlabeledLoad'] = unlabeledLoad;
+    if (this.unlabeledLoad != null) {
+      json[r'unlabeledLoad'] = this.unlabeledLoad;
+    } else {
+      json[r'unlabeledLoad'] = null;
     }
-    if (useCrumbs != null) {
-      _json[r'useCrumbs'] = useCrumbs;
+    if (this.useCrumbs != null) {
+      json[r'useCrumbs'] = this.useCrumbs;
+    } else {
+      json[r'useCrumbs'] = null;
     }
-    if (useSecurity != null) {
-      _json[r'useSecurity'] = useSecurity;
+    if (this.useSecurity != null) {
+      json[r'useSecurity'] = this.useSecurity;
+    } else {
+      json[r'useSecurity'] = null;
     }
-      _json[r'views'] = views;
-    return _json;
+      json[r'views'] = this.views;
+    return json;
   }
 
   /// Returns a new [Hudson] instance and imports its values from
@@ -236,26 +260,26 @@ class Hudson {
 
       return Hudson(
         class_: mapValueOfType<String>(json, r'_class'),
-        assignedLabels: HudsonassignedLabels.listFromJson(json[r'assignedLabels']) ?? const [],
+        assignedLabels: HudsonassignedLabels.listFromJson(json[r'assignedLabels']),
         mode: mapValueOfType<String>(json, r'mode'),
         nodeDescription: mapValueOfType<String>(json, r'nodeDescription'),
         nodeName: mapValueOfType<String>(json, r'nodeName'),
         numExecutors: mapValueOfType<int>(json, r'numExecutors'),
         description: mapValueOfType<String>(json, r'description'),
-        jobs: FreeStyleProject.listFromJson(json[r'jobs']) ?? const [],
+        jobs: FreeStyleProject.listFromJson(json[r'jobs']),
         primaryView: AllView.fromJson(json[r'primaryView']),
         quietingDown: mapValueOfType<bool>(json, r'quietingDown'),
         slaveAgentPort: mapValueOfType<int>(json, r'slaveAgentPort'),
         unlabeledLoad: UnlabeledLoadStatistics.fromJson(json[r'unlabeledLoad']),
         useCrumbs: mapValueOfType<bool>(json, r'useCrumbs'),
         useSecurity: mapValueOfType<bool>(json, r'useSecurity'),
-        views: AllView.listFromJson(json[r'views']) ?? const [],
+        views: AllView.listFromJson(json[r'views']),
       );
     }
     return null;
   }
 
-  static List<Hudson>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Hudson> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Hudson>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -286,12 +310,10 @@ class Hudson {
   static Map<String, List<Hudson>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Hudson>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Hudson.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Hudson.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

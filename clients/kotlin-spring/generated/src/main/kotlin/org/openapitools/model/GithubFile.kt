@@ -23,10 +23,10 @@ data class GithubFile(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("content") val content: GithubContent? = null,
+    @get:JsonProperty("content") val content: GithubContent? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -98,15 +98,15 @@ class PipelineStepImpl {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineStepImpl &&
-     other.class_ == class_ &&
-     other.links == links &&
-     other.displayName == displayName &&
-     other.durationInMillis == durationInMillis &&
-     other.id == id &&
-     other.input == input &&
-     other.result == result &&
-     other.startTime == startTime &&
-     other.state == state;
+    other.class_ == class_ &&
+    other.links == links &&
+    other.displayName == displayName &&
+    other.durationInMillis == durationInMillis &&
+    other.id == id &&
+    other.input == input &&
+    other.result == result &&
+    other.startTime == startTime &&
+    other.state == state;
 
   @override
   int get hashCode =>
@@ -125,35 +125,53 @@ class PipelineStepImpl {
   String toString() => 'PipelineStepImpl[class_=$class_, links=$links, displayName=$displayName, durationInMillis=$durationInMillis, id=$id, input=$input, result=$result, startTime=$startTime, state=$state]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (durationInMillis != null) {
-      _json[r'durationInMillis'] = durationInMillis;
+    if (this.durationInMillis != null) {
+      json[r'durationInMillis'] = this.durationInMillis;
+    } else {
+      json[r'durationInMillis'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (input != null) {
-      _json[r'input'] = input;
+    if (this.input != null) {
+      json[r'input'] = this.input;
+    } else {
+      json[r'input'] = null;
     }
-    if (result != null) {
-      _json[r'result'] = result;
+    if (this.result != null) {
+      json[r'result'] = this.result;
+    } else {
+      json[r'result'] = null;
     }
-    if (startTime != null) {
-      _json[r'startTime'] = startTime;
+    if (this.startTime != null) {
+      json[r'startTime'] = this.startTime;
+    } else {
+      json[r'startTime'] = null;
     }
-    if (state != null) {
-      _json[r'state'] = state;
+    if (this.state != null) {
+      json[r'state'] = this.state;
+    } else {
+      json[r'state'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineStepImpl] instance and imports its values from
@@ -189,7 +207,7 @@ class PipelineStepImpl {
     return null;
   }
 
-  static List<PipelineStepImpl>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineStepImpl> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineStepImpl>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -220,12 +238,10 @@ class PipelineStepImpl {
   static Map<String, List<PipelineStepImpl>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineStepImpl>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineStepImpl.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineStepImpl.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

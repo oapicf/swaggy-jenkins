@@ -10,12 +10,12 @@ namespace app\Models;
 class ExtensionClassImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\ExtensionClassImpllinks $links */
-    private $links;
+    public $links;
 
     /** @var string[] $classes */
-    private $classes;
+    public $classes = [];
 
 }

@@ -65,7 +65,7 @@ clock_difference_t *clock_difference_parseFromJSON(cJSON *clock_differenceJSON){
     // clock_difference->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(clock_differenceJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -82,7 +82,7 @@ clock_difference_t *clock_difference_parseFromJSON(cJSON *clock_differenceJSON){
 
 
     clock_difference_local_var = clock_difference_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         diff ? diff->valuedouble : 0
         );
 

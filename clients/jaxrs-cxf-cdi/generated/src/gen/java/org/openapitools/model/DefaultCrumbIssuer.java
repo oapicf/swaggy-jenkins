@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -19,7 +20,6 @@ public class DefaultCrumbIssuer   {
   private String crumb;
 
   private String crumbRequestField;
-
 
   /**
    **/
@@ -85,9 +85,9 @@ public class DefaultCrumbIssuer   {
       return false;
     }
     DefaultCrumbIssuer defaultCrumbIssuer = (DefaultCrumbIssuer) o;
-    return Objects.equals(propertyClass, defaultCrumbIssuer.propertyClass) &&
-        Objects.equals(crumb, defaultCrumbIssuer.crumb) &&
-        Objects.equals(crumbRequestField, defaultCrumbIssuer.crumbRequestField);
+    return Objects.equals(this.propertyClass, defaultCrumbIssuer.propertyClass) &&
+        Objects.equals(this.crumb, defaultCrumbIssuer.crumb) &&
+        Objects.equals(this.crumbRequestField, defaultCrumbIssuer.crumbRequestField);
   }
 
   @Override

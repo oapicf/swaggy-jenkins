@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,23 +22,18 @@ import javax.annotation.Generated;
  * ListView
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListView {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("jobs")
   @Valid
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("url")
   private String url;
 
   public ListView propertyClass(String propertyClass) {
@@ -50,7 +46,8 @@ public class ListView {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -69,7 +66,8 @@ public class ListView {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -78,7 +76,7 @@ public class ListView {
     this.description = description;
   }
 
-  public ListView jobs(List<FreeStyleProject> jobs) {
+  public ListView jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
@@ -96,12 +94,13 @@ public class ListView {
    * @return jobs
   */
   @Valid 
-  @Schema(name = "jobs", required = false)
-  public List<FreeStyleProject> getJobs() {
+  @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("jobs")
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -115,7 +114,8 @@ public class ListView {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -134,7 +134,8 @@ public class ListView {
    * @return url
   */
   
-  @Schema(name = "url", required = false)
+  @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("url")
   public String getUrl() {
     return url;
   }

@@ -10,21 +10,21 @@ namespace app\Models;
 class GenericResource {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $durationInMillis */
-    private $durationInMillis;
+    public $durationInMillis = 0;
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var string $result */
-    private $result;
+    public $result = "";
 
     /** @var string $startTime */
-    private $startTime;
+    public $startTime = "";
 
 }

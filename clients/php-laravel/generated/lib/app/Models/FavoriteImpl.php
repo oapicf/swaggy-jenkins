@@ -10,12 +10,12 @@ namespace app\Models;
 class FavoriteImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\FavoriteImpllinks $links */
-    private $links;
+    public $links;
 
     /** @var \app\Models\PipelineImpl $item */
-    private $item;
+    public $item;
 
 }

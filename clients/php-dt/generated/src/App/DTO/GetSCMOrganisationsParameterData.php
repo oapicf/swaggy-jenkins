@@ -15,26 +15,23 @@ class GetSCMOrganisationsParameterData
      * @DTA\Data(subset="path", field="organization")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * Credential ID
      * @DTA\Data(subset="query", field="credentialId", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $credential_id;
+    public ?string $credential_id = null;
 
     /**
      * Name of SCM
      * @DTA\Data(subset="path", field="scm")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $scm;
+    public ?string $scm = null;
 
 }

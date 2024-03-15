@@ -4,6 +4,7 @@ import org.openapitools.model.FavoriteImpllinks;
 import org.openapitools.model.PipelineImpl;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -71,6 +72,24 @@ public class FavoriteImpl  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FavoriteImpl favoriteImpl = (FavoriteImpl) o;
+    return Objects.equals(this.propertyClass, favoriteImpl.propertyClass) &&
+        Objects.equals(this.links, favoriteImpl.links) &&
+        Objects.equals(this.item, favoriteImpl.item);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, item);
+  }
 
   @Override
   public String toString() {

@@ -247,7 +247,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->en_queue_time
     cJSON *en_queue_time = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "enQueueTime");
     if (en_queue_time) { 
-    if(!cJSON_IsString(en_queue_time))
+    if(!cJSON_IsString(en_queue_time) && !cJSON_IsNull(en_queue_time))
     {
     goto end; //String
     }
@@ -256,7 +256,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->end_time
     cJSON *end_time = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "endTime");
     if (end_time) { 
-    if(!cJSON_IsString(end_time))
+    if(!cJSON_IsString(end_time) && !cJSON_IsNull(end_time))
     {
     goto end; //String
     }
@@ -265,7 +265,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -274,7 +274,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "organization");
     if (organization) { 
-    if(!cJSON_IsString(organization))
+    if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
     goto end; //String
     }
@@ -283,7 +283,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->pipeline
     cJSON *pipeline = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "pipeline");
     if (pipeline) { 
-    if(!cJSON_IsString(pipeline))
+    if(!cJSON_IsString(pipeline) && !cJSON_IsNull(pipeline))
     {
     goto end; //String
     }
@@ -292,7 +292,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "result");
     if (result) { 
-    if(!cJSON_IsString(result))
+    if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
     goto end; //String
     }
@@ -301,7 +301,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->run_summary
     cJSON *run_summary = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "runSummary");
     if (run_summary) { 
-    if(!cJSON_IsString(run_summary))
+    if(!cJSON_IsString(run_summary) && !cJSON_IsNull(run_summary))
     {
     goto end; //String
     }
@@ -310,7 +310,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->start_time
     cJSON *start_time = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "startTime");
     if (start_time) { 
-    if(!cJSON_IsString(start_time))
+    if(!cJSON_IsString(start_time) && !cJSON_IsNull(start_time))
     {
     goto end; //String
     }
@@ -319,7 +319,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->state
     cJSON *state = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "state");
     if (state) { 
-    if(!cJSON_IsString(state))
+    if(!cJSON_IsString(state) && !cJSON_IsNull(state))
     {
     goto end; //String
     }
@@ -328,7 +328,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "type");
     if (type) { 
-    if(!cJSON_IsString(type))
+    if(!cJSON_IsString(type) && !cJSON_IsNull(type))
     {
     goto end; //String
     }
@@ -337,7 +337,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->commit_id
     cJSON *commit_id = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "commitId");
     if (commit_id) { 
-    if(!cJSON_IsString(commit_id))
+    if(!cJSON_IsString(commit_id) && !cJSON_IsNull(commit_id))
     {
     goto end; //String
     }
@@ -346,7 +346,7 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     // pipeline_branchesitemlatest_run->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemlatest_runJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -356,18 +356,18 @@ pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_parseFromJSON
     pipeline_branchesitemlatest_run_local_var = pipeline_branchesitemlatest_run_create (
         duration_in_millis ? duration_in_millis->valuedouble : 0,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        en_queue_time ? strdup(en_queue_time->valuestring) : NULL,
-        end_time ? strdup(end_time->valuestring) : NULL,
-        id ? strdup(id->valuestring) : NULL,
-        organization ? strdup(organization->valuestring) : NULL,
-        pipeline ? strdup(pipeline->valuestring) : NULL,
-        result ? strdup(result->valuestring) : NULL,
-        run_summary ? strdup(run_summary->valuestring) : NULL,
-        start_time ? strdup(start_time->valuestring) : NULL,
-        state ? strdup(state->valuestring) : NULL,
-        type ? strdup(type->valuestring) : NULL,
-        commit_id ? strdup(commit_id->valuestring) : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        en_queue_time && !cJSON_IsNull(en_queue_time) ? strdup(en_queue_time->valuestring) : NULL,
+        end_time && !cJSON_IsNull(end_time) ? strdup(end_time->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
+        pipeline && !cJSON_IsNull(pipeline) ? strdup(pipeline->valuestring) : NULL,
+        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
+        run_summary && !cJSON_IsNull(run_summary) ? strdup(run_summary->valuestring) : NULL,
+        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL,
+        state && !cJSON_IsNull(state) ? strdup(state->valuestring) : NULL,
+        type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL,
+        commit_id && !cJSON_IsNull(commit_id) ? strdup(commit_id->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_branchesitemlatest_run_local_var;

@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -63,7 +60,7 @@ class FreeStyleProjecthealthReport(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this FreeStyleProjecthealthReport.
 
 
@@ -73,7 +70,7 @@ class FreeStyleProjecthealthReport(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this FreeStyleProjecthealthReport.
 
 
@@ -84,7 +81,7 @@ class FreeStyleProjecthealthReport(Model):
         self._description = description
 
     @property
-    def icon_class_name(self):
+    def icon_class_name(self) -> str:
         """Gets the icon_class_name of this FreeStyleProjecthealthReport.
 
 
@@ -94,7 +91,7 @@ class FreeStyleProjecthealthReport(Model):
         return self._icon_class_name
 
     @icon_class_name.setter
-    def icon_class_name(self, icon_class_name):
+    def icon_class_name(self, icon_class_name: str):
         """Sets the icon_class_name of this FreeStyleProjecthealthReport.
 
 
@@ -105,7 +102,7 @@ class FreeStyleProjecthealthReport(Model):
         self._icon_class_name = icon_class_name
 
     @property
-    def icon_url(self):
+    def icon_url(self) -> str:
         """Gets the icon_url of this FreeStyleProjecthealthReport.
 
 
@@ -115,7 +112,7 @@ class FreeStyleProjecthealthReport(Model):
         return self._icon_url
 
     @icon_url.setter
-    def icon_url(self, icon_url):
+    def icon_url(self, icon_url: str):
         """Sets the icon_url of this FreeStyleProjecthealthReport.
 
 
@@ -126,7 +123,7 @@ class FreeStyleProjecthealthReport(Model):
         self._icon_url = icon_url
 
     @property
-    def score(self):
+    def score(self) -> int:
         """Gets the score of this FreeStyleProjecthealthReport.
 
 
@@ -136,7 +133,7 @@ class FreeStyleProjecthealthReport(Model):
         return self._score
 
     @score.setter
-    def score(self, score):
+    def score(self, score: int):
         """Sets the score of this FreeStyleProjecthealthReport.
 
 
@@ -147,7 +144,7 @@ class FreeStyleProjecthealthReport(Model):
         self._score = score
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this FreeStyleProjecthealthReport.
 
 
@@ -157,7 +154,7 @@ class FreeStyleProjecthealthReport(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this FreeStyleProjecthealthReport.
 
 

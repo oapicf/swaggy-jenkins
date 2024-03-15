@@ -1,4 +1,3 @@
-
 # Org.OpenAPITools.Model.HudsonMasterComputerexecutors
 
 ## Properties
@@ -10,9 +9,7 @@ Name | Type | Description | Notes
 **LikelyStuck** | **bool** |  | [optional] 
 **Number** | **int** |  | [optional] 
 **Progress** | **int** |  | [optional] 
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

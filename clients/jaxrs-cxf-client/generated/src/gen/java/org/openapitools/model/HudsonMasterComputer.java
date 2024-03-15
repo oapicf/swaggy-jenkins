@@ -1,12 +1,14 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
 import org.openapitools.model.Label1;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -19,7 +21,7 @@ public class HudsonMasterComputer  {
   private String displayName;
 
   @ApiModelProperty(value = "")
-  private List<HudsonMasterComputerexecutors> executors = null;
+  private List<HudsonMasterComputerexecutors> executors;
 
   @ApiModelProperty(value = "")
   private String icon;
@@ -352,6 +354,37 @@ public class HudsonMasterComputer  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    HudsonMasterComputer hudsonMasterComputer = (HudsonMasterComputer) o;
+    return Objects.equals(this.propertyClass, hudsonMasterComputer.propertyClass) &&
+        Objects.equals(this.displayName, hudsonMasterComputer.displayName) &&
+        Objects.equals(this.executors, hudsonMasterComputer.executors) &&
+        Objects.equals(this.icon, hudsonMasterComputer.icon) &&
+        Objects.equals(this.iconClassName, hudsonMasterComputer.iconClassName) &&
+        Objects.equals(this.idle, hudsonMasterComputer.idle) &&
+        Objects.equals(this.jnlpAgent, hudsonMasterComputer.jnlpAgent) &&
+        Objects.equals(this.launchSupported, hudsonMasterComputer.launchSupported) &&
+        Objects.equals(this.loadStatistics, hudsonMasterComputer.loadStatistics) &&
+        Objects.equals(this.manualLaunchAllowed, hudsonMasterComputer.manualLaunchAllowed) &&
+        Objects.equals(this.monitorData, hudsonMasterComputer.monitorData) &&
+        Objects.equals(this.numExecutors, hudsonMasterComputer.numExecutors) &&
+        Objects.equals(this.offline, hudsonMasterComputer.offline) &&
+        Objects.equals(this.offlineCause, hudsonMasterComputer.offlineCause) &&
+        Objects.equals(this.offlineCauseReason, hudsonMasterComputer.offlineCauseReason) &&
+        Objects.equals(this.temporarilyOffline, hudsonMasterComputer.temporarilyOffline);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, displayName, executors, icon, iconClassName, idle, jnlpAgent, launchSupported, loadStatistics, manualLaunchAllowed, monitorData, numExecutors, offline, offlineCause, offlineCauseReason, temporarilyOffline);
+  }
 
   @Override
   public String toString() {

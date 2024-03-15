@@ -3,8 +3,8 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 1.5.1-pre.0
- * Maintained by: blah@cliffano.com
+ * OpenAPI document version: 2.0.1-pre.0
+ * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
  */
@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
@@ -24,7 +25,7 @@ import org.openapitools.model.StringParameterDefinition;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2022-06-04T08:08:37.196387Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2024-03-15T14:13:06.635705781Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class InputStepImpl   {
   
   private String propertyClass;
@@ -32,7 +33,7 @@ public class InputStepImpl   {
   private String id;
   private String message;
   private String ok;
-  private List<StringParameterDefinition> parameters = new ArrayList<>();
+  private List<StringParameterDefinition> parameters;
   private String submitter;
 
   /**

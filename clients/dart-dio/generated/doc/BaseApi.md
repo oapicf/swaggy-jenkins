@@ -31,7 +31,7 @@ final api = Openapi().getBaseApi();
 try {
     final response = api.getCrumb();
     print(response);
-} catch on DioError (e) {
+} catch on DioException (e) {
     print('Exception when calling BaseApi->getCrumb: $e\n');
 }
 ```

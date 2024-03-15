@@ -29,32 +29,32 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PipelineImpl(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("estimatedDurationInMillis") val estimatedDurationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("fullName") val fullName: kotlin.String? = null,
+    @get:JsonProperty("fullName") val fullName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("latestRun") val latestRun: kotlin.String? = null,
+    @get:JsonProperty("latestRun") val latestRun: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("organization") val organization: kotlin.String? = null,
+    @get:JsonProperty("organization") val organization: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("weatherScore") val weatherScore: kotlin.Int? = null,
+    @get:JsonProperty("weatherScore") val weatherScore: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: PipelineImpllinks? = null
+    @get:JsonProperty("_links") val links: PipelineImpllinks? = null
 ) {
 
 }

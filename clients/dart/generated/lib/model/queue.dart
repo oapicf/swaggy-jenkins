@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -29,8 +29,8 @@ class Queue {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Queue &&
-     other.class_ == class_ &&
-     other.items == items;
+    other.class_ == class_ &&
+    _deepEquality.equals(other.items, items);
 
   @override
   int get hashCode =>
@@ -42,12 +42,14 @@ class Queue {
   String toString() => 'Queue[class_=$class_, items=$items]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-      _json[r'items'] = items;
-    return _json;
+      json[r'items'] = this.items;
+    return json;
   }
 
   /// Returns a new [Queue] instance and imports its values from
@@ -70,13 +72,13 @@ class Queue {
 
       return Queue(
         class_: mapValueOfType<String>(json, r'_class'),
-        items: QueueBlockedItem.listFromJson(json[r'items']) ?? const [],
+        items: QueueBlockedItem.listFromJson(json[r'items']),
       );
     }
     return null;
   }
 
-  static List<Queue>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Queue> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Queue>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -107,12 +109,10 @@ class Queue {
   static Map<String, List<Queue>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Queue>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Queue.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Queue.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

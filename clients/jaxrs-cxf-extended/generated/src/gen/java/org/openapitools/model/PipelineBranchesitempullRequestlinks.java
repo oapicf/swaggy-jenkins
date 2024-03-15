@@ -65,6 +65,24 @@ public class PipelineBranchesitempullRequestlinks  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineBranchesitempullRequestlinks pipelineBranchesitempullRequestlinks = (PipelineBranchesitempullRequestlinks) o;
+    return Objects.equals(this.self, pipelineBranchesitempullRequestlinks.self) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitempullRequestlinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(self, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineBranchesitempullRequestlinks {\n");

@@ -30,33 +30,33 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PipelineStepImpl(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: PipelineStepImpllinks? = null,
+    @get:JsonProperty("_links") val links: PipelineStepImpllinks? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("displayName") val displayName: kotlin.String? = null,
+    @get:JsonProperty("displayName") val displayName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
+    @get:JsonProperty("durationInMillis") val durationInMillis: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("input") val input: InputStepImpl? = null,
+    @get:JsonProperty("input") val input: InputStepImpl? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("result") val result: kotlin.String? = null,
+    @get:JsonProperty("result") val result: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("startTime") val startTime: kotlin.String? = null,
+    @get:JsonProperty("startTime") val startTime: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("state") val state: kotlin.String? = null
+    @get:JsonProperty("state") val state: kotlin.String? = null
 ) {
 
 }

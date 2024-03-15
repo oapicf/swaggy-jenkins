@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -53,7 +50,7 @@ class ResponseTimeMonitorData(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this ResponseTimeMonitorData.
 
 
@@ -63,7 +60,7 @@ class ResponseTimeMonitorData(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this ResponseTimeMonitorData.
 
 
@@ -74,7 +71,7 @@ class ResponseTimeMonitorData(Model):
         self.__class = _class
 
     @property
-    def timestamp(self):
+    def timestamp(self) -> int:
         """Gets the timestamp of this ResponseTimeMonitorData.
 
 
@@ -84,7 +81,7 @@ class ResponseTimeMonitorData(Model):
         return self._timestamp
 
     @timestamp.setter
-    def timestamp(self, timestamp):
+    def timestamp(self, timestamp: int):
         """Sets the timestamp of this ResponseTimeMonitorData.
 
 
@@ -95,7 +92,7 @@ class ResponseTimeMonitorData(Model):
         self._timestamp = timestamp
 
     @property
-    def average(self):
+    def average(self) -> int:
         """Gets the average of this ResponseTimeMonitorData.
 
 
@@ -105,7 +102,7 @@ class ResponseTimeMonitorData(Model):
         return self._average
 
     @average.setter
-    def average(self, average):
+    def average(self, average: int):
         """Sets the average of this ResponseTimeMonitorData.
 
 

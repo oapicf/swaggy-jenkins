@@ -88,6 +88,7 @@ module SwaggyJenkins.Types (
 
 import ClassyPrelude.Yesod
 import Data.Foldable (foldl)
+import qualified Data.List as List
 import Data.Maybe (fromMaybe)
 import Data.Aeson (Value, FromJSON(..), ToJSON(..), genericToJSON, genericParseJSON)
 import Data.Aeson.Types (Options(..), defaultOptions)
@@ -95,7 +96,6 @@ import qualified Data.Char as Char
 import qualified Data.Text as T
 import qualified Data.Map as Map
 import GHC.Generics (Generic)
-import Data.Function ((&))
 
 
 -- | 
@@ -106,9 +106,22 @@ data AllView = AllView
   } deriving (Show, Eq, Generic)
 
 instance FromJSON AllView where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "allView")
+  parseJSON = genericParseJSON optionsAllView
 instance ToJSON AllView where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "allView")
+  toJSON = genericToJSON optionsAllView
+
+optionsAllView :: Options
+optionsAllView =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("allViewUnderscoreclass", "_class")
+      , ("allViewName", "name")
+      , ("allViewUrl", "url")
+      ]
 
 
 -- | 
@@ -129,9 +142,32 @@ data BranchImpl = BranchImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON BranchImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "branchImpl")
+  parseJSON = genericParseJSON optionsBranchImpl
 instance ToJSON BranchImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "branchImpl")
+  toJSON = genericToJSON optionsBranchImpl
+
+optionsBranchImpl :: Options
+optionsBranchImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("branchImplUnderscoreclass", "_class")
+      , ("branchImplDisplayName", "displayName")
+      , ("branchImplEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("branchImplFullDisplayName", "fullDisplayName")
+      , ("branchImplFullName", "fullName")
+      , ("branchImplName", "name")
+      , ("branchImplOrganization", "organization")
+      , ("branchImplParameters", "parameters")
+      , ("branchImplPermissions", "permissions")
+      , ("branchImplWeatherScore", "weatherScore")
+      , ("branchImplPullRequest", "pullRequest")
+      , ("branchImplUnderscorelinks", "_links")
+      , ("branchImplLatestRun", "latestRun")
+      ]
 
 
 -- | 
@@ -144,9 +180,24 @@ data BranchImpllinks = BranchImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON BranchImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "branchImpllinks")
+  parseJSON = genericParseJSON optionsBranchImpllinks
 instance ToJSON BranchImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "branchImpllinks")
+  toJSON = genericToJSON optionsBranchImpllinks
+
+optionsBranchImpllinks :: Options
+optionsBranchImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("branchImpllinksSelf", "self")
+      , ("branchImpllinksActions", "actions")
+      , ("branchImpllinksRuns", "runs")
+      , ("branchImpllinksQueue", "queue")
+      , ("branchImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -159,9 +210,24 @@ data BranchImplpermissions = BranchImplpermissions
   } deriving (Show, Eq, Generic)
 
 instance FromJSON BranchImplpermissions where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "branchImplpermissions")
+  parseJSON = genericParseJSON optionsBranchImplpermissions
 instance ToJSON BranchImplpermissions where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "branchImplpermissions")
+  toJSON = genericToJSON optionsBranchImplpermissions
+
+optionsBranchImplpermissions :: Options
+optionsBranchImplpermissions =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("branchImplpermissionsCreate", "create")
+      , ("branchImplpermissionsRead", "read")
+      , ("branchImplpermissionsStart", "start")
+      , ("branchImplpermissionsStop", "stop")
+      , ("branchImplpermissionsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -171,9 +237,21 @@ data CauseAction = CauseAction
   } deriving (Show, Eq, Generic)
 
 instance FromJSON CauseAction where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "causeAction")
+  parseJSON = genericParseJSON optionsCauseAction
 instance ToJSON CauseAction where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "causeAction")
+  toJSON = genericToJSON optionsCauseAction
+
+optionsCauseAction :: Options
+optionsCauseAction =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("causeActionUnderscoreclass", "_class")
+      , ("causeActionCauses", "causes")
+      ]
 
 
 -- | 
@@ -185,9 +263,23 @@ data CauseUserIdCause = CauseUserIdCause
   } deriving (Show, Eq, Generic)
 
 instance FromJSON CauseUserIdCause where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "causeUserIdCause")
+  parseJSON = genericParseJSON optionsCauseUserIdCause
 instance ToJSON CauseUserIdCause where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "causeUserIdCause")
+  toJSON = genericToJSON optionsCauseUserIdCause
+
+optionsCauseUserIdCause :: Options
+optionsCauseUserIdCause =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("causeUserIdCauseUnderscoreclass", "_class")
+      , ("causeUserIdCauseShortDescription", "shortDescription")
+      , ("causeUserIdCauseUserId", "userId")
+      , ("causeUserIdCauseUserName", "userName")
+      ]
 
 
 -- | 
@@ -197,9 +289,21 @@ data ClassesByClass = ClassesByClass
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ClassesByClass where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "classesByClass")
+  parseJSON = genericParseJSON optionsClassesByClass
 instance ToJSON ClassesByClass where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "classesByClass")
+  toJSON = genericToJSON optionsClassesByClass
+
+optionsClassesByClass :: Options
+optionsClassesByClass =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("classesByClassClasses", "classes")
+      , ("classesByClassUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -209,9 +313,21 @@ data ClockDifference = ClockDifference
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ClockDifference where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "clockDifference")
+  parseJSON = genericParseJSON optionsClockDifference
 instance ToJSON ClockDifference where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "clockDifference")
+  toJSON = genericToJSON optionsClockDifference
+
+optionsClockDifference :: Options
+optionsClockDifference =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("clockDifferenceUnderscoreclass", "_class")
+      , ("clockDifferenceDiff", "diff")
+      ]
 
 
 -- | 
@@ -224,9 +340,24 @@ data ComputerSet = ComputerSet
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ComputerSet where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "computerSet")
+  parseJSON = genericParseJSON optionsComputerSet
 instance ToJSON ComputerSet where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "computerSet")
+  toJSON = genericToJSON optionsComputerSet
+
+optionsComputerSet :: Options
+optionsComputerSet =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("computerSetUnderscoreclass", "_class")
+      , ("computerSetBusyExecutors", "busyExecutors")
+      , ("computerSetComputer", "computer")
+      , ("computerSetDisplayName", "displayName")
+      , ("computerSetTotalExecutors", "totalExecutors")
+      ]
 
 
 -- | 
@@ -237,9 +368,22 @@ data DefaultCrumbIssuer = DefaultCrumbIssuer
   } deriving (Show, Eq, Generic)
 
 instance FromJSON DefaultCrumbIssuer where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "defaultCrumbIssuer")
+  parseJSON = genericParseJSON optionsDefaultCrumbIssuer
 instance ToJSON DefaultCrumbIssuer where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "defaultCrumbIssuer")
+  toJSON = genericToJSON optionsDefaultCrumbIssuer
+
+optionsDefaultCrumbIssuer :: Options
+optionsDefaultCrumbIssuer =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("defaultCrumbIssuerUnderscoreclass", "_class")
+      , ("defaultCrumbIssuerCrumb", "crumb")
+      , ("defaultCrumbIssuerCrumbRequestField", "crumbRequestField")
+      ]
 
 
 -- | 
@@ -251,9 +395,23 @@ data DiskSpaceMonitorDescriptorDiskSpace = DiskSpaceMonitorDescriptorDiskSpace
   } deriving (Show, Eq, Generic)
 
 instance FromJSON DiskSpaceMonitorDescriptorDiskSpace where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "diskSpaceMonitorDescriptorDiskSpace")
+  parseJSON = genericParseJSON optionsDiskSpaceMonitorDescriptorDiskSpace
 instance ToJSON DiskSpaceMonitorDescriptorDiskSpace where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "diskSpaceMonitorDescriptorDiskSpace")
+  toJSON = genericToJSON optionsDiskSpaceMonitorDescriptorDiskSpace
+
+optionsDiskSpaceMonitorDescriptorDiskSpace :: Options
+optionsDiskSpaceMonitorDescriptorDiskSpace =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("diskSpaceMonitorDescriptorDiskSpaceUnderscoreclass", "_class")
+      , ("diskSpaceMonitorDescriptorDiskSpaceTimestamp", "timestamp")
+      , ("diskSpaceMonitorDescriptorDiskSpacePath", "path")
+      , ("diskSpaceMonitorDescriptorDiskSpaceSize", "size")
+      ]
 
 
 -- | 
@@ -263,9 +421,21 @@ data EmptyChangeLogSet = EmptyChangeLogSet
   } deriving (Show, Eq, Generic)
 
 instance FromJSON EmptyChangeLogSet where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "emptyChangeLogSet")
+  parseJSON = genericParseJSON optionsEmptyChangeLogSet
 instance ToJSON EmptyChangeLogSet where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "emptyChangeLogSet")
+  toJSON = genericToJSON optionsEmptyChangeLogSet
+
+optionsEmptyChangeLogSet :: Options
+optionsEmptyChangeLogSet =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("emptyChangeLogSetUnderscoreclass", "_class")
+      , ("emptyChangeLogSetKind", "kind")
+      ]
 
 
 -- | 
@@ -276,9 +446,22 @@ data ExtensionClassContainerImpl1 = ExtensionClassContainerImpl1
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ExtensionClassContainerImpl1 where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassContainerImpl1")
+  parseJSON = genericParseJSON optionsExtensionClassContainerImpl1
 instance ToJSON ExtensionClassContainerImpl1 where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassContainerImpl1")
+  toJSON = genericToJSON optionsExtensionClassContainerImpl1
+
+optionsExtensionClassContainerImpl1 :: Options
+optionsExtensionClassContainerImpl1 =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("extensionClassContainerImpl1Underscoreclass", "_class")
+      , ("extensionClassContainerImpl1Underscorelinks", "_links")
+      , ("extensionClassContainerImpl1Map", "map")
+      ]
 
 
 -- | 
@@ -288,9 +471,21 @@ data ExtensionClassContainerImpl1links = ExtensionClassContainerImpl1links
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ExtensionClassContainerImpl1links where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassContainerImpl1links")
+  parseJSON = genericParseJSON optionsExtensionClassContainerImpl1links
 instance ToJSON ExtensionClassContainerImpl1links where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassContainerImpl1links")
+  toJSON = genericToJSON optionsExtensionClassContainerImpl1links
+
+optionsExtensionClassContainerImpl1links :: Options
+optionsExtensionClassContainerImpl1links =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("extensionClassContainerImpl1linksSelf", "self")
+      , ("extensionClassContainerImpl1linksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -301,9 +496,22 @@ data ExtensionClassContainerImpl1map = ExtensionClassContainerImpl1map
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ExtensionClassContainerImpl1map where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassContainerImpl1map")
+  parseJSON = genericParseJSON optionsExtensionClassContainerImpl1map
 instance ToJSON ExtensionClassContainerImpl1map where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassContainerImpl1map")
+  toJSON = genericToJSON optionsExtensionClassContainerImpl1map
+
+optionsExtensionClassContainerImpl1map :: Options
+optionsExtensionClassContainerImpl1map =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("extensionClassContainerImpl1mapIoPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodPipelineImpl", "io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
+      , ("extensionClassContainerImpl1mapIoPeriodjenkinsPeriodblueoceanPeriodservicePeriodembeddedPeriodrestPeriodMultiBranchPipelineImpl", "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
+      , ("extensionClassContainerImpl1mapUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -314,9 +522,22 @@ data ExtensionClassImpl = ExtensionClassImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ExtensionClassImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassImpl")
+  parseJSON = genericParseJSON optionsExtensionClassImpl
 instance ToJSON ExtensionClassImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassImpl")
+  toJSON = genericToJSON optionsExtensionClassImpl
+
+optionsExtensionClassImpl :: Options
+optionsExtensionClassImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("extensionClassImplUnderscoreclass", "_class")
+      , ("extensionClassImplUnderscorelinks", "_links")
+      , ("extensionClassImplClasses", "classes")
+      ]
 
 
 -- | 
@@ -326,9 +547,21 @@ data ExtensionClassImpllinks = ExtensionClassImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ExtensionClassImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "extensionClassImpllinks")
+  parseJSON = genericParseJSON optionsExtensionClassImpllinks
 instance ToJSON ExtensionClassImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "extensionClassImpllinks")
+  toJSON = genericToJSON optionsExtensionClassImpllinks
+
+optionsExtensionClassImpllinks :: Options
+optionsExtensionClassImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("extensionClassImpllinksSelf", "self")
+      , ("extensionClassImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -339,9 +572,22 @@ data FavoriteImpl = FavoriteImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON FavoriteImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "favoriteImpl")
+  parseJSON = genericParseJSON optionsFavoriteImpl
 instance ToJSON FavoriteImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "favoriteImpl")
+  toJSON = genericToJSON optionsFavoriteImpl
+
+optionsFavoriteImpl :: Options
+optionsFavoriteImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("favoriteImplUnderscoreclass", "_class")
+      , ("favoriteImplUnderscorelinks", "_links")
+      , ("favoriteImplItem", "item")
+      ]
 
 
 -- | 
@@ -351,9 +597,21 @@ data FavoriteImpllinks = FavoriteImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON FavoriteImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "favoriteImpllinks")
+  parseJSON = genericParseJSON optionsFavoriteImpllinks
 instance ToJSON FavoriteImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "favoriteImpllinks")
+  toJSON = genericToJSON optionsFavoriteImpllinks
+
+optionsFavoriteImpllinks :: Options
+optionsFavoriteImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("favoriteImpllinksSelf", "self")
+      , ("favoriteImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -379,9 +637,37 @@ data FreeStyleBuild = FreeStyleBuild
   } deriving (Show, Eq, Generic)
 
 instance FromJSON FreeStyleBuild where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleBuild")
+  parseJSON = genericParseJSON optionsFreeStyleBuild
 instance ToJSON FreeStyleBuild where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleBuild")
+  toJSON = genericToJSON optionsFreeStyleBuild
+
+optionsFreeStyleBuild :: Options
+optionsFreeStyleBuild =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("freeStyleBuildUnderscoreclass", "_class")
+      , ("freeStyleBuildNumber", "number")
+      , ("freeStyleBuildUrl", "url")
+      , ("freeStyleBuildActions", "actions")
+      , ("freeStyleBuildBuilding", "building")
+      , ("freeStyleBuildDescription", "description")
+      , ("freeStyleBuildDisplayName", "displayName")
+      , ("freeStyleBuildDuration", "duration")
+      , ("freeStyleBuildEstimatedDuration", "estimatedDuration")
+      , ("freeStyleBuildExecutor", "executor")
+      , ("freeStyleBuildFullDisplayName", "fullDisplayName")
+      , ("freeStyleBuildId", "id")
+      , ("freeStyleBuildKeepLog", "keepLog")
+      , ("freeStyleBuildQueueId", "queueId")
+      , ("freeStyleBuildResult", "result")
+      , ("freeStyleBuildTimestamp", "timestamp")
+      , ("freeStyleBuildBuiltOn", "builtOn")
+      , ("freeStyleBuildChangeSet", "changeSet")
+      ]
 
 
 -- | 
@@ -416,9 +702,46 @@ data FreeStyleProject = FreeStyleProject
   } deriving (Show, Eq, Generic)
 
 instance FromJSON FreeStyleProject where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleProject")
+  parseJSON = genericParseJSON optionsFreeStyleProject
 instance ToJSON FreeStyleProject where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleProject")
+  toJSON = genericToJSON optionsFreeStyleProject
+
+optionsFreeStyleProject :: Options
+optionsFreeStyleProject =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("freeStyleProjectUnderscoreclass", "_class")
+      , ("freeStyleProjectName", "name")
+      , ("freeStyleProjectUrl", "url")
+      , ("freeStyleProjectColor", "color")
+      , ("freeStyleProjectActions", "actions")
+      , ("freeStyleProjectDescription", "description")
+      , ("freeStyleProjectDisplayName", "displayName")
+      , ("freeStyleProjectDisplayNameOrNull", "displayNameOrNull")
+      , ("freeStyleProjectFullDisplayName", "fullDisplayName")
+      , ("freeStyleProjectFullName", "fullName")
+      , ("freeStyleProjectBuildable", "buildable")
+      , ("freeStyleProjectBuilds", "builds")
+      , ("freeStyleProjectFirstBuild", "firstBuild")
+      , ("freeStyleProjectHealthReport", "healthReport")
+      , ("freeStyleProjectInQueue", "inQueue")
+      , ("freeStyleProjectKeepDependencies", "keepDependencies")
+      , ("freeStyleProjectLastBuild", "lastBuild")
+      , ("freeStyleProjectLastCompletedBuild", "lastCompletedBuild")
+      , ("freeStyleProjectLastFailedBuild", "lastFailedBuild")
+      , ("freeStyleProjectLastStableBuild", "lastStableBuild")
+      , ("freeStyleProjectLastSuccessfulBuild", "lastSuccessfulBuild")
+      , ("freeStyleProjectLastUnstableBuild", "lastUnstableBuild")
+      , ("freeStyleProjectLastUnsuccessfulBuild", "lastUnsuccessfulBuild")
+      , ("freeStyleProjectNextBuildNumber", "nextBuildNumber")
+      , ("freeStyleProjectQueueItem", "queueItem")
+      , ("freeStyleProjectConcurrentBuild", "concurrentBuild")
+      , ("freeStyleProjectScm", "scm")
+      ]
 
 
 -- | 
@@ -427,9 +750,20 @@ data FreeStyleProjectactions = FreeStyleProjectactions
   } deriving (Show, Eq, Generic)
 
 instance FromJSON FreeStyleProjectactions where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleProjectactions")
+  parseJSON = genericParseJSON optionsFreeStyleProjectactions
 instance ToJSON FreeStyleProjectactions where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleProjectactions")
+  toJSON = genericToJSON optionsFreeStyleProjectactions
+
+optionsFreeStyleProjectactions :: Options
+optionsFreeStyleProjectactions =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("freeStyleProjectactionsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -442,9 +776,24 @@ data FreeStyleProjecthealthReport = FreeStyleProjecthealthReport
   } deriving (Show, Eq, Generic)
 
 instance FromJSON FreeStyleProjecthealthReport where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "freeStyleProjecthealthReport")
+  parseJSON = genericParseJSON optionsFreeStyleProjecthealthReport
 instance ToJSON FreeStyleProjecthealthReport where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "freeStyleProjecthealthReport")
+  toJSON = genericToJSON optionsFreeStyleProjecthealthReport
+
+optionsFreeStyleProjecthealthReport :: Options
+optionsFreeStyleProjecthealthReport =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("freeStyleProjecthealthReportDescription", "description")
+      , ("freeStyleProjecthealthReportIconClassName", "iconClassName")
+      , ("freeStyleProjecthealthReportIconUrl", "iconUrl")
+      , ("freeStyleProjecthealthReportScore", "score")
+      , ("freeStyleProjecthealthReportUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -458,9 +807,25 @@ data GenericResource = GenericResource
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GenericResource where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "genericResource")
+  parseJSON = genericParseJSON optionsGenericResource
 instance ToJSON GenericResource where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "genericResource")
+  toJSON = genericToJSON optionsGenericResource
+
+optionsGenericResource :: Options
+optionsGenericResource =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("genericResourceUnderscoreclass", "_class")
+      , ("genericResourceDisplayName", "displayName")
+      , ("genericResourceDurationInMillis", "durationInMillis")
+      , ("genericResourceId", "id")
+      , ("genericResourceResult", "result")
+      , ("genericResourceStartTime", "startTime")
+      ]
 
 
 -- | 
@@ -476,9 +841,27 @@ data GithubContent = GithubContent
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubContent where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubContent")
+  parseJSON = genericParseJSON optionsGithubContent
 instance ToJSON GithubContent where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubContent")
+  toJSON = genericToJSON optionsGithubContent
+
+optionsGithubContent :: Options
+optionsGithubContent =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubContentName", "name")
+      , ("githubContentSha", "sha")
+      , ("githubContentUnderscoreclass", "_class")
+      , ("githubContentRepo", "repo")
+      , ("githubContentSize", "size")
+      , ("githubContentOwner", "owner")
+      , ("githubContentPath", "path")
+      , ("githubContentBase64Data", "base64Data")
+      ]
 
 
 -- | 
@@ -488,9 +871,21 @@ data GithubFile = GithubFile
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubFile where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubFile")
+  parseJSON = genericParseJSON optionsGithubFile
 instance ToJSON GithubFile where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubFile")
+  toJSON = genericToJSON optionsGithubFile
+
+optionsGithubFile :: Options
+optionsGithubFile =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubFileContent", "content")
+      , ("githubFileUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -502,9 +897,23 @@ data GithubOrganization = GithubOrganization
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubOrganization where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubOrganization")
+  parseJSON = genericParseJSON optionsGithubOrganization
 instance ToJSON GithubOrganization where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubOrganization")
+  toJSON = genericToJSON optionsGithubOrganization
+
+optionsGithubOrganization :: Options
+optionsGithubOrganization =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubOrganizationUnderscoreclass", "_class")
+      , ("githubOrganizationUnderscorelinks", "_links")
+      , ("githubOrganizationJenkinsOrganizationPipeline", "jenkinsOrganizationPipeline")
+      , ("githubOrganizationName", "name")
+      ]
 
 
 -- | 
@@ -515,9 +924,22 @@ data GithubOrganizationlinks = GithubOrganizationlinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubOrganizationlinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubOrganizationlinks")
+  parseJSON = genericParseJSON optionsGithubOrganizationlinks
 instance ToJSON GithubOrganizationlinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubOrganizationlinks")
+  toJSON = genericToJSON optionsGithubOrganizationlinks
+
+optionsGithubOrganizationlinks :: Options
+optionsGithubOrganizationlinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubOrganizationlinksRepositories", "repositories")
+      , ("githubOrganizationlinksSelf", "self")
+      , ("githubOrganizationlinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -531,9 +953,25 @@ data GithubRepositories = GithubRepositories
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRepositories where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositories")
+  parseJSON = genericParseJSON optionsGithubRepositories
 instance ToJSON GithubRepositories where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositories")
+  toJSON = genericToJSON optionsGithubRepositories
+
+optionsGithubRepositories :: Options
+optionsGithubRepositories =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRepositoriesUnderscoreclass", "_class")
+      , ("githubRepositoriesUnderscorelinks", "_links")
+      , ("githubRepositoriesItems", "items")
+      , ("githubRepositoriesLastPage", "lastPage")
+      , ("githubRepositoriesNextPage", "nextPage")
+      , ("githubRepositoriesPageSize", "pageSize")
+      ]
 
 
 -- | 
@@ -543,9 +981,21 @@ data GithubRepositorieslinks = GithubRepositorieslinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRepositorieslinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositorieslinks")
+  parseJSON = genericParseJSON optionsGithubRepositorieslinks
 instance ToJSON GithubRepositorieslinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositorieslinks")
+  toJSON = genericToJSON optionsGithubRepositorieslinks
+
+optionsGithubRepositorieslinks :: Options
+optionsGithubRepositorieslinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRepositorieslinksSelf", "self")
+      , ("githubRepositorieslinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -561,9 +1011,27 @@ data GithubRepository = GithubRepository
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRepository where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepository")
+  parseJSON = genericParseJSON optionsGithubRepository
 instance ToJSON GithubRepository where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepository")
+  toJSON = genericToJSON optionsGithubRepository
+
+optionsGithubRepository :: Options
+optionsGithubRepository =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRepositoryUnderscoreclass", "_class")
+      , ("githubRepositoryUnderscorelinks", "_links")
+      , ("githubRepositoryDefaultBranch", "defaultBranch")
+      , ("githubRepositoryDescription", "description")
+      , ("githubRepositoryName", "name")
+      , ("githubRepositoryPermissions", "permissions")
+      , ("githubRepositoryPrivate", "private")
+      , ("githubRepositoryFullName", "fullName")
+      ]
 
 
 -- | 
@@ -573,9 +1041,21 @@ data GithubRepositorylinks = GithubRepositorylinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRepositorylinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositorylinks")
+  parseJSON = genericParseJSON optionsGithubRepositorylinks
 instance ToJSON GithubRepositorylinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositorylinks")
+  toJSON = genericToJSON optionsGithubRepositorylinks
+
+optionsGithubRepositorylinks :: Options
+optionsGithubRepositorylinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRepositorylinksSelf", "self")
+      , ("githubRepositorylinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -587,9 +1067,23 @@ data GithubRepositorypermissions = GithubRepositorypermissions
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRepositorypermissions where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRepositorypermissions")
+  parseJSON = genericParseJSON optionsGithubRepositorypermissions
 instance ToJSON GithubRepositorypermissions where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRepositorypermissions")
+  toJSON = genericToJSON optionsGithubRepositorypermissions
+
+optionsGithubRepositorypermissions :: Options
+optionsGithubRepositorypermissions =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRepositorypermissionsAdmin", "admin")
+      , ("githubRepositorypermissionsPush", "push")
+      , ("githubRepositorypermissionsPull", "pull")
+      , ("githubRepositorypermissionsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -600,9 +1094,22 @@ data GithubRespositoryContainer = GithubRespositoryContainer
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRespositoryContainer where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRespositoryContainer")
+  parseJSON = genericParseJSON optionsGithubRespositoryContainer
 instance ToJSON GithubRespositoryContainer where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRespositoryContainer")
+  toJSON = genericToJSON optionsGithubRespositoryContainer
+
+optionsGithubRespositoryContainer :: Options
+optionsGithubRespositoryContainer =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRespositoryContainerUnderscoreclass", "_class")
+      , ("githubRespositoryContainerUnderscorelinks", "_links")
+      , ("githubRespositoryContainerRepositories", "repositories")
+      ]
 
 
 -- | 
@@ -612,9 +1119,21 @@ data GithubRespositoryContainerlinks = GithubRespositoryContainerlinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubRespositoryContainerlinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubRespositoryContainerlinks")
+  parseJSON = genericParseJSON optionsGithubRespositoryContainerlinks
 instance ToJSON GithubRespositoryContainerlinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubRespositoryContainerlinks")
+  toJSON = genericToJSON optionsGithubRespositoryContainerlinks
+
+optionsGithubRespositoryContainerlinks :: Options
+optionsGithubRespositoryContainerlinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubRespositoryContainerlinksSelf", "self")
+      , ("githubRespositoryContainerlinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -627,9 +1146,24 @@ data GithubScm = GithubScm
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubScm where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubScm")
+  parseJSON = genericParseJSON optionsGithubScm
 instance ToJSON GithubScm where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubScm")
+  toJSON = genericToJSON optionsGithubScm
+
+optionsGithubScm :: Options
+optionsGithubScm =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubScmUnderscoreclass", "_class")
+      , ("githubScmUnderscorelinks", "_links")
+      , ("githubScmCredentialId", "credentialId")
+      , ("githubScmId", "id")
+      , ("githubScmUri", "uri")
+      ]
 
 
 -- | 
@@ -639,9 +1173,21 @@ data GithubScmlinks = GithubScmlinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON GithubScmlinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "githubScmlinks")
+  parseJSON = genericParseJSON optionsGithubScmlinks
 instance ToJSON GithubScmlinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "githubScmlinks")
+  toJSON = genericToJSON optionsGithubScmlinks
+
+optionsGithubScmlinks :: Options
+optionsGithubScmlinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("githubScmlinksSelf", "self")
+      , ("githubScmlinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -664,9 +1210,34 @@ data Hudson = Hudson
   } deriving (Show, Eq, Generic)
 
 instance FromJSON Hudson where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudson")
+  parseJSON = genericParseJSON optionsHudson
 instance ToJSON Hudson where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "hudson")
+  toJSON = genericToJSON optionsHudson
+
+optionsHudson :: Options
+optionsHudson =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("hudsonUnderscoreclass", "_class")
+      , ("hudsonAssignedLabels", "assignedLabels")
+      , ("hudsonMode", "mode")
+      , ("hudsonNodeDescription", "nodeDescription")
+      , ("hudsonNodeName", "nodeName")
+      , ("hudsonNumExecutors", "numExecutors")
+      , ("hudsonDescription", "description")
+      , ("hudsonJobs", "jobs")
+      , ("hudsonPrimaryView", "primaryView")
+      , ("hudsonQuietingDown", "quietingDown")
+      , ("hudsonSlaveAgentPort", "slaveAgentPort")
+      , ("hudsonUnlabeledLoad", "unlabeledLoad")
+      , ("hudsonUseCrumbs", "useCrumbs")
+      , ("hudsonUseSecurity", "useSecurity")
+      , ("hudsonViews", "views")
+      ]
 
 
 -- | 
@@ -690,9 +1261,35 @@ data HudsonMasterComputer = HudsonMasterComputer
   } deriving (Show, Eq, Generic)
 
 instance FromJSON HudsonMasterComputer where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonMasterComputer")
+  parseJSON = genericParseJSON optionsHudsonMasterComputer
 instance ToJSON HudsonMasterComputer where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonMasterComputer")
+  toJSON = genericToJSON optionsHudsonMasterComputer
+
+optionsHudsonMasterComputer :: Options
+optionsHudsonMasterComputer =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("hudsonMasterComputerUnderscoreclass", "_class")
+      , ("hudsonMasterComputerDisplayName", "displayName")
+      , ("hudsonMasterComputerExecutors", "executors")
+      , ("hudsonMasterComputerIcon", "icon")
+      , ("hudsonMasterComputerIconClassName", "iconClassName")
+      , ("hudsonMasterComputerIdle", "idle")
+      , ("hudsonMasterComputerJnlpAgent", "jnlpAgent")
+      , ("hudsonMasterComputerLaunchSupported", "launchSupported")
+      , ("hudsonMasterComputerLoadStatistics", "loadStatistics")
+      , ("hudsonMasterComputerManualLaunchAllowed", "manualLaunchAllowed")
+      , ("hudsonMasterComputerMonitorData", "monitorData")
+      , ("hudsonMasterComputerNumExecutors", "numExecutors")
+      , ("hudsonMasterComputerOffline", "offline")
+      , ("hudsonMasterComputerOfflineCause", "offlineCause")
+      , ("hudsonMasterComputerOfflineCauseReason", "offlineCauseReason")
+      , ("hudsonMasterComputerTemporarilyOffline", "temporarilyOffline")
+      ]
 
 
 -- | 
@@ -706,9 +1303,25 @@ data HudsonMasterComputerexecutors = HudsonMasterComputerexecutors
   } deriving (Show, Eq, Generic)
 
 instance FromJSON HudsonMasterComputerexecutors where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonMasterComputerexecutors")
+  parseJSON = genericParseJSON optionsHudsonMasterComputerexecutors
 instance ToJSON HudsonMasterComputerexecutors where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonMasterComputerexecutors")
+  toJSON = genericToJSON optionsHudsonMasterComputerexecutors
+
+optionsHudsonMasterComputerexecutors :: Options
+optionsHudsonMasterComputerexecutors =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("hudsonMasterComputerexecutorsCurrentExecutable", "currentExecutable")
+      , ("hudsonMasterComputerexecutorsIdle", "idle")
+      , ("hudsonMasterComputerexecutorsLikelyStuck", "likelyStuck")
+      , ("hudsonMasterComputerexecutorsNumber", "number")
+      , ("hudsonMasterComputerexecutorsProgress", "progress")
+      , ("hudsonMasterComputerexecutorsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -723,9 +1336,26 @@ data HudsonMasterComputermonitorData = HudsonMasterComputermonitorData
   } deriving (Show, Eq, Generic)
 
 instance FromJSON HudsonMasterComputermonitorData where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonMasterComputermonitorData")
+  parseJSON = genericParseJSON optionsHudsonMasterComputermonitorData
 instance ToJSON HudsonMasterComputermonitorData where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonMasterComputermonitorData")
+  toJSON = genericToJSON optionsHudsonMasterComputermonitorData
+
+optionsHudsonMasterComputermonitorData :: Options
+optionsHudsonMasterComputermonitorData =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodSwapSpaceMonitor", "hudson.node_monitors.SwapSpaceMonitor")
+      , ("hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodTemporarySpaceMonitor", "hudson.node_monitors.TemporarySpaceMonitor")
+      , ("hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodDiskSpaceMonitor", "hudson.node_monitors.DiskSpaceMonitor")
+      , ("hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodArchitectureMonitor", "hudson.node_monitors.ArchitectureMonitor")
+      , ("hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodResponseTimeMonitor", "hudson.node_monitors.ResponseTimeMonitor")
+      , ("hudsonMasterComputermonitorDataHudsonPeriodnodeUnderscoremonitorsPeriodClockMonitor", "hudson.node_monitors.ClockMonitor")
+      , ("hudsonMasterComputermonitorDataUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -734,9 +1364,20 @@ data HudsonassignedLabels = HudsonassignedLabels
   } deriving (Show, Eq, Generic)
 
 instance FromJSON HudsonassignedLabels where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "hudsonassignedLabels")
+  parseJSON = genericParseJSON optionsHudsonassignedLabels
 instance ToJSON HudsonassignedLabels where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "hudsonassignedLabels")
+  toJSON = genericToJSON optionsHudsonassignedLabels
+
+optionsHudsonassignedLabels :: Options
+optionsHudsonassignedLabels =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("hudsonassignedLabelsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -751,9 +1392,26 @@ data InputStepImpl = InputStepImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON InputStepImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "inputStepImpl")
+  parseJSON = genericParseJSON optionsInputStepImpl
 instance ToJSON InputStepImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "inputStepImpl")
+  toJSON = genericToJSON optionsInputStepImpl
+
+optionsInputStepImpl :: Options
+optionsInputStepImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("inputStepImplUnderscoreclass", "_class")
+      , ("inputStepImplUnderscorelinks", "_links")
+      , ("inputStepImplId", "id")
+      , ("inputStepImplMessage", "message")
+      , ("inputStepImplOk", "ok")
+      , ("inputStepImplParameters", "parameters")
+      , ("inputStepImplSubmitter", "submitter")
+      ]
 
 
 -- | 
@@ -763,9 +1421,21 @@ data InputStepImpllinks = InputStepImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON InputStepImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "inputStepImpllinks")
+  parseJSON = genericParseJSON optionsInputStepImpllinks
 instance ToJSON InputStepImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "inputStepImpllinks")
+  toJSON = genericToJSON optionsInputStepImpllinks
+
+optionsInputStepImpllinks :: Options
+optionsInputStepImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("inputStepImpllinksSelf", "self")
+      , ("inputStepImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -774,9 +1444,20 @@ data Label1 = Label1
   } deriving (Show, Eq, Generic)
 
 instance FromJSON Label1 where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "label1")
+  parseJSON = genericParseJSON optionsLabel1
 instance ToJSON Label1 where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "label1")
+  toJSON = genericToJSON optionsLabel1
+
+optionsLabel1 :: Options
+optionsLabel1 =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("label1Underscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -786,9 +1467,21 @@ data Link = Link
   } deriving (Show, Eq, Generic)
 
 instance FromJSON Link where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "link")
+  parseJSON = genericParseJSON optionsLink
 instance ToJSON Link where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "link")
+  toJSON = genericToJSON optionsLink
+
+optionsLink :: Options
+optionsLink =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("linkUnderscoreclass", "_class")
+      , ("linkHref", "href")
+      ]
 
 
 -- | 
@@ -801,9 +1494,24 @@ data ListView = ListView
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ListView where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "listView")
+  parseJSON = genericParseJSON optionsListView
 instance ToJSON ListView where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "listView")
+  toJSON = genericToJSON optionsListView
+
+optionsListView :: Options
+optionsListView =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("listViewUnderscoreclass", "_class")
+      , ("listViewDescription", "description")
+      , ("listViewJobs", "jobs")
+      , ("listViewName", "name")
+      , ("listViewUrl", "url")
+      ]
 
 
 -- | 
@@ -825,9 +1533,33 @@ data MultibranchPipeline = MultibranchPipeline
   } deriving (Show, Eq, Generic)
 
 instance FromJSON MultibranchPipeline where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "multibranchPipeline")
+  parseJSON = genericParseJSON optionsMultibranchPipeline
 instance ToJSON MultibranchPipeline where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "multibranchPipeline")
+  toJSON = genericToJSON optionsMultibranchPipeline
+
+optionsMultibranchPipeline :: Options
+optionsMultibranchPipeline =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("multibranchPipelineDisplayName", "displayName")
+      , ("multibranchPipelineEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("multibranchPipelineLatestRun", "latestRun")
+      , ("multibranchPipelineName", "name")
+      , ("multibranchPipelineOrganization", "organization")
+      , ("multibranchPipelineWeatherScore", "weatherScore")
+      , ("multibranchPipelineBranchNames", "branchNames")
+      , ("multibranchPipelineNumberOfFailingBranches", "numberOfFailingBranches")
+      , ("multibranchPipelineNumberOfFailingPullRequests", "numberOfFailingPullRequests")
+      , ("multibranchPipelineNumberOfSuccessfulBranches", "numberOfSuccessfulBranches")
+      , ("multibranchPipelineNumberOfSuccessfulPullRequests", "numberOfSuccessfulPullRequests")
+      , ("multibranchPipelineTotalNumberOfBranches", "totalNumberOfBranches")
+      , ("multibranchPipelineTotalNumberOfPullRequests", "totalNumberOfPullRequests")
+      , ("multibranchPipelineUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -836,9 +1568,20 @@ data NullSCM = NullSCM
   } deriving (Show, Eq, Generic)
 
 instance FromJSON NullSCM where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "nullSCM")
+  parseJSON = genericParseJSON optionsNullSCM
 instance ToJSON NullSCM where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "nullSCM")
+  toJSON = genericToJSON optionsNullSCM
+
+optionsNullSCM :: Options
+optionsNullSCM =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("nullSCMUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -848,9 +1591,21 @@ data Organisation = Organisation
   } deriving (Show, Eq, Generic)
 
 instance FromJSON Organisation where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "organisation")
+  parseJSON = genericParseJSON optionsOrganisation
 instance ToJSON Organisation where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "organisation")
+  toJSON = genericToJSON optionsOrganisation
+
+optionsOrganisation :: Options
+optionsOrganisation =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("organisationUnderscoreclass", "_class")
+      , ("organisationName", "name")
+      ]
 
 
 -- | 
@@ -866,9 +1621,27 @@ data Pipeline = Pipeline
   } deriving (Show, Eq, Generic)
 
 instance FromJSON Pipeline where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipeline")
+  parseJSON = genericParseJSON optionsPipeline
 instance ToJSON Pipeline where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipeline")
+  toJSON = genericToJSON optionsPipeline
+
+optionsPipeline :: Options
+optionsPipeline =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineUnderscoreclass", "_class")
+      , ("pipelineOrganization", "organization")
+      , ("pipelineName", "name")
+      , ("pipelineDisplayName", "displayName")
+      , ("pipelineFullName", "fullName")
+      , ("pipelineWeatherScore", "weatherScore")
+      , ("pipelineEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineLatestRun", "latestRun")
+      ]
 
 
 -- | 
@@ -891,9 +1664,34 @@ data PipelineActivity = PipelineActivity
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineActivity where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineActivity")
+  parseJSON = genericParseJSON optionsPipelineActivity
 instance ToJSON PipelineActivity where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineActivity")
+  toJSON = genericToJSON optionsPipelineActivity
+
+optionsPipelineActivity :: Options
+optionsPipelineActivity =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineActivityUnderscoreclass", "_class")
+      , ("pipelineActivityArtifacts", "artifacts")
+      , ("pipelineActivityDurationInMillis", "durationInMillis")
+      , ("pipelineActivityEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineActivityEnQueueTime", "enQueueTime")
+      , ("pipelineActivityEndTime", "endTime")
+      , ("pipelineActivityId", "id")
+      , ("pipelineActivityOrganization", "organization")
+      , ("pipelineActivityPipeline", "pipeline")
+      , ("pipelineActivityResult", "result")
+      , ("pipelineActivityRunSummary", "runSummary")
+      , ("pipelineActivityStartTime", "startTime")
+      , ("pipelineActivityState", "state")
+      , ("pipelineActivityType", "type")
+      , ("pipelineActivityCommitId", "commitId")
+      ]
 
 
 -- | 
@@ -905,9 +1703,23 @@ data PipelineActivityartifacts = PipelineActivityartifacts
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineActivityartifacts where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineActivityartifacts")
+  parseJSON = genericParseJSON optionsPipelineActivityartifacts
 instance ToJSON PipelineActivityartifacts where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineActivityartifacts")
+  toJSON = genericToJSON optionsPipelineActivityartifacts
+
+optionsPipelineActivityartifacts :: Options
+optionsPipelineActivityartifacts =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineActivityartifactsName", "name")
+      , ("pipelineActivityartifactsSize", "size")
+      , ("pipelineActivityartifactsUrl", "url")
+      , ("pipelineActivityartifactsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -924,9 +1736,28 @@ data PipelineBranchesitem = PipelineBranchesitem
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineBranchesitem where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitem")
+  parseJSON = genericParseJSON optionsPipelineBranchesitem
 instance ToJSON PipelineBranchesitem where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitem")
+  toJSON = genericToJSON optionsPipelineBranchesitem
+
+optionsPipelineBranchesitem :: Options
+optionsPipelineBranchesitem =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineBranchesitemDisplayName", "displayName")
+      , ("pipelineBranchesitemEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineBranchesitemName", "name")
+      , ("pipelineBranchesitemWeatherScore", "weatherScore")
+      , ("pipelineBranchesitemLatestRun", "latestRun")
+      , ("pipelineBranchesitemOrganization", "organization")
+      , ("pipelineBranchesitemPullRequest", "pullRequest")
+      , ("pipelineBranchesitemTotalNumberOfPullRequests", "totalNumberOfPullRequests")
+      , ("pipelineBranchesitemUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -948,9 +1779,33 @@ data PipelineBranchesitemlatestRun = PipelineBranchesitemlatestRun
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineBranchesitemlatestRun where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitemlatestRun")
+  parseJSON = genericParseJSON optionsPipelineBranchesitemlatestRun
 instance ToJSON PipelineBranchesitemlatestRun where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitemlatestRun")
+  toJSON = genericToJSON optionsPipelineBranchesitemlatestRun
+
+optionsPipelineBranchesitemlatestRun :: Options
+optionsPipelineBranchesitemlatestRun =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineBranchesitemlatestRunDurationInMillis", "durationInMillis")
+      , ("pipelineBranchesitemlatestRunEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineBranchesitemlatestRunEnQueueTime", "enQueueTime")
+      , ("pipelineBranchesitemlatestRunEndTime", "endTime")
+      , ("pipelineBranchesitemlatestRunId", "id")
+      , ("pipelineBranchesitemlatestRunOrganization", "organization")
+      , ("pipelineBranchesitemlatestRunPipeline", "pipeline")
+      , ("pipelineBranchesitemlatestRunResult", "result")
+      , ("pipelineBranchesitemlatestRunRunSummary", "runSummary")
+      , ("pipelineBranchesitemlatestRunStartTime", "startTime")
+      , ("pipelineBranchesitemlatestRunState", "state")
+      , ("pipelineBranchesitemlatestRunType", "type")
+      , ("pipelineBranchesitemlatestRunCommitId", "commitId")
+      , ("pipelineBranchesitemlatestRunUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -964,9 +1819,25 @@ data PipelineBranchesitempullRequest = PipelineBranchesitempullRequest
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineBranchesitempullRequest where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitempullRequest")
+  parseJSON = genericParseJSON optionsPipelineBranchesitempullRequest
 instance ToJSON PipelineBranchesitempullRequest where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitempullRequest")
+  toJSON = genericToJSON optionsPipelineBranchesitempullRequest
+
+optionsPipelineBranchesitempullRequest :: Options
+optionsPipelineBranchesitempullRequest =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineBranchesitempullRequestUnderscorelinks", "_links")
+      , ("pipelineBranchesitempullRequestAuthor", "author")
+      , ("pipelineBranchesitempullRequestId", "id")
+      , ("pipelineBranchesitempullRequestTitle", "title")
+      , ("pipelineBranchesitempullRequestUrl", "url")
+      , ("pipelineBranchesitempullRequestUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -976,9 +1847,21 @@ data PipelineBranchesitempullRequestlinks = PipelineBranchesitempullRequestlinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineBranchesitempullRequestlinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineBranchesitempullRequestlinks")
+  parseJSON = genericParseJSON optionsPipelineBranchesitempullRequestlinks
 instance ToJSON PipelineBranchesitempullRequestlinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineBranchesitempullRequestlinks")
+  toJSON = genericToJSON optionsPipelineBranchesitempullRequestlinks
+
+optionsPipelineBranchesitempullRequestlinks :: Options
+optionsPipelineBranchesitempullRequestlinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineBranchesitempullRequestlinksSelf", "self")
+      , ("pipelineBranchesitempullRequestlinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -993,9 +1876,26 @@ data PipelineFolderImpl = PipelineFolderImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineFolderImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineFolderImpl")
+  parseJSON = genericParseJSON optionsPipelineFolderImpl
 instance ToJSON PipelineFolderImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineFolderImpl")
+  toJSON = genericToJSON optionsPipelineFolderImpl
+
+optionsPipelineFolderImpl :: Options
+optionsPipelineFolderImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineFolderImplUnderscoreclass", "_class")
+      , ("pipelineFolderImplDisplayName", "displayName")
+      , ("pipelineFolderImplFullName", "fullName")
+      , ("pipelineFolderImplName", "name")
+      , ("pipelineFolderImplOrganization", "organization")
+      , ("pipelineFolderImplNumberOfFolders", "numberOfFolders")
+      , ("pipelineFolderImplNumberOfPipelines", "numberOfPipelines")
+      ]
 
 
 -- | 
@@ -1012,9 +1912,28 @@ data PipelineImpl = PipelineImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineImpl")
+  parseJSON = genericParseJSON optionsPipelineImpl
 instance ToJSON PipelineImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineImpl")
+  toJSON = genericToJSON optionsPipelineImpl
+
+optionsPipelineImpl :: Options
+optionsPipelineImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineImplUnderscoreclass", "_class")
+      , ("pipelineImplDisplayName", "displayName")
+      , ("pipelineImplEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineImplFullName", "fullName")
+      , ("pipelineImplLatestRun", "latestRun")
+      , ("pipelineImplName", "name")
+      , ("pipelineImplOrganization", "organization")
+      , ("pipelineImplWeatherScore", "weatherScore")
+      , ("pipelineImplUnderscorelinks", "_links")
+      ]
 
 
 -- | 
@@ -1027,9 +1946,24 @@ data PipelineImpllinks = PipelineImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineImpllinks")
+  parseJSON = genericParseJSON optionsPipelineImpllinks
 instance ToJSON PipelineImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineImpllinks")
+  toJSON = genericToJSON optionsPipelineImpllinks
+
+optionsPipelineImpllinks :: Options
+optionsPipelineImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineImpllinksRuns", "runs")
+      , ("pipelineImpllinksSelf", "self")
+      , ("pipelineImpllinksQueue", "queue")
+      , ("pipelineImpllinksActions", "actions")
+      , ("pipelineImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1052,9 +1986,34 @@ data PipelineRun = PipelineRun
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineRun where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRun")
+  parseJSON = genericParseJSON optionsPipelineRun
 instance ToJSON PipelineRun where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRun")
+  toJSON = genericToJSON optionsPipelineRun
+
+optionsPipelineRun :: Options
+optionsPipelineRun =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineRunUnderscoreclass", "_class")
+      , ("pipelineRunArtifacts", "artifacts")
+      , ("pipelineRunDurationInMillis", "durationInMillis")
+      , ("pipelineRunEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineRunEnQueueTime", "enQueueTime")
+      , ("pipelineRunEndTime", "endTime")
+      , ("pipelineRunId", "id")
+      , ("pipelineRunOrganization", "organization")
+      , ("pipelineRunPipeline", "pipeline")
+      , ("pipelineRunResult", "result")
+      , ("pipelineRunRunSummary", "runSummary")
+      , ("pipelineRunStartTime", "startTime")
+      , ("pipelineRunState", "state")
+      , ("pipelineRunType", "type")
+      , ("pipelineRunCommitId", "commitId")
+      ]
 
 
 -- | 
@@ -1077,9 +2036,34 @@ data PipelineRunImpl = PipelineRunImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineRunImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunImpl")
+  parseJSON = genericParseJSON optionsPipelineRunImpl
 instance ToJSON PipelineRunImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunImpl")
+  toJSON = genericToJSON optionsPipelineRunImpl
+
+optionsPipelineRunImpl :: Options
+optionsPipelineRunImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineRunImplUnderscoreclass", "_class")
+      , ("pipelineRunImplUnderscorelinks", "_links")
+      , ("pipelineRunImplDurationInMillis", "durationInMillis")
+      , ("pipelineRunImplEnQueueTime", "enQueueTime")
+      , ("pipelineRunImplEndTime", "endTime")
+      , ("pipelineRunImplEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelineRunImplId", "id")
+      , ("pipelineRunImplOrganization", "organization")
+      , ("pipelineRunImplPipeline", "pipeline")
+      , ("pipelineRunImplResult", "result")
+      , ("pipelineRunImplRunSummary", "runSummary")
+      , ("pipelineRunImplStartTime", "startTime")
+      , ("pipelineRunImplState", "state")
+      , ("pipelineRunImplType", "type")
+      , ("pipelineRunImplCommitId", "commitId")
+      ]
 
 
 -- | 
@@ -1093,9 +2077,25 @@ data PipelineRunImpllinks = PipelineRunImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineRunImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunImpllinks")
+  parseJSON = genericParseJSON optionsPipelineRunImpllinks
 instance ToJSON PipelineRunImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunImpllinks")
+  toJSON = genericToJSON optionsPipelineRunImpllinks
+
+optionsPipelineRunImpllinks :: Options
+optionsPipelineRunImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineRunImpllinksNodes", "nodes")
+      , ("pipelineRunImpllinksLog", "log")
+      , ("pipelineRunImpllinksSelf", "self")
+      , ("pipelineRunImpllinksActions", "actions")
+      , ("pipelineRunImpllinksSteps", "steps")
+      , ("pipelineRunImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1111,9 +2111,27 @@ data PipelineRunNode = PipelineRunNode
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineRunNode where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunNode")
+  parseJSON = genericParseJSON optionsPipelineRunNode
 instance ToJSON PipelineRunNode where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunNode")
+  toJSON = genericToJSON optionsPipelineRunNode
+
+optionsPipelineRunNode :: Options
+optionsPipelineRunNode =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineRunNodeUnderscoreclass", "_class")
+      , ("pipelineRunNodeDisplayName", "displayName")
+      , ("pipelineRunNodeDurationInMillis", "durationInMillis")
+      , ("pipelineRunNodeEdges", "edges")
+      , ("pipelineRunNodeId", "id")
+      , ("pipelineRunNodeResult", "result")
+      , ("pipelineRunNodeStartTime", "startTime")
+      , ("pipelineRunNodeState", "state")
+      ]
 
 
 -- | 
@@ -1123,9 +2141,21 @@ data PipelineRunNodeedges = PipelineRunNodeedges
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineRunNodeedges where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunNodeedges")
+  parseJSON = genericParseJSON optionsPipelineRunNodeedges
 instance ToJSON PipelineRunNodeedges where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunNodeedges")
+  toJSON = genericToJSON optionsPipelineRunNodeedges
+
+optionsPipelineRunNodeedges :: Options
+optionsPipelineRunNodeedges =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineRunNodeedgesId", "id")
+      , ("pipelineRunNodeedgesUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1137,9 +2167,23 @@ data PipelineRunartifacts = PipelineRunartifacts
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineRunartifacts where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineRunartifacts")
+  parseJSON = genericParseJSON optionsPipelineRunartifacts
 instance ToJSON PipelineRunartifacts where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineRunartifacts")
+  toJSON = genericToJSON optionsPipelineRunartifacts
+
+optionsPipelineRunartifacts :: Options
+optionsPipelineRunartifacts =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineRunartifactsName", "name")
+      , ("pipelineRunartifactsSize", "size")
+      , ("pipelineRunartifactsUrl", "url")
+      , ("pipelineRunartifactsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1156,9 +2200,28 @@ data PipelineStepImpl = PipelineStepImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineStepImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineStepImpl")
+  parseJSON = genericParseJSON optionsPipelineStepImpl
 instance ToJSON PipelineStepImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineStepImpl")
+  toJSON = genericToJSON optionsPipelineStepImpl
+
+optionsPipelineStepImpl :: Options
+optionsPipelineStepImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineStepImplUnderscoreclass", "_class")
+      , ("pipelineStepImplUnderscorelinks", "_links")
+      , ("pipelineStepImplDisplayName", "displayName")
+      , ("pipelineStepImplDurationInMillis", "durationInMillis")
+      , ("pipelineStepImplId", "id")
+      , ("pipelineStepImplInput", "input")
+      , ("pipelineStepImplResult", "result")
+      , ("pipelineStepImplStartTime", "startTime")
+      , ("pipelineStepImplState", "state")
+      ]
 
 
 -- | 
@@ -1169,9 +2232,22 @@ data PipelineStepImpllinks = PipelineStepImpllinks
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelineStepImpllinks where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelineStepImpllinks")
+  parseJSON = genericParseJSON optionsPipelineStepImpllinks
 instance ToJSON PipelineStepImpllinks where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelineStepImpllinks")
+  toJSON = genericToJSON optionsPipelineStepImpllinks
+
+optionsPipelineStepImpllinks :: Options
+optionsPipelineStepImpllinks =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelineStepImpllinksSelf", "self")
+      , ("pipelineStepImpllinksActions", "actions")
+      , ("pipelineStepImpllinksUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1194,9 +2270,34 @@ data PipelinelatestRun = PipelinelatestRun
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelinelatestRun where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelinelatestRun")
+  parseJSON = genericParseJSON optionsPipelinelatestRun
 instance ToJSON PipelinelatestRun where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelinelatestRun")
+  toJSON = genericToJSON optionsPipelinelatestRun
+
+optionsPipelinelatestRun :: Options
+optionsPipelinelatestRun =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelinelatestRunArtifacts", "artifacts")
+      , ("pipelinelatestRunDurationInMillis", "durationInMillis")
+      , ("pipelinelatestRunEstimatedDurationInMillis", "estimatedDurationInMillis")
+      , ("pipelinelatestRunEnQueueTime", "enQueueTime")
+      , ("pipelinelatestRunEndTime", "endTime")
+      , ("pipelinelatestRunId", "id")
+      , ("pipelinelatestRunOrganization", "organization")
+      , ("pipelinelatestRunPipeline", "pipeline")
+      , ("pipelinelatestRunResult", "result")
+      , ("pipelinelatestRunRunSummary", "runSummary")
+      , ("pipelinelatestRunStartTime", "startTime")
+      , ("pipelinelatestRunState", "state")
+      , ("pipelinelatestRunType", "type")
+      , ("pipelinelatestRunCommitId", "commitId")
+      , ("pipelinelatestRunUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1208,9 +2309,23 @@ data PipelinelatestRunartifacts = PipelinelatestRunartifacts
   } deriving (Show, Eq, Generic)
 
 instance FromJSON PipelinelatestRunartifacts where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "pipelinelatestRunartifacts")
+  parseJSON = genericParseJSON optionsPipelinelatestRunartifacts
 instance ToJSON PipelinelatestRunartifacts where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "pipelinelatestRunartifacts")
+  toJSON = genericToJSON optionsPipelinelatestRunartifacts
+
+optionsPipelinelatestRunartifacts :: Options
+optionsPipelinelatestRunartifacts =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("pipelinelatestRunartifactsName", "name")
+      , ("pipelinelatestRunartifactsSize", "size")
+      , ("pipelinelatestRunartifactsUrl", "url")
+      , ("pipelinelatestRunartifactsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1220,9 +2335,21 @@ data Queue = Queue
   } deriving (Show, Eq, Generic)
 
 instance FromJSON Queue where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "queue")
+  parseJSON = genericParseJSON optionsQueue
 instance ToJSON Queue where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "queue")
+  toJSON = genericToJSON optionsQueue
+
+optionsQueue :: Options
+optionsQueue =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("queueUnderscoreclass", "_class")
+      , ("queueItems", "items")
+      ]
 
 
 -- | 
@@ -1242,9 +2369,31 @@ data QueueBlockedItem = QueueBlockedItem
   } deriving (Show, Eq, Generic)
 
 instance FromJSON QueueBlockedItem where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "queueBlockedItem")
+  parseJSON = genericParseJSON optionsQueueBlockedItem
 instance ToJSON QueueBlockedItem where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "queueBlockedItem")
+  toJSON = genericToJSON optionsQueueBlockedItem
+
+optionsQueueBlockedItem :: Options
+optionsQueueBlockedItem =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("queueBlockedItemUnderscoreclass", "_class")
+      , ("queueBlockedItemActions", "actions")
+      , ("queueBlockedItemBlocked", "blocked")
+      , ("queueBlockedItemBuildable", "buildable")
+      , ("queueBlockedItemId", "id")
+      , ("queueBlockedItemInQueueSince", "inQueueSince")
+      , ("queueBlockedItemParams", "params")
+      , ("queueBlockedItemStuck", "stuck")
+      , ("queueBlockedItemTask", "task")
+      , ("queueBlockedItemUrl", "url")
+      , ("queueBlockedItemWhy", "why")
+      , ("queueBlockedItemBuildableStartMilliseconds", "buildableStartMilliseconds")
+      ]
 
 
 -- | 
@@ -1257,9 +2406,24 @@ data QueueItemImpl = QueueItemImpl
   } deriving (Show, Eq, Generic)
 
 instance FromJSON QueueItemImpl where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "queueItemImpl")
+  parseJSON = genericParseJSON optionsQueueItemImpl
 instance ToJSON QueueItemImpl where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "queueItemImpl")
+  toJSON = genericToJSON optionsQueueItemImpl
+
+optionsQueueItemImpl :: Options
+optionsQueueItemImpl =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("queueItemImplUnderscoreclass", "_class")
+      , ("queueItemImplExpectedBuildNumber", "expectedBuildNumber")
+      , ("queueItemImplId", "id")
+      , ("queueItemImplPipeline", "pipeline")
+      , ("queueItemImplQueuedTime", "queuedTime")
+      ]
 
 
 -- | 
@@ -1280,9 +2444,32 @@ data QueueLeftItem = QueueLeftItem
   } deriving (Show, Eq, Generic)
 
 instance FromJSON QueueLeftItem where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "queueLeftItem")
+  parseJSON = genericParseJSON optionsQueueLeftItem
 instance ToJSON QueueLeftItem where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "queueLeftItem")
+  toJSON = genericToJSON optionsQueueLeftItem
+
+optionsQueueLeftItem :: Options
+optionsQueueLeftItem =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("queueLeftItemUnderscoreclass", "_class")
+      , ("queueLeftItemActions", "actions")
+      , ("queueLeftItemBlocked", "blocked")
+      , ("queueLeftItemBuildable", "buildable")
+      , ("queueLeftItemId", "id")
+      , ("queueLeftItemInQueueSince", "inQueueSince")
+      , ("queueLeftItemParams", "params")
+      , ("queueLeftItemStuck", "stuck")
+      , ("queueLeftItemTask", "task")
+      , ("queueLeftItemUrl", "url")
+      , ("queueLeftItemWhy", "why")
+      , ("queueLeftItemCancelled", "cancelled")
+      , ("queueLeftItemExecutable", "executable")
+      ]
 
 
 -- | 
@@ -1293,9 +2480,22 @@ data ResponseTimeMonitorData = ResponseTimeMonitorData
   } deriving (Show, Eq, Generic)
 
 instance FromJSON ResponseTimeMonitorData where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "responseTimeMonitorData")
+  parseJSON = genericParseJSON optionsResponseTimeMonitorData
 instance ToJSON ResponseTimeMonitorData where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "responseTimeMonitorData")
+  toJSON = genericToJSON optionsResponseTimeMonitorData
+
+optionsResponseTimeMonitorData :: Options
+optionsResponseTimeMonitorData =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("responseTimeMonitorDataUnderscoreclass", "_class")
+      , ("responseTimeMonitorDataTimestamp", "timestamp")
+      , ("responseTimeMonitorDataAverage", "average")
+      ]
 
 
 -- | 
@@ -1308,9 +2508,24 @@ data StringParameterDefinition = StringParameterDefinition
   } deriving (Show, Eq, Generic)
 
 instance FromJSON StringParameterDefinition where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "stringParameterDefinition")
+  parseJSON = genericParseJSON optionsStringParameterDefinition
 instance ToJSON StringParameterDefinition where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "stringParameterDefinition")
+  toJSON = genericToJSON optionsStringParameterDefinition
+
+optionsStringParameterDefinition :: Options
+optionsStringParameterDefinition =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("stringParameterDefinitionUnderscoreclass", "_class")
+      , ("stringParameterDefinitionDefaultParameterValue", "defaultParameterValue")
+      , ("stringParameterDefinitionDescription", "description")
+      , ("stringParameterDefinitionName", "name")
+      , ("stringParameterDefinitionType", "type")
+      ]
 
 
 -- | 
@@ -1321,9 +2536,22 @@ data StringParameterValue = StringParameterValue
   } deriving (Show, Eq, Generic)
 
 instance FromJSON StringParameterValue where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "stringParameterValue")
+  parseJSON = genericParseJSON optionsStringParameterValue
 instance ToJSON StringParameterValue where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "stringParameterValue")
+  toJSON = genericToJSON optionsStringParameterValue
+
+optionsStringParameterValue :: Options
+optionsStringParameterValue =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("stringParameterValueUnderscoreclass", "_class")
+      , ("stringParameterValueName", "name")
+      , ("stringParameterValueValue", "value")
+      ]
 
 
 -- | 
@@ -1336,9 +2564,24 @@ data SwapSpaceMonitorMemoryUsage2 = SwapSpaceMonitorMemoryUsage2
   } deriving (Show, Eq, Generic)
 
 instance FromJSON SwapSpaceMonitorMemoryUsage2 where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "swapSpaceMonitorMemoryUsage2")
+  parseJSON = genericParseJSON optionsSwapSpaceMonitorMemoryUsage2
 instance ToJSON SwapSpaceMonitorMemoryUsage2 where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "swapSpaceMonitorMemoryUsage2")
+  toJSON = genericToJSON optionsSwapSpaceMonitorMemoryUsage2
+
+optionsSwapSpaceMonitorMemoryUsage2 :: Options
+optionsSwapSpaceMonitorMemoryUsage2 =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("swapSpaceMonitorMemoryUsage2Underscoreclass", "_class")
+      , ("swapSpaceMonitorMemoryUsage2AvailablePhysicalMemory", "availablePhysicalMemory")
+      , ("swapSpaceMonitorMemoryUsage2AvailableSwapSpace", "availableSwapSpace")
+      , ("swapSpaceMonitorMemoryUsage2TotalPhysicalMemory", "totalPhysicalMemory")
+      , ("swapSpaceMonitorMemoryUsage2TotalSwapSpace", "totalSwapSpace")
+      ]
 
 
 -- | 
@@ -1347,9 +2590,20 @@ data UnlabeledLoadStatistics = UnlabeledLoadStatistics
   } deriving (Show, Eq, Generic)
 
 instance FromJSON UnlabeledLoadStatistics where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "unlabeledLoadStatistics")
+  parseJSON = genericParseJSON optionsUnlabeledLoadStatistics
 instance ToJSON UnlabeledLoadStatistics where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "unlabeledLoadStatistics")
+  toJSON = genericToJSON optionsUnlabeledLoadStatistics
+
+optionsUnlabeledLoadStatistics :: Options
+optionsUnlabeledLoadStatistics =
+  defaultOptions
+    { omitNothingFields  = True
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
+    }
+  where
+    table =
+      [ ("unlabeledLoadStatisticsUnderscoreclass", "_class")
+      ]
 
 
 -- | 
@@ -1362,69 +2616,22 @@ data User = User
   } deriving (Show, Eq, Generic)
 
 instance FromJSON User where
-  parseJSON = genericParseJSON (removeFieldLabelPrefix True "user")
+  parseJSON = genericParseJSON optionsUser
 instance ToJSON User where
-  toJSON = genericToJSON (removeFieldLabelPrefix False "user")
+  toJSON = genericToJSON optionsUser
 
-
-uncapitalize :: String -> String
-uncapitalize (c : cs) = Char.toLower c : cs
-uncapitalize [] = []
-
--- | Remove a field label prefix during JSON parsing.
---   Also perform any replacements for special characters.
---   The @forParsing@ parameter is to distinguish between the cases in which we're using this
---   to power a @FromJSON@ or a @ToJSON@ instance. In the first case we're parsing, and we want
---   to replace special characters with their quoted equivalents (because we cannot have special
---   chars in identifier names), while we want to do vice versa when sending data instead.
-removeFieldLabelPrefix :: Bool -> String -> Options
-removeFieldLabelPrefix forParsing prefix =
+optionsUser :: Options
+optionsUser =
   defaultOptions
     { omitNothingFields  = True
-    , fieldLabelModifier = uncapitalize . fromMaybe (error ("did not find prefix " ++ prefix)) . stripPrefix prefix . replaceSpecialChars
+    , fieldLabelModifier = \s -> fromMaybe ("did not find JSON field name for " ++ show s) $ List.lookup s table
     }
   where
-    replaceSpecialChars field = foldl (&) field (map mkCharReplacement specialChars)
-    specialChars =
-      [ ("$", "'Dollar")
-      , ("^", "'Caret")
-      , ("|", "'Pipe")
-      , ("=", "'Equal")
-      , ("*", "'Star")
-      , ("-", "'Dash")
-      , ("&", "'Ampersand")
-      , ("%", "'Percent")
-      , ("#", "'Hash")
-      , ("@", "'At")
-      , ("!", "'Exclamation")
-      , ("+", "'Plus")
-      , (":", "'Colon")
-      , (";", "'Semicolon")
-      , (">", "'GreaterThan")
-      , ("<", "'LessThan")
-      , (".", "'Period")
-      , ("_", "'Underscore")
-      , ("?", "'Question_Mark")
-      , (",", "'Comma")
-      , ("'", "'Quote")
-      , ("/", "'Slash")
-      , ("(", "'Left_Parenthesis")
-      , (")", "'Right_Parenthesis")
-      , ("{", "'Left_Curly_Bracket")
-      , ("}", "'Right_Curly_Bracket")
-      , ("[", "'Left_Square_Bracket")
-      , ("]", "'Right_Square_Bracket")
-      , ("~", "'Tilde")
-      , ("`", "'Backtick")
-      , ("<=", "'Less_Than_Or_Equal_To")
-      , (">=", "'Greater_Than_Or_Equal_To")
-      , ("!=", "'Not_Equal")
-      , ("~=", "'Tilde_Equal")
-      , ("\\", "'Back_Slash")
-      , ("\"", "'Double_Quote")
+    table =
+      [ ("userUnderscoreclass", "_class")
+      , ("userId", "id")
+      , ("userFullName", "fullName")
+      , ("userEmail", "email")
+      , ("userName", "name")
       ]
-    mkCharReplacement (replaceStr, searchStr) = T.unpack . replacer (T.pack searchStr) (T.pack replaceStr) . T.pack
-    replacer =
-      if forParsing
-        then flip T.replace
-        else T.replace
+

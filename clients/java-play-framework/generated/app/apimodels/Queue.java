@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.QueueBlockedItem;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * Queue
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class Queue   {
   @JsonProperty("_class")
@@ -21,7 +23,7 @@ public class Queue   {
   @JsonProperty("items")
   @Valid
 
-  private List<QueueBlockedItem> items = null;
+  private List<@Valid QueueBlockedItem> items = null;
 
   public Queue propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,16 +42,16 @@ public class Queue   {
     this.propertyClass = propertyClass;
   }
 
-  public Queue items(List<QueueBlockedItem> items) {
+  public Queue items(List<@Valid QueueBlockedItem> items) {
     this.items = items;
     return this;
   }
 
   public Queue addItemsItem(QueueBlockedItem itemsItem) {
-    if (items == null) {
-      items = new ArrayList<>();
+    if (this.items == null) {
+      this.items = new ArrayList<>();
     }
-    items.add(itemsItem);
+    this.items.add(itemsItem);
     return this;
   }
 
@@ -57,11 +59,11 @@ public class Queue   {
    * Get items
    * @return items
   **/
-  public List<QueueBlockedItem> getItems() {
+  public List<@Valid QueueBlockedItem> getItems() {
     return items;
   }
 
-  public void setItems(List<QueueBlockedItem> items) {
+  public void setItems(List<@Valid QueueBlockedItem> items) {
     this.items = items;
   }
 

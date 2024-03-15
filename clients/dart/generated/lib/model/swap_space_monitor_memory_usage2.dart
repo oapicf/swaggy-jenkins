@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -62,11 +62,11 @@ class SwapSpaceMonitorMemoryUsage2 {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SwapSpaceMonitorMemoryUsage2 &&
-     other.class_ == class_ &&
-     other.availablePhysicalMemory == availablePhysicalMemory &&
-     other.availableSwapSpace == availableSwapSpace &&
-     other.totalPhysicalMemory == totalPhysicalMemory &&
-     other.totalSwapSpace == totalSwapSpace;
+    other.class_ == class_ &&
+    other.availablePhysicalMemory == availablePhysicalMemory &&
+    other.availableSwapSpace == availableSwapSpace &&
+    other.totalPhysicalMemory == totalPhysicalMemory &&
+    other.totalSwapSpace == totalSwapSpace;
 
   @override
   int get hashCode =>
@@ -81,23 +81,33 @@ class SwapSpaceMonitorMemoryUsage2 {
   String toString() => 'SwapSpaceMonitorMemoryUsage2[class_=$class_, availablePhysicalMemory=$availablePhysicalMemory, availableSwapSpace=$availableSwapSpace, totalPhysicalMemory=$totalPhysicalMemory, totalSwapSpace=$totalSwapSpace]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (availablePhysicalMemory != null) {
-      _json[r'availablePhysicalMemory'] = availablePhysicalMemory;
+    if (this.availablePhysicalMemory != null) {
+      json[r'availablePhysicalMemory'] = this.availablePhysicalMemory;
+    } else {
+      json[r'availablePhysicalMemory'] = null;
     }
-    if (availableSwapSpace != null) {
-      _json[r'availableSwapSpace'] = availableSwapSpace;
+    if (this.availableSwapSpace != null) {
+      json[r'availableSwapSpace'] = this.availableSwapSpace;
+    } else {
+      json[r'availableSwapSpace'] = null;
     }
-    if (totalPhysicalMemory != null) {
-      _json[r'totalPhysicalMemory'] = totalPhysicalMemory;
+    if (this.totalPhysicalMemory != null) {
+      json[r'totalPhysicalMemory'] = this.totalPhysicalMemory;
+    } else {
+      json[r'totalPhysicalMemory'] = null;
     }
-    if (totalSwapSpace != null) {
-      _json[r'totalSwapSpace'] = totalSwapSpace;
+    if (this.totalSwapSpace != null) {
+      json[r'totalSwapSpace'] = this.totalSwapSpace;
+    } else {
+      json[r'totalSwapSpace'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [SwapSpaceMonitorMemoryUsage2] instance and imports its values from
@@ -129,7 +139,7 @@ class SwapSpaceMonitorMemoryUsage2 {
     return null;
   }
 
-  static List<SwapSpaceMonitorMemoryUsage2>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<SwapSpaceMonitorMemoryUsage2> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <SwapSpaceMonitorMemoryUsage2>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,12 +170,10 @@ class SwapSpaceMonitorMemoryUsage2 {
   static Map<String, List<SwapSpaceMonitorMemoryUsage2>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<SwapSpaceMonitorMemoryUsage2>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = SwapSpaceMonitorMemoryUsage2.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = SwapSpaceMonitorMemoryUsage2.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

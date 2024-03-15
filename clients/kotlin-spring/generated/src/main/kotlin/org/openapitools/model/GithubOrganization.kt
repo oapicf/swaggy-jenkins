@@ -24,17 +24,17 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubOrganization(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: GithubOrganizationlinks? = null,
+    @get:JsonProperty("_links") val links: GithubOrganizationlinks? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("jenkinsOrganizationPipeline") val jenkinsOrganizationPipeline: kotlin.Boolean? = null,
+    @get:JsonProperty("jenkinsOrganizationPipeline") val jenkinsOrganizationPipeline: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null
+    @get:JsonProperty("name") val name: kotlin.String? = null
 ) {
 
 }

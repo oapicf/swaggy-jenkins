@@ -18,19 +18,15 @@ import javax.annotation.Generated;
  * CauseUserIdCause
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CauseUserIdCause {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("shortDescription")
   private String shortDescription;
 
-  @JsonProperty("userId")
   private String userId;
 
-  @JsonProperty("userName")
   private String userName;
 
   public CauseUserIdCause propertyClass(String propertyClass) {
@@ -43,7 +39,8 @@ public class CauseUserIdCause {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -62,7 +59,8 @@ public class CauseUserIdCause {
    * @return shortDescription
   */
   
-  @Schema(name = "shortDescription", required = false)
+  @Schema(name = "shortDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("shortDescription")
   public String getShortDescription() {
     return shortDescription;
   }
@@ -81,7 +79,8 @@ public class CauseUserIdCause {
    * @return userId
   */
   
-  @Schema(name = "userId", required = false)
+  @Schema(name = "userId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("userId")
   public String getUserId() {
     return userId;
   }
@@ -100,7 +99,8 @@ public class CauseUserIdCause {
    * @return userName
   */
   
-  @Schema(name = "userName", required = false)
+  @Schema(name = "userName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("userName")
   public String getUserName() {
     return userName;
   }

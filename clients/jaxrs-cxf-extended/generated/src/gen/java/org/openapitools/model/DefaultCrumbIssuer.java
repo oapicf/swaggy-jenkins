@@ -92,6 +92,25 @@ public class DefaultCrumbIssuer  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    DefaultCrumbIssuer defaultCrumbIssuer = (DefaultCrumbIssuer) o;
+    return Objects.equals(this.propertyClass, defaultCrumbIssuer.propertyClass) &&
+        Objects.equals(this.crumb, defaultCrumbIssuer.crumb) &&
+        Objects.equals(this.crumbRequestField, defaultCrumbIssuer.crumbRequestField);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, crumb, crumbRequestField);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DefaultCrumbIssuer {\n");

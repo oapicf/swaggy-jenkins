@@ -10,6 +10,6 @@ namespace app\Models;
 class NullSCM {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

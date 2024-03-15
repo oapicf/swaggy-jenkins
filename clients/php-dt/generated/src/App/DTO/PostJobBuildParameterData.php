@@ -15,33 +15,29 @@ class PostJobBuildParameterData
      * @DTA\Data(subset="path", field="name")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * CSRF protection token
      * @DTA\Data(subset="header", field="Jenkins-Crumb", nullable=true)
      * @DTA\Strategy(subset="header", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="header", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $jenkins_crumb;
+    public ?string $jenkins_crumb = null;
 
     /**
      * @DTA\Data(subset="query", field="json")
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $json;
+    public ?string $json = null;
 
     /**
      * @DTA\Data(subset="query", field="token", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $token;
+    public ?string $token = null;
 
 }

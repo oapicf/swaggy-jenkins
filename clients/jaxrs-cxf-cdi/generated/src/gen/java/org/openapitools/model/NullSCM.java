@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -15,7 +16,6 @@ import java.util.Objects;
 public class NullSCM   {
   
   private String propertyClass;
-
 
   /**
    **/
@@ -45,7 +45,7 @@ public class NullSCM   {
       return false;
     }
     NullSCM nullSCM = (NullSCM) o;
-    return Objects.equals(propertyClass, nullSCM.propertyClass);
+    return Objects.equals(this.propertyClass, nullSCM.propertyClass);
   }
 
   @Override

@@ -159,7 +159,7 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
     // hudson_master_computerexecutors->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -172,7 +172,7 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
         likely_stuck ? likely_stuck->valueint : 0,
         number ? number->valuedouble : 0,
         progress ? progress->valuedouble : 0,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return hudson_master_computerexecutors_local_var;

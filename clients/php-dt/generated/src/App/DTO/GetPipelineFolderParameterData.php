@@ -15,17 +15,15 @@ class GetPipelineFolderParameterData
      * @DTA\Data(subset="path", field="folder")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $folder;
+    public ?string $folder = null;
 
     /**
      * Name of the organization
      * @DTA\Data(subset="path", field="organization")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
 }

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -119,18 +119,18 @@ class QueueBlockedItem {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is QueueBlockedItem &&
-     other.class_ == class_ &&
-     other.actions == actions &&
-     other.blocked == blocked &&
-     other.buildable == buildable &&
-     other.id == id &&
-     other.inQueueSince == inQueueSince &&
-     other.params == params &&
-     other.stuck == stuck &&
-     other.task == task &&
-     other.url == url &&
-     other.why == why &&
-     other.buildableStartMilliseconds == buildableStartMilliseconds;
+    other.class_ == class_ &&
+    _deepEquality.equals(other.actions, actions) &&
+    other.blocked == blocked &&
+    other.buildable == buildable &&
+    other.id == id &&
+    other.inQueueSince == inQueueSince &&
+    other.params == params &&
+    other.stuck == stuck &&
+    other.task == task &&
+    other.url == url &&
+    other.why == why &&
+    other.buildableStartMilliseconds == buildableStartMilliseconds;
 
   @override
   int get hashCode =>
@@ -152,42 +152,64 @@ class QueueBlockedItem {
   String toString() => 'QueueBlockedItem[class_=$class_, actions=$actions, blocked=$blocked, buildable=$buildable, id=$id, inQueueSince=$inQueueSince, params=$params, stuck=$stuck, task=$task, url=$url, why=$why, buildableStartMilliseconds=$buildableStartMilliseconds]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-      _json[r'actions'] = actions;
-    if (blocked != null) {
-      _json[r'blocked'] = blocked;
+      json[r'actions'] = this.actions;
+    if (this.blocked != null) {
+      json[r'blocked'] = this.blocked;
+    } else {
+      json[r'blocked'] = null;
     }
-    if (buildable != null) {
-      _json[r'buildable'] = buildable;
+    if (this.buildable != null) {
+      json[r'buildable'] = this.buildable;
+    } else {
+      json[r'buildable'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (inQueueSince != null) {
-      _json[r'inQueueSince'] = inQueueSince;
+    if (this.inQueueSince != null) {
+      json[r'inQueueSince'] = this.inQueueSince;
+    } else {
+      json[r'inQueueSince'] = null;
     }
-    if (params != null) {
-      _json[r'params'] = params;
+    if (this.params != null) {
+      json[r'params'] = this.params;
+    } else {
+      json[r'params'] = null;
     }
-    if (stuck != null) {
-      _json[r'stuck'] = stuck;
+    if (this.stuck != null) {
+      json[r'stuck'] = this.stuck;
+    } else {
+      json[r'stuck'] = null;
     }
-    if (task != null) {
-      _json[r'task'] = task;
+    if (this.task != null) {
+      json[r'task'] = this.task;
+    } else {
+      json[r'task'] = null;
     }
-    if (url != null) {
-      _json[r'url'] = url;
+    if (this.url != null) {
+      json[r'url'] = this.url;
+    } else {
+      json[r'url'] = null;
     }
-    if (why != null) {
-      _json[r'why'] = why;
+    if (this.why != null) {
+      json[r'why'] = this.why;
+    } else {
+      json[r'why'] = null;
     }
-    if (buildableStartMilliseconds != null) {
-      _json[r'buildableStartMilliseconds'] = buildableStartMilliseconds;
+    if (this.buildableStartMilliseconds != null) {
+      json[r'buildableStartMilliseconds'] = this.buildableStartMilliseconds;
+    } else {
+      json[r'buildableStartMilliseconds'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [QueueBlockedItem] instance and imports its values from
@@ -210,7 +232,7 @@ class QueueBlockedItem {
 
       return QueueBlockedItem(
         class_: mapValueOfType<String>(json, r'_class'),
-        actions: CauseAction.listFromJson(json[r'actions']) ?? const [],
+        actions: CauseAction.listFromJson(json[r'actions']),
         blocked: mapValueOfType<bool>(json, r'blocked'),
         buildable: mapValueOfType<bool>(json, r'buildable'),
         id: mapValueOfType<int>(json, r'id'),
@@ -226,7 +248,7 @@ class QueueBlockedItem {
     return null;
   }
 
-  static List<QueueBlockedItem>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<QueueBlockedItem> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <QueueBlockedItem>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -257,12 +279,10 @@ class QueueBlockedItem {
   static Map<String, List<QueueBlockedItem>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<QueueBlockedItem>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = QueueBlockedItem.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = QueueBlockedItem.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

@@ -148,6 +148,27 @@ public class GithubScm  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubScm githubScm = (GithubScm) o;
+    return Objects.equals(this.propertyClass, githubScm.propertyClass) &&
+        Objects.equals(this.links, githubScm.links) &&
+        Objects.equals(this.credentialId, githubScm.credentialId) &&
+        Objects.equals(this.id, githubScm.id) &&
+        Objects.equals(this.uri, githubScm.uri);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, credentialId, id, uri);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubScm {\n");

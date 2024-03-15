@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -17,7 +18,6 @@ public class Link   {
   private String propertyClass;
 
   private String href;
-
 
   /**
    **/
@@ -65,8 +65,8 @@ public class Link   {
       return false;
     }
     Link link = (Link) o;
-    return Objects.equals(propertyClass, link.propertyClass) &&
-        Objects.equals(href, link.href);
+    return Objects.equals(this.propertyClass, link.propertyClass) &&
+        Objects.equals(this.href, link.href);
   }
 
   @Override

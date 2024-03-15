@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
@@ -32,7 +33,7 @@ public class InputStepImpl  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters;
 
   @ApiModelProperty(value = "")
   private String submitter;
@@ -161,21 +162,21 @@ public class InputStepImpl  {
   * @return parameters
   */
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
   /**
    * Sets the <code>parameters</code> property.
    */
- public void setParameters(List<StringParameterDefinition> parameters) {
+ public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
   /**
    * Sets the <code>parameters</code> property.
    */
-  public InputStepImpl parameters(List<StringParameterDefinition> parameters) {
+  public InputStepImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -212,6 +213,29 @@ public class InputStepImpl  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    InputStepImpl inputStepImpl = (InputStepImpl) o;
+    return Objects.equals(this.propertyClass, inputStepImpl.propertyClass) &&
+        Objects.equals(this.links, inputStepImpl.links) &&
+        Objects.equals(this.id, inputStepImpl.id) &&
+        Objects.equals(this.message, inputStepImpl.message) &&
+        Objects.equals(this.ok, inputStepImpl.ok) &&
+        Objects.equals(this.parameters, inputStepImpl.parameters) &&
+        Objects.equals(this.submitter, inputStepImpl.submitter);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, id, message, ok, parameters, submitter);
+  }
 
   @Override
   public String toString() {

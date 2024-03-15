@@ -1,11 +1,13 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleProject;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -15,7 +17,7 @@ public class QueueBlockedItem  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<CauseAction> actions = null;
+  private List<CauseAction> actions;
 
   @ApiModelProperty(value = "")
   private Boolean blocked;
@@ -267,6 +269,33 @@ public class QueueBlockedItem  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    QueueBlockedItem queueBlockedItem = (QueueBlockedItem) o;
+    return Objects.equals(this.propertyClass, queueBlockedItem.propertyClass) &&
+        Objects.equals(this.actions, queueBlockedItem.actions) &&
+        Objects.equals(this.blocked, queueBlockedItem.blocked) &&
+        Objects.equals(this.buildable, queueBlockedItem.buildable) &&
+        Objects.equals(this.id, queueBlockedItem.id) &&
+        Objects.equals(this.inQueueSince, queueBlockedItem.inQueueSince) &&
+        Objects.equals(this.params, queueBlockedItem.params) &&
+        Objects.equals(this.stuck, queueBlockedItem.stuck) &&
+        Objects.equals(this.task, queueBlockedItem.task) &&
+        Objects.equals(this.url, queueBlockedItem.url) &&
+        Objects.equals(this.why, queueBlockedItem.why) &&
+        Objects.equals(this.buildableStartMilliseconds, queueBlockedItem.buildableStartMilliseconds);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, actions, blocked, buildable, id, inQueueSince, params, stuck, task, url, why, buildableStartMilliseconds);
+  }
 
   @Override
   public String toString() {

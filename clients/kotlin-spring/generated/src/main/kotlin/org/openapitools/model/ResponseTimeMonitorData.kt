@@ -22,13 +22,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ResponseTimeMonitorData(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("timestamp") val timestamp: kotlin.Int? = null,
+    @get:JsonProperty("timestamp") val timestamp: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("average") val average: kotlin.Int? = null
+    @get:JsonProperty("average") val average: kotlin.Int? = null
 ) {
 
 }

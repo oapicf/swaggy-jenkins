@@ -1,10 +1,12 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -17,7 +19,7 @@ public class ComputerSet  {
   private Integer busyExecutors;
 
   @ApiModelProperty(value = "")
-  private List<HudsonMasterComputer> computer = null;
+  private List<HudsonMasterComputer> computer;
 
   @ApiModelProperty(value = "")
   private String displayName;
@@ -119,6 +121,26 @@ public class ComputerSet  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ComputerSet computerSet = (ComputerSet) o;
+    return Objects.equals(this.propertyClass, computerSet.propertyClass) &&
+        Objects.equals(this.busyExecutors, computerSet.busyExecutors) &&
+        Objects.equals(this.computer, computerSet.computer) &&
+        Objects.equals(this.displayName, computerSet.displayName) &&
+        Objects.equals(this.totalExecutors, computerSet.totalExecutors);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, busyExecutors, computer, displayName, totalExecutors);
+  }
 
   @Override
   public String toString() {

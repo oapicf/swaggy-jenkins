@@ -15,17 +15,15 @@ class GetJsonWebTokenParameterData
      * @DTA\Data(subset="query", field="maxExpiryTimeInMins", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $max_expiry_time_in_mins;
+    public ?int $max_expiry_time_in_mins = null;
 
     /**
      * Token expiry time in minutes, default: 30 minutes
      * @DTA\Data(subset="query", field="expiryTimeInMins", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $expiry_time_in_mins;
+    public ?int $expiry_time_in_mins = null;
 
 }

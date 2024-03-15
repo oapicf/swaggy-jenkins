@@ -4,13 +4,14 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.PipelinelatestRunartifacts;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelinelatestRun   {
   
-  private List<PipelinelatestRunartifacts> artifacts = new ArrayList<>();
+  private List<PipelinelatestRunartifacts> artifacts;
   private Integer durationInMillis;
   private Integer estimatedDurationInMillis;
   private String enQueueTime;

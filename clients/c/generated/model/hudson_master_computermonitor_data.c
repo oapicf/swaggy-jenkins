@@ -197,7 +197,7 @@ hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_parseFr
     // hudson_master_computermonitor_data->hudson_node_monitors_architecture_monitor
     cJSON *hudson_node_monitors_architecture_monitor = cJSON_GetObjectItemCaseSensitive(hudson_master_computermonitor_dataJSON, "hudson.node_monitors.ArchitectureMonitor");
     if (hudson_node_monitors_architecture_monitor) { 
-    if(!cJSON_IsString(hudson_node_monitors_architecture_monitor))
+    if(!cJSON_IsString(hudson_node_monitors_architecture_monitor) && !cJSON_IsNull(hudson_node_monitors_architecture_monitor))
     {
     goto end; //String
     }
@@ -218,7 +218,7 @@ hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_parseFr
     // hudson_master_computermonitor_data->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudson_master_computermonitor_dataJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -229,10 +229,10 @@ hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_parseFr
         hudson_node_monitors_swap_space_monitor ? hudson_node_monitors_swap_space_monitor_local_nonprim : NULL,
         hudson_node_monitors_temporary_space_monitor ? hudson_node_monitors_temporary_space_monitor_local_nonprim : NULL,
         hudson_node_monitors_disk_space_monitor ? hudson_node_monitors_disk_space_monitor_local_nonprim : NULL,
-        hudson_node_monitors_architecture_monitor ? strdup(hudson_node_monitors_architecture_monitor->valuestring) : NULL,
+        hudson_node_monitors_architecture_monitor && !cJSON_IsNull(hudson_node_monitors_architecture_monitor) ? strdup(hudson_node_monitors_architecture_monitor->valuestring) : NULL,
         hudson_node_monitors_response_time_monitor ? hudson_node_monitors_response_time_monitor_local_nonprim : NULL,
         hudson_node_monitors_clock_monitor ? hudson_node_monitors_clock_monitor_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return hudson_master_computermonitor_data_local_var;

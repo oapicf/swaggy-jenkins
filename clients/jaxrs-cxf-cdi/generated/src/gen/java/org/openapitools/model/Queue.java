@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.QueueBlockedItem;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -19,8 +21,7 @@ public class Queue   {
   
   private String propertyClass;
 
-  private List<QueueBlockedItem> items = null;
-
+  private List<@Valid QueueBlockedItem> items;
 
   /**
    **/
@@ -42,7 +43,7 @@ public class Queue   {
 
   /**
    **/
-  public Queue items(List<QueueBlockedItem> items) {
+  public Queue items(List<@Valid QueueBlockedItem> items) {
     this.items = items;
     return this;
   }
@@ -50,10 +51,10 @@ public class Queue   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("items")
-  public List<QueueBlockedItem> getItems() {
+  public List<@Valid QueueBlockedItem> getItems() {
     return items;
   }
-  public void setItems(List<QueueBlockedItem> items) {
+  public void setItems(List<@Valid QueueBlockedItem> items) {
     this.items = items;
   }
 
@@ -76,8 +77,8 @@ public class Queue   {
       return false;
     }
     Queue queue = (Queue) o;
-    return Objects.equals(propertyClass, queue.propertyClass) &&
-        Objects.equals(items, queue.items);
+    return Objects.equals(this.propertyClass, queue.propertyClass) &&
+        Objects.equals(this.items, queue.items);
   }
 
   @Override

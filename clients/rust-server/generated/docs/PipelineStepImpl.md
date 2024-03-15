@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **_class** | **String** |  | [optional] [default to None]
 **_links** | [***models::PipelineStepImpllinks**](PipelineStepImpllinks.md) |  | [optional] [default to None]
 **display_name** | **String** |  | [optional] [default to None]
-**duration_in_millis** | **isize** |  | [optional] [default to None]
+**duration_in_millis** | **i32** |  | [optional] [default to None]
 **id** | **String** |  | [optional] [default to None]
 **input** | [***models::InputStepImpl**](InputStepImpl.md) |  | [optional] [default to None]
 **result** | **String** |  | [optional] [default to None]

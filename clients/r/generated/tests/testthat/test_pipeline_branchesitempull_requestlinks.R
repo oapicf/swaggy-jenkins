@@ -5,11 +5,11 @@ context("Test PipelineBranchesitempullRequestlinks")
 
 model_instance <- PipelineBranchesitempullRequestlinks$new()
 
-test_that("self", {
-  # tests for the property `self` (character)
+test_that("item_self", {
+  # tests for the property `item_self` (character)
 
   # uncomment below to test the property
-  #expect_equal(model.instance$`self`, "EXPECTED_RESULT")
+  #expect_equal(model.instance$`item_self`, "EXPECTED_RESULT")
 })
 
 test_that("_class", {

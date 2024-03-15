@@ -11,9 +11,11 @@ import org.openapitools.model.DiskSpaceMonitorDescriptorDiskSpace;
 import org.openapitools.model.ResponseTimeMonitorData;
 import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputermonitorData   {
   
   private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
@@ -29,6 +31,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
+  @Valid
   public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
@@ -41,6 +44,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
+  @Valid
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
@@ -53,6 +57,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
+  @Valid
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
@@ -77,6 +82,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
+  @Valid
   public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
@@ -89,6 +95,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.ClockMonitor")
+  @Valid
   public ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
   }
@@ -118,13 +125,13 @@ public class HudsonMasterComputermonitorData   {
       return false;
     }
     HudsonMasterComputermonitorData hudsonMasterComputermonitorData = (HudsonMasterComputermonitorData) o;
-    return Objects.equals(hudsonNodeMonitorsSwapSpaceMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsSwapSpaceMonitor) &&
-        Objects.equals(hudsonNodeMonitorsTemporarySpaceMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsTemporarySpaceMonitor) &&
-        Objects.equals(hudsonNodeMonitorsDiskSpaceMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsDiskSpaceMonitor) &&
-        Objects.equals(hudsonNodeMonitorsArchitectureMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsArchitectureMonitor) &&
-        Objects.equals(hudsonNodeMonitorsResponseTimeMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsResponseTimeMonitor) &&
-        Objects.equals(hudsonNodeMonitorsClockMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsClockMonitor) &&
-        Objects.equals(propertyClass, hudsonMasterComputermonitorData.propertyClass);
+    return Objects.equals(this.hudsonNodeMonitorsSwapSpaceMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsSwapSpaceMonitor) &&
+        Objects.equals(this.hudsonNodeMonitorsTemporarySpaceMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsTemporarySpaceMonitor) &&
+        Objects.equals(this.hudsonNodeMonitorsDiskSpaceMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsDiskSpaceMonitor) &&
+        Objects.equals(this.hudsonNodeMonitorsArchitectureMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsArchitectureMonitor) &&
+        Objects.equals(this.hudsonNodeMonitorsResponseTimeMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsResponseTimeMonitor) &&
+        Objects.equals(this.hudsonNodeMonitorsClockMonitor, hudsonMasterComputermonitorData.hudsonNodeMonitorsClockMonitor) &&
+        Objects.equals(this.propertyClass, hudsonMasterComputermonitorData.propertyClass);
   }
 
   @Override

@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.FreeStyleProject;
 
@@ -12,7 +13,7 @@ public class ListView   {
   
   private String propertyClass;
   private String description;
-  private List<FreeStyleProject> jobs = new ArrayList<>();
+  private List<FreeStyleProject> jobs;
   private String name;
   private String url;
 

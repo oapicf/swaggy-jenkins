@@ -5,64 +5,54 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class GithubContent
 {
     /**
      * @DTA\Data(field="name", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * @DTA\Data(field="sha", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $sha;
+    public ?string $sha = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="repo", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $repo;
+    public ?string $repo = null;
 
     /**
      * @DTA\Data(field="size", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $size;
+    public ?int $size = null;
 
     /**
      * @DTA\Data(field="owner", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $owner;
+    public ?string $owner = null;
 
     /**
      * @DTA\Data(field="path", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $path;
+    public ?string $path = null;
 
     /**
      * @DTA\Data(field="base64Data", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $base64_data;
+    public ?string $base64_data = null;
 
 }

@@ -10,21 +10,21 @@ namespace app\Models;
 class PipelineRunImpllinks {
 
     /** @var \app\Models\Link $nodes */
-    private $nodes;
+    public $nodes;
 
     /** @var \app\Models\Link $log */
-    private $log;
+    public $log;
 
     /** @var \app\Models\Link $self */
-    private $self;
+    public $self;
 
     /** @var \app\Models\Link $actions */
-    private $actions;
+    public $actions;
 
     /** @var \app\Models\Link $steps */
-    private $steps;
+    public $steps;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

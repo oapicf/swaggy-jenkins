@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -19,7 +20,6 @@ public class StringParameterValue   {
   private String name;
 
   private String value;
-
 
   /**
    **/
@@ -85,9 +85,9 @@ public class StringParameterValue   {
       return false;
     }
     StringParameterValue stringParameterValue = (StringParameterValue) o;
-    return Objects.equals(propertyClass, stringParameterValue.propertyClass) &&
-        Objects.equals(name, stringParameterValue.name) &&
-        Objects.equals(value, stringParameterValue.value);
+    return Objects.equals(this.propertyClass, stringParameterValue.propertyClass) &&
+        Objects.equals(this.name, stringParameterValue.name) &&
+        Objects.equals(this.value, stringParameterValue.value);
   }
 
   @Override

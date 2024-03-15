@@ -5,47 +5,40 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class BranchImpllinks
 {
     /**
      * @DTA\Data(field="self", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $self;
+    public ?\App\DTO\Link $self = null;
 
     /**
      * @DTA\Data(field="actions", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $actions;
+    public ?\App\DTO\Link $actions = null;
 
     /**
      * @DTA\Data(field="runs", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $runs;
+    public ?\App\DTO\Link $runs = null;
 
     /**
      * @DTA\Data(field="queue", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Link::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Link::class})
-     * @var \App\DTO\Link|null
      */
-    public $queue;
+    public ?\App\DTO\Link $queue = null;
 
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
 }

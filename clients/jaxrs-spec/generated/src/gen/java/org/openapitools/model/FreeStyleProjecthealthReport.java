@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleProjecthealthReport")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleProjecthealthReport   {
-  
   private @Valid String description;
   private @Valid String iconClassName;
   private @Valid String iconUrl;
@@ -43,7 +42,7 @@ public class FreeStyleProjecthealthReport   {
     this.description = description;
   }
 
-/**
+  /**
    **/
   public FreeStyleProjecthealthReport iconClassName(String iconClassName) {
     this.iconClassName = iconClassName;
@@ -62,7 +61,7 @@ public class FreeStyleProjecthealthReport   {
     this.iconClassName = iconClassName;
   }
 
-/**
+  /**
    **/
   public FreeStyleProjecthealthReport iconUrl(String iconUrl) {
     this.iconUrl = iconUrl;
@@ -81,7 +80,7 @@ public class FreeStyleProjecthealthReport   {
     this.iconUrl = iconUrl;
   }
 
-/**
+  /**
    **/
   public FreeStyleProjecthealthReport score(Integer score) {
     this.score = score;
@@ -100,7 +99,7 @@ public class FreeStyleProjecthealthReport   {
     this.score = score;
   }
 
-/**
+  /**
    **/
   public FreeStyleProjecthealthReport propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

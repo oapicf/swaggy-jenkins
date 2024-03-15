@@ -119,6 +119,26 @@ public class PipelinelatestRunartifacts  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelinelatestRunartifacts pipelinelatestRunartifacts = (PipelinelatestRunartifacts) o;
+    return Objects.equals(this.name, pipelinelatestRunartifacts.name) &&
+        Objects.equals(this.size, pipelinelatestRunartifacts.size) &&
+        Objects.equals(this.url, pipelinelatestRunartifacts.url) &&
+        Objects.equals(this.propertyClass, pipelinelatestRunartifacts.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, size, url, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelinelatestRunartifacts {\n");

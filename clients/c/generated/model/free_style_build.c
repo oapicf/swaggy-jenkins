@@ -291,7 +291,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -309,7 +309,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -348,7 +348,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -357,7 +357,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -384,7 +384,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->executor
     cJSON *executor = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "executor");
     if (executor) { 
-    if(!cJSON_IsString(executor))
+    if(!cJSON_IsString(executor) && !cJSON_IsNull(executor))
     {
     goto end; //String
     }
@@ -393,7 +393,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->full_display_name
     cJSON *full_display_name = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "fullDisplayName");
     if (full_display_name) { 
-    if(!cJSON_IsString(full_display_name))
+    if(!cJSON_IsString(full_display_name) && !cJSON_IsNull(full_display_name))
     {
     goto end; //String
     }
@@ -402,7 +402,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -429,7 +429,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "result");
     if (result) { 
-    if(!cJSON_IsString(result))
+    if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
     goto end; //String
     }
@@ -447,7 +447,7 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     // free_style_build->built_on
     cJSON *built_on = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "builtOn");
     if (built_on) { 
-    if(!cJSON_IsString(built_on))
+    if(!cJSON_IsString(built_on) && !cJSON_IsNull(built_on))
     {
     goto end; //String
     }
@@ -461,23 +461,23 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
 
     free_style_build_local_var = free_style_build_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         number ? number->valuedouble : 0,
-        url ? strdup(url->valuestring) : NULL,
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
         actions ? actionsList : NULL,
         building ? building->valueint : 0,
-        description ? strdup(description->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         duration ? duration->valuedouble : 0,
         estimated_duration ? estimated_duration->valuedouble : 0,
-        executor ? strdup(executor->valuestring) : NULL,
-        full_display_name ? strdup(full_display_name->valuestring) : NULL,
-        id ? strdup(id->valuestring) : NULL,
+        executor && !cJSON_IsNull(executor) ? strdup(executor->valuestring) : NULL,
+        full_display_name && !cJSON_IsNull(full_display_name) ? strdup(full_display_name->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
         keep_log ? keep_log->valueint : 0,
         queue_id ? queue_id->valuedouble : 0,
-        result ? strdup(result->valuestring) : NULL,
+        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
         timestamp ? timestamp->valuedouble : 0,
-        built_on ? strdup(built_on->valuestring) : NULL,
+        built_on && !cJSON_IsNull(built_on) ? strdup(built_on->valuestring) : NULL,
         change_set ? change_set_local_nonprim : NULL
         );
 

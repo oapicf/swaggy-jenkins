@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
-**_links** | Option<[**crate::models::GithubOrganizationlinks**](GithubOrganizationlinks.md)> |  | [optional]
+**_links** | Option<[**models::GithubOrganizationlinks**](GithubOrganizationlinks.md)> |  | [optional]
 **jenkins_organization_pipeline** | Option<**bool**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 

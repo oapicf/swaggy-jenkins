@@ -10,6 +10,7 @@ import com.prokarma.pkmst.model.UnlabeledLoadStatistics;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 /**
  * Response class to be returned by Api
@@ -20,7 +21,7 @@ import java.util.List;
  * Hudson
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-06-04T08:08:30.217930Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Hudson   {
   @JsonProperty("_class")
   private String propertyClass;

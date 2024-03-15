@@ -10,15 +10,15 @@ namespace app\Models;
 class DiskSpaceMonitorDescriptorDiskSpace {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $timestamp */
-    private $timestamp;
+    public $timestamp = 0;
 
     /** @var string $path */
-    private $path;
+    public $path = "";
 
     /** @var int $size */
-    private $size;
+    public $size = 0;
 
 }

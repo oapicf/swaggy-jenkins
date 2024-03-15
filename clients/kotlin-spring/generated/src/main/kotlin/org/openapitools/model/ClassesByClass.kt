@@ -21,10 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ClassesByClass(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("classes") val classes: kotlin.collections.List<kotlin.String>? = null,
+    @get:JsonProperty("classes") val classes: kotlin.collections.List<kotlin.String>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

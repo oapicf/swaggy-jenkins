@@ -67,6 +67,24 @@ public class GithubFile  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubFile githubFile = (GithubFile) o;
+    return Objects.equals(this.content, githubFile.content) &&
+        Objects.equals(this.propertyClass, githubFile.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(content, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GithubFile {\n");

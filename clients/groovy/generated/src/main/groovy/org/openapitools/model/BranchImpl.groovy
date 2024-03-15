@@ -4,7 +4,7 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
 import org.openapitools.model.PipelineRunImpl;
@@ -27,7 +27,7 @@ class BranchImpl {
     
     String organization
     
-    List<StringParameterDefinition> parameters = new ArrayList<>()
+    List<StringParameterDefinition> parameters
     
     BranchImplpermissions permissions
     

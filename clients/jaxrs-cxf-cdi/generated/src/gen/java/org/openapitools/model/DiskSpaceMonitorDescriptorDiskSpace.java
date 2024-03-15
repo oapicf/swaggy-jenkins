@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,7 +22,6 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
   private String path;
 
   private Integer size;
-
 
   /**
    **/
@@ -105,10 +105,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
       return false;
     }
     DiskSpaceMonitorDescriptorDiskSpace diskSpaceMonitorDescriptorDiskSpace = (DiskSpaceMonitorDescriptorDiskSpace) o;
-    return Objects.equals(propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
-        Objects.equals(timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
-        Objects.equals(path, diskSpaceMonitorDescriptorDiskSpace.path) &&
-        Objects.equals(size, diskSpaceMonitorDescriptorDiskSpace.size);
+    return Objects.equals(this.propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
+        Objects.equals(this.timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
+        Objects.equals(this.path, diskSpaceMonitorDescriptorDiskSpace.path) &&
+        Objects.equals(this.size, diskSpaceMonitorDescriptorDiskSpace.size);
   }
 
   @Override

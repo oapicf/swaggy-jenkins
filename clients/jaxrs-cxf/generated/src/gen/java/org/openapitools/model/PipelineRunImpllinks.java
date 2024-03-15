@@ -5,6 +5,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -140,6 +141,27 @@ public class PipelineRunImpllinks  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineRunImpllinks pipelineRunImpllinks = (PipelineRunImpllinks) o;
+    return Objects.equals(this.nodes, pipelineRunImpllinks.nodes) &&
+        Objects.equals(this.log, pipelineRunImpllinks.log) &&
+        Objects.equals(this.self, pipelineRunImpllinks.self) &&
+        Objects.equals(this.actions, pipelineRunImpllinks.actions) &&
+        Objects.equals(this.steps, pipelineRunImpllinks.steps) &&
+        Objects.equals(this.propertyClass, pipelineRunImpllinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(nodes, log, self, actions, steps, propertyClass);
+  }
 
   @Override
   public String toString() {

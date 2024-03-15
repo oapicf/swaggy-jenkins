@@ -6,19 +6,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseUserIdCause;
 
 /**
  * CauseAction
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CauseAction   {
   @JsonProperty("_class")
   private String propertyClass;
 
   @JsonProperty("causes")
-  private List<CauseUserIdCause> causes = null;
+  private List<@Valid CauseUserIdCause> causes = null;
 
   public CauseAction propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -38,14 +39,14 @@ public class CauseAction   {
     this.propertyClass = propertyClass;
   }
 
-  public CauseAction causes(List<CauseUserIdCause> causes) {
+  public CauseAction causes(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
     return this;
   }
 
   public CauseAction addCausesItem(CauseUserIdCause causesItem) {
     if (this.causes == null) {
-      this.causes = new ArrayList<>();
+      this.causes = ;
     }
     this.causes.add(causesItem);
     return this;
@@ -56,11 +57,11 @@ public class CauseAction   {
    * @return causes
   **/
   @ApiModelProperty(value = "")
-  public List<CauseUserIdCause> getCauses() {
+  public List<@Valid CauseUserIdCause> getCauses() {
     return causes;
   }
 
-  public void setCauses(List<CauseUserIdCause> causes) {
+  public void setCauses(List<@Valid CauseUserIdCause> causes) {
     this.causes = causes;
   }
 

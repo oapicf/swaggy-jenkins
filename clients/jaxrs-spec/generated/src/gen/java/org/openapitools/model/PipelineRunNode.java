@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunNodeedges;
 import javax.validation.constraints.*;
@@ -18,13 +19,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunNode")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunNode   {
-  
   private @Valid String propertyClass;
   private @Valid String displayName;
   private @Valid Integer durationInMillis;
-  private @Valid List<PipelineRunNodeedges> edges = new ArrayList<>();
+  private @Valid List<@Valid PipelineRunNodeedges> edges;
   private @Valid String id;
   private @Valid String result;
   private @Valid String startTime;
@@ -49,7 +49,7 @@ public class PipelineRunNode   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public PipelineRunNode displayName(String displayName) {
     this.displayName = displayName;
@@ -68,7 +68,7 @@ public class PipelineRunNode   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public PipelineRunNode durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -87,9 +87,9 @@ public class PipelineRunNode   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
-  public PipelineRunNode edges(List<PipelineRunNodeedges> edges) {
+  public PipelineRunNode edges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
     return this;
   }
@@ -102,7 +102,7 @@ public class PipelineRunNode   {
   }
 
   @JsonProperty("edges")
-  public void setEdges(List<PipelineRunNodeedges> edges) {
+  public void setEdges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
   }
 
@@ -122,7 +122,7 @@ public class PipelineRunNode   {
 
     return this;
   }
-/**
+  /**
    **/
   public PipelineRunNode id(String id) {
     this.id = id;
@@ -141,7 +141,7 @@ public class PipelineRunNode   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineRunNode result(String result) {
     this.result = result;
@@ -160,7 +160,7 @@ public class PipelineRunNode   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelineRunNode startTime(String startTime) {
     this.startTime = startTime;
@@ -179,7 +179,7 @@ public class PipelineRunNode   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelineRunNode state(String state) {
     this.state = state;

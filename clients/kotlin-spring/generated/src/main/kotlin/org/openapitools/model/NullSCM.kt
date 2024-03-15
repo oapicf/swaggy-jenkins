@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class NullSCM(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

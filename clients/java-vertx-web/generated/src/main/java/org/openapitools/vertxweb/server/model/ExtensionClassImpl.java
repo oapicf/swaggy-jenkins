@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.vertxweb.server.model.ExtensionClassImpllinks;
 
@@ -12,7 +13,7 @@ public class ExtensionClassImpl   {
   
   private String propertyClass;
   private ExtensionClassImpllinks links;
-  private List<String> classes = new ArrayList<>();
+  private List<String> classes;
 
   public ExtensionClassImpl () {
 

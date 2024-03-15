@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -20,7 +22,7 @@ public class QueueBlockedItem   {
   
   private String propertyClass;
 
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions;
 
   private Boolean blocked;
 
@@ -42,7 +44,6 @@ public class QueueBlockedItem   {
 
   private Integer buildableStartMilliseconds;
 
-
   /**
    **/
   public QueueBlockedItem propertyClass(String propertyClass) {
@@ -63,7 +64,7 @@ public class QueueBlockedItem   {
 
   /**
    **/
-  public QueueBlockedItem actions(List<CauseAction> actions) {
+  public QueueBlockedItem actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -71,10 +72,10 @@ public class QueueBlockedItem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -277,18 +278,18 @@ public class QueueBlockedItem   {
       return false;
     }
     QueueBlockedItem queueBlockedItem = (QueueBlockedItem) o;
-    return Objects.equals(propertyClass, queueBlockedItem.propertyClass) &&
-        Objects.equals(actions, queueBlockedItem.actions) &&
-        Objects.equals(blocked, queueBlockedItem.blocked) &&
-        Objects.equals(buildable, queueBlockedItem.buildable) &&
-        Objects.equals(id, queueBlockedItem.id) &&
-        Objects.equals(inQueueSince, queueBlockedItem.inQueueSince) &&
-        Objects.equals(params, queueBlockedItem.params) &&
-        Objects.equals(stuck, queueBlockedItem.stuck) &&
-        Objects.equals(task, queueBlockedItem.task) &&
-        Objects.equals(url, queueBlockedItem.url) &&
-        Objects.equals(why, queueBlockedItem.why) &&
-        Objects.equals(buildableStartMilliseconds, queueBlockedItem.buildableStartMilliseconds);
+    return Objects.equals(this.propertyClass, queueBlockedItem.propertyClass) &&
+        Objects.equals(this.actions, queueBlockedItem.actions) &&
+        Objects.equals(this.blocked, queueBlockedItem.blocked) &&
+        Objects.equals(this.buildable, queueBlockedItem.buildable) &&
+        Objects.equals(this.id, queueBlockedItem.id) &&
+        Objects.equals(this.inQueueSince, queueBlockedItem.inQueueSince) &&
+        Objects.equals(this.params, queueBlockedItem.params) &&
+        Objects.equals(this.stuck, queueBlockedItem.stuck) &&
+        Objects.equals(this.task, queueBlockedItem.task) &&
+        Objects.equals(this.url, queueBlockedItem.url) &&
+        Objects.equals(this.why, queueBlockedItem.why) &&
+        Objects.equals(this.buildableStartMilliseconds, queueBlockedItem.buildableStartMilliseconds);
   }
 
   @Override

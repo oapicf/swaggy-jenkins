@@ -10,6 +10,7 @@ import org.openapitools.model.BranchImpl;
 import org.openapitools.model.FavoriteImpl;
 import org.openapitools.model.GithubOrganization;
 import org.openapitools.model.GithubScm;
+import java.util.List;
 import org.openapitools.model.MultibranchPipeline;
 import org.openapitools.model.Organisation;
 import org.openapitools.model.Pipeline;
@@ -30,7 +31,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public abstract class BlueApiService {
     public abstract Response deletePipelineQueueItem(String organization
  ,String pipeline

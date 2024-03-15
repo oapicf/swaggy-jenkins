@@ -18,49 +18,35 @@ import javax.annotation.Generated;
  * PipelineBranchesitemlatestRun
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitemlatestRun {
 
-  @JsonProperty("durationInMillis")
   private Integer durationInMillis;
 
-  @JsonProperty("estimatedDurationInMillis")
   private Integer estimatedDurationInMillis;
 
-  @JsonProperty("enQueueTime")
   private String enQueueTime;
 
-  @JsonProperty("endTime")
   private String endTime;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("organization")
   private String organization;
 
-  @JsonProperty("pipeline")
   private String pipeline;
 
-  @JsonProperty("result")
   private String result;
 
-  @JsonProperty("runSummary")
   private String runSummary;
 
-  @JsonProperty("startTime")
   private String startTime;
 
-  @JsonProperty("state")
   private String state;
 
-  @JsonProperty("type")
   private String type;
 
-  @JsonProperty("commitId")
   private String commitId;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineBranchesitemlatestRun durationInMillis(Integer durationInMillis) {
@@ -73,7 +59,8 @@ public class PipelineBranchesitemlatestRun {
    * @return durationInMillis
   */
   
-  @Schema(name = "durationInMillis", required = false)
+  @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -92,7 +79,8 @@ public class PipelineBranchesitemlatestRun {
    * @return estimatedDurationInMillis
   */
   
-  @Schema(name = "estimatedDurationInMillis", required = false)
+  @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -111,7 +99,8 @@ public class PipelineBranchesitemlatestRun {
    * @return enQueueTime
   */
   
-  @Schema(name = "enQueueTime", required = false)
+  @Schema(name = "enQueueTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("enQueueTime")
   public String getEnQueueTime() {
     return enQueueTime;
   }
@@ -130,7 +119,8 @@ public class PipelineBranchesitemlatestRun {
    * @return endTime
   */
   
-  @Schema(name = "endTime", required = false)
+  @Schema(name = "endTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("endTime")
   public String getEndTime() {
     return endTime;
   }
@@ -149,7 +139,8 @@ public class PipelineBranchesitemlatestRun {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -168,7 +159,8 @@ public class PipelineBranchesitemlatestRun {
    * @return organization
   */
   
-  @Schema(name = "organization", required = false)
+  @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
@@ -187,7 +179,8 @@ public class PipelineBranchesitemlatestRun {
    * @return pipeline
   */
   
-  @Schema(name = "pipeline", required = false)
+  @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pipeline")
   public String getPipeline() {
     return pipeline;
   }
@@ -206,7 +199,8 @@ public class PipelineBranchesitemlatestRun {
    * @return result
   */
   
-  @Schema(name = "result", required = false)
+  @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("result")
   public String getResult() {
     return result;
   }
@@ -225,7 +219,8 @@ public class PipelineBranchesitemlatestRun {
    * @return runSummary
   */
   
-  @Schema(name = "runSummary", required = false)
+  @Schema(name = "runSummary", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("runSummary")
   public String getRunSummary() {
     return runSummary;
   }
@@ -244,7 +239,8 @@ public class PipelineBranchesitemlatestRun {
    * @return startTime
   */
   
-  @Schema(name = "startTime", required = false)
+  @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }
@@ -263,7 +259,8 @@ public class PipelineBranchesitemlatestRun {
    * @return state
   */
   
-  @Schema(name = "state", required = false)
+  @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("state")
   public String getState() {
     return state;
   }
@@ -282,7 +279,8 @@ public class PipelineBranchesitemlatestRun {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("type")
   public String getType() {
     return type;
   }
@@ -301,7 +299,8 @@ public class PipelineBranchesitemlatestRun {
    * @return commitId
   */
   
-  @Schema(name = "commitId", required = false)
+  @Schema(name = "commitId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("commitId")
   public String getCommitId() {
     return commitId;
   }
@@ -320,7 +319,8 @@ public class PipelineBranchesitemlatestRun {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

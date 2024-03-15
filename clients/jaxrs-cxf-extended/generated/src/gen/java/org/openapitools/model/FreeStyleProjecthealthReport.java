@@ -146,6 +146,27 @@ public class FreeStyleProjecthealthReport  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FreeStyleProjecthealthReport freeStyleProjecthealthReport = (FreeStyleProjecthealthReport) o;
+    return Objects.equals(this.description, freeStyleProjecthealthReport.description) &&
+        Objects.equals(this.iconClassName, freeStyleProjecthealthReport.iconClassName) &&
+        Objects.equals(this.iconUrl, freeStyleProjecthealthReport.iconUrl) &&
+        Objects.equals(this.score, freeStyleProjecthealthReport.score) &&
+        Objects.equals(this.propertyClass, freeStyleProjecthealthReport.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(description, iconClassName, iconUrl, score, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FreeStyleProjecthealthReport {\n");

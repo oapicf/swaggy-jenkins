@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.CauseAction;
 import org.openapitools.server.api.model.FreeStyleBuild;
@@ -13,7 +14,7 @@ import org.openapitools.server.api.model.FreeStyleProject;
 public class QueueLeftItem   {
   
   private String propertyClass;
-  private List<CauseAction> actions = new ArrayList<>();
+  private List<CauseAction> actions;
   private Boolean blocked;
   private Boolean buildable;
   private Integer id;

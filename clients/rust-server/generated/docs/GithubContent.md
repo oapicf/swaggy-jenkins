@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **sha** | **String** |  | [optional] [default to None]
 **_class** | **String** |  | [optional] [default to None]
 **repo** | **String** |  | [optional] [default to None]
-**size** | **isize** |  | [optional] [default to None]
+**size** | **i32** |  | [optional] [default to None]
 **owner** | **String** |  | [optional] [default to None]
 **path** | **String** |  | [optional] [default to None]
 **base64_data** | **String** |  | [optional] [default to None]

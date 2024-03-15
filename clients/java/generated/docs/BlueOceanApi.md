@@ -43,7 +43,7 @@ All URIs are relative to *http://localhost*
 | [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ |  |
 
 
-<a name="deletePipelineQueueItem"></a>
+<a id="deletePipelineQueueItem"></a>
 # **deletePipelineQueueItem**
 > deletePipelineQueueItem(organization, pipeline, queue)
 
@@ -54,12 +54,12 @@ Delete queue item from an organization pipeline queue
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -116,7 +116,7 @@ null (empty response body)
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getAuthenticatedUser"></a>
+<a id="getAuthenticatedUser"></a>
 # **getAuthenticatedUser**
 > User getAuthenticatedUser(organization)
 
@@ -127,12 +127,12 @@ Retrieve authenticated user details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -186,7 +186,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getClasses"></a>
+<a id="getClasses"></a>
 # **getClasses**
 > String getClasses(propertyClass)
 
@@ -197,12 +197,12 @@ Get a list of class names supported by a given class
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -256,7 +256,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getJsonWebKey"></a>
+<a id="getJsonWebKey"></a>
 # **getJsonWebKey**
 > String getJsonWebKey(key)
 
@@ -267,11 +267,11 @@ Retrieve JSON Web Key
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -320,7 +320,7 @@ No authorization required
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getJsonWebToken"></a>
+<a id="getJsonWebToken"></a>
 # **getJsonWebToken**
 > String getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
 
@@ -331,11 +331,11 @@ Retrieve JSON Web Token
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -386,7 +386,7 @@ No authorization required
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getOrganisation"></a>
+<a id="getOrganisation"></a>
 # **getOrganisation**
 > Organisation getOrganisation(organization)
 
@@ -397,12 +397,12 @@ Retrieve organization details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -457,7 +457,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Pipeline cannot be found on Jenkins instance |  -  |
 
-<a name="getOrganisations"></a>
+<a id="getOrganisations"></a>
 # **getOrganisations**
 > List&lt;Organisation&gt; getOrganisations()
 
@@ -468,12 +468,12 @@ Retrieve all organizations details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -523,7 +523,7 @@ This endpoint does not need any parameter.
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipeline"></a>
+<a id="getPipeline"></a>
 # **getPipeline**
 > Pipeline getPipeline(organization, pipeline)
 
@@ -534,12 +534,12 @@ Retrieve pipeline details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -596,7 +596,7 @@ public class Example {
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 | **404** | Pipeline cannot be found on Jenkins instance |  -  |
 
-<a name="getPipelineActivities"></a>
+<a id="getPipelineActivities"></a>
 # **getPipelineActivities**
 > List&lt;PipelineActivity&gt; getPipelineActivities(organization, pipeline)
 
@@ -607,12 +607,12 @@ Retrieve all activities details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -668,7 +668,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineBranch"></a>
+<a id="getPipelineBranch"></a>
 # **getPipelineBranch**
 > BranchImpl getPipelineBranch(organization, pipeline, branch)
 
@@ -679,12 +679,12 @@ Retrieve branch details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -742,7 +742,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineBranchRun"></a>
+<a id="getPipelineBranchRun"></a>
 # **getPipelineBranchRun**
 > PipelineRun getPipelineBranchRun(organization, pipeline, branch, run)
 
@@ -753,12 +753,12 @@ Retrieve branch run details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -818,7 +818,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineBranches"></a>
+<a id="getPipelineBranches"></a>
 # **getPipelineBranches**
 > MultibranchPipeline getPipelineBranches(organization, pipeline)
 
@@ -829,12 +829,12 @@ Retrieve all branches details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -890,7 +890,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineFolder"></a>
+<a id="getPipelineFolder"></a>
 # **getPipelineFolder**
 > PipelineFolderImpl getPipelineFolder(organization, folder)
 
@@ -901,12 +901,12 @@ Retrieve pipeline folder for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -962,7 +962,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineFolderPipeline"></a>
+<a id="getPipelineFolderPipeline"></a>
 # **getPipelineFolderPipeline**
 > PipelineImpl getPipelineFolderPipeline(organization, pipeline, folder)
 
@@ -973,12 +973,12 @@ Retrieve pipeline details for an organization folder
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1036,7 +1036,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineQueue"></a>
+<a id="getPipelineQueue"></a>
 # **getPipelineQueue**
 > List&lt;QueueItemImpl&gt; getPipelineQueue(organization, pipeline)
 
@@ -1047,12 +1047,12 @@ Retrieve queue details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1108,7 +1108,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRun"></a>
+<a id="getPipelineRun"></a>
 # **getPipelineRun**
 > PipelineRun getPipelineRun(organization, pipeline, run)
 
@@ -1119,12 +1119,12 @@ Retrieve run details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1182,7 +1182,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRunLog"></a>
+<a id="getPipelineRunLog"></a>
 # **getPipelineRunLog**
 > String getPipelineRunLog(organization, pipeline, run, start, download)
 
@@ -1193,12 +1193,12 @@ Get log for a pipeline run
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1260,7 +1260,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRunNode"></a>
+<a id="getPipelineRunNode"></a>
 # **getPipelineRunNode**
 > PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
 
@@ -1271,12 +1271,12 @@ Retrieve run node details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1336,7 +1336,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRunNodeStep"></a>
+<a id="getPipelineRunNodeStep"></a>
 # **getPipelineRunNodeStep**
 > PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
 
@@ -1347,12 +1347,12 @@ Retrieve run node details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1414,7 +1414,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRunNodeStepLog"></a>
+<a id="getPipelineRunNodeStepLog"></a>
 # **getPipelineRunNodeStepLog**
 > String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
 
@@ -1425,12 +1425,12 @@ Get log for a pipeline run node step
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1492,7 +1492,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRunNodeSteps"></a>
+<a id="getPipelineRunNodeSteps"></a>
 # **getPipelineRunNodeSteps**
 > List&lt;PipelineStepImpl&gt; getPipelineRunNodeSteps(organization, pipeline, run, node)
 
@@ -1503,12 +1503,12 @@ Retrieve run node steps details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1568,7 +1568,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRunNodes"></a>
+<a id="getPipelineRunNodes"></a>
 # **getPipelineRunNodes**
 > List&lt;PipelineRunNode&gt; getPipelineRunNodes(organization, pipeline, run)
 
@@ -1579,12 +1579,12 @@ Retrieve run nodes details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1642,7 +1642,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelineRuns"></a>
+<a id="getPipelineRuns"></a>
 # **getPipelineRuns**
 > List&lt;PipelineRun&gt; getPipelineRuns(organization, pipeline)
 
@@ -1653,12 +1653,12 @@ Retrieve all runs details for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1714,7 +1714,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getPipelines"></a>
+<a id="getPipelines"></a>
 # **getPipelines**
 > List&lt;Pipeline&gt; getPipelines(organization)
 
@@ -1725,12 +1725,12 @@ Retrieve all pipelines details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1784,7 +1784,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getSCM"></a>
+<a id="getSCM"></a>
 # **getSCM**
 > GithubScm getSCM(organization, scm)
 
@@ -1795,12 +1795,12 @@ Retrieve SCM details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1856,7 +1856,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getSCMOrganisationRepositories"></a>
+<a id="getSCMOrganisationRepositories"></a>
 # **getSCMOrganisationRepositories**
 > List&lt;GithubOrganization&gt; getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
 
@@ -1867,12 +1867,12 @@ Retrieve SCM organization repositories details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -1936,7 +1936,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getSCMOrganisationRepository"></a>
+<a id="getSCMOrganisationRepository"></a>
 # **getSCMOrganisationRepository**
 > List&lt;GithubOrganization&gt; getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
 
@@ -1947,12 +1947,12 @@ Retrieve SCM organization repository details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2014,7 +2014,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getSCMOrganisations"></a>
+<a id="getSCMOrganisations"></a>
 # **getSCMOrganisations**
 > List&lt;GithubOrganization&gt; getSCMOrganisations(organization, scm, credentialId)
 
@@ -2025,12 +2025,12 @@ Retrieve SCM organizations details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2088,7 +2088,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getUser"></a>
+<a id="getUser"></a>
 # **getUser**
 > User getUser(organization, user)
 
@@ -2099,12 +2099,12 @@ Retrieve user details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2160,7 +2160,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getUserFavorites"></a>
+<a id="getUserFavorites"></a>
 # **getUserFavorites**
 > List&lt;FavoriteImpl&gt; getUserFavorites(user)
 
@@ -2171,12 +2171,12 @@ Retrieve user favorites details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2230,7 +2230,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="getUsers"></a>
+<a id="getUsers"></a>
 # **getUsers**
 > User getUsers(organization)
 
@@ -2241,12 +2241,12 @@ Retrieve users details for an organization
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2300,7 +2300,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="postPipelineRun"></a>
+<a id="postPipelineRun"></a>
 # **postPipelineRun**
 > QueueItemImpl postPipelineRun(organization, pipeline, run)
 
@@ -2311,12 +2311,12 @@ Replay an organization pipeline run
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2374,7 +2374,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="postPipelineRuns"></a>
+<a id="postPipelineRuns"></a>
 # **postPipelineRuns**
 > QueueItemImpl postPipelineRuns(organization, pipeline)
 
@@ -2385,12 +2385,12 @@ Start a build for an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2446,7 +2446,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="putPipelineFavorite"></a>
+<a id="putPipelineFavorite"></a>
 # **putPipelineFavorite**
 > FavoriteImpl putPipelineFavorite(organization, pipeline, body)
 
@@ -2457,12 +2457,12 @@ Favorite/unfavorite a pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2520,7 +2520,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="putPipelineRun"></a>
+<a id="putPipelineRun"></a>
 # **putPipelineRun**
 > PipelineRun putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
 
@@ -2531,12 +2531,12 @@ Stop a build of an organization pipeline
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2598,7 +2598,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="search"></a>
+<a id="search"></a>
 # **search**
 > String search(q)
 
@@ -2609,12 +2609,12 @@ Search for any resource details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -2668,7 +2668,7 @@ public class Example {
 | **401** | Authentication failed - incorrect username and/or password |  -  |
 | **403** | Jenkins requires authentication - please set username and password |  -  |
 
-<a name="searchClasses"></a>
+<a id="searchClasses"></a>
 # **searchClasses**
 > String searchClasses(q)
 
@@ -2679,12 +2679,12 @@ Get classes details
 ### Example
 ```java
 // Import classes:
-import com.cliffano.swaggyjenkins.ApiClient;
-import com.cliffano.swaggyjenkins.ApiException;
-import com.cliffano.swaggyjenkins.Configuration;
-import com.cliffano.swaggyjenkins.auth.*;
-import com.cliffano.swaggyjenkins.models.*;
-import com.cliffano.swaggyjenkins.api.BlueOceanApi;
+import com.github.oapicf.swaggyjenkins.ApiClient;
+import com.github.oapicf.swaggyjenkins.ApiException;
+import com.github.oapicf.swaggyjenkins.Configuration;
+import com.github.oapicf.swaggyjenkins.auth.*;
+import com.github.oapicf.swaggyjenkins.models.*;
+import com.github.oapicf.swaggyjenkins.api.BlueOceanApi;
 
 public class Example {
   public static void main(String[] args) {

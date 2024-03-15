@@ -111,7 +111,7 @@ extension_class_container_impl1map_t *extension_class_container_impl1map_parseFr
     // extension_class_container_impl1map->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1mapJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -121,7 +121,7 @@ extension_class_container_impl1map_t *extension_class_container_impl1map_parseFr
     extension_class_container_impl1map_local_var = extension_class_container_impl1map_create (
         io_jenkins_blueocean_service_embedded_rest_pipeline_impl ? io_jenkins_blueocean_service_embedded_rest_pipeline_impl_local_nonprim : NULL,
         io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl ? io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return extension_class_container_impl1map_local_var;

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -29,8 +29,8 @@ class ClassesByClass {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ClassesByClass &&
-     other.classes == classes &&
-     other.class_ == class_;
+    _deepEquality.equals(other.classes, classes) &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -42,12 +42,14 @@ class ClassesByClass {
   String toString() => 'ClassesByClass[classes=$classes, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-      _json[r'classes'] = classes;
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+      json[r'classes'] = this.classes;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [ClassesByClass] instance and imports its values from
@@ -69,8 +71,8 @@ class ClassesByClass {
       }());
 
       return ClassesByClass(
-        classes: json[r'classes'] is List
-            ? (json[r'classes'] as List).cast<String>()
+        classes: json[r'classes'] is Iterable
+            ? (json[r'classes'] as Iterable).cast<String>().toList(growable: false)
             : const [],
         class_: mapValueOfType<String>(json, r'_class'),
       );
@@ -78,7 +80,7 @@ class ClassesByClass {
     return null;
   }
 
-  static List<ClassesByClass>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ClassesByClass> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ClassesByClass>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -109,12 +111,10 @@ class ClassesByClass {
   static Map<String, List<ClassesByClass>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<ClassesByClass>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = ClassesByClass.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = ClassesByClass.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

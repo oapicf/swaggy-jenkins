@@ -107,7 +107,7 @@ impl<T, A, B, C, D, ReqBody> Service<Request<ReqBody>> for AddContext<T, A, B, C
         {
             use swagger::auth::Basic;
             use std::ops::Deref;
-            if let Some(basic) = swagger::auth::from_headers::<Basic>(&headers) {
+            if let Some(basic) = swagger::auth::from_headers::<Basic>(headers) {
                 let auth_data = AuthData::Basic(basic);
                 let context = context.push(Some(auth_data));
                 let context = context.push(None::<Authorization>);
@@ -118,7 +118,7 @@ impl<T, A, B, C, D, ReqBody> Service<Request<ReqBody>> for AddContext<T, A, B, C
         {
             use swagger::auth::api_key_from_header;
 
-            if let Some(header) = api_key_from_header(&headers, "Authorization") {
+            if let Some(header) = api_key_from_header(headers, "Authorization") {
                 let auth_data = AuthData::ApiKey(header);
                 let context = context.push(Some(auth_data));
                 let context = context.push(None::<Authorization>);

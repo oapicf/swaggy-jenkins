@@ -20,31 +20,23 @@ import javax.annotation.Generated;
  * GithubRepository
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubRepository {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private GithubRepositorylinks links;
 
-  @JsonProperty("defaultBranch")
   private String defaultBranch;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("permissions")
   private GithubRepositorypermissions permissions;
 
-  @JsonProperty("private")
   private Boolean _private;
 
-  @JsonProperty("fullName")
   private String fullName;
 
   public GithubRepository propertyClass(String propertyClass) {
@@ -57,7 +49,8 @@ public class GithubRepository {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -76,7 +69,8 @@ public class GithubRepository {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public GithubRepositorylinks getLinks() {
     return links;
   }
@@ -95,7 +89,8 @@ public class GithubRepository {
    * @return defaultBranch
   */
   
-  @Schema(name = "defaultBranch", required = false)
+  @Schema(name = "defaultBranch", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("defaultBranch")
   public String getDefaultBranch() {
     return defaultBranch;
   }
@@ -114,7 +109,8 @@ public class GithubRepository {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -133,7 +129,8 @@ public class GithubRepository {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -152,7 +149,8 @@ public class GithubRepository {
    * @return permissions
   */
   @Valid 
-  @Schema(name = "permissions", required = false)
+  @Schema(name = "permissions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("permissions")
   public GithubRepositorypermissions getPermissions() {
     return permissions;
   }
@@ -171,7 +169,8 @@ public class GithubRepository {
    * @return _private
   */
   
-  @Schema(name = "private", required = false)
+  @Schema(name = "private", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("private")
   public Boolean getPrivate() {
     return _private;
   }
@@ -190,7 +189,8 @@ public class GithubRepository {
    * @return fullName
   */
   
-  @Schema(name = "fullName", required = false)
+  @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }

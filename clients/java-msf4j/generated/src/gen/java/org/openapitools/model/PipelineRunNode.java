@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunNodeedges;
 
 /**
  * PipelineRunNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunNode   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -24,7 +25,7 @@ public class PipelineRunNode   {
   private Integer durationInMillis;
 
   @JsonProperty("edges")
-  private List<PipelineRunNodeedges> edges = null;
+  private List<@Valid PipelineRunNodeedges> edges = null;
 
   @JsonProperty("id")
   private String id;
@@ -92,14 +93,14 @@ public class PipelineRunNode   {
     this.durationInMillis = durationInMillis;
   }
 
-  public PipelineRunNode edges(List<PipelineRunNodeedges> edges) {
+  public PipelineRunNode edges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
     return this;
   }
 
   public PipelineRunNode addEdgesItem(PipelineRunNodeedges edgesItem) {
     if (this.edges == null) {
-      this.edges = new ArrayList<>();
+      this.edges = ;
     }
     this.edges.add(edgesItem);
     return this;
@@ -110,11 +111,11 @@ public class PipelineRunNode   {
    * @return edges
   **/
   @ApiModelProperty(value = "")
-  public List<PipelineRunNodeedges> getEdges() {
+  public List<@Valid PipelineRunNodeedges> getEdges() {
     return edges;
   }
 
-  public void setEdges(List<PipelineRunNodeedges> edges) {
+  public void setEdges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
   }
 

@@ -4,6 +4,7 @@ import org.openapitools.model.PipelineBranchesitemlatestRun;
 import org.openapitools.model.PipelineBranchesitempullRequest;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -197,6 +198,30 @@ public class PipelineBranchesitem  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineBranchesitem pipelineBranchesitem = (PipelineBranchesitem) o;
+    return Objects.equals(this.displayName, pipelineBranchesitem.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineBranchesitem.estimatedDurationInMillis) &&
+        Objects.equals(this.name, pipelineBranchesitem.name) &&
+        Objects.equals(this.weatherScore, pipelineBranchesitem.weatherScore) &&
+        Objects.equals(this.latestRun, pipelineBranchesitem.latestRun) &&
+        Objects.equals(this.organization, pipelineBranchesitem.organization) &&
+        Objects.equals(this.pullRequest, pipelineBranchesitem.pullRequest) &&
+        Objects.equals(this.totalNumberOfPullRequests, pipelineBranchesitem.totalNumberOfPullRequests) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitem.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(displayName, estimatedDurationInMillis, name, weatherScore, latestRun, organization, pullRequest, totalNumberOfPullRequests, propertyClass);
+  }
 
   @Override
   public String toString() {

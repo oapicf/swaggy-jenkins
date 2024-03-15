@@ -18,22 +18,17 @@ import javax.annotation.Generated;
  * BranchImplpermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImplpermissions {
 
-  @JsonProperty("create")
   private Boolean create;
 
-  @JsonProperty("read")
   private Boolean read;
 
-  @JsonProperty("start")
   private Boolean start;
 
-  @JsonProperty("stop")
   private Boolean stop;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public BranchImplpermissions create(Boolean create) {
@@ -46,7 +41,8 @@ public class BranchImplpermissions {
    * @return create
   */
   
-  @Schema(name = "create", required = false)
+  @Schema(name = "create", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("create")
   public Boolean getCreate() {
     return create;
   }
@@ -65,7 +61,8 @@ public class BranchImplpermissions {
    * @return read
   */
   
-  @Schema(name = "read", required = false)
+  @Schema(name = "read", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("read")
   public Boolean getRead() {
     return read;
   }
@@ -84,7 +81,8 @@ public class BranchImplpermissions {
    * @return start
   */
   
-  @Schema(name = "start", required = false)
+  @Schema(name = "start", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("start")
   public Boolean getStart() {
     return start;
   }
@@ -103,7 +101,8 @@ public class BranchImplpermissions {
    * @return stop
   */
   
-  @Schema(name = "stop", required = false)
+  @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("stop")
   public Boolean getStop() {
     return stop;
   }
@@ -122,7 +121,8 @@ public class BranchImplpermissions {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

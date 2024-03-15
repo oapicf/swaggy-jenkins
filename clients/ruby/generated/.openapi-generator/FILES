@@ -1,4 +1,5 @@
 .gitignore
+.gitlab-ci.yml
 .openapi-generator-ignore
 .rspec
 .rubocop.yml
@@ -181,8 +182,6 @@ lib/swaggy_jenkins/version.rb
 spec/api/base_api_spec.rb
 spec/api/blue_ocean_api_spec.rb
 spec/api/remote_access_api_spec.rb
-spec/api_client_spec.rb
-spec/configuration_spec.rb
 spec/models/all_view_spec.rb
 spec/models/branch_impl_spec.rb
 spec/models/branch_impllinks_spec.rb

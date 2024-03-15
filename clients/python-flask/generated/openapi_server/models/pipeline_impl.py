@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pipeline_impllinks import PipelineImpllinks
 from openapi_server import util
 
@@ -85,7 +82,7 @@ class PipelineImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineImpl.
 
 
@@ -95,7 +92,7 @@ class PipelineImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineImpl.
 
 
@@ -106,7 +103,7 @@ class PipelineImpl(Model):
         self.__class = _class
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this PipelineImpl.
 
 
@@ -116,7 +113,7 @@ class PipelineImpl(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this PipelineImpl.
 
 
@@ -127,7 +124,7 @@ class PipelineImpl(Model):
         self._display_name = display_name
 
     @property
-    def estimated_duration_in_millis(self):
+    def estimated_duration_in_millis(self) -> int:
         """Gets the estimated_duration_in_millis of this PipelineImpl.
 
 
@@ -137,7 +134,7 @@ class PipelineImpl(Model):
         return self._estimated_duration_in_millis
 
     @estimated_duration_in_millis.setter
-    def estimated_duration_in_millis(self, estimated_duration_in_millis):
+    def estimated_duration_in_millis(self, estimated_duration_in_millis: int):
         """Sets the estimated_duration_in_millis of this PipelineImpl.
 
 
@@ -148,7 +145,7 @@ class PipelineImpl(Model):
         self._estimated_duration_in_millis = estimated_duration_in_millis
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         """Gets the full_name of this PipelineImpl.
 
 
@@ -158,7 +155,7 @@ class PipelineImpl(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name):
+    def full_name(self, full_name: str):
         """Sets the full_name of this PipelineImpl.
 
 
@@ -169,7 +166,7 @@ class PipelineImpl(Model):
         self._full_name = full_name
 
     @property
-    def latest_run(self):
+    def latest_run(self) -> str:
         """Gets the latest_run of this PipelineImpl.
 
 
@@ -179,7 +176,7 @@ class PipelineImpl(Model):
         return self._latest_run
 
     @latest_run.setter
-    def latest_run(self, latest_run):
+    def latest_run(self, latest_run: str):
         """Sets the latest_run of this PipelineImpl.
 
 
@@ -190,7 +187,7 @@ class PipelineImpl(Model):
         self._latest_run = latest_run
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this PipelineImpl.
 
 
@@ -200,7 +197,7 @@ class PipelineImpl(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this PipelineImpl.
 
 
@@ -211,7 +208,7 @@ class PipelineImpl(Model):
         self._name = name
 
     @property
-    def organization(self):
+    def organization(self) -> str:
         """Gets the organization of this PipelineImpl.
 
 
@@ -221,7 +218,7 @@ class PipelineImpl(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization):
+    def organization(self, organization: str):
         """Sets the organization of this PipelineImpl.
 
 
@@ -232,7 +229,7 @@ class PipelineImpl(Model):
         self._organization = organization
 
     @property
-    def weather_score(self):
+    def weather_score(self) -> int:
         """Gets the weather_score of this PipelineImpl.
 
 
@@ -242,7 +239,7 @@ class PipelineImpl(Model):
         return self._weather_score
 
     @weather_score.setter
-    def weather_score(self, weather_score):
+    def weather_score(self, weather_score: int):
         """Sets the weather_score of this PipelineImpl.
 
 
@@ -253,7 +250,7 @@ class PipelineImpl(Model):
         self._weather_score = weather_score
 
     @property
-    def links(self):
+    def links(self) -> PipelineImpllinks:
         """Gets the links of this PipelineImpl.
 
 
@@ -263,7 +260,7 @@ class PipelineImpl(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: PipelineImpllinks):
         """Sets the links of this PipelineImpl.
 
 

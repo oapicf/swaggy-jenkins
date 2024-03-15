@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.cause_action import CauseAction
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server.models.free_style_project import FreeStyleProject
@@ -109,7 +106,7 @@ class QueueLeftItem(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this QueueLeftItem.
 
 
@@ -119,7 +116,7 @@ class QueueLeftItem(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this QueueLeftItem.
 
 
@@ -130,7 +127,7 @@ class QueueLeftItem(Model):
         self.__class = _class
 
     @property
-    def actions(self):
+    def actions(self) -> List[CauseAction]:
         """Gets the actions of this QueueLeftItem.
 
 
@@ -140,7 +137,7 @@ class QueueLeftItem(Model):
         return self._actions
 
     @actions.setter
-    def actions(self, actions):
+    def actions(self, actions: List[CauseAction]):
         """Sets the actions of this QueueLeftItem.
 
 
@@ -151,7 +148,7 @@ class QueueLeftItem(Model):
         self._actions = actions
 
     @property
-    def blocked(self):
+    def blocked(self) -> bool:
         """Gets the blocked of this QueueLeftItem.
 
 
@@ -161,7 +158,7 @@ class QueueLeftItem(Model):
         return self._blocked
 
     @blocked.setter
-    def blocked(self, blocked):
+    def blocked(self, blocked: bool):
         """Sets the blocked of this QueueLeftItem.
 
 
@@ -172,7 +169,7 @@ class QueueLeftItem(Model):
         self._blocked = blocked
 
     @property
-    def buildable(self):
+    def buildable(self) -> bool:
         """Gets the buildable of this QueueLeftItem.
 
 
@@ -182,7 +179,7 @@ class QueueLeftItem(Model):
         return self._buildable
 
     @buildable.setter
-    def buildable(self, buildable):
+    def buildable(self, buildable: bool):
         """Sets the buildable of this QueueLeftItem.
 
 
@@ -193,7 +190,7 @@ class QueueLeftItem(Model):
         self._buildable = buildable
 
     @property
-    def id(self):
+    def id(self) -> int:
         """Gets the id of this QueueLeftItem.
 
 
@@ -203,7 +200,7 @@ class QueueLeftItem(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: int):
         """Sets the id of this QueueLeftItem.
 
 
@@ -214,7 +211,7 @@ class QueueLeftItem(Model):
         self._id = id
 
     @property
-    def in_queue_since(self):
+    def in_queue_since(self) -> int:
         """Gets the in_queue_since of this QueueLeftItem.
 
 
@@ -224,7 +221,7 @@ class QueueLeftItem(Model):
         return self._in_queue_since
 
     @in_queue_since.setter
-    def in_queue_since(self, in_queue_since):
+    def in_queue_since(self, in_queue_since: int):
         """Sets the in_queue_since of this QueueLeftItem.
 
 
@@ -235,7 +232,7 @@ class QueueLeftItem(Model):
         self._in_queue_since = in_queue_since
 
     @property
-    def params(self):
+    def params(self) -> str:
         """Gets the params of this QueueLeftItem.
 
 
@@ -245,7 +242,7 @@ class QueueLeftItem(Model):
         return self._params
 
     @params.setter
-    def params(self, params):
+    def params(self, params: str):
         """Sets the params of this QueueLeftItem.
 
 
@@ -256,7 +253,7 @@ class QueueLeftItem(Model):
         self._params = params
 
     @property
-    def stuck(self):
+    def stuck(self) -> bool:
         """Gets the stuck of this QueueLeftItem.
 
 
@@ -266,7 +263,7 @@ class QueueLeftItem(Model):
         return self._stuck
 
     @stuck.setter
-    def stuck(self, stuck):
+    def stuck(self, stuck: bool):
         """Sets the stuck of this QueueLeftItem.
 
 
@@ -277,7 +274,7 @@ class QueueLeftItem(Model):
         self._stuck = stuck
 
     @property
-    def task(self):
+    def task(self) -> FreeStyleProject:
         """Gets the task of this QueueLeftItem.
 
 
@@ -287,7 +284,7 @@ class QueueLeftItem(Model):
         return self._task
 
     @task.setter
-    def task(self, task):
+    def task(self, task: FreeStyleProject):
         """Sets the task of this QueueLeftItem.
 
 
@@ -298,7 +295,7 @@ class QueueLeftItem(Model):
         self._task = task
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Gets the url of this QueueLeftItem.
 
 
@@ -308,7 +305,7 @@ class QueueLeftItem(Model):
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url: str):
         """Sets the url of this QueueLeftItem.
 
 
@@ -319,7 +316,7 @@ class QueueLeftItem(Model):
         self._url = url
 
     @property
-    def why(self):
+    def why(self) -> str:
         """Gets the why of this QueueLeftItem.
 
 
@@ -329,7 +326,7 @@ class QueueLeftItem(Model):
         return self._why
 
     @why.setter
-    def why(self, why):
+    def why(self, why: str):
         """Sets the why of this QueueLeftItem.
 
 
@@ -340,7 +337,7 @@ class QueueLeftItem(Model):
         self._why = why
 
     @property
-    def cancelled(self):
+    def cancelled(self) -> bool:
         """Gets the cancelled of this QueueLeftItem.
 
 
@@ -350,7 +347,7 @@ class QueueLeftItem(Model):
         return self._cancelled
 
     @cancelled.setter
-    def cancelled(self, cancelled):
+    def cancelled(self, cancelled: bool):
         """Sets the cancelled of this QueueLeftItem.
 
 
@@ -361,7 +358,7 @@ class QueueLeftItem(Model):
         self._cancelled = cancelled
 
     @property
-    def executable(self):
+    def executable(self) -> FreeStyleBuild:
         """Gets the executable of this QueueLeftItem.
 
 
@@ -371,7 +368,7 @@ class QueueLeftItem(Model):
         return self._executable
 
     @executable.setter
-    def executable(self, executable):
+    def executable(self, executable: FreeStyleBuild):
         """Sets the executable of this QueueLeftItem.
 
 

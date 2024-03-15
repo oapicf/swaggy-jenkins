@@ -36,7 +36,7 @@ class CrumbIssuerApiController() {
     @Operation(
         summary = "",
         operationId = "getCrumb",
-        description = "Retrieve CSRF protection token",
+        description = """Retrieve CSRF protection token""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved CSRF protection token", content = [Content(schema = Schema(implementation = DefaultCrumbIssuer::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),

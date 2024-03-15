@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -23,7 +24,6 @@ public class BranchImplpermissions   {
   private Boolean stop;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -125,11 +125,11 @@ public class BranchImplpermissions   {
       return false;
     }
     BranchImplpermissions branchImplpermissions = (BranchImplpermissions) o;
-    return Objects.equals(create, branchImplpermissions.create) &&
-        Objects.equals(read, branchImplpermissions.read) &&
-        Objects.equals(start, branchImplpermissions.start) &&
-        Objects.equals(stop, branchImplpermissions.stop) &&
-        Objects.equals(propertyClass, branchImplpermissions.propertyClass);
+    return Objects.equals(this.create, branchImplpermissions.create) &&
+        Objects.equals(this.read, branchImplpermissions.read) &&
+        Objects.equals(this.start, branchImplpermissions.start) &&
+        Objects.equals(this.stop, branchImplpermissions.stop) &&
+        Objects.equals(this.propertyClass, branchImplpermissions.propertyClass);
   }
 
   @Override

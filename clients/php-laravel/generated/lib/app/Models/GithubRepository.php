@@ -10,27 +10,27 @@ namespace app\Models;
 class GithubRepository {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\GithubRepositorylinks $links */
-    private $links;
+    public $links;
 
     /** @var string $defaultBranch */
-    private $defaultBranch;
+    public $defaultBranch = "";
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var \app\Models\GithubRepositorypermissions $permissions */
-    private $permissions;
+    public $permissions;
 
     /** @var bool $private */
-    private $private;
+    public $private = false;
 
     /** @var string $fullName */
-    private $fullName;
+    public $fullName = "";
 
 }

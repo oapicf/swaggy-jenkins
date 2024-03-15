@@ -10,6 +10,6 @@ namespace app\Models;
 class FreeStyleProjectactions {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

@@ -5,118 +5,101 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class Hudson
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="assignedLabels", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection::class})
-     * @var \App\DTO\Collection|null
      */
-    public $assigned_labels;
+    public ?\App\DTO\Collection $assigned_labels = null;
 
     /**
      * @DTA\Data(field="mode", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $mode;
+    public ?string $mode = null;
 
     /**
      * @DTA\Data(field="nodeDescription", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $node_description;
+    public ?string $node_description = null;
 
     /**
      * @DTA\Data(field="nodeName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $node_name;
+    public ?string $node_name = null;
 
     /**
      * @DTA\Data(field="numExecutors", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $num_executors;
+    public ?int $num_executors = null;
 
     /**
      * @DTA\Data(field="description", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $description;
+    public ?string $description = null;
 
     /**
      * @DTA\Data(field="jobs", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection16::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection16::class})
-     * @var \App\DTO\Collection16|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection6::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection6::class})
      */
-    public $jobs;
+    public ?\App\DTO\Collection6 $jobs = null;
 
     /**
      * @DTA\Data(field="primaryView", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\AllView::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\AllView::class})
-     * @var \App\DTO\AllView|null
      */
-    public $primary_view;
+    public ?\App\DTO\AllView $primary_view = null;
 
     /**
      * @DTA\Data(field="quietingDown", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $quieting_down;
+    public ?bool $quieting_down = null;
 
     /**
      * @DTA\Data(field="slaveAgentPort", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $slave_agent_port;
+    public ?int $slave_agent_port = null;
 
     /**
      * @DTA\Data(field="unlabeledLoad", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\UnlabeledLoadStatistics::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\UnlabeledLoadStatistics::class})
-     * @var \App\DTO\UnlabeledLoadStatistics|null
      */
-    public $unlabeled_load;
+    public ?\App\DTO\UnlabeledLoadStatistics $unlabeled_load = null;
 
     /**
      * @DTA\Data(field="useCrumbs", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $use_crumbs;
+    public ?bool $use_crumbs = null;
 
     /**
      * @DTA\Data(field="useSecurity", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"bool"})
-     * @var bool|null
      */
-    public $use_security;
+    public ?bool $use_security = null;
 
     /**
      * @DTA\Data(field="views", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection17::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection17::class})
-     * @var \App\DTO\Collection17|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection7::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection7::class})
      */
-    public $views;
+    public ?\App\DTO\Collection7 $views = null;
 
 }

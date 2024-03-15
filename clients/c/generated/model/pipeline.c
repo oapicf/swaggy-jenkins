@@ -153,7 +153,7 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     // pipeline->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -162,7 +162,7 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     // pipeline->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "organization");
     if (organization) { 
-    if(!cJSON_IsString(organization))
+    if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
     goto end; //String
     }
@@ -171,7 +171,7 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     // pipeline->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -180,7 +180,7 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     // pipeline->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -189,7 +189,7 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     // pipeline->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "fullName");
     if (full_name) { 
-    if(!cJSON_IsString(full_name))
+    if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
     goto end; //String
     }
@@ -221,11 +221,11 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
 
     pipeline_local_var = pipeline_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        organization ? strdup(organization->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
-        full_name ? strdup(full_name->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
+        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
         weather_score ? weather_score->valuedouble : 0,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
         latest_run ? latest_run_local_nonprim : NULL

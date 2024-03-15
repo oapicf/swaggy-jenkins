@@ -9,8 +9,9 @@ To see how to make this your own, look here:
 
 [README]((https://openapi-generator.tech))
 
-- API version: 1.5.1-pre.0
-For more information, please visit [http://github.com/oapicf/swaggy-jenkins](http://github.com/oapicf/swaggy-jenkins)
+- API version: 2.0.1-pre.0
+- Generator version: 7.4.0
+For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 
 ## QHTTPEngine
 

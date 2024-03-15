@@ -1,7 +1,7 @@
 package = "openapiclient"
 version = "1.0.0-1"
 source = {
-	url = "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+	url = "https://github.com/oapicf/swaggy-jenkins.git"
 }
 
 description = {

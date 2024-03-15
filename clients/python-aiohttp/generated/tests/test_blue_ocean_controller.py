@@ -21,6 +21,8 @@ from openapi_server.models.queue_item_impl import QueueItemImpl
 from openapi_server.models.user import User
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_delete_pipeline_queue_item(client):
     """Test case for delete_pipeline_queue_item
 
@@ -36,6 +38,8 @@ async def test_delete_pipeline_queue_item(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_authenticated_user(client):
     """Test case for get_authenticated_user
@@ -54,6 +58,8 @@ async def test_get_authenticated_user(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_classes(client):
     """Test case for get_classes
 
@@ -71,6 +77,8 @@ async def test_get_classes(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_json_web_key(client):
     """Test case for get_json_web_key
 
@@ -86,6 +94,8 @@ async def test_get_json_web_key(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_json_web_token(client):
     """Test case for get_json_web_token
@@ -106,6 +116,8 @@ async def test_get_json_web_token(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_organisation(client):
     """Test case for get_organisation
 
@@ -122,6 +134,8 @@ async def test_get_organisation(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_organisations(client):
     """Test case for get_organisations
@@ -140,6 +154,8 @@ async def test_get_organisations(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline(client):
     """Test case for get_pipeline
 
@@ -156,6 +172,8 @@ async def test_get_pipeline(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_activities(client):
     """Test case for get_pipeline_activities
@@ -174,6 +192,8 @@ async def test_get_pipeline_activities(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_branch(client):
     """Test case for get_pipeline_branch
 
@@ -190,6 +210,8 @@ async def test_get_pipeline_branch(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_branch_run(client):
     """Test case for get_pipeline_branch_run
@@ -208,6 +230,8 @@ async def test_get_pipeline_branch_run(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_branches(client):
     """Test case for get_pipeline_branches
 
@@ -224,6 +248,8 @@ async def test_get_pipeline_branches(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_folder(client):
     """Test case for get_pipeline_folder
@@ -242,6 +268,8 @@ async def test_get_pipeline_folder(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_folder_pipeline(client):
     """Test case for get_pipeline_folder_pipeline
 
@@ -258,6 +286,8 @@ async def test_get_pipeline_folder_pipeline(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_queue(client):
     """Test case for get_pipeline_queue
@@ -276,6 +306,8 @@ async def test_get_pipeline_queue(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_run(client):
     """Test case for get_pipeline_run
 
@@ -292,6 +324,8 @@ async def test_get_pipeline_run(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_run_log(client):
     """Test case for get_pipeline_run_log
@@ -313,6 +347,8 @@ async def test_get_pipeline_run_log(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_run_node(client):
     """Test case for get_pipeline_run_node
 
@@ -329,6 +365,8 @@ async def test_get_pipeline_run_node(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_run_node_step(client):
     """Test case for get_pipeline_run_node_step
@@ -347,6 +385,8 @@ async def test_get_pipeline_run_node_step(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_run_node_step_log(client):
     """Test case for get_pipeline_run_node_step_log
 
@@ -363,6 +403,8 @@ async def test_get_pipeline_run_node_step_log(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_run_node_steps(client):
     """Test case for get_pipeline_run_node_steps
@@ -381,6 +423,8 @@ async def test_get_pipeline_run_node_steps(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipeline_run_nodes(client):
     """Test case for get_pipeline_run_nodes
 
@@ -397,6 +441,8 @@ async def test_get_pipeline_run_nodes(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_pipeline_runs(client):
     """Test case for get_pipeline_runs
@@ -415,6 +461,8 @@ async def test_get_pipeline_runs(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_pipelines(client):
     """Test case for get_pipelines
 
@@ -432,6 +480,8 @@ async def test_get_pipelines(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_scm(client):
     """Test case for get_scm
 
@@ -448,6 +498,8 @@ async def test_get_scm(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_scm_organisation_repositories(client):
     """Test case for get_scm_organisation_repositories
@@ -470,6 +522,8 @@ async def test_get_scm_organisation_repositories(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_scm_organisation_repository(client):
     """Test case for get_scm_organisation_repository
 
@@ -488,6 +542,8 @@ async def test_get_scm_organisation_repository(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_scm_organisations(client):
     """Test case for get_scm_organisations
@@ -508,6 +564,8 @@ async def test_get_scm_organisations(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_user(client):
     """Test case for get_user
 
@@ -524,6 +582,8 @@ async def test_get_user(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_user_favorites(client):
     """Test case for get_user_favorites
@@ -542,6 +602,8 @@ async def test_get_user_favorites(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_users(client):
     """Test case for get_users
 
@@ -558,6 +620,8 @@ async def test_get_users(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_post_pipeline_run(client):
     """Test case for post_pipeline_run
@@ -576,6 +640,8 @@ async def test_post_pipeline_run(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_post_pipeline_runs(client):
     """Test case for post_pipeline_runs
 
@@ -592,6 +658,8 @@ async def test_post_pipeline_runs(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_put_pipeline_favorite(client):
     """Test case for put_pipeline_favorite
@@ -613,6 +681,8 @@ async def test_put_pipeline_favorite(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_put_pipeline_run(client):
     """Test case for put_pipeline_run
 
@@ -633,6 +703,8 @@ async def test_put_pipeline_run(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_search(client):
     """Test case for search
 
@@ -651,6 +723,8 @@ async def test_search(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_search_classes(client):
     """Test case for search_classes

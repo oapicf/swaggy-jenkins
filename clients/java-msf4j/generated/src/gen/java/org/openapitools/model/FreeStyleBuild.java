@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
@@ -13,7 +14,7 @@ import org.openapitools.model.EmptyChangeLogSet;
 /**
  * FreeStyleBuild
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleBuild   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -25,7 +26,7 @@ public class FreeStyleBuild   {
   private String url;
 
   @JsonProperty("actions")
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions = null;
 
   @JsonProperty("building")
   private Boolean building;
@@ -123,14 +124,14 @@ public class FreeStyleBuild   {
     this.url = url;
   }
 
-  public FreeStyleBuild actions(List<CauseAction> actions) {
+  public FreeStyleBuild actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
 
   public FreeStyleBuild addActionsItem(CauseAction actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<>();
+      this.actions = ;
     }
     this.actions.add(actionsItem);
     return this;
@@ -141,11 +142,11 @@ public class FreeStyleBuild   {
    * @return actions
   **/
   @ApiModelProperty(value = "")
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 

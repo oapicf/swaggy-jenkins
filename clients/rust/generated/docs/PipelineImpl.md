@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **organization** | Option<**String**> |  | [optional]
 **weather_score** | Option<**i32**> |  | [optional]
-**_links** | Option<[**crate::models::PipelineImpllinks**](PipelineImpllinks.md)> |  | [optional]
+**_links** | Option<[**models::PipelineImpllinks**](PipelineImpllinks.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

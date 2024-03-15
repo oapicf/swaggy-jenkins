@@ -4,7 +4,7 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.openapitools.model.HudsonMasterComputer;
 
 @Canonical
@@ -14,7 +14,7 @@ class ComputerSet {
     
     Integer busyExecutors
     
-    List<HudsonMasterComputer> computer = new ArrayList<>()
+    List<HudsonMasterComputer> computer
     
     String displayName
     

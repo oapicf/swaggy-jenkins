@@ -23,16 +23,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class CauseUserIdCause(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("shortDescription") val shortDescription: kotlin.String? = null,
+    @get:JsonProperty("shortDescription") val shortDescription: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("userId") val userId: kotlin.String? = null,
+    @get:JsonProperty("userId") val userId: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("userName") val userName: kotlin.String? = null
+    @get:JsonProperty("userName") val userName: kotlin.String? = null
 ) {
 
 }

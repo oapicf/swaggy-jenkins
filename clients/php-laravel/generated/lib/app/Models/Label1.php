@@ -10,6 +10,6 @@ namespace app\Models;
 class Label1 {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

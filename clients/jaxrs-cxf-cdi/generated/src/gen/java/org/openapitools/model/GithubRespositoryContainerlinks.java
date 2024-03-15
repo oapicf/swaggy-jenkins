@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -18,7 +19,6 @@ public class GithubRespositoryContainerlinks   {
   private Link self;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -66,8 +66,8 @@ public class GithubRespositoryContainerlinks   {
       return false;
     }
     GithubRespositoryContainerlinks githubRespositoryContainerlinks = (GithubRespositoryContainerlinks) o;
-    return Objects.equals(self, githubRespositoryContainerlinks.self) &&
-        Objects.equals(propertyClass, githubRespositoryContainerlinks.propertyClass);
+    return Objects.equals(this.self, githubRespositoryContainerlinks.self) &&
+        Objects.equals(this.propertyClass, githubRespositoryContainerlinks.propertyClass);
   }
 
   @Override

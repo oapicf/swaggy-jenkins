@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineImpllinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineImpllinks   {
-  
   private @Valid Link runs;
   private @Valid Link self;
   private @Valid Link queue;
@@ -44,7 +43,7 @@ public class PipelineImpllinks   {
     this.runs = runs;
   }
 
-/**
+  /**
    **/
   public PipelineImpllinks self(Link self) {
     this.self = self;
@@ -63,7 +62,7 @@ public class PipelineImpllinks   {
     this.self = self;
   }
 
-/**
+  /**
    **/
   public PipelineImpllinks queue(Link queue) {
     this.queue = queue;
@@ -82,7 +81,7 @@ public class PipelineImpllinks   {
     this.queue = queue;
   }
 
-/**
+  /**
    **/
   public PipelineImpllinks actions(Link actions) {
     this.actions = actions;
@@ -101,7 +100,7 @@ public class PipelineImpllinks   {
     this.actions = actions;
   }
 
-/**
+  /**
    **/
   public PipelineImpllinks propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

@@ -2,14 +2,18 @@ defmodule SwaggyJenkins.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :swaggy_jenkins,
-     version: "1.5.1-pre.0",
-     elixir: "~> 1.6",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     package: package(),
-     description: "Jenkins API clients generated from Swagger / Open API specification",
-     deps: deps()]
+    [
+      app: :swaggy_jenkins,
+      version: "2.0.1-pre.0",
+      elixir: "~> 1.10",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      package: package(),
+      description: """
+      Jenkins API clients generated from Swagger / Open API specification
+      """,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -31,16 +35,17 @@ defmodule SwaggyJenkins.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:tesla, "~> 1.2"},
-      {:poison, "~> 3.0"}
+      {:tesla, "~> 1.7"},
+      {:jason, "~> 1.4"},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 
-   defp package() do
-    [
-      name: "swaggy_jenkins",
-      files: ~w(lib mix.exs README* LICENSE*),
-      licenses: [""]
-    ]
+   defp package do
+      [
+        name: "swaggy_jenkins",
+        files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
+      ]
   end
 end

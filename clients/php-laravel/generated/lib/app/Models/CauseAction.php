@@ -10,9 +10,9 @@ namespace app\Models;
 class CauseAction {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\CauseUserIdCause[] $causes */
-    private $causes;
+    public $causes = [];
 
 }

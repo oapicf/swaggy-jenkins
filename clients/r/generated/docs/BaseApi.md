@@ -19,11 +19,13 @@ Retrieve CSRF protection token
 library(openapi)
 
 
-api.instance <- BaseApi$new()
+api_instance <- BaseApi$new()
 # Configure HTTP basic authorization: jenkins_auth
-api.instance$apiClient$username <- 'TODO_YOUR_USERNAME';
-api.instance$apiClient$password <- 'TODO_YOUR_PASSWORD';
-result <- api.instance$GetCrumb()
+api_instance$api_client$username <- Sys.getenv("USERNAME")
+api_instance$api_client$password <- Sys.getenv("PASSWORD")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$GetCrumb(data_file = "result.txt")
+result <- api_instance$GetCrumb()
 dput(result)
 ```
 

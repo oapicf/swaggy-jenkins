@@ -38,54 +38,54 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class Hudson(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("assignedLabels") val assignedLabels: kotlin.collections.List<HudsonassignedLabels>? = null,
+    @get:JsonProperty("assignedLabels") val assignedLabels: kotlin.collections.List<HudsonassignedLabels>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("mode") val mode: kotlin.String? = null,
+    @get:JsonProperty("mode") val mode: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("nodeDescription") val nodeDescription: kotlin.String? = null,
+    @get:JsonProperty("nodeDescription") val nodeDescription: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("nodeName") val nodeName: kotlin.String? = null,
+    @get:JsonProperty("nodeName") val nodeName: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("numExecutors") val numExecutors: kotlin.Int? = null,
+    @get:JsonProperty("numExecutors") val numExecutors: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("description") val description: kotlin.String? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("jobs") val jobs: kotlin.collections.List<FreeStyleProject>? = null,
+    @get:JsonProperty("description") val description: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("primaryView") val primaryView: AllView? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("quietingDown") val quietingDown: kotlin.Boolean? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("slaveAgentPort") val slaveAgentPort: kotlin.Int? = null,
+    @get:JsonProperty("jobs") val jobs: kotlin.collections.List<FreeStyleProject>? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("unlabeledLoad") val unlabeledLoad: UnlabeledLoadStatistics? = null,
+    @get:JsonProperty("primaryView") val primaryView: AllView? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("useCrumbs") val useCrumbs: kotlin.Boolean? = null,
+    @get:JsonProperty("quietingDown") val quietingDown: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("useSecurity") val useSecurity: kotlin.Boolean? = null,
+    @get:JsonProperty("slaveAgentPort") val slaveAgentPort: kotlin.Int? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("views") val views: kotlin.collections.List<AllView>? = null
+    @get:JsonProperty("unlabeledLoad") val unlabeledLoad: UnlabeledLoadStatistics? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("useCrumbs") val useCrumbs: kotlin.Boolean? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("useSecurity") val useSecurity: kotlin.Boolean? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("views") val views: kotlin.collections.List<AllView>? = null
 ) {
 
 }

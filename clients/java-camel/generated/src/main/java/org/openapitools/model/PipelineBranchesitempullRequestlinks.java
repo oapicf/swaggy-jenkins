@@ -18,13 +18,11 @@ import javax.annotation.Generated;
  * PipelineBranchesitempullRequestlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitempullRequestlinks {
 
-  @JsonProperty("self")
   private String self;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public PipelineBranchesitempullRequestlinks self(String self) {
@@ -37,7 +35,8 @@ public class PipelineBranchesitempullRequestlinks {
    * @return self
   */
   
-  @Schema(name = "self", required = false)
+  @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("self")
   public String getSelf() {
     return self;
   }
@@ -56,7 +55,8 @@ public class PipelineBranchesitempullRequestlinks {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

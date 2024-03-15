@@ -36,7 +36,7 @@ class ViewApiController() {
     @Operation(
         summary = "",
         operationId = "getView",
-        description = "Retrieve view details",
+        description = """Retrieve view details""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved view details", content = [Content(schema = Schema(implementation = ListView::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -56,7 +56,7 @@ class ViewApiController() {
     @Operation(
         summary = "",
         operationId = "getViewConfig",
-        description = "Retrieve view configuration",
+        description = """Retrieve view configuration""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully retrieved view configuration in config.xml format", content = [Content(schema = Schema(implementation = kotlin.String::class))]),
             ApiResponse(responseCode = "401", description = "Authentication failed - incorrect username and/or password"),
@@ -76,7 +76,7 @@ class ViewApiController() {
     @Operation(
         summary = "",
         operationId = "postViewConfig",
-        description = "Update view configuration",
+        description = """Update view configuration""",
         responses = [
             ApiResponse(responseCode = "200", description = "Successfully updated view configuration"),
             ApiResponse(responseCode = "400", description = "An error has occurred - error message is embedded inside the HTML response", content = [Content(schema = Schema(implementation = kotlin.String::class))]),

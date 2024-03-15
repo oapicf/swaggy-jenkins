@@ -101,7 +101,7 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
     // github_organization->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_organizationJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -125,7 +125,7 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
     // github_organization->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_organizationJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -133,10 +133,10 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
 
 
     github_organization_local_var = github_organization_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         jenkins_organization_pipeline ? jenkins_organization_pipeline->valueint : 0,
-        name ? strdup(name->valuestring) : NULL
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
         );
 
     return github_organization_local_var;

@@ -4,9 +4,8 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for PipelineBranchesitemlatestRun.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class PipelineBranchesitemlatestRun(
   durationInMillis: Option[Int],
   estimatedDurationInMillis: Option[Int],
@@ -22,33 +21,9 @@ case class PipelineBranchesitemlatestRun(
   `type`: Option[String],
   commitId: Option[String],
   `class`: Option[String]
-  additionalProperties: 
 )
 
 object PipelineBranchesitemlatestRun {
-  implicit lazy val pipelineBranchesitemlatestRunJsonFormat: Format[PipelineBranchesitemlatestRun] = {
-    val realJsonFormat = Json.format[PipelineBranchesitemlatestRun]
-    val declaredPropNames = Set("durationInMillis", "estimatedDurationInMillis", "enQueueTime", "endTime", "id", "organization", "pipeline", "result", "runSummary", "startTime", "state", "`type`", "commitId", "`class`")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { pipelineBranchesitemlatestRun =>
-        val jsObj = realJsonFormat.writes(pipelineBranchesitemlatestRun)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val pipelineBranchesitemlatestRunJsonFormat: Format[PipelineBranchesitemlatestRun] = Json.format[PipelineBranchesitemlatestRun]
 }
 

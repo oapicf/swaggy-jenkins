@@ -10,21 +10,21 @@ namespace app\Models;
 class HudsonMasterComputerexecutors {
 
     /** @var \app\Models\FreeStyleBuild $currentExecutable */
-    private $currentExecutable;
+    public $currentExecutable;
 
     /** @var bool $idle */
-    private $idle;
+    public $idle = false;
 
     /** @var bool $likelyStuck */
-    private $likelyStuck;
+    public $likelyStuck = false;
 
     /** @var int $number */
-    private $number;
+    public $number = 0;
 
     /** @var int $progress */
-    private $progress;
+    public $progress = 0;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

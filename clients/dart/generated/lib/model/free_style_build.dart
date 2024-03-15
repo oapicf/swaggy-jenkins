@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -173,24 +173,24 @@ class FreeStyleBuild {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FreeStyleBuild &&
-     other.class_ == class_ &&
-     other.number == number &&
-     other.url == url &&
-     other.actions == actions &&
-     other.building == building &&
-     other.description == description &&
-     other.displayName == displayName &&
-     other.duration == duration &&
-     other.estimatedDuration == estimatedDuration &&
-     other.executor == executor &&
-     other.fullDisplayName == fullDisplayName &&
-     other.id == id &&
-     other.keepLog == keepLog &&
-     other.queueId == queueId &&
-     other.result == result &&
-     other.timestamp == timestamp &&
-     other.builtOn == builtOn &&
-     other.changeSet == changeSet;
+    other.class_ == class_ &&
+    other.number == number &&
+    other.url == url &&
+    _deepEquality.equals(other.actions, actions) &&
+    other.building == building &&
+    other.description == description &&
+    other.displayName == displayName &&
+    other.duration == duration &&
+    other.estimatedDuration == estimatedDuration &&
+    other.executor == executor &&
+    other.fullDisplayName == fullDisplayName &&
+    other.id == id &&
+    other.keepLog == keepLog &&
+    other.queueId == queueId &&
+    other.result == result &&
+    other.timestamp == timestamp &&
+    other.builtOn == builtOn &&
+    other.changeSet == changeSet;
 
   @override
   int get hashCode =>
@@ -218,60 +218,94 @@ class FreeStyleBuild {
   String toString() => 'FreeStyleBuild[class_=$class_, number=$number, url=$url, actions=$actions, building=$building, description=$description, displayName=$displayName, duration=$duration, estimatedDuration=$estimatedDuration, executor=$executor, fullDisplayName=$fullDisplayName, id=$id, keepLog=$keepLog, queueId=$queueId, result=$result, timestamp=$timestamp, builtOn=$builtOn, changeSet=$changeSet]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (number != null) {
-      _json[r'number'] = number;
+    if (this.number != null) {
+      json[r'number'] = this.number;
+    } else {
+      json[r'number'] = null;
     }
-    if (url != null) {
-      _json[r'url'] = url;
+    if (this.url != null) {
+      json[r'url'] = this.url;
+    } else {
+      json[r'url'] = null;
     }
-      _json[r'actions'] = actions;
-    if (building != null) {
-      _json[r'building'] = building;
+      json[r'actions'] = this.actions;
+    if (this.building != null) {
+      json[r'building'] = this.building;
+    } else {
+      json[r'building'] = null;
     }
-    if (description != null) {
-      _json[r'description'] = description;
+    if (this.description != null) {
+      json[r'description'] = this.description;
+    } else {
+      json[r'description'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (duration != null) {
-      _json[r'duration'] = duration;
+    if (this.duration != null) {
+      json[r'duration'] = this.duration;
+    } else {
+      json[r'duration'] = null;
     }
-    if (estimatedDuration != null) {
-      _json[r'estimatedDuration'] = estimatedDuration;
+    if (this.estimatedDuration != null) {
+      json[r'estimatedDuration'] = this.estimatedDuration;
+    } else {
+      json[r'estimatedDuration'] = null;
     }
-    if (executor != null) {
-      _json[r'executor'] = executor;
+    if (this.executor != null) {
+      json[r'executor'] = this.executor;
+    } else {
+      json[r'executor'] = null;
     }
-    if (fullDisplayName != null) {
-      _json[r'fullDisplayName'] = fullDisplayName;
+    if (this.fullDisplayName != null) {
+      json[r'fullDisplayName'] = this.fullDisplayName;
+    } else {
+      json[r'fullDisplayName'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (keepLog != null) {
-      _json[r'keepLog'] = keepLog;
+    if (this.keepLog != null) {
+      json[r'keepLog'] = this.keepLog;
+    } else {
+      json[r'keepLog'] = null;
     }
-    if (queueId != null) {
-      _json[r'queueId'] = queueId;
+    if (this.queueId != null) {
+      json[r'queueId'] = this.queueId;
+    } else {
+      json[r'queueId'] = null;
     }
-    if (result != null) {
-      _json[r'result'] = result;
+    if (this.result != null) {
+      json[r'result'] = this.result;
+    } else {
+      json[r'result'] = null;
     }
-    if (timestamp != null) {
-      _json[r'timestamp'] = timestamp;
+    if (this.timestamp != null) {
+      json[r'timestamp'] = this.timestamp;
+    } else {
+      json[r'timestamp'] = null;
     }
-    if (builtOn != null) {
-      _json[r'builtOn'] = builtOn;
+    if (this.builtOn != null) {
+      json[r'builtOn'] = this.builtOn;
+    } else {
+      json[r'builtOn'] = null;
     }
-    if (changeSet != null) {
-      _json[r'changeSet'] = changeSet;
+    if (this.changeSet != null) {
+      json[r'changeSet'] = this.changeSet;
+    } else {
+      json[r'changeSet'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [FreeStyleBuild] instance and imports its values from
@@ -296,7 +330,7 @@ class FreeStyleBuild {
         class_: mapValueOfType<String>(json, r'_class'),
         number: mapValueOfType<int>(json, r'number'),
         url: mapValueOfType<String>(json, r'url'),
-        actions: CauseAction.listFromJson(json[r'actions']) ?? const [],
+        actions: CauseAction.listFromJson(json[r'actions']),
         building: mapValueOfType<bool>(json, r'building'),
         description: mapValueOfType<String>(json, r'description'),
         displayName: mapValueOfType<String>(json, r'displayName'),
@@ -316,7 +350,7 @@ class FreeStyleBuild {
     return null;
   }
 
-  static List<FreeStyleBuild>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<FreeStyleBuild> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FreeStyleBuild>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -347,12 +381,10 @@ class FreeStyleBuild {
   static Map<String, List<FreeStyleBuild>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<FreeStyleBuild>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = FreeStyleBuild.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = FreeStyleBuild.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

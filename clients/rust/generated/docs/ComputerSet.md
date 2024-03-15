@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
 **busy_executors** | Option<**i32**> |  | [optional]
-**computer** | Option<[**Vec<crate::models::HudsonMasterComputer>**](HudsonMasterComputer.md)> |  | [optional]
+**computer** | Option<[**Vec<models::HudsonMasterComputer>**](HudsonMasterComputer.md)> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **total_executors** | Option<**i32**> |  | [optional]
 

@@ -1,29 +1,29 @@
 # OpenAPI\Client\RemoteAccessApi
 
-All URIs are relative to http://localhost.
+All URIs are relative to http://localhost, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getComputer()**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-[**getJenkins()**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
-[**getJob()**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
-[**getJobConfig()**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
-[**getJobLastBuild()**](RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
-[**getJobProgressiveText()**](RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
-[**getQueue()**](RemoteAccessApi.md#getQueue) | **GET** /queue/api/json | 
-[**getQueueItem()**](RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
-[**getView()**](RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json | 
-[**getViewConfig()**](RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml | 
-[**headJenkins()**](RemoteAccessApi.md#headJenkins) | **HEAD** /api/json | 
-[**postCreateItem()**](RemoteAccessApi.md#postCreateItem) | **POST** /createItem | 
-[**postCreateView()**](RemoteAccessApi.md#postCreateView) | **POST** /createView | 
-[**postJobBuild()**](RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build | 
-[**postJobConfig()**](RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml | 
-[**postJobDelete()**](RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete | 
-[**postJobDisable()**](RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable | 
-[**postJobEnable()**](RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable | 
-[**postJobLastBuildStop()**](RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
-[**postViewConfig()**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml | 
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getComputer()**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json |  |
+| [**getJenkins()**](RemoteAccessApi.md#getJenkins) | **GET** /api/json |  |
+| [**getJob()**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json |  |
+| [**getJobConfig()**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml |  |
+| [**getJobLastBuild()**](RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json |  |
+| [**getJobProgressiveText()**](RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText |  |
+| [**getQueue()**](RemoteAccessApi.md#getQueue) | **GET** /queue/api/json |  |
+| [**getQueueItem()**](RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json |  |
+| [**getView()**](RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json |  |
+| [**getViewConfig()**](RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml |  |
+| [**headJenkins()**](RemoteAccessApi.md#headJenkins) | **HEAD** /api/json |  |
+| [**postCreateItem()**](RemoteAccessApi.md#postCreateItem) | **POST** /createItem |  |
+| [**postCreateView()**](RemoteAccessApi.md#postCreateView) | **POST** /createView |  |
+| [**postJobBuild()**](RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build |  |
+| [**postJobConfig()**](RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml |  |
+| [**postJobDelete()**](RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete |  |
+| [**postJobDisable()**](RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable |  |
+| [**postJobEnable()**](RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable |  |
+| [**postJobLastBuildStop()**](RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop |  |
+| [**postViewConfig()**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml |  |
 
 
 ## `getComputer()`
@@ -67,9 +67,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **depth** | **int**| Recursion depth in response model |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **depth** | **int**| Recursion depth in response model | |
 
 ### Return type
 
@@ -188,9 +188,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
 
 ### Return type
 
@@ -250,9 +250,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
 
 ### Return type
 
@@ -312,9 +312,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
 
 ### Return type
 
@@ -375,11 +375,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **number** | **string**| Build number |
- **start** | **string**| Starting point of progressive text output |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **number** | **string**| Build number | |
+| **start** | **string**| Starting point of progressive text output | |
 
 ### Return type
 
@@ -498,9 +498,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **number** | **string**| Queue number |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **number** | **string**| Queue number | |
 
 ### Return type
 
@@ -560,9 +560,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the view |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the view | |
 
 ### Return type
 
@@ -622,9 +622,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the view |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the view | |
 
 ### Return type
 
@@ -746,14 +746,14 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the new job |
- **from** | **string**| Existing job to copy from | [optional]
- **mode** | **string**| Set to &#39;copy&#39; for copying an existing job | [optional]
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
- **content_type** | **string**| Content type header application/xml | [optional]
- **body** | **string**| Job configuration in config.xml format | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the new job | |
+| **from** | **string**| Existing job to copy from | [optional] |
+| **mode** | **string**| Set to &#39;copy&#39; for copying an existing job | [optional] |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
+| **content_type** | **string**| Content type header application/xml | [optional] |
+| **body** | **string**| Job configuration in config.xml format | [optional] |
 
 ### Return type
 
@@ -815,12 +815,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the new view |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
- **content_type** | **string**| Content type header application/xml | [optional]
- **body** | **string**| View configuration in config.xml format | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the new view | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
+| **content_type** | **string**| Content type header application/xml | [optional] |
+| **body** | **string**| View configuration in config.xml format | [optional] |
 
 ### Return type
 
@@ -882,12 +882,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **json** | **string**|  |
- **token** | **string**|  | [optional]
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **json** | **string**|  | |
+| **token** | **string**|  | [optional] |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -948,11 +948,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **body** | **string**| Job configuration in config.xml format |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **body** | **string**| Job configuration in config.xml format | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -1012,10 +1012,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -1075,10 +1075,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -1138,10 +1138,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -1201,10 +1201,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the job |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the job | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -1265,11 +1265,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **string**| Name of the view |
- **body** | **string**| View configuration in config.xml format |
- **jenkins_crumb** | **string**| CSRF protection token | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **string**| Name of the view | |
+| **body** | **string**| View configuration in config.xml format | |
+| **jenkins_crumb** | **string**| CSRF protection token | [optional] |
 
 ### Return type
 

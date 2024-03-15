@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubContent;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -18,7 +19,6 @@ public class GithubFile   {
   private GithubContent content;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -66,8 +66,8 @@ public class GithubFile   {
       return false;
     }
     GithubFile githubFile = (GithubFile) o;
-    return Objects.equals(content, githubFile.content) &&
-        Objects.equals(propertyClass, githubFile.propertyClass);
+    return Objects.equals(this.content, githubFile.content) &&
+        Objects.equals(this.propertyClass, githubFile.propertyClass);
   }
 
   @Override

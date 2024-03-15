@@ -10,45 +10,45 @@ namespace app\Models;
 class MultibranchPipeline {
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $estimatedDurationInMillis */
-    private $estimatedDurationInMillis;
+    public $estimatedDurationInMillis = 0;
 
     /** @var string $latestRun */
-    private $latestRun;
+    public $latestRun = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $organization */
-    private $organization;
+    public $organization = "";
 
     /** @var int $weatherScore */
-    private $weatherScore;
+    public $weatherScore = 0;
 
     /** @var string[] $branchNames */
-    private $branchNames;
+    public $branchNames = [];
 
     /** @var int $numberOfFailingBranches */
-    private $numberOfFailingBranches;
+    public $numberOfFailingBranches = 0;
 
     /** @var int $numberOfFailingPullRequests */
-    private $numberOfFailingPullRequests;
+    public $numberOfFailingPullRequests = 0;
 
     /** @var int $numberOfSuccessfulBranches */
-    private $numberOfSuccessfulBranches;
+    public $numberOfSuccessfulBranches = 0;
 
     /** @var int $numberOfSuccessfulPullRequests */
-    private $numberOfSuccessfulPullRequests;
+    public $numberOfSuccessfulPullRequests = 0;
 
     /** @var int $totalNumberOfBranches */
-    private $totalNumberOfBranches;
+    public $totalNumberOfBranches = 0;
 
     /** @var int $totalNumberOfPullRequests */
-    private $totalNumberOfPullRequests;
+    public $totalNumberOfPullRequests = 0;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

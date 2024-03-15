@@ -27,26 +27,26 @@ data class PipelineRunImpllinks(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("nodes") val nodes: Link? = null,
+    @get:JsonProperty("nodes") val nodes: Link? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("log") val log: Link? = null,
+    @get:JsonProperty("log") val log: Link? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("self") val self: Link? = null,
+    @get:JsonProperty("self") val self: Link? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("actions") val actions: Link? = null,
+    @get:JsonProperty("actions") val actions: Link? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("steps") val steps: Link? = null,
+    @get:JsonProperty("steps") val steps: Link? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

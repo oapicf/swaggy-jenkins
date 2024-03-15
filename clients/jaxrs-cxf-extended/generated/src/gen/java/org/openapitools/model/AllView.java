@@ -92,6 +92,25 @@ public class AllView  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    AllView allView = (AllView) o;
+    return Objects.equals(this.propertyClass, allView.propertyClass) &&
+        Objects.equals(this.name, allView.name) &&
+        Objects.equals(this.url, allView.url);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, name, url);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AllView {\n");

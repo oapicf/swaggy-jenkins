@@ -21,10 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ClockDifference(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("diff") val diff: kotlin.Int? = null
+    @get:JsonProperty("diff") val diff: kotlin.Int? = null
 ) {
 
 }

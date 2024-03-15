@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
@@ -21,23 +22,22 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleProject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleProject   {
-  
   private @Valid String propertyClass;
   private @Valid String name;
   private @Valid String url;
   private @Valid String color;
-  private @Valid List<FreeStyleProjectactions> actions = new ArrayList<>();
+  private @Valid List<@Valid FreeStyleProjectactions> actions;
   private @Valid String description;
   private @Valid String displayName;
   private @Valid String displayNameOrNull;
   private @Valid String fullDisplayName;
   private @Valid String fullName;
   private @Valid Boolean buildable;
-  private @Valid List<FreeStyleBuild> builds = new ArrayList<>();
+  private @Valid List<@Valid FreeStyleBuild> builds;
   private @Valid FreeStyleBuild firstBuild;
-  private @Valid List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
+  private @Valid List<@Valid FreeStyleProjecthealthReport> healthReport;
   private @Valid Boolean inQueue;
   private @Valid Boolean keepDependencies;
   private @Valid FreeStyleBuild lastBuild;
@@ -71,7 +71,7 @@ public class FreeStyleProject   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject name(String name) {
     this.name = name;
@@ -90,7 +90,7 @@ public class FreeStyleProject   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject url(String url) {
     this.url = url;
@@ -109,7 +109,7 @@ public class FreeStyleProject   {
     this.url = url;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject color(String color) {
     this.color = color;
@@ -128,9 +128,9 @@ public class FreeStyleProject   {
     this.color = color;
   }
 
-/**
+  /**
    **/
-  public FreeStyleProject actions(List<FreeStyleProjectactions> actions) {
+  public FreeStyleProject actions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
     return this;
   }
@@ -143,7 +143,7 @@ public class FreeStyleProject   {
   }
 
   @JsonProperty("actions")
-  public void setActions(List<FreeStyleProjectactions> actions) {
+  public void setActions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
   }
 
@@ -163,7 +163,7 @@ public class FreeStyleProject   {
 
     return this;
   }
-/**
+  /**
    **/
   public FreeStyleProject description(String description) {
     this.description = description;
@@ -182,7 +182,7 @@ public class FreeStyleProject   {
     this.description = description;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject displayName(String displayName) {
     this.displayName = displayName;
@@ -201,7 +201,7 @@ public class FreeStyleProject   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject displayNameOrNull(String displayNameOrNull) {
     this.displayNameOrNull = displayNameOrNull;
@@ -220,7 +220,7 @@ public class FreeStyleProject   {
     this.displayNameOrNull = displayNameOrNull;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
@@ -239,7 +239,7 @@ public class FreeStyleProject   {
     this.fullDisplayName = fullDisplayName;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject fullName(String fullName) {
     this.fullName = fullName;
@@ -258,7 +258,7 @@ public class FreeStyleProject   {
     this.fullName = fullName;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject buildable(Boolean buildable) {
     this.buildable = buildable;
@@ -277,9 +277,9 @@ public class FreeStyleProject   {
     this.buildable = buildable;
   }
 
-/**
+  /**
    **/
-  public FreeStyleProject builds(List<FreeStyleBuild> builds) {
+  public FreeStyleProject builds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
     return this;
   }
@@ -292,7 +292,7 @@ public class FreeStyleProject   {
   }
 
   @JsonProperty("builds")
-  public void setBuilds(List<FreeStyleBuild> builds) {
+  public void setBuilds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
   }
 
@@ -312,7 +312,7 @@ public class FreeStyleProject   {
 
     return this;
   }
-/**
+  /**
    **/
   public FreeStyleProject firstBuild(FreeStyleBuild firstBuild) {
     this.firstBuild = firstBuild;
@@ -331,9 +331,9 @@ public class FreeStyleProject   {
     this.firstBuild = firstBuild;
   }
 
-/**
+  /**
    **/
-  public FreeStyleProject healthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public FreeStyleProject healthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
     return this;
   }
@@ -346,7 +346,7 @@ public class FreeStyleProject   {
   }
 
   @JsonProperty("healthReport")
-  public void setHealthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public void setHealthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
   }
 
@@ -366,7 +366,7 @@ public class FreeStyleProject   {
 
     return this;
   }
-/**
+  /**
    **/
   public FreeStyleProject inQueue(Boolean inQueue) {
     this.inQueue = inQueue;
@@ -385,7 +385,7 @@ public class FreeStyleProject   {
     this.inQueue = inQueue;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject keepDependencies(Boolean keepDependencies) {
     this.keepDependencies = keepDependencies;
@@ -404,7 +404,7 @@ public class FreeStyleProject   {
     this.keepDependencies = keepDependencies;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastBuild(FreeStyleBuild lastBuild) {
     this.lastBuild = lastBuild;
@@ -423,7 +423,7 @@ public class FreeStyleProject   {
     this.lastBuild = lastBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastCompletedBuild(FreeStyleBuild lastCompletedBuild) {
     this.lastCompletedBuild = lastCompletedBuild;
@@ -442,7 +442,7 @@ public class FreeStyleProject   {
     this.lastCompletedBuild = lastCompletedBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastFailedBuild(String lastFailedBuild) {
     this.lastFailedBuild = lastFailedBuild;
@@ -461,7 +461,7 @@ public class FreeStyleProject   {
     this.lastFailedBuild = lastFailedBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastStableBuild(FreeStyleBuild lastStableBuild) {
     this.lastStableBuild = lastStableBuild;
@@ -480,7 +480,7 @@ public class FreeStyleProject   {
     this.lastStableBuild = lastStableBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastSuccessfulBuild(FreeStyleBuild lastSuccessfulBuild) {
     this.lastSuccessfulBuild = lastSuccessfulBuild;
@@ -499,7 +499,7 @@ public class FreeStyleProject   {
     this.lastSuccessfulBuild = lastSuccessfulBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastUnstableBuild(String lastUnstableBuild) {
     this.lastUnstableBuild = lastUnstableBuild;
@@ -518,7 +518,7 @@ public class FreeStyleProject   {
     this.lastUnstableBuild = lastUnstableBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject lastUnsuccessfulBuild(String lastUnsuccessfulBuild) {
     this.lastUnsuccessfulBuild = lastUnsuccessfulBuild;
@@ -537,7 +537,7 @@ public class FreeStyleProject   {
     this.lastUnsuccessfulBuild = lastUnsuccessfulBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject nextBuildNumber(Integer nextBuildNumber) {
     this.nextBuildNumber = nextBuildNumber;
@@ -556,7 +556,7 @@ public class FreeStyleProject   {
     this.nextBuildNumber = nextBuildNumber;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject queueItem(String queueItem) {
     this.queueItem = queueItem;
@@ -575,7 +575,7 @@ public class FreeStyleProject   {
     this.queueItem = queueItem;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject concurrentBuild(Boolean concurrentBuild) {
     this.concurrentBuild = concurrentBuild;
@@ -594,7 +594,7 @@ public class FreeStyleProject   {
     this.concurrentBuild = concurrentBuild;
   }
 
-/**
+  /**
    **/
   public FreeStyleProject scm(NullSCM scm) {
     this.scm = scm;

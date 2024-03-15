@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -62,11 +62,11 @@ class BranchImplpermissions {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is BranchImplpermissions &&
-     other.create == create &&
-     other.read == read &&
-     other.start == start &&
-     other.stop == stop &&
-     other.class_ == class_;
+    other.create == create &&
+    other.read == read &&
+    other.start == start &&
+    other.stop == stop &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -81,23 +81,33 @@ class BranchImplpermissions {
   String toString() => 'BranchImplpermissions[create=$create, read=$read, start=$start, stop=$stop, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (create != null) {
-      _json[r'create'] = create;
+    final json = <String, dynamic>{};
+    if (this.create != null) {
+      json[r'create'] = this.create;
+    } else {
+      json[r'create'] = null;
     }
-    if (read != null) {
-      _json[r'read'] = read;
+    if (this.read != null) {
+      json[r'read'] = this.read;
+    } else {
+      json[r'read'] = null;
     }
-    if (start != null) {
-      _json[r'start'] = start;
+    if (this.start != null) {
+      json[r'start'] = this.start;
+    } else {
+      json[r'start'] = null;
     }
-    if (stop != null) {
-      _json[r'stop'] = stop;
+    if (this.stop != null) {
+      json[r'stop'] = this.stop;
+    } else {
+      json[r'stop'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [BranchImplpermissions] instance and imports its values from
@@ -129,7 +139,7 @@ class BranchImplpermissions {
     return null;
   }
 
-  static List<BranchImplpermissions>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<BranchImplpermissions> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <BranchImplpermissions>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,12 +170,10 @@ class BranchImplpermissions {
   static Map<String, List<BranchImplpermissions>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<BranchImplpermissions>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = BranchImplpermissions.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = BranchImplpermissions.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

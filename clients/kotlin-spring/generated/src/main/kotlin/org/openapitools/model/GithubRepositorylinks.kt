@@ -23,10 +23,10 @@ data class GithubRepositorylinks(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("self") val self: Link? = null,
+    @get:JsonProperty("self") val self: Link? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

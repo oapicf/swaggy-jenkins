@@ -10,51 +10,51 @@ namespace app\Models;
 class HudsonMasterComputer {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var \app\Models\HudsonMasterComputerexecutors[] $executors */
-    private $executors;
+    public $executors = [];
 
     /** @var string $icon */
-    private $icon;
+    public $icon = "";
 
     /** @var string $iconClassName */
-    private $iconClassName;
+    public $iconClassName = "";
 
     /** @var bool $idle */
-    private $idle;
+    public $idle = false;
 
     /** @var bool $jnlpAgent */
-    private $jnlpAgent;
+    public $jnlpAgent = false;
 
     /** @var bool $launchSupported */
-    private $launchSupported;
+    public $launchSupported = false;
 
     /** @var \app\Models\Label1 $loadStatistics */
-    private $loadStatistics;
+    public $loadStatistics;
 
     /** @var bool $manualLaunchAllowed */
-    private $manualLaunchAllowed;
+    public $manualLaunchAllowed = false;
 
     /** @var \app\Models\HudsonMasterComputermonitorData $monitorData */
-    private $monitorData;
+    public $monitorData;
 
     /** @var int $numExecutors */
-    private $numExecutors;
+    public $numExecutors = 0;
 
     /** @var bool $offline */
-    private $offline;
+    public $offline = false;
 
     /** @var string $offlineCause */
-    private $offlineCause;
+    public $offlineCause = "";
 
     /** @var string $offlineCauseReason */
-    private $offlineCauseReason;
+    public $offlineCauseReason = "";
 
     /** @var bool $temporarilyOffline */
-    private $temporarilyOffline;
+    public $temporarilyOffline = false;
 
 }

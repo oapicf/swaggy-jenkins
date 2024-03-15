@@ -10,57 +10,57 @@ namespace app\Models;
 class FreeStyleBuild {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $number */
-    private $number;
+    public $number = 0;
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
     /** @var \app\Models\CauseAction[] $actions */
-    private $actions;
+    public $actions = [];
 
     /** @var bool $building */
-    private $building;
+    public $building = false;
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $duration */
-    private $duration;
+    public $duration = 0;
 
     /** @var int $estimatedDuration */
-    private $estimatedDuration;
+    public $estimatedDuration = 0;
 
     /** @var string $executor */
-    private $executor;
+    public $executor = "";
 
     /** @var string $fullDisplayName */
-    private $fullDisplayName;
+    public $fullDisplayName = "";
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var bool $keepLog */
-    private $keepLog;
+    public $keepLog = false;
 
     /** @var int $queueId */
-    private $queueId;
+    public $queueId = 0;
 
     /** @var string $result */
-    private $result;
+    public $result = "";
 
     /** @var int $timestamp */
-    private $timestamp;
+    public $timestamp = 0;
 
     /** @var string $builtOn */
-    private $builtOn;
+    public $builtOn = "";
 
     /** @var \app\Models\EmptyChangeLogSet $changeSet */
-    private $changeSet;
+    public $changeSet;
 
 }

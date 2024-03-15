@@ -5,7 +5,7 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from app.openapi_server.models.base_model_ import Model
+from app.openapi_server.models.base_model import Model
 from app.openapi_server.models.branch_impllinks import BranchImpllinks  # noqa: F401,E501
 from app.openapi_server.models.branch_implpermissions import BranchImplpermissions  # noqa: F401,E501
 from app.openapi_server.models.pipeline_run_impl import PipelineRunImpl  # noqa: F401,E501

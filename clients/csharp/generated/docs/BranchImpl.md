@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.BranchImpl
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **DisplayName** | **string** |  | [optional] 
 **EstimatedDurationInMillis** | **int** |  | [optional] 
 **FullDisplayName** | **string** |  | [optional] 
@@ -19,7 +18,5 @@ Name | Type | Description | Notes
 **Links** | [**BranchImpllinks**](BranchImpllinks.md) |  | [optional] 
 **LatestRun** | [**PipelineRunImpl**](PipelineRunImpl.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

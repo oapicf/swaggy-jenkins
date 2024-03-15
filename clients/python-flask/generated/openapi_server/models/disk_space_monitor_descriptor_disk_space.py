@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -58,7 +55,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -68,7 +65,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -79,7 +76,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         self.__class = _class
 
     @property
-    def timestamp(self):
+    def timestamp(self) -> int:
         """Gets the timestamp of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -89,7 +86,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         return self._timestamp
 
     @timestamp.setter
-    def timestamp(self, timestamp):
+    def timestamp(self, timestamp: int):
         """Sets the timestamp of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -100,7 +97,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         self._timestamp = timestamp
 
     @property
-    def path(self):
+    def path(self) -> str:
         """Gets the path of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -110,7 +107,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         return self._path
 
     @path.setter
-    def path(self, path):
+    def path(self, path: str):
         """Sets the path of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -121,7 +118,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         self._path = path
 
     @property
-    def size(self):
+    def size(self) -> int:
         """Gets the size of this DiskSpaceMonitorDescriptorDiskSpace.
 
 
@@ -131,7 +128,7 @@ class DiskSpaceMonitorDescriptorDiskSpace(Model):
         return self._size
 
     @size.setter
-    def size(self, size):
+    def size(self, size: int):
         """Sets the size of this DiskSpaceMonitorDescriptorDiskSpace.
 
 

@@ -18,13 +18,11 @@ import javax.annotation.Generated;
  * Link
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Link {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("href")
   private String href;
 
   public Link propertyClass(String propertyClass) {
@@ -37,7 +35,8 @@ public class Link {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -56,7 +55,8 @@ public class Link {
    * @return href
   */
   
-  @Schema(name = "href", required = false)
+  @Schema(name = "href", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("href")
   public String getHref() {
     return href;
   }

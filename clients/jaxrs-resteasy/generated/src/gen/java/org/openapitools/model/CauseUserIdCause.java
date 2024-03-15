@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class CauseUserIdCause   {
   
   private String propertyClass;
@@ -75,10 +77,10 @@ public class CauseUserIdCause   {
       return false;
     }
     CauseUserIdCause causeUserIdCause = (CauseUserIdCause) o;
-    return Objects.equals(propertyClass, causeUserIdCause.propertyClass) &&
-        Objects.equals(shortDescription, causeUserIdCause.shortDescription) &&
-        Objects.equals(userId, causeUserIdCause.userId) &&
-        Objects.equals(userName, causeUserIdCause.userName);
+    return Objects.equals(this.propertyClass, causeUserIdCause.propertyClass) &&
+        Objects.equals(this.shortDescription, causeUserIdCause.shortDescription) &&
+        Objects.equals(this.userId, causeUserIdCause.userId) &&
+        Objects.equals(this.userName, causeUserIdCause.userName);
   }
 
   @Override

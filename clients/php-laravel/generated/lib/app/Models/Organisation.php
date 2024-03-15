@@ -10,9 +10,9 @@ namespace app\Models;
 class Organisation {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
 }

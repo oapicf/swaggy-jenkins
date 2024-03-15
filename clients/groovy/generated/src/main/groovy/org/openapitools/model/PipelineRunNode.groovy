@@ -4,7 +4,7 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.openapitools.model.PipelineRunNodeedges;
 
 @Canonical
@@ -16,7 +16,7 @@ class PipelineRunNode {
     
     Integer durationInMillis
     
-    List<PipelineRunNodeedges> edges = new ArrayList<>()
+    List<PipelineRunNodeedges> edges
     
     String id
     

@@ -10,12 +10,12 @@ namespace app\Models;
 class ResponseTimeMonitorData {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var int $timestamp */
-    private $timestamp;
+    public $timestamp = 0;
 
     /** @var int $average */
-    private $average;
+    public $average = 0;
 
 }

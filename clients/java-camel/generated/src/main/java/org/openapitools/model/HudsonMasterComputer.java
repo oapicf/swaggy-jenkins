@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
@@ -23,56 +24,40 @@ import javax.annotation.Generated;
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputer {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("executors")
   @Valid
-  private List<HudsonMasterComputerexecutors> executors = null;
+  private List<@Valid HudsonMasterComputerexecutors> executors;
 
-  @JsonProperty("icon")
   private String icon;
 
-  @JsonProperty("iconClassName")
   private String iconClassName;
 
-  @JsonProperty("idle")
   private Boolean idle;
 
-  @JsonProperty("jnlpAgent")
   private Boolean jnlpAgent;
 
-  @JsonProperty("launchSupported")
   private Boolean launchSupported;
 
-  @JsonProperty("loadStatistics")
   private Label1 loadStatistics;
 
-  @JsonProperty("manualLaunchAllowed")
   private Boolean manualLaunchAllowed;
 
-  @JsonProperty("monitorData")
   private HudsonMasterComputermonitorData monitorData;
 
-  @JsonProperty("numExecutors")
   private Integer numExecutors;
 
-  @JsonProperty("offline")
   private Boolean offline;
 
-  @JsonProperty("offlineCause")
   private String offlineCause;
 
-  @JsonProperty("offlineCauseReason")
   private String offlineCauseReason;
 
-  @JsonProperty("temporarilyOffline")
   private Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(String propertyClass) {
@@ -85,7 +70,8 @@ public class HudsonMasterComputer {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -104,7 +90,8 @@ public class HudsonMasterComputer {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -113,7 +100,7 @@ public class HudsonMasterComputer {
     this.displayName = displayName;
   }
 
-  public HudsonMasterComputer executors(List<HudsonMasterComputerexecutors> executors) {
+  public HudsonMasterComputer executors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
     return this;
   }
@@ -131,12 +118,13 @@ public class HudsonMasterComputer {
    * @return executors
   */
   @Valid 
-  @Schema(name = "executors", required = false)
-  public List<HudsonMasterComputerexecutors> getExecutors() {
+  @Schema(name = "executors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("executors")
+  public List<@Valid HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
 
-  public void setExecutors(List<HudsonMasterComputerexecutors> executors) {
+  public void setExecutors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
   }
 
@@ -150,7 +138,8 @@ public class HudsonMasterComputer {
    * @return icon
   */
   
-  @Schema(name = "icon", required = false)
+  @Schema(name = "icon", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("icon")
   public String getIcon() {
     return icon;
   }
@@ -169,7 +158,8 @@ public class HudsonMasterComputer {
    * @return iconClassName
   */
   
-  @Schema(name = "iconClassName", required = false)
+  @Schema(name = "iconClassName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("iconClassName")
   public String getIconClassName() {
     return iconClassName;
   }
@@ -188,7 +178,8 @@ public class HudsonMasterComputer {
    * @return idle
   */
   
-  @Schema(name = "idle", required = false)
+  @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("idle")
   public Boolean getIdle() {
     return idle;
   }
@@ -207,7 +198,8 @@ public class HudsonMasterComputer {
    * @return jnlpAgent
   */
   
-  @Schema(name = "jnlpAgent", required = false)
+  @Schema(name = "jnlpAgent", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("jnlpAgent")
   public Boolean getJnlpAgent() {
     return jnlpAgent;
   }
@@ -226,7 +218,8 @@ public class HudsonMasterComputer {
    * @return launchSupported
   */
   
-  @Schema(name = "launchSupported", required = false)
+  @Schema(name = "launchSupported", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("launchSupported")
   public Boolean getLaunchSupported() {
     return launchSupported;
   }
@@ -245,7 +238,8 @@ public class HudsonMasterComputer {
    * @return loadStatistics
   */
   @Valid 
-  @Schema(name = "loadStatistics", required = false)
+  @Schema(name = "loadStatistics", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("loadStatistics")
   public Label1 getLoadStatistics() {
     return loadStatistics;
   }
@@ -264,7 +258,8 @@ public class HudsonMasterComputer {
    * @return manualLaunchAllowed
   */
   
-  @Schema(name = "manualLaunchAllowed", required = false)
+  @Schema(name = "manualLaunchAllowed", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("manualLaunchAllowed")
   public Boolean getManualLaunchAllowed() {
     return manualLaunchAllowed;
   }
@@ -283,7 +278,8 @@ public class HudsonMasterComputer {
    * @return monitorData
   */
   @Valid 
-  @Schema(name = "monitorData", required = false)
+  @Schema(name = "monitorData", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("monitorData")
   public HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
   }
@@ -302,7 +298,8 @@ public class HudsonMasterComputer {
    * @return numExecutors
   */
   
-  @Schema(name = "numExecutors", required = false)
+  @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("numExecutors")
   public Integer getNumExecutors() {
     return numExecutors;
   }
@@ -321,7 +318,8 @@ public class HudsonMasterComputer {
    * @return offline
   */
   
-  @Schema(name = "offline", required = false)
+  @Schema(name = "offline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("offline")
   public Boolean getOffline() {
     return offline;
   }
@@ -340,7 +338,8 @@ public class HudsonMasterComputer {
    * @return offlineCause
   */
   
-  @Schema(name = "offlineCause", required = false)
+  @Schema(name = "offlineCause", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("offlineCause")
   public String getOfflineCause() {
     return offlineCause;
   }
@@ -359,7 +358,8 @@ public class HudsonMasterComputer {
    * @return offlineCauseReason
   */
   
-  @Schema(name = "offlineCauseReason", required = false)
+  @Schema(name = "offlineCauseReason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("offlineCauseReason")
   public String getOfflineCauseReason() {
     return offlineCauseReason;
   }
@@ -378,7 +378,8 @@ public class HudsonMasterComputer {
    * @return temporarilyOffline
   */
   
-  @Schema(name = "temporarilyOffline", required = false)
+  @Schema(name = "temporarilyOffline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("temporarilyOffline")
   public Boolean getTemporarilyOffline() {
     return temporarilyOffline;
   }

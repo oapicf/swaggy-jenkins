@@ -1,164 +1,164 @@
-export * from './AllView';
-export * from './BranchImpl';
-export * from './BranchImpllinks';
-export * from './BranchImplpermissions';
-export * from './CauseAction';
-export * from './CauseUserIdCause';
-export * from './ClassesByClass';
-export * from './ClockDifference';
-export * from './ComputerSet';
-export * from './DefaultCrumbIssuer';
-export * from './DiskSpaceMonitorDescriptorDiskSpace';
-export * from './EmptyChangeLogSet';
-export * from './ExtensionClassContainerImpl1';
-export * from './ExtensionClassContainerImpl1links';
-export * from './ExtensionClassContainerImpl1map';
-export * from './ExtensionClassImpl';
-export * from './ExtensionClassImpllinks';
-export * from './FavoriteImpl';
-export * from './FavoriteImpllinks';
-export * from './FreeStyleBuild';
-export * from './FreeStyleProject';
-export * from './FreeStyleProjectactions';
-export * from './FreeStyleProjecthealthReport';
-export * from './GenericResource';
-export * from './GithubContent';
-export * from './GithubFile';
-export * from './GithubOrganization';
-export * from './GithubOrganizationlinks';
-export * from './GithubRepositories';
-export * from './GithubRepositorieslinks';
-export * from './GithubRepository';
-export * from './GithubRepositorylinks';
-export * from './GithubRepositorypermissions';
-export * from './GithubRespositoryContainer';
-export * from './GithubRespositoryContainerlinks';
-export * from './GithubScm';
-export * from './GithubScmlinks';
-export * from './Hudson';
-export * from './HudsonMasterComputer';
-export * from './HudsonMasterComputerexecutors';
-export * from './HudsonMasterComputermonitorData';
-export * from './HudsonassignedLabels';
-export * from './InputStepImpl';
-export * from './InputStepImpllinks';
-export * from './Label1';
-export * from './Link';
-export * from './ListView';
-export * from './MultibranchPipeline';
-export * from './NullSCM';
-export * from './Organisation';
-export * from './Pipeline';
-export * from './PipelineActivity';
-export * from './PipelineActivityartifacts';
-export * from './PipelineBranchesitem';
-export * from './PipelineBranchesitemlatestRun';
-export * from './PipelineBranchesitempullRequest';
-export * from './PipelineBranchesitempullRequestlinks';
-export * from './PipelineFolderImpl';
-export * from './PipelineImpl';
-export * from './PipelineImpllinks';
-export * from './PipelineRun';
-export * from './PipelineRunImpl';
-export * from './PipelineRunImpllinks';
-export * from './PipelineRunNode';
-export * from './PipelineRunNodeedges';
-export * from './PipelineRunartifacts';
-export * from './PipelineStepImpl';
-export * from './PipelineStepImpllinks';
-export * from './PipelinelatestRun';
-export * from './PipelinelatestRunartifacts';
-export * from './Queue';
-export * from './QueueBlockedItem';
-export * from './QueueItemImpl';
-export * from './QueueLeftItem';
-export * from './ResponseTimeMonitorData';
-export * from './StringParameterDefinition';
-export * from './StringParameterValue';
-export * from './SwapSpaceMonitorMemoryUsage2';
-export * from './UnlabeledLoadStatistics';
-export * from './User';
+export * from '../models/AllView';
+export * from '../models/BranchImpl';
+export * from '../models/BranchImpllinks';
+export * from '../models/BranchImplpermissions';
+export * from '../models/CauseAction';
+export * from '../models/CauseUserIdCause';
+export * from '../models/ClassesByClass';
+export * from '../models/ClockDifference';
+export * from '../models/ComputerSet';
+export * from '../models/DefaultCrumbIssuer';
+export * from '../models/DiskSpaceMonitorDescriptorDiskSpace';
+export * from '../models/EmptyChangeLogSet';
+export * from '../models/ExtensionClassContainerImpl1';
+export * from '../models/ExtensionClassContainerImpl1links';
+export * from '../models/ExtensionClassContainerImpl1map';
+export * from '../models/ExtensionClassImpl';
+export * from '../models/ExtensionClassImpllinks';
+export * from '../models/FavoriteImpl';
+export * from '../models/FavoriteImpllinks';
+export * from '../models/FreeStyleBuild';
+export * from '../models/FreeStyleProject';
+export * from '../models/FreeStyleProjectactions';
+export * from '../models/FreeStyleProjecthealthReport';
+export * from '../models/GenericResource';
+export * from '../models/GithubContent';
+export * from '../models/GithubFile';
+export * from '../models/GithubOrganization';
+export * from '../models/GithubOrganizationlinks';
+export * from '../models/GithubRepositories';
+export * from '../models/GithubRepositorieslinks';
+export * from '../models/GithubRepository';
+export * from '../models/GithubRepositorylinks';
+export * from '../models/GithubRepositorypermissions';
+export * from '../models/GithubRespositoryContainer';
+export * from '../models/GithubRespositoryContainerlinks';
+export * from '../models/GithubScm';
+export * from '../models/GithubScmlinks';
+export * from '../models/Hudson';
+export * from '../models/HudsonMasterComputer';
+export * from '../models/HudsonMasterComputerexecutors';
+export * from '../models/HudsonMasterComputermonitorData';
+export * from '../models/HudsonassignedLabels';
+export * from '../models/InputStepImpl';
+export * from '../models/InputStepImpllinks';
+export * from '../models/Label1';
+export * from '../models/Link';
+export * from '../models/ListView';
+export * from '../models/MultibranchPipeline';
+export * from '../models/NullSCM';
+export * from '../models/Organisation';
+export * from '../models/Pipeline';
+export * from '../models/PipelineActivity';
+export * from '../models/PipelineActivityartifacts';
+export * from '../models/PipelineBranchesitem';
+export * from '../models/PipelineBranchesitemlatestRun';
+export * from '../models/PipelineBranchesitempullRequest';
+export * from '../models/PipelineBranchesitempullRequestlinks';
+export * from '../models/PipelineFolderImpl';
+export * from '../models/PipelineImpl';
+export * from '../models/PipelineImpllinks';
+export * from '../models/PipelineRun';
+export * from '../models/PipelineRunImpl';
+export * from '../models/PipelineRunImpllinks';
+export * from '../models/PipelineRunNode';
+export * from '../models/PipelineRunNodeedges';
+export * from '../models/PipelineRunartifacts';
+export * from '../models/PipelineStepImpl';
+export * from '../models/PipelineStepImpllinks';
+export * from '../models/PipelinelatestRun';
+export * from '../models/PipelinelatestRunartifacts';
+export * from '../models/Queue';
+export * from '../models/QueueBlockedItem';
+export * from '../models/QueueItemImpl';
+export * from '../models/QueueLeftItem';
+export * from '../models/ResponseTimeMonitorData';
+export * from '../models/StringParameterDefinition';
+export * from '../models/StringParameterValue';
+export * from '../models/SwapSpaceMonitorMemoryUsage2';
+export * from '../models/UnlabeledLoadStatistics';
+export * from '../models/User';
 
-import { AllView } from './AllView';
-import { BranchImpl } from './BranchImpl';
-import { BranchImpllinks } from './BranchImpllinks';
-import { BranchImplpermissions } from './BranchImplpermissions';
-import { CauseAction } from './CauseAction';
-import { CauseUserIdCause } from './CauseUserIdCause';
-import { ClassesByClass } from './ClassesByClass';
-import { ClockDifference } from './ClockDifference';
-import { ComputerSet } from './ComputerSet';
-import { DefaultCrumbIssuer } from './DefaultCrumbIssuer';
-import { DiskSpaceMonitorDescriptorDiskSpace } from './DiskSpaceMonitorDescriptorDiskSpace';
-import { EmptyChangeLogSet } from './EmptyChangeLogSet';
-import { ExtensionClassContainerImpl1 } from './ExtensionClassContainerImpl1';
-import { ExtensionClassContainerImpl1links } from './ExtensionClassContainerImpl1links';
-import { ExtensionClassContainerImpl1map } from './ExtensionClassContainerImpl1map';
-import { ExtensionClassImpl } from './ExtensionClassImpl';
-import { ExtensionClassImpllinks } from './ExtensionClassImpllinks';
-import { FavoriteImpl } from './FavoriteImpl';
-import { FavoriteImpllinks } from './FavoriteImpllinks';
-import { FreeStyleBuild } from './FreeStyleBuild';
-import { FreeStyleProject } from './FreeStyleProject';
-import { FreeStyleProjectactions } from './FreeStyleProjectactions';
-import { FreeStyleProjecthealthReport } from './FreeStyleProjecthealthReport';
-import { GenericResource } from './GenericResource';
-import { GithubContent } from './GithubContent';
-import { GithubFile } from './GithubFile';
-import { GithubOrganization } from './GithubOrganization';
-import { GithubOrganizationlinks } from './GithubOrganizationlinks';
-import { GithubRepositories } from './GithubRepositories';
-import { GithubRepositorieslinks } from './GithubRepositorieslinks';
-import { GithubRepository } from './GithubRepository';
-import { GithubRepositorylinks } from './GithubRepositorylinks';
-import { GithubRepositorypermissions } from './GithubRepositorypermissions';
-import { GithubRespositoryContainer } from './GithubRespositoryContainer';
-import { GithubRespositoryContainerlinks } from './GithubRespositoryContainerlinks';
-import { GithubScm } from './GithubScm';
-import { GithubScmlinks } from './GithubScmlinks';
-import { Hudson } from './Hudson';
-import { HudsonMasterComputer } from './HudsonMasterComputer';
-import { HudsonMasterComputerexecutors } from './HudsonMasterComputerexecutors';
-import { HudsonMasterComputermonitorData } from './HudsonMasterComputermonitorData';
-import { HudsonassignedLabels } from './HudsonassignedLabels';
-import { InputStepImpl } from './InputStepImpl';
-import { InputStepImpllinks } from './InputStepImpllinks';
-import { Label1 } from './Label1';
-import { Link } from './Link';
-import { ListView } from './ListView';
-import { MultibranchPipeline } from './MultibranchPipeline';
-import { NullSCM } from './NullSCM';
-import { Organisation } from './Organisation';
-import { Pipeline } from './Pipeline';
-import { PipelineActivity } from './PipelineActivity';
-import { PipelineActivityartifacts } from './PipelineActivityartifacts';
-import { PipelineBranchesitem } from './PipelineBranchesitem';
-import { PipelineBranchesitemlatestRun } from './PipelineBranchesitemlatestRun';
-import { PipelineBranchesitempullRequest } from './PipelineBranchesitempullRequest';
-import { PipelineBranchesitempullRequestlinks } from './PipelineBranchesitempullRequestlinks';
-import { PipelineFolderImpl } from './PipelineFolderImpl';
-import { PipelineImpl } from './PipelineImpl';
-import { PipelineImpllinks } from './PipelineImpllinks';
-import { PipelineRun } from './PipelineRun';
-import { PipelineRunImpl } from './PipelineRunImpl';
-import { PipelineRunImpllinks } from './PipelineRunImpllinks';
-import { PipelineRunNode } from './PipelineRunNode';
-import { PipelineRunNodeedges } from './PipelineRunNodeedges';
-import { PipelineRunartifacts } from './PipelineRunartifacts';
-import { PipelineStepImpl } from './PipelineStepImpl';
-import { PipelineStepImpllinks } from './PipelineStepImpllinks';
-import { PipelinelatestRun } from './PipelinelatestRun';
-import { PipelinelatestRunartifacts } from './PipelinelatestRunartifacts';
-import { Queue } from './Queue';
-import { QueueBlockedItem } from './QueueBlockedItem';
-import { QueueItemImpl } from './QueueItemImpl';
-import { QueueLeftItem } from './QueueLeftItem';
-import { ResponseTimeMonitorData } from './ResponseTimeMonitorData';
-import { StringParameterDefinition } from './StringParameterDefinition';
-import { StringParameterValue } from './StringParameterValue';
-import { SwapSpaceMonitorMemoryUsage2 } from './SwapSpaceMonitorMemoryUsage2';
-import { UnlabeledLoadStatistics } from './UnlabeledLoadStatistics';
-import { User } from './User';
+import { AllView } from '../models/AllView';
+import { BranchImpl } from '../models/BranchImpl';
+import { BranchImpllinks } from '../models/BranchImpllinks';
+import { BranchImplpermissions } from '../models/BranchImplpermissions';
+import { CauseAction } from '../models/CauseAction';
+import { CauseUserIdCause } from '../models/CauseUserIdCause';
+import { ClassesByClass } from '../models/ClassesByClass';
+import { ClockDifference } from '../models/ClockDifference';
+import { ComputerSet } from '../models/ComputerSet';
+import { DefaultCrumbIssuer } from '../models/DefaultCrumbIssuer';
+import { DiskSpaceMonitorDescriptorDiskSpace } from '../models/DiskSpaceMonitorDescriptorDiskSpace';
+import { EmptyChangeLogSet } from '../models/EmptyChangeLogSet';
+import { ExtensionClassContainerImpl1 } from '../models/ExtensionClassContainerImpl1';
+import { ExtensionClassContainerImpl1links } from '../models/ExtensionClassContainerImpl1links';
+import { ExtensionClassContainerImpl1map } from '../models/ExtensionClassContainerImpl1map';
+import { ExtensionClassImpl } from '../models/ExtensionClassImpl';
+import { ExtensionClassImpllinks } from '../models/ExtensionClassImpllinks';
+import { FavoriteImpl } from '../models/FavoriteImpl';
+import { FavoriteImpllinks } from '../models/FavoriteImpllinks';
+import { FreeStyleBuild } from '../models/FreeStyleBuild';
+import { FreeStyleProject } from '../models/FreeStyleProject';
+import { FreeStyleProjectactions } from '../models/FreeStyleProjectactions';
+import { FreeStyleProjecthealthReport } from '../models/FreeStyleProjecthealthReport';
+import { GenericResource } from '../models/GenericResource';
+import { GithubContent } from '../models/GithubContent';
+import { GithubFile } from '../models/GithubFile';
+import { GithubOrganization } from '../models/GithubOrganization';
+import { GithubOrganizationlinks } from '../models/GithubOrganizationlinks';
+import { GithubRepositories } from '../models/GithubRepositories';
+import { GithubRepositorieslinks } from '../models/GithubRepositorieslinks';
+import { GithubRepository } from '../models/GithubRepository';
+import { GithubRepositorylinks } from '../models/GithubRepositorylinks';
+import { GithubRepositorypermissions } from '../models/GithubRepositorypermissions';
+import { GithubRespositoryContainer } from '../models/GithubRespositoryContainer';
+import { GithubRespositoryContainerlinks } from '../models/GithubRespositoryContainerlinks';
+import { GithubScm } from '../models/GithubScm';
+import { GithubScmlinks } from '../models/GithubScmlinks';
+import { Hudson } from '../models/Hudson';
+import { HudsonMasterComputer } from '../models/HudsonMasterComputer';
+import { HudsonMasterComputerexecutors } from '../models/HudsonMasterComputerexecutors';
+import { HudsonMasterComputermonitorData } from '../models/HudsonMasterComputermonitorData';
+import { HudsonassignedLabels } from '../models/HudsonassignedLabels';
+import { InputStepImpl } from '../models/InputStepImpl';
+import { InputStepImpllinks } from '../models/InputStepImpllinks';
+import { Label1 } from '../models/Label1';
+import { Link } from '../models/Link';
+import { ListView } from '../models/ListView';
+import { MultibranchPipeline } from '../models/MultibranchPipeline';
+import { NullSCM } from '../models/NullSCM';
+import { Organisation } from '../models/Organisation';
+import { Pipeline } from '../models/Pipeline';
+import { PipelineActivity } from '../models/PipelineActivity';
+import { PipelineActivityartifacts } from '../models/PipelineActivityartifacts';
+import { PipelineBranchesitem } from '../models/PipelineBranchesitem';
+import { PipelineBranchesitemlatestRun } from '../models/PipelineBranchesitemlatestRun';
+import { PipelineBranchesitempullRequest } from '../models/PipelineBranchesitempullRequest';
+import { PipelineBranchesitempullRequestlinks } from '../models/PipelineBranchesitempullRequestlinks';
+import { PipelineFolderImpl } from '../models/PipelineFolderImpl';
+import { PipelineImpl } from '../models/PipelineImpl';
+import { PipelineImpllinks } from '../models/PipelineImpllinks';
+import { PipelineRun } from '../models/PipelineRun';
+import { PipelineRunImpl } from '../models/PipelineRunImpl';
+import { PipelineRunImpllinks } from '../models/PipelineRunImpllinks';
+import { PipelineRunNode } from '../models/PipelineRunNode';
+import { PipelineRunNodeedges } from '../models/PipelineRunNodeedges';
+import { PipelineRunartifacts } from '../models/PipelineRunartifacts';
+import { PipelineStepImpl } from '../models/PipelineStepImpl';
+import { PipelineStepImpllinks } from '../models/PipelineStepImpllinks';
+import { PipelinelatestRun } from '../models/PipelinelatestRun';
+import { PipelinelatestRunartifacts } from '../models/PipelinelatestRunartifacts';
+import { Queue } from '../models/Queue';
+import { QueueBlockedItem } from '../models/QueueBlockedItem';
+import { QueueItemImpl } from '../models/QueueItemImpl';
+import { QueueLeftItem } from '../models/QueueLeftItem';
+import { ResponseTimeMonitorData } from '../models/ResponseTimeMonitorData';
+import { StringParameterDefinition } from '../models/StringParameterDefinition';
+import { StringParameterValue } from '../models/StringParameterValue';
+import { SwapSpaceMonitorMemoryUsage2 } from '../models/SwapSpaceMonitorMemoryUsage2';
+import { UnlabeledLoadStatistics } from '../models/UnlabeledLoadStatistics';
+import { User } from '../models/User';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -171,13 +171,6 @@ let primitives = [
                     "number",
                     "any"
                  ];
-
-const supportedMediaTypes: { [mediaType: string]: number } = {
-  "application/json": Infinity,
-  "application/octet-stream": 0,
-  "application/x-www-form-urlencoded": 0
-}
-
 
 let enumsMap: Set<string> = new Set<string>([
 ]);
@@ -265,6 +258,58 @@ let typeMap: {[index: string]: any} = {
     "User": User,
 }
 
+type MimeTypeDescriptor = {
+    type: string;
+    subtype: string;
+    subtypeTokens: string[];
+};
+
+/**
+ * Every mime-type consists of a type, subtype, and optional parameters.
+ * The subtype can be composite, including information about the content format.
+ * For example: `application/json-patch+json`, `application/merge-patch+json`.
+ *
+ * This helper transforms a string mime-type into an internal representation.
+ * This simplifies the implementation of predicates that in turn define common rules for parsing or stringifying
+ * the payload.
+ */
+const parseMimeType = (mimeType: string): MimeTypeDescriptor => {
+    const [type, subtype] = mimeType.split('/');
+    return {
+        type,
+        subtype,
+        subtypeTokens: subtype.split('+'),
+    };
+};
+
+type MimeTypePredicate = (mimeType: string) => boolean;
+
+// This factory creates a predicate function that checks a string mime-type against defined rules.
+const mimeTypePredicateFactory = (predicate: (descriptor: MimeTypeDescriptor) => boolean): MimeTypePredicate => (mimeType) => predicate(parseMimeType(mimeType));
+
+// Use this factory when you need to define a simple predicate based only on type and, if applicable, subtype.
+const mimeTypeSimplePredicateFactory = (type: string, subtype?: string): MimeTypePredicate => mimeTypePredicateFactory((descriptor) => {
+    if (descriptor.type !== type) return false;
+    if (subtype != null && descriptor.subtype !== subtype) return false;
+    return true;
+});
+
+// Creating a set of named predicates that will help us determine how to handle different mime-types
+const isTextLikeMimeType = mimeTypeSimplePredicateFactory('text');
+const isJsonMimeType = mimeTypeSimplePredicateFactory('application', 'json');
+const isJsonLikeMimeType = mimeTypePredicateFactory((descriptor) => descriptor.type === 'application' && descriptor.subtypeTokens.some((item) => item === 'json'));
+const isOctetStreamMimeType = mimeTypeSimplePredicateFactory('application', 'octet-stream');
+const isFormUrlencodedMimeType = mimeTypeSimplePredicateFactory('application', 'x-www-form-urlencoded');
+
+// Defining a list of mime-types in the order of prioritization for handling.
+const supportedMimeTypePredicatesWithPriority: MimeTypePredicate[] = [
+    isJsonMimeType,
+    isJsonLikeMimeType,
+    isTextLikeMimeType,
+    isOctetStreamMimeType,
+    isFormUrlencodedMimeType,
+];
+
 export class ObjectSerializer {
     public static findCorrectType(data: any, expectedType: string) {
         if (data == undefined) {
@@ -310,8 +355,7 @@ export class ObjectSerializer {
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
             let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
+            for (let date of data) {
                 transformedData.push(ObjectSerializer.serialize(date, subType, format));
             }
             return transformedData;
@@ -340,8 +384,7 @@ export class ObjectSerializer {
             // get the map for the correct type.
             let attributeTypes = typeMap[type].getAttributeTypeMap();
             let instance: {[index: string]: any} = {};
-            for (let index in attributeTypes) {
-                let attributeType = attributeTypes[index];
+            for (let attributeType of attributeTypes) {
                 instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format);
             }
             return instance;
@@ -359,8 +402,7 @@ export class ObjectSerializer {
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
             let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
+            for (let date of data) {
                 transformedData.push(ObjectSerializer.deserialize(date, subType, format));
             }
             return transformedData;
@@ -376,8 +418,7 @@ export class ObjectSerializer {
             }
             let instance = new typeMap[type]();
             let attributeTypes = typeMap[type].getAttributeTypeMap();
-            for (let index in attributeTypes) {
-                let attributeType = attributeTypes[index];
+            for (let attributeType of attributeTypes) {
                 let value = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
                 if (value !== undefined) {
                     instance[attributeType.name] = value;
@@ -409,32 +450,32 @@ export class ObjectSerializer {
      */
     public static getPreferredMediaType(mediaTypes: Array<string>): string {
         /** According to OAS 3 we should default to json */
-        if (!mediaTypes) {
+        if (mediaTypes.length === 0) {
             return "application/json";
         }
 
         const normalMediaTypes = mediaTypes.map(this.normalizeMediaType);
-        let selectedMediaType: string | undefined = undefined;
-        let selectedRank: number = -Infinity;
-        for (const mediaType of normalMediaTypes) {
-            if (supportedMediaTypes[mediaType!] > selectedRank) {
-                selectedMediaType = mediaType;
-                selectedRank = supportedMediaTypes[mediaType!];
+
+        for (const predicate of supportedMimeTypePredicatesWithPriority) {
+            for (const mediaType of normalMediaTypes) {
+                if (mediaType != null && predicate(mediaType)) {
+                    return mediaType;
+                }
             }
         }
 
-        if (selectedMediaType === undefined) {
-            throw new Error("None of the given media types are supported: " + mediaTypes.join(", "));
-        }
-
-        return selectedMediaType!;
+        throw new Error("None of the given media types are supported: " + mediaTypes.join(", "));
     }
 
     /**
      * Convert data to a string according the given media type
      */
     public static stringify(data: any, mediaType: string): string {
-        if (mediaType === "application/json") {
+        if (isTextLikeMimeType(mediaType)) {
+            return String(data);
+        }
+
+        if (isJsonLikeMimeType(mediaType)) {
             return JSON.stringify(data);
         }
 
@@ -449,7 +490,11 @@ export class ObjectSerializer {
             throw new Error("Cannot parse content. No Content-Type defined.");
         }
 
-        if (mediaType === "application/json") {
+        if (isTextLikeMimeType(mediaType)) {
+            return rawData;
+        }
+
+        if (isJsonLikeMimeType(mediaType)) {
             return JSON.parse(rawData);
         }
 

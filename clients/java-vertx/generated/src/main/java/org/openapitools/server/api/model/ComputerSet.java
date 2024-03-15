@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.HudsonMasterComputer;
 
@@ -12,7 +13,7 @@ public class ComputerSet   {
   
   private String propertyClass;
   private Integer busyExecutors;
-  private List<HudsonMasterComputer> computer = new ArrayList<>();
+  private List<HudsonMasterComputer> computer;
   private String displayName;
   private Integer totalExecutors;
 

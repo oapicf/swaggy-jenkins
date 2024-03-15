@@ -2,10 +2,11 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **str** |  | [optional] 
-**actions** | [**[CauseAction]**](CauseAction.md) |  | [optional] 
+**var_class** | **str** |  | [optional] 
+**actions** | [**List[CauseAction]**](CauseAction.md) |  | [optional] 
 **blocked** | **bool** |  | [optional] 
 **buildable** | **bool** |  | [optional] 
 **id** | **int** |  | [optional] 
@@ -17,8 +18,24 @@ Name | Type | Description | Notes
 **why** | **str** |  | [optional] 
 **cancelled** | **bool** |  | [optional] 
 **executable** | [**FreeStyleBuild**](FreeStyleBuild.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from swaggyjenkins.models.queue_left_item import QueueLeftItem
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of QueueLeftItem from a JSON string
+queue_left_item_instance = QueueLeftItem.from_json(json)
+# print the JSON string representation of the object
+print(QueueLeftItem.to_json())
+
+# convert the object into a dict
+queue_left_item_dict = queue_left_item_instance.to_dict()
+# create an instance of QueueLeftItem from a dict
+queue_left_item_form_dict = queue_left_item.from_dict(queue_left_item_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

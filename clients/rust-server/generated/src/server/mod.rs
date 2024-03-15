@@ -47,10 +47,10 @@ use crate::{Api,
      GetPipelineRunNodesResponse,
      GetPipelineRunsResponse,
      GetPipelinesResponse,
-     GetSCMResponse,
-     GetSCMOrganisationRepositoriesResponse,
-     GetSCMOrganisationRepositoryResponse,
-     GetSCMOrganisationsResponse,
+     GetScmResponse,
+     GetScmOrganisationRepositoriesResponse,
+     GetScmOrganisationRepositoryResponse,
+     GetScmOrganisationsResponse,
      GetUserResponse,
      GetUserFavoritesResponse,
      GetUsersResponse,
@@ -149,6 +149,7 @@ mod paths {
     pub(crate) static ID_BLUE_REST_CLASSES_CLASS: usize = 2;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_CLASSES_CLASS: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/classes/(?P<class>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_CLASSES_CLASS");
     }
@@ -156,174 +157,203 @@ mod paths {
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION: usize = 4;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_: usize = 5;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_: usize = 6;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<folder>[^/?#]*)/$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE: usize = 7;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<folder>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE: usize = 8;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES: usize = 9;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/activities$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES: usize = 10;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/branches$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_: usize = 11;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/branches/(?P<branch>[^/?#]*)/$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN: usize = 12;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/branches/(?P<branch>[^/?#]*)/runs/(?P<run>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE: usize = 13;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/favorite$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE: usize = 14;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/queue$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE: usize = 15;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/queue/(?P<queue>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS: usize = 16;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN: usize = 17;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG: usize = 18;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/log$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES: usize = 19;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/nodes$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE: usize = 20;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/nodes/(?P<node>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS: usize = 21;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/nodes/(?P<node>[^/?#]*)/steps$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP: usize = 22;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/nodes/(?P<node>[^/?#]*)/steps/(?P<step>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG: usize = 23;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/nodes/(?P<node>[^/?#]*)/steps/(?P<step>[^/?#]*)/log$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY: usize = 24;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/replay$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP: usize = 25;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/pipelines/(?P<pipeline>[^/?#]*)/runs/(?P<run>[^/?#]*)/stop$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM: usize = 26;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/scm/(?P<scm>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS: usize = 27;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/scm/(?P<scm>[^/?#]*)/organizations$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES: usize = 28;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/scm/(?P<scm>[^/?#]*)/organizations/(?P<scmOrganisation>[^/?#]*)/repositories$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY: usize = 29;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/scm/(?P<scm>[^/?#]*)/organizations/(?P<scmOrganisation>[^/?#]*)/repositories/(?P<repository>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_: usize = 30;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/user/$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_: usize = 31;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/users/$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_");
     }
     pub(crate) static ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER: usize = 32;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/organizations/(?P<organization>[^/?#]*)/users/(?P<user>[^/?#]*)$")
                 .expect("Unable to create regex for BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER");
     }
@@ -331,6 +361,7 @@ mod paths {
     pub(crate) static ID_BLUE_REST_USERS_USER_FAVORITES: usize = 34;
     lazy_static! {
         pub static ref REGEX_BLUE_REST_USERS_USER_FAVORITES: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/blue/rest/users/(?P<user>[^/?#]*)/favorites$")
                 .expect("Unable to create regex for BLUE_REST_USERS_USER_FAVORITES");
     }
@@ -341,60 +372,70 @@ mod paths {
     pub(crate) static ID_JOB_NAME_API_JSON: usize = 39;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_API_JSON: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/api/json$")
                 .expect("Unable to create regex for JOB_NAME_API_JSON");
     }
     pub(crate) static ID_JOB_NAME_BUILD: usize = 40;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_BUILD: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/build$")
                 .expect("Unable to create regex for JOB_NAME_BUILD");
     }
     pub(crate) static ID_JOB_NAME_CONFIG_XML: usize = 41;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_CONFIG_XML: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/config.xml$")
                 .expect("Unable to create regex for JOB_NAME_CONFIG_XML");
     }
     pub(crate) static ID_JOB_NAME_DISABLE: usize = 42;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_DISABLE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/disable$")
                 .expect("Unable to create regex for JOB_NAME_DISABLE");
     }
     pub(crate) static ID_JOB_NAME_DODELETE: usize = 43;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_DODELETE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/doDelete$")
                 .expect("Unable to create regex for JOB_NAME_DODELETE");
     }
     pub(crate) static ID_JOB_NAME_ENABLE: usize = 44;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_ENABLE: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/enable$")
                 .expect("Unable to create regex for JOB_NAME_ENABLE");
     }
     pub(crate) static ID_JOB_NAME_LASTBUILD_API_JSON: usize = 45;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_LASTBUILD_API_JSON: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/lastBuild/api/json$")
                 .expect("Unable to create regex for JOB_NAME_LASTBUILD_API_JSON");
     }
     pub(crate) static ID_JOB_NAME_LASTBUILD_STOP: usize = 46;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_LASTBUILD_STOP: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/lastBuild/stop$")
                 .expect("Unable to create regex for JOB_NAME_LASTBUILD_STOP");
     }
     pub(crate) static ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT: usize = 47;
     lazy_static! {
         pub static ref REGEX_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/job/(?P<name>[^/?#]*)/(?P<number>[^/?#]*)/logText/progressiveText$")
                 .expect("Unable to create regex for JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT");
     }
     pub(crate) static ID_JWT_AUTH_JWKS_KEY: usize = 48;
     lazy_static! {
         pub static ref REGEX_JWT_AUTH_JWKS_KEY: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/jwt-auth/jwks/(?P<key>[^/?#]*)$")
                 .expect("Unable to create regex for JWT_AUTH_JWKS_KEY");
     }
@@ -403,18 +444,21 @@ mod paths {
     pub(crate) static ID_QUEUE_ITEM_NUMBER_API_JSON: usize = 51;
     lazy_static! {
         pub static ref REGEX_QUEUE_ITEM_NUMBER_API_JSON: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/queue/item/(?P<number>[^/?#]*)/api/json$")
                 .expect("Unable to create regex for QUEUE_ITEM_NUMBER_API_JSON");
     }
     pub(crate) static ID_VIEW_NAME_API_JSON: usize = 52;
     lazy_static! {
         pub static ref REGEX_VIEW_NAME_API_JSON: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/view/(?P<name>[^/?#]*)/api/json$")
                 .expect("Unable to create regex for VIEW_NAME_API_JSON");
     }
     pub(crate) static ID_VIEW_NAME_CONFIG_XML: usize = 53;
     lazy_static! {
         pub static ref REGEX_VIEW_NAME_CONFIG_XML: regex::Regex =
+            #[allow(clippy::invalid_regex)]
             regex::Regex::new(r"^/view/(?P<name>[^/?#]*)/config.xml$")
                 .expect("Unable to create regex for VIEW_NAME_CONFIG_XML");
     }
@@ -481,7 +525,7 @@ impl<T, C> Service<T, C> where
 {
     pub fn new(api_impl: T) -> Self {
         Service {
-            api_impl: api_impl,
+            api_impl,
             marker: PhantomData
         }
     }
@@ -494,7 +538,7 @@ impl<T, C> Clone for Service<T, C> where
     fn clone(&self) -> Self {
         Service {
             api_impl: self.api_impl.clone(),
-            marker: self.marker.clone(),
+            marker: self.marker,
         }
     }
 }
@@ -520,14 +564,14 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
         let (method, uri, headers) = (parts.method, parts.uri, parts.headers);
         let path = paths::GLOBAL_REGEX_SET.matches(uri.path());
 
-        match &method {
+        match method {
 
             // GetCrumb - GET /crumbIssuer/api/json
-            &hyper::Method::GET if path.matched(paths::ID_CRUMBISSUER_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_CRUMBISSUER_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -540,7 +584,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -553,8 +597,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_CRUMB_SUCCESSFULLY_RETRIEVED_CSRF_PROTECTION_TOKEN"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetCrumbResponse::AuthenticationFailed
                                                 => {
@@ -577,11 +621,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // DeletePipelineQueueItem - DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
-            &hyper::Method::DELETE if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE) => {
+            hyper::Method::DELETE if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -589,10 +633,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE.as_str())
                     );
@@ -648,7 +692,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -678,11 +722,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetAuthenticatedUser - GET /blue/rest/organizations/{organization}/user/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -690,10 +734,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_ in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_.as_str())
                     );
@@ -719,7 +763,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -732,8 +776,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_AUTHENTICATED_USER_SUCCESSFULLY_RETRIEVED_AUTHENTICATED_USER_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetAuthenticatedUserResponse::AuthenticationFailed
                                                 => {
@@ -756,11 +800,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetClasses - GET /blue/rest/classes/{class}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_CLASS) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_CLASS) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -768,10 +812,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_CLASSES_CLASS
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_CLASSES_CLASS in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_CLASSES_CLASS.as_str())
                     );
@@ -797,7 +841,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -810,8 +854,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_CLASSES_SUCCESSFULLY_RETRIEVED_CLASS_NAMES"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetClassesResponse::AuthenticationFailed
                                                 => {
@@ -834,12 +878,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJsonWebKey - GET /jwt-auth/jwks/{key}
-            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_JWKS_KEY) => {
+            hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_JWKS_KEY) => {
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JWT_AUTH_JWKS_KEY
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JWT_AUTH_JWKS_KEY in set but failed match against \"{}\"", path, paths::REGEX_JWT_AUTH_JWKS_KEY.as_str())
                     );
@@ -865,7 +909,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -878,8 +922,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_JSON_WEB_KEY_SUCCESSFULLY_RETRIEVED_JWT_TOKEN"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetJsonWebKeyResponse::AuthenticationFailed
                                                 => {
@@ -902,11 +946,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJsonWebToken - GET /jwt-auth/token
-            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_TOKEN) => {
+            hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_TOKEN) => {
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_expiry_time_in_mins = query_params.iter().filter(|e| e.0 == "expiryTimeInMins").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_expiry_time_in_mins = query_params.iter().filter(|e| e.0 == "expiryTimeInMins").map(|e| e.1.clone())
+                    .next();
                 let param_expiry_time_in_mins = match param_expiry_time_in_mins {
                     Some(param_expiry_time_in_mins) => {
                         let param_expiry_time_in_mins =
@@ -922,8 +966,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                     },
                     None => None,
                 };
-                let param_max_expiry_time_in_mins = query_params.iter().filter(|e| e.0 == "maxExpiryTimeInMins").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_max_expiry_time_in_mins = query_params.iter().filter(|e| e.0 == "maxExpiryTimeInMins").map(|e| e.1.clone())
+                    .next();
                 let param_max_expiry_time_in_mins = match param_max_expiry_time_in_mins {
                     Some(param_max_expiry_time_in_mins) => {
                         let param_max_expiry_time_in_mins =
@@ -948,7 +992,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -961,8 +1005,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_JSON_WEB_TOKEN_SUCCESSFULLY_RETRIEVED_JWT_TOKEN"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetJsonWebTokenResponse::AuthenticationFailed
                                                 => {
@@ -985,11 +1029,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetOrganisation - GET /blue/rest/organizations/{organization}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -997,10 +1041,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION.as_str())
                     );
@@ -1026,7 +1070,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1039,8 +1083,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_ORGANISATION_SUCCESSFULLY_RETRIEVED_PIPELINE_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetOrganisationResponse::AuthenticationFailed
                                                 => {
@@ -1067,11 +1111,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetOrganisations - GET /blue/rest/organizations/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1084,7 +1128,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1097,8 +1141,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_ORGANISATIONS_SUCCESSFULLY_RETRIEVED_PIPELINES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetOrganisationsResponse::AuthenticationFailed
                                                 => {
@@ -1121,11 +1165,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipeline - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1133,10 +1177,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE.as_str())
                     );
@@ -1177,7 +1221,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1190,8 +1234,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_SUCCESSFULLY_RETRIEVED_PIPELINE_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineResponse::AuthenticationFailed
                                                 => {
@@ -1218,11 +1262,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineActivities - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1230,10 +1274,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES.as_str())
                     );
@@ -1274,7 +1318,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1287,8 +1331,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_ACTIVITIES_SUCCESSFULLY_RETRIEVED_ALL_ACTIVITIES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineActivitiesResponse::AuthenticationFailed
                                                 => {
@@ -1311,11 +1355,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineBranch - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1323,10 +1367,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_ in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_.as_str())
                     );
@@ -1382,7 +1426,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1395,8 +1439,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_BRANCH_SUCCESSFULLY_RETRIEVED_BRANCH_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineBranchResponse::AuthenticationFailed
                                                 => {
@@ -1419,11 +1463,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineBranchRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1431,10 +1475,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN.as_str())
                     );
@@ -1505,7 +1549,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1518,8 +1562,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_BRANCH_RUN_SUCCESSFULLY_RETRIEVED_RUN_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineBranchRunResponse::AuthenticationFailed
                                                 => {
@@ -1542,11 +1586,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineBranches - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1554,10 +1598,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES.as_str())
                     );
@@ -1598,7 +1642,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1611,8 +1655,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_BRANCHES_SUCCESSFULLY_RETRIEVED_ALL_BRANCHES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineBranchesResponse::AuthenticationFailed
                                                 => {
@@ -1635,11 +1679,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineFolder - GET /blue/rest/organizations/{organization}/pipelines/{folder}/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1647,10 +1691,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_ in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_.as_str())
                     );
@@ -1691,7 +1735,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1704,8 +1748,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_FOLDER_SUCCESSFULLY_RETRIEVED_FOLDER_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineFolderResponse::AuthenticationFailed
                                                 => {
@@ -1728,11 +1772,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineFolderPipeline - GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1740,10 +1784,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE.as_str())
                     );
@@ -1799,7 +1843,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1812,8 +1856,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_FOLDER_PIPELINE_SUCCESSFULLY_RETRIEVED_PIPELINE_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineFolderPipelineResponse::AuthenticationFailed
                                                 => {
@@ -1836,11 +1880,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineQueue - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1848,10 +1892,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE.as_str())
                     );
@@ -1892,7 +1936,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -1905,8 +1949,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_QUEUE_SUCCESSFULLY_RETRIEVED_QUEUE_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineQueueResponse::AuthenticationFailed
                                                 => {
@@ -1929,11 +1973,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -1941,10 +1985,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN.as_str())
                     );
@@ -2000,7 +2044,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2013,8 +2057,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_SUCCESSFULLY_RETRIEVED_RUN_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunResponse::AuthenticationFailed
                                                 => {
@@ -2037,11 +2081,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRunLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2049,10 +2093,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG.as_str())
                     );
@@ -2101,8 +2145,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_start = query_params.iter().filter(|e| e.0 == "start").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_start = query_params.iter().filter(|e| e.0 == "start").map(|e| e.1.clone())
+                    .next();
                 let param_start = match param_start {
                     Some(param_start) => {
                         let param_start =
@@ -2118,8 +2162,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                     },
                     None => None,
                 };
-                let param_download = query_params.iter().filter(|e| e.0 == "download").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_download = query_params.iter().filter(|e| e.0 == "download").map(|e| e.1.clone())
+                    .next();
                 let param_download = match param_download {
                     Some(param_download) => {
                         let param_download =
@@ -2147,7 +2191,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2160,8 +2204,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_LOG_SUCCESSFULLY_RETRIEVED_PIPELINE_RUN_LOG"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunLogResponse::AuthenticationFailed
                                                 => {
@@ -2184,11 +2228,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRunNode - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2196,10 +2240,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE.as_str())
                     );
@@ -2270,7 +2314,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2283,8 +2327,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_NODE_SUCCESSFULLY_RETRIEVED_RUN_NODE_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunNodeResponse::AuthenticationFailed
                                                 => {
@@ -2307,11 +2351,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRunNodeStep - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2319,10 +2363,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP.as_str())
                     );
@@ -2408,7 +2452,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2421,8 +2465,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_NODE_STEP_SUCCESSFULLY_RETRIEVED_RUN_NODE_STEP_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunNodeStepResponse::AuthenticationFailed
                                                 => {
@@ -2445,11 +2489,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRunNodeStepLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2457,10 +2501,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG.as_str())
                     );
@@ -2546,7 +2590,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2559,8 +2603,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_NODE_STEP_LOG_SUCCESSFULLY_RETRIEVED_PIPELINE_RUN_NODE_STEP_LOG"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunNodeStepLogResponse::AuthenticationFailed
                                                 => {
@@ -2583,11 +2627,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRunNodeSteps - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2595,10 +2639,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS.as_str())
                     );
@@ -2669,7 +2713,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2682,8 +2726,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_NODE_STEPS_SUCCESSFULLY_RETRIEVED_RUN_NODE_STEPS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunNodeStepsResponse::AuthenticationFailed
                                                 => {
@@ -2706,11 +2750,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRunNodes - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2718,10 +2762,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES.as_str())
                     );
@@ -2777,7 +2821,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2790,8 +2834,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUN_NODES_SUCCESSFULLY_RETRIEVED_RUN_NODES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunNodesResponse::AuthenticationFailed
                                                 => {
@@ -2814,11 +2858,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelineRuns - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2826,10 +2870,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS.as_str())
                     );
@@ -2870,7 +2914,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2883,8 +2927,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINE_RUNS_SUCCESSFULLY_RETRIEVED_RUNS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelineRunsResponse::AuthenticationFailed
                                                 => {
@@ -2907,11 +2951,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetPipelines - GET /blue/rest/organizations/{organization}/pipelines/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2919,10 +2963,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_ in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_.as_str())
                     );
@@ -2948,7 +2992,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -2961,8 +3005,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_PIPELINES_SUCCESSFULLY_RETRIEVED_PIPELINES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetPipelinesResponse::AuthenticationFailed
                                                 => {
@@ -2984,12 +3028,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                         Ok(response)
             },
 
-            // GetSCM - GET /blue/rest/organizations/{organization}/scm/{scm}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM) => {
+            // GetScm - GET /blue/rest/organizations/{organization}/scm/{scm}
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -2997,10 +3041,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM.as_str())
                     );
@@ -3041,12 +3085,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
                                             Ok(rsp) => match rsp {
-                                                GetSCMResponse::SuccessfullyRetrievedSCMDetails
+                                                GetScmResponse::SuccessfullyRetrievedSCMDetails
                                                     (body)
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(200).expect("Unable to turn 200 into a StatusCode");
@@ -3054,14 +3098,14 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_SCM_SUCCESSFULLY_RETRIEVED_SCM_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
-                                                GetSCMResponse::AuthenticationFailed
+                                                GetScmResponse::AuthenticationFailed
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(401).expect("Unable to turn 401 into a StatusCode");
                                                 },
-                                                GetSCMResponse::JenkinsRequiresAuthentication
+                                                GetScmResponse::JenkinsRequiresAuthentication
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(403).expect("Unable to turn 403 into a StatusCode");
                                                 },
@@ -3077,12 +3121,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                         Ok(response)
             },
 
-            // GetSCMOrganisationRepositories - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES) => {
+            // GetScmOrganisationRepositories - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3090,10 +3134,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES.as_str())
                     );
@@ -3142,8 +3186,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_credential_id = query_params.iter().filter(|e| e.0 == "credentialId").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_credential_id = query_params.iter().filter(|e| e.0 == "credentialId").map(|e| e.1.clone())
+                    .next();
                 let param_credential_id = match param_credential_id {
                     Some(param_credential_id) => {
                         let param_credential_id =
@@ -3159,8 +3203,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                     },
                     None => None,
                 };
-                let param_page_size = query_params.iter().filter(|e| e.0 == "pageSize").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_page_size = query_params.iter().filter(|e| e.0 == "pageSize").map(|e| e.1.clone())
+                    .next();
                 let param_page_size = match param_page_size {
                     Some(param_page_size) => {
                         let param_page_size =
@@ -3176,8 +3220,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                     },
                     None => None,
                 };
-                let param_page_number = query_params.iter().filter(|e| e.0 == "pageNumber").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_page_number = query_params.iter().filter(|e| e.0 == "pageNumber").map(|e| e.1.clone())
+                    .next();
                 let param_page_number = match param_page_number {
                     Some(param_page_number) => {
                         let param_page_number =
@@ -3206,12 +3250,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
                                             Ok(rsp) => match rsp {
-                                                GetSCMOrganisationRepositoriesResponse::SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
+                                                GetScmOrganisationRepositoriesResponse::SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
                                                     (body)
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(200).expect("Unable to turn 200 into a StatusCode");
@@ -3219,14 +3263,14 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_SCM_ORGANISATION_REPOSITORIES_SUCCESSFULLY_RETRIEVED_SCM_ORGANIZATION_REPOSITORIES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
-                                                GetSCMOrganisationRepositoriesResponse::AuthenticationFailed
+                                                GetScmOrganisationRepositoriesResponse::AuthenticationFailed
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(401).expect("Unable to turn 401 into a StatusCode");
                                                 },
-                                                GetSCMOrganisationRepositoriesResponse::JenkinsRequiresAuthentication
+                                                GetScmOrganisationRepositoriesResponse::JenkinsRequiresAuthentication
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(403).expect("Unable to turn 403 into a StatusCode");
                                                 },
@@ -3242,12 +3286,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                         Ok(response)
             },
 
-            // GetSCMOrganisationRepository - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY) => {
+            // GetScmOrganisationRepository - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3255,10 +3299,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY.as_str())
                     );
@@ -3321,8 +3365,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_credential_id = query_params.iter().filter(|e| e.0 == "credentialId").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_credential_id = query_params.iter().filter(|e| e.0 == "credentialId").map(|e| e.1.clone())
+                    .next();
                 let param_credential_id = match param_credential_id {
                     Some(param_credential_id) => {
                         let param_credential_id =
@@ -3350,12 +3394,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
                                             Ok(rsp) => match rsp {
-                                                GetSCMOrganisationRepositoryResponse::SuccessfullyRetrievedSCMOrganizationsDetails
+                                                GetScmOrganisationRepositoryResponse::SuccessfullyRetrievedSCMOrganizationsDetails
                                                     (body)
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(200).expect("Unable to turn 200 into a StatusCode");
@@ -3363,14 +3407,14 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_SCM_ORGANISATION_REPOSITORY_SUCCESSFULLY_RETRIEVED_SCM_ORGANIZATIONS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
-                                                GetSCMOrganisationRepositoryResponse::AuthenticationFailed
+                                                GetScmOrganisationRepositoryResponse::AuthenticationFailed
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(401).expect("Unable to turn 401 into a StatusCode");
                                                 },
-                                                GetSCMOrganisationRepositoryResponse::JenkinsRequiresAuthentication
+                                                GetScmOrganisationRepositoryResponse::JenkinsRequiresAuthentication
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(403).expect("Unable to turn 403 into a StatusCode");
                                                 },
@@ -3386,12 +3430,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                         Ok(response)
             },
 
-            // GetSCMOrganisations - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS) => {
+            // GetScmOrganisations - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3399,10 +3443,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS.as_str())
                     );
@@ -3437,8 +3481,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_credential_id = query_params.iter().filter(|e| e.0 == "credentialId").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_credential_id = query_params.iter().filter(|e| e.0 == "credentialId").map(|e| e.1.clone())
+                    .next();
                 let param_credential_id = match param_credential_id {
                     Some(param_credential_id) => {
                         let param_credential_id =
@@ -3464,12 +3508,12 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
                                             Ok(rsp) => match rsp {
-                                                GetSCMOrganisationsResponse::SuccessfullyRetrievedSCMOrganizationsDetails
+                                                GetScmOrganisationsResponse::SuccessfullyRetrievedSCMOrganizationsDetails
                                                     (body)
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(200).expect("Unable to turn 200 into a StatusCode");
@@ -3477,14 +3521,14 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_SCM_ORGANISATIONS_SUCCESSFULLY_RETRIEVED_SCM_ORGANIZATIONS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
-                                                GetSCMOrganisationsResponse::AuthenticationFailed
+                                                GetScmOrganisationsResponse::AuthenticationFailed
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(401).expect("Unable to turn 401 into a StatusCode");
                                                 },
-                                                GetSCMOrganisationsResponse::JenkinsRequiresAuthentication
+                                                GetScmOrganisationsResponse::JenkinsRequiresAuthentication
                                                 => {
                                                     *response.status_mut() = StatusCode::from_u16(403).expect("Unable to turn 403 into a StatusCode");
                                                 },
@@ -3501,11 +3545,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetUser - GET /blue/rest/organizations/{organization}/users/{user}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3513,10 +3557,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER.as_str())
                     );
@@ -3557,7 +3601,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -3570,8 +3614,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_USER_SUCCESSFULLY_RETRIEVED_USERS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetUserResponse::AuthenticationFailed
                                                 => {
@@ -3594,11 +3638,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetUserFavorites - GET /blue/rest/users/{user}/favorites
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_USERS_USER_FAVORITES) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_USERS_USER_FAVORITES) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3606,10 +3650,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_USERS_USER_FAVORITES
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_USERS_USER_FAVORITES in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_USERS_USER_FAVORITES.as_str())
                     );
@@ -3635,7 +3679,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -3648,8 +3692,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_USER_FAVORITES_SUCCESSFULLY_RETRIEVED_USERS_FAVORITES_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetUserFavoritesResponse::AuthenticationFailed
                                                 => {
@@ -3672,11 +3716,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetUsers - GET /blue/rest/organizations/{organization}/users/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3684,10 +3728,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_ in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_.as_str())
                     );
@@ -3713,7 +3757,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -3726,8 +3770,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_USERS_SUCCESSFULLY_RETRIEVED_USERS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetUsersResponse::AuthenticationFailed
                                                 => {
@@ -3750,11 +3794,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostPipelineRun - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
-            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY) => {
+            hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3762,10 +3806,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY.as_str())
                     );
@@ -3821,7 +3865,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -3834,8 +3878,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for POST_PIPELINE_RUN_SUCCESSFULLY_REPLAYED_A_PIPELINE_RUN"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PostPipelineRunResponse::AuthenticationFailed
                                                 => {
@@ -3858,11 +3902,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostPipelineRuns - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
-            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => {
+            hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3870,10 +3914,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS.as_str())
                     );
@@ -3914,7 +3958,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -3927,8 +3971,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for POST_PIPELINE_RUNS_SUCCESSFULLY_STARTED_A_BUILD"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PostPipelineRunsResponse::AuthenticationFailed
                                                 => {
@@ -3951,11 +3995,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PutPipelineFavorite - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
-            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE) => {
+            hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -3963,10 +4007,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE.as_str())
                     );
@@ -4007,7 +4051,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
                                 let param_body: Option<bool> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&*body);
+                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {}", path);
                                             unused_elements.push(path.to_string());
@@ -4038,7 +4082,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         if !unused_elements.is_empty() {
@@ -4058,8 +4102,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for PUT_PIPELINE_FAVORITE_SUCCESSFULLY_FAVORITED"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PutPipelineFavoriteResponse::AuthenticationFailed
                                                 => {
@@ -4088,11 +4132,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PutPipelineRun - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
-            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP) => {
+            hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4100,10 +4144,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP in set but failed match against \"{}\"", path, paths::REGEX_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP.as_str())
                     );
@@ -4152,8 +4196,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_blocking = query_params.iter().filter(|e| e.0 == "blocking").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_blocking = query_params.iter().filter(|e| e.0 == "blocking").map(|e| e.1.clone())
+                    .next();
                 let param_blocking = match param_blocking {
                     Some(param_blocking) => {
                         let param_blocking =
@@ -4169,8 +4213,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                     },
                     None => None,
                 };
-                let param_time_out_in_secs = query_params.iter().filter(|e| e.0 == "timeOutInSecs").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_time_out_in_secs = query_params.iter().filter(|e| e.0 == "timeOutInSecs").map(|e| e.1.clone())
+                    .next();
                 let param_time_out_in_secs = match param_time_out_in_secs {
                     Some(param_time_out_in_secs) => {
                         let param_time_out_in_secs =
@@ -4198,7 +4242,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4211,8 +4255,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for PUT_PIPELINE_RUN_SUCCESSFULLY_STOPPED_A_BUILD"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PutPipelineRunResponse::AuthenticationFailed
                                                 => {
@@ -4235,11 +4279,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // Search - GET /blue/rest/search/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_SEARCH_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_SEARCH_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4248,8 +4292,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_q = query_params.iter().filter(|e| e.0 == "q").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_q = query_params.iter().filter(|e| e.0 == "q").map(|e| e.1.clone())
+                    .next();
                 let param_q = match param_q {
                     Some(param_q) => {
                         let param_q =
@@ -4280,7 +4324,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4293,8 +4337,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for SEARCH_SUCCESSFULLY_RETRIEVED_SEARCH_RESULT"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 SearchResponse::AuthenticationFailed
                                                 => {
@@ -4317,11 +4361,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // SearchClasses - GET /blue/rest/classes/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_) => {
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4330,8 +4374,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_q = query_params.iter().filter(|e| e.0 == "q").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_q = query_params.iter().filter(|e| e.0 == "q").map(|e| e.1.clone())
+                    .next();
                 let param_q = match param_q {
                     Some(param_q) => {
                         let param_q =
@@ -4362,7 +4406,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4375,8 +4419,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for SEARCH_CLASSES_SUCCESSFULLY_RETRIEVED_SEARCH_RESULT"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 SearchClassesResponse::AuthenticationFailed
                                                 => {
@@ -4399,11 +4443,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetComputer - GET /computer/api/json
-            &hyper::Method::GET if path.matched(paths::ID_COMPUTER_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_COMPUTER_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4412,8 +4456,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_depth = query_params.iter().filter(|e| e.0 == "depth").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_depth = query_params.iter().filter(|e| e.0 == "depth").map(|e| e.1.clone())
+                    .next();
                 let param_depth = match param_depth {
                     Some(param_depth) => {
                         let param_depth =
@@ -4444,7 +4488,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4457,8 +4501,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_COMPUTER_SUCCESSFULLY_RETRIEVED_COMPUTER_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetComputerResponse::AuthenticationFailed
                                                 => {
@@ -4481,11 +4525,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJenkins - GET /api/json
-            &hyper::Method::GET if path.matched(paths::ID_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4498,7 +4542,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4511,8 +4555,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_JENKINS_SUCCESSFULLY_RETRIEVED_JENKINS_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetJenkinsResponse::AuthenticationFailed
                                                 => {
@@ -4535,11 +4579,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJob - GET /job/{name}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4547,10 +4591,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_API_JSON
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_API_JSON in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_API_JSON.as_str())
                     );
@@ -4576,7 +4620,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4589,8 +4633,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_JOB_SUCCESSFULLY_RETRIEVED_JOB_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetJobResponse::AuthenticationFailed
                                                 => {
@@ -4617,11 +4661,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJobConfig - GET /job/{name}/config.xml
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => {
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4629,10 +4673,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_CONFIG_XML
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_CONFIG_XML in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_CONFIG_XML.as_str())
                     );
@@ -4658,7 +4702,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4671,8 +4715,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("text/xml")
                                                             .expect("Unable to create Content-Type header for GET_JOB_CONFIG_SUCCESSFULLY_RETRIEVED_JOB_CONFIGURATION_IN_CONFIG"));
-                                                    let body = serde_xml_rs::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_xml_rs::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetJobConfigResponse::AuthenticationFailed
                                                 => {
@@ -4699,11 +4743,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJobLastBuild - GET /job/{name}/lastBuild/api/json
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_LASTBUILD_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_LASTBUILD_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4711,10 +4755,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_LASTBUILD_API_JSON
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_LASTBUILD_API_JSON in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_LASTBUILD_API_JSON.as_str())
                     );
@@ -4740,7 +4784,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4753,8 +4797,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_JOB_LAST_BUILD_SUCCESSFULLY_RETRIEVED_JOB"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetJobLastBuildResponse::AuthenticationFailed
                                                 => {
@@ -4781,11 +4825,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetJobProgressiveText - GET /job/{name}/{number}/logText/progressiveText
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT) => {
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4793,10 +4837,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT.as_str())
                     );
@@ -4831,8 +4875,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_start = query_params.iter().filter(|e| e.0 == "start").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_start = query_params.iter().filter(|e| e.0 == "start").map(|e| e.1.clone())
+                    .next();
                 let param_start = match param_start {
                     Some(param_start) => {
                         let param_start =
@@ -4865,7 +4909,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4899,11 +4943,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetQueue - GET /queue/api/json
-            &hyper::Method::GET if path.matched(paths::ID_QUEUE_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_QUEUE_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4916,7 +4960,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -4929,8 +4973,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_QUEUE_SUCCESSFULLY_RETRIEVED_QUEUE_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetQueueResponse::AuthenticationFailed
                                                 => {
@@ -4953,11 +4997,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetQueueItem - GET /queue/item/{number}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_QUEUE_ITEM_NUMBER_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_QUEUE_ITEM_NUMBER_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -4965,10 +5009,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_QUEUE_ITEM_NUMBER_API_JSON
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE QUEUE_ITEM_NUMBER_API_JSON in set but failed match against \"{}\"", path, paths::REGEX_QUEUE_ITEM_NUMBER_API_JSON.as_str())
                     );
@@ -4994,7 +5038,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -5007,8 +5051,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_QUEUE_ITEM_SUCCESSFULLY_RETRIEVED_QUEUED_ITEM_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetQueueItemResponse::AuthenticationFailed
                                                 => {
@@ -5031,11 +5075,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetView - GET /view/{name}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_API_JSON) => {
+            hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5043,10 +5087,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_VIEW_NAME_API_JSON
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE VIEW_NAME_API_JSON in set but failed match against \"{}\"", path, paths::REGEX_VIEW_NAME_API_JSON.as_str())
                     );
@@ -5072,7 +5116,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -5085,8 +5129,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("application/json")
                                                             .expect("Unable to create Content-Type header for GET_VIEW_SUCCESSFULLY_RETRIEVED_VIEW_DETAILS"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetViewResponse::AuthenticationFailed
                                                 => {
@@ -5113,11 +5157,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // GetViewConfig - GET /view/{name}/config.xml
-            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => {
+            hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5125,10 +5169,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_VIEW_NAME_CONFIG_XML
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE VIEW_NAME_CONFIG_XML in set but failed match against \"{}\"", path, paths::REGEX_VIEW_NAME_CONFIG_XML.as_str())
                     );
@@ -5154,7 +5198,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -5167,8 +5211,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("text/xml")
                                                             .expect("Unable to create Content-Type header for GET_VIEW_CONFIG_SUCCESSFULLY_RETRIEVED_VIEW_CONFIGURATION_IN_CONFIG"));
-                                                    let body = serde_xml_rs::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_xml_rs::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 GetViewConfigResponse::AuthenticationFailed
                                                 => {
@@ -5195,11 +5239,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // HeadJenkins - HEAD /api/json
-            &hyper::Method::HEAD if path.matched(paths::ID_API_JSON) => {
+            hyper::Method::HEAD if path.matched(paths::ID_API_JSON) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5212,7 +5256,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -5261,11 +5305,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostCreateItem - POST /createItem
-            &hyper::Method::POST if path.matched(paths::ID_CREATEITEM) => {
+            hyper::Method::POST if path.matched(paths::ID_CREATEITEM) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5312,8 +5356,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_name = query_params.iter().filter(|e| e.0 == "name").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_name = query_params.iter().filter(|e| e.0 == "name").map(|e| e.1.clone())
+                    .next();
                 let param_name = match param_name {
                     Some(param_name) => {
                         let param_name =
@@ -5336,8 +5380,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                         .body(Body::from("Missing required query parameter name"))
                         .expect("Unable to create Bad Request response for missing query parameter name")),
                 };
-                let param_from = query_params.iter().filter(|e| e.0 == "from").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_from = query_params.iter().filter(|e| e.0 == "from").map(|e| e.1.clone())
+                    .next();
                 let param_from = match param_from {
                     Some(param_from) => {
                         let param_from =
@@ -5353,8 +5397,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                     },
                     None => None,
                 };
-                let param_mode = query_params.iter().filter(|e| e.0 == "mode").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_mode = query_params.iter().filter(|e| e.0 == "mode").map(|e| e.1.clone())
+                    .next();
                 let param_mode = match param_mode {
                     Some(param_mode) => {
                         let param_mode =
@@ -5379,7 +5423,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&*body);
+                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {}", path);
                                             unused_elements.push(path.to_string());
@@ -5403,7 +5447,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         if !unused_elements.is_empty() {
@@ -5427,8 +5471,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("*/*")
                                                             .expect("Unable to create Content-Type header for POST_CREATE_ITEM_AN_ERROR_HAS_OCCURRED"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PostCreateItemResponse::AuthenticationFailed
                                                 => {
@@ -5457,11 +5501,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostCreateView - POST /createView
-            &hyper::Method::POST if path.matched(paths::ID_CREATEVIEW) => {
+            hyper::Method::POST if path.matched(paths::ID_CREATEVIEW) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5508,8 +5552,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_name = query_params.iter().filter(|e| e.0 == "name").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_name = query_params.iter().filter(|e| e.0 == "name").map(|e| e.1.clone())
+                    .next();
                 let param_name = match param_name {
                     Some(param_name) => {
                         let param_name =
@@ -5541,7 +5585,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&*body);
+                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {}", path);
                                             unused_elements.push(path.to_string());
@@ -5563,7 +5607,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         if !unused_elements.is_empty() {
@@ -5587,8 +5631,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("*/*")
                                                             .expect("Unable to create Content-Type header for POST_CREATE_VIEW_AN_ERROR_HAS_OCCURRED"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PostCreateViewResponse::AuthenticationFailed
                                                 => {
@@ -5617,11 +5661,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostJobBuild - POST /job/{name}/build
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_BUILD) => {
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_BUILD) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5629,10 +5673,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_BUILD
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_BUILD in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_BUILD.as_str())
                     );
@@ -5673,8 +5717,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
 
                 // Query parameters (note that non-required or collection query parameters will ignore garbage values, rather than causing a 400 response)
                 let query_params = form_urlencoded::parse(uri.query().unwrap_or_default().as_bytes()).collect::<Vec<_>>();
-                let param_json = query_params.iter().filter(|e| e.0 == "json").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_json = query_params.iter().filter(|e| e.0 == "json").map(|e| e.1.clone())
+                    .next();
                 let param_json = match param_json {
                     Some(param_json) => {
                         let param_json =
@@ -5697,8 +5741,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                         .body(Body::from("Missing required query parameter json"))
                         .expect("Unable to create Bad Request response for missing query parameter json")),
                 };
-                let param_token = query_params.iter().filter(|e| e.0 == "token").map(|e| e.1.to_owned())
-                    .nth(0);
+                let param_token = query_params.iter().filter(|e| e.0 == "token").map(|e| e.1.clone())
+                    .next();
                 let param_token = match param_token {
                     Some(param_token) => {
                         let param_token =
@@ -5725,7 +5769,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -5763,11 +5807,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostJobConfig - POST /job/{name}/config.xml
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => {
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5775,10 +5819,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_CONFIG_XML
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_CONFIG_XML in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_CONFIG_XML.as_str())
                     );
@@ -5825,7 +5869,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&*body);
+                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {}", path);
                                             unused_elements.push(path.to_string());
@@ -5856,7 +5900,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         if !unused_elements.is_empty() {
@@ -5880,8 +5924,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("*/*")
                                                             .expect("Unable to create Content-Type header for POST_JOB_CONFIG_AN_ERROR_HAS_OCCURRED"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PostJobConfigResponse::AuthenticationFailed
                                                 => {
@@ -5914,11 +5958,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostJobDelete - POST /job/{name}/doDelete
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DODELETE) => {
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DODELETE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -5926,10 +5970,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_DODELETE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_DODELETE in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_DODELETE.as_str())
                     );
@@ -5976,7 +6020,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -6010,11 +6054,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostJobDisable - POST /job/{name}/disable
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DISABLE) => {
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DISABLE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -6022,10 +6066,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_DISABLE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_DISABLE in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_DISABLE.as_str())
                     );
@@ -6072,7 +6116,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -6106,11 +6150,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostJobEnable - POST /job/{name}/enable
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_ENABLE) => {
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_ENABLE) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -6118,10 +6162,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_ENABLE
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_ENABLE in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_ENABLE.as_str())
                     );
@@ -6168,7 +6212,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -6202,11 +6246,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostJobLastBuildStop - POST /job/{name}/lastBuild/stop
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_LASTBUILD_STOP) => {
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_LASTBUILD_STOP) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -6214,10 +6258,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_JOB_NAME_LASTBUILD_STOP
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE JOB_NAME_LASTBUILD_STOP in set but failed match against \"{}\"", path, paths::REGEX_JOB_NAME_LASTBUILD_STOP.as_str())
                     );
@@ -6264,7 +6308,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         match result {
@@ -6298,11 +6342,11 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
             },
 
             // PostViewConfig - POST /view/{name}/config.xml
-            &hyper::Method::POST if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => {
+            hyper::Method::POST if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => {
                 {
-                    let authorization = match (&context as &dyn Has<Option<Authorization>>).get() {
-                        &Some(ref authorization) => authorization,
-                        &None => return Ok(Response::builder()
+                    let authorization = match *(&context as &dyn Has<Option<Authorization>>).get() {
+                        Some(ref authorization) => authorization,
+                        None => return Ok(Response::builder()
                                                 .status(StatusCode::FORBIDDEN)
                                                 .body(Body::from("Unauthenticated"))
                                                 .expect("Unable to create Authentication Forbidden response")),
@@ -6310,10 +6354,10 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                 }
 
                 // Path parameters
-                let path: &str = &uri.path().to_string();
+                let path: &str = uri.path();
                 let path_params =
                     paths::REGEX_VIEW_NAME_CONFIG_XML
-                    .captures(&path)
+                    .captures(path)
                     .unwrap_or_else(||
                         panic!("Path {} matched RE VIEW_NAME_CONFIG_XML in set but failed match against \"{}\"", path, paths::REGEX_VIEW_NAME_CONFIG_XML.as_str())
                     );
@@ -6360,7 +6404,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                             Ok(body) => {
                                 let mut unused_elements = Vec::new();
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&*body);
+                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {}", path);
                                             unused_elements.push(path.to_string());
@@ -6391,7 +6435,7 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                 let mut response = Response::new(Body::empty());
                                 response.headers_mut().insert(
                                             HeaderName::from_static("x-span-id"),
-                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().to_string().as_str())
+                                            HeaderValue::from_str((&context as &dyn Has<XSpanIdString>).get().0.clone().as_str())
                                                 .expect("Unable to create X-Span-ID header value"));
 
                                         if !unused_elements.is_empty() {
@@ -6415,8 +6459,8 @@ impl<T, C> hyper::service::Service<(Request<Body>, C)> for Service<T, C> where
                                                         CONTENT_TYPE,
                                                         HeaderValue::from_str("*/*")
                                                             .expect("Unable to create Content-Type header for POST_VIEW_CONFIG_AN_ERROR_HAS_OCCURRED"));
-                                                    let body = serde_json::to_string(&body).expect("impossible to fail to serialize");
-                                                    *response.body_mut() = Body::from(body);
+                                                    let body_content = serde_json::to_string(&body).expect("impossible to fail to serialize");
+                                                    *response.body_mut() = Body::from(body_content);
                                                 },
                                                 PostViewConfigResponse::AuthenticationFailed
                                                 => {
@@ -6514,123 +6558,123 @@ pub struct ApiRequestParser;
 impl<T> RequestParser<T> for ApiRequestParser {
     fn parse_operation_id(request: &Request<T>) -> Option<&'static str> {
         let path = paths::GLOBAL_REGEX_SET.matches(request.uri().path());
-        match request.method() {
+        match *request.method() {
             // GetCrumb - GET /crumbIssuer/api/json
-            &hyper::Method::GET if path.matched(paths::ID_CRUMBISSUER_API_JSON) => Some("GetCrumb"),
+            hyper::Method::GET if path.matched(paths::ID_CRUMBISSUER_API_JSON) => Some("GetCrumb"),
             // DeletePipelineQueueItem - DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
-            &hyper::Method::DELETE if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE) => Some("DeletePipelineQueueItem"),
+            hyper::Method::DELETE if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE_QUEUE) => Some("DeletePipelineQueueItem"),
             // GetAuthenticatedUser - GET /blue/rest/organizations/{organization}/user/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_) => Some("GetAuthenticatedUser"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USER_) => Some("GetAuthenticatedUser"),
             // GetClasses - GET /blue/rest/classes/{class}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_CLASS) => Some("GetClasses"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_CLASS) => Some("GetClasses"),
             // GetJsonWebKey - GET /jwt-auth/jwks/{key}
-            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_JWKS_KEY) => Some("GetJsonWebKey"),
+            hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_JWKS_KEY) => Some("GetJsonWebKey"),
             // GetJsonWebToken - GET /jwt-auth/token
-            &hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_TOKEN) => Some("GetJsonWebToken"),
+            hyper::Method::GET if path.matched(paths::ID_JWT_AUTH_TOKEN) => Some("GetJsonWebToken"),
             // GetOrganisation - GET /blue/rest/organizations/{organization}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION) => Some("GetOrganisation"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION) => Some("GetOrganisation"),
             // GetOrganisations - GET /blue/rest/organizations/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_) => Some("GetOrganisations"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_) => Some("GetOrganisations"),
             // GetPipeline - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE) => Some("GetPipeline"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE) => Some("GetPipeline"),
             // GetPipelineActivities - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES) => Some("GetPipelineActivities"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_ACTIVITIES) => Some("GetPipelineActivities"),
             // GetPipelineBranch - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_) => Some("GetPipelineBranch"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_) => Some("GetPipelineBranch"),
             // GetPipelineBranchRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN) => Some("GetPipelineBranchRun"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES_BRANCH_RUNS_RUN) => Some("GetPipelineBranchRun"),
             // GetPipelineBranches - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES) => Some("GetPipelineBranches"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_BRANCHES) => Some("GetPipelineBranches"),
             // GetPipelineFolder - GET /blue/rest/organizations/{organization}/pipelines/{folder}/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_) => Some("GetPipelineFolder"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_) => Some("GetPipelineFolder"),
             // GetPipelineFolderPipeline - GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE) => Some("GetPipelineFolderPipeline"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_FOLDER_PIPELINES_PIPELINE) => Some("GetPipelineFolderPipeline"),
             // GetPipelineQueue - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE) => Some("GetPipelineQueue"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_QUEUE) => Some("GetPipelineQueue"),
             // GetPipelineRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN) => Some("GetPipelineRun"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN) => Some("GetPipelineRun"),
             // GetPipelineRunLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG) => Some("GetPipelineRunLog"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_LOG) => Some("GetPipelineRunLog"),
             // GetPipelineRunNode - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE) => Some("GetPipelineRunNode"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE) => Some("GetPipelineRunNode"),
             // GetPipelineRunNodeStep - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP) => Some("GetPipelineRunNodeStep"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP) => Some("GetPipelineRunNodeStep"),
             // GetPipelineRunNodeStepLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG) => Some("GetPipelineRunNodeStepLog"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS_STEP_LOG) => Some("GetPipelineRunNodeStepLog"),
             // GetPipelineRunNodeSteps - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS) => Some("GetPipelineRunNodeSteps"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES_NODE_STEPS) => Some("GetPipelineRunNodeSteps"),
             // GetPipelineRunNodes - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES) => Some("GetPipelineRunNodes"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_NODES) => Some("GetPipelineRunNodes"),
             // GetPipelineRuns - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Some("GetPipelineRuns"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Some("GetPipelineRuns"),
             // GetPipelines - GET /blue/rest/organizations/{organization}/pipelines/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_) => Some("GetPipelines"),
-            // GetSCM - GET /blue/rest/organizations/{organization}/scm/{scm}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM) => Some("GetSCM"),
-            // GetSCMOrganisationRepositories - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES) => Some("GetSCMOrganisationRepositories"),
-            // GetSCMOrganisationRepository - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY) => Some("GetSCMOrganisationRepository"),
-            // GetSCMOrganisations - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS) => Some("GetSCMOrganisations"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_) => Some("GetPipelines"),
+            // GetScm - GET /blue/rest/organizations/{organization}/scm/{scm}
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM) => Some("GetScm"),
+            // GetScmOrganisationRepositories - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES) => Some("GetScmOrganisationRepositories"),
+            // GetScmOrganisationRepository - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS_SCMORGANISATION_REPOSITORIES_REPOSITORY) => Some("GetScmOrganisationRepository"),
+            // GetScmOrganisations - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_SCM_SCM_ORGANIZATIONS) => Some("GetScmOrganisations"),
             // GetUser - GET /blue/rest/organizations/{organization}/users/{user}
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER) => Some("GetUser"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_USER) => Some("GetUser"),
             // GetUserFavorites - GET /blue/rest/users/{user}/favorites
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_USERS_USER_FAVORITES) => Some("GetUserFavorites"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_USERS_USER_FAVORITES) => Some("GetUserFavorites"),
             // GetUsers - GET /blue/rest/organizations/{organization}/users/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_) => Some("GetUsers"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_USERS_) => Some("GetUsers"),
             // PostPipelineRun - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
-            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY) => Some("PostPipelineRun"),
+            hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_REPLAY) => Some("PostPipelineRun"),
             // PostPipelineRuns - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
-            &hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Some("PostPipelineRuns"),
+            hyper::Method::POST if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS) => Some("PostPipelineRuns"),
             // PutPipelineFavorite - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
-            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE) => Some("PutPipelineFavorite"),
+            hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_FAVORITE) => Some("PutPipelineFavorite"),
             // PutPipelineRun - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
-            &hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP) => Some("PutPipelineRun"),
+            hyper::Method::PUT if path.matched(paths::ID_BLUE_REST_ORGANIZATIONS_ORGANIZATION_PIPELINES_PIPELINE_RUNS_RUN_STOP) => Some("PutPipelineRun"),
             // Search - GET /blue/rest/search/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_SEARCH_) => Some("Search"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_SEARCH_) => Some("Search"),
             // SearchClasses - GET /blue/rest/classes/
-            &hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_) => Some("SearchClasses"),
+            hyper::Method::GET if path.matched(paths::ID_BLUE_REST_CLASSES_) => Some("SearchClasses"),
             // GetComputer - GET /computer/api/json
-            &hyper::Method::GET if path.matched(paths::ID_COMPUTER_API_JSON) => Some("GetComputer"),
+            hyper::Method::GET if path.matched(paths::ID_COMPUTER_API_JSON) => Some("GetComputer"),
             // GetJenkins - GET /api/json
-            &hyper::Method::GET if path.matched(paths::ID_API_JSON) => Some("GetJenkins"),
+            hyper::Method::GET if path.matched(paths::ID_API_JSON) => Some("GetJenkins"),
             // GetJob - GET /job/{name}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_API_JSON) => Some("GetJob"),
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_API_JSON) => Some("GetJob"),
             // GetJobConfig - GET /job/{name}/config.xml
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Some("GetJobConfig"),
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Some("GetJobConfig"),
             // GetJobLastBuild - GET /job/{name}/lastBuild/api/json
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_LASTBUILD_API_JSON) => Some("GetJobLastBuild"),
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_LASTBUILD_API_JSON) => Some("GetJobLastBuild"),
             // GetJobProgressiveText - GET /job/{name}/{number}/logText/progressiveText
-            &hyper::Method::GET if path.matched(paths::ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT) => Some("GetJobProgressiveText"),
+            hyper::Method::GET if path.matched(paths::ID_JOB_NAME_NUMBER_LOGTEXT_PROGRESSIVETEXT) => Some("GetJobProgressiveText"),
             // GetQueue - GET /queue/api/json
-            &hyper::Method::GET if path.matched(paths::ID_QUEUE_API_JSON) => Some("GetQueue"),
+            hyper::Method::GET if path.matched(paths::ID_QUEUE_API_JSON) => Some("GetQueue"),
             // GetQueueItem - GET /queue/item/{number}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_QUEUE_ITEM_NUMBER_API_JSON) => Some("GetQueueItem"),
+            hyper::Method::GET if path.matched(paths::ID_QUEUE_ITEM_NUMBER_API_JSON) => Some("GetQueueItem"),
             // GetView - GET /view/{name}/api/json
-            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_API_JSON) => Some("GetView"),
+            hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_API_JSON) => Some("GetView"),
             // GetViewConfig - GET /view/{name}/config.xml
-            &hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Some("GetViewConfig"),
+            hyper::Method::GET if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Some("GetViewConfig"),
             // HeadJenkins - HEAD /api/json
-            &hyper::Method::HEAD if path.matched(paths::ID_API_JSON) => Some("HeadJenkins"),
+            hyper::Method::HEAD if path.matched(paths::ID_API_JSON) => Some("HeadJenkins"),
             // PostCreateItem - POST /createItem
-            &hyper::Method::POST if path.matched(paths::ID_CREATEITEM) => Some("PostCreateItem"),
+            hyper::Method::POST if path.matched(paths::ID_CREATEITEM) => Some("PostCreateItem"),
             // PostCreateView - POST /createView
-            &hyper::Method::POST if path.matched(paths::ID_CREATEVIEW) => Some("PostCreateView"),
+            hyper::Method::POST if path.matched(paths::ID_CREATEVIEW) => Some("PostCreateView"),
             // PostJobBuild - POST /job/{name}/build
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_BUILD) => Some("PostJobBuild"),
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_BUILD) => Some("PostJobBuild"),
             // PostJobConfig - POST /job/{name}/config.xml
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Some("PostJobConfig"),
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_CONFIG_XML) => Some("PostJobConfig"),
             // PostJobDelete - POST /job/{name}/doDelete
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DODELETE) => Some("PostJobDelete"),
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DODELETE) => Some("PostJobDelete"),
             // PostJobDisable - POST /job/{name}/disable
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DISABLE) => Some("PostJobDisable"),
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_DISABLE) => Some("PostJobDisable"),
             // PostJobEnable - POST /job/{name}/enable
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_ENABLE) => Some("PostJobEnable"),
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_ENABLE) => Some("PostJobEnable"),
             // PostJobLastBuildStop - POST /job/{name}/lastBuild/stop
-            &hyper::Method::POST if path.matched(paths::ID_JOB_NAME_LASTBUILD_STOP) => Some("PostJobLastBuildStop"),
+            hyper::Method::POST if path.matched(paths::ID_JOB_NAME_LASTBUILD_STOP) => Some("PostJobLastBuildStop"),
             // PostViewConfig - POST /view/{name}/config.xml
-            &hyper::Method::POST if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Some("PostViewConfig"),
+            hyper::Method::POST if path.matched(paths::ID_VIEW_NAME_CONFIG_XML) => Some("PostViewConfig"),
             _ => None,
         }
     }

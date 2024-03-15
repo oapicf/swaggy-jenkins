@@ -151,6 +151,27 @@ public class PipelineImpllinks  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
+    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.self, pipelineImpllinks.self) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+        Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(runs, self, queue, actions, propertyClass);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");

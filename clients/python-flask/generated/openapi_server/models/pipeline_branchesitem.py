@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.pipeline_branchesitemlatest_run import PipelineBranchesitemlatestRun
 from openapi_server.models.pipeline_branchesitempull_request import PipelineBranchesitempullRequest
 from openapi_server import util
@@ -87,7 +84,7 @@ class PipelineBranchesitem(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this PipelineBranchesitem.
 
 
@@ -97,7 +94,7 @@ class PipelineBranchesitem(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this PipelineBranchesitem.
 
 
@@ -108,7 +105,7 @@ class PipelineBranchesitem(Model):
         self._display_name = display_name
 
     @property
-    def estimated_duration_in_millis(self):
+    def estimated_duration_in_millis(self) -> int:
         """Gets the estimated_duration_in_millis of this PipelineBranchesitem.
 
 
@@ -118,7 +115,7 @@ class PipelineBranchesitem(Model):
         return self._estimated_duration_in_millis
 
     @estimated_duration_in_millis.setter
-    def estimated_duration_in_millis(self, estimated_duration_in_millis):
+    def estimated_duration_in_millis(self, estimated_duration_in_millis: int):
         """Sets the estimated_duration_in_millis of this PipelineBranchesitem.
 
 
@@ -129,7 +126,7 @@ class PipelineBranchesitem(Model):
         self._estimated_duration_in_millis = estimated_duration_in_millis
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this PipelineBranchesitem.
 
 
@@ -139,7 +136,7 @@ class PipelineBranchesitem(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this PipelineBranchesitem.
 
 
@@ -150,7 +147,7 @@ class PipelineBranchesitem(Model):
         self._name = name
 
     @property
-    def weather_score(self):
+    def weather_score(self) -> int:
         """Gets the weather_score of this PipelineBranchesitem.
 
 
@@ -160,7 +157,7 @@ class PipelineBranchesitem(Model):
         return self._weather_score
 
     @weather_score.setter
-    def weather_score(self, weather_score):
+    def weather_score(self, weather_score: int):
         """Sets the weather_score of this PipelineBranchesitem.
 
 
@@ -171,7 +168,7 @@ class PipelineBranchesitem(Model):
         self._weather_score = weather_score
 
     @property
-    def latest_run(self):
+    def latest_run(self) -> PipelineBranchesitemlatestRun:
         """Gets the latest_run of this PipelineBranchesitem.
 
 
@@ -181,7 +178,7 @@ class PipelineBranchesitem(Model):
         return self._latest_run
 
     @latest_run.setter
-    def latest_run(self, latest_run):
+    def latest_run(self, latest_run: PipelineBranchesitemlatestRun):
         """Sets the latest_run of this PipelineBranchesitem.
 
 
@@ -192,7 +189,7 @@ class PipelineBranchesitem(Model):
         self._latest_run = latest_run
 
     @property
-    def organization(self):
+    def organization(self) -> str:
         """Gets the organization of this PipelineBranchesitem.
 
 
@@ -202,7 +199,7 @@ class PipelineBranchesitem(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization):
+    def organization(self, organization: str):
         """Sets the organization of this PipelineBranchesitem.
 
 
@@ -213,7 +210,7 @@ class PipelineBranchesitem(Model):
         self._organization = organization
 
     @property
-    def pull_request(self):
+    def pull_request(self) -> PipelineBranchesitempullRequest:
         """Gets the pull_request of this PipelineBranchesitem.
 
 
@@ -223,7 +220,7 @@ class PipelineBranchesitem(Model):
         return self._pull_request
 
     @pull_request.setter
-    def pull_request(self, pull_request):
+    def pull_request(self, pull_request: PipelineBranchesitempullRequest):
         """Sets the pull_request of this PipelineBranchesitem.
 
 
@@ -234,7 +231,7 @@ class PipelineBranchesitem(Model):
         self._pull_request = pull_request
 
     @property
-    def total_number_of_pull_requests(self):
+    def total_number_of_pull_requests(self) -> int:
         """Gets the total_number_of_pull_requests of this PipelineBranchesitem.
 
 
@@ -244,7 +241,7 @@ class PipelineBranchesitem(Model):
         return self._total_number_of_pull_requests
 
     @total_number_of_pull_requests.setter
-    def total_number_of_pull_requests(self, total_number_of_pull_requests):
+    def total_number_of_pull_requests(self, total_number_of_pull_requests: int):
         """Sets the total_number_of_pull_requests of this PipelineBranchesitem.
 
 
@@ -255,7 +252,7 @@ class PipelineBranchesitem(Model):
         self._total_number_of_pull_requests = total_number_of_pull_requests
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineBranchesitem.
 
 
@@ -265,7 +262,7 @@ class PipelineBranchesitem(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineBranchesitem.
 
 

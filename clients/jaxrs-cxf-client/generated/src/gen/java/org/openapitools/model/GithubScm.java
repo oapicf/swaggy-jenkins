@@ -3,6 +3,7 @@ package org.openapitools.model;
 import org.openapitools.model.GithubScmlinks;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -112,6 +113,26 @@ public class GithubScm  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubScm githubScm = (GithubScm) o;
+    return Objects.equals(this.propertyClass, githubScm.propertyClass) &&
+        Objects.equals(this.links, githubScm.links) &&
+        Objects.equals(this.credentialId, githubScm.credentialId) &&
+        Objects.equals(this.id, githubScm.id) &&
+        Objects.equals(this.uri, githubScm.uri);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, credentialId, id, uri);
+  }
 
   @Override
   public String toString() {

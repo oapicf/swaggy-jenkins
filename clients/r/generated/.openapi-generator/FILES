@@ -1,5 +1,7 @@
 .Rbuildignore
+.github/workflows/r-client.yaml
 .gitignore
+.lintr
 .openapi-generator-ignore
 .travis.yml
 DESCRIPTION

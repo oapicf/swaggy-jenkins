@@ -10,18 +10,18 @@ namespace app\Models;
 class StringParameterDefinition {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\StringParameterValue $defaultParameterValue */
-    private $defaultParameterValue;
+    public $defaultParameterValue;
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $type */
-    private $type;
+    public $type = "";
 
 }

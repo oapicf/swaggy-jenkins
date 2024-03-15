@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.hudson_master_computer import HudsonMasterComputer
 from openapi_server import util
 
@@ -65,7 +62,7 @@ class ComputerSet(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this ComputerSet.
 
 
@@ -75,7 +72,7 @@ class ComputerSet(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this ComputerSet.
 
 
@@ -86,7 +83,7 @@ class ComputerSet(Model):
         self.__class = _class
 
     @property
-    def busy_executors(self):
+    def busy_executors(self) -> int:
         """Gets the busy_executors of this ComputerSet.
 
 
@@ -96,7 +93,7 @@ class ComputerSet(Model):
         return self._busy_executors
 
     @busy_executors.setter
-    def busy_executors(self, busy_executors):
+    def busy_executors(self, busy_executors: int):
         """Sets the busy_executors of this ComputerSet.
 
 
@@ -107,7 +104,7 @@ class ComputerSet(Model):
         self._busy_executors = busy_executors
 
     @property
-    def computer(self):
+    def computer(self) -> List[HudsonMasterComputer]:
         """Gets the computer of this ComputerSet.
 
 
@@ -117,7 +114,7 @@ class ComputerSet(Model):
         return self._computer
 
     @computer.setter
-    def computer(self, computer):
+    def computer(self, computer: List[HudsonMasterComputer]):
         """Sets the computer of this ComputerSet.
 
 
@@ -128,7 +125,7 @@ class ComputerSet(Model):
         self._computer = computer
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this ComputerSet.
 
 
@@ -138,7 +135,7 @@ class ComputerSet(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this ComputerSet.
 
 
@@ -149,7 +146,7 @@ class ComputerSet(Model):
         self._display_name = display_name
 
     @property
-    def total_executors(self):
+    def total_executors(self) -> int:
         """Gets the total_executors of this ComputerSet.
 
 
@@ -159,7 +156,7 @@ class ComputerSet(Model):
         return self._total_executors
 
     @total_executors.setter
-    def total_executors(self, total_executors):
+    def total_executors(self, total_executors: int):
         """Sets the total_executors of this ComputerSet.
 
 

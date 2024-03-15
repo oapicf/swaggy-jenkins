@@ -32,9 +32,9 @@ class PipelineRunNode
 
     /**
      * @DTA\Data(field="edges", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection106::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection106::class})
-     * @var \App\DTO\Collection106|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection23::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection23::class})
+     * @var \App\DTO\Collection23|null
      */
     public $edges;
 

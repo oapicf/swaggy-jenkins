@@ -19,11 +19,11 @@ Retrieve CSRF protection token
 * Basic Authentication (jenkins_auth):
 
 ```python
-import time
 import swaggyjenkins
-from swaggyjenkins.api import base_api
-from swaggyjenkins.model.default_crumb_issuer import DefaultCrumbIssuer
+from swaggyjenkins.models.default_crumb_issuer import DefaultCrumbIssuer
+from swaggyjenkins.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = swaggyjenkins.Configuration(
@@ -37,25 +37,27 @@ configuration = swaggyjenkins.Configuration(
 
 # Configure HTTP basic authorization: jenkins_auth
 configuration = swaggyjenkins.Configuration(
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
 )
 
 # Enter a context with an instance of the API client
 with swaggyjenkins.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = base_api.BaseApi(api_client)
+    api_instance = swaggyjenkins.BaseApi(api_client)
 
-    # example, this endpoint has no required or optional parameters
     try:
         api_response = api_instance.get_crumb()
+        print("The response of BaseApi->get_crumb:\n")
         pprint(api_response)
-    except swaggyjenkins.ApiException as e:
+    except Exception as e:
         print("Exception when calling BaseApi->get_crumb: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -70,7 +72,6 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
 
 ### HTTP response details
 

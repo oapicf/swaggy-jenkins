@@ -10,84 +10,84 @@ namespace app\Models;
 class FreeStyleProject {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
     /** @var string $color */
-    private $color;
+    public $color = "";
 
     /** @var \app\Models\FreeStyleProjectactions[] $actions */
-    private $actions;
+    public $actions = [];
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var string $displayNameOrNull */
-    private $displayNameOrNull;
+    public $displayNameOrNull = "";
 
     /** @var string $fullDisplayName */
-    private $fullDisplayName;
+    public $fullDisplayName = "";
 
     /** @var string $fullName */
-    private $fullName;
+    public $fullName = "";
 
     /** @var bool $buildable */
-    private $buildable;
+    public $buildable = false;
 
     /** @var \app\Models\FreeStyleBuild[] $builds */
-    private $builds;
+    public $builds = [];
 
     /** @var \app\Models\FreeStyleBuild $firstBuild */
-    private $firstBuild;
+    public $firstBuild;
 
     /** @var \app\Models\FreeStyleProjecthealthReport[] $healthReport */
-    private $healthReport;
+    public $healthReport = [];
 
     /** @var bool $inQueue */
-    private $inQueue;
+    public $inQueue = false;
 
     /** @var bool $keepDependencies */
-    private $keepDependencies;
+    public $keepDependencies = false;
 
     /** @var \app\Models\FreeStyleBuild $lastBuild */
-    private $lastBuild;
+    public $lastBuild;
 
     /** @var \app\Models\FreeStyleBuild $lastCompletedBuild */
-    private $lastCompletedBuild;
+    public $lastCompletedBuild;
 
     /** @var string $lastFailedBuild */
-    private $lastFailedBuild;
+    public $lastFailedBuild = "";
 
     /** @var \app\Models\FreeStyleBuild $lastStableBuild */
-    private $lastStableBuild;
+    public $lastStableBuild;
 
     /** @var \app\Models\FreeStyleBuild $lastSuccessfulBuild */
-    private $lastSuccessfulBuild;
+    public $lastSuccessfulBuild;
 
     /** @var string $lastUnstableBuild */
-    private $lastUnstableBuild;
+    public $lastUnstableBuild = "";
 
     /** @var string $lastUnsuccessfulBuild */
-    private $lastUnsuccessfulBuild;
+    public $lastUnsuccessfulBuild = "";
 
     /** @var int $nextBuildNumber */
-    private $nextBuildNumber;
+    public $nextBuildNumber = 0;
 
     /** @var string $queueItem */
-    private $queueItem;
+    public $queueItem = "";
 
     /** @var bool $concurrentBuild */
-    private $concurrentBuild;
+    public $concurrentBuild = false;
 
     /** @var \app\Models\NullSCM $scm */
-    private $scm;
+    public $scm;
 
 }

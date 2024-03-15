@@ -11,14 +11,14 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Swaggy Jenkins
  * Jenkins API clients generated from Swagger / Open API specification
- * The version of the OpenAPI document: 1.5.1-pre.0
+ * The version of the OpenAPI document: 2.0.1-pre.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {
     //region deletePipelineQueueItem
     /**
      * @param \App\DTO\DeletePipelineQueueItemParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -35,7 +35,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\DeletePipelineQueueItemParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -48,6 +48,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->deletePipelineQueueItemRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -60,13 +62,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\DeletePipelineQueueItemParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -85,7 +87,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getAuthenticatedUser
     /**
      * @param \App\DTO\GetAuthenticatedUserParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -105,7 +107,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetAuthenticatedUserParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -120,6 +122,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getAuthenticatedUserRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -133,13 +137,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetAuthenticatedUserParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\User
      * @throws ClientExceptionInterface
@@ -160,7 +164,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getClasses
     /**
      * @param \App\DTO\GetClassesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -180,7 +184,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetClassesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -195,6 +199,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getClassesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -207,13 +213,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetClassesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface
@@ -234,7 +240,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getComputer
     /**
      * @param \App\DTO\GetComputerParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -254,7 +260,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetComputerParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -269,6 +275,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getComputerRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -282,13 +290,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetComputerParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\ComputerSet
      * @throws ClientExceptionInterface
@@ -308,7 +316,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getCrumb
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -326,7 +334,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -340,6 +348,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getCrumbRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -353,12 +363,12 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\DefaultCrumbIssuer
      * @throws ClientExceptionInterface
@@ -377,7 +387,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getJenkins
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -395,7 +405,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -409,6 +419,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJenkinsRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -422,12 +434,12 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Hudson
      * @throws ClientExceptionInterface
@@ -447,7 +459,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getJob
     /**
      * @param \App\DTO\GetJobParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -467,7 +479,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetJobParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -482,6 +494,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJobRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -498,13 +512,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetJobParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\FreeStyleProject
      * @throws ClientExceptionInterface
@@ -525,7 +539,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getJobConfig
     /**
      * @param \App\DTO\GetJobConfigParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -545,7 +559,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetJobConfigParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -560,6 +574,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJobConfigRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -575,13 +591,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetJobConfigParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface
@@ -602,7 +618,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getJobLastBuild
     /**
      * @param \App\DTO\GetJobLastBuildParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -622,7 +638,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetJobLastBuildParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -637,6 +653,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJobLastBuildRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -653,13 +671,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetJobLastBuildParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\FreeStyleBuild
      * @throws ClientExceptionInterface
@@ -680,7 +698,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getJobProgressiveText
     /**
      * @param \App\DTO\GetJobProgressiveTextParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -697,7 +715,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetJobProgressiveTextParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -710,6 +728,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJobProgressiveTextRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -725,13 +745,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetJobProgressiveTextParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -780,6 +800,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJsonWebKeyRaw($parameters, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -792,7 +814,7 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
@@ -847,6 +869,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getJsonWebTokenRaw($parameters, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -859,7 +883,7 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
@@ -884,7 +908,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getOrganisation
     /**
      * @param \App\DTO\GetOrganisationParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -904,7 +928,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetOrganisationParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -919,6 +943,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getOrganisationRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -935,13 +961,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Pipeline cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetOrganisationParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Organisation
      * @throws ClientExceptionInterface
@@ -961,7 +987,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getOrganisations
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -979,7 +1005,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -993,11 +1019,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getOrganisationsRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved pipelines details */
-                $responseContent = new \App\DTO\Collection91();
+                $responseContent = new \App\DTO\Collection13();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -1006,14 +1034,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection91
+     * @return \App\DTO\Collection13
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -1022,7 +1050,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function getOrganisationsResult(
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection91
+    ): \App\DTO\Collection13
     {
         return $this->getSuccessfulContent(...$this->getOrganisations($security, $responseMediaType));
     }
@@ -1031,7 +1059,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipeline
     /**
      * @param \App\DTO\GetPipelineParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1051,7 +1079,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1066,6 +1094,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1082,13 +1112,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Pipeline cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Pipeline
      * @throws ClientExceptionInterface
@@ -1109,7 +1139,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineActivities
     /**
      * @param \App\DTO\GetPipelineActivitiesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1129,7 +1159,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineActivitiesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1144,11 +1174,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineActivitiesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved all activities details */
-                $responseContent = new \App\DTO\Collection96();
+                $responseContent = new \App\DTO\Collection17();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -1157,15 +1189,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineActivitiesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection96
+     * @return \App\DTO\Collection17
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -1175,7 +1207,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineActivitiesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection96
+    ): \App\DTO\Collection17
     {
         return $this->getSuccessfulContent(...$this->getPipelineActivities($parameters, $security, $responseMediaType));
     }
@@ -1184,7 +1216,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineBranch
     /**
      * @param \App\DTO\GetPipelineBranchParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1204,7 +1236,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineBranchParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1219,6 +1251,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineBranchRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1232,13 +1266,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineBranchParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\BranchImpl
      * @throws ClientExceptionInterface
@@ -1259,7 +1293,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineBranchRun
     /**
      * @param \App\DTO\GetPipelineBranchRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1279,7 +1313,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineBranchRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1294,6 +1328,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineBranchRunRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1307,13 +1343,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineBranchRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineRun
      * @throws ClientExceptionInterface
@@ -1334,7 +1370,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineBranches
     /**
      * @param \App\DTO\GetPipelineBranchesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1354,7 +1390,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineBranchesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1369,6 +1405,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineBranchesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1382,13 +1420,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineBranchesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\MultibranchPipeline
      * @throws ClientExceptionInterface
@@ -1409,7 +1447,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineFolder
     /**
      * @param \App\DTO\GetPipelineFolderParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1429,7 +1467,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineFolderParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1444,6 +1482,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineFolderRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1457,13 +1497,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineFolderParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineFolderImpl
      * @throws ClientExceptionInterface
@@ -1484,7 +1524,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineFolderPipeline
     /**
      * @param \App\DTO\GetPipelineFolderPipelineParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1504,7 +1544,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineFolderPipelineParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1519,6 +1559,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineFolderPipelineRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1532,13 +1574,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineFolderPipelineParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineImpl
      * @throws ClientExceptionInterface
@@ -1559,7 +1601,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineQueue
     /**
      * @param \App\DTO\GetPipelineQueueParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1579,7 +1621,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineQueueParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1594,11 +1636,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineQueueRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved queue details */
-                $responseContent = new \App\DTO\Collection100();
+                $responseContent = new \App\DTO\Collection21();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -1607,15 +1651,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineQueueParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection100
+     * @return \App\DTO\Collection21
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -1625,7 +1669,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineQueueParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection100
+    ): \App\DTO\Collection21
     {
         return $this->getSuccessfulContent(...$this->getPipelineQueue($parameters, $security, $responseMediaType));
     }
@@ -1634,7 +1678,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRun
     /**
      * @param \App\DTO\GetPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1654,7 +1698,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1669,6 +1713,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1682,13 +1728,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineRun
      * @throws ClientExceptionInterface
@@ -1709,7 +1755,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRunLog
     /**
      * @param \App\DTO\GetPipelineRunLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1729,7 +1775,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1744,6 +1790,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunLogRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1756,13 +1804,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface
@@ -1783,7 +1831,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRunNode
     /**
      * @param \App\DTO\GetPipelineRunNodeParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1803,7 +1851,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunNodeParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1818,6 +1866,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunNodeRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1831,13 +1881,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunNodeParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineRunNode
      * @throws ClientExceptionInterface
@@ -1858,7 +1908,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRunNodeStep
     /**
      * @param \App\DTO\GetPipelineRunNodeStepParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1878,7 +1928,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunNodeStepParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1893,6 +1943,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunNodeStepRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1906,13 +1958,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunNodeStepParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineStepImpl
      * @throws ClientExceptionInterface
@@ -1933,7 +1985,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRunNodeStepLog
     /**
      * @param \App\DTO\GetPipelineRunNodeStepLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -1953,7 +2005,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunNodeStepLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -1968,6 +2020,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunNodeStepLogRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -1980,13 +2034,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunNodeStepLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface
@@ -2007,7 +2061,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRunNodeSteps
     /**
      * @param \App\DTO\GetPipelineRunNodeStepsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2027,7 +2081,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunNodeStepsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2042,11 +2096,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunNodeStepsRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved run node steps details */
-                $responseContent = new \App\DTO\Collection108();
+                $responseContent = new \App\DTO\Collection26();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2055,15 +2111,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunNodeStepsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection108
+     * @return \App\DTO\Collection26
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2073,7 +2129,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineRunNodeStepsParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection108
+    ): \App\DTO\Collection26
     {
         return $this->getSuccessfulContent(...$this->getPipelineRunNodeSteps($parameters, $security, $responseMediaType));
     }
@@ -2082,7 +2138,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRunNodes
     /**
      * @param \App\DTO\GetPipelineRunNodesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2102,7 +2158,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunNodesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2117,11 +2173,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunNodesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved run nodes details */
-                $responseContent = new \App\DTO\Collection105();
+                $responseContent = new \App\DTO\Collection24();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2130,15 +2188,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunNodesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection105
+     * @return \App\DTO\Collection24
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2148,7 +2206,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineRunNodesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection105
+    ): \App\DTO\Collection24
     {
         return $this->getSuccessfulContent(...$this->getPipelineRunNodes($parameters, $security, $responseMediaType));
     }
@@ -2157,7 +2215,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelineRuns
     /**
      * @param \App\DTO\GetPipelineRunsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2177,7 +2235,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelineRunsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2192,11 +2250,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelineRunsRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved runs details */
-                $responseContent = new \App\DTO\Collection102();
+                $responseContent = new \App\DTO\Collection22();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2205,15 +2265,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelineRunsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection102
+     * @return \App\DTO\Collection22
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2223,7 +2283,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineRunsParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection102
+    ): \App\DTO\Collection22
     {
         return $this->getSuccessfulContent(...$this->getPipelineRuns($parameters, $security, $responseMediaType));
     }
@@ -2232,7 +2292,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getPipelines
     /**
      * @param \App\DTO\GetPipelinesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2252,7 +2312,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetPipelinesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2267,11 +2327,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getPipelinesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved pipelines details */
-                $responseContent = new \App\DTO\Collection93();
+                $responseContent = new \App\DTO\Collection15();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2280,15 +2342,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetPipelinesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection93
+     * @return \App\DTO\Collection15
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2298,7 +2360,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelinesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection93
+    ): \App\DTO\Collection15
     {
         return $this->getSuccessfulContent(...$this->getPipelines($parameters, $security, $responseMediaType));
     }
@@ -2306,7 +2368,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getQueue
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2324,7 +2386,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2338,6 +2400,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getQueueRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -2351,12 +2415,12 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Queue
      * @throws ClientExceptionInterface
@@ -2376,7 +2440,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getQueueItem
     /**
      * @param \App\DTO\GetQueueItemParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2396,7 +2460,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetQueueItemParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2411,6 +2475,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getQueueItemRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -2424,13 +2490,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetQueueItemParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Queue
      * @throws ClientExceptionInterface
@@ -2451,7 +2517,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getSCM
     /**
      * @param \App\DTO\GetSCMParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2471,7 +2537,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetSCMParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2486,6 +2552,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getSCMRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -2499,13 +2567,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetSCMParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\GithubScm
      * @throws ClientExceptionInterface
@@ -2526,7 +2594,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getSCMOrganisationRepositories
     /**
      * @param \App\DTO\GetSCMOrganisationRepositoriesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2546,7 +2614,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetSCMOrganisationRepositoriesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2561,11 +2629,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getSCMOrganisationRepositoriesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved SCM organization repositories details */
-                $responseContent = new \App\DTO\Collection113();
+                $responseContent = new \App\DTO\Collection27();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2574,15 +2644,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetSCMOrganisationRepositoriesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection113
+     * @return \App\DTO\Collection27
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2592,7 +2662,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetSCMOrganisationRepositoriesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection113
+    ): \App\DTO\Collection27
     {
         return $this->getSuccessfulContent(...$this->getSCMOrganisationRepositories($parameters, $security, $responseMediaType));
     }
@@ -2601,7 +2671,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getSCMOrganisationRepository
     /**
      * @param \App\DTO\GetSCMOrganisationRepositoryParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2621,7 +2691,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetSCMOrganisationRepositoryParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2636,11 +2706,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getSCMOrganisationRepositoryRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved SCM organizations details */
-                $responseContent = new \App\DTO\Collection113();
+                $responseContent = new \App\DTO\Collection27();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2649,15 +2721,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetSCMOrganisationRepositoryParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection113
+     * @return \App\DTO\Collection27
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2667,7 +2739,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetSCMOrganisationRepositoryParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection113
+    ): \App\DTO\Collection27
     {
         return $this->getSuccessfulContent(...$this->getSCMOrganisationRepository($parameters, $security, $responseMediaType));
     }
@@ -2676,7 +2748,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getSCMOrganisations
     /**
      * @param \App\DTO\GetSCMOrganisationsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2696,7 +2768,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetSCMOrganisationsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2711,11 +2783,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getSCMOrganisationsRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved SCM organizations details */
-                $responseContent = new \App\DTO\Collection113();
+                $responseContent = new \App\DTO\Collection27();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2724,15 +2798,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetSCMOrganisationsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection113
+     * @return \App\DTO\Collection27
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2742,7 +2816,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetSCMOrganisationsParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection113
+    ): \App\DTO\Collection27
     {
         return $this->getSuccessfulContent(...$this->getSCMOrganisations($parameters, $security, $responseMediaType));
     }
@@ -2751,7 +2825,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getUser
     /**
      * @param \App\DTO\GetUserParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2771,7 +2845,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetUserParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2786,6 +2860,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getUserRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -2799,13 +2875,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetUserParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\User
      * @throws ClientExceptionInterface
@@ -2826,7 +2902,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getUserFavorites
     /**
      * @param \App\DTO\GetUserFavoritesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2846,7 +2922,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetUserFavoritesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2861,11 +2937,13 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getUserFavoritesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
                 /* Successfully retrieved users favorites details */
-                $responseContent = new \App\DTO\Collection114();
+                $responseContent = new \App\DTO\Collection28();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2874,15 +2952,15 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetUserFavoritesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection114
+     * @return \App\DTO\Collection28
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2892,7 +2970,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetUserFavoritesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection114
+    ): \App\DTO\Collection28
     {
         return $this->getSuccessfulContent(...$this->getUserFavorites($parameters, $security, $responseMediaType));
     }
@@ -2901,7 +2979,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getUsers
     /**
      * @param \App\DTO\GetUsersParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2921,7 +2999,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetUsersParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -2936,6 +3014,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getUsersRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -2949,13 +3029,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetUsersParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\User
      * @throws ClientExceptionInterface
@@ -2976,7 +3056,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getView
     /**
      * @param \App\DTO\GetViewParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -2996,7 +3076,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetViewParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -3011,6 +3091,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getViewRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3027,13 +3109,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* View cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetViewParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\ListView
      * @throws ClientExceptionInterface
@@ -3054,7 +3136,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getViewConfig
     /**
      * @param \App\DTO\GetViewConfigParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -3074,7 +3156,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\GetViewConfigParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -3089,6 +3171,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getViewConfigRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3104,13 +3188,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* View cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\GetViewConfigParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface
@@ -3130,7 +3214,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region headJenkins
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3145,7 +3229,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3157,6 +3241,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->headJenkinsRaw($security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3169,12 +3255,12 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3193,7 +3279,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostCreateItemParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -3205,7 +3291,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): ResponseInterface
     {
         $request = $this->createRequest('POST', '/createItem', [], $this->getQueryParameters($parameters));
@@ -3219,7 +3305,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostCreateItemParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -3232,11 +3318,13 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): array
     {
         $response = $this->postCreateItemRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3252,14 +3340,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostCreateItemParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return mixed
@@ -3273,7 +3361,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     )
     {
         return $this->getSuccessfulContent(...$this->postCreateItem($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
@@ -3284,7 +3372,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostCreateViewParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -3296,7 +3384,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): ResponseInterface
     {
         $request = $this->createRequest('POST', '/createView', [], $this->getQueryParameters($parameters));
@@ -3310,7 +3398,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostCreateViewParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -3323,11 +3411,13 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): array
     {
         $response = $this->postCreateViewRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3343,14 +3433,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostCreateViewParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return mixed
@@ -3364,7 +3454,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     )
     {
         return $this->getSuccessfulContent(...$this->postCreateView($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
@@ -3374,7 +3464,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postJobBuild
     /**
      * @param \App\DTO\PostJobBuildParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3392,7 +3482,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostJobBuildParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3405,6 +3495,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postJobBuildRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3423,13 +3515,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostJobBuildParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3449,7 +3541,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostJobConfigParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -3461,7 +3553,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): ResponseInterface
     {
         $request = $this->createRequest('POST', '/job/{name}/config.xml', $this->getPathParameters($parameters), []);
@@ -3475,7 +3567,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostJobConfigParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -3488,11 +3580,13 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): array
     {
         $response = $this->postJobConfigRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3511,14 +3605,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostJobConfigParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return mixed
@@ -3532,7 +3626,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     )
     {
         return $this->getSuccessfulContent(...$this->postJobConfig($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
@@ -3542,7 +3636,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postJobDelete
     /**
      * @param \App\DTO\PostJobDeleteParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3560,7 +3654,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostJobDeleteParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3573,6 +3667,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postJobDeleteRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3588,13 +3684,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostJobDeleteParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3613,7 +3709,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postJobDisable
     /**
      * @param \App\DTO\PostJobDisableParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3631,7 +3727,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostJobDisableParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3644,6 +3740,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postJobDisableRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3659,13 +3757,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostJobDisableParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3684,7 +3782,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postJobEnable
     /**
      * @param \App\DTO\PostJobEnableParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3702,7 +3800,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostJobEnableParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3715,6 +3813,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postJobEnableRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3730,13 +3830,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostJobEnableParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3755,7 +3855,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postJobLastBuildStop
     /**
      * @param \App\DTO\PostJobLastBuildStopParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3773,7 +3873,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostJobLastBuildStopParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3786,6 +3886,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postJobLastBuildStopRaw($parameters, $security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3801,13 +3903,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Job cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostJobLastBuildStopParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -3826,7 +3928,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postPipelineRun
     /**
      * @param \App\DTO\PostPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -3846,7 +3948,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -3861,6 +3963,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postPipelineRunRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3874,13 +3978,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\QueueItemImpl
      * @throws ClientExceptionInterface
@@ -3901,7 +4005,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region postPipelineRuns
     /**
      * @param \App\DTO\PostPipelineRunsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -3921,7 +4025,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PostPipelineRunsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -3936,6 +4040,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->postPipelineRunsRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -3949,13 +4055,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostPipelineRunsParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\QueueItemImpl
      * @throws ClientExceptionInterface
@@ -3977,7 +4083,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostViewConfigParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -3989,7 +4095,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): ResponseInterface
     {
         $request = $this->createRequest('POST', '/view/{name}/config.xml', $this->getPathParameters($parameters), []);
@@ -4003,7 +4109,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PostViewConfigParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -4016,11 +4122,13 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     ): array
     {
         $response = $this->postViewConfigRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -4039,14 +4147,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* View cannot be found on Jenkins instance */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PostViewConfigParameterData $parameters
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return mixed
@@ -4060,7 +4168,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
         string $requestMediaType = 'application/json',
-        string $responseMediaType = '*_/_*'
+        string $responseMediaType = '*/*'
     )
     {
         return $this->getSuccessfulContent(...$this->postViewConfig($parameters, $requestContent, $security, $requestMediaType, $responseMediaType));
@@ -4071,7 +4179,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PutPipelineFavoriteParameterData $parameters
      * @param bool $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -4096,7 +4204,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param \App\DTO\PutPipelineFavoriteParameterData $parameters
      * @param bool $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -4114,6 +4222,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->putPipelineFavoriteRaw($parameters, $requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -4127,14 +4237,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PutPipelineFavoriteParameterData $parameters
      * @param bool $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return \App\DTO\FavoriteImpl
@@ -4158,7 +4268,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region putPipelineRun
     /**
      * @param \App\DTO\PutPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -4178,7 +4288,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\PutPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -4193,6 +4303,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->putPipelineRunRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -4206,13 +4318,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\PutPipelineRunParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\PipelineRun
      * @throws ClientExceptionInterface
@@ -4233,7 +4345,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region search
     /**
      * @param \App\DTO\SearchParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -4253,7 +4365,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\SearchParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -4268,6 +4380,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->searchRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -4280,13 +4394,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\SearchParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface
@@ -4307,7 +4421,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region searchClasses
     /**
      * @param \App\DTO\SearchClassesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -4327,7 +4441,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * @param \App\DTO\SearchClassesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -4342,6 +4456,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->searchClassesRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -4354,13 +4470,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Jenkins requires authentication - please set username and password */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * @param \App\DTO\SearchClassesParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return string
      * @throws ClientExceptionInterface

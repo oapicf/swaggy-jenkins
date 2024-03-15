@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.github_content import GithubContent
 from openapi_server import util
 
@@ -50,7 +47,7 @@ class GithubFile(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def content(self):
+    def content(self) -> GithubContent:
         """Gets the content of this GithubFile.
 
 
@@ -60,7 +57,7 @@ class GithubFile(Model):
         return self._content
 
     @content.setter
-    def content(self, content):
+    def content(self, content: GithubContent):
         """Sets the content of this GithubFile.
 
 
@@ -71,7 +68,7 @@ class GithubFile(Model):
         self._content = content
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubFile.
 
 
@@ -81,7 +78,7 @@ class GithubFile(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubFile.
 
 

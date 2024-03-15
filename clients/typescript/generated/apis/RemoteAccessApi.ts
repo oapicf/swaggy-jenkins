@@ -1,7 +1,7 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError} from './baseapi';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {canConsumeForm, isCodeInRange} from '../util';
@@ -165,7 +165,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Retrieve job's last build details
+     * Retrieve job\'s last build details
      * @param name Name of the job
      */
     public async getJobLastBuild(name: string, _options?: Configuration): Promise<RequestContext> {
@@ -202,7 +202,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Retrieve job's build progressive text output
+     * Retrieve job\'s build progressive text output
      * @param name Name of the job
      * @param number Build number
      * @param start Starting point of progressive text output
@@ -431,7 +431,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
      * @param _from Existing job to copy from
-     * @param mode Set to &#39;copy&#39; for copying an existing job
+     * @param mode Set to \&#39;copy\&#39; for copying an existing job
      * @param jenkinsCrumb CSRF protection token
      * @param contentType Content type header application/xml
      * @param body Job configuration in config.xml format
@@ -929,14 +929,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getComputer
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getComputer(response: ResponseContext): Promise<ComputerSet > {
+     public async getComputerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<ComputerSet >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: ComputerSet = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ComputerSet", ""
             ) as ComputerSet;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -951,7 +951,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ComputerSet", ""
             ) as ComputerSet;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -964,14 +964,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getJenkins
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJenkins(response: ResponseContext): Promise<Hudson > {
+     public async getJenkinsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Hudson >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Hudson = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Hudson", ""
             ) as Hudson;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -986,7 +986,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Hudson", ""
             ) as Hudson;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -999,14 +999,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJob(response: ResponseContext): Promise<FreeStyleProject > {
+     public async getJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<FreeStyleProject >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: FreeStyleProject = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "FreeStyleProject", ""
             ) as FreeStyleProject;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1024,7 +1024,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "FreeStyleProject", ""
             ) as FreeStyleProject;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1037,14 +1037,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getJobConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJobConfig(response: ResponseContext): Promise<string > {
+     public async getJobConfigWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1062,7 +1062,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1075,14 +1075,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getJobLastBuild
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJobLastBuild(response: ResponseContext): Promise<FreeStyleBuild > {
+     public async getJobLastBuildWithHttpInfo(response: ResponseContext): Promise<HttpInfo<FreeStyleBuild >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: FreeStyleBuild = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "FreeStyleBuild", ""
             ) as FreeStyleBuild;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1100,7 +1100,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "FreeStyleBuild", ""
             ) as FreeStyleBuild;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1113,10 +1113,10 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getJobProgressiveText
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getJobProgressiveText(response: ResponseContext): Promise<void > {
+     public async getJobProgressiveTextWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1134,7 +1134,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1147,14 +1147,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getQueue
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getQueue(response: ResponseContext): Promise<Queue > {
+     public async getQueueWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Queue >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Queue = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Queue", ""
             ) as Queue;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1169,7 +1169,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Queue", ""
             ) as Queue;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1182,14 +1182,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getQueueItem
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getQueueItem(response: ResponseContext): Promise<Queue > {
+     public async getQueueItemWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Queue >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Queue = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Queue", ""
             ) as Queue;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1204,7 +1204,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Queue", ""
             ) as Queue;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1217,14 +1217,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getView
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getView(response: ResponseContext): Promise<ListView > {
+     public async getViewWithHttpInfo(response: ResponseContext): Promise<HttpInfo<ListView >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: ListView = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ListView", ""
             ) as ListView;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1242,7 +1242,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ListView", ""
             ) as ListView;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1255,14 +1255,14 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to getViewConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getViewConfig(response: ResponseContext): Promise<string > {
+     public async getViewConfigWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1280,7 +1280,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1293,10 +1293,10 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to headJenkins
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async headJenkins(response: ResponseContext): Promise<void > {
+     public async headJenkinsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1311,7 +1311,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1324,17 +1324,17 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postCreateItem
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postCreateItem(response: ResponseContext): Promise<void > {
+     public async postCreateItemWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            throw new ApiException<string>(400, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
+            throw new ApiException<string>(response.httpStatusCode, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1349,7 +1349,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1362,17 +1362,17 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postCreateView
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postCreateView(response: ResponseContext): Promise<void > {
+     public async postCreateViewWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            throw new ApiException<string>(400, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
+            throw new ApiException<string>(response.httpStatusCode, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1387,7 +1387,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1400,13 +1400,13 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postJobBuild
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postJobBuild(response: ResponseContext): Promise<void > {
+     public async postJobBuildWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1424,7 +1424,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1437,17 +1437,17 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postJobConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postJobConfig(response: ResponseContext): Promise<void > {
+     public async postJobConfigWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            throw new ApiException<string>(400, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
+            throw new ApiException<string>(response.httpStatusCode, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1465,7 +1465,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1478,10 +1478,10 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postJobDelete
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postJobDelete(response: ResponseContext): Promise<void > {
+     public async postJobDeleteWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1499,7 +1499,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1512,10 +1512,10 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postJobDisable
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postJobDisable(response: ResponseContext): Promise<void > {
+     public async postJobDisableWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1533,7 +1533,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1546,10 +1546,10 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postJobEnable
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postJobEnable(response: ResponseContext): Promise<void > {
+     public async postJobEnableWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1567,7 +1567,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1580,10 +1580,10 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postJobLastBuildStop
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postJobLastBuildStop(response: ResponseContext): Promise<void > {
+     public async postJobLastBuildStopWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1601,7 +1601,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1614,17 +1614,17 @@ export class RemoteAccessApiResponseProcessor {
      * @params response Response returned by the server for a request to postViewConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async postViewConfig(response: ResponseContext): Promise<void > {
+     public async postViewConfigWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            throw new ApiException<string>(400, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
+            throw new ApiException<string>(response.httpStatusCode, "An error has occurred - error message is embedded inside the HTML response", body, response.headers);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Authentication failed - incorrect username and/or password", undefined, response.headers);
@@ -1642,7 +1642,7 @@ export class RemoteAccessApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "void", ""
             ) as void;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

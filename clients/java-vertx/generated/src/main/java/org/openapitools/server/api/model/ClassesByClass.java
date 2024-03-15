@@ -4,12 +4,13 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClassesByClass   {
   
-  private List<String> classes = new ArrayList<>();
+  private List<String> classes;
   private String propertyClass;
 
   public ClassesByClass () {

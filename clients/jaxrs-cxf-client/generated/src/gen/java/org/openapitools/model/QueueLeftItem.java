@@ -1,12 +1,14 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProject;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -16,7 +18,7 @@ public class QueueLeftItem  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<CauseAction> actions = null;
+  private List<CauseAction> actions;
 
   @ApiModelProperty(value = "")
   private Boolean blocked;
@@ -289,6 +291,34 @@ public class QueueLeftItem  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    QueueLeftItem queueLeftItem = (QueueLeftItem) o;
+    return Objects.equals(this.propertyClass, queueLeftItem.propertyClass) &&
+        Objects.equals(this.actions, queueLeftItem.actions) &&
+        Objects.equals(this.blocked, queueLeftItem.blocked) &&
+        Objects.equals(this.buildable, queueLeftItem.buildable) &&
+        Objects.equals(this.id, queueLeftItem.id) &&
+        Objects.equals(this.inQueueSince, queueLeftItem.inQueueSince) &&
+        Objects.equals(this.params, queueLeftItem.params) &&
+        Objects.equals(this.stuck, queueLeftItem.stuck) &&
+        Objects.equals(this.task, queueLeftItem.task) &&
+        Objects.equals(this.url, queueLeftItem.url) &&
+        Objects.equals(this.why, queueLeftItem.why) &&
+        Objects.equals(this.cancelled, queueLeftItem.cancelled) &&
+        Objects.equals(this.executable, queueLeftItem.executable);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, actions, blocked, buildable, id, inQueueSince, params, stuck, task, url, why, cancelled, executable);
+  }
 
   @Override
   public String toString() {

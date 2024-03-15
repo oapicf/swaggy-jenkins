@@ -6,7 +6,7 @@
  *)
 
 let delete_pipeline_queue_item ~organization ~pipeline ~queue =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -16,7 +16,7 @@ let delete_pipeline_queue_item ~organization ~pipeline ~queue =
     Request.handle_unit_response resp
 
 let get_authenticated_user ~organization =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/user/" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -24,7 +24,7 @@ let get_authenticated_user ~organization =
     Request.read_json_body_as (JsonSupport.unwrap User.of_yojson) resp body
 
 let get_classes ~_class =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/classes/{class}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "class" (fun x -> x) _class in
@@ -32,7 +32,7 @@ let get_classes ~_class =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let get_json_web_key ~key =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/jwt-auth/jwks/{key}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "key" Int32.to_string key in
@@ -40,7 +40,7 @@ let get_json_web_key ~key =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let get_json_web_token ?expiry_time_in_mins ?max_expiry_time_in_mins () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/jwt-auth/token" in
     let headers = Request.default_headers in
     let uri = Request.maybe_add_query_param uri "expiryTimeInMins" Int32.to_string expiry_time_in_mins in
@@ -49,7 +49,7 @@ let get_json_web_token ?expiry_time_in_mins ?max_expiry_time_in_mins () =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let get_organisation ~organization =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -57,14 +57,14 @@ let get_organisation ~organization =
     Request.read_json_body_as (JsonSupport.unwrap Organisation.of_yojson) resp body
 
 let get_organisations () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/" in
     let headers = Request.default_headers in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Organisation.of_yojson) resp body
 
 let get_pipeline ~organization ~pipeline =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -73,7 +73,7 @@ let get_pipeline ~organization ~pipeline =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline.of_yojson) resp body
 
 let get_pipeline_activities ~organization ~pipeline =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -82,7 +82,7 @@ let get_pipeline_activities ~organization ~pipeline =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_activity.of_yojson) resp body
 
 let get_pipeline_branch ~organization ~pipeline ~branch =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -92,7 +92,7 @@ let get_pipeline_branch ~organization ~pipeline ~branch =
     Request.read_json_body_as (JsonSupport.unwrap Branch_impl.of_yojson) resp body
 
 let get_pipeline_branch_run ~organization ~pipeline ~branch ~run =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -103,7 +103,7 @@ let get_pipeline_branch_run ~organization ~pipeline ~branch ~run =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
 let get_pipeline_branches ~organization ~pipeline =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -112,7 +112,7 @@ let get_pipeline_branches ~organization ~pipeline =
     Request.read_json_body_as (JsonSupport.unwrap Multibranch_pipeline.of_yojson) resp body
 
 let get_pipeline_folder ~organization ~folder =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{folder}/" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -121,7 +121,7 @@ let get_pipeline_folder ~organization ~folder =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_folder_impl.of_yojson) resp body
 
 let get_pipeline_folder_pipeline ~organization ~pipeline ~folder =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -131,7 +131,7 @@ let get_pipeline_folder_pipeline ~organization ~pipeline ~folder =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_impl.of_yojson) resp body
 
 let get_pipeline_queue ~organization ~pipeline =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -140,7 +140,7 @@ let get_pipeline_queue ~organization ~pipeline =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
 let get_pipeline_run ~organization ~pipeline ~run =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -150,7 +150,7 @@ let get_pipeline_run ~organization ~pipeline ~run =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
 let get_pipeline_run_log ~organization ~pipeline ~run ?start ?download () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -162,7 +162,7 @@ let get_pipeline_run_log ~organization ~pipeline ~run ?start ?download () =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let get_pipeline_run_node ~organization ~pipeline ~run ~node =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -173,7 +173,7 @@ let get_pipeline_run_node ~organization ~pipeline ~run ~node =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run_node.of_yojson) resp body
 
 let get_pipeline_run_node_step ~organization ~pipeline ~run ~node ~step =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -185,7 +185,7 @@ let get_pipeline_run_node_step ~organization ~pipeline ~run ~node ~step =
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_step_impl.of_yojson) resp body
 
 let get_pipeline_run_node_step_log ~organization ~pipeline ~run ~node ~step =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -197,7 +197,7 @@ let get_pipeline_run_node_step_log ~organization ~pipeline ~run ~node ~step =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let get_pipeline_run_node_steps ~organization ~pipeline ~run ~node =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -208,7 +208,7 @@ let get_pipeline_run_node_steps ~organization ~pipeline ~run ~node =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_step_impl.of_yojson) resp body
 
 let get_pipeline_run_nodes ~organization ~pipeline ~run =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -218,7 +218,7 @@ let get_pipeline_run_nodes ~organization ~pipeline ~run =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_run_node.of_yojson) resp body
 
 let get_pipeline_runs ~organization ~pipeline =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -227,7 +227,7 @@ let get_pipeline_runs ~organization ~pipeline =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
 let get_pipelines ~organization =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -235,7 +235,7 @@ let get_pipelines ~organization =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline.of_yojson) resp body
 
 let get_scm ~organization ~scm =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -244,7 +244,7 @@ let get_scm ~organization ~scm =
     Request.read_json_body_as (JsonSupport.unwrap Github_scm.of_yojson) resp body
 
 let get_scm_organisation_repositories ~organization ~scm ~scm_organisation ?credential_id ?page_size ?page_number () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -257,7 +257,7 @@ let get_scm_organisation_repositories ~organization ~scm ~scm_organisation ?cred
     Request.read_json_body_as_list_of (JsonSupport.unwrap Github_organization.of_yojson) resp body
 
 let get_scm_organisation_repository ~organization ~scm ~scm_organisation ~repository ?credential_id () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -269,7 +269,7 @@ let get_scm_organisation_repository ~organization ~scm ~scm_organisation ~reposi
     Request.read_json_body_as_list_of (JsonSupport.unwrap Github_organization.of_yojson) resp body
 
 let get_scm_organisations ~organization ~scm ?credential_id () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}/organizations" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -279,7 +279,7 @@ let get_scm_organisations ~organization ~scm ?credential_id () =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Github_organization.of_yojson) resp body
 
 let get_user ~organization ~user =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/users/{user}" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -288,7 +288,7 @@ let get_user ~organization ~user =
     Request.read_json_body_as (JsonSupport.unwrap User.of_yojson) resp body
 
 let get_user_favorites ~user =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/users/{user}/favorites" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "user" (fun x -> x) user in
@@ -296,7 +296,7 @@ let get_user_favorites ~user =
     Request.read_json_body_as_list_of (JsonSupport.unwrap Favorite_impl.of_yojson) resp body
 
 let get_users ~organization =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/users/" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -304,7 +304,7 @@ let get_users ~organization =
     Request.read_json_body_as (JsonSupport.unwrap User.of_yojson) resp body
 
 let post_pipeline_run ~organization ~pipeline ~run =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -314,7 +314,7 @@ let post_pipeline_run ~organization ~pipeline ~run =
     Request.read_json_body_as (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
 let post_pipeline_runs ~organization ~pipeline =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -323,7 +323,7 @@ let post_pipeline_runs ~organization ~pipeline =
     Request.read_json_body_as (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
 let put_pipeline_favorite ~organization ~pipeline ~body =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -333,7 +333,7 @@ let put_pipeline_favorite ~organization ~pipeline ~body =
     Request.read_json_body_as (JsonSupport.unwrap Favorite_impl.of_yojson) resp body
 
 let put_pipeline_run ~organization ~pipeline ~run ?blocking ?time_out_in_secs () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
@@ -345,7 +345,7 @@ let put_pipeline_run ~organization ~pipeline ~run ?blocking ?time_out_in_secs ()
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
 let search ~q =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/search/" in
     let headers = Request.default_headers in
     let uri = Request.add_query_param uri "q" (fun x -> x) q in
@@ -353,7 +353,7 @@ let search ~q =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let search_classes ~q =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/classes/" in
     let headers = Request.default_headers in
     let uri = Request.add_query_param uri "q" (fun x -> x) q in

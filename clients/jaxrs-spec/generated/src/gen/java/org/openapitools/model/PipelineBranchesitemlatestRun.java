@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitemlatestRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitemlatestRun   {
-  
   private @Valid Integer durationInMillis;
   private @Valid Integer estimatedDurationInMillis;
   private @Valid String enQueueTime;
@@ -52,7 +51,7 @@ public class PipelineBranchesitemlatestRun   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -71,7 +70,7 @@ public class PipelineBranchesitemlatestRun   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun enQueueTime(String enQueueTime) {
     this.enQueueTime = enQueueTime;
@@ -90,7 +89,7 @@ public class PipelineBranchesitemlatestRun   {
     this.enQueueTime = enQueueTime;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun endTime(String endTime) {
     this.endTime = endTime;
@@ -109,7 +108,7 @@ public class PipelineBranchesitemlatestRun   {
     this.endTime = endTime;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun id(String id) {
     this.id = id;
@@ -128,7 +127,7 @@ public class PipelineBranchesitemlatestRun   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun organization(String organization) {
     this.organization = organization;
@@ -147,7 +146,7 @@ public class PipelineBranchesitemlatestRun   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun pipeline(String pipeline) {
     this.pipeline = pipeline;
@@ -166,7 +165,7 @@ public class PipelineBranchesitemlatestRun   {
     this.pipeline = pipeline;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun result(String result) {
     this.result = result;
@@ -185,7 +184,7 @@ public class PipelineBranchesitemlatestRun   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun runSummary(String runSummary) {
     this.runSummary = runSummary;
@@ -204,7 +203,7 @@ public class PipelineBranchesitemlatestRun   {
     this.runSummary = runSummary;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun startTime(String startTime) {
     this.startTime = startTime;
@@ -223,7 +222,7 @@ public class PipelineBranchesitemlatestRun   {
     this.startTime = startTime;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun state(String state) {
     this.state = state;
@@ -242,7 +241,7 @@ public class PipelineBranchesitemlatestRun   {
     this.state = state;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun type(String type) {
     this.type = type;
@@ -261,7 +260,7 @@ public class PipelineBranchesitemlatestRun   {
     this.type = type;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun commitId(String commitId) {
     this.commitId = commitId;
@@ -280,7 +279,7 @@ public class PipelineBranchesitemlatestRun   {
     this.commitId = commitId;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitemlatestRun propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

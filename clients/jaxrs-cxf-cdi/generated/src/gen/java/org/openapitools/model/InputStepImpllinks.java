@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -18,7 +19,6 @@ public class InputStepImpllinks   {
   private Link self;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -66,8 +66,8 @@ public class InputStepImpllinks   {
       return false;
     }
     InputStepImpllinks inputStepImpllinks = (InputStepImpllinks) o;
-    return Objects.equals(self, inputStepImpllinks.self) &&
-        Objects.equals(propertyClass, inputStepImpllinks.propertyClass);
+    return Objects.equals(this.self, inputStepImpllinks.self) &&
+        Objects.equals(this.propertyClass, inputStepImpllinks.propertyClass);
   }
 
   @Override

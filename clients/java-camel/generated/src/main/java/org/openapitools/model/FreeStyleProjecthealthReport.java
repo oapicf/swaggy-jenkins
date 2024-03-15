@@ -18,22 +18,17 @@ import javax.annotation.Generated;
  * FreeStyleProjecthealthReport
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleProjecthealthReport {
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("iconClassName")
   private String iconClassName;
 
-  @JsonProperty("iconUrl")
   private String iconUrl;
 
-  @JsonProperty("score")
   private Integer score;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public FreeStyleProjecthealthReport description(String description) {
@@ -46,7 +41,8 @@ public class FreeStyleProjecthealthReport {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -65,7 +61,8 @@ public class FreeStyleProjecthealthReport {
    * @return iconClassName
   */
   
-  @Schema(name = "iconClassName", required = false)
+  @Schema(name = "iconClassName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("iconClassName")
   public String getIconClassName() {
     return iconClassName;
   }
@@ -84,7 +81,8 @@ public class FreeStyleProjecthealthReport {
    * @return iconUrl
   */
   
-  @Schema(name = "iconUrl", required = false)
+  @Schema(name = "iconUrl", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("iconUrl")
   public String getIconUrl() {
     return iconUrl;
   }
@@ -103,7 +101,8 @@ public class FreeStyleProjecthealthReport {
    * @return score
   */
   
-  @Schema(name = "score", required = false)
+  @Schema(name = "score", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("score")
   public Integer getScore() {
     return score;
   }
@@ -122,7 +121,8 @@ public class FreeStyleProjecthealthReport {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

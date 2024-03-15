@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
 
 /**
  * ComputerSet
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ComputerSet   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -21,7 +22,7 @@ public class ComputerSet   {
   private Integer busyExecutors;
 
   @JsonProperty("computer")
-  private List<HudsonMasterComputer> computer = null;
+  private List<@Valid HudsonMasterComputer> computer = null;
 
   @JsonProperty("displayName")
   private String displayName;
@@ -65,14 +66,14 @@ public class ComputerSet   {
     this.busyExecutors = busyExecutors;
   }
 
-  public ComputerSet computer(List<HudsonMasterComputer> computer) {
+  public ComputerSet computer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
     return this;
   }
 
   public ComputerSet addComputerItem(HudsonMasterComputer computerItem) {
     if (this.computer == null) {
-      this.computer = new ArrayList<>();
+      this.computer = ;
     }
     this.computer.add(computerItem);
     return this;
@@ -83,11 +84,11 @@ public class ComputerSet   {
    * @return computer
   **/
   @ApiModelProperty(value = "")
-  public List<HudsonMasterComputer> getComputer() {
+  public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
 
-  public void setComputer(List<HudsonMasterComputer> computer) {
+  public void setComputer(List<@Valid HudsonMasterComputer> computer) {
     this.computer = computer;
   }
 

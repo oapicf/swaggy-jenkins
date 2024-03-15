@@ -65,6 +65,24 @@ public class ClockDifference  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ClockDifference clockDifference = (ClockDifference) o;
+    return Objects.equals(this.propertyClass, clockDifference.propertyClass) &&
+        Objects.equals(this.diff, clockDifference.diff);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, diff);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ClockDifference {\n");

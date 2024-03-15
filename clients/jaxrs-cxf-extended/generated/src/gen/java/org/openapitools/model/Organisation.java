@@ -65,6 +65,24 @@ public class Organisation  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Organisation organisation = (Organisation) o;
+    return Objects.equals(this.propertyClass, organisation.propertyClass) &&
+        Objects.equals(this.name, organisation.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, name);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Organisation {\n");

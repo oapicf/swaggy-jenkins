@@ -1,16 +1,18 @@
 package apimodels;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * MultibranchPipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
@@ -177,10 +179,10 @@ public class MultibranchPipeline   {
   }
 
   public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
-    if (branchNames == null) {
-      branchNames = new ArrayList<>();
+    if (this.branchNames == null) {
+      this.branchNames = new ArrayList<>();
     }
-    branchNames.add(branchNamesItem);
+    this.branchNames.add(branchNamesItem);
     return this;
   }
 

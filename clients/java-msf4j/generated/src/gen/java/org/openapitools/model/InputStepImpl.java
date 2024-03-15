@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
@@ -13,7 +14,7 @@ import org.openapitools.model.StringParameterDefinition;
 /**
  * InputStepImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class InputStepImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -31,7 +32,7 @@ public class InputStepImpl   {
   private String ok;
 
   @JsonProperty("parameters")
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters = null;
 
   @JsonProperty("submitter")
   private String submitter;
@@ -126,14 +127,14 @@ public class InputStepImpl   {
     this.ok = ok;
   }
 
-  public InputStepImpl parameters(List<StringParameterDefinition> parameters) {
+  public InputStepImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
 
   public InputStepImpl addParametersItem(StringParameterDefinition parametersItem) {
     if (this.parameters == null) {
-      this.parameters = new ArrayList<>();
+      this.parameters = ;
     }
     this.parameters.add(parametersItem);
     return this;
@@ -144,11 +145,11 @@ public class InputStepImpl   {
    * @return parameters
   **/
   @ApiModelProperty(value = "")
-  public List<StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 

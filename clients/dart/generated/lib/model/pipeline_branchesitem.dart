@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -98,15 +98,15 @@ class PipelineBranchesitem {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineBranchesitem &&
-     other.displayName == displayName &&
-     other.estimatedDurationInMillis == estimatedDurationInMillis &&
-     other.name == name &&
-     other.weatherScore == weatherScore &&
-     other.latestRun == latestRun &&
-     other.organization == organization &&
-     other.pullRequest == pullRequest &&
-     other.totalNumberOfPullRequests == totalNumberOfPullRequests &&
-     other.class_ == class_;
+    other.displayName == displayName &&
+    other.estimatedDurationInMillis == estimatedDurationInMillis &&
+    other.name == name &&
+    other.weatherScore == weatherScore &&
+    other.latestRun == latestRun &&
+    other.organization == organization &&
+    other.pullRequest == pullRequest &&
+    other.totalNumberOfPullRequests == totalNumberOfPullRequests &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -125,35 +125,53 @@ class PipelineBranchesitem {
   String toString() => 'PipelineBranchesitem[displayName=$displayName, estimatedDurationInMillis=$estimatedDurationInMillis, name=$name, weatherScore=$weatherScore, latestRun=$latestRun, organization=$organization, pullRequest=$pullRequest, totalNumberOfPullRequests=$totalNumberOfPullRequests, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    final json = <String, dynamic>{};
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (estimatedDurationInMillis != null) {
-      _json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
+    if (this.estimatedDurationInMillis != null) {
+      json[r'estimatedDurationInMillis'] = this.estimatedDurationInMillis;
+    } else {
+      json[r'estimatedDurationInMillis'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (weatherScore != null) {
-      _json[r'weatherScore'] = weatherScore;
+    if (this.weatherScore != null) {
+      json[r'weatherScore'] = this.weatherScore;
+    } else {
+      json[r'weatherScore'] = null;
     }
-    if (latestRun != null) {
-      _json[r'latestRun'] = latestRun;
+    if (this.latestRun != null) {
+      json[r'latestRun'] = this.latestRun;
+    } else {
+      json[r'latestRun'] = null;
     }
-    if (organization != null) {
-      _json[r'organization'] = organization;
+    if (this.organization != null) {
+      json[r'organization'] = this.organization;
+    } else {
+      json[r'organization'] = null;
     }
-    if (pullRequest != null) {
-      _json[r'pullRequest'] = pullRequest;
+    if (this.pullRequest != null) {
+      json[r'pullRequest'] = this.pullRequest;
+    } else {
+      json[r'pullRequest'] = null;
     }
-    if (totalNumberOfPullRequests != null) {
-      _json[r'totalNumberOfPullRequests'] = totalNumberOfPullRequests;
+    if (this.totalNumberOfPullRequests != null) {
+      json[r'totalNumberOfPullRequests'] = this.totalNumberOfPullRequests;
+    } else {
+      json[r'totalNumberOfPullRequests'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineBranchesitem] instance and imports its values from
@@ -189,7 +207,7 @@ class PipelineBranchesitem {
     return null;
   }
 
-  static List<PipelineBranchesitem>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineBranchesitem> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineBranchesitem>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -220,12 +238,10 @@ class PipelineBranchesitem {
   static Map<String, List<PipelineBranchesitem>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineBranchesitem>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineBranchesitem.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineBranchesitem.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

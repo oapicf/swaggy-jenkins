@@ -97,7 +97,7 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
     // cause_user_id_cause->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -106,7 +106,7 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
     // cause_user_id_cause->short_description
     cJSON *short_description = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "shortDescription");
     if (short_description) { 
-    if(!cJSON_IsString(short_description))
+    if(!cJSON_IsString(short_description) && !cJSON_IsNull(short_description))
     {
     goto end; //String
     }
@@ -115,7 +115,7 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
     // cause_user_id_cause->user_id
     cJSON *user_id = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "userId");
     if (user_id) { 
-    if(!cJSON_IsString(user_id))
+    if(!cJSON_IsString(user_id) && !cJSON_IsNull(user_id))
     {
     goto end; //String
     }
@@ -124,7 +124,7 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
     // cause_user_id_cause->user_name
     cJSON *user_name = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "userName");
     if (user_name) { 
-    if(!cJSON_IsString(user_name))
+    if(!cJSON_IsString(user_name) && !cJSON_IsNull(user_name))
     {
     goto end; //String
     }
@@ -132,10 +132,10 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
 
 
     cause_user_id_cause_local_var = cause_user_id_cause_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        short_description ? strdup(short_description->valuestring) : NULL,
-        user_id ? strdup(user_id->valuestring) : NULL,
-        user_name ? strdup(user_name->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        short_description && !cJSON_IsNull(short_description) ? strdup(short_description->valuestring) : NULL,
+        user_id && !cJSON_IsNull(user_id) ? strdup(user_id->valuestring) : NULL,
+        user_name && !cJSON_IsNull(user_name) ? strdup(user_name->valuestring) : NULL
         );
 
     return cause_user_id_cause_local_var;

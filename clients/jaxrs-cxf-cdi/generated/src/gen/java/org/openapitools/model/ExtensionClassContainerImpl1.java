@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.ExtensionClassContainerImpl1links;
 import org.openapitools.model.ExtensionClassContainerImpl1map;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,7 +22,6 @@ public class ExtensionClassContainerImpl1   {
   private ExtensionClassContainerImpl1links links;
 
   private ExtensionClassContainerImpl1map map;
-
 
   /**
    **/
@@ -87,9 +87,9 @@ public class ExtensionClassContainerImpl1   {
       return false;
     }
     ExtensionClassContainerImpl1 extensionClassContainerImpl1 = (ExtensionClassContainerImpl1) o;
-    return Objects.equals(propertyClass, extensionClassContainerImpl1.propertyClass) &&
-        Objects.equals(links, extensionClassContainerImpl1.links) &&
-        Objects.equals(map, extensionClassContainerImpl1.map);
+    return Objects.equals(this.propertyClass, extensionClassContainerImpl1.propertyClass) &&
+        Objects.equals(this.links, extensionClassContainerImpl1.links) &&
+        Objects.equals(this.map, extensionClassContainerImpl1.map);
   }
 
   @Override

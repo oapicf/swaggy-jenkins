@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -62,11 +62,11 @@ class FreeStyleProjecthealthReport {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is FreeStyleProjecthealthReport &&
-     other.description == description &&
-     other.iconClassName == iconClassName &&
-     other.iconUrl == iconUrl &&
-     other.score == score &&
-     other.class_ == class_;
+    other.description == description &&
+    other.iconClassName == iconClassName &&
+    other.iconUrl == iconUrl &&
+    other.score == score &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -81,23 +81,33 @@ class FreeStyleProjecthealthReport {
   String toString() => 'FreeStyleProjecthealthReport[description=$description, iconClassName=$iconClassName, iconUrl=$iconUrl, score=$score, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (description != null) {
-      _json[r'description'] = description;
+    final json = <String, dynamic>{};
+    if (this.description != null) {
+      json[r'description'] = this.description;
+    } else {
+      json[r'description'] = null;
     }
-    if (iconClassName != null) {
-      _json[r'iconClassName'] = iconClassName;
+    if (this.iconClassName != null) {
+      json[r'iconClassName'] = this.iconClassName;
+    } else {
+      json[r'iconClassName'] = null;
     }
-    if (iconUrl != null) {
-      _json[r'iconUrl'] = iconUrl;
+    if (this.iconUrl != null) {
+      json[r'iconUrl'] = this.iconUrl;
+    } else {
+      json[r'iconUrl'] = null;
     }
-    if (score != null) {
-      _json[r'score'] = score;
+    if (this.score != null) {
+      json[r'score'] = this.score;
+    } else {
+      json[r'score'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [FreeStyleProjecthealthReport] instance and imports its values from
@@ -129,7 +139,7 @@ class FreeStyleProjecthealthReport {
     return null;
   }
 
-  static List<FreeStyleProjecthealthReport>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<FreeStyleProjecthealthReport> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <FreeStyleProjecthealthReport>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,12 +170,10 @@ class FreeStyleProjecthealthReport {
   static Map<String, List<FreeStyleProjecthealthReport>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<FreeStyleProjecthealthReport>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = FreeStyleProjecthealthReport.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = FreeStyleProjecthealthReport.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

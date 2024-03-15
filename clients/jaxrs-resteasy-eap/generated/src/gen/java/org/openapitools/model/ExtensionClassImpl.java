@@ -7,17 +7,19 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ExtensionClassImpl   {
   
   private String propertyClass;
   private ExtensionClassImpllinks links;
-  private List<String> classes = new ArrayList<>();
+  private List<String> classes;
 
   /**
    **/
@@ -65,9 +67,9 @@ public class ExtensionClassImpl   {
       return false;
     }
     ExtensionClassImpl extensionClassImpl = (ExtensionClassImpl) o;
-    return Objects.equals(propertyClass, extensionClassImpl.propertyClass) &&
-        Objects.equals(links, extensionClassImpl.links) &&
-        Objects.equals(classes, extensionClassImpl.classes);
+    return Objects.equals(this.propertyClass, extensionClassImpl.propertyClass) &&
+        Objects.equals(this.links, extensionClassImpl.links) &&
+        Objects.equals(this.classes, extensionClassImpl.classes);
   }
 
   @Override

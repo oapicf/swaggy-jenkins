@@ -2,12 +2,29 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **str** |  | [optional] 
-**items** | [**[QueueBlockedItem]**](QueueBlockedItem.md) |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+**var_class** | **str** |  | [optional] 
+**items** | [**List[QueueBlockedItem]**](QueueBlockedItem.md) |  | [optional] 
 
+## Example
+
+```python
+from swaggyjenkins.models.queue import Queue
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of Queue from a JSON string
+queue_instance = Queue.from_json(json)
+# print the JSON string representation of the object
+print(Queue.to_json())
+
+# convert the object into a dict
+queue_dict = queue_instance.to_dict()
+# create an instance of Queue from a dict
+queue_form_dict = queue.from_dict(queue_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

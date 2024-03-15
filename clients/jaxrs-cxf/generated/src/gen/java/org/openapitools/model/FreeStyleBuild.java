@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
@@ -8,6 +9,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -24,7 +26,7 @@ public class FreeStyleBuild  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<CauseAction> actions = null;
+  private List<@Valid CauseAction> actions;
 
   @ApiModelProperty(value = "")
   private Boolean building;
@@ -127,15 +129,15 @@ public class FreeStyleBuild  {
    * @return actions
   **/
   @JsonProperty("actions")
-  public List<CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
-  public FreeStyleBuild actions(List<CauseAction> actions) {
+  public FreeStyleBuild actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -397,6 +399,39 @@ public class FreeStyleBuild  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    FreeStyleBuild freeStyleBuild = (FreeStyleBuild) o;
+    return Objects.equals(this.propertyClass, freeStyleBuild.propertyClass) &&
+        Objects.equals(this.number, freeStyleBuild.number) &&
+        Objects.equals(this.url, freeStyleBuild.url) &&
+        Objects.equals(this.actions, freeStyleBuild.actions) &&
+        Objects.equals(this.building, freeStyleBuild.building) &&
+        Objects.equals(this.description, freeStyleBuild.description) &&
+        Objects.equals(this.displayName, freeStyleBuild.displayName) &&
+        Objects.equals(this.duration, freeStyleBuild.duration) &&
+        Objects.equals(this.estimatedDuration, freeStyleBuild.estimatedDuration) &&
+        Objects.equals(this.executor, freeStyleBuild.executor) &&
+        Objects.equals(this.fullDisplayName, freeStyleBuild.fullDisplayName) &&
+        Objects.equals(this.id, freeStyleBuild.id) &&
+        Objects.equals(this.keepLog, freeStyleBuild.keepLog) &&
+        Objects.equals(this.queueId, freeStyleBuild.queueId) &&
+        Objects.equals(this.result, freeStyleBuild.result) &&
+        Objects.equals(this.timestamp, freeStyleBuild.timestamp) &&
+        Objects.equals(this.builtOn, freeStyleBuild.builtOn) &&
+        Objects.equals(this.changeSet, freeStyleBuild.changeSet);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, number, url, actions, building, description, displayName, duration, estimatedDuration, executor, fullDisplayName, id, keepLog, queueId, result, timestamp, builtOn, changeSet);
+  }
 
   @Override
   public String toString() {

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,7 +22,6 @@ public class GithubRepositorypermissions   {
   private Boolean pull;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -105,10 +105,10 @@ public class GithubRepositorypermissions   {
       return false;
     }
     GithubRepositorypermissions githubRepositorypermissions = (GithubRepositorypermissions) o;
-    return Objects.equals(admin, githubRepositorypermissions.admin) &&
-        Objects.equals(push, githubRepositorypermissions.push) &&
-        Objects.equals(pull, githubRepositorypermissions.pull) &&
-        Objects.equals(propertyClass, githubRepositorypermissions.propertyClass);
+    return Objects.equals(this.admin, githubRepositorypermissions.admin) &&
+        Objects.equals(this.push, githubRepositorypermissions.push) &&
+        Objects.equals(this.pull, githubRepositorypermissions.pull) &&
+        Objects.equals(this.propertyClass, githubRepositorypermissions.propertyClass);
   }
 
   @Override

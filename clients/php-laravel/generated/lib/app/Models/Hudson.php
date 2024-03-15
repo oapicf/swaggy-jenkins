@@ -10,48 +10,48 @@ namespace app\Models;
 class Hudson {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\HudsonassignedLabels[] $assignedLabels */
-    private $assignedLabels;
+    public $assignedLabels = [];
 
     /** @var string $mode */
-    private $mode;
+    public $mode = "";
 
     /** @var string $nodeDescription */
-    private $nodeDescription;
+    public $nodeDescription = "";
 
     /** @var string $nodeName */
-    private $nodeName;
+    public $nodeName = "";
 
     /** @var int $numExecutors */
-    private $numExecutors;
+    public $numExecutors = 0;
 
     /** @var string $description */
-    private $description;
+    public $description = "";
 
     /** @var \app\Models\FreeStyleProject[] $jobs */
-    private $jobs;
+    public $jobs = [];
 
     /** @var \app\Models\AllView $primaryView */
-    private $primaryView;
+    public $primaryView;
 
     /** @var bool $quietingDown */
-    private $quietingDown;
+    public $quietingDown = false;
 
     /** @var int $slaveAgentPort */
-    private $slaveAgentPort;
+    public $slaveAgentPort = 0;
 
     /** @var \app\Models\UnlabeledLoadStatistics $unlabeledLoad */
-    private $unlabeledLoad;
+    public $unlabeledLoad;
 
     /** @var bool $useCrumbs */
-    private $useCrumbs;
+    public $useCrumbs = false;
 
     /** @var bool $useSecurity */
-    private $useSecurity;
+    public $useSecurity = false;
 
     /** @var \app\Models\AllView[] $views */
-    private $views;
+    public $views = [];
 
 }

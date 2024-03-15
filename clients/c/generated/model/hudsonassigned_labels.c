@@ -55,7 +55,7 @@ hudsonassigned_labels_t *hudsonassigned_labels_parseFromJSON(cJSON *hudsonassign
     // hudsonassigned_labels->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudsonassigned_labelsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ hudsonassigned_labels_t *hudsonassigned_labels_parseFromJSON(cJSON *hudsonassign
 
 
     hudsonassigned_labels_local_var = hudsonassigned_labels_create (
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return hudsonassigned_labels_local_var;

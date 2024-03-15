@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitempullRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitempullRequest   {
-  
   private @Valid PipelineBranchesitempullRequestlinks links;
   private @Valid String author;
   private @Valid String id;
@@ -45,7 +44,7 @@ public class PipelineBranchesitempullRequest   {
     this.links = links;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitempullRequest author(String author) {
     this.author = author;
@@ -64,7 +63,7 @@ public class PipelineBranchesitempullRequest   {
     this.author = author;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitempullRequest id(String id) {
     this.id = id;
@@ -83,7 +82,7 @@ public class PipelineBranchesitempullRequest   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitempullRequest title(String title) {
     this.title = title;
@@ -102,7 +101,7 @@ public class PipelineBranchesitempullRequest   {
     this.title = title;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitempullRequest url(String url) {
     this.url = url;
@@ -121,7 +120,7 @@ public class PipelineBranchesitempullRequest   {
     this.url = url;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitempullRequest propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

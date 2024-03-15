@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.AllView;
 import org.openapitools.model.FreeStyleProject;
@@ -8,6 +9,7 @@ import org.openapitools.model.HudsonassignedLabels;
 import org.openapitools.model.UnlabeledLoadStatistics;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -17,7 +19,7 @@ public class Hudson  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<HudsonassignedLabels> assignedLabels = null;
+  private List<HudsonassignedLabels> assignedLabels;
 
   @ApiModelProperty(value = "")
   private String mode;
@@ -35,7 +37,7 @@ public class Hudson  {
   private String description;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProject> jobs = null;
+  private List<FreeStyleProject> jobs;
 
   @ApiModelProperty(value = "")
   private AllView primaryView;
@@ -56,7 +58,7 @@ public class Hudson  {
   private Boolean useSecurity;
 
   @ApiModelProperty(value = "")
-  private List<AllView> views = null;
+  private List<AllView> views;
  /**
    * Get propertyClass
    * @return propertyClass
@@ -342,6 +344,36 @@ public class Hudson  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Hudson hudson = (Hudson) o;
+    return Objects.equals(this.propertyClass, hudson.propertyClass) &&
+        Objects.equals(this.assignedLabels, hudson.assignedLabels) &&
+        Objects.equals(this.mode, hudson.mode) &&
+        Objects.equals(this.nodeDescription, hudson.nodeDescription) &&
+        Objects.equals(this.nodeName, hudson.nodeName) &&
+        Objects.equals(this.numExecutors, hudson.numExecutors) &&
+        Objects.equals(this.description, hudson.description) &&
+        Objects.equals(this.jobs, hudson.jobs) &&
+        Objects.equals(this.primaryView, hudson.primaryView) &&
+        Objects.equals(this.quietingDown, hudson.quietingDown) &&
+        Objects.equals(this.slaveAgentPort, hudson.slaveAgentPort) &&
+        Objects.equals(this.unlabeledLoad, hudson.unlabeledLoad) &&
+        Objects.equals(this.useCrumbs, hudson.useCrumbs) &&
+        Objects.equals(this.useSecurity, hudson.useSecurity) &&
+        Objects.equals(this.views, hudson.views);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, assignedLabels, mode, nodeDescription, nodeName, numExecutors, description, jobs, primaryView, quietingDown, slaveAgentPort, unlabeledLoad, useCrumbs, useSecurity, views);
+  }
 
   @Override
   public String toString() {

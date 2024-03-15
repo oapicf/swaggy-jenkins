@@ -15,53 +15,47 @@ class GetSCMOrganisationRepositoriesParameterData
      * @DTA\Data(subset="query", field="pageNumber", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $page_number;
+    public ?int $page_number = null;
 
     /**
      * Name of the organization
      * @DTA\Data(subset="path", field="organization")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * Credential ID
      * @DTA\Data(subset="query", field="credentialId", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $credential_id;
+    public ?string $credential_id = null;
 
     /**
      * Number of items in a page
      * @DTA\Data(subset="query", field="pageSize", nullable=true)
      * @DTA\Strategy(subset="query", name="QueryStringScalar", options={"type":"int"})
      * @DTA\Validator(subset="query", name="QueryStringScalar", options={"type":"int"})
-     * @var int|null
      */
-    public $page_size;
+    public ?int $page_size = null;
 
     /**
      * Name of the SCM organization
      * @DTA\Data(subset="path", field="scmOrganisation")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $scm_organisation;
+    public ?string $scm_organisation = null;
 
     /**
      * Name of SCM
      * @DTA\Data(subset="path", field="scm")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $scm;
+    public ?string $scm = null;
 
 }

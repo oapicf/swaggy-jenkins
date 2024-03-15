@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
@@ -24,47 +25,34 @@ import javax.annotation.Generated;
  * BranchImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("estimatedDurationInMillis")
   private Integer estimatedDurationInMillis;
 
-  @JsonProperty("fullDisplayName")
   private String fullDisplayName;
 
-  @JsonProperty("fullName")
   private String fullName;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("organization")
   private String organization;
 
-  @JsonProperty("parameters")
   @Valid
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters;
 
-  @JsonProperty("permissions")
   private BranchImplpermissions permissions;
 
-  @JsonProperty("weatherScore")
   private Integer weatherScore;
 
-  @JsonProperty("pullRequest")
   private String pullRequest;
 
-  @JsonProperty("_links")
   private BranchImpllinks links;
 
-  @JsonProperty("latestRun")
   private PipelineRunImpl latestRun;
 
   public BranchImpl propertyClass(String propertyClass) {
@@ -77,7 +65,8 @@ public class BranchImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -96,7 +85,8 @@ public class BranchImpl {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -115,7 +105,8 @@ public class BranchImpl {
    * @return estimatedDurationInMillis
   */
   
-  @Schema(name = "estimatedDurationInMillis", required = false)
+  @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -134,7 +125,8 @@ public class BranchImpl {
    * @return fullDisplayName
   */
   
-  @Schema(name = "fullDisplayName", required = false)
+  @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullDisplayName")
   public String getFullDisplayName() {
     return fullDisplayName;
   }
@@ -153,7 +145,8 @@ public class BranchImpl {
    * @return fullName
   */
   
-  @Schema(name = "fullName", required = false)
+  @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
@@ -172,7 +165,8 @@ public class BranchImpl {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -191,7 +185,8 @@ public class BranchImpl {
    * @return organization
   */
   
-  @Schema(name = "organization", required = false)
+  @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
@@ -200,7 +195,7 @@ public class BranchImpl {
     this.organization = organization;
   }
 
-  public BranchImpl parameters(List<StringParameterDefinition> parameters) {
+  public BranchImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -218,12 +213,13 @@ public class BranchImpl {
    * @return parameters
   */
   @Valid 
-  @Schema(name = "parameters", required = false)
-  public List<StringParameterDefinition> getParameters() {
+  @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("parameters")
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
-  public void setParameters(List<StringParameterDefinition> parameters) {
+  public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
@@ -237,7 +233,8 @@ public class BranchImpl {
    * @return permissions
   */
   @Valid 
-  @Schema(name = "permissions", required = false)
+  @Schema(name = "permissions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("permissions")
   public BranchImplpermissions getPermissions() {
     return permissions;
   }
@@ -256,7 +253,8 @@ public class BranchImpl {
    * @return weatherScore
   */
   
-  @Schema(name = "weatherScore", required = false)
+  @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -275,7 +273,8 @@ public class BranchImpl {
    * @return pullRequest
   */
   
-  @Schema(name = "pullRequest", required = false)
+  @Schema(name = "pullRequest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pullRequest")
   public String getPullRequest() {
     return pullRequest;
   }
@@ -294,7 +293,8 @@ public class BranchImpl {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public BranchImpllinks getLinks() {
     return links;
   }
@@ -313,7 +313,8 @@ public class BranchImpl {
    * @return latestRun
   */
   @Valid 
-  @Schema(name = "latestRun", required = false)
+  @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("latestRun")
   public PipelineRunImpl getLatestRun() {
     return latestRun;
   }

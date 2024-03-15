@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleBuild;
 import org.openapitools.model.FreeStyleProjectactions;
@@ -15,7 +16,7 @@ import org.openapitools.model.NullSCM;
 /**
  * FreeStyleProject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleProject   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -30,7 +31,7 @@ public class FreeStyleProject   {
   private String color;
 
   @JsonProperty("actions")
-  private List<FreeStyleProjectactions> actions = null;
+  private List<@Valid FreeStyleProjectactions> actions = null;
 
   @JsonProperty("description")
   private String description;
@@ -51,13 +52,13 @@ public class FreeStyleProject   {
   private Boolean buildable;
 
   @JsonProperty("builds")
-  private List<FreeStyleBuild> builds = null;
+  private List<@Valid FreeStyleBuild> builds = null;
 
   @JsonProperty("firstBuild")
   private FreeStyleBuild firstBuild;
 
   @JsonProperty("healthReport")
-  private List<FreeStyleProjecthealthReport> healthReport = null;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport = null;
 
   @JsonProperty("inQueue")
   private Boolean inQueue;
@@ -170,14 +171,14 @@ public class FreeStyleProject   {
     this.color = color;
   }
 
-  public FreeStyleProject actions(List<FreeStyleProjectactions> actions) {
+  public FreeStyleProject actions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
     return this;
   }
 
   public FreeStyleProject addActionsItem(FreeStyleProjectactions actionsItem) {
     if (this.actions == null) {
-      this.actions = new ArrayList<>();
+      this.actions = ;
     }
     this.actions.add(actionsItem);
     return this;
@@ -188,11 +189,11 @@ public class FreeStyleProject   {
    * @return actions
   **/
   @ApiModelProperty(value = "")
-  public List<FreeStyleProjectactions> getActions() {
+  public List<@Valid FreeStyleProjectactions> getActions() {
     return actions;
   }
 
-  public void setActions(List<FreeStyleProjectactions> actions) {
+  public void setActions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
   }
 
@@ -304,14 +305,14 @@ public class FreeStyleProject   {
     this.buildable = buildable;
   }
 
-  public FreeStyleProject builds(List<FreeStyleBuild> builds) {
+  public FreeStyleProject builds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
     return this;
   }
 
   public FreeStyleProject addBuildsItem(FreeStyleBuild buildsItem) {
     if (this.builds == null) {
-      this.builds = new ArrayList<>();
+      this.builds = ;
     }
     this.builds.add(buildsItem);
     return this;
@@ -322,11 +323,11 @@ public class FreeStyleProject   {
    * @return builds
   **/
   @ApiModelProperty(value = "")
-  public List<FreeStyleBuild> getBuilds() {
+  public List<@Valid FreeStyleBuild> getBuilds() {
     return builds;
   }
 
-  public void setBuilds(List<FreeStyleBuild> builds) {
+  public void setBuilds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
   }
 
@@ -348,14 +349,14 @@ public class FreeStyleProject   {
     this.firstBuild = firstBuild;
   }
 
-  public FreeStyleProject healthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public FreeStyleProject healthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
     return this;
   }
 
   public FreeStyleProject addHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
     if (this.healthReport == null) {
-      this.healthReport = new ArrayList<>();
+      this.healthReport = ;
     }
     this.healthReport.add(healthReportItem);
     return this;
@@ -366,11 +367,11 @@ public class FreeStyleProject   {
    * @return healthReport
   **/
   @ApiModelProperty(value = "")
-  public List<FreeStyleProjecthealthReport> getHealthReport() {
+  public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
 
-  public void setHealthReport(List<FreeStyleProjecthealthReport> healthReport) {
+  public void setHealthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
   }
 

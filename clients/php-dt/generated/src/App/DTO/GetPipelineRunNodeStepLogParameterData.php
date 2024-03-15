@@ -15,44 +15,39 @@ class GetPipelineRunNodeStepLogParameterData
      * @DTA\Data(subset="path", field="pipeline")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $pipeline;
+    public ?string $pipeline = null;
 
     /**
      * Name of the node
      * @DTA\Data(subset="path", field="node")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $node;
+    public ?string $node = null;
 
     /**
      * Name of the organization
      * @DTA\Data(subset="path", field="organization")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * Name of the run
      * @DTA\Data(subset="path", field="run")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $run;
+    public ?string $run = null;
 
     /**
      * Name of the step
      * @DTA\Data(subset="path", field="step")
      * @DTA\Strategy(subset="path", name="QueryStringScalar", options={"type":"string"})
      * @DTA\Validator(subset="path", name="QueryStringScalar", options={"type":"string"})
-     * @var string|null
      */
-    public $step;
+    public ?string $step = null;
 
 }

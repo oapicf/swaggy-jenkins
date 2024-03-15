@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -65,12 +65,12 @@ class GithubRepositories {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GithubRepositories &&
-     other.class_ == class_ &&
-     other.links == links &&
-     other.items == items &&
-     other.lastPage == lastPage &&
-     other.nextPage == nextPage &&
-     other.pageSize == pageSize;
+    other.class_ == class_ &&
+    other.links == links &&
+    _deepEquality.equals(other.items, items) &&
+    other.lastPage == lastPage &&
+    other.nextPage == nextPage &&
+    other.pageSize == pageSize;
 
   @override
   int get hashCode =>
@@ -86,24 +86,34 @@ class GithubRepositories {
   String toString() => 'GithubRepositories[class_=$class_, links=$links, items=$items, lastPage=$lastPage, nextPage=$nextPage, pageSize=$pageSize]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-      _json[r'items'] = items;
-    if (lastPage != null) {
-      _json[r'lastPage'] = lastPage;
+      json[r'items'] = this.items;
+    if (this.lastPage != null) {
+      json[r'lastPage'] = this.lastPage;
+    } else {
+      json[r'lastPage'] = null;
     }
-    if (nextPage != null) {
-      _json[r'nextPage'] = nextPage;
+    if (this.nextPage != null) {
+      json[r'nextPage'] = this.nextPage;
+    } else {
+      json[r'nextPage'] = null;
     }
-    if (pageSize != null) {
-      _json[r'pageSize'] = pageSize;
+    if (this.pageSize != null) {
+      json[r'pageSize'] = this.pageSize;
+    } else {
+      json[r'pageSize'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GithubRepositories] instance and imports its values from
@@ -127,7 +137,7 @@ class GithubRepositories {
       return GithubRepositories(
         class_: mapValueOfType<String>(json, r'_class'),
         links: GithubRepositorieslinks.fromJson(json[r'_links']),
-        items: GithubRepository.listFromJson(json[r'items']) ?? const [],
+        items: GithubRepository.listFromJson(json[r'items']),
         lastPage: mapValueOfType<int>(json, r'lastPage'),
         nextPage: mapValueOfType<int>(json, r'nextPage'),
         pageSize: mapValueOfType<int>(json, r'pageSize'),
@@ -136,7 +146,7 @@ class GithubRepositories {
     return null;
   }
 
-  static List<GithubRepositories>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GithubRepositories> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GithubRepositories>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -167,12 +177,10 @@ class GithubRepositories {
   static Map<String, List<GithubRepositories>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GithubRepositories>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GithubRepositories.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GithubRepositories.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

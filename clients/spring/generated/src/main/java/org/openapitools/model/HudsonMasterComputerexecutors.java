@@ -19,25 +19,19 @@ import javax.annotation.Generated;
  * HudsonMasterComputerexecutors
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputerexecutors {
 
-  @JsonProperty("currentExecutable")
   private FreeStyleBuild currentExecutable;
 
-  @JsonProperty("idle")
   private Boolean idle;
 
-  @JsonProperty("likelyStuck")
   private Boolean likelyStuck;
 
-  @JsonProperty("number")
   private Integer number;
 
-  @JsonProperty("progress")
   private Integer progress;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
   public HudsonMasterComputerexecutors currentExecutable(FreeStyleBuild currentExecutable) {
@@ -50,7 +44,8 @@ public class HudsonMasterComputerexecutors {
    * @return currentExecutable
   */
   @Valid 
-  @Schema(name = "currentExecutable", required = false)
+  @Schema(name = "currentExecutable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("currentExecutable")
   public FreeStyleBuild getCurrentExecutable() {
     return currentExecutable;
   }
@@ -69,7 +64,8 @@ public class HudsonMasterComputerexecutors {
    * @return idle
   */
   
-  @Schema(name = "idle", required = false)
+  @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("idle")
   public Boolean getIdle() {
     return idle;
   }
@@ -88,7 +84,8 @@ public class HudsonMasterComputerexecutors {
    * @return likelyStuck
   */
   
-  @Schema(name = "likelyStuck", required = false)
+  @Schema(name = "likelyStuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("likelyStuck")
   public Boolean getLikelyStuck() {
     return likelyStuck;
   }
@@ -107,7 +104,8 @@ public class HudsonMasterComputerexecutors {
    * @return number
   */
   
-  @Schema(name = "number", required = false)
+  @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("number")
   public Integer getNumber() {
     return number;
   }
@@ -126,7 +124,8 @@ public class HudsonMasterComputerexecutors {
    * @return progress
   */
   
-  @Schema(name = "progress", required = false)
+  @Schema(name = "progress", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("progress")
   public Integer getProgress() {
     return progress;
   }
@@ -145,7 +144,8 @@ public class HudsonMasterComputerexecutors {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }

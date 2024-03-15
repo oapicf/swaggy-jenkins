@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
-**_links** | Option<[**crate::models::GithubScmlinks**](GithubScmlinks.md)> |  | [optional]
+**_links** | Option<[**models::GithubScmlinks**](GithubScmlinks.md)> |  | [optional]
 **credential_id** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **uri** | Option<**String**> |  | [optional]

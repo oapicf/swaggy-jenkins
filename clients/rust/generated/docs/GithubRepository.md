@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
-**_links** | Option<[**crate::models::GithubRepositorylinks**](GithubRepositorylinks.md)> |  | [optional]
+**_links** | Option<[**models::GithubRepositorylinks**](GithubRepositorylinks.md)> |  | [optional]
 **default_branch** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
-**permissions** | Option<[**crate::models::GithubRepositorypermissions**](GithubRepositorypermissions.md)> |  | [optional]
+**permissions** | Option<[**models::GithubRepositorypermissions**](GithubRepositorypermissions.md)> |  | [optional]
 **private** | Option<**bool**> |  | [optional]
 **full_name** | Option<**String**> |  | [optional]
 

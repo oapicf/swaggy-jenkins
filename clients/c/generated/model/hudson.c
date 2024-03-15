@@ -301,7 +301,7 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     // hudson->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -331,7 +331,7 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     // hudson->mode
     cJSON *mode = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "mode");
     if (mode) { 
-    if(!cJSON_IsString(mode))
+    if(!cJSON_IsString(mode) && !cJSON_IsNull(mode))
     {
     goto end; //String
     }
@@ -340,7 +340,7 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     // hudson->node_description
     cJSON *node_description = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "nodeDescription");
     if (node_description) { 
-    if(!cJSON_IsString(node_description))
+    if(!cJSON_IsString(node_description) && !cJSON_IsNull(node_description))
     {
     goto end; //String
     }
@@ -349,7 +349,7 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     // hudson->node_name
     cJSON *node_name = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "nodeName");
     if (node_name) { 
-    if(!cJSON_IsString(node_name))
+    if(!cJSON_IsString(node_name) && !cJSON_IsNull(node_name))
     {
     goto end; //String
     }
@@ -367,7 +367,7 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     // hudson->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -465,13 +465,13 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
 
     hudson_local_var = hudson_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         assigned_labels ? assigned_labelsList : NULL,
-        mode ? strdup(mode->valuestring) : NULL,
-        node_description ? strdup(node_description->valuestring) : NULL,
-        node_name ? strdup(node_name->valuestring) : NULL,
+        mode && !cJSON_IsNull(mode) ? strdup(mode->valuestring) : NULL,
+        node_description && !cJSON_IsNull(node_description) ? strdup(node_description->valuestring) : NULL,
+        node_name && !cJSON_IsNull(node_name) ? strdup(node_name->valuestring) : NULL,
         num_executors ? num_executors->valuedouble : 0,
-        description ? strdup(description->valuestring) : NULL,
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
         jobs ? jobsList : NULL,
         primary_view ? primary_view_local_nonprim : NULL,
         quieting_down ? quieting_down->valueint : 0,

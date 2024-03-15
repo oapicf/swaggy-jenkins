@@ -6,7 +6,7 @@
  *)
 
 let get_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/crumbIssuer/api/json" in
     let headers = Request.default_headers in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->

@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **last_successful_build** | [***models::FreeStyleBuild**](FreeStyleBuild.md) |  | [optional] [default to None]
 **last_unstable_build** | **String** |  | [optional] [default to None]
 **last_unsuccessful_build** | **String** |  | [optional] [default to None]
-**next_build_number** | **isize** |  | [optional] [default to None]
+**next_build_number** | **i32** |  | [optional] [default to None]
 **queue_item** | **String** |  | [optional] [default to None]
 **concurrent_build** | **bool** |  | [optional] [default to None]
 **scm** | [***models::NullScm**](NullSCM.md) |  | [optional] [default to None]

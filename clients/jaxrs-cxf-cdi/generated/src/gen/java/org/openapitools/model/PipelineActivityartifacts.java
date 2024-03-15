@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -21,7 +22,6 @@ public class PipelineActivityartifacts   {
   private String url;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -105,10 +105,10 @@ public class PipelineActivityartifacts   {
       return false;
     }
     PipelineActivityartifacts pipelineActivityartifacts = (PipelineActivityartifacts) o;
-    return Objects.equals(name, pipelineActivityartifacts.name) &&
-        Objects.equals(size, pipelineActivityartifacts.size) &&
-        Objects.equals(url, pipelineActivityartifacts.url) &&
-        Objects.equals(propertyClass, pipelineActivityartifacts.propertyClass);
+    return Objects.equals(this.name, pipelineActivityartifacts.name) &&
+        Objects.equals(this.size, pipelineActivityartifacts.size) &&
+        Objects.equals(this.url, pipelineActivityartifacts.url) &&
+        Objects.equals(this.propertyClass, pipelineActivityartifacts.propertyClass);
   }
 
   @Override

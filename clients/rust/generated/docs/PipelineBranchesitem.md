@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **estimated_duration_in_millis** | Option<**i32**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **weather_score** | Option<**i32**> |  | [optional]
-**latest_run** | Option<[**crate::models::PipelineBranchesitemlatestRun**](PipelineBranchesitemlatestRun.md)> |  | [optional]
+**latest_run** | Option<[**models::PipelineBranchesitemlatestRun**](PipelineBranchesitemlatestRun.md)> |  | [optional]
 **organization** | Option<**String**> |  | [optional]
-**pull_request** | Option<[**crate::models::PipelineBranchesitempullRequest**](PipelineBranchesitempullRequest.md)> |  | [optional]
+**pull_request** | Option<[**models::PipelineBranchesitempullRequest**](PipelineBranchesitempullRequest.md)> |  | [optional]
 **total_number_of_pull_requests** | Option<**i32**> |  | [optional]
 **_class** | Option<**String**> |  | [optional]
 

@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.GithubOrganizationlinks;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -22,7 +23,6 @@ public class GithubOrganization   {
   private Boolean jenkinsOrganizationPipeline;
 
   private String name;
-
 
   /**
    **/
@@ -106,10 +106,10 @@ public class GithubOrganization   {
       return false;
     }
     GithubOrganization githubOrganization = (GithubOrganization) o;
-    return Objects.equals(propertyClass, githubOrganization.propertyClass) &&
-        Objects.equals(links, githubOrganization.links) &&
-        Objects.equals(jenkinsOrganizationPipeline, githubOrganization.jenkinsOrganizationPipeline) &&
-        Objects.equals(name, githubOrganization.name);
+    return Objects.equals(this.propertyClass, githubOrganization.propertyClass) &&
+        Objects.equals(this.links, githubOrganization.links) &&
+        Objects.equals(this.jenkinsOrganizationPipeline, githubOrganization.jenkinsOrganizationPipeline) &&
+        Objects.equals(this.name, githubOrganization.name);
   }
 
   @Override

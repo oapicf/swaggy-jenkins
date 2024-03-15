@@ -1,5 +1,4 @@
 import connexion
-import six
 from typing import Dict
 from typing import Tuple
 from typing import Union
@@ -196,15 +195,15 @@ def post_create_view(name, jenkins_crumb=None, content_type=None, body=None):  #
     return 'do some magic!'
 
 
-def post_job_build(name, json, token=None, jenkins_crumb=None):  # noqa: E501
+def post_job_build(name, _json, token=None, jenkins_crumb=None):  # noqa: E501
     """post_job_build
 
     Build a job # noqa: E501
 
     :param name: Name of the job
     :type name: str
-    :param json: 
-    :type json: str
+    :param _json: 
+    :type _json: str
     :param token: 
     :type token: str
     :param jenkins_crumb: CSRF protection token

@@ -2,13 +2,30 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **str** |  | [optional] 
+**var_class** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **url** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from swaggyjenkins.models.all_view import AllView
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of AllView from a JSON string
+all_view_instance = AllView.from_json(json)
+# print the JSON string representation of the object
+print(AllView.to_json())
+
+# convert the object into a dict
+all_view_dict = all_view_instance.to_dict()
+# create an instance of AllView from a dict
+all_view_form_dict = all_view.from_dict(all_view_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

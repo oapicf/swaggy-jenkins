@@ -39,9 +39,9 @@ class FreeStyleProject
 
     /**
      * @DTA\Data(field="actions", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection75::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection75::class})
-     * @var \App\DTO\Collection75|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection1::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection1::class})
+     * @var \App\DTO\Collection1|null
      */
     public $actions;
 
@@ -89,9 +89,9 @@ class FreeStyleProject
 
     /**
      * @DTA\Data(field="builds", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection78::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection78::class})
-     * @var \App\DTO\Collection78|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection4::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection4::class})
+     * @var \App\DTO\Collection4|null
      */
     public $builds;
 
@@ -105,9 +105,9 @@ class FreeStyleProject
 
     /**
      * @DTA\Data(field="healthReport", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection81::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection81::class})
-     * @var \App\DTO\Collection81|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection5::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection5::class})
+     * @var \App\DTO\Collection5|null
      */
     public $health_report;
 

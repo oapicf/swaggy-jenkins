@@ -25,20 +25,20 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class GithubScm(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: GithubScmlinks? = null,
+    @get:JsonProperty("_links") val links: GithubScmlinks? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("credentialId") val credentialId: kotlin.String? = null,
+    @get:JsonProperty("credentialId") val credentialId: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("uri") val uri: kotlin.String? = null
+    @get:JsonProperty("uri") val uri: kotlin.String? = null
 ) {
 
 }

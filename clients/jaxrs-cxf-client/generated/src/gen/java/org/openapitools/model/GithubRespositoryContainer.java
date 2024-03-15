@@ -4,6 +4,7 @@ import org.openapitools.model.GithubRepositories;
 import org.openapitools.model.GithubRespositoryContainerlinks;
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -71,6 +72,24 @@ public class GithubRespositoryContainer  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    GithubRespositoryContainer githubRespositoryContainer = (GithubRespositoryContainer) o;
+    return Objects.equals(this.propertyClass, githubRespositoryContainer.propertyClass) &&
+        Objects.equals(this.links, githubRespositoryContainer.links) &&
+        Objects.equals(this.repositories, githubRespositoryContainer.repositories);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, links, repositories);
+  }
 
   @Override
   public String toString() {

@@ -9,8 +9,8 @@ api_remote_access.go
 client.go
 configuration.go
 docs/AllView.md
-docs/BaseApi.md
-docs/BlueOceanApi.md
+docs/BaseAPI.md
+docs/BlueOceanAPI.md
 docs/BranchImpl.md
 docs/BranchImpllinks.md
 docs/BranchImplpermissions.md
@@ -84,7 +84,7 @@ docs/Queue.md
 docs/QueueBlockedItem.md
 docs/QueueItemImpl.md
 docs/QueueLeftItem.md
-docs/RemoteAccessApi.md
+docs/RemoteAccessAPI.md
 docs/ResponseTimeMonitorData.md
 docs/StringParameterDefinition.md
 docs/StringParameterValue.md
@@ -175,4 +175,7 @@ model_swap_space_monitor_memory_usage2.go
 model_unlabeled_load_statistics.go
 model_user.go
 response.go
+test/api_base_test.go
+test/api_blue_ocean_test.go
+test/api_remote_access_test.go
 utils.go

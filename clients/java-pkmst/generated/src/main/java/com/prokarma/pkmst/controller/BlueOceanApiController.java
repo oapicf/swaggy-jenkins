@@ -4,6 +4,7 @@ import com.prokarma.pkmst.model.BranchImpl;
 import com.prokarma.pkmst.model.FavoriteImpl;
 import com.prokarma.pkmst.model.GithubOrganization;
 import com.prokarma.pkmst.model.GithubScm;
+import java.util.List;
 import com.prokarma.pkmst.model.MultibranchPipeline;
 import com.prokarma.pkmst.model.Organisation;
 import com.prokarma.pkmst.model.Pipeline;
@@ -37,7 +38,7 @@ import java.io.IOException;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2022-06-04T08:08:30.217930Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @Controller
 public class BlueOceanApiController implements BlueOceanApi {
     private final ObjectMapper objectMapper;

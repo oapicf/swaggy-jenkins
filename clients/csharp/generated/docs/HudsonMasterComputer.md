@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.HudsonMasterComputer
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **DisplayName** | **string** |  | [optional] 
 **Executors** | [**List&lt;HudsonMasterComputerexecutors&gt;**](HudsonMasterComputerexecutors.md) |  | [optional] 
 **Icon** | **string** |  | [optional] 
@@ -22,7 +21,5 @@ Name | Type | Description | Notes
 **OfflineCauseReason** | **string** |  | [optional] 
 **TemporarilyOffline** | **bool** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

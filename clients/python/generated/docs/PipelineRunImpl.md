@@ -2,9 +2,10 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_class** | **str** |  | [optional] 
+**var_class** | **str** |  | [optional] 
 **links** | [**PipelineRunImpllinks**](PipelineRunImpllinks.md) |  | [optional] 
 **duration_in_millis** | **int** |  | [optional] 
 **en_queue_time** | **str** |  | [optional] 
@@ -19,8 +20,24 @@ Name | Type | Description | Notes
 **state** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 **commit_id** | **str** |  | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
+## Example
+
+```python
+from swaggyjenkins.models.pipeline_run_impl import PipelineRunImpl
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PipelineRunImpl from a JSON string
+pipeline_run_impl_instance = PipelineRunImpl.from_json(json)
+# print the JSON string representation of the object
+print(PipelineRunImpl.to_json())
+
+# convert the object into a dict
+pipeline_run_impl_dict = pipeline_run_impl_instance.to_dict()
+# create an instance of PipelineRunImpl from a dict
+pipeline_run_impl_form_dict = pipeline_run_impl.from_dict(pipeline_run_impl_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

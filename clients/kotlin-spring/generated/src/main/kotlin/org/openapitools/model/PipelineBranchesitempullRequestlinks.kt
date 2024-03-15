@@ -21,10 +21,10 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class PipelineBranchesitempullRequestlinks(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("self") val self: kotlin.String? = null,
+    @get:JsonProperty("self") val self: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

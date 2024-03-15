@@ -18,19 +18,15 @@ import javax.annotation.Generated;
  * DiskSpaceMonitorDescriptorDiskSpace
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class DiskSpaceMonitorDescriptorDiskSpace {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("timestamp")
   private Integer timestamp;
 
-  @JsonProperty("path")
   private String path;
 
-  @JsonProperty("size")
   private Integer size;
 
   public DiskSpaceMonitorDescriptorDiskSpace propertyClass(String propertyClass) {
@@ -43,7 +39,8 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -62,7 +59,8 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
    * @return timestamp
   */
   
-  @Schema(name = "timestamp", required = false)
+  @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("timestamp")
   public Integer getTimestamp() {
     return timestamp;
   }
@@ -81,7 +79,8 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
    * @return path
   */
   
-  @Schema(name = "path", required = false)
+  @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("path")
   public String getPath() {
     return path;
   }
@@ -100,7 +99,8 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
    * @return size
   */
   
-  @Schema(name = "size", required = false)
+  @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("size")
   public Integer getSize() {
     return size;
   }

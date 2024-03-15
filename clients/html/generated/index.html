@@ -181,9 +181,9 @@ font-style: italic;
   <body>
   <h1>Swaggy Jenkins</h1>
     <div class="app-desc">Jenkins API clients generated from Swagger / Open API specification</div>
-    <div class="app-desc">More information: <a href="http://github.com/oapicf/swaggy-jenkins">http://github.com/oapicf/swaggy-jenkins</a></div>
-    <div class="app-desc">Contact Info: <a href="blah@cliffano.com">blah@cliffano.com</a></div>
-    <div class="app-desc">Version: 1.5.1-pre.0</div>
+    <div class="app-desc">More information: <a href="https://github.com/oapicf/swaggy-jenkins">https://github.com/oapicf/swaggy-jenkins</a></div>
+    <div class="app-desc">Contact Info: <a href="blah+oapicf@cliffano.com">blah+oapicf@cliffano.com</a></div>
+    <div class="app-desc">Version: 2.0.1-pre.0</div>
     <div class="app-desc">BasePath:</div>
     <div class="license-info">All rights reserved</div>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
@@ -283,7 +283,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#DefaultCrumbIssuer">DefaultCrumbIssuer</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -378,7 +378,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#User">User</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -433,7 +433,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -480,7 +480,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -529,7 +529,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -577,7 +577,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#Organisation">Organisation</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -627,17 +627,20 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#Organisation">Organisation</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "name" : "name",
   "_class" : "_class"
-}</code></pre>
+}, {
+  "name" : "name",
+  "_class" : "_class"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -649,7 +652,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved pipelines details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -682,7 +685,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#Pipeline">Pipeline</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -772,14 +775,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#PipelineActivity">PipelineActivity</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "runSummary" : "runSummary",
   "durationInMillis" : 6,
   "commitId" : "commitId",
@@ -805,7 +808,33 @@ font-style: italic;
     "_class" : "_class",
     "url" : "url"
   } ]
-}</code></pre>
+}, {
+  "runSummary" : "runSummary",
+  "durationInMillis" : 6,
+  "commitId" : "commitId",
+  "type" : "type",
+  "pipeline" : "pipeline",
+  "result" : "result",
+  "organization" : "organization",
+  "estimatedDurationInMillis" : 1,
+  "enQueueTime" : "enQueueTime",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "endTime" : "endTime",
+  "id" : "id",
+  "state" : "state",
+  "artifacts" : [ {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  }, {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  } ]
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -817,7 +846,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved all activities details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -852,7 +881,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#BranchImpl">BranchImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1004,7 +1033,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineRun">PipelineRun</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1082,7 +1111,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#MultibranchPipeline">MultibranchPipeline</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1149,7 +1178,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineFolderImpl">PipelineFolderImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1211,7 +1240,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineImpl">PipelineImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1291,20 +1320,26 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#QueueItemImpl">QueueItemImpl</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "pipeline" : "pipeline",
   "expectedBuildNumber" : 0,
   "queuedTime" : 6,
   "_class" : "_class",
   "id" : "id"
-}</code></pre>
+}, {
+  "pipeline" : "pipeline",
+  "expectedBuildNumber" : 0,
+  "queuedTime" : 6,
+  "_class" : "_class",
+  "id" : "id"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -1316,7 +1351,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved queue details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -1351,7 +1386,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineRun">PipelineRun</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1438,7 +1473,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -1492,7 +1527,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineRunNode">PipelineRunNode</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1565,7 +1600,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineStepImpl">PipelineStepImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -1676,7 +1711,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -1730,14 +1765,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#PipelineStepImpl">PipelineStepImpl</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "result" : "result",
   "input" : {
     "submitter" : "submitter",
@@ -1791,7 +1826,61 @@ font-style: italic;
   "_class" : "_class",
   "id" : "id",
   "state" : "state"
-}</code></pre>
+}, {
+  "result" : "result",
+  "input" : {
+    "submitter" : "submitter",
+    "_links" : {
+      "self" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "_class" : "_class"
+    },
+    "_class" : "_class",
+    "id" : "id",
+    "message" : "message",
+    "ok" : "ok",
+    "parameters" : [ {
+      "name" : "name",
+      "description" : "description",
+      "_class" : "_class",
+      "type" : "type",
+      "defaultParameterValue" : {
+        "name" : "name",
+        "_class" : "_class",
+        "value" : "value"
+      }
+    }, {
+      "name" : "name",
+      "description" : "description",
+      "_class" : "_class",
+      "type" : "type",
+      "defaultParameterValue" : {
+        "name" : "name",
+        "_class" : "_class",
+        "value" : "value"
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class",
+    "actions" : {
+      "_class" : "_class",
+      "href" : "href"
+    }
+  },
+  "durationInMillis" : 0,
+  "displayName" : "displayName",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "id" : "id",
+  "state" : "state"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -1803,7 +1892,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved run node steps details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -1838,14 +1927,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#PipelineRunNode">PipelineRunNode</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "result" : "result",
   "durationInMillis" : 0,
   "displayName" : "displayName",
@@ -1860,7 +1949,22 @@ font-style: italic;
   "_class" : "_class",
   "id" : "id",
   "state" : "state"
-}</code></pre>
+}, {
+  "result" : "result",
+  "durationInMillis" : 0,
+  "displayName" : "displayName",
+  "edges" : [ {
+    "id" : "id",
+    "_class" : "_class"
+  }, {
+    "id" : "id",
+    "_class" : "_class"
+  } ],
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "id" : "id",
+  "state" : "state"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -1872,7 +1976,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved run nodes details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -1905,14 +2009,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#PipelineRun">PipelineRun</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "runSummary" : "runSummary",
   "durationInMillis" : 6,
   "commitId" : "commitId",
@@ -1938,7 +2042,33 @@ font-style: italic;
     "_class" : "_class",
     "url" : "url"
   } ]
-}</code></pre>
+}, {
+  "runSummary" : "runSummary",
+  "durationInMillis" : 6,
+  "commitId" : "commitId",
+  "type" : "type",
+  "pipeline" : "pipeline",
+  "result" : "result",
+  "organization" : "organization",
+  "estimatedDurationInMillis" : 1,
+  "enQueueTime" : "enQueueTime",
+  "startTime" : "startTime",
+  "_class" : "_class",
+  "endTime" : "endTime",
+  "id" : "id",
+  "state" : "state",
+  "artifacts" : [ {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  }, {
+    "size" : 0,
+    "name" : "name",
+    "_class" : "_class",
+    "url" : "url"
+  } ]
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -1950,7 +2080,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved runs details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -1981,14 +2111,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#Pipeline">Pipeline</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "weatherScore" : 0,
   "latestRun" : {
     "runSummary" : "runSummary",
@@ -2023,7 +2153,42 @@ font-style: italic;
   "estimatedDurationInMillis" : 6,
   "fullName" : "fullName",
   "_class" : "_class"
-}</code></pre>
+}, {
+  "weatherScore" : 0,
+  "latestRun" : {
+    "runSummary" : "runSummary",
+    "durationInMillis" : 5,
+    "commitId" : "commitId",
+    "type" : "type",
+    "pipeline" : "pipeline",
+    "result" : "result",
+    "organization" : "organization",
+    "estimatedDurationInMillis" : 5,
+    "enQueueTime" : "enQueueTime",
+    "startTime" : "startTime",
+    "endTime" : "endTime",
+    "id" : "id",
+    "state" : "state",
+    "_class" : "_class",
+    "artifacts" : [ {
+      "size" : 1,
+      "name" : "name",
+      "_class" : "_class",
+      "url" : "url"
+    }, {
+      "size" : 1,
+      "name" : "name",
+      "_class" : "_class",
+      "url" : "url"
+    } ]
+  },
+  "displayName" : "displayName",
+  "organization" : "organization",
+  "name" : "name",
+  "estimatedDurationInMillis" : 6,
+  "fullName" : "fullName",
+  "_class" : "_class"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -2035,7 +2200,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved pipelines details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -2068,7 +2233,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#GithubScm">GithubScm</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2144,14 +2309,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#GithubOrganization">GithubOrganization</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "_links" : {
     "repositories" : {
       "_class" : "_class",
@@ -2166,7 +2331,22 @@ font-style: italic;
   "name" : "name",
   "_class" : "_class",
   "jenkinsOrganizationPipeline" : true
-}</code></pre>
+}, {
+  "_links" : {
+    "repositories" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class"
+  },
+  "name" : "name",
+  "_class" : "_class",
+  "jenkinsOrganizationPipeline" : true
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -2178,7 +2358,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved SCM organization repositories details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -2221,14 +2401,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#GithubOrganization">GithubOrganization</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "_links" : {
     "repositories" : {
       "_class" : "_class",
@@ -2243,7 +2423,22 @@ font-style: italic;
   "name" : "name",
   "_class" : "_class",
   "jenkinsOrganizationPipeline" : true
-}</code></pre>
+}, {
+  "_links" : {
+    "repositories" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class"
+  },
+  "name" : "name",
+  "_class" : "_class",
+  "jenkinsOrganizationPipeline" : true
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -2255,7 +2450,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved SCM organizations details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -2294,14 +2489,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#GithubOrganization">GithubOrganization</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "_links" : {
     "repositories" : {
       "_class" : "_class",
@@ -2316,7 +2511,22 @@ font-style: italic;
   "name" : "name",
   "_class" : "_class",
   "jenkinsOrganizationPipeline" : true
-}</code></pre>
+}, {
+  "_links" : {
+    "repositories" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class"
+  },
+  "name" : "name",
+  "_class" : "_class",
+  "jenkinsOrganizationPipeline" : true
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -2328,7 +2538,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved SCM organizations details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -2361,7 +2571,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#User">User</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2417,14 +2627,14 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       array[<a href="#FavoriteImpl">FavoriteImpl</a>]
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "item" : {
     "weatherScore" : 6,
     "latestRun" : "latestRun",
@@ -2462,7 +2672,45 @@ font-style: italic;
     "_class" : "_class"
   },
   "_class" : "_class"
-}</code></pre>
+}, {
+  "item" : {
+    "weatherScore" : 6,
+    "latestRun" : "latestRun",
+    "_links" : {
+      "self" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "_class" : "_class",
+      "runs" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "actions" : {
+        "_class" : "_class",
+        "href" : "href"
+      },
+      "queue" : {
+        "_class" : "_class",
+        "href" : "href"
+      }
+    },
+    "displayName" : "displayName",
+    "organization" : "organization",
+    "estimatedDurationInMillis" : 0,
+    "name" : "name",
+    "fullName" : "fullName",
+    "_class" : "_class"
+  },
+  "_links" : {
+    "self" : {
+      "_class" : "_class",
+      "href" : "href"
+    },
+    "_class" : "_class"
+  },
+  "_class" : "_class"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -2474,7 +2722,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Successfully retrieved users favorites details
-
+        
     <h4 class="field-label">401</h4>
     Authentication failed - incorrect username and/or password
         <a href="#"></a>
@@ -2505,7 +2753,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#User">User</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2565,7 +2813,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#QueueItemImpl">QueueItemImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2623,7 +2871,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#QueueItemImpl">QueueItemImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2693,7 +2941,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#FavoriteImpl">FavoriteImpl</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2793,7 +3041,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#PipelineRun">PipelineRun</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -2868,7 +3116,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -2915,7 +3163,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -2964,7 +3212,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#ComputerSet">ComputerSet</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -3334,7 +3582,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#Hudson">Hudson</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -4182,7 +4430,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#FreeStyleProject">FreeStyleProject</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -4616,7 +4864,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 
@@ -4667,7 +4915,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#FreeStyleBuild">FreeStyleBuild</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -4809,7 +5057,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#Queue">Queue</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -5704,7 +5952,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#Queue">Queue</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -6599,7 +6847,7 @@ font-style: italic;
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
       <a href="#ListView">ListView</a>
-
+      
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
@@ -7421,7 +7669,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-
+      
       String
     </div>
 

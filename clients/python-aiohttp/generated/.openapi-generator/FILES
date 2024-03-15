@@ -7,10 +7,10 @@ openapi_server/controllers/__init__.py
 openapi_server/controllers/base_controller.py
 openapi_server/controllers/blue_ocean_controller.py
 openapi_server/controllers/remote_access_controller.py
-openapi_server/controllers/security_controller_.py
+openapi_server/controllers/security_controller.py
 openapi_server/models/__init__.py
 openapi_server/models/all_view.py
-openapi_server/models/base_model_.py
+openapi_server/models/base_model.py
 openapi_server/models/branch_impl.py
 openapi_server/models/branch_impllinks.py
 openapi_server/models/branch_implpermissions.py

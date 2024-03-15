@@ -22,13 +22,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class AllView(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name") val name: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("url") val url: kotlin.String? = null
+    @get:JsonProperty("url") val url: kotlin.String? = null
 ) {
 
 }

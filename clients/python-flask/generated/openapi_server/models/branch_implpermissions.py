@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -63,7 +60,7 @@ class BranchImplpermissions(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def create(self):
+    def create(self) -> bool:
         """Gets the create of this BranchImplpermissions.
 
 
@@ -73,7 +70,7 @@ class BranchImplpermissions(Model):
         return self._create
 
     @create.setter
-    def create(self, create):
+    def create(self, create: bool):
         """Sets the create of this BranchImplpermissions.
 
 
@@ -84,7 +81,7 @@ class BranchImplpermissions(Model):
         self._create = create
 
     @property
-    def read(self):
+    def read(self) -> bool:
         """Gets the read of this BranchImplpermissions.
 
 
@@ -94,7 +91,7 @@ class BranchImplpermissions(Model):
         return self._read
 
     @read.setter
-    def read(self, read):
+    def read(self, read: bool):
         """Sets the read of this BranchImplpermissions.
 
 
@@ -105,7 +102,7 @@ class BranchImplpermissions(Model):
         self._read = read
 
     @property
-    def start(self):
+    def start(self) -> bool:
         """Gets the start of this BranchImplpermissions.
 
 
@@ -115,7 +112,7 @@ class BranchImplpermissions(Model):
         return self._start
 
     @start.setter
-    def start(self, start):
+    def start(self, start: bool):
         """Sets the start of this BranchImplpermissions.
 
 
@@ -126,7 +123,7 @@ class BranchImplpermissions(Model):
         self._start = start
 
     @property
-    def stop(self):
+    def stop(self) -> bool:
         """Gets the stop of this BranchImplpermissions.
 
 
@@ -136,7 +133,7 @@ class BranchImplpermissions(Model):
         return self._stop
 
     @stop.setter
-    def stop(self, stop):
+    def stop(self, stop: bool):
         """Sets the stop of this BranchImplpermissions.
 
 
@@ -147,7 +144,7 @@ class BranchImplpermissions(Model):
         self._stop = stop
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this BranchImplpermissions.
 
 
@@ -157,7 +154,7 @@ class BranchImplpermissions(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this BranchImplpermissions.
 
 

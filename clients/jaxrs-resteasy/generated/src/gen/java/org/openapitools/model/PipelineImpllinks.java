@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineImpllinks   {
   
   private Link runs;
@@ -24,6 +26,7 @@ public class PipelineImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("runs")
+  @Valid
   public Link getRuns() {
     return runs;
   }
@@ -36,6 +39,7 @@ public class PipelineImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
+  @Valid
   public Link getSelf() {
     return self;
   }
@@ -48,6 +52,7 @@ public class PipelineImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("queue")
+  @Valid
   public Link getQueue() {
     return queue;
   }
@@ -60,6 +65,7 @@ public class PipelineImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
+  @Valid
   public Link getActions() {
     return actions;
   }
@@ -89,11 +95,11 @@ public class PipelineImpllinks   {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(runs, pipelineImpllinks.runs) &&
-        Objects.equals(self, pipelineImpllinks.self) &&
-        Objects.equals(queue, pipelineImpllinks.queue) &&
-        Objects.equals(actions, pipelineImpllinks.actions) &&
-        Objects.equals(propertyClass, pipelineImpllinks.propertyClass);
+    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.self, pipelineImpllinks.self) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+        Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override

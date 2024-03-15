@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **load_statistics** | [***models::Label1**](Label1.md) |  | [optional] [default to None]
 **manual_launch_allowed** | **bool** |  | [optional] [default to None]
 **monitor_data** | [***models::HudsonMasterComputermonitorData**](HudsonMasterComputermonitorData.md) |  | [optional] [default to None]
-**num_executors** | **isize** |  | [optional] [default to None]
+**num_executors** | **i32** |  | [optional] [default to None]
 **offline** | **bool** |  | [optional] [default to None]
 **offline_cause** | **String** |  | [optional] [default to None]
 **offline_cause_reason** | **String** |  | [optional] [default to None]

@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.vertxweb.server.model.CauseAction;
 import org.openapitools.vertxweb.server.model.EmptyChangeLogSet;
@@ -14,7 +15,7 @@ public class FreeStyleBuild   {
   private String propertyClass;
   private Integer number;
   private String url;
-  private List<CauseAction> actions = new ArrayList<>();
+  private List<CauseAction> actions;
   private Boolean building;
   private String description;
   private String displayName;

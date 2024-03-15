@@ -8,9 +8,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FreeStyleBuild;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2022-06-04T08:09:08.274195Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputerexecutors   {
   
   private FreeStyleBuild currentExecutable;
@@ -102,12 +103,12 @@ public class HudsonMasterComputerexecutors   {
       return false;
     }
     HudsonMasterComputerexecutors hudsonMasterComputerexecutors = (HudsonMasterComputerexecutors) o;
-    return Objects.equals(currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
-        Objects.equals(idle, hudsonMasterComputerexecutors.idle) &&
-        Objects.equals(likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
-        Objects.equals(number, hudsonMasterComputerexecutors.number) &&
-        Objects.equals(progress, hudsonMasterComputerexecutors.progress) &&
-        Objects.equals(propertyClass, hudsonMasterComputerexecutors.propertyClass);
+    return Objects.equals(this.currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
+        Objects.equals(this.idle, hudsonMasterComputerexecutors.idle) &&
+        Objects.equals(this.likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
+        Objects.equals(this.number, hudsonMasterComputerexecutors.number) &&
+        Objects.equals(this.progress, hudsonMasterComputerexecutors.progress) &&
+        Objects.equals(this.propertyClass, hudsonMasterComputerexecutors.propertyClass);
   }
 
   @Override

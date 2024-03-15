@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.cause_action import CauseAction
 from openapi_server.models.empty_change_log_set import EmptyChangeLogSet
 from openapi_server import util
@@ -132,7 +129,7 @@ class FreeStyleBuild(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this FreeStyleBuild.
 
 
@@ -142,7 +139,7 @@ class FreeStyleBuild(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this FreeStyleBuild.
 
 
@@ -153,7 +150,7 @@ class FreeStyleBuild(Model):
         self.__class = _class
 
     @property
-    def number(self):
+    def number(self) -> int:
         """Gets the number of this FreeStyleBuild.
 
 
@@ -163,7 +160,7 @@ class FreeStyleBuild(Model):
         return self._number
 
     @number.setter
-    def number(self, number):
+    def number(self, number: int):
         """Sets the number of this FreeStyleBuild.
 
 
@@ -174,7 +171,7 @@ class FreeStyleBuild(Model):
         self._number = number
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Gets the url of this FreeStyleBuild.
 
 
@@ -184,7 +181,7 @@ class FreeStyleBuild(Model):
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url: str):
         """Sets the url of this FreeStyleBuild.
 
 
@@ -195,7 +192,7 @@ class FreeStyleBuild(Model):
         self._url = url
 
     @property
-    def actions(self):
+    def actions(self) -> List[CauseAction]:
         """Gets the actions of this FreeStyleBuild.
 
 
@@ -205,7 +202,7 @@ class FreeStyleBuild(Model):
         return self._actions
 
     @actions.setter
-    def actions(self, actions):
+    def actions(self, actions: List[CauseAction]):
         """Sets the actions of this FreeStyleBuild.
 
 
@@ -216,7 +213,7 @@ class FreeStyleBuild(Model):
         self._actions = actions
 
     @property
-    def building(self):
+    def building(self) -> bool:
         """Gets the building of this FreeStyleBuild.
 
 
@@ -226,7 +223,7 @@ class FreeStyleBuild(Model):
         return self._building
 
     @building.setter
-    def building(self, building):
+    def building(self, building: bool):
         """Sets the building of this FreeStyleBuild.
 
 
@@ -237,7 +234,7 @@ class FreeStyleBuild(Model):
         self._building = building
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this FreeStyleBuild.
 
 
@@ -247,7 +244,7 @@ class FreeStyleBuild(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this FreeStyleBuild.
 
 
@@ -258,7 +255,7 @@ class FreeStyleBuild(Model):
         self._description = description
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this FreeStyleBuild.
 
 
@@ -268,7 +265,7 @@ class FreeStyleBuild(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this FreeStyleBuild.
 
 
@@ -279,7 +276,7 @@ class FreeStyleBuild(Model):
         self._display_name = display_name
 
     @property
-    def duration(self):
+    def duration(self) -> int:
         """Gets the duration of this FreeStyleBuild.
 
 
@@ -289,7 +286,7 @@ class FreeStyleBuild(Model):
         return self._duration
 
     @duration.setter
-    def duration(self, duration):
+    def duration(self, duration: int):
         """Sets the duration of this FreeStyleBuild.
 
 
@@ -300,7 +297,7 @@ class FreeStyleBuild(Model):
         self._duration = duration
 
     @property
-    def estimated_duration(self):
+    def estimated_duration(self) -> int:
         """Gets the estimated_duration of this FreeStyleBuild.
 
 
@@ -310,7 +307,7 @@ class FreeStyleBuild(Model):
         return self._estimated_duration
 
     @estimated_duration.setter
-    def estimated_duration(self, estimated_duration):
+    def estimated_duration(self, estimated_duration: int):
         """Sets the estimated_duration of this FreeStyleBuild.
 
 
@@ -321,7 +318,7 @@ class FreeStyleBuild(Model):
         self._estimated_duration = estimated_duration
 
     @property
-    def executor(self):
+    def executor(self) -> str:
         """Gets the executor of this FreeStyleBuild.
 
 
@@ -331,7 +328,7 @@ class FreeStyleBuild(Model):
         return self._executor
 
     @executor.setter
-    def executor(self, executor):
+    def executor(self, executor: str):
         """Sets the executor of this FreeStyleBuild.
 
 
@@ -342,7 +339,7 @@ class FreeStyleBuild(Model):
         self._executor = executor
 
     @property
-    def full_display_name(self):
+    def full_display_name(self) -> str:
         """Gets the full_display_name of this FreeStyleBuild.
 
 
@@ -352,7 +349,7 @@ class FreeStyleBuild(Model):
         return self._full_display_name
 
     @full_display_name.setter
-    def full_display_name(self, full_display_name):
+    def full_display_name(self, full_display_name: str):
         """Sets the full_display_name of this FreeStyleBuild.
 
 
@@ -363,7 +360,7 @@ class FreeStyleBuild(Model):
         self._full_display_name = full_display_name
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this FreeStyleBuild.
 
 
@@ -373,7 +370,7 @@ class FreeStyleBuild(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this FreeStyleBuild.
 
 
@@ -384,7 +381,7 @@ class FreeStyleBuild(Model):
         self._id = id
 
     @property
-    def keep_log(self):
+    def keep_log(self) -> bool:
         """Gets the keep_log of this FreeStyleBuild.
 
 
@@ -394,7 +391,7 @@ class FreeStyleBuild(Model):
         return self._keep_log
 
     @keep_log.setter
-    def keep_log(self, keep_log):
+    def keep_log(self, keep_log: bool):
         """Sets the keep_log of this FreeStyleBuild.
 
 
@@ -405,7 +402,7 @@ class FreeStyleBuild(Model):
         self._keep_log = keep_log
 
     @property
-    def queue_id(self):
+    def queue_id(self) -> int:
         """Gets the queue_id of this FreeStyleBuild.
 
 
@@ -415,7 +412,7 @@ class FreeStyleBuild(Model):
         return self._queue_id
 
     @queue_id.setter
-    def queue_id(self, queue_id):
+    def queue_id(self, queue_id: int):
         """Sets the queue_id of this FreeStyleBuild.
 
 
@@ -426,7 +423,7 @@ class FreeStyleBuild(Model):
         self._queue_id = queue_id
 
     @property
-    def result(self):
+    def result(self) -> str:
         """Gets the result of this FreeStyleBuild.
 
 
@@ -436,7 +433,7 @@ class FreeStyleBuild(Model):
         return self._result
 
     @result.setter
-    def result(self, result):
+    def result(self, result: str):
         """Sets the result of this FreeStyleBuild.
 
 
@@ -447,7 +444,7 @@ class FreeStyleBuild(Model):
         self._result = result
 
     @property
-    def timestamp(self):
+    def timestamp(self) -> int:
         """Gets the timestamp of this FreeStyleBuild.
 
 
@@ -457,7 +454,7 @@ class FreeStyleBuild(Model):
         return self._timestamp
 
     @timestamp.setter
-    def timestamp(self, timestamp):
+    def timestamp(self, timestamp: int):
         """Sets the timestamp of this FreeStyleBuild.
 
 
@@ -468,7 +465,7 @@ class FreeStyleBuild(Model):
         self._timestamp = timestamp
 
     @property
-    def built_on(self):
+    def built_on(self) -> str:
         """Gets the built_on of this FreeStyleBuild.
 
 
@@ -478,7 +475,7 @@ class FreeStyleBuild(Model):
         return self._built_on
 
     @built_on.setter
-    def built_on(self, built_on):
+    def built_on(self, built_on: str):
         """Sets the built_on of this FreeStyleBuild.
 
 
@@ -489,7 +486,7 @@ class FreeStyleBuild(Model):
         self._built_on = built_on
 
     @property
-    def change_set(self):
+    def change_set(self) -> EmptyChangeLogSet:
         """Gets the change_set of this FreeStyleBuild.
 
 
@@ -499,7 +496,7 @@ class FreeStyleBuild(Model):
         return self._change_set
 
     @change_set.setter
-    def change_set(self, change_set):
+    def change_set(self, change_set: EmptyChangeLogSet):
         """Sets the change_set of this FreeStyleBuild.
 
 

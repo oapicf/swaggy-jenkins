@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -35,8 +35,8 @@ class ClockDifference {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ClockDifference &&
-     other.class_ == class_ &&
-     other.diff == diff;
+    other.class_ == class_ &&
+    other.diff == diff;
 
   @override
   int get hashCode =>
@@ -48,14 +48,18 @@ class ClockDifference {
   String toString() => 'ClockDifference[class_=$class_, diff=$diff]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (diff != null) {
-      _json[r'diff'] = diff;
+    if (this.diff != null) {
+      json[r'diff'] = this.diff;
+    } else {
+      json[r'diff'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [ClockDifference] instance and imports its values from
@@ -84,7 +88,7 @@ class ClockDifference {
     return null;
   }
 
-  static List<ClockDifference>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ClockDifference> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ClockDifference>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -115,12 +119,10 @@ class ClockDifference {
   static Map<String, List<ClockDifference>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<ClockDifference>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = ClockDifference.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = ClockDifference.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

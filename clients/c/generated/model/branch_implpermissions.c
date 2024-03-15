@@ -131,7 +131,7 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
     // branch_implpermissions->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(branch_implpermissionsJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -143,7 +143,7 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
         read ? read->valueint : 0,
         start ? start->valueint : 0,
         stop ? stop->valueint : 0,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return branch_implpermissions_local_var;

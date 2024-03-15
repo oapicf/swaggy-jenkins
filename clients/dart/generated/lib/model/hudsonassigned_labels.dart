@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -26,7 +26,7 @@ class HudsonassignedLabels {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HudsonassignedLabels &&
-     other.class_ == class_;
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -37,11 +37,13 @@ class HudsonassignedLabels {
   String toString() => 'HudsonassignedLabels[class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [HudsonassignedLabels] instance and imports its values from
@@ -69,7 +71,7 @@ class HudsonassignedLabels {
     return null;
   }
 
-  static List<HudsonassignedLabels>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<HudsonassignedLabels> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <HudsonassignedLabels>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -100,12 +102,10 @@ class HudsonassignedLabels {
   static Map<String, List<HudsonassignedLabels>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<HudsonassignedLabels>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = HudsonassignedLabels.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = HudsonassignedLabels.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

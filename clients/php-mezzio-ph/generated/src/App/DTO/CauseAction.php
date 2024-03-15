@@ -18,9 +18,9 @@ class CauseAction
 
     /**
      * @DTA\Data(field="causes", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection88::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection88::class})
-     * @var \App\DTO\Collection88|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection2::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection2::class})
+     * @var \App\DTO\Collection2|null
      */
     public $causes;
 

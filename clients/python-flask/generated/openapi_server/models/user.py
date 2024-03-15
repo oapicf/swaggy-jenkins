@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -63,7 +60,7 @@ class User(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this User.
 
 
@@ -73,7 +70,7 @@ class User(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this User.
 
 
@@ -84,7 +81,7 @@ class User(Model):
         self.__class = _class
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this User.
 
 
@@ -94,7 +91,7 @@ class User(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this User.
 
 
@@ -105,7 +102,7 @@ class User(Model):
         self._id = id
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         """Gets the full_name of this User.
 
 
@@ -115,7 +112,7 @@ class User(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name):
+    def full_name(self, full_name: str):
         """Sets the full_name of this User.
 
 
@@ -126,7 +123,7 @@ class User(Model):
         self._full_name = full_name
 
     @property
-    def email(self):
+    def email(self) -> str:
         """Gets the email of this User.
 
 
@@ -136,7 +133,7 @@ class User(Model):
         return self._email
 
     @email.setter
-    def email(self, email):
+    def email(self, email: str):
         """Sets the email of this User.
 
 
@@ -147,7 +144,7 @@ class User(Model):
         self._email = email
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this User.
 
 
@@ -157,7 +154,7 @@ class User(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this User.
 
 

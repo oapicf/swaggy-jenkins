@@ -27,22 +27,22 @@ data class PipelineBranchesitempullRequest(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_links") val links: PipelineBranchesitempullRequestlinks? = null,
+    @get:JsonProperty("_links") val links: PipelineBranchesitempullRequestlinks? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("author") val author: kotlin.String? = null,
+    @get:JsonProperty("author") val author: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.String? = null,
+    @get:JsonProperty("id") val id: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("title") val title: kotlin.String? = null,
+    @get:JsonProperty("title") val title: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("url") val url: kotlin.String? = null,
+    @get:JsonProperty("url") val url: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
 }

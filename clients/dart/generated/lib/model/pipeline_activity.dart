@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -146,21 +146,21 @@ class PipelineActivity {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineActivity &&
-     other.class_ == class_ &&
-     other.artifacts == artifacts &&
-     other.durationInMillis == durationInMillis &&
-     other.estimatedDurationInMillis == estimatedDurationInMillis &&
-     other.enQueueTime == enQueueTime &&
-     other.endTime == endTime &&
-     other.id == id &&
-     other.organization == organization &&
-     other.pipeline == pipeline &&
-     other.result == result &&
-     other.runSummary == runSummary &&
-     other.startTime == startTime &&
-     other.state == state &&
-     other.type == type &&
-     other.commitId == commitId;
+    other.class_ == class_ &&
+    _deepEquality.equals(other.artifacts, artifacts) &&
+    other.durationInMillis == durationInMillis &&
+    other.estimatedDurationInMillis == estimatedDurationInMillis &&
+    other.enQueueTime == enQueueTime &&
+    other.endTime == endTime &&
+    other.id == id &&
+    other.organization == organization &&
+    other.pipeline == pipeline &&
+    other.result == result &&
+    other.runSummary == runSummary &&
+    other.startTime == startTime &&
+    other.state == state &&
+    other.type == type &&
+    other.commitId == commitId;
 
   @override
   int get hashCode =>
@@ -185,51 +185,79 @@ class PipelineActivity {
   String toString() => 'PipelineActivity[class_=$class_, artifacts=$artifacts, durationInMillis=$durationInMillis, estimatedDurationInMillis=$estimatedDurationInMillis, enQueueTime=$enQueueTime, endTime=$endTime, id=$id, organization=$organization, pipeline=$pipeline, result=$result, runSummary=$runSummary, startTime=$startTime, state=$state, type=$type, commitId=$commitId]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-      _json[r'artifacts'] = artifacts;
-    if (durationInMillis != null) {
-      _json[r'durationInMillis'] = durationInMillis;
+      json[r'artifacts'] = this.artifacts;
+    if (this.durationInMillis != null) {
+      json[r'durationInMillis'] = this.durationInMillis;
+    } else {
+      json[r'durationInMillis'] = null;
     }
-    if (estimatedDurationInMillis != null) {
-      _json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
+    if (this.estimatedDurationInMillis != null) {
+      json[r'estimatedDurationInMillis'] = this.estimatedDurationInMillis;
+    } else {
+      json[r'estimatedDurationInMillis'] = null;
     }
-    if (enQueueTime != null) {
-      _json[r'enQueueTime'] = enQueueTime;
+    if (this.enQueueTime != null) {
+      json[r'enQueueTime'] = this.enQueueTime;
+    } else {
+      json[r'enQueueTime'] = null;
     }
-    if (endTime != null) {
-      _json[r'endTime'] = endTime;
+    if (this.endTime != null) {
+      json[r'endTime'] = this.endTime;
+    } else {
+      json[r'endTime'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (organization != null) {
-      _json[r'organization'] = organization;
+    if (this.organization != null) {
+      json[r'organization'] = this.organization;
+    } else {
+      json[r'organization'] = null;
     }
-    if (pipeline != null) {
-      _json[r'pipeline'] = pipeline;
+    if (this.pipeline != null) {
+      json[r'pipeline'] = this.pipeline;
+    } else {
+      json[r'pipeline'] = null;
     }
-    if (result != null) {
-      _json[r'result'] = result;
+    if (this.result != null) {
+      json[r'result'] = this.result;
+    } else {
+      json[r'result'] = null;
     }
-    if (runSummary != null) {
-      _json[r'runSummary'] = runSummary;
+    if (this.runSummary != null) {
+      json[r'runSummary'] = this.runSummary;
+    } else {
+      json[r'runSummary'] = null;
     }
-    if (startTime != null) {
-      _json[r'startTime'] = startTime;
+    if (this.startTime != null) {
+      json[r'startTime'] = this.startTime;
+    } else {
+      json[r'startTime'] = null;
     }
-    if (state != null) {
-      _json[r'state'] = state;
+    if (this.state != null) {
+      json[r'state'] = this.state;
+    } else {
+      json[r'state'] = null;
     }
-    if (type != null) {
-      _json[r'type'] = type;
+    if (this.type != null) {
+      json[r'type'] = this.type;
+    } else {
+      json[r'type'] = null;
     }
-    if (commitId != null) {
-      _json[r'commitId'] = commitId;
+    if (this.commitId != null) {
+      json[r'commitId'] = this.commitId;
+    } else {
+      json[r'commitId'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [PipelineActivity] instance and imports its values from
@@ -252,7 +280,7 @@ class PipelineActivity {
 
       return PipelineActivity(
         class_: mapValueOfType<String>(json, r'_class'),
-        artifacts: PipelineActivityartifacts.listFromJson(json[r'artifacts']) ?? const [],
+        artifacts: PipelineActivityartifacts.listFromJson(json[r'artifacts']),
         durationInMillis: mapValueOfType<int>(json, r'durationInMillis'),
         estimatedDurationInMillis: mapValueOfType<int>(json, r'estimatedDurationInMillis'),
         enQueueTime: mapValueOfType<String>(json, r'enQueueTime'),
@@ -271,7 +299,7 @@ class PipelineActivity {
     return null;
   }
 
-  static List<PipelineActivity>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PipelineActivity> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <PipelineActivity>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -302,12 +330,10 @@ class PipelineActivity {
   static Map<String, List<PipelineActivity>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<PipelineActivity>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = PipelineActivity.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = PipelineActivity.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

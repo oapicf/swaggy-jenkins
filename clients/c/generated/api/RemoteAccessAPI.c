@@ -15,7 +15,7 @@
 // Retrieve computer details
 //
 computer_set_t*
-RemoteAccessAPI_getComputer(apiClient_t *apiClient, int depth )
+RemoteAccessAPI_getComputer(apiClient_t *apiClient, int *depth)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -40,7 +40,7 @@ RemoteAccessAPI_getComputer(apiClient_t *apiClient, int depth )
     {
         keyQuery_depth = strdup("depth");
         valueQuery_depth = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_depth, MAX_NUMBER_LENGTH, "%d", depth);
+        snprintf(valueQuery_depth, MAX_NUMBER_LENGTH, "%d", *depth);
         keyPairQuery_depth = keyValuePair_create(keyQuery_depth, valueQuery_depth);
         list_addElement(localVarQueryParameters,keyPairQuery_depth);
     }
@@ -178,7 +178,7 @@ end:
 // Retrieve job details
 //
 free_style_project_t*
-RemoteAccessAPI_getJob(apiClient_t *apiClient, char * name )
+RemoteAccessAPI_getJob(apiClient_t *apiClient, char *name)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -262,7 +262,7 @@ end:
 // Retrieve job configuration
 //
 char*
-RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char * name )
+RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char *name)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -340,7 +340,7 @@ end:
 // Retrieve job's last build details
 //
 free_style_build_t*
-RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char * name )
+RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char *name)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -424,7 +424,7 @@ end:
 // Retrieve job's build progressive text output
 //
 void
-RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char * name , char * number , char * start )
+RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char *name, char *number, char *start)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -608,7 +608,7 @@ end:
 // Retrieve queued item details
 //
 queue_t*
-RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char * number )
+RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char *number)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -688,7 +688,7 @@ end:
 // Retrieve view details
 //
 list_view_t*
-RemoteAccessAPI_getView(apiClient_t *apiClient, char * name )
+RemoteAccessAPI_getView(apiClient_t *apiClient, char *name)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -772,7 +772,7 @@ end:
 // Retrieve view configuration
 //
 char*
-RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char * name )
+RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char *name)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -907,7 +907,7 @@ end:
 // Create a new job using job configuration, or copied from an existing job
 //
 void
-RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char * name , char * from , char * mode , char * Jenkins_Crumb , char * Content_Type , char * body )
+RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char *name, char *from, char *mode, char *Jenkins_Crumb, char *Content_Type, char *body)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -1122,7 +1122,7 @@ end:
 // Create a new view using view configuration
 //
 void
-RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char * name , char * Jenkins_Crumb , char * Content_Type , char * body )
+RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char *name, char *Jenkins_Crumb, char *Content_Type, char *body)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -1273,7 +1273,7 @@ end:
 // Build a job
 //
 void
-RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char * name , char * json , char * token , char * Jenkins_Crumb )
+RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char *name, char *json, char *token, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -1434,7 +1434,7 @@ end:
 // Update job configuration
 //
 void
-RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char * name , char * body , char * Jenkins_Crumb )
+RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char *name, char *body, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_createList();
@@ -1547,7 +1547,7 @@ end:
 // Delete a job
 //
 void
-RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char * name , char * Jenkins_Crumb )
+RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char *name, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_createList();
@@ -1640,7 +1640,7 @@ end:
 // Disable a job
 //
 void
-RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char * name , char * Jenkins_Crumb )
+RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char *name, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_createList();
@@ -1733,7 +1733,7 @@ end:
 // Enable a job
 //
 void
-RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char * name , char * Jenkins_Crumb )
+RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char *name, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_createList();
@@ -1826,7 +1826,7 @@ end:
 // Stop a job
 //
 void
-RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char * name , char * Jenkins_Crumb )
+RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char *name, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_createList();
@@ -1919,7 +1919,7 @@ end:
 // Update view configuration
 //
 void
-RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char * name , char * body , char * Jenkins_Crumb )
+RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char *name, char *body, char *Jenkins_Crumb)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = list_createList();

@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Organisation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Organisation   {
-  
   private @Valid String propertyClass;
   private @Valid String name;
 
@@ -40,7 +39,7 @@ public class Organisation   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public Organisation name(String name) {
     this.name = name;

@@ -9,9 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelineBranchesitemlatestRun;
 import org.openapitools.model.PipelineBranchesitempullRequest;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitem   {
   
   private String displayName;
@@ -77,6 +79,7 @@ public class PipelineBranchesitem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
+  @Valid
   public PipelineBranchesitemlatestRun getLatestRun() {
     return latestRun;
   }
@@ -101,6 +104,7 @@ public class PipelineBranchesitem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("pullRequest")
+  @Valid
   public PipelineBranchesitempullRequest getPullRequest() {
     return pullRequest;
   }
@@ -142,15 +146,15 @@ public class PipelineBranchesitem   {
       return false;
     }
     PipelineBranchesitem pipelineBranchesitem = (PipelineBranchesitem) o;
-    return Objects.equals(displayName, pipelineBranchesitem.displayName) &&
-        Objects.equals(estimatedDurationInMillis, pipelineBranchesitem.estimatedDurationInMillis) &&
-        Objects.equals(name, pipelineBranchesitem.name) &&
-        Objects.equals(weatherScore, pipelineBranchesitem.weatherScore) &&
-        Objects.equals(latestRun, pipelineBranchesitem.latestRun) &&
-        Objects.equals(organization, pipelineBranchesitem.organization) &&
-        Objects.equals(pullRequest, pipelineBranchesitem.pullRequest) &&
-        Objects.equals(totalNumberOfPullRequests, pipelineBranchesitem.totalNumberOfPullRequests) &&
-        Objects.equals(propertyClass, pipelineBranchesitem.propertyClass);
+    return Objects.equals(this.displayName, pipelineBranchesitem.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelineBranchesitem.estimatedDurationInMillis) &&
+        Objects.equals(this.name, pipelineBranchesitem.name) &&
+        Objects.equals(this.weatherScore, pipelineBranchesitem.weatherScore) &&
+        Objects.equals(this.latestRun, pipelineBranchesitem.latestRun) &&
+        Objects.equals(this.organization, pipelineBranchesitem.organization) &&
+        Objects.equals(this.pullRequest, pipelineBranchesitem.pullRequest) &&
+        Objects.equals(this.totalNumberOfPullRequests, pipelineBranchesitem.totalNumberOfPullRequests) &&
+        Objects.equals(this.propertyClass, pipelineBranchesitem.propertyClass);
   }
 
   @Override

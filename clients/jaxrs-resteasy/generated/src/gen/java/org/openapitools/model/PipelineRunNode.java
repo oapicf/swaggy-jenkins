@@ -7,18 +7,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelineRunNodeedges;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunNode   {
   
   private String propertyClass;
   private String displayName;
   private Integer durationInMillis;
-  private List<PipelineRunNodeedges> edges = new ArrayList<>();
+  private List<@Valid PipelineRunNodeedges> edges;
   private String id;
   private String result;
   private String startTime;
@@ -65,10 +68,11 @@ public class PipelineRunNode   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("edges")
-  public List<PipelineRunNodeedges> getEdges() {
+  @Valid
+  public List<@Valid PipelineRunNodeedges> getEdges() {
     return edges;
   }
-  public void setEdges(List<PipelineRunNodeedges> edges) {
+  public void setEdges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
   }
 
@@ -130,14 +134,14 @@ public class PipelineRunNode   {
       return false;
     }
     PipelineRunNode pipelineRunNode = (PipelineRunNode) o;
-    return Objects.equals(propertyClass, pipelineRunNode.propertyClass) &&
-        Objects.equals(displayName, pipelineRunNode.displayName) &&
-        Objects.equals(durationInMillis, pipelineRunNode.durationInMillis) &&
-        Objects.equals(edges, pipelineRunNode.edges) &&
-        Objects.equals(id, pipelineRunNode.id) &&
-        Objects.equals(result, pipelineRunNode.result) &&
-        Objects.equals(startTime, pipelineRunNode.startTime) &&
-        Objects.equals(state, pipelineRunNode.state);
+    return Objects.equals(this.propertyClass, pipelineRunNode.propertyClass) &&
+        Objects.equals(this.displayName, pipelineRunNode.displayName) &&
+        Objects.equals(this.durationInMillis, pipelineRunNode.durationInMillis) &&
+        Objects.equals(this.edges, pipelineRunNode.edges) &&
+        Objects.equals(this.id, pipelineRunNode.id) &&
+        Objects.equals(this.result, pipelineRunNode.result) &&
+        Objects.equals(this.startTime, pipelineRunNode.startTime) &&
+        Objects.equals(this.state, pipelineRunNode.state);
   }
 
   @Override

@@ -11,6 +11,7 @@ src/gen/java/org/openapitools/api/JobApi.java
 src/gen/java/org/openapitools/api/JwtAuthApi.java
 src/gen/java/org/openapitools/api/QueueApi.java
 src/gen/java/org/openapitools/api/RestApplication.java
+src/gen/java/org/openapitools/api/RestResourceRoot.java
 src/gen/java/org/openapitools/api/ViewApi.java
 src/gen/java/org/openapitools/model/AllView.java
 src/gen/java/org/openapitools/model/BranchImpl.java

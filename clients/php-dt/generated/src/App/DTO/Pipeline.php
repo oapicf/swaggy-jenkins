@@ -5,65 +5,55 @@ namespace App\DTO;
 
 use Articus\DataTransfer\Annotation as DTA;
 
-/**
- */
 class Pipeline
 {
     /**
      * @DTA\Data(field="_class", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $_class;
+    public ?string $_class = null;
 
     /**
      * @DTA\Data(field="organization", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $organization;
+    public ?string $organization = null;
 
     /**
      * @DTA\Data(field="name", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $name;
+    public ?string $name = null;
 
     /**
      * @DTA\Data(field="displayName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $display_name;
+    public ?string $display_name = null;
 
     /**
      * @DTA\Data(field="fullName", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"string"})
-     * @var string|null
      */
-    public $full_name;
+    public ?string $full_name = null;
 
     /**
      * @DTA\Data(field="weatherScore", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $weather_score;
+    public ?int $weather_score = null;
 
     /**
      * @DTA\Data(field="estimatedDurationInMillis", nullable=true)
      * @DTA\Validator(name="Scalar", options={"type":"int"})
-     * @var int|null
      */
-    public $estimated_duration_in_millis;
+    public ?int $estimated_duration_in_millis = null;
 
     /**
      * @DTA\Data(field="latestRun", nullable=true)
      * @DTA\Strategy(name="Object", options={"type":\App\DTO\PipelinelatestRun::class})
      * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\PipelinelatestRun::class})
-     * @var \App\DTO\PipelinelatestRun|null
      */
-    public $latest_run;
+    public ?\App\DTO\PipelinelatestRun $latest_run = null;
 
 }

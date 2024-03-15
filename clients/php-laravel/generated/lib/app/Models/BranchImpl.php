@@ -10,42 +10,42 @@ namespace app\Models;
 class BranchImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $estimatedDurationInMillis */
-    private $estimatedDurationInMillis;
+    public $estimatedDurationInMillis = 0;
 
     /** @var string $fullDisplayName */
-    private $fullDisplayName;
+    public $fullDisplayName = "";
 
     /** @var string $fullName */
-    private $fullName;
+    public $fullName = "";
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var string $organization */
-    private $organization;
+    public $organization = "";
 
     /** @var \app\Models\StringParameterDefinition[] $parameters */
-    private $parameters;
+    public $parameters = [];
 
     /** @var \app\Models\BranchImplpermissions $permissions */
-    private $permissions;
+    public $permissions;
 
     /** @var int $weatherScore */
-    private $weatherScore;
+    public $weatherScore = 0;
 
     /** @var string $pullRequest */
-    private $pullRequest;
+    public $pullRequest = "";
 
     /** @var \app\Models\BranchImpllinks $links */
-    private $links;
+    public $links;
 
     /** @var \app\Models\PipelineRunImpl $latestRun */
-    private $latestRun;
+    public $latestRun;
 
 }

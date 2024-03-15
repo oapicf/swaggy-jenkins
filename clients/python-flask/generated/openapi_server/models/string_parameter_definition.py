@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.string_parameter_value import StringParameterValue
 from openapi_server import util
 
@@ -65,7 +62,7 @@ class StringParameterDefinition(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this StringParameterDefinition.
 
 
@@ -75,7 +72,7 @@ class StringParameterDefinition(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this StringParameterDefinition.
 
 
@@ -86,7 +83,7 @@ class StringParameterDefinition(Model):
         self.__class = _class
 
     @property
-    def default_parameter_value(self):
+    def default_parameter_value(self) -> StringParameterValue:
         """Gets the default_parameter_value of this StringParameterDefinition.
 
 
@@ -96,7 +93,7 @@ class StringParameterDefinition(Model):
         return self._default_parameter_value
 
     @default_parameter_value.setter
-    def default_parameter_value(self, default_parameter_value):
+    def default_parameter_value(self, default_parameter_value: StringParameterValue):
         """Sets the default_parameter_value of this StringParameterDefinition.
 
 
@@ -107,7 +104,7 @@ class StringParameterDefinition(Model):
         self._default_parameter_value = default_parameter_value
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this StringParameterDefinition.
 
 
@@ -117,7 +114,7 @@ class StringParameterDefinition(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this StringParameterDefinition.
 
 
@@ -128,7 +125,7 @@ class StringParameterDefinition(Model):
         self._description = description
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this StringParameterDefinition.
 
 
@@ -138,7 +135,7 @@ class StringParameterDefinition(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this StringParameterDefinition.
 
 
@@ -149,7 +146,7 @@ class StringParameterDefinition(Model):
         self._name = name
 
     @property
-    def type(self):
+    def type(self) -> str:
         """Gets the type of this StringParameterDefinition.
 
 
@@ -159,7 +156,7 @@ class StringParameterDefinition(Model):
         return self._type
 
     @type.setter
-    def type(self, type):
+    def type(self, type: str):
         """Sets the type of this StringParameterDefinition.
 
 

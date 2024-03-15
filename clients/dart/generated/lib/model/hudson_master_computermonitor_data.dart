@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -80,13 +80,13 @@ class HudsonMasterComputermonitorData {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is HudsonMasterComputermonitorData &&
-     other.hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor == hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor &&
-     other.hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor == hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor &&
-     other.hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor == hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor &&
-     other.hudsonPeriodNodeMonitorsPeriodArchitectureMonitor == hudsonPeriodNodeMonitorsPeriodArchitectureMonitor &&
-     other.hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor == hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor &&
-     other.hudsonPeriodNodeMonitorsPeriodClockMonitor == hudsonPeriodNodeMonitorsPeriodClockMonitor &&
-     other.class_ == class_;
+    other.hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor == hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor &&
+    other.hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor == hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor &&
+    other.hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor == hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor &&
+    other.hudsonPeriodNodeMonitorsPeriodArchitectureMonitor == hudsonPeriodNodeMonitorsPeriodArchitectureMonitor &&
+    other.hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor == hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor &&
+    other.hudsonPeriodNodeMonitorsPeriodClockMonitor == hudsonPeriodNodeMonitorsPeriodClockMonitor &&
+    other.class_ == class_;
 
   @override
   int get hashCode =>
@@ -103,29 +103,43 @@ class HudsonMasterComputermonitorData {
   String toString() => 'HudsonMasterComputermonitorData[hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor=$hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor, hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor=$hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor, hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor=$hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor, hudsonPeriodNodeMonitorsPeriodArchitectureMonitor=$hudsonPeriodNodeMonitorsPeriodArchitectureMonitor, hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor=$hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor, hudsonPeriodNodeMonitorsPeriodClockMonitor=$hudsonPeriodNodeMonitorsPeriodClockMonitor, class_=$class_]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor != null) {
-      _json[r'hudson.node_monitors.SwapSpaceMonitor'] = hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor;
+    final json = <String, dynamic>{};
+    if (this.hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor != null) {
+      json[r'hudson.node_monitors.SwapSpaceMonitor'] = this.hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor;
+    } else {
+      json[r'hudson.node_monitors.SwapSpaceMonitor'] = null;
     }
-    if (hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor != null) {
-      _json[r'hudson.node_monitors.TemporarySpaceMonitor'] = hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor;
+    if (this.hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor != null) {
+      json[r'hudson.node_monitors.TemporarySpaceMonitor'] = this.hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor;
+    } else {
+      json[r'hudson.node_monitors.TemporarySpaceMonitor'] = null;
     }
-    if (hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor != null) {
-      _json[r'hudson.node_monitors.DiskSpaceMonitor'] = hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor;
+    if (this.hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor != null) {
+      json[r'hudson.node_monitors.DiskSpaceMonitor'] = this.hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor;
+    } else {
+      json[r'hudson.node_monitors.DiskSpaceMonitor'] = null;
     }
-    if (hudsonPeriodNodeMonitorsPeriodArchitectureMonitor != null) {
-      _json[r'hudson.node_monitors.ArchitectureMonitor'] = hudsonPeriodNodeMonitorsPeriodArchitectureMonitor;
+    if (this.hudsonPeriodNodeMonitorsPeriodArchitectureMonitor != null) {
+      json[r'hudson.node_monitors.ArchitectureMonitor'] = this.hudsonPeriodNodeMonitorsPeriodArchitectureMonitor;
+    } else {
+      json[r'hudson.node_monitors.ArchitectureMonitor'] = null;
     }
-    if (hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor != null) {
-      _json[r'hudson.node_monitors.ResponseTimeMonitor'] = hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor;
+    if (this.hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor != null) {
+      json[r'hudson.node_monitors.ResponseTimeMonitor'] = this.hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor;
+    } else {
+      json[r'hudson.node_monitors.ResponseTimeMonitor'] = null;
     }
-    if (hudsonPeriodNodeMonitorsPeriodClockMonitor != null) {
-      _json[r'hudson.node_monitors.ClockMonitor'] = hudsonPeriodNodeMonitorsPeriodClockMonitor;
+    if (this.hudsonPeriodNodeMonitorsPeriodClockMonitor != null) {
+      json[r'hudson.node_monitors.ClockMonitor'] = this.hudsonPeriodNodeMonitorsPeriodClockMonitor;
+    } else {
+      json[r'hudson.node_monitors.ClockMonitor'] = null;
     }
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [HudsonMasterComputermonitorData] instance and imports its values from
@@ -159,7 +173,7 @@ class HudsonMasterComputermonitorData {
     return null;
   }
 
-  static List<HudsonMasterComputermonitorData>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<HudsonMasterComputermonitorData> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <HudsonMasterComputermonitorData>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -190,12 +204,10 @@ class HudsonMasterComputermonitorData {
   static Map<String, List<HudsonMasterComputermonitorData>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<HudsonMasterComputermonitorData>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = HudsonMasterComputermonitorData.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = HudsonMasterComputermonitorData.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

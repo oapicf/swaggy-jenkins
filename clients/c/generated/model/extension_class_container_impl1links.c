@@ -83,7 +83,7 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_par
     // extension_class_container_impl1links->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1linksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_par
 
     extension_class_container_impl1links_local_var = extension_class_container_impl1links_create (
         self ? self_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return extension_class_container_impl1links_local_var;

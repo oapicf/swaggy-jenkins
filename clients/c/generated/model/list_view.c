@@ -129,7 +129,7 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
     // list_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -138,7 +138,7 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
     // list_view->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -168,7 +168,7 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
     // list_view->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -177,7 +177,7 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
     // list_view->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "url");
     if (url) { 
-    if(!cJSON_IsString(url))
+    if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
     goto end; //String
     }
@@ -185,11 +185,11 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
 
     list_view_local_var = list_view_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        description ? strdup(description->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
         jobs ? jobsList : NULL,
-        name ? strdup(name->valuestring) : NULL,
-        url ? strdup(url->valuestring) : NULL
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
+        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL
         );
 
     return list_view_local_var;

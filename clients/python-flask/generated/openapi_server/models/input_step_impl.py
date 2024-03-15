@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.input_step_impllinks import InputStepImpllinks
 from openapi_server.models.string_parameter_definition import StringParameterDefinition
 from openapi_server import util
@@ -77,7 +74,7 @@ class InputStepImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this InputStepImpl.
 
 
@@ -87,7 +84,7 @@ class InputStepImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this InputStepImpl.
 
 
@@ -98,7 +95,7 @@ class InputStepImpl(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> InputStepImpllinks:
         """Gets the links of this InputStepImpl.
 
 
@@ -108,7 +105,7 @@ class InputStepImpl(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: InputStepImpllinks):
         """Sets the links of this InputStepImpl.
 
 
@@ -119,7 +116,7 @@ class InputStepImpl(Model):
         self._links = links
 
     @property
-    def id(self):
+    def id(self) -> str:
         """Gets the id of this InputStepImpl.
 
 
@@ -129,7 +126,7 @@ class InputStepImpl(Model):
         return self._id
 
     @id.setter
-    def id(self, id):
+    def id(self, id: str):
         """Sets the id of this InputStepImpl.
 
 
@@ -140,7 +137,7 @@ class InputStepImpl(Model):
         self._id = id
 
     @property
-    def message(self):
+    def message(self) -> str:
         """Gets the message of this InputStepImpl.
 
 
@@ -150,7 +147,7 @@ class InputStepImpl(Model):
         return self._message
 
     @message.setter
-    def message(self, message):
+    def message(self, message: str):
         """Sets the message of this InputStepImpl.
 
 
@@ -161,7 +158,7 @@ class InputStepImpl(Model):
         self._message = message
 
     @property
-    def ok(self):
+    def ok(self) -> str:
         """Gets the ok of this InputStepImpl.
 
 
@@ -171,7 +168,7 @@ class InputStepImpl(Model):
         return self._ok
 
     @ok.setter
-    def ok(self, ok):
+    def ok(self, ok: str):
         """Sets the ok of this InputStepImpl.
 
 
@@ -182,7 +179,7 @@ class InputStepImpl(Model):
         self._ok = ok
 
     @property
-    def parameters(self):
+    def parameters(self) -> List[StringParameterDefinition]:
         """Gets the parameters of this InputStepImpl.
 
 
@@ -192,7 +189,7 @@ class InputStepImpl(Model):
         return self._parameters
 
     @parameters.setter
-    def parameters(self, parameters):
+    def parameters(self, parameters: List[StringParameterDefinition]):
         """Sets the parameters of this InputStepImpl.
 
 
@@ -203,7 +200,7 @@ class InputStepImpl(Model):
         self._parameters = parameters
 
     @property
-    def submitter(self):
+    def submitter(self) -> str:
         """Gets the submitter of this InputStepImpl.
 
 
@@ -213,7 +210,7 @@ class InputStepImpl(Model):
         return self._submitter
 
     @submitter.setter
-    def submitter(self, submitter):
+    def submitter(self, submitter: str):
         """Sets the submitter of this InputStepImpl.
 
 

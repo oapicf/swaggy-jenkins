@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.vertxweb.server.model.CauseUserIdCause;
 
@@ -11,7 +12,7 @@ import org.openapitools.vertxweb.server.model.CauseUserIdCause;
 public class CauseAction   {
   
   private String propertyClass;
-  private List<CauseUserIdCause> causes = new ArrayList<>();
+  private List<CauseUserIdCause> causes;
 
   public CauseAction () {
 

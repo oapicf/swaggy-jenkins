@@ -69,7 +69,7 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
     // link->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(linkJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
     // link->href
     cJSON *href = cJSON_GetObjectItemCaseSensitive(linkJSON, "href");
     if (href) { 
-    if(!cJSON_IsString(href))
+    if(!cJSON_IsString(href) && !cJSON_IsNull(href))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
 
 
     link_local_var = link_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        href ? strdup(href->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        href && !cJSON_IsNull(href) ? strdup(href->valuestring) : NULL
         );
 
     return link_local_var;

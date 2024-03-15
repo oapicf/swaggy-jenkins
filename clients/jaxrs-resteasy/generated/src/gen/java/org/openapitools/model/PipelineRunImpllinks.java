@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.Link;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineRunImpllinks   {
   
   private Link nodes;
@@ -25,6 +27,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("nodes")
+  @Valid
   public Link getNodes() {
     return nodes;
   }
@@ -37,6 +40,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("log")
+  @Valid
   public Link getLog() {
     return log;
   }
@@ -49,6 +53,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
+  @Valid
   public Link getSelf() {
     return self;
   }
@@ -61,6 +66,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
+  @Valid
   public Link getActions() {
     return actions;
   }
@@ -73,6 +79,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("steps")
+  @Valid
   public Link getSteps() {
     return steps;
   }
@@ -102,12 +109,12 @@ public class PipelineRunImpllinks   {
       return false;
     }
     PipelineRunImpllinks pipelineRunImpllinks = (PipelineRunImpllinks) o;
-    return Objects.equals(nodes, pipelineRunImpllinks.nodes) &&
-        Objects.equals(log, pipelineRunImpllinks.log) &&
-        Objects.equals(self, pipelineRunImpllinks.self) &&
-        Objects.equals(actions, pipelineRunImpllinks.actions) &&
-        Objects.equals(steps, pipelineRunImpllinks.steps) &&
-        Objects.equals(propertyClass, pipelineRunImpllinks.propertyClass);
+    return Objects.equals(this.nodes, pipelineRunImpllinks.nodes) &&
+        Objects.equals(this.log, pipelineRunImpllinks.log) &&
+        Objects.equals(this.self, pipelineRunImpllinks.self) &&
+        Objects.equals(this.actions, pipelineRunImpllinks.actions) &&
+        Objects.equals(this.steps, pipelineRunImpllinks.steps) &&
+        Objects.equals(this.propertyClass, pipelineRunImpllinks.propertyClass);
   }
 
   @Override

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -56,11 +56,11 @@ class ComputerSet {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ComputerSet &&
-     other.class_ == class_ &&
-     other.busyExecutors == busyExecutors &&
-     other.computer == computer &&
-     other.displayName == displayName &&
-     other.totalExecutors == totalExecutors;
+    other.class_ == class_ &&
+    other.busyExecutors == busyExecutors &&
+    _deepEquality.equals(other.computer, computer) &&
+    other.displayName == displayName &&
+    other.totalExecutors == totalExecutors;
 
   @override
   int get hashCode =>
@@ -75,21 +75,29 @@ class ComputerSet {
   String toString() => 'ComputerSet[class_=$class_, busyExecutors=$busyExecutors, computer=$computer, displayName=$displayName, totalExecutors=$totalExecutors]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (busyExecutors != null) {
-      _json[r'busyExecutors'] = busyExecutors;
+    if (this.busyExecutors != null) {
+      json[r'busyExecutors'] = this.busyExecutors;
+    } else {
+      json[r'busyExecutors'] = null;
     }
-      _json[r'computer'] = computer;
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+      json[r'computer'] = this.computer;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (totalExecutors != null) {
-      _json[r'totalExecutors'] = totalExecutors;
+    if (this.totalExecutors != null) {
+      json[r'totalExecutors'] = this.totalExecutors;
+    } else {
+      json[r'totalExecutors'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [ComputerSet] instance and imports its values from
@@ -113,7 +121,7 @@ class ComputerSet {
       return ComputerSet(
         class_: mapValueOfType<String>(json, r'_class'),
         busyExecutors: mapValueOfType<int>(json, r'busyExecutors'),
-        computer: HudsonMasterComputer.listFromJson(json[r'computer']) ?? const [],
+        computer: HudsonMasterComputer.listFromJson(json[r'computer']),
         displayName: mapValueOfType<String>(json, r'displayName'),
         totalExecutors: mapValueOfType<int>(json, r'totalExecutors'),
       );
@@ -121,7 +129,7 @@ class ComputerSet {
     return null;
   }
 
-  static List<ComputerSet>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<ComputerSet> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <ComputerSet>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -152,12 +160,10 @@ class ComputerSet {
   static Map<String, List<ComputerSet>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<ComputerSet>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = ComputerSet.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = ComputerSet.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

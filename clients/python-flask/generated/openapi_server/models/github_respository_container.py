@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.github_repositories import GithubRepositories
 from openapi_server.models.github_respository_containerlinks import GithubRespositoryContainerlinks
 from openapi_server import util
@@ -57,7 +54,7 @@ class GithubRespositoryContainer(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this GithubRespositoryContainer.
 
 
@@ -67,7 +64,7 @@ class GithubRespositoryContainer(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this GithubRespositoryContainer.
 
 
@@ -78,7 +75,7 @@ class GithubRespositoryContainer(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> GithubRespositoryContainerlinks:
         """Gets the links of this GithubRespositoryContainer.
 
 
@@ -88,7 +85,7 @@ class GithubRespositoryContainer(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: GithubRespositoryContainerlinks):
         """Sets the links of this GithubRespositoryContainer.
 
 
@@ -99,7 +96,7 @@ class GithubRespositoryContainer(Model):
         self._links = links
 
     @property
-    def repositories(self):
+    def repositories(self) -> GithubRepositories:
         """Gets the repositories of this GithubRespositoryContainer.
 
 
@@ -109,7 +106,7 @@ class GithubRespositoryContainer(Model):
         return self._repositories
 
     @repositories.setter
-    def repositories(self, repositories):
+    def repositories(self, repositories: GithubRepositories):
         """Sets the repositories of this GithubRespositoryContainer.
 
 

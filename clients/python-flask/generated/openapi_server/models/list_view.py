@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.free_style_project import FreeStyleProject
 from openapi_server import util
 
@@ -65,7 +62,7 @@ class ListView(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this ListView.
 
 
@@ -75,7 +72,7 @@ class ListView(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this ListView.
 
 
@@ -86,7 +83,7 @@ class ListView(Model):
         self.__class = _class
 
     @property
-    def description(self):
+    def description(self) -> str:
         """Gets the description of this ListView.
 
 
@@ -96,7 +93,7 @@ class ListView(Model):
         return self._description
 
     @description.setter
-    def description(self, description):
+    def description(self, description: str):
         """Sets the description of this ListView.
 
 
@@ -107,7 +104,7 @@ class ListView(Model):
         self._description = description
 
     @property
-    def jobs(self):
+    def jobs(self) -> List[FreeStyleProject]:
         """Gets the jobs of this ListView.
 
 
@@ -117,7 +114,7 @@ class ListView(Model):
         return self._jobs
 
     @jobs.setter
-    def jobs(self, jobs):
+    def jobs(self, jobs: List[FreeStyleProject]):
         """Sets the jobs of this ListView.
 
 
@@ -128,7 +125,7 @@ class ListView(Model):
         self._jobs = jobs
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this ListView.
 
 
@@ -138,7 +135,7 @@ class ListView(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this ListView.
 
 
@@ -149,7 +146,7 @@ class ListView(Model):
         self._name = name
 
     @property
-    def url(self):
+    def url(self) -> str:
         """Gets the url of this ListView.
 
 
@@ -159,7 +156,7 @@ class ListView(Model):
         return self._url
 
     @url.setter
-    def url(self, url):
+    def url(self, url: str):
         """Sets the url of this ListView.
 
 

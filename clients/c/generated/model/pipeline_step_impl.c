@@ -179,7 +179,7 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     // pipeline_step_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -194,7 +194,7 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     // pipeline_step_impl->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -212,7 +212,7 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     // pipeline_step_impl->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -227,7 +227,7 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     // pipeline_step_impl->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "result");
     if (result) { 
-    if(!cJSON_IsString(result))
+    if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
     goto end; //String
     }
@@ -236,7 +236,7 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     // pipeline_step_impl->start_time
     cJSON *start_time = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "startTime");
     if (start_time) { 
-    if(!cJSON_IsString(start_time))
+    if(!cJSON_IsString(start_time) && !cJSON_IsNull(start_time))
     {
     goto end; //String
     }
@@ -245,7 +245,7 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     // pipeline_step_impl->state
     cJSON *state = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "state");
     if (state) { 
-    if(!cJSON_IsString(state))
+    if(!cJSON_IsString(state) && !cJSON_IsNull(state))
     {
     goto end; //String
     }
@@ -253,15 +253,15 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
 
 
     pipeline_step_impl_local_var = pipeline_step_impl_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         duration_in_millis ? duration_in_millis->valuedouble : 0,
-        id ? strdup(id->valuestring) : NULL,
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
         input ? input_local_nonprim : NULL,
-        result ? strdup(result->valuestring) : NULL,
-        start_time ? strdup(start_time->valuestring) : NULL,
-        state ? strdup(state->valuestring) : NULL
+        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
+        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL,
+        state && !cJSON_IsNull(state) ? strdup(state->valuestring) : NULL
         );
 
     return pipeline_step_impl_local_var;

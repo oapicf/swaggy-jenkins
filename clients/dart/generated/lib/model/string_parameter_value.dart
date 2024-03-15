@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -44,9 +44,9 @@ class StringParameterValue {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is StringParameterValue &&
-     other.class_ == class_ &&
-     other.name == name &&
-     other.value == value;
+    other.class_ == class_ &&
+    other.name == name &&
+    other.value == value;
 
   @override
   int get hashCode =>
@@ -59,17 +59,23 @@ class StringParameterValue {
   String toString() => 'StringParameterValue[class_=$class_, name=$name, value=$value]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (value != null) {
-      _json[r'value'] = value;
+    if (this.value != null) {
+      json[r'value'] = this.value;
+    } else {
+      json[r'value'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [StringParameterValue] instance and imports its values from
@@ -99,7 +105,7 @@ class StringParameterValue {
     return null;
   }
 
-  static List<StringParameterValue>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<StringParameterValue> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <StringParameterValue>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -130,12 +136,10 @@ class StringParameterValue {
   static Map<String, List<StringParameterValue>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<StringParameterValue>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = StringParameterValue.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = StringParameterValue.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

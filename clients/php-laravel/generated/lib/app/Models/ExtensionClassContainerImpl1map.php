@@ -10,12 +10,12 @@ namespace app\Models;
 class ExtensionClassContainerImpl1map {
 
     /** @var \app\Models\ExtensionClassImpl $ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl */
-    private $ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
+    public $ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
 
     /** @var \app\Models\ExtensionClassImpl $ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl */
-    private $ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
+    public $ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

@@ -3,8 +3,8 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 1.5.1-pre.0
- * Maintained by: blah@cliffano.com
+ * OpenAPI document version: 2.0.1-pre.0
+ * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
  */
@@ -23,7 +23,7 @@ public interface PathHandlerInterface {
      *
      * <p><b>Endpoint</b>: {@link Methods#GET GET} "/crumbIssuer/api/json" (<i>privileged: true</i>)</p>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link DefaultCrumbIssuer}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -101,7 +101,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link User}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -132,7 +132,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -163,7 +163,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -203,7 +203,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -234,7 +234,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link Organisation}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -253,7 +253,7 @@ public interface PathHandlerInterface {
      *
      * <p><b>Endpoint</b>: {@link Methods#GET GET} "/blue/rest/organizations/" (<i>privileged: true</i>)</p>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link Organisation}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -293,7 +293,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link Pipeline}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -334,7 +334,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link PipelineActivity}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -383,7 +383,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link BranchImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -441,7 +441,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineRun}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -481,7 +481,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link MultibranchPipeline}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -521,7 +521,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineFolderImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -570,7 +570,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -610,7 +610,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link QueueItemImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -659,7 +659,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineRun}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -726,7 +726,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -784,7 +784,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineRunNode}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -851,7 +851,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineStepImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -918,7 +918,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -976,7 +976,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link PipelineStepImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1025,7 +1025,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link PipelineRunNode}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1065,7 +1065,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link PipelineRun}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1096,7 +1096,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link Pipeline}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1136,7 +1136,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link GithubScm}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1212,7 +1212,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link GithubOrganization}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1279,7 +1279,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link GithubOrganization}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1328,7 +1328,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link GithubOrganization}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1368,7 +1368,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link User}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1399,7 +1399,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link java.util.List List} of {@link FavoriteImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1430,7 +1430,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link User}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1479,7 +1479,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link QueueItemImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1519,7 +1519,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link QueueItemImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1559,10 +1559,10 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Payload</b>: {@link Boolean} (<i>required: true</i>)</p>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link FavoriteImpl}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1629,7 +1629,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link PipelineRun}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1660,7 +1660,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1691,7 +1691,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link String}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1722,7 +1722,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link ComputerSet}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1740,7 +1740,7 @@ public interface PathHandlerInterface {
      *
      * <p><b>Endpoint</b>: {@link Methods#GET GET} "/api/json" (<i>privileged: true</i>)</p>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link Hudson}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1771,7 +1771,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link FreeStyleProject}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1835,7 +1835,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link FreeStyleBuild}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1902,7 +1902,7 @@ public interface PathHandlerInterface {
      *
      * <p><b>Endpoint</b>: {@link Methods#GET GET} "/queue/api/json" (<i>privileged: true</i>)</p>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link Queue}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1933,7 +1933,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link Queue}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -1964,7 +1964,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Produces</b>: [{mediaType=application/json}]</p>
+     * <p><b>Produces</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Returns</b>: {@link ListView}</p>
      *
      * <p><b>Responses</b>:</p>
@@ -2014,9 +2014,9 @@ public interface PathHandlerInterface {
      * <p>Retrieve Jenkins headers</p>
      *
      * <p><b>Endpoint</b>: {@link Methods#HEAD HEAD} "/api/json" (<i>privileged: true</i>)</p>
-     * <p><b>Response headers</b>: [CodegenProperty{openApiType='string', baseName='x-jenkins', complexType='null', getter='getxJenkins', setter='setxJenkins', description='Jenkins version number', dataType='String', datatypeWithEnum='String', dataFormat='null', name='xJenkins', min='null', max='null', defaultValue='null', defaultValueWithParam=' = data.x-jenkins;', baseType='String', containerType='null', title='null', unescapedDescription='Jenkins version number', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
+     * <p><b>Response headers</b>: [CodegenProperty{openApiType='string', baseName='x-jenkins', complexType='null', getter='getxJenkins', setter='setxJenkins', description='Jenkins version number', dataType='String', datatypeWithEnum='String', dataFormat='null', name='xJenkins', min='null', max='null', defaultValue='null', defaultValueWithParam=' = data.x-jenkins;', baseType='String', containerType='null', containerTypeMapped='null', title='null', unescapedDescription='Jenkins version number', maxLength=null, minLength=null, pattern='null', example='null', jsonSchema='{
   "type" : "string"
-}', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=true, isModel=false, isContainer=false, isString=true, isNumeric=false, isInteger=false, isShort=false, isLong=false, isUnboundedInteger=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isAnyType=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='XJenkins', nameInSnakeCase='X_JENKINS', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false, getHasDiscriminatorWithNonEmptyMapping=false, composedSchemas=null, hasMultipleTypes=false}]</p>
+}', minimum='null', maximum='null', exclusiveMinimum=false, exclusiveMaximum=false, required=false, deprecated=false, hasMoreNonReadOnly=false, isPrimitiveType=true, isModel=false, isContainer=false, isString=true, isNumeric=false, isInteger=false, isShort=false, isLong=false, isUnboundedInteger=false, isNumber=false, isFloat=false, isDouble=false, isDecimal=false, isByteArray=false, isBinary=false, isFile=false, isBoolean=false, isDate=false, isDateTime=false, isUuid=false, isUri=false, isEmail=false, isPassword=false, isFreeFormObject=false, isArray=false, isMap=false, isEnum=false, isInnerEnum=false, isEnumRef=false, isAnyType=false, isReadOnly=false, isWriteOnly=false, isNullable=false, isSelfReference=false, isCircularReference=false, isDiscriminator=false, isNew=false, isOverridden=null, _enum=null, allowableValues=null, items=null, additionalProperties=null, vars=[], requiredVars=[], mostInnerItems=null, vendorExtensions={}, hasValidation=false, isInherited=false, discriminatorValue='null', nameInCamelCase='XJenkins', nameInSnakeCase='X_JENKINS', enumName='null', maxItems=null, minItems=null, maxProperties=null, minProperties=null, uniqueItems=false, uniqueItemsBoolean=null, multipleOf=null, isXmlAttribute=false, xmlPrefix='null', xmlName='null', xmlNamespace='null', isXmlWrapped=false, isNull=false, isVoid=false, getAdditionalPropertiesIsAnyType=false, getHasVars=false, getHasRequired=false, getHasDiscriminatorWithNonEmptyMapping=false, composedSchemas=null, hasMultipleTypes=false, requiredVarsMap=null, ref=null, schemaIsFromAdditionalProperties=false, isBooleanSchemaTrue=false, isBooleanSchemaFalse=false, format=null, dependentRequired=null, contains=null}]</p>
      *
      *
      * <p><b>Responses</b>:</p>
@@ -2083,7 +2083,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: false</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>
@@ -2135,7 +2135,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: false</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>
@@ -2234,7 +2234,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: true</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>
@@ -2434,7 +2434,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: true</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>

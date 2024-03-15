@@ -10,12 +10,12 @@ namespace app\Models;
 class GithubOrganizationlinks {
 
     /** @var \app\Models\Link $repositories */
-    private $repositories;
+    public $repositories;
 
     /** @var \app\Models\Link $self */
-    private $self;
+    public $self;
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

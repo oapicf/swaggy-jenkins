@@ -24,7 +24,7 @@ import org.openapitools.server.api.model.ListView
 import org.openapitools.server.api.model.Queue
 
 class RemoteAccessApiVertxProxyHandler(private val vertx: Vertx, private val service: RemoteAccessApi, topLevel: Boolean, private val timeoutSeconds: Long) : ProxyHandler() {
-    private val timerID: Long
+    private lateinit var timerID: Long
     private var lastAccessed: Long = 0
     init {
         try {

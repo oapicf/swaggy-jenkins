@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server import util
 
@@ -70,7 +67,7 @@ class HudsonMasterComputerexecutors(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def current_executable(self):
+    def current_executable(self) -> FreeStyleBuild:
         """Gets the current_executable of this HudsonMasterComputerexecutors.
 
 
@@ -80,7 +77,7 @@ class HudsonMasterComputerexecutors(Model):
         return self._current_executable
 
     @current_executable.setter
-    def current_executable(self, current_executable):
+    def current_executable(self, current_executable: FreeStyleBuild):
         """Sets the current_executable of this HudsonMasterComputerexecutors.
 
 
@@ -91,7 +88,7 @@ class HudsonMasterComputerexecutors(Model):
         self._current_executable = current_executable
 
     @property
-    def idle(self):
+    def idle(self) -> bool:
         """Gets the idle of this HudsonMasterComputerexecutors.
 
 
@@ -101,7 +98,7 @@ class HudsonMasterComputerexecutors(Model):
         return self._idle
 
     @idle.setter
-    def idle(self, idle):
+    def idle(self, idle: bool):
         """Sets the idle of this HudsonMasterComputerexecutors.
 
 
@@ -112,7 +109,7 @@ class HudsonMasterComputerexecutors(Model):
         self._idle = idle
 
     @property
-    def likely_stuck(self):
+    def likely_stuck(self) -> bool:
         """Gets the likely_stuck of this HudsonMasterComputerexecutors.
 
 
@@ -122,7 +119,7 @@ class HudsonMasterComputerexecutors(Model):
         return self._likely_stuck
 
     @likely_stuck.setter
-    def likely_stuck(self, likely_stuck):
+    def likely_stuck(self, likely_stuck: bool):
         """Sets the likely_stuck of this HudsonMasterComputerexecutors.
 
 
@@ -133,7 +130,7 @@ class HudsonMasterComputerexecutors(Model):
         self._likely_stuck = likely_stuck
 
     @property
-    def number(self):
+    def number(self) -> int:
         """Gets the number of this HudsonMasterComputerexecutors.
 
 
@@ -143,7 +140,7 @@ class HudsonMasterComputerexecutors(Model):
         return self._number
 
     @number.setter
-    def number(self, number):
+    def number(self, number: int):
         """Sets the number of this HudsonMasterComputerexecutors.
 
 
@@ -154,7 +151,7 @@ class HudsonMasterComputerexecutors(Model):
         self._number = number
 
     @property
-    def progress(self):
+    def progress(self) -> int:
         """Gets the progress of this HudsonMasterComputerexecutors.
 
 
@@ -164,7 +161,7 @@ class HudsonMasterComputerexecutors(Model):
         return self._progress
 
     @progress.setter
-    def progress(self, progress):
+    def progress(self, progress: int):
         """Sets the progress of this HudsonMasterComputerexecutors.
 
 
@@ -175,7 +172,7 @@ class HudsonMasterComputerexecutors(Model):
         self._progress = progress
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this HudsonMasterComputerexecutors.
 
 
@@ -185,7 +182,7 @@ class HudsonMasterComputerexecutors(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this HudsonMasterComputerexecutors.
 
 

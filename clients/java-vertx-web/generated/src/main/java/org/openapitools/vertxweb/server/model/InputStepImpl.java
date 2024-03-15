@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.vertxweb.server.model.InputStepImpllinks;
 import org.openapitools.vertxweb.server.model.StringParameterDefinition;
@@ -16,7 +17,7 @@ public class InputStepImpl   {
   private String id;
   private String message;
   private String ok;
-  private List<StringParameterDefinition> parameters = new ArrayList<>();
+  private List<StringParameterDefinition> parameters;
   private String submitter;
 
   public InputStepImpl () {

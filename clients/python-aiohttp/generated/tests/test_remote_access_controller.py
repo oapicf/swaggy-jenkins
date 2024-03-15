@@ -12,6 +12,8 @@ from openapi_server.models.list_view import ListView
 from openapi_server.models.queue import Queue
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_computer(client):
     """Test case for get_computer
 
@@ -31,6 +33,8 @@ async def test_get_computer(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_jenkins(client):
     """Test case for get_jenkins
 
@@ -47,6 +51,8 @@ async def test_get_jenkins(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_job(client):
     """Test case for get_job
@@ -65,6 +71,8 @@ async def test_get_job(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_job_config(client):
     """Test case for get_job_config
 
@@ -82,6 +90,8 @@ async def test_get_job_config(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_job_last_build(client):
     """Test case for get_job_last_build
 
@@ -98,6 +108,8 @@ async def test_get_job_last_build(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_job_progressive_text(client):
     """Test case for get_job_progressive_text
@@ -117,6 +129,8 @@ async def test_get_job_progressive_text(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_queue(client):
     """Test case for get_queue
 
@@ -133,6 +147,8 @@ async def test_get_queue(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_queue_item(client):
     """Test case for get_queue_item
@@ -151,6 +167,8 @@ async def test_get_queue_item(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_get_view(client):
     """Test case for get_view
 
@@ -167,6 +185,8 @@ async def test_get_view(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_get_view_config(client):
     """Test case for get_view_config
@@ -185,6 +205,8 @@ async def test_get_view_config(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_head_jenkins(client):
     """Test case for head_jenkins
 
@@ -200,6 +222,8 @@ async def test_head_jenkins(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_post_create_item(client):
     """Test case for post_create_item
@@ -227,6 +251,8 @@ async def test_post_create_item(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_post_create_view(client):
     """Test case for post_create_view
 
@@ -251,12 +277,14 @@ async def test_post_create_view(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_post_job_build(client):
     """Test case for post_job_build
 
     
     """
-    params = [('json', 'json_example'),
+    params = [('json', '_json_example'),
                     ('token', 'token_example')]
     headers = { 
         'jenkins_crumb': 'jenkins_crumb_example',
@@ -270,6 +298,8 @@ async def test_post_job_build(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_post_job_config(client):
     """Test case for post_job_config
@@ -292,6 +322,8 @@ async def test_post_job_config(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_post_job_delete(client):
     """Test case for post_job_delete
 
@@ -308,6 +340,8 @@ async def test_post_job_delete(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_post_job_disable(client):
     """Test case for post_job_disable
@@ -326,6 +360,8 @@ async def test_post_job_disable(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_post_job_enable(client):
     """Test case for post_job_enable
 
@@ -343,6 +379,8 @@ async def test_post_job_enable(client):
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
 
+pytestmark = pytest.mark.asyncio
+
 async def test_post_job_last_build_stop(client):
     """Test case for post_job_last_build_stop
 
@@ -359,6 +397,8 @@ async def test_post_job_last_build_stop(client):
         )
     assert response.status == 200, 'Response body is : ' + (await response.read()).decode('utf-8')
 
+
+pytestmark = pytest.mark.asyncio
 
 async def test_post_view_config(client):
     """Test case for post_view_config

@@ -18,22 +18,17 @@ import javax.annotation.Generated;
  * QueueItemImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class QueueItemImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("expectedBuildNumber")
   private Integer expectedBuildNumber;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("pipeline")
   private String pipeline;
 
-  @JsonProperty("queuedTime")
   private Integer queuedTime;
 
   public QueueItemImpl propertyClass(String propertyClass) {
@@ -46,7 +41,8 @@ public class QueueItemImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -65,7 +61,8 @@ public class QueueItemImpl {
    * @return expectedBuildNumber
   */
   
-  @Schema(name = "expectedBuildNumber", required = false)
+  @Schema(name = "expectedBuildNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("expectedBuildNumber")
   public Integer getExpectedBuildNumber() {
     return expectedBuildNumber;
   }
@@ -84,7 +81,8 @@ public class QueueItemImpl {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -103,7 +101,8 @@ public class QueueItemImpl {
    * @return pipeline
   */
   
-  @Schema(name = "pipeline", required = false)
+  @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("pipeline")
   public String getPipeline() {
     return pipeline;
   }
@@ -122,7 +121,8 @@ public class QueueItemImpl {
    * @return queuedTime
   */
   
-  @Schema(name = "queuedTime", required = false)
+  @Schema(name = "queuedTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("queuedTime")
   public Integer getQueuedTime() {
     return queuedTime;
   }

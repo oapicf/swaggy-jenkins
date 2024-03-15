@@ -1,11 +1,10 @@
-
 # Org.OpenAPITools.Model.PipelineImpl
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Class** | **string** |  | [optional] 
+**VarClass** | **string** |  | [optional] 
 **DisplayName** | **string** |  | [optional] 
 **EstimatedDurationInMillis** | **int** |  | [optional] 
 **FullName** | **string** |  | [optional] 
@@ -15,7 +14,5 @@ Name | Type | Description | Notes
 **WeatherScore** | **int** |  | [optional] 
 **Links** | [**PipelineImpllinks**](PipelineImpllinks.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

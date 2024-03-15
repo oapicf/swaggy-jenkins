@@ -19,22 +19,17 @@ import javax.annotation.Generated;
  * StringParameterDefinition
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class StringParameterDefinition {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("defaultParameterValue")
   private StringParameterValue defaultParameterValue;
 
-  @JsonProperty("description")
   private String description;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("type")
   private String type;
 
   public StringParameterDefinition propertyClass(String propertyClass) {
@@ -47,7 +42,8 @@ public class StringParameterDefinition {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -66,7 +62,8 @@ public class StringParameterDefinition {
    * @return defaultParameterValue
   */
   @Valid 
-  @Schema(name = "defaultParameterValue", required = false)
+  @Schema(name = "defaultParameterValue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("defaultParameterValue")
   public StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
   }
@@ -85,7 +82,8 @@ public class StringParameterDefinition {
    * @return description
   */
   
-  @Schema(name = "description", required = false)
+  @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("description")
   public String getDescription() {
     return description;
   }
@@ -104,7 +102,8 @@ public class StringParameterDefinition {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -123,7 +122,8 @@ public class StringParameterDefinition {
    * @return type
   */
   
-  @Schema(name = "type", required = false)
+  @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("type")
   public String getType() {
     return type;
   }

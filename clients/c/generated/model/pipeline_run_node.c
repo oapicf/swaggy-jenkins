@@ -167,7 +167,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     // pipeline_run_node->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -176,7 +176,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     // pipeline_run_node->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "displayName");
     if (display_name) { 
-    if(!cJSON_IsString(display_name))
+    if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
     goto end; //String
     }
@@ -215,7 +215,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     // pipeline_run_node->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "id");
     if (id) { 
-    if(!cJSON_IsString(id))
+    if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
     goto end; //String
     }
@@ -224,7 +224,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     // pipeline_run_node->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "result");
     if (result) { 
-    if(!cJSON_IsString(result))
+    if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
     goto end; //String
     }
@@ -233,7 +233,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     // pipeline_run_node->start_time
     cJSON *start_time = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "startTime");
     if (start_time) { 
-    if(!cJSON_IsString(start_time))
+    if(!cJSON_IsString(start_time) && !cJSON_IsNull(start_time))
     {
     goto end; //String
     }
@@ -242,7 +242,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     // pipeline_run_node->state
     cJSON *state = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "state");
     if (state) { 
-    if(!cJSON_IsString(state))
+    if(!cJSON_IsString(state) && !cJSON_IsNull(state))
     {
     goto end; //String
     }
@@ -250,14 +250,14 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
 
     pipeline_run_node_local_var = pipeline_run_node_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        display_name ? strdup(display_name->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         duration_in_millis ? duration_in_millis->valuedouble : 0,
         edges ? edgesList : NULL,
-        id ? strdup(id->valuestring) : NULL,
-        result ? strdup(result->valuestring) : NULL,
-        start_time ? strdup(start_time->valuestring) : NULL,
-        state ? strdup(state->valuestring) : NULL
+        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
+        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL,
+        state && !cJSON_IsNull(state) ? strdup(state->valuestring) : NULL
         );
 
     return pipeline_run_node_local_var;

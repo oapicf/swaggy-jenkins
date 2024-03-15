@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -16,10 +18,9 @@ import java.util.Objects;
 
 public class ClassesByClass   {
   
-  private List<String> classes = null;
+  private List<String> classes;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -75,8 +76,8 @@ public class ClassesByClass   {
       return false;
     }
     ClassesByClass classesByClass = (ClassesByClass) o;
-    return Objects.equals(classes, classesByClass.classes) &&
-        Objects.equals(propertyClass, classesByClass.propertyClass);
+    return Objects.equals(this.classes, classesByClass.classes) &&
+        Objects.equals(this.propertyClass, classesByClass.propertyClass);
   }
 
   @Override

@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -89,14 +89,14 @@ class Pipeline {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Pipeline &&
-     other.class_ == class_ &&
-     other.organization == organization &&
-     other.name == name &&
-     other.displayName == displayName &&
-     other.fullName == fullName &&
-     other.weatherScore == weatherScore &&
-     other.estimatedDurationInMillis == estimatedDurationInMillis &&
-     other.latestRun == latestRun;
+    other.class_ == class_ &&
+    other.organization == organization &&
+    other.name == name &&
+    other.displayName == displayName &&
+    other.fullName == fullName &&
+    other.weatherScore == weatherScore &&
+    other.estimatedDurationInMillis == estimatedDurationInMillis &&
+    other.latestRun == latestRun;
 
   @override
   int get hashCode =>
@@ -114,32 +114,48 @@ class Pipeline {
   String toString() => 'Pipeline[class_=$class_, organization=$organization, name=$name, displayName=$displayName, fullName=$fullName, weatherScore=$weatherScore, estimatedDurationInMillis=$estimatedDurationInMillis, latestRun=$latestRun]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (organization != null) {
-      _json[r'organization'] = organization;
+    if (this.organization != null) {
+      json[r'organization'] = this.organization;
+    } else {
+      json[r'organization'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (displayName != null) {
-      _json[r'displayName'] = displayName;
+    if (this.displayName != null) {
+      json[r'displayName'] = this.displayName;
+    } else {
+      json[r'displayName'] = null;
     }
-    if (fullName != null) {
-      _json[r'fullName'] = fullName;
+    if (this.fullName != null) {
+      json[r'fullName'] = this.fullName;
+    } else {
+      json[r'fullName'] = null;
     }
-    if (weatherScore != null) {
-      _json[r'weatherScore'] = weatherScore;
+    if (this.weatherScore != null) {
+      json[r'weatherScore'] = this.weatherScore;
+    } else {
+      json[r'weatherScore'] = null;
     }
-    if (estimatedDurationInMillis != null) {
-      _json[r'estimatedDurationInMillis'] = estimatedDurationInMillis;
+    if (this.estimatedDurationInMillis != null) {
+      json[r'estimatedDurationInMillis'] = this.estimatedDurationInMillis;
+    } else {
+      json[r'estimatedDurationInMillis'] = null;
     }
-    if (latestRun != null) {
-      _json[r'latestRun'] = latestRun;
+    if (this.latestRun != null) {
+      json[r'latestRun'] = this.latestRun;
+    } else {
+      json[r'latestRun'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [Pipeline] instance and imports its values from
@@ -174,7 +190,7 @@ class Pipeline {
     return null;
   }
 
-  static List<Pipeline>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<Pipeline> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <Pipeline>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -205,12 +221,10 @@ class Pipeline {
   static Map<String, List<Pipeline>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<Pipeline>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = Pipeline.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = Pipeline.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

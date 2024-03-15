@@ -8,9 +8,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.PipelinelatestRun;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Pipeline   {
   
   private String propertyClass;
@@ -111,6 +113,7 @@ public class Pipeline   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
+  @Valid
   public PipelinelatestRun getLatestRun() {
     return latestRun;
   }
@@ -128,14 +131,14 @@ public class Pipeline   {
       return false;
     }
     Pipeline pipeline = (Pipeline) o;
-    return Objects.equals(propertyClass, pipeline.propertyClass) &&
-        Objects.equals(organization, pipeline.organization) &&
-        Objects.equals(name, pipeline.name) &&
-        Objects.equals(displayName, pipeline.displayName) &&
-        Objects.equals(fullName, pipeline.fullName) &&
-        Objects.equals(weatherScore, pipeline.weatherScore) &&
-        Objects.equals(estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
-        Objects.equals(latestRun, pipeline.latestRun);
+    return Objects.equals(this.propertyClass, pipeline.propertyClass) &&
+        Objects.equals(this.organization, pipeline.organization) &&
+        Objects.equals(this.name, pipeline.name) &&
+        Objects.equals(this.displayName, pipeline.displayName) &&
+        Objects.equals(this.fullName, pipeline.fullName) &&
+        Objects.equals(this.weatherScore, pipeline.weatherScore) &&
+        Objects.equals(this.estimatedDurationInMillis, pipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, pipeline.latestRun);
   }
 
   @Override

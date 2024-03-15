@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.BranchImpllinks;
 import org.openapitools.model.BranchImplpermissions;
@@ -39,7 +40,7 @@ public class BranchImpl  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<StringParameterDefinition> parameters = null;
+  private List<@Valid StringParameterDefinition> parameters;
 
   @ApiModelProperty(value = "")
   @Valid
@@ -231,21 +232,21 @@ public class BranchImpl  {
   * @return parameters
   */
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
   /**
    * Sets the <code>parameters</code> property.
    */
- public void setParameters(List<StringParameterDefinition> parameters) {
+ public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
 
   /**
    * Sets the <code>parameters</code> property.
    */
-  public BranchImpl parameters(List<StringParameterDefinition> parameters) {
+  public BranchImpl parameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -378,6 +379,35 @@ public class BranchImpl  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    BranchImpl branchImpl = (BranchImpl) o;
+    return Objects.equals(this.propertyClass, branchImpl.propertyClass) &&
+        Objects.equals(this.displayName, branchImpl.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, branchImpl.estimatedDurationInMillis) &&
+        Objects.equals(this.fullDisplayName, branchImpl.fullDisplayName) &&
+        Objects.equals(this.fullName, branchImpl.fullName) &&
+        Objects.equals(this.name, branchImpl.name) &&
+        Objects.equals(this.organization, branchImpl.organization) &&
+        Objects.equals(this.parameters, branchImpl.parameters) &&
+        Objects.equals(this.permissions, branchImpl.permissions) &&
+        Objects.equals(this.weatherScore, branchImpl.weatherScore) &&
+        Objects.equals(this.pullRequest, branchImpl.pullRequest) &&
+        Objects.equals(this.links, branchImpl.links) &&
+        Objects.equals(this.latestRun, branchImpl.latestRun);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, displayName, estimatedDurationInMillis, fullDisplayName, fullName, name, organization, parameters, permissions, weatherScore, pullRequest, links, latestRun);
+  }
 
   @Override
   public String toString() {

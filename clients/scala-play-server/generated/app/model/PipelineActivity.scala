@@ -4,9 +4,8 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for PipelineActivity.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class PipelineActivity(
   `class`: Option[String],
   artifacts: Option[List[PipelineActivityartifacts]],
@@ -23,33 +22,9 @@ case class PipelineActivity(
   state: Option[String],
   `type`: Option[String],
   commitId: Option[String]
-  additionalProperties: 
 )
 
 object PipelineActivity {
-  implicit lazy val pipelineActivityJsonFormat: Format[PipelineActivity] = {
-    val realJsonFormat = Json.format[PipelineActivity]
-    val declaredPropNames = Set("`class`", "artifacts", "durationInMillis", "estimatedDurationInMillis", "enQueueTime", "endTime", "id", "organization", "pipeline", "result", "runSummary", "startTime", "state", "`type`", "commitId")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { pipelineActivity =>
-        val jsObj = realJsonFormat.writes(pipelineActivity)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val pipelineActivityJsonFormat: Format[PipelineActivity] = Json.format[PipelineActivity]
 }
 

@@ -13,7 +13,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 @Configuration
 public class SpringDocConfiguration {
 
-    @Bean
+    @Bean(name = "org.openapitools.configuration.SpringDocConfiguration.apiInfo")
     OpenAPI apiInfo() {
         return new OpenAPI()
                 .info(
@@ -22,11 +22,11 @@ public class SpringDocConfiguration {
                                 .description("Jenkins API clients generated from Swagger / Open API specification")
                                 .contact(
                                         new Contact()
-                                                .name("Cliffano Subagio")
-                                                .url("http://github.com/oapicf/swaggy-jenkins")
-                                                .email("blah@cliffano.com")
+                                                .name("OpenAPI Clients Factory")
+                                                .url("https://github.com/oapicf/swaggy-jenkins")
+                                                .email("blah+oapicf@cliffano.com")
                                 )
-                                .version("1.5.1-pre.0")
+                                .version("2.0.1-pre.0")
                 )
                 .components(
                         new Components()

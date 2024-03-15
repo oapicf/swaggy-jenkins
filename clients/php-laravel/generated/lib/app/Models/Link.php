@@ -10,9 +10,9 @@ namespace app\Models;
 class Link {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $href */
-    private $href;
+    public $href = "";
 
 }

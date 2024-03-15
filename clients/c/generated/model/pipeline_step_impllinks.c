@@ -111,7 +111,7 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_parseFromJSON(cJSON *pipeline
     // pipeline_step_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_step_impllinksJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -121,7 +121,7 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_parseFromJSON(cJSON *pipeline
     pipeline_step_impllinks_local_var = pipeline_step_impllinks_create (
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
-        _class ? strdup(_class->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 
     return pipeline_step_impllinks_local_var;

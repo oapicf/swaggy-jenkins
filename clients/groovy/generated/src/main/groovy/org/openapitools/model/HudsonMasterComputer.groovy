@@ -4,7 +4,7 @@ import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
 import org.openapitools.model.Label1;
@@ -16,7 +16,7 @@ class HudsonMasterComputer {
     
     String displayName
     
-    List<HudsonMasterComputerexecutors> executors = new ArrayList<>()
+    List<HudsonMasterComputerexecutors> executors
     
     String icon
     

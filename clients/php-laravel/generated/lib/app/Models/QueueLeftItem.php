@@ -10,42 +10,42 @@ namespace app\Models;
 class QueueLeftItem {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\CauseAction[] $actions */
-    private $actions;
+    public $actions = [];
 
     /** @var bool $blocked */
-    private $blocked;
+    public $blocked = false;
 
     /** @var bool $buildable */
-    private $buildable;
+    public $buildable = false;
 
     /** @var int $id */
-    private $id;
+    public $id = 0;
 
     /** @var int $inQueueSince */
-    private $inQueueSince;
+    public $inQueueSince = 0;
 
     /** @var string $params */
-    private $params;
+    public $params = "";
 
     /** @var bool $stuck */
-    private $stuck;
+    public $stuck = false;
 
     /** @var \app\Models\FreeStyleProject $task */
-    private $task;
+    public $task;
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
     /** @var string $why */
-    private $why;
+    public $why = "";
 
     /** @var bool $cancelled */
-    private $cancelled;
+    public $cancelled = false;
 
     /** @var \app\Models\FreeStyleBuild $executable */
-    private $executable;
+    public $executable;
 
 }

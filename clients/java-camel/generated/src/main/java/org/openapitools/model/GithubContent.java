@@ -18,31 +18,23 @@ import javax.annotation.Generated;
  * GithubContent
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GithubContent {
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("sha")
   private String sha;
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("repo")
   private String repo;
 
-  @JsonProperty("size")
   private Integer size;
 
-  @JsonProperty("owner")
   private String owner;
 
-  @JsonProperty("path")
   private String path;
 
-  @JsonProperty("base64Data")
   private String base64Data;
 
   public GithubContent name(String name) {
@@ -55,7 +47,8 @@ public class GithubContent {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -74,7 +67,8 @@ public class GithubContent {
    * @return sha
   */
   
-  @Schema(name = "sha", required = false)
+  @Schema(name = "sha", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("sha")
   public String getSha() {
     return sha;
   }
@@ -93,7 +87,8 @@ public class GithubContent {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -112,7 +107,8 @@ public class GithubContent {
    * @return repo
   */
   
-  @Schema(name = "repo", required = false)
+  @Schema(name = "repo", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("repo")
   public String getRepo() {
     return repo;
   }
@@ -131,7 +127,8 @@ public class GithubContent {
    * @return size
   */
   
-  @Schema(name = "size", required = false)
+  @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("size")
   public Integer getSize() {
     return size;
   }
@@ -150,7 +147,8 @@ public class GithubContent {
    * @return owner
   */
   
-  @Schema(name = "owner", required = false)
+  @Schema(name = "owner", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("owner")
   public String getOwner() {
     return owner;
   }
@@ -169,7 +167,8 @@ public class GithubContent {
    * @return path
   */
   
-  @Schema(name = "path", required = false)
+  @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("path")
   public String getPath() {
     return path;
   }
@@ -188,7 +187,8 @@ public class GithubContent {
    * @return base64Data
   */
   
-  @Schema(name = "base64Data", required = false)
+  @Schema(name = "base64Data", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("base64Data")
   public String getBase64Data() {
     return base64Data;
   }

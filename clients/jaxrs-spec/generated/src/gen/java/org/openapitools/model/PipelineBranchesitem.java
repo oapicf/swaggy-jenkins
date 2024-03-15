@@ -17,9 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineBranchesitem   {
-  
   private @Valid String displayName;
   private @Valid Integer estimatedDurationInMillis;
   private @Valid String name;
@@ -49,7 +48,7 @@ public class PipelineBranchesitem   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem estimatedDurationInMillis(Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
@@ -68,7 +67,7 @@ public class PipelineBranchesitem   {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem name(String name) {
     this.name = name;
@@ -87,7 +86,7 @@ public class PipelineBranchesitem   {
     this.name = name;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem weatherScore(Integer weatherScore) {
     this.weatherScore = weatherScore;
@@ -106,7 +105,7 @@ public class PipelineBranchesitem   {
     this.weatherScore = weatherScore;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem latestRun(PipelineBranchesitemlatestRun latestRun) {
     this.latestRun = latestRun;
@@ -125,7 +124,7 @@ public class PipelineBranchesitem   {
     this.latestRun = latestRun;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem organization(String organization) {
     this.organization = organization;
@@ -144,7 +143,7 @@ public class PipelineBranchesitem   {
     this.organization = organization;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem pullRequest(PipelineBranchesitempullRequest pullRequest) {
     this.pullRequest = pullRequest;
@@ -163,7 +162,7 @@ public class PipelineBranchesitem   {
     this.pullRequest = pullRequest;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem totalNumberOfPullRequests(Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
@@ -182,7 +181,7 @@ public class PipelineBranchesitem   {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
   }
 
-/**
+  /**
    **/
   public PipelineBranchesitem propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

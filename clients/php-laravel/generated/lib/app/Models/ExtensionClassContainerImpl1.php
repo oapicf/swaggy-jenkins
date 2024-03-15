@@ -10,12 +10,12 @@ namespace app\Models;
 class ExtensionClassContainerImpl1 {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\ExtensionClassContainerImpl1links $links */
-    private $links;
+    public $links;
 
     /** @var \app\Models\ExtensionClassContainerImpl1map $map */
-    private $map;
+    public $map;
 
 }

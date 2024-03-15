@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -31,7 +32,7 @@ public class MultibranchPipeline  {
   private Integer weatherScore;
 
   @ApiModelProperty(value = "")
-  private List<String> branchNames = null;
+  private List<String> branchNames;
 
   @ApiModelProperty(value = "")
   private Integer numberOfFailingBranches;
@@ -397,6 +398,36 @@ public class MultibranchPipeline  {
     return this;
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    MultibranchPipeline multibranchPipeline = (MultibranchPipeline) o;
+    return Objects.equals(this.displayName, multibranchPipeline.displayName) &&
+        Objects.equals(this.estimatedDurationInMillis, multibranchPipeline.estimatedDurationInMillis) &&
+        Objects.equals(this.latestRun, multibranchPipeline.latestRun) &&
+        Objects.equals(this.name, multibranchPipeline.name) &&
+        Objects.equals(this.organization, multibranchPipeline.organization) &&
+        Objects.equals(this.weatherScore, multibranchPipeline.weatherScore) &&
+        Objects.equals(this.branchNames, multibranchPipeline.branchNames) &&
+        Objects.equals(this.numberOfFailingBranches, multibranchPipeline.numberOfFailingBranches) &&
+        Objects.equals(this.numberOfFailingPullRequests, multibranchPipeline.numberOfFailingPullRequests) &&
+        Objects.equals(this.numberOfSuccessfulBranches, multibranchPipeline.numberOfSuccessfulBranches) &&
+        Objects.equals(this.numberOfSuccessfulPullRequests, multibranchPipeline.numberOfSuccessfulPullRequests) &&
+        Objects.equals(this.totalNumberOfBranches, multibranchPipeline.totalNumberOfBranches) &&
+        Objects.equals(this.totalNumberOfPullRequests, multibranchPipeline.totalNumberOfPullRequests) &&
+        Objects.equals(this.propertyClass, multibranchPipeline.propertyClass);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(displayName, estimatedDurationInMillis, latestRun, name, organization, weatherScore, branchNames, numberOfFailingBranches, numberOfFailingPullRequests, numberOfSuccessfulBranches, numberOfSuccessfulPullRequests, totalNumberOfBranches, totalNumberOfPullRequests, propertyClass);
+  }
 
   @Override
   public String toString() {

@@ -83,7 +83,7 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
     // default_crumb_issuer->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(default_crumb_issuerJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
     // default_crumb_issuer->crumb
     cJSON *crumb = cJSON_GetObjectItemCaseSensitive(default_crumb_issuerJSON, "crumb");
     if (crumb) { 
-    if(!cJSON_IsString(crumb))
+    if(!cJSON_IsString(crumb) && !cJSON_IsNull(crumb))
     {
     goto end; //String
     }
@@ -101,7 +101,7 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
     // default_crumb_issuer->crumb_request_field
     cJSON *crumb_request_field = cJSON_GetObjectItemCaseSensitive(default_crumb_issuerJSON, "crumbRequestField");
     if (crumb_request_field) { 
-    if(!cJSON_IsString(crumb_request_field))
+    if(!cJSON_IsString(crumb_request_field) && !cJSON_IsNull(crumb_request_field))
     {
     goto end; //String
     }
@@ -109,9 +109,9 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
 
 
     default_crumb_issuer_local_var = default_crumb_issuer_create (
-        _class ? strdup(_class->valuestring) : NULL,
-        crumb ? strdup(crumb->valuestring) : NULL,
-        crumb_request_field ? strdup(crumb_request_field->valuestring) : NULL
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        crumb && !cJSON_IsNull(crumb) ? strdup(crumb->valuestring) : NULL,
+        crumb_request_field && !cJSON_IsNull(crumb_request_field) ? strdup(crumb_request_field->valuestring) : NULL
         );
 
     return default_crumb_issuer_local_var;

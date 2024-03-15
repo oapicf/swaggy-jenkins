@@ -7,17 +7,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListView   {
   
   private String propertyClass;
   private String description;
-  private List<FreeStyleProject> jobs = new ArrayList<>();
+  private List<@Valid FreeStyleProject> jobs;
   private String name;
   private String url;
 
@@ -50,10 +53,11 @@ public class ListView   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
-  public List<FreeStyleProject> getJobs() {
+  @Valid
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 
@@ -91,11 +95,11 @@ public class ListView   {
       return false;
     }
     ListView listView = (ListView) o;
-    return Objects.equals(propertyClass, listView.propertyClass) &&
-        Objects.equals(description, listView.description) &&
-        Objects.equals(jobs, listView.jobs) &&
-        Objects.equals(name, listView.name) &&
-        Objects.equals(url, listView.url);
+    return Objects.equals(this.propertyClass, listView.propertyClass) &&
+        Objects.equals(this.description, listView.description) &&
+        Objects.equals(this.jobs, listView.jobs) &&
+        Objects.equals(this.name, listView.name) &&
+        Objects.equals(this.url, listView.url);
   }
 
   @Override

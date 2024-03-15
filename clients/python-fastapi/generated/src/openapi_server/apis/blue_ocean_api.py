@@ -1,6 +1,11 @@
 # coding: utf-8
 
 from typing import Dict, List  # noqa: F401
+import importlib
+import pkgutil
+
+from openapi_server.apis.blue_ocean_api_base import BaseBlueOceanApi
+import openapi_server.impl
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -36,6 +41,10 @@ from openapi_server.security_api import get_token_jenkins_auth
 
 router = APIRouter()
 
+ns_pkg = openapi_server.impl
+for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
+    importlib.import_module(name)
+
 
 @router.delete(
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
@@ -48,15 +57,15 @@ router = APIRouter()
     response_model_by_alias=True,
 )
 async def delete_pipeline_queue_item(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    queue: str = Path(None, description="Name of the queue item"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    queue: str = Path(..., description="Name of the queue item"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Delete queue item from an organization pipeline queue"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().delete_pipeline_queue_item(organization, pipeline, queue)
 
 
 @router.get(
@@ -70,13 +79,13 @@ async def delete_pipeline_queue_item(
     response_model_by_alias=True,
 )
 async def get_authenticated_user(
-    organization: str = Path(None, description="Name of the organization"),
+    organization: str = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> User:
     """Retrieve authenticated user details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_authenticated_user(organization)
 
 
 @router.get(
@@ -90,13 +99,13 @@ async def get_authenticated_user(
     response_model_by_alias=True,
 )
 async def get_classes(
-    class: str = Path(None, description="Name of the class"),
+    class: str = Path(..., description="Name of the class"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Get a list of class names supported by a given class"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_classes(class)
 
 
 @router.get(
@@ -110,10 +119,10 @@ async def get_classes(
     response_model_by_alias=True,
 )
 async def get_json_web_key(
-    key: int = Path(None, description="Key ID received as part of JWT header field kid"),
+    key: int = Path(..., description="Key ID received as part of JWT header field kid"),
 ) -> str:
     """Retrieve JSON Web Key"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_json_web_key(key)
 
 
 @router.get(
@@ -127,11 +136,11 @@ async def get_json_web_key(
     response_model_by_alias=True,
 )
 async def get_json_web_token(
-    expiry_time_in_mins: int = Query(None, description="Token expiry time in minutes, default: 30 minutes"),
-    max_expiry_time_in_mins: int = Query(None, description="Maximum token expiry time in minutes, default: 480 minutes"),
+    expiry_time_in_mins: int = Query(None, description="Token expiry time in minutes, default: 30 minutes", alias="expiryTimeInMins"),
+    max_expiry_time_in_mins: int = Query(None, description="Maximum token expiry time in minutes, default: 480 minutes", alias="maxExpiryTimeInMins"),
 ) -> str:
     """Retrieve JSON Web Token"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_json_web_token(expiry_time_in_mins, max_expiry_time_in_mins)
 
 
 @router.get(
@@ -146,13 +155,13 @@ async def get_json_web_token(
     response_model_by_alias=True,
 )
 async def get_organisation(
-    organization: str = Path(None, description="Name of the organization"),
+    organization: str = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> Organisation:
     """Retrieve organization details"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_organisation(organization)
 
 
 @router.get(
@@ -171,7 +180,7 @@ async def get_organisations(
     ),
 ) -> List[Organisation]:
     """Retrieve all organizations details"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_organisations()
 
 
 @router.get(
@@ -186,14 +195,14 @@ async def get_organisations(
     response_model_by_alias=True,
 )
 async def get_pipeline(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> Pipeline:
     """Retrieve pipeline details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline(organization, pipeline)
 
 
 @router.get(
@@ -207,14 +216,14 @@ async def get_pipeline(
     response_model_by_alias=True,
 )
 async def get_pipeline_activities(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[PipelineActivity]:
     """Retrieve all activities details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_activities(organization, pipeline)
 
 
 @router.get(
@@ -228,15 +237,15 @@ async def get_pipeline_activities(
     response_model_by_alias=True,
 )
 async def get_pipeline_branch(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    branch: str = Path(None, description="Name of the branch"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    branch: str = Path(..., description="Name of the branch"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> BranchImpl:
     """Retrieve branch details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_branch(organization, pipeline, branch)
 
 
 @router.get(
@@ -250,16 +259,16 @@ async def get_pipeline_branch(
     response_model_by_alias=True,
 )
 async def get_pipeline_branch_run(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    branch: str = Path(None, description="Name of the branch"),
-    run: str = Path(None, description="Name of the run"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    branch: str = Path(..., description="Name of the branch"),
+    run: str = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineRun:
     """Retrieve branch run details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_branch_run(organization, pipeline, branch, run)
 
 
 @router.get(
@@ -273,14 +282,14 @@ async def get_pipeline_branch_run(
     response_model_by_alias=True,
 )
 async def get_pipeline_branches(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> MultibranchPipeline:
     """Retrieve all branches details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_branches(organization, pipeline)
 
 
 @router.get(
@@ -294,14 +303,14 @@ async def get_pipeline_branches(
     response_model_by_alias=True,
 )
 async def get_pipeline_folder(
-    organization: str = Path(None, description="Name of the organization"),
-    folder: str = Path(None, description="Name of the folder"),
+    organization: str = Path(..., description="Name of the organization"),
+    folder: str = Path(..., description="Name of the folder"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineFolderImpl:
     """Retrieve pipeline folder for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_folder(organization, folder)
 
 
 @router.get(
@@ -315,15 +324,15 @@ async def get_pipeline_folder(
     response_model_by_alias=True,
 )
 async def get_pipeline_folder_pipeline(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    folder: str = Path(None, description="Name of the folder"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    folder: str = Path(..., description="Name of the folder"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineImpl:
     """Retrieve pipeline details for an organization folder"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_folder_pipeline(organization, pipeline, folder)
 
 
 @router.get(
@@ -337,14 +346,14 @@ async def get_pipeline_folder_pipeline(
     response_model_by_alias=True,
 )
 async def get_pipeline_queue(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[QueueItemImpl]:
     """Retrieve queue details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_queue(organization, pipeline)
 
 
 @router.get(
@@ -358,15 +367,15 @@ async def get_pipeline_queue(
     response_model_by_alias=True,
 )
 async def get_pipeline_run(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineRun:
     """Retrieve run details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run(organization, pipeline, run)
 
 
 @router.get(
@@ -380,17 +389,17 @@ async def get_pipeline_run(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_log(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
-    start: int = Query(None, description="Start position of the log"),
-    download: bool = Query(None, description="Set to true in order to download the file, otherwise it&#39;s passed as a response body"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
+    start: int = Query(None, description="Start position of the log", alias="start"),
+    download: bool = Query(None, description="Set to true in order to download the file, otherwise it&#39;s passed as a response body", alias="download"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Get log for a pipeline run"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run_log(organization, pipeline, run, start, download)
 
 
 @router.get(
@@ -404,16 +413,16 @@ async def get_pipeline_run_log(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
-    node: str = Path(None, description="Name of the node"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
+    node: str = Path(..., description="Name of the node"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineRunNode:
     """Retrieve run node details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node(organization, pipeline, run, node)
 
 
 @router.get(
@@ -427,17 +436,17 @@ async def get_pipeline_run_node(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node_step(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
-    node: str = Path(None, description="Name of the node"),
-    step: str = Path(None, description="Name of the step"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
+    node: str = Path(..., description="Name of the node"),
+    step: str = Path(..., description="Name of the step"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineStepImpl:
     """Retrieve run node details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node_step(organization, pipeline, run, node, step)
 
 
 @router.get(
@@ -451,17 +460,17 @@ async def get_pipeline_run_node_step(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node_step_log(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
-    node: str = Path(None, description="Name of the node"),
-    step: str = Path(None, description="Name of the step"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
+    node: str = Path(..., description="Name of the node"),
+    step: str = Path(..., description="Name of the step"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Get log for a pipeline run node step"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
 
 
 @router.get(
@@ -475,16 +484,16 @@ async def get_pipeline_run_node_step_log(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node_steps(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
-    node: str = Path(None, description="Name of the node"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
+    node: str = Path(..., description="Name of the node"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[PipelineStepImpl]:
     """Retrieve run node steps details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 @router.get(
@@ -498,15 +507,15 @@ async def get_pipeline_run_node_steps(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_nodes(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[PipelineRunNode]:
     """Retrieve run nodes details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_run_nodes(organization, pipeline, run)
 
 
 @router.get(
@@ -520,14 +529,14 @@ async def get_pipeline_run_nodes(
     response_model_by_alias=True,
 )
 async def get_pipeline_runs(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[PipelineRun]:
     """Retrieve all runs details for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipeline_runs(organization, pipeline)
 
 
 @router.get(
@@ -541,13 +550,13 @@ async def get_pipeline_runs(
     response_model_by_alias=True,
 )
 async def get_pipelines(
-    organization: str = Path(None, description="Name of the organization"),
+    organization: str = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[Pipeline]:
     """Retrieve all pipelines details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_pipelines(organization)
 
 
 @router.get(
@@ -561,14 +570,14 @@ async def get_pipelines(
     response_model_by_alias=True,
 )
 async def get_scm(
-    organization: str = Path(None, description="Name of the organization"),
-    scm: str = Path(None, description="Name of SCM"),
+    organization: str = Path(..., description="Name of the organization"),
+    scm: str = Path(..., description="Name of SCM"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> GithubScm:
     """Retrieve SCM details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_scm(organization, scm)
 
 
 @router.get(
@@ -582,18 +591,18 @@ async def get_scm(
     response_model_by_alias=True,
 )
 async def get_scm_organisation_repositories(
-    organization: str = Path(None, description="Name of the organization"),
-    scm: str = Path(None, description="Name of SCM"),
-    scmOrganisation: str = Path(None, description="Name of the SCM organization"),
-    credential_id: str = Query(None, description="Credential ID"),
-    page_size: int = Query(None, description="Number of items in a page"),
-    page_number: int = Query(None, description="Page number"),
+    organization: str = Path(..., description="Name of the organization"),
+    scm: str = Path(..., description="Name of SCM"),
+    scmOrganisation: str = Path(..., description="Name of the SCM organization"),
+    credential_id: str = Query(None, description="Credential ID", alias="credentialId"),
+    page_size: int = Query(None, description="Number of items in a page", alias="pageSize"),
+    page_number: int = Query(None, description="Page number", alias="pageNumber"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[GithubOrganization]:
     """Retrieve SCM organization repositories details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_scm_organisation_repositories(organization, scm, scmOrganisation, credential_id, page_size, page_number)
 
 
 @router.get(
@@ -607,17 +616,17 @@ async def get_scm_organisation_repositories(
     response_model_by_alias=True,
 )
 async def get_scm_organisation_repository(
-    organization: str = Path(None, description="Name of the organization"),
-    scm: str = Path(None, description="Name of SCM"),
-    scmOrganisation: str = Path(None, description="Name of the SCM organization"),
-    repository: str = Path(None, description="Name of the SCM repository"),
-    credential_id: str = Query(None, description="Credential ID"),
+    organization: str = Path(..., description="Name of the organization"),
+    scm: str = Path(..., description="Name of SCM"),
+    scmOrganisation: str = Path(..., description="Name of the SCM organization"),
+    repository: str = Path(..., description="Name of the SCM repository"),
+    credential_id: str = Query(None, description="Credential ID", alias="credentialId"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[GithubOrganization]:
     """Retrieve SCM organization repository details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_scm_organisation_repository(organization, scm, scmOrganisation, repository, credential_id)
 
 
 @router.get(
@@ -631,15 +640,15 @@ async def get_scm_organisation_repository(
     response_model_by_alias=True,
 )
 async def get_scm_organisations(
-    organization: str = Path(None, description="Name of the organization"),
-    scm: str = Path(None, description="Name of SCM"),
-    credential_id: str = Query(None, description="Credential ID"),
+    organization: str = Path(..., description="Name of the organization"),
+    scm: str = Path(..., description="Name of SCM"),
+    credential_id: str = Query(None, description="Credential ID", alias="credentialId"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[GithubOrganization]:
     """Retrieve SCM organizations details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_scm_organisations(organization, scm, credential_id)
 
 
 @router.get(
@@ -653,14 +662,14 @@ async def get_scm_organisations(
     response_model_by_alias=True,
 )
 async def get_user(
-    organization: str = Path(None, description="Name of the organization"),
-    user: str = Path(None, description="Name of the user"),
+    organization: str = Path(..., description="Name of the organization"),
+    user: str = Path(..., description="Name of the user"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> User:
     """Retrieve user details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_user(organization, user)
 
 
 @router.get(
@@ -674,13 +683,13 @@ async def get_user(
     response_model_by_alias=True,
 )
 async def get_user_favorites(
-    user: str = Path(None, description="Name of the user"),
+    user: str = Path(..., description="Name of the user"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> List[FavoriteImpl]:
     """Retrieve user favorites details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_user_favorites(user)
 
 
 @router.get(
@@ -694,13 +703,13 @@ async def get_user_favorites(
     response_model_by_alias=True,
 )
 async def get_users(
-    organization: str = Path(None, description="Name of the organization"),
+    organization: str = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> User:
     """Retrieve users details for an organization"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().get_users(organization)
 
 
 @router.post(
@@ -714,15 +723,15 @@ async def get_users(
     response_model_by_alias=True,
 )
 async def post_pipeline_run(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> QueueItemImpl:
     """Replay an organization pipeline run"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().post_pipeline_run(organization, pipeline, run)
 
 
 @router.post(
@@ -736,14 +745,14 @@ async def post_pipeline_run(
     response_model_by_alias=True,
 )
 async def post_pipeline_runs(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> QueueItemImpl:
     """Start a build for an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().post_pipeline_runs(organization, pipeline)
 
 
 @router.put(
@@ -757,15 +766,15 @@ async def post_pipeline_runs(
     response_model_by_alias=True,
 )
 async def put_pipeline_favorite(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
     body: bool = Body(None, description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> FavoriteImpl:
     """Favorite/unfavorite a pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().put_pipeline_favorite(organization, pipeline, body)
 
 
 @router.put(
@@ -779,17 +788,17 @@ async def put_pipeline_favorite(
     response_model_by_alias=True,
 )
 async def put_pipeline_run(
-    organization: str = Path(None, description="Name of the organization"),
-    pipeline: str = Path(None, description="Name of the pipeline"),
-    run: str = Path(None, description="Name of the run"),
-    blocking: str = Query(None, description="Set to true to make blocking stop, default: false"),
-    time_out_in_secs: int = Query(None, description="Timeout in seconds, default: 10 seconds"),
+    organization: str = Path(..., description="Name of the organization"),
+    pipeline: str = Path(..., description="Name of the pipeline"),
+    run: str = Path(..., description="Name of the run"),
+    blocking: str = Query(None, description="Set to true to make blocking stop, default: false", alias="blocking"),
+    time_out_in_secs: int = Query(None, description="Timeout in seconds, default: 10 seconds", alias="timeOutInSecs"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> PipelineRun:
     """Stop a build of an organization pipeline"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs)
 
 
 @router.get(
@@ -803,13 +812,13 @@ async def put_pipeline_run(
     response_model_by_alias=True,
 )
 async def search(
-    q: str = Query(None, description="Query string"),
+    q: str = Query(None, description="Query string", alias="q"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Search for any resource details"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().search(q)
 
 
 @router.get(
@@ -823,10 +832,10 @@ async def search(
     response_model_by_alias=True,
 )
 async def search_classes(
-    q: str = Query(None, description="Query string containing an array of class names"),
+    q: str = Query(None, description="Query string containing an array of class names", alias="q"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Get classes details"""
-    ...
+    return BaseBlueOceanApi.subclasses[0]().search_classes(q)

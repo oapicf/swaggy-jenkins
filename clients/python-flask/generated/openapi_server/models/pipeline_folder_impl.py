@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server import util
 
 
@@ -73,7 +70,7 @@ class PipelineFolderImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this PipelineFolderImpl.
 
 
@@ -83,7 +80,7 @@ class PipelineFolderImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this PipelineFolderImpl.
 
 
@@ -94,7 +91,7 @@ class PipelineFolderImpl(Model):
         self.__class = _class
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         """Gets the display_name of this PipelineFolderImpl.
 
 
@@ -104,7 +101,7 @@ class PipelineFolderImpl(Model):
         return self._display_name
 
     @display_name.setter
-    def display_name(self, display_name):
+    def display_name(self, display_name: str):
         """Sets the display_name of this PipelineFolderImpl.
 
 
@@ -115,7 +112,7 @@ class PipelineFolderImpl(Model):
         self._display_name = display_name
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         """Gets the full_name of this PipelineFolderImpl.
 
 
@@ -125,7 +122,7 @@ class PipelineFolderImpl(Model):
         return self._full_name
 
     @full_name.setter
-    def full_name(self, full_name):
+    def full_name(self, full_name: str):
         """Sets the full_name of this PipelineFolderImpl.
 
 
@@ -136,7 +133,7 @@ class PipelineFolderImpl(Model):
         self._full_name = full_name
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Gets the name of this PipelineFolderImpl.
 
 
@@ -146,7 +143,7 @@ class PipelineFolderImpl(Model):
         return self._name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str):
         """Sets the name of this PipelineFolderImpl.
 
 
@@ -157,7 +154,7 @@ class PipelineFolderImpl(Model):
         self._name = name
 
     @property
-    def organization(self):
+    def organization(self) -> str:
         """Gets the organization of this PipelineFolderImpl.
 
 
@@ -167,7 +164,7 @@ class PipelineFolderImpl(Model):
         return self._organization
 
     @organization.setter
-    def organization(self, organization):
+    def organization(self, organization: str):
         """Sets the organization of this PipelineFolderImpl.
 
 
@@ -178,7 +175,7 @@ class PipelineFolderImpl(Model):
         self._organization = organization
 
     @property
-    def number_of_folders(self):
+    def number_of_folders(self) -> int:
         """Gets the number_of_folders of this PipelineFolderImpl.
 
 
@@ -188,7 +185,7 @@ class PipelineFolderImpl(Model):
         return self._number_of_folders
 
     @number_of_folders.setter
-    def number_of_folders(self, number_of_folders):
+    def number_of_folders(self, number_of_folders: int):
         """Sets the number_of_folders of this PipelineFolderImpl.
 
 
@@ -199,7 +196,7 @@ class PipelineFolderImpl(Model):
         self._number_of_folders = number_of_folders
 
     @property
-    def number_of_pipelines(self):
+    def number_of_pipelines(self) -> int:
         """Gets the number_of_pipelines of this PipelineFolderImpl.
 
 
@@ -209,7 +206,7 @@ class PipelineFolderImpl(Model):
         return self._number_of_pipelines
 
     @number_of_pipelines.setter
-    def number_of_pipelines(self, number_of_pipelines):
+    def number_of_pipelines(self, number_of_pipelines: int):
         """Sets the number_of_pipelines of this PipelineFolderImpl.
 
 

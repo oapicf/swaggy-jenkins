@@ -1,29 +1,29 @@
-# \RemoteAccessApi
+# \RemoteAccessAPI
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetComputer**](RemoteAccessApi.md#GetComputer) | **Get** /computer/api/json | 
-[**GetJenkins**](RemoteAccessApi.md#GetJenkins) | **Get** /api/json | 
-[**GetJob**](RemoteAccessApi.md#GetJob) | **Get** /job/{name}/api/json | 
-[**GetJobConfig**](RemoteAccessApi.md#GetJobConfig) | **Get** /job/{name}/config.xml | 
-[**GetJobLastBuild**](RemoteAccessApi.md#GetJobLastBuild) | **Get** /job/{name}/lastBuild/api/json | 
-[**GetJobProgressiveText**](RemoteAccessApi.md#GetJobProgressiveText) | **Get** /job/{name}/{number}/logText/progressiveText | 
-[**GetQueue**](RemoteAccessApi.md#GetQueue) | **Get** /queue/api/json | 
-[**GetQueueItem**](RemoteAccessApi.md#GetQueueItem) | **Get** /queue/item/{number}/api/json | 
-[**GetView**](RemoteAccessApi.md#GetView) | **Get** /view/{name}/api/json | 
-[**GetViewConfig**](RemoteAccessApi.md#GetViewConfig) | **Get** /view/{name}/config.xml | 
-[**HeadJenkins**](RemoteAccessApi.md#HeadJenkins) | **Head** /api/json | 
-[**PostCreateItem**](RemoteAccessApi.md#PostCreateItem) | **Post** /createItem | 
-[**PostCreateView**](RemoteAccessApi.md#PostCreateView) | **Post** /createView | 
-[**PostJobBuild**](RemoteAccessApi.md#PostJobBuild) | **Post** /job/{name}/build | 
-[**PostJobConfig**](RemoteAccessApi.md#PostJobConfig) | **Post** /job/{name}/config.xml | 
-[**PostJobDelete**](RemoteAccessApi.md#PostJobDelete) | **Post** /job/{name}/doDelete | 
-[**PostJobDisable**](RemoteAccessApi.md#PostJobDisable) | **Post** /job/{name}/disable | 
-[**PostJobEnable**](RemoteAccessApi.md#PostJobEnable) | **Post** /job/{name}/enable | 
-[**PostJobLastBuildStop**](RemoteAccessApi.md#PostJobLastBuildStop) | **Post** /job/{name}/lastBuild/stop | 
-[**PostViewConfig**](RemoteAccessApi.md#PostViewConfig) | **Post** /view/{name}/config.xml | 
+[**GetComputer**](RemoteAccessAPI.md#GetComputer) | **Get** /computer/api/json | 
+[**GetJenkins**](RemoteAccessAPI.md#GetJenkins) | **Get** /api/json | 
+[**GetJob**](RemoteAccessAPI.md#GetJob) | **Get** /job/{name}/api/json | 
+[**GetJobConfig**](RemoteAccessAPI.md#GetJobConfig) | **Get** /job/{name}/config.xml | 
+[**GetJobLastBuild**](RemoteAccessAPI.md#GetJobLastBuild) | **Get** /job/{name}/lastBuild/api/json | 
+[**GetJobProgressiveText**](RemoteAccessAPI.md#GetJobProgressiveText) | **Get** /job/{name}/{number}/logText/progressiveText | 
+[**GetQueue**](RemoteAccessAPI.md#GetQueue) | **Get** /queue/api/json | 
+[**GetQueueItem**](RemoteAccessAPI.md#GetQueueItem) | **Get** /queue/item/{number}/api/json | 
+[**GetView**](RemoteAccessAPI.md#GetView) | **Get** /view/{name}/api/json | 
+[**GetViewConfig**](RemoteAccessAPI.md#GetViewConfig) | **Get** /view/{name}/config.xml | 
+[**HeadJenkins**](RemoteAccessAPI.md#HeadJenkins) | **Head** /api/json | 
+[**PostCreateItem**](RemoteAccessAPI.md#PostCreateItem) | **Post** /createItem | 
+[**PostCreateView**](RemoteAccessAPI.md#PostCreateView) | **Post** /createView | 
+[**PostJobBuild**](RemoteAccessAPI.md#PostJobBuild) | **Post** /job/{name}/build | 
+[**PostJobConfig**](RemoteAccessAPI.md#PostJobConfig) | **Post** /job/{name}/config.xml | 
+[**PostJobDelete**](RemoteAccessAPI.md#PostJobDelete) | **Post** /job/{name}/doDelete | 
+[**PostJobDisable**](RemoteAccessAPI.md#PostJobDisable) | **Post** /job/{name}/disable | 
+[**PostJobEnable**](RemoteAccessAPI.md#PostJobEnable) | **Post** /job/{name}/enable | 
+[**PostJobLastBuildStop**](RemoteAccessAPI.md#PostJobLastBuildStop) | **Post** /job/{name}/lastBuild/stop | 
+[**PostViewConfig**](RemoteAccessAPI.md#PostViewConfig) | **Post** /view/{name}/config.xml | 
 
 
 
@@ -41,24 +41,24 @@ Method | HTTP request | Description
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    depth := int32(56) // int32 | Recursion depth in response model
+	depth := int32(56) // int32 | Recursion depth in response model
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetComputer(context.Background()).Depth(depth).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetComputer``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetComputer`: ComputerSet
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetComputer`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetComputer(context.Background()).Depth(depth).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetComputer``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetComputer`: ComputerSet
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetComputer`: %v\n", resp)
 }
 ```
 
@@ -107,23 +107,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetJenkins(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetJenkins``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetJenkins`: Hudson
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetJenkins`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetJenkins(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetJenkins``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJenkins`: Hudson
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetJenkins`: %v\n", resp)
 }
 ```
 
@@ -168,24 +168,24 @@ Other parameters are passed through a pointer to a apiGetJenkinsRequest struct v
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
+	name := "name_example" // string | Name of the job
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetJob(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetJob``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetJob`: FreeStyleProject
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetJob`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetJob(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetJob``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJob`: FreeStyleProject
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetJob`: %v\n", resp)
 }
 ```
 
@@ -238,24 +238,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
+	name := "name_example" // string | Name of the job
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetJobConfig(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetJobConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetJobConfig`: string
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetJobConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetJobConfig(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetJobConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJobConfig`: string
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetJobConfig`: %v\n", resp)
 }
 ```
 
@@ -308,24 +308,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
+	name := "name_example" // string | Name of the job
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetJobLastBuild(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetJobLastBuild``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetJobLastBuild`: FreeStyleBuild
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetJobLastBuild`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetJobLastBuild(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetJobLastBuild``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetJobLastBuild`: FreeStyleBuild
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetJobLastBuild`: %v\n", resp)
 }
 ```
 
@@ -378,24 +378,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    number := "number_example" // string | Build number
-    start := "start_example" // string | Starting point of progressive text output
+	name := "name_example" // string | Name of the job
+	number := "number_example" // string | Build number
+	start := "start_example" // string | Starting point of progressive text output
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetJobProgressiveText(context.Background(), name, number).Start(start).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetJobProgressiveText``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.GetJobProgressiveText(context.Background(), name, number).Start(start).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetJobProgressiveText``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -451,23 +451,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetQueue(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetQueue``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetQueue`: Queue
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetQueue`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetQueue(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetQueue``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetQueue`: Queue
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetQueue`: %v\n", resp)
 }
 ```
 
@@ -512,24 +512,24 @@ Other parameters are passed through a pointer to a apiGetQueueRequest struct via
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    number := "number_example" // string | Queue number
+	number := "number_example" // string | Queue number
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetQueueItem(context.Background(), number).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetQueueItem``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetQueueItem`: Queue
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetQueueItem`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetQueueItem(context.Background(), number).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetQueueItem``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetQueueItem`: Queue
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetQueueItem`: %v\n", resp)
 }
 ```
 
@@ -582,24 +582,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the view
+	name := "name_example" // string | Name of the view
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetView(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetView``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetView`: ListView
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetView`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetView(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetView``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetView`: ListView
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetView`: %v\n", resp)
 }
 ```
 
@@ -652,24 +652,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the view
+	name := "name_example" // string | Name of the view
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.GetViewConfig(context.Background(), name).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.GetViewConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetViewConfig`: string
-    fmt.Fprintf(os.Stdout, "Response from `RemoteAccessApi.GetViewConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RemoteAccessAPI.GetViewConfig(context.Background(), name).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.GetViewConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetViewConfig`: string
+	fmt.Fprintf(os.Stdout, "Response from `RemoteAccessAPI.GetViewConfig`: %v\n", resp)
 }
 ```
 
@@ -722,21 +722,21 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.HeadJenkins(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.HeadJenkins``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.HeadJenkins(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.HeadJenkins``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -781,27 +781,27 @@ Other parameters are passed through a pointer to a apiHeadJenkinsRequest struct 
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the new job
-    from := "from_example" // string | Existing job to copy from (optional)
-    mode := "mode_example" // string | Set to 'copy' for copying an existing job (optional)
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
-    contentType := "contentType_example" // string | Content type header application/xml (optional)
-    body := "body_example" // string | Job configuration in config.xml format (optional)
+	name := "name_example" // string | Name of the new job
+	from := "from_example" // string | Existing job to copy from (optional)
+	mode := "mode_example" // string | Set to 'copy' for copying an existing job (optional)
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	contentType := "contentType_example" // string | Content type header application/xml (optional)
+	body := "body_example" // string | Job configuration in config.xml format (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostCreateItem(context.Background()).Name(name).From(from).Mode(mode).JenkinsCrumb(jenkinsCrumb).ContentType(contentType).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostCreateItem``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostCreateItem(context.Background()).Name(name).From(from).Mode(mode).JenkinsCrumb(jenkinsCrumb).ContentType(contentType).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostCreateItem``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -855,25 +855,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the new view
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
-    contentType := "contentType_example" // string | Content type header application/xml (optional)
-    body := "body_example" // string | View configuration in config.xml format (optional)
+	name := "name_example" // string | Name of the new view
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	contentType := "contentType_example" // string | Content type header application/xml (optional)
+	body := "body_example" // string | View configuration in config.xml format (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostCreateView(context.Background()).Name(name).JenkinsCrumb(jenkinsCrumb).ContentType(contentType).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostCreateView``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostCreateView(context.Background()).Name(name).JenkinsCrumb(jenkinsCrumb).ContentType(contentType).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostCreateView``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -925,25 +925,25 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    json := "json_example" // string | 
-    token := "token_example" // string |  (optional)
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the job
+	json := "json_example" // string | 
+	token := "token_example" // string |  (optional)
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostJobBuild(context.Background(), name).Json(json).Token(token).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostJobBuild``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostJobBuild(context.Background(), name).Json(json).Token(token).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostJobBuild``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -999,24 +999,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    body := "body_example" // string | Job configuration in config.xml format
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the job
+	body := "body_example" // string | Job configuration in config.xml format
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostJobConfig(context.Background(), name).Body(body).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostJobConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostJobConfig(context.Background(), name).Body(body).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostJobConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1071,23 +1071,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the job
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostJobDelete(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostJobDelete``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostJobDelete(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostJobDelete``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1141,23 +1141,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the job
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostJobDisable(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostJobDisable``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostJobDisable(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostJobDisable``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1211,23 +1211,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the job
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostJobEnable(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostJobEnable``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostJobEnable(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostJobEnable``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1281,23 +1281,23 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the job
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the job
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostJobLastBuildStop(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostJobLastBuildStop``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostJobLastBuildStop(context.Background(), name).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostJobLastBuildStop``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -1351,24 +1351,24 @@ Name | Type | Description  | Notes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
-    name := "name_example" // string | Name of the view
-    body := "body_example" // string | View configuration in config.xml format
-    jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
+	name := "name_example" // string | Name of the view
+	body := "body_example" // string | View configuration in config.xml format
+	jenkinsCrumb := "jenkinsCrumb_example" // string | CSRF protection token (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RemoteAccessApi.PostViewConfig(context.Background(), name).Body(body).JenkinsCrumb(jenkinsCrumb).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessApi.PostViewConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RemoteAccessAPI.PostViewConfig(context.Background(), name).Body(body).JenkinsCrumb(jenkinsCrumb).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RemoteAccessAPI.PostViewConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

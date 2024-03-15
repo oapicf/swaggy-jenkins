@@ -16,9 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputerexecutors")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class HudsonMasterComputerexecutors   {
-  
   private @Valid FreeStyleBuild currentExecutable;
   private @Valid Boolean idle;
   private @Valid Boolean likelyStuck;
@@ -45,7 +44,7 @@ public class HudsonMasterComputerexecutors   {
     this.currentExecutable = currentExecutable;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputerexecutors idle(Boolean idle) {
     this.idle = idle;
@@ -64,7 +63,7 @@ public class HudsonMasterComputerexecutors   {
     this.idle = idle;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputerexecutors likelyStuck(Boolean likelyStuck) {
     this.likelyStuck = likelyStuck;
@@ -83,7 +82,7 @@ public class HudsonMasterComputerexecutors   {
     this.likelyStuck = likelyStuck;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputerexecutors number(Integer number) {
     this.number = number;
@@ -102,7 +101,7 @@ public class HudsonMasterComputerexecutors   {
     this.number = number;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputerexecutors progress(Integer progress) {
     this.progress = progress;
@@ -121,7 +120,7 @@ public class HudsonMasterComputerexecutors   {
     this.progress = progress;
   }
 
-/**
+  /**
    **/
   public HudsonMasterComputerexecutors propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;

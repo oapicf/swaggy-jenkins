@@ -6,7 +6,7 @@
  *)
 
 let get_computer ~depth =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/computer/api/json" in
     let headers = Request.default_headers in
     let uri = Request.add_query_param uri "depth" Int32.to_string depth in
@@ -14,14 +14,14 @@ let get_computer ~depth =
     Request.read_json_body_as (JsonSupport.unwrap Computer_set.of_yojson) resp body
 
 let get_jenkins () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/api/json" in
     let headers = Request.default_headers in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Hudson.of_yojson) resp body
 
 let get_job ~name =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/api/json" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "name" (fun x -> x) name in
@@ -29,7 +29,7 @@ let get_job ~name =
     Request.read_json_body_as (JsonSupport.unwrap Free_style_project.of_yojson) resp body
 
 let get_job_config ~name =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/config.xml" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "name" (fun x -> x) name in
@@ -37,7 +37,7 @@ let get_job_config ~name =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let get_job_last_build ~name =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/lastBuild/api/json" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "name" (fun x -> x) name in
@@ -45,7 +45,7 @@ let get_job_last_build ~name =
     Request.read_json_body_as (JsonSupport.unwrap Free_style_build.of_yojson) resp body
 
 let get_job_progressive_text ~name ~number ~start =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/{number}/logText/progressiveText" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "name" (fun x -> x) name in
@@ -55,14 +55,14 @@ let get_job_progressive_text ~name ~number ~start =
     Request.handle_unit_response resp
 
 let get_queue () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/queue/api/json" in
     let headers = Request.default_headers in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Queue.of_yojson) resp body
 
 let get_queue_item ~number =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/queue/item/{number}/api/json" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "number" (fun x -> x) number in
@@ -70,7 +70,7 @@ let get_queue_item ~number =
     Request.read_json_body_as (JsonSupport.unwrap Queue.of_yojson) resp body
 
 let get_view ~name =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/view/{name}/api/json" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "name" (fun x -> x) name in
@@ -78,7 +78,7 @@ let get_view ~name =
     Request.read_json_body_as (JsonSupport.unwrap List_view.of_yojson) resp body
 
 let get_view_config ~name =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/view/{name}/config.xml" in
     let headers = Request.default_headers in
     let uri = Request.replace_path_param uri "name" (fun x -> x) name in
@@ -86,14 +86,14 @@ let get_view_config ~name =
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
 let head_jenkins () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/api/json" in
     let headers = Request.default_headers in
     Cohttp_lwt_unix.Client.call `HEAD uri ~headers >>= fun (resp, body) ->
     Request.handle_unit_response resp
 
 let post_create_item ~name ?from ?mode ?jenkins_crumb ?content_type ~body () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/createItem" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -106,7 +106,7 @@ let post_create_item ~name ?from ?mode ?jenkins_crumb ?content_type ~body () =
     Request.handle_unit_response resp
 
 let post_create_view ~name ?jenkins_crumb ?content_type ~body () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/createView" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -117,7 +117,7 @@ let post_create_view ~name ?jenkins_crumb ?content_type ~body () =
     Request.handle_unit_response resp
 
 let post_job_build ~name ~json ?token ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/build" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -128,7 +128,7 @@ let post_job_build ~name ~json ?token ?jenkins_crumb () =
     Request.handle_unit_response resp
 
 let post_job_config ~name ~body ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/config.xml" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -138,7 +138,7 @@ let post_job_config ~name ~body ?jenkins_crumb () =
     Request.handle_unit_response resp
 
 let post_job_delete ~name ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/doDelete" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -147,7 +147,7 @@ let post_job_delete ~name ?jenkins_crumb () =
     Request.handle_unit_response resp
 
 let post_job_disable ~name ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/disable" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -156,7 +156,7 @@ let post_job_disable ~name ?jenkins_crumb () =
     Request.handle_unit_response resp
 
 let post_job_enable ~name ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/enable" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -165,7 +165,7 @@ let post_job_enable ~name ?jenkins_crumb () =
     Request.handle_unit_response resp
 
 let post_job_last_build_stop ~name ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/job/{name}/lastBuild/stop" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in
@@ -174,7 +174,7 @@ let post_job_last_build_stop ~name ?jenkins_crumb () =
     Request.handle_unit_response resp
 
 let post_view_config ~name ~body ?jenkins_crumb () =
-    let open Lwt in
+    let open Lwt.Infix in
     let uri = Request.build_uri "/view/{name}/config.xml" in
     let headers = Request.default_headers in
     let headers = Request.maybe_add_header headers "Jenkins-Crumb" (fun x -> x) jenkins_crumb in

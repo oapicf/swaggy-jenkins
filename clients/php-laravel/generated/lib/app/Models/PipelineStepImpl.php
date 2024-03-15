@@ -10,30 +10,30 @@ namespace app\Models;
 class PipelineStepImpl {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var \app\Models\PipelineStepImpllinks $links */
-    private $links;
+    public $links;
 
     /** @var string $displayName */
-    private $displayName;
+    public $displayName = "";
 
     /** @var int $durationInMillis */
-    private $durationInMillis;
+    public $durationInMillis = 0;
 
     /** @var string $id */
-    private $id;
+    public $id = "";
 
     /** @var \app\Models\InputStepImpl $input */
-    private $input;
+    public $input;
 
     /** @var string $result */
-    private $result;
+    public $result = "";
 
     /** @var string $startTime */
-    private $startTime;
+    public $startTime = "";
 
     /** @var string $state */
-    private $state;
+    public $state = "";
 
 }

@@ -29,7 +29,7 @@ Method | HTTP request | Description
 
 ## get_computer
 
-> crate::models::ComputerSet get_computer(depth)
+> models::ComputerSet get_computer(depth)
 
 
 Retrieve computer details
@@ -43,7 +43,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ComputerSet**](ComputerSet.md)
+[**models::ComputerSet**](ComputerSet.md)
 
 ### Authorization
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_jenkins
 
-> crate::models::Hudson get_jenkins()
+> models::Hudson get_jenkins()
 
 
 Retrieve Jenkins details
@@ -70,7 +70,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::Hudson**](Hudson.md)
+[**models::Hudson**](Hudson.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ This endpoint does not need any parameter.
 
 ## get_job
 
-> crate::models::FreeStyleProject get_job(name)
+> models::FreeStyleProject get_job(name)
 
 
 Retrieve job details
@@ -100,7 +100,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FreeStyleProject**](FreeStyleProject.md)
+[**models::FreeStyleProject**](FreeStyleProject.md)
 
 ### Authorization
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_job_last_build
 
-> crate::models::FreeStyleBuild get_job_last_build(name)
+> models::FreeStyleBuild get_job_last_build(name)
 
 
 Retrieve job's last build details
@@ -160,7 +160,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FreeStyleBuild**](FreeStyleBuild.md)
+[**models::FreeStyleBuild**](FreeStyleBuild.md)
 
 ### Authorization
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_queue
 
-> crate::models::Queue get_queue()
+> models::Queue get_queue()
 
 
 Retrieve queue details
@@ -219,7 +219,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::Queue**](Queue.md)
+[**models::Queue**](Queue.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ This endpoint does not need any parameter.
 
 ## get_queue_item
 
-> crate::models::Queue get_queue_item(number)
+> models::Queue get_queue_item(number)
 
 
 Retrieve queued item details
@@ -249,7 +249,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Queue**](Queue.md)
+[**models::Queue**](Queue.md)
 
 ### Authorization
 
@@ -265,7 +265,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_view
 
-> crate::models::ListView get_view(name)
+> models::ListView get_view(name)
 
 
 Retrieve view details
@@ -279,7 +279,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::ListView**](ListView.md)
+[**models::ListView**](ListView.md)
 
 ### Authorization
 

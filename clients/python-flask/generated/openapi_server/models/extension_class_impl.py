@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.extension_class_impllinks import ExtensionClassImpllinks
 from openapi_server import util
 
@@ -55,7 +52,7 @@ class ExtensionClassImpl(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this ExtensionClassImpl.
 
 
@@ -65,7 +62,7 @@ class ExtensionClassImpl(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this ExtensionClassImpl.
 
 
@@ -76,7 +73,7 @@ class ExtensionClassImpl(Model):
         self.__class = _class
 
     @property
-    def links(self):
+    def links(self) -> ExtensionClassImpllinks:
         """Gets the links of this ExtensionClassImpl.
 
 
@@ -86,7 +83,7 @@ class ExtensionClassImpl(Model):
         return self._links
 
     @links.setter
-    def links(self, links):
+    def links(self, links: ExtensionClassImpllinks):
         """Sets the links of this ExtensionClassImpl.
 
 
@@ -97,7 +94,7 @@ class ExtensionClassImpl(Model):
         self._links = links
 
     @property
-    def classes(self):
+    def classes(self) -> List[str]:
         """Gets the classes of this ExtensionClassImpl.
 
 
@@ -107,7 +104,7 @@ class ExtensionClassImpl(Model):
         return self._classes
 
     @classes.setter
-    def classes(self, classes):
+    def classes(self, classes: List[str]):
         """Sets the classes of this ExtensionClassImpl.
 
 

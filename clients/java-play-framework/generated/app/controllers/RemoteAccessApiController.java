@@ -24,11 +24,12 @@ import openapitools.OpenAPIUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import com.typesafe.config.Config;
 
 import openapitools.OpenAPIUtils.ApiAction;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class RemoteAccessApiController extends Controller {
     private final RemoteAccessApiControllerImpInterface imp;
     private final ObjectMapper mapper;
@@ -143,14 +144,14 @@ public class RemoteAccessApiController extends Controller {
         } else {
             mode = null;
         }
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
         } else {
             jenkinsCrumb = null;
         }
-        String valuecontentType = request.header("Content-Type").get();
+        String valuecontentType = request.header("Content-Type").orElse(null);
         String contentType;
         if (valuecontentType != null) {
             contentType = valuecontentType;
@@ -179,14 +180,14 @@ public class RemoteAccessApiController extends Controller {
         } else {
             throw new IllegalArgumentException("'name' parameter is required");
         }
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
         } else {
             jenkinsCrumb = null;
         }
-        String valuecontentType = request.header("Content-Type").get();
+        String valuecontentType = request.header("Content-Type").orElse(null);
         String contentType;
         if (valuecontentType != null) {
             contentType = valuecontentType;
@@ -212,7 +213,7 @@ public class RemoteAccessApiController extends Controller {
         } else {
             token = null;
         }
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
@@ -234,7 +235,7 @@ public class RemoteAccessApiController extends Controller {
         } else {
             throw new IllegalArgumentException("'body' parameter is required");
         }
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
@@ -246,7 +247,7 @@ public class RemoteAccessApiController extends Controller {
 
     @ApiAction
     public Result postJobDelete(Http.Request request, String name) throws Exception {
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
@@ -258,7 +259,7 @@ public class RemoteAccessApiController extends Controller {
 
     @ApiAction
     public Result postJobDisable(Http.Request request, String name) throws Exception {
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
@@ -270,7 +271,7 @@ public class RemoteAccessApiController extends Controller {
 
     @ApiAction
     public Result postJobEnable(Http.Request request, String name) throws Exception {
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
@@ -282,7 +283,7 @@ public class RemoteAccessApiController extends Controller {
 
     @ApiAction
     public Result postJobLastBuildStop(Http.Request request, String name) throws Exception {
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;
@@ -304,7 +305,7 @@ public class RemoteAccessApiController extends Controller {
         } else {
             throw new IllegalArgumentException("'body' parameter is required");
         }
-        String valuejenkinsCrumb = request.header("Jenkins-Crumb").get();
+        String valuejenkinsCrumb = request.header("Jenkins-Crumb").orElse(null);
         String jenkinsCrumb;
         if (valuejenkinsCrumb != null) {
             jenkinsCrumb = valuejenkinsCrumb;

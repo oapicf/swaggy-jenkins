@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_class** | Option<**String**> |  | [optional]
-**artifacts** | Option<[**Vec<crate::models::PipelineRunartifacts>**](PipelineRunartifacts.md)> |  | [optional]
+**artifacts** | Option<[**Vec<models::PipelineRunartifacts>**](PipelineRunartifacts.md)> |  | [optional]
 **duration_in_millis** | Option<**i32**> |  | [optional]
 **estimated_duration_in_millis** | Option<**i32**> |  | [optional]
 **en_queue_time** | Option<**String**> |  | [optional]
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **run_summary** | Option<**String**> |  | [optional]
 **start_time** | Option<**String**> |  | [optional]
 **state** | Option<**String**> |  | [optional]
-**_type** | Option<**String**> |  | [optional]
+**r#type** | Option<**String**> |  | [optional]
 **commit_id** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -71,7 +71,7 @@ Note that the class needs to be annotated with one of Micronaut's [scope annotat
 
 More information can be found inside [Inversion of Control guide section](https://docs.micronaut.io/latest/guide/#ioc).
 
-<a name="deletePipelineQueueItem"></a>
+<a id="deletePipelineQueueItem"></a>
 # **deletePipelineQueueItem**
 ```java
 Mono<Void> BlueOceanApi.deletePipelineQueueItem(organizationpipelinequeue)
@@ -98,7 +98,7 @@ Delete queue item from an organization pipeline queue
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="getAuthenticatedUser"></a>
+<a id="getAuthenticatedUser"></a>
 # **getAuthenticatedUser**
 ```java
 Mono<User> BlueOceanApi.getAuthenticatedUser(organization)
@@ -124,7 +124,7 @@ Retrieve authenticated user details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getClasses"></a>
+<a id="getClasses"></a>
 # **getClasses**
 ```java
 Mono<String> BlueOceanApi.getClasses(propertyClass)
@@ -150,7 +150,7 @@ Get a list of class names supported by a given class
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getJsonWebKey"></a>
+<a id="getJsonWebKey"></a>
 # **getJsonWebKey**
 ```java
 Mono<String> BlueOceanApi.getJsonWebKey(key)
@@ -175,7 +175,7 @@ Retrieve JSON Web Key
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getJsonWebToken"></a>
+<a id="getJsonWebToken"></a>
 # **getJsonWebToken**
 ```java
 Mono<String> BlueOceanApi.getJsonWebToken(expiryTimeInMinsmaxExpiryTimeInMins)
@@ -201,7 +201,7 @@ Retrieve JSON Web Token
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getOrganisation"></a>
+<a id="getOrganisation"></a>
 # **getOrganisation**
 ```java
 Mono<Organisation> BlueOceanApi.getOrganisation(organization)
@@ -227,7 +227,7 @@ Retrieve organization details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getOrganisations"></a>
+<a id="getOrganisations"></a>
 # **getOrganisations**
 ```java
 Mono<List<Organisation>> BlueOceanApi.getOrganisations()
@@ -249,7 +249,7 @@ Retrieve all organizations details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipeline"></a>
+<a id="getPipeline"></a>
 # **getPipeline**
 ```java
 Mono<Pipeline> BlueOceanApi.getPipeline(organizationpipeline)
@@ -276,7 +276,7 @@ Retrieve pipeline details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineActivities"></a>
+<a id="getPipelineActivities"></a>
 # **getPipelineActivities**
 ```java
 Mono<List<PipelineActivity>> BlueOceanApi.getPipelineActivities(organizationpipeline)
@@ -303,7 +303,7 @@ Retrieve all activities details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineBranch"></a>
+<a id="getPipelineBranch"></a>
 # **getPipelineBranch**
 ```java
 Mono<BranchImpl> BlueOceanApi.getPipelineBranch(organizationpipelinebranch)
@@ -331,7 +331,7 @@ Retrieve branch details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineBranchRun"></a>
+<a id="getPipelineBranchRun"></a>
 # **getPipelineBranchRun**
 ```java
 Mono<PipelineRun> BlueOceanApi.getPipelineBranchRun(organizationpipelinebranchrun)
@@ -360,7 +360,7 @@ Retrieve branch run details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineBranches"></a>
+<a id="getPipelineBranches"></a>
 # **getPipelineBranches**
 ```java
 Mono<MultibranchPipeline> BlueOceanApi.getPipelineBranches(organizationpipeline)
@@ -387,7 +387,7 @@ Retrieve all branches details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineFolder"></a>
+<a id="getPipelineFolder"></a>
 # **getPipelineFolder**
 ```java
 Mono<PipelineFolderImpl> BlueOceanApi.getPipelineFolder(organizationfolder)
@@ -414,7 +414,7 @@ Retrieve pipeline folder for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineFolderPipeline"></a>
+<a id="getPipelineFolderPipeline"></a>
 # **getPipelineFolderPipeline**
 ```java
 Mono<PipelineImpl> BlueOceanApi.getPipelineFolderPipeline(organizationpipelinefolder)
@@ -442,7 +442,7 @@ Retrieve pipeline details for an organization folder
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineQueue"></a>
+<a id="getPipelineQueue"></a>
 # **getPipelineQueue**
 ```java
 Mono<List<QueueItemImpl>> BlueOceanApi.getPipelineQueue(organizationpipeline)
@@ -469,7 +469,7 @@ Retrieve queue details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRun"></a>
+<a id="getPipelineRun"></a>
 # **getPipelineRun**
 ```java
 Mono<PipelineRun> BlueOceanApi.getPipelineRun(organizationpipelinerun)
@@ -497,7 +497,7 @@ Retrieve run details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRunLog"></a>
+<a id="getPipelineRunLog"></a>
 # **getPipelineRunLog**
 ```java
 Mono<String> BlueOceanApi.getPipelineRunLog(organizationpipelinerunstartdownload)
@@ -527,7 +527,7 @@ Get log for a pipeline run
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRunNode"></a>
+<a id="getPipelineRunNode"></a>
 # **getPipelineRunNode**
 ```java
 Mono<PipelineRunNode> BlueOceanApi.getPipelineRunNode(organizationpipelinerunnode)
@@ -556,7 +556,7 @@ Retrieve run node details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRunNodeStep"></a>
+<a id="getPipelineRunNodeStep"></a>
 # **getPipelineRunNodeStep**
 ```java
 Mono<PipelineStepImpl> BlueOceanApi.getPipelineRunNodeStep(organizationpipelinerunnodestep)
@@ -586,7 +586,7 @@ Retrieve run node details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRunNodeStepLog"></a>
+<a id="getPipelineRunNodeStepLog"></a>
 # **getPipelineRunNodeStepLog**
 ```java
 Mono<String> BlueOceanApi.getPipelineRunNodeStepLog(organizationpipelinerunnodestep)
@@ -616,7 +616,7 @@ Get log for a pipeline run node step
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRunNodeSteps"></a>
+<a id="getPipelineRunNodeSteps"></a>
 # **getPipelineRunNodeSteps**
 ```java
 Mono<List<PipelineStepImpl>> BlueOceanApi.getPipelineRunNodeSteps(organizationpipelinerunnode)
@@ -645,7 +645,7 @@ Retrieve run node steps details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRunNodes"></a>
+<a id="getPipelineRunNodes"></a>
 # **getPipelineRunNodes**
 ```java
 Mono<List<PipelineRunNode>> BlueOceanApi.getPipelineRunNodes(organizationpipelinerun)
@@ -673,7 +673,7 @@ Retrieve run nodes details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelineRuns"></a>
+<a id="getPipelineRuns"></a>
 # **getPipelineRuns**
 ```java
 Mono<List<PipelineRun>> BlueOceanApi.getPipelineRuns(organizationpipeline)
@@ -700,7 +700,7 @@ Retrieve all runs details for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getPipelines"></a>
+<a id="getPipelines"></a>
 # **getPipelines**
 ```java
 Mono<List<Pipeline>> BlueOceanApi.getPipelines(organization)
@@ -726,7 +726,7 @@ Retrieve all pipelines details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getSCM"></a>
+<a id="getSCM"></a>
 # **getSCM**
 ```java
 Mono<GithubScm> BlueOceanApi.getSCM(organizationscm)
@@ -753,7 +753,7 @@ Retrieve SCM details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getSCMOrganisationRepositories"></a>
+<a id="getSCMOrganisationRepositories"></a>
 # **getSCMOrganisationRepositories**
 ```java
 Mono<List<GithubOrganization>> BlueOceanApi.getSCMOrganisationRepositories(organizationscmscmOrganisationcredentialIdpageSizepageNumber)
@@ -784,7 +784,7 @@ Retrieve SCM organization repositories details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getSCMOrganisationRepository"></a>
+<a id="getSCMOrganisationRepository"></a>
 # **getSCMOrganisationRepository**
 ```java
 Mono<List<GithubOrganization>> BlueOceanApi.getSCMOrganisationRepository(organizationscmscmOrganisationrepositorycredentialId)
@@ -814,7 +814,7 @@ Retrieve SCM organization repository details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getSCMOrganisations"></a>
+<a id="getSCMOrganisations"></a>
 # **getSCMOrganisations**
 ```java
 Mono<List<GithubOrganization>> BlueOceanApi.getSCMOrganisations(organizationscmcredentialId)
@@ -842,7 +842,7 @@ Retrieve SCM organizations details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getUser"></a>
+<a id="getUser"></a>
 # **getUser**
 ```java
 Mono<User> BlueOceanApi.getUser(organizationuser)
@@ -869,7 +869,7 @@ Retrieve user details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getUserFavorites"></a>
+<a id="getUserFavorites"></a>
 # **getUserFavorites**
 ```java
 Mono<List<FavoriteImpl>> BlueOceanApi.getUserFavorites(user)
@@ -895,7 +895,7 @@ Retrieve user favorites details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="getUsers"></a>
+<a id="getUsers"></a>
 # **getUsers**
 ```java
 Mono<User> BlueOceanApi.getUsers(organization)
@@ -921,7 +921,7 @@ Retrieve users details for an organization
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="postPipelineRun"></a>
+<a id="postPipelineRun"></a>
 # **postPipelineRun**
 ```java
 Mono<QueueItemImpl> BlueOceanApi.postPipelineRun(organizationpipelinerun)
@@ -949,7 +949,7 @@ Replay an organization pipeline run
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="postPipelineRuns"></a>
+<a id="postPipelineRuns"></a>
 # **postPipelineRuns**
 ```java
 Mono<QueueItemImpl> BlueOceanApi.postPipelineRuns(organizationpipeline)
@@ -976,7 +976,7 @@ Start a build for an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="putPipelineFavorite"></a>
+<a id="putPipelineFavorite"></a>
 # **putPipelineFavorite**
 ```java
 Mono<FavoriteImpl> BlueOceanApi.putPipelineFavorite(organizationpipeline_body)
@@ -1004,7 +1004,7 @@ Favorite/unfavorite a pipeline
  - **Content-Type**: `application/json`
  - **Accept**: `application/json`
 
-<a name="putPipelineRun"></a>
+<a id="putPipelineRun"></a>
 # **putPipelineRun**
 ```java
 Mono<PipelineRun> BlueOceanApi.putPipelineRun(organizationpipelinerunblockingtimeOutInSecs)
@@ -1034,7 +1034,7 @@ Stop a build of an organization pipeline
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="search"></a>
+<a id="search"></a>
 # **search**
 ```java
 Mono<String> BlueOceanApi.search(q)
@@ -1060,7 +1060,7 @@ Search for any resource details
  - **Content-Type**: Not defined
  - **Accept**: `application/json`
 
-<a name="searchClasses"></a>
+<a id="searchClasses"></a>
 # **searchClasses**
 ```java
 Mono<String> BlueOceanApi.searchClasses(q)

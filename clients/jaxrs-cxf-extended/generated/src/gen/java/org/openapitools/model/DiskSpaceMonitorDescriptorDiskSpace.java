@@ -119,6 +119,26 @@ public class DiskSpaceMonitorDescriptorDiskSpace  {
 
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    DiskSpaceMonitorDescriptorDiskSpace diskSpaceMonitorDescriptorDiskSpace = (DiskSpaceMonitorDescriptorDiskSpace) o;
+    return Objects.equals(this.propertyClass, diskSpaceMonitorDescriptorDiskSpace.propertyClass) &&
+        Objects.equals(this.timestamp, diskSpaceMonitorDescriptorDiskSpace.timestamp) &&
+        Objects.equals(this.path, diskSpaceMonitorDescriptorDiskSpace.path) &&
+        Objects.equals(this.size, diskSpaceMonitorDescriptorDiskSpace.size);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, timestamp, path, size);
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DiskSpaceMonitorDescriptorDiskSpace {\n");

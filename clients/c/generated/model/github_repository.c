@@ -165,7 +165,7 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
     // github_repository->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -180,7 +180,7 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
     // github_repository->default_branch
     cJSON *default_branch = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "defaultBranch");
     if (default_branch) { 
-    if(!cJSON_IsString(default_branch))
+    if(!cJSON_IsString(default_branch) && !cJSON_IsNull(default_branch))
     {
     goto end; //String
     }
@@ -189,7 +189,7 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
     // github_repository->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "description");
     if (description) { 
-    if(!cJSON_IsString(description))
+    if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
     goto end; //String
     }
@@ -198,7 +198,7 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
     // github_repository->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "name");
     if (name) { 
-    if(!cJSON_IsString(name))
+    if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
     goto end; //String
     }
@@ -222,7 +222,7 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
     // github_repository->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "fullName");
     if (full_name) { 
-    if(!cJSON_IsString(full_name))
+    if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
     goto end; //String
     }
@@ -230,14 +230,14 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
 
     github_repository_local_var = github_repository_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
-        default_branch ? strdup(default_branch->valuestring) : NULL,
-        description ? strdup(description->valuestring) : NULL,
-        name ? strdup(name->valuestring) : NULL,
+        default_branch && !cJSON_IsNull(default_branch) ? strdup(default_branch->valuestring) : NULL,
+        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         permissions ? permissions_local_nonprim : NULL,
         _private ? _private->valueint : 0,
-        full_name ? strdup(full_name->valuestring) : NULL
+        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL
         );
 
     return github_repository_local_var;

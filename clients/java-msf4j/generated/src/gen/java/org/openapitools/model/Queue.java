@@ -6,19 +6,20 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.QueueBlockedItem;
 
 /**
  * Queue
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class Queue   {
   @JsonProperty("_class")
   private String propertyClass;
 
   @JsonProperty("items")
-  private List<QueueBlockedItem> items = null;
+  private List<@Valid QueueBlockedItem> items = null;
 
   public Queue propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -38,14 +39,14 @@ public class Queue   {
     this.propertyClass = propertyClass;
   }
 
-  public Queue items(List<QueueBlockedItem> items) {
+  public Queue items(List<@Valid QueueBlockedItem> items) {
     this.items = items;
     return this;
   }
 
   public Queue addItemsItem(QueueBlockedItem itemsItem) {
     if (this.items == null) {
-      this.items = new ArrayList<>();
+      this.items = ;
     }
     this.items.add(itemsItem);
     return this;
@@ -56,11 +57,11 @@ public class Queue   {
    * @return items
   **/
   @ApiModelProperty(value = "")
-  public List<QueueBlockedItem> getItems() {
+  public List<@Valid QueueBlockedItem> getItems() {
     return items;
   }
 
-  public void setItems(List<QueueBlockedItem> items) {
+  public void setItems(List<@Valid QueueBlockedItem> items) {
     this.items = items;
   }
 

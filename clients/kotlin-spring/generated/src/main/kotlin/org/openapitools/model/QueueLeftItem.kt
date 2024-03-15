@@ -35,46 +35,46 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class QueueLeftItem(
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("_class") val propertyClass: kotlin.String? = null,
+    @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("actions") val actions: kotlin.collections.List<CauseAction>? = null,
+    @get:JsonProperty("actions") val actions: kotlin.collections.List<CauseAction>? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("blocked") val blocked: kotlin.Boolean? = null,
+    @get:JsonProperty("blocked") val blocked: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("buildable") val buildable: kotlin.Boolean? = null,
+    @get:JsonProperty("buildable") val buildable: kotlin.Boolean? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("id") val id: kotlin.Int? = null,
+    @get:JsonProperty("id") val id: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("inQueueSince") val inQueueSince: kotlin.Int? = null,
+    @get:JsonProperty("inQueueSince") val inQueueSince: kotlin.Int? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("params") val params: kotlin.String? = null,
+    @get:JsonProperty("params") val params: kotlin.String? = null,
 
     @Schema(example = "null", description = "")
-    @field:JsonProperty("stuck") val stuck: kotlin.Boolean? = null,
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("task") val task: FreeStyleProject? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("url") val url: kotlin.String? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("why") val why: kotlin.String? = null,
-
-    @Schema(example = "null", description = "")
-    @field:JsonProperty("cancelled") val cancelled: kotlin.Boolean? = null,
+    @get:JsonProperty("stuck") val stuck: kotlin.Boolean? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @field:JsonProperty("executable") val executable: FreeStyleBuild? = null
+    @get:JsonProperty("task") val task: FreeStyleProject? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("url") val url: kotlin.String? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("why") val why: kotlin.String? = null,
+
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("cancelled") val cancelled: kotlin.Boolean? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("executable") val executable: FreeStyleBuild? = null
 ) {
 
 }

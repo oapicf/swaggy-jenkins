@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -62,11 +62,11 @@ class GithubScm {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GithubScm &&
-     other.class_ == class_ &&
-     other.links == links &&
-     other.credentialId == credentialId &&
-     other.id == id &&
-     other.uri == uri;
+    other.class_ == class_ &&
+    other.links == links &&
+    other.credentialId == credentialId &&
+    other.id == id &&
+    other.uri == uri;
 
   @override
   int get hashCode =>
@@ -81,23 +81,33 @@ class GithubScm {
   String toString() => 'GithubScm[class_=$class_, links=$links, credentialId=$credentialId, id=$id, uri=$uri]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-    if (credentialId != null) {
-      _json[r'credentialId'] = credentialId;
+    if (this.credentialId != null) {
+      json[r'credentialId'] = this.credentialId;
+    } else {
+      json[r'credentialId'] = null;
     }
-    if (id != null) {
-      _json[r'id'] = id;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
     }
-    if (uri != null) {
-      _json[r'uri'] = uri;
+    if (this.uri != null) {
+      json[r'uri'] = this.uri;
+    } else {
+      json[r'uri'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GithubScm] instance and imports its values from
@@ -129,7 +139,7 @@ class GithubScm {
     return null;
   }
 
-  static List<GithubScm>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GithubScm> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GithubScm>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -160,12 +170,10 @@ class GithubScm {
   static Map<String, List<GithubScm>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GithubScm>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GithubScm.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GithubScm.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

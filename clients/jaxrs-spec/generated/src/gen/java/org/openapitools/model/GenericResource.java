@@ -15,9 +15,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GenericResource")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class GenericResource   {
-  
   private @Valid String propertyClass;
   private @Valid String displayName;
   private @Valid Integer durationInMillis;
@@ -44,7 +43,7 @@ public class GenericResource   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public GenericResource displayName(String displayName) {
     this.displayName = displayName;
@@ -63,7 +62,7 @@ public class GenericResource   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public GenericResource durationInMillis(Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
@@ -82,7 +81,7 @@ public class GenericResource   {
     this.durationInMillis = durationInMillis;
   }
 
-/**
+  /**
    **/
   public GenericResource id(String id) {
     this.id = id;
@@ -101,7 +100,7 @@ public class GenericResource   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public GenericResource result(String result) {
     this.result = result;
@@ -120,7 +119,7 @@ public class GenericResource   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public GenericResource startTime(String startTime) {
     this.startTime = startTime;

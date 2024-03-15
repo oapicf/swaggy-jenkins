@@ -1,6 +1,11 @@
 # coding: utf-8
 
 from typing import Dict, List  # noqa: F401
+import importlib
+import pkgutil
+
+from openapi_server.apis.remote_access_api_base import BaseRemoteAccessApi
+import openapi_server.impl
 
 from fastapi import (  # noqa: F401
     APIRouter,
@@ -27,6 +32,10 @@ from openapi_server.security_api import get_token_jenkins_auth
 
 router = APIRouter()
 
+ns_pkg = openapi_server.impl
+for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
+    importlib.import_module(name)
+
 
 @router.get(
     "/computer/api/json",
@@ -39,13 +48,13 @@ router = APIRouter()
     response_model_by_alias=True,
 )
 async def get_computer(
-    depth: int = Query(None, description="Recursion depth in response model"),
+    depth: int = Query(None, description="Recursion depth in response model", alias="depth"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> ComputerSet:
     """Retrieve computer details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_computer(depth)
 
 
 @router.get(
@@ -64,7 +73,7 @@ async def get_jenkins(
     ),
 ) -> Hudson:
     """Retrieve Jenkins details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_jenkins()
 
 
 @router.get(
@@ -79,13 +88,13 @@ async def get_jenkins(
     response_model_by_alias=True,
 )
 async def get_job(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> FreeStyleProject:
     """Retrieve job details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_job(name)
 
 
 @router.get(
@@ -100,13 +109,13 @@ async def get_job(
     response_model_by_alias=True,
 )
 async def get_job_config(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Retrieve job configuration"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_job_config(name)
 
 
 @router.get(
@@ -121,13 +130,13 @@ async def get_job_config(
     response_model_by_alias=True,
 )
 async def get_job_last_build(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> FreeStyleBuild:
     """Retrieve job&#39;s last build details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_job_last_build(name)
 
 
 @router.get(
@@ -142,15 +151,15 @@ async def get_job_last_build(
     response_model_by_alias=True,
 )
 async def get_job_progressive_text(
-    name: str = Path(None, description="Name of the job"),
-    number: str = Path(None, description="Build number"),
-    start: str = Query(None, description="Starting point of progressive text output"),
+    name: str = Path(..., description="Name of the job"),
+    number: str = Path(..., description="Build number"),
+    start: str = Query(None, description="Starting point of progressive text output", alias="start"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Retrieve job&#39;s build progressive text output"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_job_progressive_text(name, number, start)
 
 
 @router.get(
@@ -169,7 +178,7 @@ async def get_queue(
     ),
 ) -> Queue:
     """Retrieve queue details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_queue()
 
 
 @router.get(
@@ -183,13 +192,13 @@ async def get_queue(
     response_model_by_alias=True,
 )
 async def get_queue_item(
-    number: str = Path(None, description="Queue number"),
+    number: str = Path(..., description="Queue number"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> Queue:
     """Retrieve queued item details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_queue_item(number)
 
 
 @router.get(
@@ -204,13 +213,13 @@ async def get_queue_item(
     response_model_by_alias=True,
 )
 async def get_view(
-    name: str = Path(None, description="Name of the view"),
+    name: str = Path(..., description="Name of the view"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> ListView:
     """Retrieve view details"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_view(name)
 
 
 @router.get(
@@ -225,13 +234,13 @@ async def get_view(
     response_model_by_alias=True,
 )
 async def get_view_config(
-    name: str = Path(None, description="Name of the view"),
+    name: str = Path(..., description="Name of the view"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> str:
     """Retrieve view configuration"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().get_view_config(name)
 
 
 @router.head(
@@ -250,7 +259,7 @@ async def head_jenkins(
     ),
 ) -> None:
     """Retrieve Jenkins headers"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().head_jenkins()
 
 
 @router.post(
@@ -265,9 +274,9 @@ async def head_jenkins(
     response_model_by_alias=True,
 )
 async def post_create_item(
-    name: str = Query(None, description="Name of the new job"),
-    _from: str = Query(None, description="Existing job to copy from"),
-    mode: str = Query(None, description="Set to &#39;copy&#39; for copying an existing job"),
+    name: str = Query(None, description="Name of the new job", alias="name"),
+    _from: str = Query(None, description="Existing job to copy from", alias="from"),
+    mode: str = Query(None, description="Set to &#39;copy&#39; for copying an existing job", alias="mode"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     content_type: str = Header(None, description="Content type header application/xml"),
     body: str = Body(None, description="Job configuration in config.xml format"),
@@ -276,7 +285,7 @@ async def post_create_item(
     ),
 ) -> None:
     """Create a new job using job configuration, or copied from an existing job"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_create_item(name, _from, mode, jenkins_crumb, content_type, body)
 
 
 @router.post(
@@ -291,7 +300,7 @@ async def post_create_item(
     response_model_by_alias=True,
 )
 async def post_create_view(
-    name: str = Query(None, description="Name of the new view"),
+    name: str = Query(None, description="Name of the new view", alias="name"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     content_type: str = Header(None, description="Content type header application/xml"),
     body: str = Body(None, description="View configuration in config.xml format"),
@@ -300,7 +309,7 @@ async def post_create_view(
     ),
 ) -> None:
     """Create a new view using view configuration"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_create_view(name, jenkins_crumb, content_type, body)
 
 
 @router.post(
@@ -316,16 +325,16 @@ async def post_create_view(
     response_model_by_alias=True,
 )
 async def post_job_build(
-    name: str = Path(None, description="Name of the job"),
-    json: str = Query(None, description=""),
-    token: str = Query(None, description=""),
+    name: str = Path(..., description="Name of the job"),
+    _json: str = Query(None, description="", alias="json"),
+    token: str = Query(None, description="", alias="token"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Build a job"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_job_build(name, _json, token, jenkins_crumb)
 
 
 @router.post(
@@ -341,7 +350,7 @@ async def post_job_build(
     response_model_by_alias=True,
 )
 async def post_job_config(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     body: str = Body(None, description="Job configuration in config.xml format"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
@@ -349,7 +358,7 @@ async def post_job_config(
     ),
 ) -> None:
     """Update job configuration"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_job_config(name, body, jenkins_crumb)
 
 
 @router.post(
@@ -364,14 +373,14 @@ async def post_job_config(
     response_model_by_alias=True,
 )
 async def post_job_delete(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Delete a job"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_job_delete(name, jenkins_crumb)
 
 
 @router.post(
@@ -386,14 +395,14 @@ async def post_job_delete(
     response_model_by_alias=True,
 )
 async def post_job_disable(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Disable a job"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_job_disable(name, jenkins_crumb)
 
 
 @router.post(
@@ -408,14 +417,14 @@ async def post_job_disable(
     response_model_by_alias=True,
 )
 async def post_job_enable(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Enable a job"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_job_enable(name, jenkins_crumb)
 
 
 @router.post(
@@ -430,14 +439,14 @@ async def post_job_enable(
     response_model_by_alias=True,
 )
 async def post_job_last_build_stop(
-    name: str = Path(None, description="Name of the job"),
+    name: str = Path(..., description="Name of the job"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
 ) -> None:
     """Stop a job"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_job_last_build_stop(name, jenkins_crumb)
 
 
 @router.post(
@@ -453,7 +462,7 @@ async def post_job_last_build_stop(
     response_model_by_alias=True,
 )
 async def post_view_config(
-    name: str = Path(None, description="Name of the view"),
+    name: str = Path(..., description="Name of the view"),
     body: str = Body(None, description="View configuration in config.xml format"),
     jenkins_crumb: str = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
@@ -461,4 +470,4 @@ async def post_view_config(
     ),
 ) -> None:
     """Update view configuration"""
-    ...
+    return BaseRemoteAccessApi.subclasses[0]().post_view_config(name, body, jenkins_crumb)

@@ -10,12 +10,12 @@ namespace app\Models;
 class DefaultCrumbIssuer {
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
     /** @var string $crumb */
-    private $crumb;
+    public $crumb = "";
 
     /** @var string $crumbRequestField */
-    private $crumbRequestField;
+    public $crumbRequestField = "";
 
 }

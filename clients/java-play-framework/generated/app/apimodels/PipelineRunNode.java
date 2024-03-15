@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.PipelineRunNodeedges;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * PipelineRunNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class PipelineRunNode   {
   @JsonProperty("_class")
@@ -29,7 +31,7 @@ public class PipelineRunNode   {
   @JsonProperty("edges")
   @Valid
 
-  private List<PipelineRunNodeedges> edges = null;
+  private List<@Valid PipelineRunNodeedges> edges = null;
 
   @JsonProperty("id")
   
@@ -98,16 +100,16 @@ public class PipelineRunNode   {
     this.durationInMillis = durationInMillis;
   }
 
-  public PipelineRunNode edges(List<PipelineRunNodeedges> edges) {
+  public PipelineRunNode edges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
     return this;
   }
 
   public PipelineRunNode addEdgesItem(PipelineRunNodeedges edgesItem) {
-    if (edges == null) {
-      edges = new ArrayList<>();
+    if (this.edges == null) {
+      this.edges = new ArrayList<>();
     }
-    edges.add(edgesItem);
+    this.edges.add(edgesItem);
     return this;
   }
 
@@ -115,11 +117,11 @@ public class PipelineRunNode   {
    * Get edges
    * @return edges
   **/
-  public List<PipelineRunNodeedges> getEdges() {
+  public List<@Valid PipelineRunNodeedges> getEdges() {
     return edges;
   }
 
-  public void setEdges(List<PipelineRunNodeedges> edges) {
+  public void setEdges(List<@Valid PipelineRunNodeedges> edges) {
     this.edges = edges;
   }
 

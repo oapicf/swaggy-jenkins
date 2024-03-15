@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -35,8 +35,8 @@ class EmptyChangeLogSet {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is EmptyChangeLogSet &&
-     other.class_ == class_ &&
-     other.kind == kind;
+    other.class_ == class_ &&
+    other.kind == kind;
 
   @override
   int get hashCode =>
@@ -48,14 +48,18 @@ class EmptyChangeLogSet {
   String toString() => 'EmptyChangeLogSet[class_=$class_, kind=$kind]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (kind != null) {
-      _json[r'kind'] = kind;
+    if (this.kind != null) {
+      json[r'kind'] = this.kind;
+    } else {
+      json[r'kind'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [EmptyChangeLogSet] instance and imports its values from
@@ -84,7 +88,7 @@ class EmptyChangeLogSet {
     return null;
   }
 
-  static List<EmptyChangeLogSet>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<EmptyChangeLogSet> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <EmptyChangeLogSet>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -115,12 +119,10 @@ class EmptyChangeLogSet {
   static Map<String, List<EmptyChangeLogSet>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<EmptyChangeLogSet>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = EmptyChangeLogSet.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = EmptyChangeLogSet.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

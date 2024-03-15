@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelinelatestRunartifacts;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -17,7 +19,7 @@ import java.util.Objects;
 
 public class PipelinelatestRun   {
   
-  private List<PipelinelatestRunartifacts> artifacts = null;
+  private List<@Valid PipelinelatestRunartifacts> artifacts;
 
   private Integer durationInMillis;
 
@@ -47,10 +49,9 @@ public class PipelinelatestRun   {
 
   private String propertyClass;
 
-
   /**
    **/
-  public PipelinelatestRun artifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public PipelinelatestRun artifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
     return this;
   }
@@ -58,10 +59,10 @@ public class PipelinelatestRun   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("artifacts")
-  public List<PipelinelatestRunartifacts> getArtifacts() {
+  public List<@Valid PipelinelatestRunartifacts> getArtifacts() {
     return artifacts;
   }
-  public void setArtifacts(List<PipelinelatestRunartifacts> artifacts) {
+  public void setArtifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
 
@@ -336,21 +337,21 @@ public class PipelinelatestRun   {
       return false;
     }
     PipelinelatestRun pipelinelatestRun = (PipelinelatestRun) o;
-    return Objects.equals(artifacts, pipelinelatestRun.artifacts) &&
-        Objects.equals(durationInMillis, pipelinelatestRun.durationInMillis) &&
-        Objects.equals(estimatedDurationInMillis, pipelinelatestRun.estimatedDurationInMillis) &&
-        Objects.equals(enQueueTime, pipelinelatestRun.enQueueTime) &&
-        Objects.equals(endTime, pipelinelatestRun.endTime) &&
-        Objects.equals(id, pipelinelatestRun.id) &&
-        Objects.equals(organization, pipelinelatestRun.organization) &&
-        Objects.equals(pipeline, pipelinelatestRun.pipeline) &&
-        Objects.equals(result, pipelinelatestRun.result) &&
-        Objects.equals(runSummary, pipelinelatestRun.runSummary) &&
-        Objects.equals(startTime, pipelinelatestRun.startTime) &&
-        Objects.equals(state, pipelinelatestRun.state) &&
-        Objects.equals(type, pipelinelatestRun.type) &&
-        Objects.equals(commitId, pipelinelatestRun.commitId) &&
-        Objects.equals(propertyClass, pipelinelatestRun.propertyClass);
+    return Objects.equals(this.artifacts, pipelinelatestRun.artifacts) &&
+        Objects.equals(this.durationInMillis, pipelinelatestRun.durationInMillis) &&
+        Objects.equals(this.estimatedDurationInMillis, pipelinelatestRun.estimatedDurationInMillis) &&
+        Objects.equals(this.enQueueTime, pipelinelatestRun.enQueueTime) &&
+        Objects.equals(this.endTime, pipelinelatestRun.endTime) &&
+        Objects.equals(this.id, pipelinelatestRun.id) &&
+        Objects.equals(this.organization, pipelinelatestRun.organization) &&
+        Objects.equals(this.pipeline, pipelinelatestRun.pipeline) &&
+        Objects.equals(this.result, pipelinelatestRun.result) &&
+        Objects.equals(this.runSummary, pipelinelatestRun.runSummary) &&
+        Objects.equals(this.startTime, pipelinelatestRun.startTime) &&
+        Objects.equals(this.state, pipelinelatestRun.state) &&
+        Objects.equals(this.type, pipelinelatestRun.type) &&
+        Objects.equals(this.commitId, pipelinelatestRun.commitId) &&
+        Objects.equals(this.propertyClass, pipelinelatestRun.propertyClass);
   }
 
   @Override

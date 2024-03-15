@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
 
 /**
  * ListView
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2022-06-04T08:08:26.779091Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class ListView   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -21,7 +22,7 @@ public class ListView   {
   private String description;
 
   @JsonProperty("jobs")
-  private List<FreeStyleProject> jobs = null;
+  private List<@Valid FreeStyleProject> jobs = null;
 
   @JsonProperty("name")
   private String name;
@@ -65,14 +66,14 @@ public class ListView   {
     this.description = description;
   }
 
-  public ListView jobs(List<FreeStyleProject> jobs) {
+  public ListView jobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
     return this;
   }
 
   public ListView addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = new ArrayList<>();
+      this.jobs = ;
     }
     this.jobs.add(jobsItem);
     return this;
@@ -83,11 +84,11 @@ public class ListView   {
    * @return jobs
   **/
   @ApiModelProperty(value = "")
-  public List<FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
-  public void setJobs(List<FreeStyleProject> jobs) {
+  public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
 

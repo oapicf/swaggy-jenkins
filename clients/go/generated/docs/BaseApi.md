@@ -1,10 +1,10 @@
-# \BaseApi
+# \BaseAPI
 
 All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetCrumb**](BaseApi.md#GetCrumb) | **Get** /crumbIssuer/api/json | 
+[**GetCrumb**](BaseAPI.md#GetCrumb) | **Get** /crumbIssuer/api/json | 
 
 
 
@@ -22,23 +22,23 @@ Method | HTTP request | Description
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/oapicf/swaggy-jenkins"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BaseApi.GetCrumb(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BaseApi.GetCrumb``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetCrumb`: DefaultCrumbIssuer
-    fmt.Fprintf(os.Stdout, "Response from `BaseApi.GetCrumb`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BaseAPI.GetCrumb(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BaseAPI.GetCrumb``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCrumb`: DefaultCrumbIssuer
+	fmt.Fprintf(os.Stdout, "Response from `BaseAPI.GetCrumb`: %v\n", resp)
 }
 ```
 

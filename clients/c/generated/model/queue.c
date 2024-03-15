@@ -87,7 +87,7 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
     // queue->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queueJSON, "_class");
     if (_class) { 
-    if(!cJSON_IsString(_class))
+    if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
     goto end; //String
     }
@@ -116,7 +116,7 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
 
     queue_local_var = queue_create (
-        _class ? strdup(_class->valuestring) : NULL,
+        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         items ? itemsList : NULL
         );
 

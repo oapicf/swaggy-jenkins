@@ -1,11 +1,8 @@
-# coding: utf-8
-
-from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from openapi_server.models.base_model_ import Model
+from openapi_server.models.base_model import Model
 from openapi_server.models.extension_class_impl import ExtensionClassImpl
 from openapi_server import util
 
@@ -55,7 +52,7 @@ class ExtensionClassContainerImpl1map(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def io_jenkins_blueocean_service_embedded_rest_pipeline_impl(self):
+    def io_jenkins_blueocean_service_embedded_rest_pipeline_impl(self) -> ExtensionClassImpl:
         """Gets the io_jenkins_blueocean_service_embedded_rest_pipeline_impl of this ExtensionClassContainerImpl1map.
 
 
@@ -65,7 +62,7 @@ class ExtensionClassContainerImpl1map(Model):
         return self._io_jenkins_blueocean_service_embedded_rest_pipeline_impl
 
     @io_jenkins_blueocean_service_embedded_rest_pipeline_impl.setter
-    def io_jenkins_blueocean_service_embedded_rest_pipeline_impl(self, io_jenkins_blueocean_service_embedded_rest_pipeline_impl):
+    def io_jenkins_blueocean_service_embedded_rest_pipeline_impl(self, io_jenkins_blueocean_service_embedded_rest_pipeline_impl: ExtensionClassImpl):
         """Sets the io_jenkins_blueocean_service_embedded_rest_pipeline_impl of this ExtensionClassContainerImpl1map.
 
 
@@ -76,7 +73,7 @@ class ExtensionClassContainerImpl1map(Model):
         self._io_jenkins_blueocean_service_embedded_rest_pipeline_impl = io_jenkins_blueocean_service_embedded_rest_pipeline_impl
 
     @property
-    def io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl(self):
+    def io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl(self) -> ExtensionClassImpl:
         """Gets the io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl of this ExtensionClassContainerImpl1map.
 
 
@@ -86,7 +83,7 @@ class ExtensionClassContainerImpl1map(Model):
         return self._io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl
 
     @io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl.setter
-    def io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl(self, io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl):
+    def io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl(self, io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: ExtensionClassImpl):
         """Sets the io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl of this ExtensionClassContainerImpl1map.
 
 
@@ -97,7 +94,7 @@ class ExtensionClassContainerImpl1map(Model):
         self._io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl
 
     @property
-    def _class(self):
+    def _class(self) -> str:
         """Gets the _class of this ExtensionClassContainerImpl1map.
 
 
@@ -107,7 +104,7 @@ class ExtensionClassContainerImpl1map(Model):
         return self.__class
 
     @_class.setter
-    def _class(self, _class):
+    def _class(self, _class: str):
         """Sets the _class of this ExtensionClassContainerImpl1map.
 
 

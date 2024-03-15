@@ -3,6 +3,7 @@ package org.openapitools.model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
@@ -19,13 +20,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleBuild")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2022-06-04T08:09:11.684443Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class FreeStyleBuild   {
-  
   private @Valid String propertyClass;
   private @Valid Integer number;
   private @Valid String url;
-  private @Valid List<CauseAction> actions = new ArrayList<>();
+  private @Valid List<@Valid CauseAction> actions;
   private @Valid Boolean building;
   private @Valid String description;
   private @Valid String displayName;
@@ -60,7 +60,7 @@ public class FreeStyleBuild   {
     this.propertyClass = propertyClass;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild number(Integer number) {
     this.number = number;
@@ -79,7 +79,7 @@ public class FreeStyleBuild   {
     this.number = number;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild url(String url) {
     this.url = url;
@@ -98,9 +98,9 @@ public class FreeStyleBuild   {
     this.url = url;
   }
 
-/**
+  /**
    **/
-  public FreeStyleBuild actions(List<CauseAction> actions) {
+  public FreeStyleBuild actions(List<@Valid CauseAction> actions) {
     this.actions = actions;
     return this;
   }
@@ -113,7 +113,7 @@ public class FreeStyleBuild   {
   }
 
   @JsonProperty("actions")
-  public void setActions(List<CauseAction> actions) {
+  public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
 
@@ -133,7 +133,7 @@ public class FreeStyleBuild   {
 
     return this;
   }
-/**
+  /**
    **/
   public FreeStyleBuild building(Boolean building) {
     this.building = building;
@@ -152,7 +152,7 @@ public class FreeStyleBuild   {
     this.building = building;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild description(String description) {
     this.description = description;
@@ -171,7 +171,7 @@ public class FreeStyleBuild   {
     this.description = description;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild displayName(String displayName) {
     this.displayName = displayName;
@@ -190,7 +190,7 @@ public class FreeStyleBuild   {
     this.displayName = displayName;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild duration(Integer duration) {
     this.duration = duration;
@@ -209,7 +209,7 @@ public class FreeStyleBuild   {
     this.duration = duration;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild estimatedDuration(Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
@@ -228,7 +228,7 @@ public class FreeStyleBuild   {
     this.estimatedDuration = estimatedDuration;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild executor(String executor) {
     this.executor = executor;
@@ -247,7 +247,7 @@ public class FreeStyleBuild   {
     this.executor = executor;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild fullDisplayName(String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
@@ -266,7 +266,7 @@ public class FreeStyleBuild   {
     this.fullDisplayName = fullDisplayName;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild id(String id) {
     this.id = id;
@@ -285,7 +285,7 @@ public class FreeStyleBuild   {
     this.id = id;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild keepLog(Boolean keepLog) {
     this.keepLog = keepLog;
@@ -304,7 +304,7 @@ public class FreeStyleBuild   {
     this.keepLog = keepLog;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild queueId(Integer queueId) {
     this.queueId = queueId;
@@ -323,7 +323,7 @@ public class FreeStyleBuild   {
     this.queueId = queueId;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild result(String result) {
     this.result = result;
@@ -342,7 +342,7 @@ public class FreeStyleBuild   {
     this.result = result;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild timestamp(Integer timestamp) {
     this.timestamp = timestamp;
@@ -361,7 +361,7 @@ public class FreeStyleBuild   {
     this.timestamp = timestamp;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild builtOn(String builtOn) {
     this.builtOn = builtOn;
@@ -380,7 +380,7 @@ public class FreeStyleBuild   {
     this.builtOn = builtOn;
   }
 
-/**
+  /**
    **/
   public FreeStyleBuild changeSet(EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;

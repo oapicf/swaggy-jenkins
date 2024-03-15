@@ -10,15 +10,15 @@ namespace app\Models;
 class PipelineActivityartifacts {
 
     /** @var string $name */
-    private $name;
+    public $name = "";
 
     /** @var int $size */
-    private $size;
+    public $size = 0;
 
     /** @var string $url */
-    private $url;
+    public $url = "";
 
     /** @var string $class */
-    private $class;
+    public $class = "";
 
 }

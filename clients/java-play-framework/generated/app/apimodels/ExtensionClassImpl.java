@@ -2,16 +2,18 @@ package apimodels;
 
 import apimodels.ExtensionClassImpllinks;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 import java.util.Set;
 import javax.validation.*;
 import java.util.Objects;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 /**
  * ExtensionClassImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2022-06-04T08:08:33.694891Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2024-03-15T14:12:54.149422212Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class ExtensionClassImpl   {
   @JsonProperty("_class")
@@ -67,10 +69,10 @@ public class ExtensionClassImpl   {
   }
 
   public ExtensionClassImpl addClassesItem(String classesItem) {
-    if (classes == null) {
-      classes = new ArrayList<>();
+    if (this.classes == null) {
+      this.classes = new ArrayList<>();
     }
-    classes.add(classesItem);
+    this.classes.add(classesItem);
     return this;
   }
 

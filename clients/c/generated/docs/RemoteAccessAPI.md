@@ -30,14 +30,14 @@ Method | HTTP request | Description
 ```c
 // Retrieve computer details
 //
-computer_set_t* RemoteAccessAPI_getComputer(apiClient_t *apiClient, int depth);
+computer_set_t* RemoteAccessAPI_getComputer(apiClient_t *apiClient, int *depth);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**depth** | **int** | Recursion depth in response model | 
+**depth** | **int \*** | Recursion depth in response model | 
 
 ### Return type
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve job details
 //
-free_style_project_t* RemoteAccessAPI_getJob(apiClient_t *apiClient, char * name);
+free_style_project_t* RemoteAccessAPI_getJob(apiClient_t *apiClient, char *name);
 ```
 
 ### Parameters
@@ -116,7 +116,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve job configuration
 //
-char* RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char * name);
+char* RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char *name);
 ```
 
 ### Parameters
@@ -146,7 +146,7 @@ char*
 ```c
 // Retrieve job's last build details
 //
-free_style_build_t* RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char * name);
+free_style_build_t* RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char *name);
 ```
 
 ### Parameters
@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve job's build progressive text output
 //
-void RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char * name, char * number, char * start);
+void RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char *name, char *number, char *start);
 ```
 
 ### Parameters
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve queued item details
 //
-queue_t* RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char * number);
+queue_t* RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char *number);
 ```
 
 ### Parameters
@@ -262,7 +262,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve view details
 //
-list_view_t* RemoteAccessAPI_getView(apiClient_t *apiClient, char * name);
+list_view_t* RemoteAccessAPI_getView(apiClient_t *apiClient, char *name);
 ```
 
 ### Parameters
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve view configuration
 //
-char* RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char * name);
+char* RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char *name);
 ```
 
 ### Parameters
@@ -348,7 +348,7 @@ void
 ```c
 // Create a new job using job configuration, or copied from an existing job
 //
-void RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char * name, char * from, char * mode, char * Jenkins_Crumb, char * Content_Type, char * body);
+void RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char *name, char *from, char *mode, char *Jenkins_Crumb, char *Content_Type, char *body);
 ```
 
 ### Parameters
@@ -381,7 +381,7 @@ void
 ```c
 // Create a new view using view configuration
 //
-void RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char * name, char * Jenkins_Crumb, char * Content_Type, char * body);
+void RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char *name, char *Jenkins_Crumb, char *Content_Type, char *body);
 ```
 
 ### Parameters
@@ -412,7 +412,7 @@ void
 ```c
 // Build a job
 //
-void RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char * name, char * json, char * token, char * Jenkins_Crumb);
+void RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char *name, char *json, char *token, char *Jenkins_Crumb);
 ```
 
 ### Parameters
@@ -443,7 +443,7 @@ void
 ```c
 // Update job configuration
 //
-void RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char * name, char * body, char * Jenkins_Crumb);
+void RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char *name, char *body, char *Jenkins_Crumb);
 ```
 
 ### Parameters
@@ -473,7 +473,7 @@ void
 ```c
 // Delete a job
 //
-void RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char * name, char * Jenkins_Crumb);
+void RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char *name, char *Jenkins_Crumb);
 ```
 
 ### Parameters
@@ -502,7 +502,7 @@ void
 ```c
 // Disable a job
 //
-void RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char * name, char * Jenkins_Crumb);
+void RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char *name, char *Jenkins_Crumb);
 ```
 
 ### Parameters
@@ -531,7 +531,7 @@ void
 ```c
 // Enable a job
 //
-void RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char * name, char * Jenkins_Crumb);
+void RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char *name, char *Jenkins_Crumb);
 ```
 
 ### Parameters
@@ -560,7 +560,7 @@ void
 ```c
 // Stop a job
 //
-void RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char * name, char * Jenkins_Crumb);
+void RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char *name, char *Jenkins_Crumb);
 ```
 
 ### Parameters
@@ -589,7 +589,7 @@ void
 ```c
 // Update view configuration
 //
-void RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char * name, char * body, char * Jenkins_Crumb);
+void RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char *name, char *body, char *Jenkins_Crumb);
 ```
 
 ### Parameters

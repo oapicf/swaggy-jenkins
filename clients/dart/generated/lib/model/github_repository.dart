@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -89,14 +89,14 @@ class GithubRepository {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GithubRepository &&
-     other.class_ == class_ &&
-     other.links == links &&
-     other.defaultBranch == defaultBranch &&
-     other.description == description &&
-     other.name == name &&
-     other.permissions == permissions &&
-     other.private == private &&
-     other.fullName == fullName;
+    other.class_ == class_ &&
+    other.links == links &&
+    other.defaultBranch == defaultBranch &&
+    other.description == description &&
+    other.name == name &&
+    other.permissions == permissions &&
+    other.private == private &&
+    other.fullName == fullName;
 
   @override
   int get hashCode =>
@@ -114,32 +114,48 @@ class GithubRepository {
   String toString() => 'GithubRepository[class_=$class_, links=$links, defaultBranch=$defaultBranch, description=$description, name=$name, permissions=$permissions, private=$private, fullName=$fullName]';
 
   Map<String, dynamic> toJson() {
-    final _json = <String, dynamic>{};
-    if (class_ != null) {
-      _json[r'_class'] = class_;
+    final json = <String, dynamic>{};
+    if (this.class_ != null) {
+      json[r'_class'] = this.class_;
+    } else {
+      json[r'_class'] = null;
     }
-    if (links != null) {
-      _json[r'_links'] = links;
+    if (this.links != null) {
+      json[r'_links'] = this.links;
+    } else {
+      json[r'_links'] = null;
     }
-    if (defaultBranch != null) {
-      _json[r'defaultBranch'] = defaultBranch;
+    if (this.defaultBranch != null) {
+      json[r'defaultBranch'] = this.defaultBranch;
+    } else {
+      json[r'defaultBranch'] = null;
     }
-    if (description != null) {
-      _json[r'description'] = description;
+    if (this.description != null) {
+      json[r'description'] = this.description;
+    } else {
+      json[r'description'] = null;
     }
-    if (name != null) {
-      _json[r'name'] = name;
+    if (this.name != null) {
+      json[r'name'] = this.name;
+    } else {
+      json[r'name'] = null;
     }
-    if (permissions != null) {
-      _json[r'permissions'] = permissions;
+    if (this.permissions != null) {
+      json[r'permissions'] = this.permissions;
+    } else {
+      json[r'permissions'] = null;
     }
-    if (private != null) {
-      _json[r'private'] = private;
+    if (this.private != null) {
+      json[r'private'] = this.private;
+    } else {
+      json[r'private'] = null;
     }
-    if (fullName != null) {
-      _json[r'fullName'] = fullName;
+    if (this.fullName != null) {
+      json[r'fullName'] = this.fullName;
+    } else {
+      json[r'fullName'] = null;
     }
-    return _json;
+    return json;
   }
 
   /// Returns a new [GithubRepository] instance and imports its values from
@@ -174,7 +190,7 @@ class GithubRepository {
     return null;
   }
 
-  static List<GithubRepository>? listFromJson(dynamic json, {bool growable = false,}) {
+  static List<GithubRepository> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <GithubRepository>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -205,12 +221,10 @@ class GithubRepository {
   static Map<String, List<GithubRepository>> mapListFromJson(dynamic json, {bool growable = false,}) {
     final map = <String, List<GithubRepository>>{};
     if (json is Map && json.isNotEmpty) {
-      json = json.cast<String, dynamic>(); // ignore: parameter_assignments
+      // ignore: parameter_assignments
+      json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        final value = GithubRepository.listFromJson(entry.value, growable: growable,);
-        if (value != null) {
-          map[entry.key] = value;
-        }
+        map[entry.key] = GithubRepository.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

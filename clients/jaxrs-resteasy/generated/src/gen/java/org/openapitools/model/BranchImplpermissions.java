@@ -7,9 +7,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 import io.swagger.annotations.*;
+import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2022-06-04T08:09:04.819692Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class BranchImplpermissions   {
   
   private Boolean create;
@@ -88,11 +90,11 @@ public class BranchImplpermissions   {
       return false;
     }
     BranchImplpermissions branchImplpermissions = (BranchImplpermissions) o;
-    return Objects.equals(create, branchImplpermissions.create) &&
-        Objects.equals(read, branchImplpermissions.read) &&
-        Objects.equals(start, branchImplpermissions.start) &&
-        Objects.equals(stop, branchImplpermissions.stop) &&
-        Objects.equals(propertyClass, branchImplpermissions.propertyClass);
+    return Objects.equals(this.create, branchImplpermissions.create) &&
+        Objects.equals(this.read, branchImplpermissions.read) &&
+        Objects.equals(this.start, branchImplpermissions.start) &&
+        Objects.equals(this.stop, branchImplpermissions.stop) &&
+        Objects.equals(this.propertyClass, branchImplpermissions.propertyClass);
   }
 
   @Override

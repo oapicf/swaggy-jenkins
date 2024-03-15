@@ -4,9 +4,8 @@ import play.api.libs.json._
 
 /**
   * Represents the Swagger definition for PipelineRun.
-  * @param additionalProperties Any additional properties this model may have.
   */
-@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2022-06-04T08:11:54.386355Z[Etc/UTC]")
+@javax.annotation.Generated(value = Array("org.openapitools.codegen.languages.ScalaPlayFrameworkServerCodegen"), date = "2024-03-15T14:20:17.794970991Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 case class PipelineRun(
   `class`: Option[String],
   artifacts: Option[List[PipelineRunartifacts]],
@@ -23,33 +22,9 @@ case class PipelineRun(
   state: Option[String],
   `type`: Option[String],
   commitId: Option[String]
-  additionalProperties: 
 )
 
 object PipelineRun {
-  implicit lazy val pipelineRunJsonFormat: Format[PipelineRun] = {
-    val realJsonFormat = Json.format[PipelineRun]
-    val declaredPropNames = Set("`class`", "artifacts", "durationInMillis", "estimatedDurationInMillis", "enQueueTime", "endTime", "id", "organization", "pipeline", "result", "runSummary", "startTime", "state", "`type`", "commitId")
-    
-    Format(
-      Reads {
-        case JsObject(xs) =>
-          val declaredProps = xs.filterKeys(declaredPropNames)
-          val additionalProps = JsObject(xs -- declaredPropNames)
-          val restructuredProps = declaredProps + ("additionalProperties" -> additionalProps)
-          val newObj = JsObject(restructuredProps)
-          realJsonFormat.reads(newObj)
-        case _ =>
-          JsError("error.expected.jsobject")
-      },
-      Writes { pipelineRun =>
-        val jsObj = realJsonFormat.writes(pipelineRun)
-        val additionalProps = jsObj.value("additionalProperties").as[JsObject]
-        val declaredProps = jsObj - "additionalProperties"
-        val newObj = declaredProps ++ additionalProps
-        newObj
-      }
-    )
-  }
+  implicit lazy val pipelineRunJsonFormat: Format[PipelineRun] = Json.format[PipelineRun]
 }
 

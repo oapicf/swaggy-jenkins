@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.StringParameterValue;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -24,7 +25,6 @@ public class StringParameterDefinition   {
   private String name;
 
   private String type;
-
 
   /**
    **/
@@ -126,11 +126,11 @@ public class StringParameterDefinition   {
       return false;
     }
     StringParameterDefinition stringParameterDefinition = (StringParameterDefinition) o;
-    return Objects.equals(propertyClass, stringParameterDefinition.propertyClass) &&
-        Objects.equals(defaultParameterValue, stringParameterDefinition.defaultParameterValue) &&
-        Objects.equals(description, stringParameterDefinition.description) &&
-        Objects.equals(name, stringParameterDefinition.name) &&
-        Objects.equals(type, stringParameterDefinition.type);
+    return Objects.equals(this.propertyClass, stringParameterDefinition.propertyClass) &&
+        Objects.equals(this.defaultParameterValue, stringParameterDefinition.defaultParameterValue) &&
+        Objects.equals(this.description, stringParameterDefinition.description) &&
+        Objects.equals(this.name, stringParameterDefinition.name) &&
+        Objects.equals(this.type, stringParameterDefinition.type);
   }
 
   @Override

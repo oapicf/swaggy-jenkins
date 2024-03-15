@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools/Api.BaseApi
+# PSOpenAPITools.PSOpenAPITools\Api.BaseApi
 
 All URIs are relative to *http://localhost*
 
@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**Get-Crumb**](BaseApi.md#Get-Crumb) | **GET** /crumbIssuer/api/json | 
 
 
-<a name="Get-Crumb"></a>
+<a id="Get-Crumb"></a>
 # **Get-Crumb**
 > DefaultCrumbIssuer Get-Crumb<br>
 

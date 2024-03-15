@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.openapitools.server.api.model.GithubRepositorieslinks;
 import org.openapitools.server.api.model.GithubRepository;
@@ -13,7 +14,7 @@ public class GithubRepositories   {
   
   private String propertyClass;
   private GithubRepositorieslinks links;
-  private List<GithubRepository> items = new ArrayList<>();
+  private List<GithubRepository> items;
   private Integer lastPage;
   private Integer nextPage;
   private Integer pageSize;

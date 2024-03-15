@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -153,6 +154,28 @@ public class PipelineFolderImpl  {
     return this;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PipelineFolderImpl pipelineFolderImpl = (PipelineFolderImpl) o;
+    return Objects.equals(this.propertyClass, pipelineFolderImpl.propertyClass) &&
+        Objects.equals(this.displayName, pipelineFolderImpl.displayName) &&
+        Objects.equals(this.fullName, pipelineFolderImpl.fullName) &&
+        Objects.equals(this.name, pipelineFolderImpl.name) &&
+        Objects.equals(this.organization, pipelineFolderImpl.organization) &&
+        Objects.equals(this.numberOfFolders, pipelineFolderImpl.numberOfFolders) &&
+        Objects.equals(this.numberOfPipelines, pipelineFolderImpl.numberOfPipelines);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, displayName, fullName, name, organization, numberOfFolders, numberOfPipelines);
+  }
 
   @Override
   public String toString() {

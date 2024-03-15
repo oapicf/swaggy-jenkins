@@ -20,34 +20,25 @@ import javax.annotation.Generated;
  * PipelineStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-06-04T08:12:04.098807Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineStepImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("_links")
   private PipelineStepImpllinks links;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("durationInMillis")
   private Integer durationInMillis;
 
-  @JsonProperty("id")
   private String id;
 
-  @JsonProperty("input")
   private InputStepImpl input;
 
-  @JsonProperty("result")
   private String result;
 
-  @JsonProperty("startTime")
   private String startTime;
 
-  @JsonProperty("state")
   private String state;
 
   public PipelineStepImpl propertyClass(String propertyClass) {
@@ -60,7 +51,8 @@ public class PipelineStepImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -79,7 +71,8 @@ public class PipelineStepImpl {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public PipelineStepImpllinks getLinks() {
     return links;
   }
@@ -98,7 +91,8 @@ public class PipelineStepImpl {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -117,7 +111,8 @@ public class PipelineStepImpl {
    * @return durationInMillis
   */
   
-  @Schema(name = "durationInMillis", required = false)
+  @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("durationInMillis")
   public Integer getDurationInMillis() {
     return durationInMillis;
   }
@@ -136,7 +131,8 @@ public class PipelineStepImpl {
    * @return id
   */
   
-  @Schema(name = "id", required = false)
+  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -155,7 +151,8 @@ public class PipelineStepImpl {
    * @return input
   */
   @Valid 
-  @Schema(name = "input", required = false)
+  @Schema(name = "input", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("input")
   public InputStepImpl getInput() {
     return input;
   }
@@ -174,7 +171,8 @@ public class PipelineStepImpl {
    * @return result
   */
   
-  @Schema(name = "result", required = false)
+  @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("result")
   public String getResult() {
     return result;
   }
@@ -193,7 +191,8 @@ public class PipelineStepImpl {
    * @return startTime
   */
   
-  @Schema(name = "startTime", required = false)
+  @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("startTime")
   public String getStartTime() {
     return startTime;
   }
@@ -212,7 +211,8 @@ public class PipelineStepImpl {
    * @return state
   */
   
-  @Schema(name = "state", required = false)
+  @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("state")
   public String getState() {
     return state;
   }

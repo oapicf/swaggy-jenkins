@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.model.FreeStyleBuild;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 
 import io.swagger.annotations.*;
@@ -26,7 +27,6 @@ public class HudsonMasterComputerexecutors   {
   private Integer progress;
 
   private String propertyClass;
-
 
   /**
    **/
@@ -146,12 +146,12 @@ public class HudsonMasterComputerexecutors   {
       return false;
     }
     HudsonMasterComputerexecutors hudsonMasterComputerexecutors = (HudsonMasterComputerexecutors) o;
-    return Objects.equals(currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
-        Objects.equals(idle, hudsonMasterComputerexecutors.idle) &&
-        Objects.equals(likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
-        Objects.equals(number, hudsonMasterComputerexecutors.number) &&
-        Objects.equals(progress, hudsonMasterComputerexecutors.progress) &&
-        Objects.equals(propertyClass, hudsonMasterComputerexecutors.propertyClass);
+    return Objects.equals(this.currentExecutable, hudsonMasterComputerexecutors.currentExecutable) &&
+        Objects.equals(this.idle, hudsonMasterComputerexecutors.idle) &&
+        Objects.equals(this.likelyStuck, hudsonMasterComputerexecutors.likelyStuck) &&
+        Objects.equals(this.number, hudsonMasterComputerexecutors.number) &&
+        Objects.equals(this.progress, hudsonMasterComputerexecutors.progress) &&
+        Objects.equals(this.propertyClass, hudsonMasterComputerexecutors.propertyClass);
   }
 
   @Override

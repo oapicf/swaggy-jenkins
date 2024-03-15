@@ -19,34 +19,25 @@ import javax.annotation.Generated;
  * PipelineImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2022-06-04T08:08:47.143870Z[Etc/UTC]")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
 public class PipelineImpl {
 
-  @JsonProperty("_class")
   private String propertyClass;
 
-  @JsonProperty("displayName")
   private String displayName;
 
-  @JsonProperty("estimatedDurationInMillis")
   private Integer estimatedDurationInMillis;
 
-  @JsonProperty("fullName")
   private String fullName;
 
-  @JsonProperty("latestRun")
   private String latestRun;
 
-  @JsonProperty("name")
   private String name;
 
-  @JsonProperty("organization")
   private String organization;
 
-  @JsonProperty("weatherScore")
   private Integer weatherScore;
 
-  @JsonProperty("_links")
   private PipelineImpllinks links;
 
   public PipelineImpl propertyClass(String propertyClass) {
@@ -59,7 +50,8 @@ public class PipelineImpl {
    * @return propertyClass
   */
   
-  @Schema(name = "_class", required = false)
+  @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_class")
   public String getPropertyClass() {
     return propertyClass;
   }
@@ -78,7 +70,8 @@ public class PipelineImpl {
    * @return displayName
   */
   
-  @Schema(name = "displayName", required = false)
+  @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("displayName")
   public String getDisplayName() {
     return displayName;
   }
@@ -97,7 +90,8 @@ public class PipelineImpl {
    * @return estimatedDurationInMillis
   */
   
-  @Schema(name = "estimatedDurationInMillis", required = false)
+  @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("estimatedDurationInMillis")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
@@ -116,7 +110,8 @@ public class PipelineImpl {
    * @return fullName
   */
   
-  @Schema(name = "fullName", required = false)
+  @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
@@ -135,7 +130,8 @@ public class PipelineImpl {
    * @return latestRun
   */
   
-  @Schema(name = "latestRun", required = false)
+  @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("latestRun")
   public String getLatestRun() {
     return latestRun;
   }
@@ -154,7 +150,8 @@ public class PipelineImpl {
    * @return name
   */
   
-  @Schema(name = "name", required = false)
+  @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -173,7 +170,8 @@ public class PipelineImpl {
    * @return organization
   */
   
-  @Schema(name = "organization", required = false)
+  @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("organization")
   public String getOrganization() {
     return organization;
   }
@@ -192,7 +190,8 @@ public class PipelineImpl {
    * @return weatherScore
   */
   
-  @Schema(name = "weatherScore", required = false)
+  @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("weatherScore")
   public Integer getWeatherScore() {
     return weatherScore;
   }
@@ -211,7 +210,8 @@ public class PipelineImpl {
    * @return links
   */
   @Valid 
-  @Schema(name = "_links", required = false)
+  @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("_links")
   public PipelineImpllinks getLinks() {
     return links;
   }
