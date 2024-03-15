@@ -36,10 +36,10 @@
       }
     },
     {
-      "path": "Makefile",
-      "type": "makefile",
+      "path": "swaggy-c.yml",
+      "type": "yaml",
       "params": {
-        "variable": "version"
+        "property": "version"
       }
     },
     {

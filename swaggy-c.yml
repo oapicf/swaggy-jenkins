@@ -1,0 +1,12 @@
+spec_uri: specification/jenkins.yml
+version: 2.0.1-pre.0
+contact:
+  name: OpenAPI Clients Factory
+  url: https://github.com/oapicf/swaggy-jenkins
+  email: blah+oapicf@cliffano.com
+scm:
+  git_user: oapicf
+  git_repo: swaggy-jenkins
+base_dir:
+  github_actions: /home/runner/work/swaggy-jenkins/swaggy-jenkins
+  local: /Users/cliffano/dev/workspace-studio/swaggy-jenkins
