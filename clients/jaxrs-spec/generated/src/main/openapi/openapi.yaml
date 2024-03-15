@@ -3,7 +3,7 @@ info:
   contact:
     email: blah@cliffano.com
     name: Cliffano Subagio
-    url: http://github.com/cliffano/swaggy-jenkins
+    url: http://github.com/oapicf/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
   version: 1.5.1-pre.0

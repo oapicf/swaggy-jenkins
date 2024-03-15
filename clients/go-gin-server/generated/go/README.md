@@ -14,7 +14,7 @@ To see how to make this your own, look here:
 
 - API version: 1.5.1-pre.0
 - Build date: 2022-06-04T08:07:32.971207Z[Etc/UTC]
-For more information, please visit [http://github.com/cliffano/swaggy-jenkins](http://github.com/cliffano/swaggy-jenkins)
+For more information, please visit [http://github.com/oapicf/swaggy-jenkins](http://github.com/oapicf/swaggy-jenkins)
 
 ### Running the server
 

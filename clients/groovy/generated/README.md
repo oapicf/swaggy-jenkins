@@ -1,4 +1,4 @@
-# 
+#
 
 Jenkins API clients generated from Swagger / Open API specification
 
@@ -8,7 +8,7 @@ This Groovy package, using the [http-builder-ng library](https://http-builder-ng
 - Package version: 1.5.1-pre.0
 - Build date: 2022-06-04T08:07:42.233157Z[Etc/UTC]
 - Build package: org.openapitools.codegen.languages.GroovyClientCodegen
-For more information, please visit [http://github.com/cliffano/swaggy-jenkins](http://github.com/cliffano/swaggy-jenkins)
+For more information, please visit [http://github.com/oapicf/swaggy-jenkins](http://github.com/oapicf/swaggy-jenkins)
 
 ## Requirements
 
@@ -40,7 +40,7 @@ apiInstance.getCrumb()
     // on success
     def result = (DefaultCrumbIssuer)it
     println result
-    
+
 }
     {
     // on failure

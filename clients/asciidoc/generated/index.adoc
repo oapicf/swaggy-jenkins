@@ -6,10 +6,10 @@ blah@cliffano.com
 :toclevels: 3
 :source-highlighter: highlightjs
 :keywords: openapi, rest, Swaggy Jenkins
-:specDir: 
-:snippetDir: 
+:specDir:
+:snippetDir:
 :generator-template: v1 2019-12-20
-:info-url: http://github.com/cliffano/swaggy-jenkins
+:info-url: http://github.com/oapicf/swaggy-jenkins
 :app-name: Swaggy Jenkins
 
 [abstract]
@@ -145,22 +145,22 @@ Delete queue item from an organization pipeline queue
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | queue
-| Name of the queue item 
+| Name of the queue item
 | X
 | null
-| 
+|
 
 |===
 
@@ -247,10 +247,10 @@ Retrieve authenticated user details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 |===
 
@@ -339,10 +339,10 @@ Get a list of class names supported by a given class
 |Name| Description| Required| Default| Pattern
 
 | class
-| Name of the class 
+| Name of the class
 | X
 | null
-| 
+|
 
 |===
 
@@ -432,10 +432,10 @@ Retrieve JSON Web Key
 |Name| Description| Required| Default| Pattern
 
 | key
-| Key ID received as part of JWT header field kid 
+| Key ID received as part of JWT header field kid
 | X
 | null
-| 
+|
 
 |===
 
@@ -529,16 +529,16 @@ Retrieve JSON Web Token
 |Name| Description| Required| Default| Pattern
 
 | expiryTimeInMins
-| Token expiry time in minutes, default: 30 minutes 
+| Token expiry time in minutes, default: 30 minutes
 | -
 | null
-| 
+|
 
 | maxExpiryTimeInMins
-| Maximum token expiry time in minutes, default: 480 minutes 
+| Maximum token expiry time in minutes, default: 480 minutes
 | -
 | null
-| 
+|
 
 |===
 
@@ -624,10 +624,10 @@ Retrieve organization details
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 |===
 
@@ -739,7 +739,7 @@ array[<<Organisation>>]
 
 | 200
 | Successfully retrieved pipelines details
-| List[<<Organisation>>] 
+| List[<<Organisation>>]
 
 
 | 401
@@ -800,16 +800,16 @@ Retrieve pipeline details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -903,16 +903,16 @@ Retrieve all activities details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -940,7 +940,7 @@ array[<<PipelineActivity>>]
 
 | 200
 | Successfully retrieved all activities details
-| List[<<PipelineActivity>>] 
+| List[<<PipelineActivity>>]
 
 
 | 401
@@ -1001,22 +1001,22 @@ Retrieve branch details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | branch
-| Name of the branch 
+| Name of the branch
 | X
 | null
-| 
+|
 
 |===
 
@@ -1105,28 +1105,28 @@ Retrieve branch run details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | branch
-| Name of the branch 
+| Name of the branch
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 |===
 
@@ -1215,16 +1215,16 @@ Retrieve all branches details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -1313,16 +1313,16 @@ Retrieve pipeline folder for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | folder
-| Name of the folder 
+| Name of the folder
 | X
 | null
-| 
+|
 
 |===
 
@@ -1411,22 +1411,22 @@ Retrieve pipeline details for an organization folder
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | folder
-| Name of the folder 
+| Name of the folder
 | X
 | null
-| 
+|
 
 |===
 
@@ -1515,16 +1515,16 @@ Retrieve queue details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -1552,7 +1552,7 @@ array[<<QueueItemImpl>>]
 
 | 200
 | Successfully retrieved queue details
-| List[<<QueueItemImpl>>] 
+| List[<<QueueItemImpl>>]
 
 
 | 401
@@ -1613,22 +1613,22 @@ Retrieve run details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 |===
 
@@ -1717,22 +1717,22 @@ Get log for a pipeline run
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 |===
 
@@ -1746,16 +1746,16 @@ Get log for a pipeline run
 |Name| Description| Required| Default| Pattern
 
 | start
-| Start position of the log 
+| Start position of the log
 | -
 | null
-| 
+|
 
 | download
-| Set to true in order to download the file, otherwise it&#39;s passed as a response body 
+| Set to true in order to download the file, otherwise it&#39;s passed as a response body
 | -
 | null
-| 
+|
 
 |===
 
@@ -1841,28 +1841,28 @@ Retrieve run node details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 | node
-| Name of the node 
+| Name of the node
 | X
 | null
-| 
+|
 
 |===
 
@@ -1951,34 +1951,34 @@ Retrieve run node details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 | node
-| Name of the node 
+| Name of the node
 | X
 | null
-| 
+|
 
 | step
-| Name of the step 
+| Name of the step
 | X
 | null
-| 
+|
 
 |===
 
@@ -2067,34 +2067,34 @@ Get log for a pipeline run node step
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 | node
-| Name of the node 
+| Name of the node
 | X
 | null
-| 
+|
 
 | step
-| Name of the step 
+| Name of the step
 | X
 | null
-| 
+|
 
 |===
 
@@ -2184,28 +2184,28 @@ Retrieve run node steps details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 | node
-| Name of the node 
+| Name of the node
 | X
 | null
-| 
+|
 
 |===
 
@@ -2233,7 +2233,7 @@ array[<<PipelineStepImpl>>]
 
 | 200
 | Successfully retrieved run node steps details
-| List[<<PipelineStepImpl>>] 
+| List[<<PipelineStepImpl>>]
 
 
 | 401
@@ -2294,22 +2294,22 @@ Retrieve run nodes details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 |===
 
@@ -2337,7 +2337,7 @@ array[<<PipelineRunNode>>]
 
 | 200
 | Successfully retrieved run nodes details
-| List[<<PipelineRunNode>>] 
+| List[<<PipelineRunNode>>]
 
 
 | 401
@@ -2398,16 +2398,16 @@ Retrieve all runs details for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -2435,7 +2435,7 @@ array[<<PipelineRun>>]
 
 | 200
 | Successfully retrieved runs details
-| List[<<PipelineRun>>] 
+| List[<<PipelineRun>>]
 
 
 | 401
@@ -2496,10 +2496,10 @@ Retrieve all pipelines details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 |===
 
@@ -2527,7 +2527,7 @@ array[<<Pipeline>>]
 
 | 200
 | Successfully retrieved pipelines details
-| List[<<Pipeline>>] 
+| List[<<Pipeline>>]
 
 
 | 401
@@ -2588,16 +2588,16 @@ Retrieve SCM details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | scm
-| Name of SCM 
+| Name of SCM
 | X
 | null
-| 
+|
 
 |===
 
@@ -2686,22 +2686,22 @@ Retrieve SCM organization repositories details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | scm
-| Name of SCM 
+| Name of SCM
 | X
 | null
-| 
+|
 
 | scmOrganisation
-| Name of the SCM organization 
+| Name of the SCM organization
 | X
 | null
-| 
+|
 
 |===
 
@@ -2715,22 +2715,22 @@ Retrieve SCM organization repositories details for an organization
 |Name| Description| Required| Default| Pattern
 
 | credentialId
-| Credential ID 
+| Credential ID
 | -
 | null
-| 
+|
 
 | pageSize
-| Number of items in a page 
+| Number of items in a page
 | -
 | null
-| 
+|
 
 | pageNumber
-| Page number 
+| Page number
 | -
 | null
-| 
+|
 
 |===
 
@@ -2754,7 +2754,7 @@ array[<<GithubOrganization>>]
 
 | 200
 | Successfully retrieved SCM organization repositories details
-| List[<<GithubOrganization>>] 
+| List[<<GithubOrganization>>]
 
 
 | 401
@@ -2815,28 +2815,28 @@ Retrieve SCM organization repository details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | scm
-| Name of SCM 
+| Name of SCM
 | X
 | null
-| 
+|
 
 | scmOrganisation
-| Name of the SCM organization 
+| Name of the SCM organization
 | X
 | null
-| 
+|
 
 | repository
-| Name of the SCM repository 
+| Name of the SCM repository
 | X
 | null
-| 
+|
 
 |===
 
@@ -2850,10 +2850,10 @@ Retrieve SCM organization repository details for an organization
 |Name| Description| Required| Default| Pattern
 
 | credentialId
-| Credential ID 
+| Credential ID
 | -
 | null
-| 
+|
 
 |===
 
@@ -2877,7 +2877,7 @@ array[<<GithubOrganization>>]
 
 | 200
 | Successfully retrieved SCM organizations details
-| List[<<GithubOrganization>>] 
+| List[<<GithubOrganization>>]
 
 
 | 401
@@ -2938,16 +2938,16 @@ Retrieve SCM organizations details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | scm
-| Name of SCM 
+| Name of SCM
 | X
 | null
-| 
+|
 
 |===
 
@@ -2961,10 +2961,10 @@ Retrieve SCM organizations details for an organization
 |Name| Description| Required| Default| Pattern
 
 | credentialId
-| Credential ID 
+| Credential ID
 | -
 | null
-| 
+|
 
 |===
 
@@ -2988,7 +2988,7 @@ array[<<GithubOrganization>>]
 
 | 200
 | Successfully retrieved SCM organizations details
-| List[<<GithubOrganization>>] 
+| List[<<GithubOrganization>>]
 
 
 | 401
@@ -3049,16 +3049,16 @@ Retrieve user details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | user
-| Name of the user 
+| Name of the user
 | X
 | null
-| 
+|
 
 |===
 
@@ -3147,10 +3147,10 @@ Retrieve user favorites details for an organization
 |Name| Description| Required| Default| Pattern
 
 | user
-| Name of the user 
+| Name of the user
 | X
 | null
-| 
+|
 
 |===
 
@@ -3178,7 +3178,7 @@ array[<<FavoriteImpl>>]
 
 | 200
 | Successfully retrieved users favorites details
-| List[<<FavoriteImpl>>] 
+| List[<<FavoriteImpl>>]
 
 
 | 401
@@ -3239,10 +3239,10 @@ Retrieve users details for an organization
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 |===
 
@@ -3331,22 +3331,22 @@ Replay an organization pipeline run
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 |===
 
@@ -3435,16 +3435,16 @@ Start a build for an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -3533,16 +3533,16 @@ Favorite/unfavorite a pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 |===
 
@@ -3555,8 +3555,8 @@ Favorite/unfavorite a pipeline
 | body
 | Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite <<boolean>>
 | X
-| 
-| 
+|
+|
 
 |===
 
@@ -3644,22 +3644,22 @@ Stop a build of an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | organization
-| Name of the organization 
+| Name of the organization
 | X
 | null
-| 
+|
 
 | pipeline
-| Name of the pipeline 
+| Name of the pipeline
 | X
 | null
-| 
+|
 
 | run
-| Name of the run 
+| Name of the run
 | X
 | null
-| 
+|
 
 |===
 
@@ -3673,16 +3673,16 @@ Stop a build of an organization pipeline
 |Name| Description| Required| Default| Pattern
 
 | blocking
-| Set to true to make blocking stop, default: false 
+| Set to true to make blocking stop, default: false
 | -
 | null
-| 
+|
 
 | timeOutInSecs
-| Timeout in seconds, default: 10 seconds 
+| Timeout in seconds, default: 10 seconds
 | -
 | null
-| 
+|
 
 |===
 
@@ -3771,10 +3771,10 @@ Search for any resource details
 |Name| Description| Required| Default| Pattern
 
 | q
-| Query string 
+| Query string
 | X
 | null
-| 
+|
 
 |===
 
@@ -3864,10 +3864,10 @@ Get classes details
 |Name| Description| Required| Default| Pattern
 
 | q
-| Query string containing an array of class names 
+| Query string containing an array of class names
 | X
 | null
-| 
+|
 
 |===
 
@@ -3961,10 +3961,10 @@ Retrieve computer details
 |Name| Description| Required| Default| Pattern
 
 | depth
-| Recursion depth in response model 
+| Recursion depth in response model
 | X
 | null
-| 
+|
 
 |===
 
@@ -4128,10 +4128,10 @@ Retrieve job details
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -4225,10 +4225,10 @@ Retrieve job configuration
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -4323,10 +4323,10 @@ Retrieve job's last build details
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -4420,16 +4420,16 @@ Retrieve job's build progressive text output
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 | number
-| Build number 
+| Build number
 | X
 | null
-| 
+|
 
 |===
 
@@ -4443,10 +4443,10 @@ Retrieve job's build progressive text output
 |Name| Description| Required| Default| Pattern
 
 | start
-| Starting point of progressive text output 
+| Starting point of progressive text output
 | X
 | null
-| 
+|
 
 |===
 
@@ -4613,10 +4613,10 @@ Retrieve queued item details
 |Name| Description| Required| Default| Pattern
 
 | number
-| Queue number 
+| Queue number
 | X
 | null
-| 
+|
 
 |===
 
@@ -4705,10 +4705,10 @@ Retrieve view details
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the view 
+| Name of the view
 | X
 | null
-| 
+|
 
 |===
 
@@ -4802,10 +4802,10 @@ Retrieve view configuration
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the view 
+| Name of the view
 | X
 | null
-| 
+|
 
 |===
 
@@ -4980,8 +4980,8 @@ Create a new job using job configuration, or copied from an existing job
 | body
 | Job configuration in config.xml format <<string>>
 | -
-| 
-| 
+|
+|
 
 |===
 
@@ -4993,16 +4993,16 @@ Create a new job using job configuration, or copied from an existing job
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 | Content-Type
-| Content type header application/xml 
+| Content type header application/xml
 | -
 | null
-| 
+|
 
 |===
 
@@ -5013,22 +5013,22 @@ Create a new job using job configuration, or copied from an existing job
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the new job 
+| Name of the new job
 | X
 | null
-| 
+|
 
 | from
-| Existing job to copy from 
+| Existing job to copy from
 | -
 | null
-| 
+|
 
 | mode
-| Set to &#39;copy&#39; for copying an existing job 
+| Set to &#39;copy&#39; for copying an existing job
 | -
 | null
-| 
+|
 
 |===
 
@@ -5122,8 +5122,8 @@ Create a new view using view configuration
 | body
 | View configuration in config.xml format <<string>>
 | -
-| 
-| 
+|
+|
 
 |===
 
@@ -5135,16 +5135,16 @@ Create a new view using view configuration
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 | Content-Type
-| Content type header application/xml 
+| Content type header application/xml
 | -
 | null
-| 
+|
 
 |===
 
@@ -5155,10 +5155,10 @@ Create a new view using view configuration
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the new view 
+| Name of the new view
 | X
 | null
-| 
+|
 
 |===
 
@@ -5249,10 +5249,10 @@ Build a job
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -5265,10 +5265,10 @@ Build a job
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -5279,16 +5279,16 @@ Build a job
 |Name| Description| Required| Default| Pattern
 
 | json
-|  
+|
 | X
 | null
-| 
+|
 
 | token
-|  
+|
 | -
 | null
-| 
+|
 
 |===
 
@@ -5381,10 +5381,10 @@ Update job configuration
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -5397,8 +5397,8 @@ Update job configuration
 | body
 | Job configuration in config.xml format <<string>>
 | X
-| 
-| 
+|
+|
 
 |===
 
@@ -5410,10 +5410,10 @@ Update job configuration
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -5510,10 +5510,10 @@ Delete a job
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -5526,10 +5526,10 @@ Delete a job
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -5618,10 +5618,10 @@ Disable a job
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -5634,10 +5634,10 @@ Disable a job
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -5726,10 +5726,10 @@ Enable a job
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -5742,10 +5742,10 @@ Enable a job
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -5834,10 +5834,10 @@ Stop a job
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the job 
+| Name of the job
 | X
 | null
-| 
+|
 
 |===
 
@@ -5850,10 +5850,10 @@ Stop a job
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -5942,10 +5942,10 @@ Update view configuration
 |Name| Description| Required| Default| Pattern
 
 | name
-| Name of the view 
+| Name of the view
 | X
 | null
-| 
+|
 
 |===
 
@@ -5958,8 +5958,8 @@ Update view configuration
 | body
 | View configuration in config.xml format <<string>>
 | X
-| 
-| 
+|
+|
 
 |===
 
@@ -5971,10 +5971,10 @@ Update view configuration
 |Name| Description| Required| Default| Pattern
 
 | Jenkins-Crumb
-| CSRF protection token 
+| CSRF protection token
 | -
 | null
-| 
+|
 
 |===
 
@@ -6051,7 +6051,7 @@ endif::internal-generation[]
 
 
 [#AllView]
-=== _AllView_ 
+=== _AllView_
 
 
 
@@ -6061,28 +6061,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#BranchImpl]
-=== _BranchImpl_ 
+=== _BranchImpl_
 
 
 
@@ -6092,88 +6092,88 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | fullDisplayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | parameters
-| 
+|
 | List  of <<StringParameterDefinition>>
-| 
-|  
+|
+|
 
 | permissions
-| 
-| BranchImplpermissions 
-| 
-|  
+|
+| BranchImplpermissions
+|
+|
 
 | weatherScore
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | pullRequest
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| BranchImpllinks 
-| 
-|  
+|
+| BranchImpllinks
+|
+|
 
 | latestRun
-| 
-| PipelineRunImpl 
-| 
-|  
+|
+| PipelineRunImpl
+|
+|
 
 |===
 
 
 [#BranchImpllinks]
-=== _BranchImpllinks_ 
+=== _BranchImpllinks_
 
 
 
@@ -6183,40 +6183,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | actions
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | runs
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | queue
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#BranchImplpermissions]
-=== _BranchImplpermissions_ 
+=== _BranchImplpermissions_
 
 
 
@@ -6226,40 +6226,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | create
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | read
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | start
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | stop
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#CauseAction]
-=== _CauseAction_ 
+=== _CauseAction_
 
 
 
@@ -6269,22 +6269,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | causes
-| 
+|
 | List  of <<CauseUserIdCause>>
-| 
-|  
+|
+|
 
 |===
 
 
 [#CauseUserIdCause]
-=== _CauseUserIdCause_ 
+=== _CauseUserIdCause_
 
 
 
@@ -6294,34 +6294,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | shortDescription
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | userId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | userName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#ClassesByClass]
-=== _ClassesByClass_ 
+=== _ClassesByClass_
 
 
 
@@ -6331,22 +6331,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | classes
-| 
+|
 | List  of <<string>>
-| 
-|  
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#ClockDifference]
-=== _ClockDifference_ 
+=== _ClockDifference_
 
 
 
@@ -6356,22 +6356,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | diff
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#ComputerSet]
-=== _ComputerSet_ 
+=== _ComputerSet_
 
 
 
@@ -6381,40 +6381,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | busyExecutors
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | computer
-| 
+|
 | List  of <<HudsonMasterComputer>>
-| 
-|  
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | totalExecutors
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#DefaultCrumbIssuer]
-=== _DefaultCrumbIssuer_ 
+=== _DefaultCrumbIssuer_
 
 
 
@@ -6424,28 +6424,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | crumb
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | crumbRequestField
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#DiskSpaceMonitorDescriptorDiskSpace]
-=== _DiskSpaceMonitorDescriptorDiskSpace_ 
+=== _DiskSpaceMonitorDescriptorDiskSpace_
 
 
 
@@ -6455,34 +6455,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | timestamp
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | path
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | size
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#EmptyChangeLogSet]
-=== _EmptyChangeLogSet_ 
+=== _EmptyChangeLogSet_
 
 
 
@@ -6492,22 +6492,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | kind
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#ExtensionClassContainerImpl1]
-=== _ExtensionClassContainerImpl1_ 
+=== _ExtensionClassContainerImpl1_
 
 
 
@@ -6517,28 +6517,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| ExtensionClassContainerImpl1links 
-| 
-|  
+|
+| ExtensionClassContainerImpl1links
+|
+|
 
 | map
-| 
-| ExtensionClassContainerImpl1map 
-| 
-|  
+|
+| ExtensionClassContainerImpl1map
+|
+|
 
 |===
 
 
 [#ExtensionClassContainerImpl1links]
-=== _ExtensionClassContainerImpl1links_ 
+=== _ExtensionClassContainerImpl1links_
 
 
 
@@ -6548,22 +6548,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#ExtensionClassContainerImpl1map]
-=== _ExtensionClassContainerImpl1map_ 
+=== _ExtensionClassContainerImpl1map_
 
 
 
@@ -6573,28 +6573,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | io.jenkins.blueocean.service.embedded.rest.PipelineImpl
-| 
-| ExtensionClassImpl 
-| 
-|  
+|
+| ExtensionClassImpl
+|
+|
 
 | io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl
-| 
-| ExtensionClassImpl 
-| 
-|  
+|
+| ExtensionClassImpl
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#ExtensionClassImpl]
-=== _ExtensionClassImpl_ 
+=== _ExtensionClassImpl_
 
 
 
@@ -6604,28 +6604,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| ExtensionClassImpllinks 
-| 
-|  
+|
+| ExtensionClassImpllinks
+|
+|
 
 | classes
-| 
+|
 | List  of <<string>>
-| 
-|  
+|
+|
 
 |===
 
 
 [#ExtensionClassImpllinks]
-=== _ExtensionClassImpllinks_ 
+=== _ExtensionClassImpllinks_
 
 
 
@@ -6635,22 +6635,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#FavoriteImpl]
-=== _FavoriteImpl_ 
+=== _FavoriteImpl_
 
 
 
@@ -6660,28 +6660,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| FavoriteImpllinks 
-| 
-|  
+|
+| FavoriteImpllinks
+|
+|
 
 | item
-| 
-| PipelineImpl 
-| 
-|  
+|
+| PipelineImpl
+|
+|
 
 |===
 
 
 [#FavoriteImpllinks]
-=== _FavoriteImpllinks_ 
+=== _FavoriteImpllinks_
 
 
 
@@ -6691,22 +6691,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#FreeStyleBuild]
-=== _FreeStyleBuild_ 
+=== _FreeStyleBuild_
 
 
 
@@ -6716,118 +6716,118 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | number
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | actions
-| 
+|
 | List  of <<CauseAction>>
-| 
-|  
+|
+|
 
 | building
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | duration
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | estimatedDuration
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | executor
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullDisplayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | keepLog
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | queueId
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | timestamp
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | builtOn
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | changeSet
-| 
-| EmptyChangeLogSet 
-| 
-|  
+|
+| EmptyChangeLogSet
+|
+|
 
 |===
 
 
 [#FreeStyleProject]
-=== _FreeStyleProject_ 
+=== _FreeStyleProject_
 
 
 
@@ -6837,172 +6837,172 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | color
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | actions
-| 
+|
 | List  of <<FreeStyleProjectactions>>
-| 
-|  
+|
+|
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayNameOrNull
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullDisplayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | buildable
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | builds
-| 
+|
 | List  of <<FreeStyleBuild>>
-| 
-|  
+|
+|
 
 | firstBuild
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 | healthReport
-| 
+|
 | List  of <<FreeStyleProjecthealthReport>>
-| 
-|  
+|
+|
 
 | inQueue
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | keepDependencies
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | lastBuild
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 | lastCompletedBuild
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 | lastFailedBuild
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | lastStableBuild
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 | lastSuccessfulBuild
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 | lastUnstableBuild
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | lastUnsuccessfulBuild
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | nextBuildNumber
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | queueItem
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | concurrentBuild
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | scm
-| 
-| NullSCM 
-| 
-|  
+|
+| NullSCM
+|
+|
 
 |===
 
 
 [#FreeStyleProjectactions]
-=== _FreeStyleProjectactions_ 
+=== _FreeStyleProjectactions_
 
 
 
@@ -7012,16 +7012,16 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#FreeStyleProjecthealthReport]
-=== _FreeStyleProjecthealthReport_ 
+=== _FreeStyleProjecthealthReport_
 
 
 
@@ -7031,40 +7031,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | iconClassName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | iconUrl
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | score
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GenericResource]
-=== _GenericResource_ 
+=== _GenericResource_
 
 
 
@@ -7074,46 +7074,46 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubContent]
-=== _GithubContent_ 
+=== _GithubContent_
 
 
 
@@ -7123,58 +7123,58 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | sha
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | repo
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | size
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | owner
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | path
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | base64Data
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubFile]
-=== _GithubFile_ 
+=== _GithubFile_
 
 
 
@@ -7184,22 +7184,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | content
-| 
-| GithubContent 
-| 
-|  
+|
+| GithubContent
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubOrganization]
-=== _GithubOrganization_ 
+=== _GithubOrganization_
 
 
 
@@ -7209,34 +7209,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| GithubOrganizationlinks 
-| 
-|  
+|
+| GithubOrganizationlinks
+|
+|
 
 | jenkinsOrganizationPipeline
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubOrganizationlinks]
-=== _GithubOrganizationlinks_ 
+=== _GithubOrganizationlinks_
 
 
 
@@ -7246,28 +7246,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | repositories
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubRepositories]
-=== _GithubRepositories_ 
+=== _GithubRepositories_
 
 
 
@@ -7277,46 +7277,46 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| GithubRepositorieslinks 
-| 
-|  
+|
+| GithubRepositorieslinks
+|
+|
 
 | items
-| 
+|
 | List  of <<GithubRepository>>
-| 
-|  
+|
+|
 
 | lastPage
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | nextPage
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | pageSize
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#GithubRepositorieslinks]
-=== _GithubRepositorieslinks_ 
+=== _GithubRepositorieslinks_
 
 
 
@@ -7326,22 +7326,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubRepository]
-=== _GithubRepository_ 
+=== _GithubRepository_
 
 
 
@@ -7351,58 +7351,58 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| GithubRepositorylinks 
-| 
-|  
+|
+| GithubRepositorylinks
+|
+|
 
 | defaultBranch
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | permissions
-| 
-| GithubRepositorypermissions 
-| 
-|  
+|
+| GithubRepositorypermissions
+|
+|
 
 | private
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubRepositorylinks]
-=== _GithubRepositorylinks_ 
+=== _GithubRepositorylinks_
 
 
 
@@ -7412,22 +7412,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubRepositorypermissions]
-=== _GithubRepositorypermissions_ 
+=== _GithubRepositorypermissions_
 
 
 
@@ -7437,34 +7437,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | admin
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | push
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | pull
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubRespositoryContainer]
-=== _GithubRespositoryContainer_ 
+=== _GithubRespositoryContainer_
 
 
 
@@ -7474,28 +7474,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| GithubRespositoryContainerlinks 
-| 
-|  
+|
+| GithubRespositoryContainerlinks
+|
+|
 
 | repositories
-| 
-| GithubRepositories 
-| 
-|  
+|
+| GithubRepositories
+|
+|
 
 |===
 
 
 [#GithubRespositoryContainerlinks]
-=== _GithubRespositoryContainerlinks_ 
+=== _GithubRespositoryContainerlinks_
 
 
 
@@ -7505,22 +7505,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubScm]
-=== _GithubScm_ 
+=== _GithubScm_
 
 
 
@@ -7530,40 +7530,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| GithubScmlinks 
-| 
-|  
+|
+| GithubScmlinks
+|
+|
 
 | credentialId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | uri
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#GithubScmlinks]
-=== _GithubScmlinks_ 
+=== _GithubScmlinks_
 
 
 
@@ -7573,22 +7573,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#Hudson]
-=== _Hudson_ 
+=== _Hudson_
 
 
 
@@ -7598,100 +7598,100 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | assignedLabels
-| 
+|
 | List  of <<HudsonassignedLabels>>
-| 
-|  
+|
+|
 
 | mode
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | nodeDescription
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | nodeName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | numExecutors
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | jobs
-| 
+|
 | List  of <<FreeStyleProject>>
-| 
-|  
+|
+|
 
 | primaryView
-| 
-| AllView 
-| 
-|  
+|
+| AllView
+|
+|
 
 | quietingDown
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | slaveAgentPort
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | unlabeledLoad
-| 
-| UnlabeledLoadStatistics 
-| 
-|  
+|
+| UnlabeledLoadStatistics
+|
+|
 
 | useCrumbs
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | useSecurity
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | views
-| 
+|
 | List  of <<AllView>>
-| 
-|  
+|
+|
 
 |===
 
 
 [#HudsonMasterComputer]
-=== _HudsonMasterComputer_ 
+=== _HudsonMasterComputer_
 
 
 
@@ -7701,106 +7701,106 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | executors
-| 
+|
 | List  of <<HudsonMasterComputerexecutors>>
-| 
-|  
+|
+|
 
 | icon
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | iconClassName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | idle
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | jnlpAgent
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | launchSupported
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | loadStatistics
-| 
-| Label1 
-| 
-|  
+|
+| Label1
+|
+|
 
 | manualLaunchAllowed
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | monitorData
-| 
-| HudsonMasterComputermonitorData 
-| 
-|  
+|
+| HudsonMasterComputermonitorData
+|
+|
 
 | numExecutors
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | offline
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | offlineCause
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | offlineCauseReason
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | temporarilyOffline
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 |===
 
 
 [#HudsonMasterComputerexecutors]
-=== _HudsonMasterComputerexecutors_ 
+=== _HudsonMasterComputerexecutors_
 
 
 
@@ -7810,46 +7810,46 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | currentExecutable
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 | idle
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | likelyStuck
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | number
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | progress
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#HudsonMasterComputermonitorData]
-=== _HudsonMasterComputermonitorData_ 
+=== _HudsonMasterComputermonitorData_
 
 
 
@@ -7859,52 +7859,52 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | hudson.node_monitors.SwapSpaceMonitor
-| 
-| SwapSpaceMonitorMemoryUsage2 
-| 
-|  
+|
+| SwapSpaceMonitorMemoryUsage2
+|
+|
 
 | hudson.node_monitors.TemporarySpaceMonitor
-| 
-| DiskSpaceMonitorDescriptorDiskSpace 
-| 
-|  
+|
+| DiskSpaceMonitorDescriptorDiskSpace
+|
+|
 
 | hudson.node_monitors.DiskSpaceMonitor
-| 
-| DiskSpaceMonitorDescriptorDiskSpace 
-| 
-|  
+|
+| DiskSpaceMonitorDescriptorDiskSpace
+|
+|
 
 | hudson.node_monitors.ArchitectureMonitor
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | hudson.node_monitors.ResponseTimeMonitor
-| 
-| ResponseTimeMonitorData 
-| 
-|  
+|
+| ResponseTimeMonitorData
+|
+|
 
 | hudson.node_monitors.ClockMonitor
-| 
-| ClockDifference 
-| 
-|  
+|
+| ClockDifference
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#HudsonassignedLabels]
-=== _HudsonassignedLabels_ 
+=== _HudsonassignedLabels_
 
 
 
@@ -7914,16 +7914,16 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#InputStepImpl]
-=== _InputStepImpl_ 
+=== _InputStepImpl_
 
 
 
@@ -7933,52 +7933,52 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| InputStepImpllinks 
-| 
-|  
+|
+| InputStepImpllinks
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | message
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | ok
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | parameters
-| 
+|
 | List  of <<StringParameterDefinition>>
-| 
-|  
+|
+|
 
 | submitter
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#InputStepImpllinks]
-=== _InputStepImpllinks_ 
+=== _InputStepImpllinks_
 
 
 
@@ -7988,22 +7988,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#Label1]
-=== _Label1_ 
+=== _Label1_
 
 
 
@@ -8013,16 +8013,16 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#Link]
-=== _Link_ 
+=== _Link_
 
 
 
@@ -8032,22 +8032,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | href
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#ListView]
-=== _ListView_ 
+=== _ListView_
 
 
 
@@ -8057,40 +8057,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | jobs
-| 
+|
 | List  of <<FreeStyleProject>>
-| 
-|  
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#MultibranchPipeline]
-=== _MultibranchPipeline_ 
+=== _MultibranchPipeline_
 
 
 
@@ -8100,94 +8100,94 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | latestRun
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | weatherScore
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | branchNames
-| 
+|
 | List  of <<string>>
-| 
-|  
+|
+|
 
 | numberOfFailingBranches
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | numberOfFailingPullRequests
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | numberOfSuccessfulBranches
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | numberOfSuccessfulPullRequests
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | totalNumberOfBranches
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | totalNumberOfPullRequests
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#NullSCM]
-=== _NullSCM_ 
+=== _NullSCM_
 
 
 
@@ -8197,16 +8197,16 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#Organisation]
-=== _Organisation_ 
+=== _Organisation_
 
 
 
@@ -8216,22 +8216,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#Pipeline]
-=== _Pipeline_ 
+=== _Pipeline_
 
 
 
@@ -8241,58 +8241,58 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | weatherScore
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | latestRun
-| 
-| PipelinelatestRun 
-| 
-|  
+|
+| PipelinelatestRun
+|
+|
 
 |===
 
 
 [#PipelineActivity]
-=== _PipelineActivity_ 
+=== _PipelineActivity_
 
 
 
@@ -8302,100 +8302,100 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | artifacts
-| 
+|
 | List  of <<PipelineActivityartifacts>>
-| 
-|  
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | enQueueTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | endTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pipeline
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | runSummary
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | type
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | commitId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineActivityartifacts]
-=== _PipelineActivityartifacts_ 
+=== _PipelineActivityartifacts_
 
 
 
@@ -8405,34 +8405,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | size
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineBranchesitem]
-=== _PipelineBranchesitem_ 
+=== _PipelineBranchesitem_
 
 
 
@@ -8442,64 +8442,64 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | weatherScore
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | latestRun
-| 
-| PipelineBranchesitemlatestRun 
-| 
-|  
+|
+| PipelineBranchesitemlatestRun
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pullRequest
-| 
-| PipelineBranchesitempullRequest 
-| 
-|  
+|
+| PipelineBranchesitempullRequest
+|
+|
 
 | totalNumberOfPullRequests
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineBranchesitemlatestRun]
-=== _PipelineBranchesitemlatestRun_ 
+=== _PipelineBranchesitemlatestRun_
 
 
 
@@ -8509,94 +8509,94 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | enQueueTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | endTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pipeline
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | runSummary
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | type
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | commitId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineBranchesitempullRequest]
-=== _PipelineBranchesitempullRequest_ 
+=== _PipelineBranchesitempullRequest_
 
 
 
@@ -8606,46 +8606,46 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _links
-| 
-| PipelineBranchesitempullRequestlinks 
-| 
-|  
+|
+| PipelineBranchesitempullRequestlinks
+|
+|
 
 | author
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | title
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineBranchesitempullRequestlinks]
-=== _PipelineBranchesitempullRequestlinks_ 
+=== _PipelineBranchesitempullRequestlinks_
 
 
 
@@ -8655,22 +8655,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineFolderImpl]
-=== _PipelineFolderImpl_ 
+=== _PipelineFolderImpl_
 
 
 
@@ -8680,52 +8680,52 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | numberOfFolders
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | numberOfPipelines
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#PipelineImpl]
-=== _PipelineImpl_ 
+=== _PipelineImpl_
 
 
 
@@ -8735,64 +8735,64 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | latestRun
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | weatherScore
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | _links
-| 
-| PipelineImpllinks 
-| 
-|  
+|
+| PipelineImpllinks
+|
+|
 
 |===
 
 
 [#PipelineImpllinks]
-=== _PipelineImpllinks_ 
+=== _PipelineImpllinks_
 
 
 
@@ -8802,40 +8802,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | runs
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | queue
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | actions
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineRun]
-=== _PipelineRun_ 
+=== _PipelineRun_
 
 
 
@@ -8845,100 +8845,100 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | artifacts
-| 
+|
 | List  of <<PipelineRunartifacts>>
-| 
-|  
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | enQueueTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | endTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pipeline
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | runSummary
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | type
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | commitId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineRunImpl]
-=== _PipelineRunImpl_ 
+=== _PipelineRunImpl_
 
 
 
@@ -8948,100 +8948,100 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| PipelineRunImpllinks 
-| 
-|  
+|
+| PipelineRunImpllinks
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | enQueueTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | endTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pipeline
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | runSummary
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | type
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | commitId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineRunImpllinks]
-=== _PipelineRunImpllinks_ 
+=== _PipelineRunImpllinks_
 
 
 
@@ -9051,46 +9051,46 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | nodes
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | log
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | actions
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | steps
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineRunNode]
-=== _PipelineRunNode_ 
+=== _PipelineRunNode_
 
 
 
@@ -9100,58 +9100,58 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | edges
-| 
+|
 | List  of <<PipelineRunNodeedges>>
-| 
-|  
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineRunNodeedges]
-=== _PipelineRunNodeedges_ 
+=== _PipelineRunNodeedges_
 
 
 
@@ -9161,22 +9161,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineRunartifacts]
-=== _PipelineRunartifacts_ 
+=== _PipelineRunartifacts_
 
 
 
@@ -9186,34 +9186,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | size
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineStepImpl]
-=== _PipelineStepImpl_ 
+=== _PipelineStepImpl_
 
 
 
@@ -9223,64 +9223,64 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _links
-| 
-| PipelineStepImpllinks 
-| 
-|  
+|
+| PipelineStepImpllinks
+|
+|
 
 | displayName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | input
-| 
-| InputStepImpl 
-| 
-|  
+|
+| InputStepImpl
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelineStepImpllinks]
-=== _PipelineStepImpllinks_ 
+=== _PipelineStepImpllinks_
 
 
 
@@ -9290,28 +9290,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | self
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | actions
-| 
-| Link 
-| 
-|  
+|
+| Link
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelinelatestRun]
-=== _PipelinelatestRun_ 
+=== _PipelinelatestRun_
 
 
 
@@ -9321,100 +9321,100 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | artifacts
-| 
+|
 | List  of <<PipelinelatestRunartifacts>>
-| 
-|  
+|
+|
 
 | durationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | estimatedDurationInMillis
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | enQueueTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | endTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | organization
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pipeline
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | result
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | runSummary
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | startTime
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | state
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | type
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | commitId
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#PipelinelatestRunartifacts]
-=== _PipelinelatestRunartifacts_ 
+=== _PipelinelatestRunartifacts_
 
 
 
@@ -9424,34 +9424,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | size
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#Queue]
-=== _Queue_ 
+=== _Queue_
 
 
 
@@ -9461,22 +9461,22 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | items
-| 
+|
 | List  of <<QueueBlockedItem>>
-| 
-|  
+|
+|
 
 |===
 
 
 [#QueueBlockedItem]
-=== _QueueBlockedItem_ 
+=== _QueueBlockedItem_
 
 
 
@@ -9486,82 +9486,82 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | actions
-| 
+|
 | List  of <<CauseAction>>
-| 
-|  
+|
+|
 
 | blocked
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | buildable
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | id
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | inQueueSince
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | params
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | stuck
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | task
-| 
-| FreeStyleProject 
-| 
-|  
+|
+| FreeStyleProject
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | why
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | buildableStartMilliseconds
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#QueueItemImpl]
-=== _QueueItemImpl_ 
+=== _QueueItemImpl_
 
 
 
@@ -9571,40 +9571,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | expectedBuildNumber
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | pipeline
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | queuedTime
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#QueueLeftItem]
-=== _QueueLeftItem_ 
+=== _QueueLeftItem_
 
 
 
@@ -9614,88 +9614,88 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | actions
-| 
+|
 | List  of <<CauseAction>>
-| 
-|  
+|
+|
 
 | blocked
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | buildable
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | id
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | inQueueSince
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | params
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | stuck
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | task
-| 
-| FreeStyleProject 
-| 
-|  
+|
+| FreeStyleProject
+|
+|
 
 | url
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | why
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | cancelled
-| 
-| Boolean 
-| 
-|  
+|
+| Boolean
+|
+|
 
 | executable
-| 
-| FreeStyleBuild 
-| 
-|  
+|
+| FreeStyleBuild
+|
+|
 
 |===
 
 
 [#ResponseTimeMonitorData]
-=== _ResponseTimeMonitorData_ 
+=== _ResponseTimeMonitorData_
 
 
 
@@ -9705,28 +9705,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | timestamp
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | average
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#StringParameterDefinition]
-=== _StringParameterDefinition_ 
+=== _StringParameterDefinition_
 
 
 
@@ -9736,40 +9736,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | defaultParameterValue
-| 
-| StringParameterValue 
-| 
-|  
+|
+| StringParameterValue
+|
+|
 
 | description
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | type
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#StringParameterValue]
-=== _StringParameterValue_ 
+=== _StringParameterValue_
 
 
 
@@ -9779,28 +9779,28 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | value
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#SwapSpaceMonitorMemoryUsage2]
-=== _SwapSpaceMonitorMemoryUsage2_ 
+=== _SwapSpaceMonitorMemoryUsage2_
 
 
 
@@ -9810,40 +9810,40 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | availablePhysicalMemory
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | availableSwapSpace
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | totalPhysicalMemory
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 | totalSwapSpace
-| 
-| Integer 
-| 
-|  
+|
+| Integer
+|
+|
 
 |===
 
 
 [#UnlabeledLoadStatistics]
-=== _UnlabeledLoadStatistics_ 
+=== _UnlabeledLoadStatistics_
 
 
 
@@ -9853,16 +9853,16 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 
 
 [#User]
-=== _User_ 
+=== _User_
 
 
 
@@ -9872,34 +9872,34 @@ endif::internal-generation[]
 | Field Name| Required| Type| Description| Format
 
 | _class
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | id
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | fullName
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | email
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 | name
-| 
-| String 
-| 
-|  
+|
+| String
+|
+|
 
 |===
 

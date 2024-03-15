@@ -19,4 +19,4 @@ jobs:
       - run: >-
           CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot
           <blah+pakkun@cliffano.com>" --repo "https://cliffano:${{ secrets.STUDIO_GITHUB_TOKEN
-          }}@github.com/cliffano/swaggy-jenkins.git"
+          }}@github.com/oapicf/swaggy-jenkins.git"

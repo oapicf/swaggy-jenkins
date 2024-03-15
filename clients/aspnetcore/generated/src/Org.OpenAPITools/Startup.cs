@@ -88,7 +88,7 @@ namespace Org.OpenAPITools
                         Contact = new OpenApiContact
                         {
                             Name = "Cliffano Subagio",
-                            Url = new Uri("http://github.com/cliffano/swaggy-jenkins"),
+                            Url = new Uri("http://github.com/oapicf/swaggy-jenkins"),
                             Email = "blah@cliffano.com"
                         },
                         License = new OpenApiLicense

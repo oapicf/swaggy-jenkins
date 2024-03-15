@@ -31,7 +31,7 @@ setup(
     description="Swaggy Jenkins",
     author="Cliffano Subagio",
     author_email="blah@cliffano.com",
-    url="https://github.com/cliffano/swaggy-jenkins",
+    url="https://github.com/oapicf/swaggy-jenkins",
     keywords=["OpenAPI", "OpenAPI-Generator", "Swaggy Jenkins"],
     python_requires=">=3.6",
     install_requires=REQUIRES,

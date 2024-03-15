@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.github.com/cliffano/swaggy-jenkins/master/avatar.jpg" alt="Avatar"/>
+<img align="right" src="https://raw.github.com/oapicf/swaggy-jenkins/master/avatar.jpg" alt="Avatar"/>
 
-[![Build Status](https://github.com/cliffano/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/cliffano/swaggy-jenkins/actions/workflows/ci-workflow.yaml)
+[![Build Status](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml)
 <br/>
 
 Swaggy Jenkins
@@ -67,5 +67,5 @@ Presentations:
 
 Related Projects:
 
-* [swaggy-jenkins-cli](http://github.com/cliffano/swaggy-jenkins-cli) - CLI utility tool for Swaggy Jenkins
+* [swaggy-jenkins-cli](http://github.com/oapicf/swaggy-jenkins-cli) - CLI utility tool for Swaggy Jenkins
 * [swaggy-c](http://github.com/cliffano/swaggy-c) - Builder for Swagger CodeGen-generated API clients in multiple languages

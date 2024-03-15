@@ -2,7 +2,7 @@
 
 Jenkins API clients generated from Swagger / Open API specification
 
-For more information, please visit [http://github.com/cliffano/swaggy-jenkins](http://github.com/cliffano/swaggy-jenkins).
+For more information, please visit [http://github.com/oapicf/swaggy-jenkins](http://github.com/oapicf/swaggy-jenkins).
 
 ## Installation & Usage
 
@@ -78,64 +78,64 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BaseApi* | [**getCrumb**](docs/Api/BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json | 
-*BlueOceanApi* | [**deletePipelineQueueItem**](docs/Api/BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-*BlueOceanApi* | [**getAuthenticatedUser**](docs/Api/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ | 
-*BlueOceanApi* | [**getClasses**](docs/Api/BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} | 
-*BlueOceanApi* | [**getJsonWebKey**](docs/Api/BlueOceanApi.md#getjsonwebkey) | **GET** /jwt-auth/jwks/{key} | 
-*BlueOceanApi* | [**getJsonWebToken**](docs/Api/BlueOceanApi.md#getjsonwebtoken) | **GET** /jwt-auth/token | 
-*BlueOceanApi* | [**getOrganisation**](docs/Api/BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} | 
-*BlueOceanApi* | [**getOrganisations**](docs/Api/BlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ | 
-*BlueOceanApi* | [**getPipeline**](docs/Api/BlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**getPipelineActivities**](docs/Api/BlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-*BlueOceanApi* | [**getPipelineBranch**](docs/Api/BlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-*BlueOceanApi* | [**getPipelineBranchRun**](docs/Api/BlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-*BlueOceanApi* | [**getPipelineBranches**](docs/Api/BlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-*BlueOceanApi* | [**getPipelineFolder**](docs/Api/BlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-*BlueOceanApi* | [**getPipelineFolderPipeline**](docs/Api/BlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-*BlueOceanApi* | [**getPipelineQueue**](docs/Api/BlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-*BlueOceanApi* | [**getPipelineRun**](docs/Api/BlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-*BlueOceanApi* | [**getPipelineRunLog**](docs/Api/BlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-*BlueOceanApi* | [**getPipelineRunNode**](docs/Api/BlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-*BlueOceanApi* | [**getPipelineRunNodeStep**](docs/Api/BlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-*BlueOceanApi* | [**getPipelineRunNodeStepLog**](docs/Api/BlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-*BlueOceanApi* | [**getPipelineRunNodeSteps**](docs/Api/BlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-*BlueOceanApi* | [**getPipelineRunNodes**](docs/Api/BlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-*BlueOceanApi* | [**getPipelineRuns**](docs/Api/BlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-*BlueOceanApi* | [**getPipelines**](docs/Api/BlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
-*BlueOceanApi* | [**getSCM**](docs/Api/BlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
-*BlueOceanApi* | [**getSCMOrganisationRepositories**](docs/Api/BlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-*BlueOceanApi* | [**getSCMOrganisationRepository**](docs/Api/BlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-*BlueOceanApi* | [**getSCMOrganisations**](docs/Api/BlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-*BlueOceanApi* | [**getUser**](docs/Api/BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
-*BlueOceanApi* | [**getUserFavorites**](docs/Api/BlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites | 
-*BlueOceanApi* | [**getUsers**](docs/Api/BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ | 
-*BlueOceanApi* | [**postPipelineRun**](docs/Api/BlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-*BlueOceanApi* | [**postPipelineRuns**](docs/Api/BlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-*BlueOceanApi* | [**putPipelineFavorite**](docs/Api/BlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-*BlueOceanApi* | [**putPipelineRun**](docs/Api/BlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-*BlueOceanApi* | [**search**](docs/Api/BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
-*BlueOceanApi* | [**searchClasses**](docs/Api/BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ | 
-*RemoteAccessApi* | [**getComputer**](docs/Api/RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json | 
-*RemoteAccessApi* | [**getJenkins**](docs/Api/RemoteAccessApi.md#getjenkins) | **GET** /api/json | 
-*RemoteAccessApi* | [**getJob**](docs/Api/RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json | 
-*RemoteAccessApi* | [**getJobConfig**](docs/Api/RemoteAccessApi.md#getjobconfig) | **GET** /job/{name}/config.xml | 
-*RemoteAccessApi* | [**getJobLastBuild**](docs/Api/RemoteAccessApi.md#getjoblastbuild) | **GET** /job/{name}/lastBuild/api/json | 
-*RemoteAccessApi* | [**getJobProgressiveText**](docs/Api/RemoteAccessApi.md#getjobprogressivetext) | **GET** /job/{name}/{number}/logText/progressiveText | 
-*RemoteAccessApi* | [**getQueue**](docs/Api/RemoteAccessApi.md#getqueue) | **GET** /queue/api/json | 
-*RemoteAccessApi* | [**getQueueItem**](docs/Api/RemoteAccessApi.md#getqueueitem) | **GET** /queue/item/{number}/api/json | 
-*RemoteAccessApi* | [**getView**](docs/Api/RemoteAccessApi.md#getview) | **GET** /view/{name}/api/json | 
-*RemoteAccessApi* | [**getViewConfig**](docs/Api/RemoteAccessApi.md#getviewconfig) | **GET** /view/{name}/config.xml | 
-*RemoteAccessApi* | [**headJenkins**](docs/Api/RemoteAccessApi.md#headjenkins) | **HEAD** /api/json | 
-*RemoteAccessApi* | [**postCreateItem**](docs/Api/RemoteAccessApi.md#postcreateitem) | **POST** /createItem | 
-*RemoteAccessApi* | [**postCreateView**](docs/Api/RemoteAccessApi.md#postcreateview) | **POST** /createView | 
-*RemoteAccessApi* | [**postJobBuild**](docs/Api/RemoteAccessApi.md#postjobbuild) | **POST** /job/{name}/build | 
-*RemoteAccessApi* | [**postJobConfig**](docs/Api/RemoteAccessApi.md#postjobconfig) | **POST** /job/{name}/config.xml | 
-*RemoteAccessApi* | [**postJobDelete**](docs/Api/RemoteAccessApi.md#postjobdelete) | **POST** /job/{name}/doDelete | 
-*RemoteAccessApi* | [**postJobDisable**](docs/Api/RemoteAccessApi.md#postjobdisable) | **POST** /job/{name}/disable | 
-*RemoteAccessApi* | [**postJobEnable**](docs/Api/RemoteAccessApi.md#postjobenable) | **POST** /job/{name}/enable | 
-*RemoteAccessApi* | [**postJobLastBuildStop**](docs/Api/RemoteAccessApi.md#postjoblastbuildstop) | **POST** /job/{name}/lastBuild/stop | 
-*RemoteAccessApi* | [**postViewConfig**](docs/Api/RemoteAccessApi.md#postviewconfig) | **POST** /view/{name}/config.xml | 
+*BaseApi* | [**getCrumb**](docs/Api/BaseApi.md#getcrumb) | **GET** /crumbIssuer/api/json |
+*BlueOceanApi* | [**deletePipelineQueueItem**](docs/Api/BlueOceanApi.md#deletepipelinequeueitem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} |
+*BlueOceanApi* | [**getAuthenticatedUser**](docs/Api/BlueOceanApi.md#getauthenticateduser) | **GET** /blue/rest/organizations/{organization}/user/ |
+*BlueOceanApi* | [**getClasses**](docs/Api/BlueOceanApi.md#getclasses) | **GET** /blue/rest/classes/{class} |
+*BlueOceanApi* | [**getJsonWebKey**](docs/Api/BlueOceanApi.md#getjsonwebkey) | **GET** /jwt-auth/jwks/{key} |
+*BlueOceanApi* | [**getJsonWebToken**](docs/Api/BlueOceanApi.md#getjsonwebtoken) | **GET** /jwt-auth/token |
+*BlueOceanApi* | [**getOrganisation**](docs/Api/BlueOceanApi.md#getorganisation) | **GET** /blue/rest/organizations/{organization} |
+*BlueOceanApi* | [**getOrganisations**](docs/Api/BlueOceanApi.md#getorganisations) | **GET** /blue/rest/organizations/ |
+*BlueOceanApi* | [**getPipeline**](docs/Api/BlueOceanApi.md#getpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} |
+*BlueOceanApi* | [**getPipelineActivities**](docs/Api/BlueOceanApi.md#getpipelineactivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities |
+*BlueOceanApi* | [**getPipelineBranch**](docs/Api/BlueOceanApi.md#getpipelinebranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ |
+*BlueOceanApi* | [**getPipelineBranchRun**](docs/Api/BlueOceanApi.md#getpipelinebranchrun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} |
+*BlueOceanApi* | [**getPipelineBranches**](docs/Api/BlueOceanApi.md#getpipelinebranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches |
+*BlueOceanApi* | [**getPipelineFolder**](docs/Api/BlueOceanApi.md#getpipelinefolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ |
+*BlueOceanApi* | [**getPipelineFolderPipeline**](docs/Api/BlueOceanApi.md#getpipelinefolderpipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} |
+*BlueOceanApi* | [**getPipelineQueue**](docs/Api/BlueOceanApi.md#getpipelinequeue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue |
+*BlueOceanApi* | [**getPipelineRun**](docs/Api/BlueOceanApi.md#getpipelinerun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} |
+*BlueOceanApi* | [**getPipelineRunLog**](docs/Api/BlueOceanApi.md#getpipelinerunlog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log |
+*BlueOceanApi* | [**getPipelineRunNode**](docs/Api/BlueOceanApi.md#getpipelinerunnode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} |
+*BlueOceanApi* | [**getPipelineRunNodeStep**](docs/Api/BlueOceanApi.md#getpipelinerunnodestep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} |
+*BlueOceanApi* | [**getPipelineRunNodeStepLog**](docs/Api/BlueOceanApi.md#getpipelinerunnodesteplog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log |
+*BlueOceanApi* | [**getPipelineRunNodeSteps**](docs/Api/BlueOceanApi.md#getpipelinerunnodesteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps |
+*BlueOceanApi* | [**getPipelineRunNodes**](docs/Api/BlueOceanApi.md#getpipelinerunnodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes |
+*BlueOceanApi* | [**getPipelineRuns**](docs/Api/BlueOceanApi.md#getpipelineruns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |
+*BlueOceanApi* | [**getPipelines**](docs/Api/BlueOceanApi.md#getpipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ |
+*BlueOceanApi* | [**getSCM**](docs/Api/BlueOceanApi.md#getscm) | **GET** /blue/rest/organizations/{organization}/scm/{scm} |
+*BlueOceanApi* | [**getSCMOrganisationRepositories**](docs/Api/BlueOceanApi.md#getscmorganisationrepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories |
+*BlueOceanApi* | [**getSCMOrganisationRepository**](docs/Api/BlueOceanApi.md#getscmorganisationrepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} |
+*BlueOceanApi* | [**getSCMOrganisations**](docs/Api/BlueOceanApi.md#getscmorganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations |
+*BlueOceanApi* | [**getUser**](docs/Api/BlueOceanApi.md#getuser) | **GET** /blue/rest/organizations/{organization}/users/{user} |
+*BlueOceanApi* | [**getUserFavorites**](docs/Api/BlueOceanApi.md#getuserfavorites) | **GET** /blue/rest/users/{user}/favorites |
+*BlueOceanApi* | [**getUsers**](docs/Api/BlueOceanApi.md#getusers) | **GET** /blue/rest/organizations/{organization}/users/ |
+*BlueOceanApi* | [**postPipelineRun**](docs/Api/BlueOceanApi.md#postpipelinerun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay |
+*BlueOceanApi* | [**postPipelineRuns**](docs/Api/BlueOceanApi.md#postpipelineruns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |
+*BlueOceanApi* | [**putPipelineFavorite**](docs/Api/BlueOceanApi.md#putpipelinefavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite |
+*BlueOceanApi* | [**putPipelineRun**](docs/Api/BlueOceanApi.md#putpipelinerun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop |
+*BlueOceanApi* | [**search**](docs/Api/BlueOceanApi.md#search) | **GET** /blue/rest/search/ |
+*BlueOceanApi* | [**searchClasses**](docs/Api/BlueOceanApi.md#searchclasses) | **GET** /blue/rest/classes/ |
+*RemoteAccessApi* | [**getComputer**](docs/Api/RemoteAccessApi.md#getcomputer) | **GET** /computer/api/json |
+*RemoteAccessApi* | [**getJenkins**](docs/Api/RemoteAccessApi.md#getjenkins) | **GET** /api/json |
+*RemoteAccessApi* | [**getJob**](docs/Api/RemoteAccessApi.md#getjob) | **GET** /job/{name}/api/json |
+*RemoteAccessApi* | [**getJobConfig**](docs/Api/RemoteAccessApi.md#getjobconfig) | **GET** /job/{name}/config.xml |
+*RemoteAccessApi* | [**getJobLastBuild**](docs/Api/RemoteAccessApi.md#getjoblastbuild) | **GET** /job/{name}/lastBuild/api/json |
+*RemoteAccessApi* | [**getJobProgressiveText**](docs/Api/RemoteAccessApi.md#getjobprogressivetext) | **GET** /job/{name}/{number}/logText/progressiveText |
+*RemoteAccessApi* | [**getQueue**](docs/Api/RemoteAccessApi.md#getqueue) | **GET** /queue/api/json |
+*RemoteAccessApi* | [**getQueueItem**](docs/Api/RemoteAccessApi.md#getqueueitem) | **GET** /queue/item/{number}/api/json |
+*RemoteAccessApi* | [**getView**](docs/Api/RemoteAccessApi.md#getview) | **GET** /view/{name}/api/json |
+*RemoteAccessApi* | [**getViewConfig**](docs/Api/RemoteAccessApi.md#getviewconfig) | **GET** /view/{name}/config.xml |
+*RemoteAccessApi* | [**headJenkins**](docs/Api/RemoteAccessApi.md#headjenkins) | **HEAD** /api/json |
+*RemoteAccessApi* | [**postCreateItem**](docs/Api/RemoteAccessApi.md#postcreateitem) | **POST** /createItem |
+*RemoteAccessApi* | [**postCreateView**](docs/Api/RemoteAccessApi.md#postcreateview) | **POST** /createView |
+*RemoteAccessApi* | [**postJobBuild**](docs/Api/RemoteAccessApi.md#postjobbuild) | **POST** /job/{name}/build |
+*RemoteAccessApi* | [**postJobConfig**](docs/Api/RemoteAccessApi.md#postjobconfig) | **POST** /job/{name}/config.xml |
+*RemoteAccessApi* | [**postJobDelete**](docs/Api/RemoteAccessApi.md#postjobdelete) | **POST** /job/{name}/doDelete |
+*RemoteAccessApi* | [**postJobDisable**](docs/Api/RemoteAccessApi.md#postjobdisable) | **POST** /job/{name}/disable |
+*RemoteAccessApi* | [**postJobEnable**](docs/Api/RemoteAccessApi.md#postjobenable) | **POST** /job/{name}/enable |
+*RemoteAccessApi* | [**postJobLastBuildStop**](docs/Api/RemoteAccessApi.md#postjoblastbuildstop) | **POST** /job/{name}/lastBuild/stop |
+*RemoteAccessApi* | [**postViewConfig**](docs/Api/RemoteAccessApi.md#postviewconfig) | **POST** /view/{name}/config.xml |
 
 ## Models
 

@@ -30,7 +30,7 @@ object OpenAPIInfo {
   val apiInfo = ApiInfo(
     """Swaggy Jenkins""",
     """Jenkins API clients generated from Swagger / Open API specification""",
-    """http://github.com/cliffano/swaggy-jenkins""",
+    """http://github.com/oapicf/swaggy-jenkins""",
     """blah@cliffano.com""",
     """All rights reserved""",
     """http://apache.org/licenses/LICENSE-2.0.html""")

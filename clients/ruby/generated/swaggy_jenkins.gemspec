@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Cliffano Subagio"]
   s.email       = ["blah@cliffano.com"]
-  s.homepage    = "https://github.com/cliffano/swaggy-jenkins"
+  s.homepage    = "https://github.com/oapicf/swaggy-jenkins"
   s.summary     = "Swaggy Jenkins Ruby Gem"
   s.description = "Jenkins API clients generated from Swagger / Open API specification"
   s.license     = "MIT"

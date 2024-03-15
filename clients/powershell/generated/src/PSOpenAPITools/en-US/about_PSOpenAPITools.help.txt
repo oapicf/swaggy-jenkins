@@ -12,7 +12,7 @@ LONG DESCRIPTION
     - API version: 1.5.1-pre.0
     - SDK version: 0.1.2
     - Build package: org.openapitools.codegen.languages.PowerShellClientCodegen
-    For more information, please visit [http://github.com/cliffano/swaggy-jenkins](http://github.com/cliffano/swaggy-jenkins)
+    For more information, please visit [http://github.com/oapicf/swaggy-jenkins](http://github.com/oapicf/swaggy-jenkins)
 
     Frameworks supported:
 

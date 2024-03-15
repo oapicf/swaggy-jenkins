@@ -14,5 +14,5 @@
 
   {maintainers, []},
   {licenses, []},
-  {links, ["http://github.com/cliffano/swaggy-jenkins"]}
+  {links, ["http://github.com/oapicf/swaggy-jenkins"]}
 ]}.

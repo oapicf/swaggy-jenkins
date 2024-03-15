@@ -2,9 +2,9 @@
   "gemName": "swaggy_jenkins",
   "moduleName": "SwaggyJenkinsClient",
   "gemVersion": "2.0.1-pre.0",
-  "gemAuthor": "Cliffano Subagio",
-  "gemAuthorEmail": "blah@cliffano.com",
-  "gemHomepage": "https://github.com/cliffano/swaggy-jenkins",
+  "gemAuthor": "OpenAPI Clients Factory",
+  "gemAuthorEmail": "blah+oapicf@cliffano.com",
+  "gemHomepage": "https://github.com/oapicf/swaggy-jenkins",
   "gemLicense": "MIT",
   "gemRequiredRubyVersion": ">= 2.0"
 }

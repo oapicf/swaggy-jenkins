@@ -24,7 +24,7 @@ class SpringDocConfiguration {
                     .contact(
                         Contact()
                             .name("Cliffano Subagio")
-                            .url("http://github.com/cliffano/swaggy-jenkins")
+                            .url("http://github.com/oapicf/swaggy-jenkins")
                             .email("blah@cliffano.com")
                     )
                     .version("1.5.1-pre.0")
