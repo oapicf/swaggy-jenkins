@@ -1,5 +1,5 @@
 #!/bin/bash
-make deps generate-primary
+make clean deps init-spec generate-primary build-python test-python
 
 rm -f ~/.pypirc && touch ~/.pypirc
 echo "[pypi]" > ~/.pypirc

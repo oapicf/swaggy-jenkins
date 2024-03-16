@@ -1,5 +1,5 @@
 #!/bin/bash
-make deps generate-primary
+make clean deps init-spec generate-primary build-ruby test-ruby
 
 rm -f ~/.gem/credentials
 rm -rf ~/.gem/ && mkdir -p ~/.gem/
