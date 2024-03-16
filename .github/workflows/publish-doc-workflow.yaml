@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.OAPICF_GITHUB_TOKEN }}
-          ref: main
+          ref: 3.0.1
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
