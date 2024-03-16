@@ -54,7 +54,6 @@
         "post_release_value": "main"
       }
     },
-
     {
       "path": ".github/workflows/publish-javascript-workflow.yaml",
       "type": "yaml",
