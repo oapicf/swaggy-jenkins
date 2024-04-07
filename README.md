@@ -11,11 +11,11 @@ Swaggy Jenkins is a set of Jenkins API clients in multiple languages generated f
 Published packages
 ------------------
 
-| Language | Package | Status |
-|----------|---------|--------|
-| JavaScript | [swaggy-jenkins]((http://www.npmjs.com/package/swaggy-jenkins)) | [![Published Version](https://img.shields.io/npm/v/swaggy-jenkins.svg)](http://www.npmjs.com/package/swaggy-jenkins) |
-| Python | [swaggyjenkins]((https://pypi.python.org/pypi/swaggyjenkins)) | [![Published Version](https://img.shields.io/pypi/v/swaggyjenkins.svg)](https://pypi.python.org/pypi/swaggyjenkins) |
-| Ruby | [swaggy_jenkins]((https://rubygems.org/gems/swaggy_jenkins)) | [![Published Version](https://img.shields.io/gem/v/swaggy_jenkins.svg)](https://rubygems.org/gems/swaggy_jenkins) |
+| Language | Package | Status | Documentation |
+|----------|---------|--------|---------------|
+| JavaScript | [swaggy-jenkins]((http://www.npmjs.com/package/swaggy-jenkins)) | [![Published Version](https://img.shields.io/npm/v/swaggy-jenkins.svg)](http://www.npmjs.com/package/swaggy-jenkins) | [README](https://github.com/oapicf/swaggy-jenkins/blob/main/clients/javascript/generated/README.md) |
+| Python | [swaggyjenkins]((https://pypi.python.org/pypi/swaggyjenkins)) | [![Published Version](https://img.shields.io/pypi/v/swaggyjenkins.svg)](https://pypi.python.org/pypi/swaggyjenkins) | [README](https://github.com/oapicf/swaggyjenkins/blob/main/clients/python/generated/README.md) |
+| Ruby | [swaggy_jenkins]((https://rubygems.org/gems/swaggy_jenkins)) | [![Published Version](https://img.shields.io/gem/v/swaggy_jenkins.svg)](https://rubygems.org/gems/swaggy_jenkins) | [README](https://github.com/oapicf/swaggy-jenkins/blob/main/clients/ruby/generated/README.md) |
 
 Version Matrix
 --------------
