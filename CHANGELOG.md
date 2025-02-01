@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade Swaggy C to 4.5.0
+- Upgrade OpenAPI Generator to 7.6.0
+
 ## 3.0.1 - 2024-03-16
 ### Fixed
 - Fix GH Actions publish entrypoints
