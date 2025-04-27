@@ -4,7 +4,7 @@
 ################################################################
 
 # The version of Swaggy C
-SWAGGY_C_VERSION = 4.9.0
+SWAGGY_C_VERSION = 4.9.1
 
 # The version of OpenAPI Generator (https://openapi-generator.tech/) used for generating the API clients
 OPENAPI_GENERATOR_VERSION = 7.12.0
@@ -167,12 +167,17 @@ build-javascript:
 	cd test/javascript/ && \
 	  npm link ../../clients/javascript/generated/
 
+define python_venv
+	. .venv/bin/activate && $(1)
+endef
+
 build-python:
-	pip install twine wheel pytest validators
 	cd clients/python/generated/ && \
-	  pip install -r requirements.txt && \
-	  python3 setup.py sdist bdist_wheel && \
-	  python3 setup.py install
+	  python3 -m venv .venv && \
+	  $(call python_venv,pip install twine wheel pytest validators) && \
+	  $(call python_venv,pip install -r requirements.txt) && \
+	  $(call python_venv,python3 setup.py sdist bdist_wheel) && \
+	  $(call python_venv,python3 setup.py install)
 
 build-ruby:
 	apt-get install libyaml-dev
