@@ -64,6 +64,10 @@ else
 	endif
 endif
 
+define python_venv
+	. .venv/bin/activate && $(1)
+endef
+
 $(info ################################################################)
 $(info Building Swaggy C application with user configurations:)
 $(info - OpenAPI specification URI: ${SPEC_URI})
@@ -167,10 +171,6 @@ build-javascript:
 	cd test/javascript/ && \
 	  npm link ../../clients/javascript/generated/
 
-define python_venv
-	. .venv/bin/activate && $(1)
-endef
-
 build-python:
 	cd clients/python/generated/ && \
 	  python3 -m venv .venv && \
@@ -200,8 +200,8 @@ test-javascript: build-javascript
 
 test-python: build-python
 	cd clients/python/generated/ && \
-	  twine check dist/*
-	pytest -v test/python/*.py --capture=no
+	  $(call python_venv,twine check dist/*)
+	$(call python_venv,pytest -v test/python/*.py --capture=no)
 
 test-ruby: build-ruby
 
@@ -214,7 +214,7 @@ publish-javascript: build-javascript
 
 publish-python: build-python
 	cd clients/python/generated/ && \
-	  twine upload dist/*
+	  $(call python_venv,twine upload dist/*)
 
 publish-ruby: build-ruby
 	cd clients/ruby/generated/ && \
