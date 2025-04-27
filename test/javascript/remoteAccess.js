@@ -1,7 +1,7 @@
 const assert = require('assert');
 const Swaggy = require('swaggy-jenkins');
 const remoteAccessApi = new Swaggy.RemoteAccessApi();
-remoteAccessApi.apiClient.basePath = 'https://ci.eclipse.org/ecf/';
+remoteAccessApi.apiClient.basePath = 'https://jenkins-ccos.apache.org/';
 
 describe('remote access', function() {
   describe('get Jenkins', function() {

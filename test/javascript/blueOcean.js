@@ -1,7 +1,7 @@
 const assert = require('assert');
 const Swaggy = require('swaggy-jenkins');
 const blueOceanApi = new Swaggy.BlueOceanApi();
-blueOceanApi.apiClient.basePath = 'https://ci.eclipse.org/ecf/';
+blueOceanApi.apiClient.basePath = 'https://jenkins-ccos.apache.org/';
 
 describe('remote access', function() {
   describe('without format', function() {
